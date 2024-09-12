@@ -1,0 +1,16 @@
+{
+  "name": "TODO app name",
+  "short_name": "TODO app name",
+  "description": "TODO description",
+  "id": "?todo_app_name=202402221",
+  "dir": "auto",
+  "lang": "en-US",
+  "display": "standalone",
+  "start_url": "TODO url or ../.",
+  "background_color": "#373647",
+  "theme_color": "#373647",
+  "shortcuts": [],
+  "categories": ["games", "entertainment", "education"],
+  "icons": [],
+  "screenshots": []
+}
