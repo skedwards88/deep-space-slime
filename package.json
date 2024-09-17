@@ -25,8 +25,6 @@
   },
   "homepage": "https://github.com/skedwards88/TODO-template-app#readme",
   "dependencies": {
-    "@skedwards88/word_lists": "latest",
-    "@skedwards88/word_logic": "2.0.7",
     "lodash.clonedeep": "^4.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -34,7 +32,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
-    "@babel/plugin-syntax-import-assertions": "^7.22.5",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.16.7",
     "babel-jest": "^29.7.0",

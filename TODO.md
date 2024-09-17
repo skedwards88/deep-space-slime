@@ -5,10 +5,6 @@
 
 ## `package.json`
 
-- [ ] Remove these dependencies if this isn't a word game:
-  - @skedwards88/word_lists
-  - @skedwards88/word_logic
-  - @babel/plugin-syntax-import-assertions
 - [ ] Remove these dependencies if they aren't needed:
   - seedrandom
   - lodash.clonedeep
@@ -23,24 +19,9 @@
 
 - [ ] If this app uses a custom url instead of the default GitHub Pages url, adjust the `path` and `scope` variables
 
-## `.github/ISSUE_TEMPLATE`
-
-- [ ] Remove these templates if they aren't needed:
-  - `.github/ISSUE_TEMPLATE/add_word.yaml`
-  - `.github/ISSUE_TEMPLATE/remove_word.yaml`
-- [ ] Add any other desired issue templates
-
 ## `.github/workflows`
 
-- [] If this is a word game, add the `repository_dispatch` trigger to the `.github/workflows/deploy.yml` workflow
-  - [ ] Also add the word game to the [`word_list` package workflow](https://github.com/skedwards88/word_lists/blob/3126cc2fcc997468ea0d642d853aa5b74c174836/.github/workflows/package.yml#L60)
-  - [ ] Also grant the "Word Game Updater" app (https://github.com/settings/installations/43072167) access to the repo
-- [] If this is a word game, add the steps to update the word list to the `.github/workflows/deploy.yml` workflow
 - [ ] In your GitHub Pages settings, specify that GitHub Pages is built from GitHub Actions.
-
-## `jest.config.cjs`
-
-- [ ] If this is not a word game, remove the transform ignore patterns for the word packages
 
 ## `README`
 
@@ -75,10 +56,6 @@
   - [ ] `index.html`
   - [ ] `manifest.json`
   - [ ] `webpack.config.js`
-
-## `src/components/Heart.js`
-
-- [ ] If this isn't a word game, remove the word data attribution
 
 ## Custom domains
 

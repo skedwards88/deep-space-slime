@@ -110,3 +110,85 @@ button:disabled {
   height: calc(var(--default-box-size) * 1.2);
   border-bottom: 2px solid var(--light-color);
 }
+
+/* todo delete unused above */
+
+#puzzle {
+  touch-action: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.puzzleSquare {
+  touch-action: none;
+  border: 1px solid black;
+  /* todo make square size more robust for different screen sizes */
+  width: 10vw;
+  height: 10vw;
+}
+
+
+.puzzleSquare {
+  background-color: rgb(137, 132, 132);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* todo make icons smaller */
+}
+
+.puzzleSquare.start {
+  background-image: url("../images/icons/start.svg");
+  background-color: rgb(200, 190, 78);
+}
+
+.puzzleSquare.outer {
+  background-color: black;
+}
+
+.puzzleSquare.flask {
+  background-image: url("../images/icons/flask.svg");
+}
+
+.puzzleSquare.key {
+  background-image: url("../images/icons/key.svg");
+}
+
+.puzzleSquare.door {
+  background-image: url("../images/icons/door.svg");
+}
+
+.puzzleSquare.jet {
+  background-image: url("../images/icons/jet.svg");
+}
+
+.puzzleSquare.portal {
+  background-color: rgb(205, 152, 238);
+  background-image: url("../images/icons/portal.svg");
+}
+
+.puzzleSquare.number1 {
+  background-image: url("../images/icons/number1.svg");
+}
+
+.puzzleSquare.number2 {
+  background-image: url("../images/icons/number2.svg");
+}
+
+.puzzleSquare.number3 {
+  background-image: url("../images/icons/number3.svg");
+}
+/* todo numbers 4-9 */
+
+.puzzleSquare.exit {
+  /* todo change to be exit opened/closed */
+  background-image: url("../images/icons/exit-closed.svg");
+  background-color: rgb(200, 190, 78);
+}
+
+.puzzleSquare.visited {
+  background-image: url("../images/icons/slime.svg");
+}
+
+.puzzleSquare.person {
+  background-image: url("../images/icons/person.svg");
+}

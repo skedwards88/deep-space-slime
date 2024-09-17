@@ -2,10 +2,6 @@ import {createRoot} from "react-dom/client";
 import React from "react";
 import App from "./components/App";
 import "./styles/App.css";
-import "./styles/ControlBar.css";
-import "./styles/Settings.css";
-import "./styles/Rules.css";
-import "./styles/Stats.css";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
   const path =
