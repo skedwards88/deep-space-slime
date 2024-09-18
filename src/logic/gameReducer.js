@@ -23,12 +23,15 @@ export function gameReducer(currentGameState, payload) {
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
+    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+    const spaceIsNumber = Number.isInteger(parsedNumber);
 
     // If the index is the second to last index in the path,
     // remove the last index in the path.
     // If the last index was a flask, remove the flask from the flask count.
     // If the last index was a key, remove the key from the key count.
     // If the last index was a door, add a key to the key count.
+    // If the last index was a number, decrement the number count.
     if (penultimateIndexInPath === index) {
       let newKeyCount = currentGameState.keyCount;
       if (currentGameState.puzzle[lastIndexInPath] === "key") {
@@ -45,6 +48,9 @@ export function gameReducer(currentGameState, payload) {
             ? currentGameState.flaskCount - 1
             : currentGameState.flaskCount,
         keyCount: newKeyCount,
+        numberCount: spaceIsNumber
+          ? currentGameState.numberCount - 1
+          : currentGameState.numberCount,
       };
     }
 
@@ -53,6 +59,13 @@ export function gameReducer(currentGameState, payload) {
     const hasBeenVisited = mainPath.includes(index);
     if (hasBeenVisited) {
       console.log("NOPE: already full");
+      // todo later show message
+      return currentGameState;
+    }
+
+    // Return early if this space is a number and you haven't visited the previous numbers
+    if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
+      console.log("NOPE: must get previous numbers first");
       // todo later show message
       return currentGameState;
     }
@@ -101,7 +114,8 @@ export function gameReducer(currentGameState, payload) {
     // If haven't returned for another reason above, add the index to the path.
     // If the index is a flask, acquire the flask.
     // If the index is a key, acquire the key.
-    // If the index is a door, lose a key
+    // If the index is a door, lose a key.
+    // If the index is a number, increment the number count.
     const newPath = [...currentGameState.mainPath, index];
 
     let newKeyCount = currentGameState.keyCount;
@@ -120,6 +134,7 @@ export function gameReducer(currentGameState, payload) {
           ? currentGameState.flaskCount + 1
           : currentGameState.flaskCount,
       keyCount: newKeyCount,
+      numberCount: spaceIsNumber ? parsedNumber : currentGameState.numberCount,
     };
   } else {
     console.log(`unknown action: ${payload.action}`);

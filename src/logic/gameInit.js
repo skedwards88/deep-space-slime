@@ -33,7 +33,7 @@ export function gameInit({useSaved = true}) {
     "outer",
     "door",
     "3",
-    "portal",
+    "jet",
     "2",
     "flask",
     "outer",
@@ -83,8 +83,6 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // You can only visit a numbered square if you have already visited all lower numbers.
-
   // Once you visit all numbers, the exit is opened
 
   // The exit is closed unless all numbers have been visited. Cannot enter a closed exit.
@@ -92,10 +90,10 @@ export function gameInit({useSaved = true}) {
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
 
-  // 1
-  // exit
-
   const startIndex = puzzle.indexOf("start");
+
+  const numbers = puzzle.map(Number).filter(Number.isInteger);
+  const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
   return {
     puzzle,
@@ -104,5 +102,7 @@ export function gameInit({useSaved = true}) {
     numRows: 9,
     flaskCount: 0,
     keyCount: 0,
+    numberCount: 0,
+    maxNumber,
   };
 }
