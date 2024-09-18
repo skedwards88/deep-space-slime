@@ -1,5 +1,5 @@
-import cloneDeep from "lodash.clonedeep";
-import sendAnalytics from "../common/sendAnalytics";
+// todo delete if unneeded: import cloneDeep from "lodash.clonedeep";
+// todo delete if unneeded: import sendAnalytics from "../common/sendAnalytics";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 
 export function gameReducer(currentGameState, payload) {
@@ -28,7 +28,15 @@ export function gameReducer(currentGameState, payload) {
     // remove the last index in the path.
     // If the last index was a flask, remove the flask from the flask count.
     // If the last index was a key, remove the key from the key count.
+    // If the last index was a door, add a key to the key count.
     if (penultimateIndexInPath === index) {
+      let newKeyCount = currentGameState.keyCount;
+      if (currentGameState.puzzle[lastIndexInPath] === "key") {
+        newKeyCount--;
+      }
+      if (currentGameState.puzzle[lastIndexInPath] === "door") {
+        newKeyCount++;
+      }
       return {
         ...currentGameState,
         mainPath: mainPath.slice(0, mainPath.length - 1),
@@ -36,14 +44,12 @@ export function gameReducer(currentGameState, payload) {
           currentGameState.puzzle[lastIndexInPath] === "flask"
             ? currentGameState.flaskCount - 1
             : currentGameState.flaskCount,
-        keyCount:
-          currentGameState.puzzle[lastIndexInPath] === "key"
-            ? currentGameState.keyCount - 1
-            : currentGameState.keyCount,
+        keyCount: newKeyCount,
       };
     }
 
     // Return early if the index has already been visited
+    // (and you aren't backtracking, which is handled above)
     const hasBeenVisited = mainPath.includes(index);
     if (hasBeenVisited) {
       console.log("NOPE: already full");
@@ -64,10 +70,29 @@ export function gameReducer(currentGameState, payload) {
       return currentGameState;
     }
 
-    // If haven't returned for another reason already, add the index to the path.
+    // Return early if the index is a door and you don't have a key
+    if (
+      currentGameState.puzzle[index] === "door" &&
+      currentGameState.keyCount <= 0
+    ) {
+      console.log("NOPE: need a key");
+      // todo later show message
+      return currentGameState;
+    }
+
+    // If haven't returned for another reason above, add the index to the path.
     // If the index is a flask, acquire the flask.
     // If the index is a key, acquire the key.
+    // If the index is a door, lose a key
     const newPath = [...currentGameState.mainPath, index];
+
+    let newKeyCount = currentGameState.keyCount;
+    if (currentGameState.puzzle[index] === "key") {
+      newKeyCount++;
+    }
+    if (currentGameState.puzzle[index] === "door") {
+      newKeyCount--;
+    }
 
     return {
       ...currentGameState,
@@ -76,10 +101,7 @@ export function gameReducer(currentGameState, payload) {
         currentGameState.puzzle[index] === "flask"
           ? currentGameState.flaskCount + 1
           : currentGameState.flaskCount,
-      keyCount:
-        currentGameState.puzzle[index] === "key"
-          ? currentGameState.keyCount + 1
-          : currentGameState.keyCount,
+      keyCount: newKeyCount,
     };
   } else {
     console.log(`unknown action: ${payload.action}`);

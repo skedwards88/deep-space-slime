@@ -83,10 +83,6 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // When you add a door space to the path, the key is removed from the inventory. When you backtrack over a door, the key returns to the inventory.
-
-  // You can only enter a door space if you have a key in the inventory.
-
   // When you add a portal space to the path, the next space you add must be a portal (unless the previous space was a portal).
 
   // You can only visit a numbered square if you have already visited all lower numbers.
@@ -98,7 +94,6 @@ export function gameInit({useSaved = true}) {
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
 
-  // door
   // 1
   // exit
 
