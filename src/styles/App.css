@@ -165,7 +165,7 @@ button:disabled {
   background-image: url("../images/icons/flask.svg");
 }
 
-.puzzleSquare.key {
+.puzzleSquare.key, #acquiredFeatures .key {
   background-image: url("../images/icons/key.svg");
 }
 

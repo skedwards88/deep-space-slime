@@ -83,7 +83,7 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // When you add a key space to the path, a key goes to the inventory. When you add a door space to the path, the key is removed from the inventory. When you backtrack over a door, the key returns to the inventory. When you backtrack over a key, the key returns to the board.
+  // When you add a door space to the path, the key is removed from the inventory. When you backtrack over a door, the key returns to the inventory.
 
   // You can only enter a door space if you have a key in the inventory.
 
@@ -110,5 +110,6 @@ export function gameInit({useSaved = true}) {
     numColumns: 7,
     numRows: 9,
     flaskCount: 0,
+    keyCount: 0,
   };
 }
