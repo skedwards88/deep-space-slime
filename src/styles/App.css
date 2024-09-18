@@ -113,6 +113,26 @@ button:disabled {
 
 /* todo delete unused above */
 
+
+#acquiredFeatures {
+  display: flex;
+  flex-direction: row;
+}
+
+#acquiredFeatures>div {
+  display: flex;
+  flex-direction: row;
+  height: 10vw;
+}
+
+#acquiredFeatures .feature {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 10vw;
+  height: 10vw;
+}
+
 #puzzle {
   touch-action: none;
   display: grid;
@@ -125,10 +145,6 @@ button:disabled {
   /* todo make square size more robust for different screen sizes */
   width: 10vw;
   height: 10vw;
-}
-
-
-.puzzleSquare {
   background-color: rgb(137, 132, 132);
   background-position: center;
   background-repeat: no-repeat;
@@ -145,7 +161,7 @@ button:disabled {
   background-color: black;
 }
 
-.puzzleSquare.flask {
+.puzzleSquare.flask, #acquiredFeatures .flask {
   background-image: url("../images/icons/flask.svg");
 }
 

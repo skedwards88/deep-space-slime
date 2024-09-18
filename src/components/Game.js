@@ -48,11 +48,14 @@ function Game({dispatchGameState, gameState}) {
     ></PuzzleSquare>
   ));
 
-  // const flasks
+  const flasks = Array.from({length: gameState.flaskCount}, (_, index) => (
+    <div key={index} className="feature flask"></div>
+  ));
+
   return (
     <div id="game">
       <div id="acquiredFeatures">
-        <div></div>
+        <div>{flasks}</div>
       </div>
       <div id="puzzle">{squares}</div>
     </div>

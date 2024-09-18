@@ -14,6 +14,7 @@ export function gameInit({useSaved = true}) {
 
   sendAnalytics("new_game");
 
+  // todo puzzle levels
   const puzzle = [
     "outer",
     "outer",
@@ -82,8 +83,6 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // When you add a flask space to the path, a flask goes to the inventory. When you backtrack, the flask returns to the board.
-
   // When you add a key space to the path, a key goes to the inventory. When you add a door space to the path, the key is removed from the inventory. When you backtrack over a door, the key returns to the inventory. When you backtrack over a key, the key returns to the board.
 
   // You can only enter a door space if you have a key in the inventory.
@@ -99,6 +98,10 @@ export function gameInit({useSaved = true}) {
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
 
+  // door
+  // 1
+  // exit
+
   const startIndex = puzzle.indexOf("start");
 
   return {
@@ -106,9 +109,6 @@ export function gameInit({useSaved = true}) {
     mainPath: [startIndex],
     numColumns: 7,
     numRows: 9,
-    acquiredFeatures: {
-      flask: 0,
-      key: 0,
-    },
+    flaskCount: 0,
   };
 }

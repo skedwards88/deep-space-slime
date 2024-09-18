@@ -24,14 +24,17 @@ export function gameReducer(currentGameState, payload) {
     const lastIndexInPath = mainPath[mainPath.length - 1];
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
 
-    const feature = currentGameState.puzzle[index];
-
     // If the index is the second to last index in the path,
-    // remove the last index in the path
+    // remove the last index in the path.
+    // If the last index was a flask, remove the flask from the flask count.
     if (penultimateIndexInPath === index) {
       return {
         ...currentGameState,
         mainPath: mainPath.slice(0, mainPath.length - 1),
+        flaskCount:
+          currentGameState.puzzle[lastIndexInPath] === "flask"
+            ? currentGameState.flaskCount - 1
+            : currentGameState.flaskCount,
       };
     }
 
@@ -56,12 +59,17 @@ export function gameReducer(currentGameState, payload) {
       return currentGameState;
     }
 
-    // If haven't returned for another reason already, add the index to the path
+    // If haven't returned for another reason already, add the index to the path.
+    // If the index is a flask, acquire the flask.
     const newPath = [...currentGameState.mainPath, index];
 
     return {
       ...currentGameState,
       mainPath: newPath,
+      flaskCount:
+        currentGameState.puzzle[index] === "flask"
+          ? currentGameState.flaskCount + 1
+          : currentGameState.flaskCount,
     };
   } else {
     console.log(`unknown action: ${payload.action}`);
