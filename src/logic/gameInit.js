@@ -83,8 +83,6 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // When you add a portal space to the path, the next space you add must be a portal (unless the previous space was a portal).
-
   // You can only visit a numbered square if you have already visited all lower numbers.
 
   // Once you visit all numbers, the exit is opened

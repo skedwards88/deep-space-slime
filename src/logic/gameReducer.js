@@ -11,7 +11,7 @@ export function gameReducer(currentGameState, payload) {
     const lastIndexInPath = mainPath[mainPath.length - 1];
     if (index !== lastIndexInPath) {
       // todo later show a message to the user
-      console.log("NOPE: Index is not last index");
+      // console.log("NOPE: Index is not last index");
       return currentGameState;
     }
 
@@ -57,14 +57,29 @@ export function gameReducer(currentGameState, payload) {
       return currentGameState;
     }
 
+    // Return early if the previous space was a portal and this space is not a portal
+    // (unless the last two spaces were portals) todo
+    const isConnectingPortals =
+      currentGameState.puzzle[lastIndexInPath] === "portal" &&
+      currentGameState.puzzle[index] !== "portal";
+    if (
+      isConnectingPortals &&
+      currentGameState.puzzle[penultimateIndexInPath] !== "portal"
+    ) {
+      console.log("NOPE: must travel from portal to portal");
+      // todo later show message
+      return currentGameState;
+    }
+
     // Return early if the index is not adjacent to the last index in the path
+    // (unless the current and previous indexes are portals)
     const isAdjacent = indexesAdjacentQ({
       indexA: index,
       indexB: lastIndexInPath,
       numColumns: currentGameState.numColumns,
       numRows: currentGameState.numRows,
     });
-    if (!isAdjacent) {
+    if (!isAdjacent && isConnectingPortals) {
       console.log("NOPE: not adj");
       // todo later show message
       return currentGameState;
