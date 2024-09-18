@@ -59,11 +59,9 @@ export function gameReducer(currentGameState, payload) {
 
     // Return early if the previous space was a portal and this space is not a portal
     // (unless the last two spaces were portals) todo
-    const isConnectingPortals =
-      currentGameState.puzzle[lastIndexInPath] === "portal" &&
-      currentGameState.puzzle[index] !== "portal";
     if (
-      isConnectingPortals &&
+      currentGameState.puzzle[lastIndexInPath] === "portal" &&
+      currentGameState.puzzle[index] !== "portal" &&
       currentGameState.puzzle[penultimateIndexInPath] !== "portal"
     ) {
       console.log("NOPE: must travel from portal to portal");
@@ -79,8 +77,13 @@ export function gameReducer(currentGameState, payload) {
       numColumns: currentGameState.numColumns,
       numRows: currentGameState.numRows,
     });
-    if (!isAdjacent && isConnectingPortals) {
-      console.log("NOPE: not adj");
+    if (
+      !isAdjacent &&
+      !(
+        currentGameState.puzzle[lastIndexInPath] === "portal" &&
+        currentGameState.puzzle[index] === "portal"
+      )
+    ) {
       // todo later show message
       return currentGameState;
     }
