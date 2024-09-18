@@ -33,7 +33,7 @@ export function gameInit({useSaved = true}) {
     "outer",
     "door",
     "3",
-    "jet",
+    "portal",
     "2",
     "flask",
     "outer",
