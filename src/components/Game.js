@@ -12,10 +12,24 @@ function handlePointerEnter(event, index, dispatchGameState) {
   dispatchGameState({action: "continueDrag", index});
 }
 
-function PuzzleSquare({feature, index, visited, dispatchGameState, current}) {
-  const featureClass = Number.isInteger(Number.parseInt(feature))
-    ? `numbered number${feature}`
-    : feature;
+function PuzzleSquare({
+  feature,
+  index,
+  visited,
+  dispatchGameState,
+  exitUnlocked,
+  current,
+}) {
+  let featureClass;
+
+  if (feature === "exit") {
+    feature = exitUnlocked ? "exit-opened" : "exit-closed";
+  }
+  if (Number.isInteger(Number.parseInt(feature))) {
+    featureClass = `numbered number${feature}`;
+  } else {
+    featureClass = feature;
+  }
 
   return (
     <div
@@ -37,6 +51,7 @@ function PuzzleSquare({feature, index, visited, dispatchGameState, current}) {
 function Game({dispatchGameState, gameState}) {
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
+  const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
@@ -44,6 +59,7 @@ function Game({dispatchGameState, gameState}) {
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
       current={lastIndexInPath === index}
+      exitUnlocked={exitUnlocked}
       dispatchGameState={dispatchGameState}
     ></PuzzleSquare>
   ));

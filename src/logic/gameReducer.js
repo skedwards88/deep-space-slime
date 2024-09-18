@@ -63,6 +63,16 @@ export function gameReducer(currentGameState, payload) {
       return currentGameState;
     }
 
+    // Return early if this space is the exit and you haven't visited all numbers
+    if (
+      currentGameState.puzzle[index] === "exit" &&
+      currentGameState.numberCount !== currentGameState.maxNumber
+    ) {
+      console.log("NOPE: must visit all numbers before exit");
+      // todo later show message
+      return currentGameState;
+    }
+
     // Return early if this space is a number and you haven't visited the previous numbers
     if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
       console.log("NOPE: must get previous numbers first");
