@@ -195,8 +195,12 @@ button:disabled {
 }
 /* todo numbers 4-9 */
 
-.puzzleSquare.exit {
-  /* todo change to be exit opened/closed */
+.puzzleSquare.exit-opened {
+  background-image: url("../images/icons/exit-opened.svg");
+  background-color: rgb(200, 190, 78);
+}
+
+.puzzleSquare.exit-closed {
   background-image: url("../images/icons/exit-closed.svg");
   background-color: rgb(200, 190, 78);
 }
