@@ -83,10 +83,6 @@ export function gameInit({useSaved = true}) {
 
   // jet
 
-  // Once you visit all numbers, the exit is opened
-
-  // The exit is closed unless all numbers have been visited. Cannot enter a closed exit.
-
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
 

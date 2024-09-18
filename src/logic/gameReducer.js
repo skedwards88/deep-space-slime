@@ -23,8 +23,6 @@ export function gameReducer(currentGameState, payload) {
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
-    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
-    const spaceIsNumber = Number.isInteger(parsedNumber);
 
     // If the index is the second to last index in the path,
     // remove the last index in the path.
@@ -48,7 +46,9 @@ export function gameReducer(currentGameState, payload) {
             ? currentGameState.flaskCount - 1
             : currentGameState.flaskCount,
         keyCount: newKeyCount,
-        numberCount: spaceIsNumber
+        numberCount: Number.isInteger(
+          Number.parseInt(currentGameState.puzzle[lastIndexInPath]),
+        )
           ? currentGameState.numberCount - 1
           : currentGameState.numberCount,
       };
@@ -74,6 +74,8 @@ export function gameReducer(currentGameState, payload) {
     }
 
     // Return early if this space is a number and you haven't visited the previous numbers
+    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+    const spaceIsNumber = Number.isInteger(parsedNumber);
     if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
       console.log("NOPE: must get previous numbers first");
       // todo later show message
