@@ -15,6 +15,7 @@ function PuzzleSquare({
   feature,
   index,
   visited,
+  validNext,
   dispatchGameState,
   exitUnlocked,
   current,
@@ -35,7 +36,7 @@ function PuzzleSquare({
       key={index}
       className={`puzzleSquare ${featureClass} ${visited ? "visited" : ""} ${
         current ? "person" : ""
-      }`}
+      } ${validNext ? "validNext" : ""}`}
       onPointerDown={(
         event, //todo delete this?
       ) => handlePointerDown(event)}
@@ -57,6 +58,7 @@ function Game({dispatchGameState, gameState}) {
       feature={feature}
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
+      validNext={gameState.validNextIndexes.includes(index)}
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
       dispatchGameState={dispatchGameState}

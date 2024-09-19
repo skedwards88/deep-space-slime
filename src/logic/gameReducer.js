@@ -1,9 +1,10 @@
 // todo delete if unneeded: import cloneDeep from "lodash.clonedeep";
 // todo delete if unneeded: import sendAnalytics from "../common/sendAnalytics";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
+import {getValidNextIndexes} from "./getValidNextIndexes";
 
 export function gameReducer(currentGameState, payload) {
- if (payload.action === "continueDrag") {
+  if (payload.action === "continueDrag") {
     const index = payload.index;
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -16,6 +17,16 @@ export function gameReducer(currentGameState, payload) {
     // If the last index was a door, add a key to the key count.
     // If the last index was a number, decrement the number count.
     if (penultimateIndexInPath === index) {
+      const newMainPath = mainPath.slice(0, mainPath.length - 1);
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: newMainPath,
+        puzzle: currentGameState.puzzle,
+        numColumns: currentGameState.numColumns,
+        numRows: currentGameState.numRows,
+        hasKey: currentGameState.keyCount > 0,
+        numberCount: currentGameState.numberCount,
+        maxNumber: currentGameState.maxNumber,
+      });
       let newKeyCount = currentGameState.keyCount;
       if (currentGameState.puzzle[lastIndexInPath] === "key") {
         newKeyCount--;
@@ -25,7 +36,8 @@ export function gameReducer(currentGameState, payload) {
       }
       return {
         ...currentGameState,
-        mainPath: mainPath.slice(0, mainPath.length - 1),
+        validNextIndexes: newValidNextIndexes,
+        mainPath: newMainPath,
         flaskCount:
           currentGameState.puzzle[lastIndexInPath] === "flask"
             ? currentGameState.flaskCount - 1
@@ -113,7 +125,16 @@ export function gameReducer(currentGameState, payload) {
     // If the index is a key, acquire the key.
     // If the index is a door, lose a key.
     // If the index is a number, increment the number count.
-    const newPath = [...currentGameState.mainPath, index];
+    const newMainPath = [...currentGameState.mainPath, index];
+    const newValidNextIndexes = getValidNextIndexes({
+      mainPath: newMainPath,
+      puzzle: currentGameState.puzzle,
+      numColumns: currentGameState.numColumns,
+      numRows: currentGameState.numRows,
+      hasKey: currentGameState.keyCount > 0,
+      numberCount: currentGameState.numberCount,
+      maxNumber: currentGameState.maxNumber,
+    });
 
     let newKeyCount = currentGameState.keyCount;
     if (currentGameState.puzzle[index] === "key") {
@@ -125,7 +146,8 @@ export function gameReducer(currentGameState, payload) {
 
     return {
       ...currentGameState,
-      mainPath: newPath,
+      validNextIndexes: newValidNextIndexes,
+      mainPath: newMainPath,
       flaskCount:
         currentGameState.puzzle[index] === "flask"
           ? currentGameState.flaskCount + 1

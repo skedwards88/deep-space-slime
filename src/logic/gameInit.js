@@ -1,4 +1,5 @@
 import sendAnalytics from "../common/sendAnalytics";
+import {getValidNextIndexes} from "./getValidNextIndexes";
 
 export function gameInit({useSaved = true}) {
   const savedState = useSaved
@@ -31,9 +32,9 @@ export function gameInit({useSaved = true}) {
     "outer",
     "outer",
     "outer",
-    "door",
+    "portal",
     "3",
-    "jet",
+    "portal",
     "2",
     "flask",
     "outer",
@@ -49,7 +50,7 @@ export function gameInit({useSaved = true}) {
     "basic",
     "1",
     "basic",
-    "key",
+    "portal",
     "outer",
     "outer",
     "outer",
@@ -86,19 +87,31 @@ export function gameInit({useSaved = true}) {
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
 
+  const numColumns = 7;
+  const numRows = 9;
   const startIndex = puzzle.indexOf("start");
+  const mainPath = [startIndex];
 
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
+  const validNextIndexes = getValidNextIndexes({
+    mainPath,
+    puzzle,
+    numColumns,
+    numRows,
+    maxNumber,
+  });
+
   return {
     puzzle,
-    mainPath: [startIndex],
-    numColumns: 7,
-    numRows: 9,
+    mainPath,
+    numColumns,
+    numRows,
     flaskCount: 0,
     keyCount: 0,
     numberCount: 0,
     maxNumber,
+    validNextIndexes,
   };
 }

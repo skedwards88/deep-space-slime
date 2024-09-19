@@ -150,6 +150,8 @@ button:disabled {
   background-repeat: no-repeat;
   background-size: contain;
   /* todo make icons smaller */
+
+  box-sizing: border-box;
 }
 
 .puzzleSquare.start {
@@ -211,4 +213,8 @@ button:disabled {
 
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
+}
+
+.puzzleSquare.validNext {
+  border: 3px solid rgb(17, 239, 47);;
 }
