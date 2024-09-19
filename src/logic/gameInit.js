@@ -81,7 +81,7 @@ export function gameInit({useSaved = true}) {
     "outer",
   ];
 
-  // jet
+  // If you have a jet, you can jump over a blob space to an otherwise valid space on the other side. You can only move in a straight line.
 
   // If a square has been visited, any icon on that space becomes transparent.
   // Highlight squares that are valid to visit next.
