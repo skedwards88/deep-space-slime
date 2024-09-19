@@ -1,10 +1,9 @@
 import React from "react";
 
-function handlePointerDown(event, index, dispatchGameState) {
+function handlePointerDown(event) {
   event.preventDefault();
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
-  dispatchGameState({action: "startDrag", index});
 }
 
 function handlePointerEnter(event, index, dispatchGameState) {
@@ -39,7 +38,7 @@ function PuzzleSquare({
       }`}
       onPointerDown={(
         event, //todo delete this?
-      ) => handlePointerDown(event, index, dispatchGameState)}
+      ) => handlePointerDown(event)}
       {...(feature !== "blank" && {
         onPointerEnter: (event) =>
           handlePointerEnter(event, index, dispatchGameState),

@@ -3,22 +3,7 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 
 export function gameReducer(currentGameState, payload) {
-  if (payload.action === "startDrag") {
-    //todo maybe don't need this handler?
-    // If the index isn't the last index in the path, do nothing
-    const index = payload.index;
-    const mainPath = currentGameState.mainPath;
-    const lastIndexInPath = mainPath[mainPath.length - 1];
-    if (index !== lastIndexInPath) {
-      // todo later show a message to the user
-      // console.log("NOPE: Index is not last index");
-      return currentGameState;
-    }
-
-    return {
-      ...currentGameState,
-    };
-  } else if (payload.action === "continueDrag") {
+ if (payload.action === "continueDrag") {
     const index = payload.index;
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
