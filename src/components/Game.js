@@ -1,4 +1,5 @@
 import React from "react";
+import {puzzles} from "../logic/puzzles";
 
 function handlePointerDown(event) {
   event.preventDefault();
@@ -78,8 +79,23 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature jet"></div>
   ));
 
+  const puzzleKeys = Object.keys(puzzles);
+
   return (
     <div id="game">
+      {/* todo omit this dropdown after testing */}
+      <select
+        onChange={(event) => {
+          const selectedValue = event.target.value;
+          dispatchGameState({action: "newGame", puzzleID: selectedValue});
+        }}
+      >
+        {puzzleKeys.map((key) => (
+          <option key={key} value={key}>
+            {key}
+          </option>
+        ))}
+      </select>
       <div id="acquiredFeatures">
         <div>{flasks}</div>
         <div>{keys}</div>
