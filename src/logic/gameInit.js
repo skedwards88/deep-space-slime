@@ -110,6 +110,7 @@ export function gameInit({useSaved = true}) {
     numRows,
     flaskCount: 0,
     keyCount: 0,
+    jetCount: 0,
     numberCount: 0,
     maxNumber,
     validNextIndexes,

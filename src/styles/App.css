@@ -175,7 +175,7 @@ button:disabled {
   background-image: url("../images/icons/door.svg");
 }
 
-.puzzleSquare.jet {
+.puzzleSquare.jet, #acquiredFeatures .jet {
   background-image: url("../images/icons/jet.svg");
 }
 
