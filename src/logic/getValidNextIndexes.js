@@ -13,6 +13,7 @@ export function getValidNextIndexes({
 }) {
   // Valid indexes are:
   // - The previous index
+  // - If the last index was the exit, no other options
   // - If the last index was a portal but the second to last index was not a portal, any unvisited portal space
   // - If the last index was not a portal, or if the last 2 indexes were portals, any unvisited adjacent space that is:
   //   - basic
@@ -32,6 +33,10 @@ export function getValidNextIndexes({
 
   if (penultimateIndexInPath !== undefined) {
     validIndexes.push(penultimateIndexInPath);
+  }
+
+  if (puzzle[lastIndexInPath] === "exit") {
+    return validIndexes;
   }
 
   if (
