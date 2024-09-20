@@ -3,9 +3,98 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 
+function getReasonForMoveInvalidity({index, currentGameState}) {
+  const mainPath = currentGameState.mainPath;
+  const lastIndexInPath = mainPath[mainPath.length - 1];
+  const penultimateIndexInPath = mainPath[mainPath.length - 2];
+
+  let message = "";
+
+  // todo don't allow travel to outer
+  if (currentGameState.puzzle[index] === "outer") {
+    message = "NOPE: can't travel to outer space";
+    return message;
+  }
+
+  // the index has already been visited
+  // (and you aren't backtracking, which is already considered when calculating the validity)
+  const hasBeenVisited = mainPath.includes(index);
+  if (hasBeenVisited) {
+    message = "NOPE: already full";
+    return message;
+  }
+
+  // this space is the exit and you haven't visited all numbers
+  if (
+    currentGameState.puzzle[index] === "exit" &&
+    currentGameState.numberCount !== currentGameState.maxNumber
+  ) {
+    message = "NOPE: must visit all numbers before exit";
+    return message;
+  }
+
+  // this space is a number and you haven't visited the previous numbers
+  const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+  const spaceIsNumber = Number.isInteger(parsedNumber);
+  if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
+    message = "NOPE: must get previous numbers first";
+    return message;
+  }
+
+  // The previous space was a portal and this space is not a portal
+  // (unless the last two spaces were portals) todo
+  if (
+    currentGameState.puzzle[lastIndexInPath] === "portal" &&
+    currentGameState.puzzle[index] !== "portal" &&
+    currentGameState.puzzle[penultimateIndexInPath] !== "portal"
+  ) {
+    message = "NOPE: must travel portal to portal";
+    return message;
+  }
+
+  // The index is not adjacent to the last index in the path
+  // (unless the current and previous indexes are portals)
+  const isAdjacent = indexesAdjacentQ({
+    indexA: index,
+    indexB: lastIndexInPath,
+    numColumns: currentGameState.numColumns,
+    numRows: currentGameState.numRows,
+  });
+  if (
+    !isAdjacent &&
+    !(
+      currentGameState.puzzle[lastIndexInPath] === "portal" &&
+      currentGameState.puzzle[index] === "portal"
+    )
+  ) {
+    message = "NOPE: must be adjacent";
+    return message;
+  }
+
+  // Return early if the index is a door and you don't have a key
+  if (
+    currentGameState.puzzle[index] === "door" &&
+    currentGameState.keyCount <= 0
+  ) {
+    message = "NOPE: need a key";
+    return message;
+  }
+
+  return "todo undertermined invalidity";
+}
+
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "continueDrag") {
     const index = payload.index;
+
+    // If the index isn't one of the valid indexes, determine why and return early
+    if (!currentGameState.validNextIndexes.includes(index)) {
+      const message = getReasonForMoveInvalidity({index, currentGameState});
+      console.log(message);
+      // todo later show message
+      return currentGameState;
+    }
+
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
@@ -16,17 +105,9 @@ export function gameReducer(currentGameState, payload) {
     // If the last index was a key, remove the key from the key count.
     // If the last index was a door, add a key to the key count.
     // If the last index was a number, decrement the number count.
+    // If the last index was a jet, remove the jet from the jet count.
+    // todo If the last index was previously accessed with a jet, add a jet to the jet count.
     if (penultimateIndexInPath === index) {
-      const newMainPath = mainPath.slice(0, mainPath.length - 1);
-      const newValidNextIndexes = getValidNextIndexes({
-        mainPath: newMainPath,
-        puzzle: currentGameState.puzzle,
-        numColumns: currentGameState.numColumns,
-        numRows: currentGameState.numRows,
-        hasKey: currentGameState.keyCount > 0,
-        numberCount: currentGameState.numberCount,
-        maxNumber: currentGameState.maxNumber,
-      });
       let newKeyCount = currentGameState.keyCount;
       if (currentGameState.puzzle[lastIndexInPath] === "key") {
         newKeyCount--;
@@ -34,6 +115,30 @@ export function gameReducer(currentGameState, payload) {
       if (currentGameState.puzzle[lastIndexInPath] === "door") {
         newKeyCount++;
       }
+
+      let newJetCount = currentGameState.jetCount;
+      if (currentGameState.puzzle[lastIndexInPath] === "jet") {
+        newJetCount--;
+      }
+
+      const newNumberCount = Number.isInteger(
+        Number.parseInt(currentGameState.puzzle[lastIndexInPath]),
+      )
+        ? currentGameState.numberCount - 1
+        : currentGameState.numberCount;
+
+      const newMainPath = mainPath.slice(0, mainPath.length - 1);
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: newMainPath,
+        puzzle: currentGameState.puzzle,
+        numColumns: currentGameState.numColumns,
+        numRows: currentGameState.numRows,
+        hasKey: newKeyCount > 0,
+        hasJet: newJetCount > 0,
+        numberCount: newNumberCount,
+        maxNumber: currentGameState.maxNumber,
+      });
+
       return {
         ...currentGameState,
         validNextIndexes: newValidNextIndexes,
@@ -43,81 +148,9 @@ export function gameReducer(currentGameState, payload) {
             ? currentGameState.flaskCount - 1
             : currentGameState.flaskCount,
         keyCount: newKeyCount,
-        numberCount: Number.isInteger(
-          Number.parseInt(currentGameState.puzzle[lastIndexInPath]),
-        )
-          ? currentGameState.numberCount - 1
-          : currentGameState.numberCount,
+        numberCount: newNumberCount,
+        jetCount: newJetCount,
       };
-    }
-
-    // Return early if the index has already been visited
-    // (and you aren't backtracking, which is handled above)
-    const hasBeenVisited = mainPath.includes(index);
-    if (hasBeenVisited) {
-      console.log("NOPE: already full");
-      // todo later show message
-      return currentGameState;
-    }
-
-    // Return early if this space is the exit and you haven't visited all numbers
-    if (
-      currentGameState.puzzle[index] === "exit" &&
-      currentGameState.numberCount !== currentGameState.maxNumber
-    ) {
-      console.log("NOPE: must visit all numbers before exit");
-      // todo later show message
-      return currentGameState;
-    }
-
-    // Return early if this space is a number and you haven't visited the previous numbers
-    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
-    const spaceIsNumber = Number.isInteger(parsedNumber);
-    if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
-      console.log("NOPE: must get previous numbers first");
-      // todo later show message
-      return currentGameState;
-    }
-
-    // Return early if the previous space was a portal and this space is not a portal
-    // (unless the last two spaces were portals) todo
-    if (
-      currentGameState.puzzle[lastIndexInPath] === "portal" &&
-      currentGameState.puzzle[index] !== "portal" &&
-      currentGameState.puzzle[penultimateIndexInPath] !== "portal"
-    ) {
-      console.log("NOPE: must travel from portal to portal");
-      // todo later show message
-      return currentGameState;
-    }
-
-    // Return early if the index is not adjacent to the last index in the path
-    // (unless the current and previous indexes are portals)
-    const isAdjacent = indexesAdjacentQ({
-      indexA: index,
-      indexB: lastIndexInPath,
-      numColumns: currentGameState.numColumns,
-      numRows: currentGameState.numRows,
-    });
-    if (
-      !isAdjacent &&
-      !(
-        currentGameState.puzzle[lastIndexInPath] === "portal" &&
-        currentGameState.puzzle[index] === "portal"
-      )
-    ) {
-      // todo later show message
-      return currentGameState;
-    }
-
-    // Return early if the index is a door and you don't have a key
-    if (
-      currentGameState.puzzle[index] === "door" &&
-      currentGameState.keyCount <= 0
-    ) {
-      console.log("NOPE: need a key");
-      // todo later show message
-      return currentGameState;
     }
 
     // If haven't returned for another reason above, add the index to the path.
@@ -125,16 +158,9 @@ export function gameReducer(currentGameState, payload) {
     // If the index is a key, acquire the key.
     // If the index is a door, lose a key.
     // If the index is a number, increment the number count.
+    // If the index is a jet, acquire the jet.
+    //todo If the index was only accessible with a jet, lose a jet.
     const newMainPath = [...currentGameState.mainPath, index];
-    const newValidNextIndexes = getValidNextIndexes({
-      mainPath: newMainPath,
-      puzzle: currentGameState.puzzle,
-      numColumns: currentGameState.numColumns,
-      numRows: currentGameState.numRows,
-      hasKey: currentGameState.keyCount > 0,
-      numberCount: currentGameState.numberCount,
-      maxNumber: currentGameState.maxNumber,
-    });
 
     let newKeyCount = currentGameState.keyCount;
     if (currentGameState.puzzle[index] === "key") {
@@ -144,6 +170,28 @@ export function gameReducer(currentGameState, payload) {
       newKeyCount--;
     }
 
+    let newJetCount = currentGameState.jetCount;
+    if (currentGameState.puzzle[index] === "jet") {
+      newJetCount++;
+    }
+
+    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+    const spaceIsNumber = Number.isInteger(parsedNumber);
+    const newNumberCount = spaceIsNumber
+      ? parsedNumber
+      : currentGameState.numberCount;
+
+    const newValidNextIndexes = getValidNextIndexes({
+      mainPath: newMainPath,
+      puzzle: currentGameState.puzzle,
+      numColumns: currentGameState.numColumns,
+      numRows: currentGameState.numRows,
+      hasKey: newKeyCount > 0,
+      hasJet: newJetCount > 0,
+      numberCount: newNumberCount,
+      maxNumber: currentGameState.maxNumber,
+    });
+
     return {
       ...currentGameState,
       validNextIndexes: newValidNextIndexes,
@@ -152,8 +200,9 @@ export function gameReducer(currentGameState, payload) {
         currentGameState.puzzle[index] === "flask"
           ? currentGameState.flaskCount + 1
           : currentGameState.flaskCount,
+      jetCount: newJetCount,
       keyCount: newKeyCount,
-      numberCount: spaceIsNumber ? parsedNumber : currentGameState.numberCount,
+      numberCount: newNumberCount,
     };
   } else {
     console.log(`unknown action: ${payload.action}`);

@@ -73,11 +73,16 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature key"></div>
   ));
 
+  const jets = Array.from({length: gameState.jetCount}, (_, index) => (
+    <div key={index} className="feature jet"></div>
+  ));
+
   return (
     <div id="game">
       <div id="acquiredFeatures">
         <div>{flasks}</div>
         <div>{keys}</div>
+        <div>{jets}</div>
       </div>
       <div id="puzzle">{squares}</div>
     </div>
