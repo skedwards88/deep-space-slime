@@ -195,7 +195,13 @@ button:disabled {
 .puzzleSquare.number3 {
   background-image: url("../images/icons/number3.svg");
 }
-/* todo numbers 4-9 */
+.puzzleSquare.number4 {
+  background-image: url("../images/icons/number4.svg");
+}
+.puzzleSquare.number5 {
+  background-image: url("../images/icons/number5.svg");
+}
+/* todo numbers 6-9 */
 
 .puzzleSquare.exit-opened {
   background-image: url("../images/icons/exit-opened.svg");
