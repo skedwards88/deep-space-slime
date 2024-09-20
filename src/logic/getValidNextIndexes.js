@@ -1,3 +1,6 @@
+import {getAdjacentIndexes} from "./getAdjacentIndexes";
+import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
+
 export function getValidNextIndexes({
   mainPath,
   puzzle,
@@ -98,60 +101,4 @@ export function getValidNextIndexes({
     }
   }
   return validIndexes;
-}
-
-//todo add tests for this
-function getNextAdjacentIndex({index, adjacentIndex, numColumns, numRows}) {
-  const row1 = Math.floor(index / numColumns);
-  const col1 = index % numColumns;
-
-  const row2 = Math.floor(adjacentIndex / numColumns);
-  const col2 = adjacentIndex % numColumns;
-
-  const rowDiff = row2 - row1;
-  const colDiff = col2 - col1;
-
-  const row3 = row2 + rowDiff;
-  const col3 = col2 + colDiff;
-
-  if (row3 < 0 || row3 >= numRows || col3 < 0 || col3 >= numColumns) {
-    return undefined;
-  }
-
-  const nextIndex = row3 * numColumns + col3;
-
-  return nextIndex;
-}
-
-//todo add tests for this
-function getAdjacentIndexes({index, numColumns, numRows}) {
-  const column = index % numColumns;
-  const row = Math.floor(index / numColumns);
-
-  const rowColDiffs = [
-    [1, 0],
-    [-1, 0],
-    [0, 1],
-    [0, -1],
-  ];
-
-  let adjacentIndexes = [];
-
-  for (const [rowDiff, columnDiff] of rowColDiffs) {
-    const adjacentRow = row + rowDiff;
-    const adjacentColumn = column + columnDiff;
-    // skip if the adjacent row or column would be outside of the grid
-    if (
-      adjacentRow < 0 ||
-      adjacentColumn < 0 ||
-      adjacentRow >= numRows ||
-      adjacentColumn >= numColumns
-    ) {
-      continue;
-    }
-    const adjacentIndex = adjacentColumn + adjacentRow * numColumns;
-    adjacentIndexes.push(adjacentIndex);
-  }
-
-  return adjacentIndexes;
 }

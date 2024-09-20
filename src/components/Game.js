@@ -73,6 +73,7 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature key"></div>
   ));
 
+  console.log(gameState.jetCount);
   const jets = Array.from({length: gameState.jetCount}, (_, index) => (
     <div key={index} className="feature jet"></div>
   ));
