@@ -1,7 +1,8 @@
 import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
+import {puzzles} from "./puzzles";
 
-export function gameInit({useSaved = true}) {
+export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("TODOGameSavedStateName"))
     : undefined;
@@ -15,16 +16,7 @@ export function gameInit({useSaved = true}) {
 
   sendAnalytics("new_game");
 
-  // todo puzzle levels
-  const puzzle = ["outer","outer","outer","outer","outer","outer","outer",
-"outer","exit","basic","door","portal","portal","outer",
-"outer","outer","outer","basic","outer","1","outer",
-"outer","2","basic","flask","basic","basic","outer",
-"outer","basic","basic","outer","basic","3","outer",
-"outer","jet","basic","basic","basic","flask","outer",
-"outer","outer","key","basic","flask","outer","outer",
-"outer","outer","portal","portal","basic","start","outer",
-"outer","outer","outer","outer","outer","outer","outer",];
+  const puzzle = puzzles[puzzleID];
 
   // If you have a jet, you can jump over a blob space to an otherwise valid space on the other side. You can only move in a straight line.
 

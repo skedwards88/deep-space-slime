@@ -3,6 +3,7 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
+import {gameInit} from "./gameInit";
 
 function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -229,6 +230,10 @@ export function gameReducer(currentGameState, payload) {
       keyCount: newKeyCount,
       numberCount: newNumberCount,
     };
+  } else if (payload.action === "newGame") {
+    const puzzleID = payload.puzzleID;
+
+    return gameInit({puzzleID});
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentGameState;
