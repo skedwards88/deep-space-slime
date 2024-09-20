@@ -2,6 +2,7 @@
 // todo delete if unneeded: import sendAnalytics from "../common/sendAnalytics";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
+import {getAdjacentIndexes} from "./getAdjacentIndexes";
 
 function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -106,7 +107,7 @@ export function gameReducer(currentGameState, payload) {
     // If the last index was a door, add a key to the key count.
     // If the last index was a number, decrement the number count.
     // If the last index was a jet, remove the jet from the jet count.
-    // todo If the last index was previously accessed with a jet, add a jet to the jet count.
+    // If the last index was previously accessed with a jet, add a jet to the jet count.
     if (penultimateIndexInPath === index) {
       let newKeyCount = currentGameState.keyCount;
       if (currentGameState.puzzle[lastIndexInPath] === "key") {
@@ -119,6 +120,18 @@ export function gameReducer(currentGameState, payload) {
       let newJetCount = currentGameState.jetCount;
       if (currentGameState.puzzle[lastIndexInPath] === "jet") {
         newJetCount--;
+      }
+      // If not moving to a portal or an adjacent index, assume that moving with a jet
+      const adjacentIndexes = getAdjacentIndexes({
+        index: lastIndexInPath,
+        numColumns: currentGameState.numColumns,
+        numRows: currentGameState.numRows,
+      });
+      if (
+        currentGameState.puzzle[index] !== "portal" &&
+        !adjacentIndexes.includes(index)
+      ) {
+        newJetCount++;
       }
 
       const newNumberCount = Number.isInteger(
@@ -159,7 +172,7 @@ export function gameReducer(currentGameState, payload) {
     // If the index is a door, lose a key.
     // If the index is a number, increment the number count.
     // If the index is a jet, acquire the jet.
-    //todo If the index was only accessible with a jet, lose a jet.
+    // If the index was only accessible with a jet, lose a jet.
     const newMainPath = [...currentGameState.mainPath, index];
 
     let newKeyCount = currentGameState.keyCount;
@@ -173,6 +186,18 @@ export function gameReducer(currentGameState, payload) {
     let newJetCount = currentGameState.jetCount;
     if (currentGameState.puzzle[index] === "jet") {
       newJetCount++;
+    }
+    // If not moving to a portal or an adjacent index, assume that moving with a jet
+    const adjacentIndexes = getAdjacentIndexes({
+      index: lastIndexInPath,
+      numColumns: currentGameState.numColumns,
+      numRows: currentGameState.numRows,
+    });
+    if (
+      currentGameState.puzzle[index] !== "portal" &&
+      !adjacentIndexes.includes(index)
+    ) {
+      newJetCount--;
     }
 
     const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
