@@ -28,7 +28,10 @@ function PuzzleSquare({
   if (feature === "exit") {
     feature = exitUnlocked ? "exit-opened" : "exit-closed";
   }
-  if (Number.isInteger(Number.parseInt(feature))) {
+
+  if (current) {
+    featureClass = "person";
+  } else if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
   } else {
     featureClass = feature;
@@ -38,8 +41,8 @@ function PuzzleSquare({
     <div
       key={index}
       className={`puzzleSquare ${featureClass} ${visited ? "visited" : ""} ${
-        current ? "person" : ""
-      } ${validNext ? "validNext" : ""}`}
+        validNext ? "validNext" : ""
+      }`}
       onPointerDown={(event) => handlePointerDown(event)}
       {...(feature !== "blank" && {
         onPointerEnter: (event) =>
