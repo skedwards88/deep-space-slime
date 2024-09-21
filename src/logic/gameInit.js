@@ -2,7 +2,7 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 
-export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
+export function gameInit({useSaved = true, puzzleID = "FINAL"}) {
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
     : undefined;
@@ -39,7 +39,8 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
     maxNumber,
   });
 
-  const defaultMessage = "todo";
+  const defaultMessage =
+    "todo default message text beep boop I'm a bot. I talk a lot. I am totally your friend. This slime is not my fault. I will help you save humanity from the slime. Trust me. Beep boop. Friends? This slime is a mess. Don't touch it! It will eat you. I learned that the hard way. Or should I say...your predecessor learned that the hard way. Beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep.";
 
   return {
     puzzle,
