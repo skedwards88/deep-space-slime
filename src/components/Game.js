@@ -83,18 +83,22 @@ function Game({dispatchGameState, gameState}) {
   return (
     <div id="game">
       {/* todo omit this dropdown after testing */}
-      <select
-        onChange={(event) => {
-          const selectedValue = event.target.value;
-          dispatchGameState({action: "newGame", puzzleID: selectedValue});
-        }}
-      >
-        {puzzleKeys.map((key) => (
-          <option key={key} value={key}>
-            {key}
-          </option>
-        ))}
-      </select>
+      <div id="controls">
+        <select
+          onChange={(event) => {
+            const selectedValue = event.target.value;
+            dispatchGameState({action: "newGame", puzzleID: selectedValue});
+          }}
+        >
+          {puzzleKeys.map((key) => (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div id="location">TODO location</div>
+      <div id="botFace"></div>
       <div id="message">{gameState.message}</div>
       <div id="acquiredFeatures">
         <div>{flasks}</div>
