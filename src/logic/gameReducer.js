@@ -12,45 +12,45 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
 
   let message = "";
 
-  // todo don't allow travel to outer
+  // The space is an 'outer' space
   if (currentGameState.puzzle[index] === "outer") {
-    message = "NOPE: can't travel to outer space";
+    message = "todo: can't travel to outer space";
     return message;
   }
 
-  // the index has already been visited
+  // The space has already been visited
   // (and you aren't backtracking, which is already considered when calculating the validity)
   const hasBeenVisited = mainPath.includes(index);
   if (hasBeenVisited) {
-    message = "NOPE: already full";
+    message = "todo: already full";
     return message;
   }
 
-  // this space is the exit and you haven't visited all numbers
+  // The space is the exit and you haven't visited all numbers
   if (
     currentGameState.puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
-    message = "NOPE: must visit all numbers before exit";
+    message = "todo: must visit all numbers before exit";
     return message;
   }
 
-  // this space is a number and you haven't visited the previous numbers
+  // The space is a number and you haven't visited the previous numbers
   const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
   const spaceIsNumber = Number.isInteger(parsedNumber);
   if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
-    message = "NOPE: must get previous numbers first";
+    message = "todo: must get previous numbers first";
     return message;
   }
 
   // The previous space was a portal and this space is not a portal
-  // (unless the last two spaces were portals) todo
+  // (unless the last two spaces were portals)
   if (
     currentGameState.puzzle[lastIndexInPath] === "portal" &&
     currentGameState.puzzle[index] !== "portal" &&
     currentGameState.puzzle[penultimateIndexInPath] !== "portal"
   ) {
-    message = "NOPE: must travel portal to portal";
+    message = "todo: must travel portal to portal";
     return message;
   }
 
@@ -69,23 +69,24 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
       currentGameState.puzzle[index] === "portal"
     )
   ) {
-    message = "NOPE: must be adjacent";
+    message = "todo: must be adjacent";
     return message;
   }
 
-  // Return early if the index is a door and you don't have a key
+  // The index is a door and you don't have a key
   if (
     currentGameState.puzzle[index] === "door" &&
     currentGameState.keyCount <= 0
   ) {
-    message = "NOPE: need a key";
+    message = "todo: need a key";
     return message;
   }
 
-  return "todo undertermined invalidity";
+  return "todo undetermined invalidity";
 }
 
 export function gameReducer(currentGameState, payload) {
+  console.log(`call reducer`);
   if (payload.action === "continueDrag") {
     const index = payload.index;
 
@@ -94,7 +95,7 @@ export function gameReducer(currentGameState, payload) {
       const message = getReasonForMoveInvalidity({index, currentGameState});
       console.log(message);
       // todo later show message
-      return currentGameState;
+      return {...currentGameState, message};
     }
 
     const mainPath = currentGameState.mainPath;
@@ -155,6 +156,7 @@ export function gameReducer(currentGameState, payload) {
 
       return {
         ...currentGameState,
+        message: currentGameState.defaultMessage,
         validNextIndexes: newValidNextIndexes,
         mainPath: newMainPath,
         flaskCount:
@@ -220,6 +222,7 @@ export function gameReducer(currentGameState, payload) {
 
     return {
       ...currentGameState,
+      message: currentGameState.defaultMessage,
       validNextIndexes: newValidNextIndexes,
       mainPath: newMainPath,
       flaskCount:

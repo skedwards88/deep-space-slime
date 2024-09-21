@@ -39,6 +39,8 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
     maxNumber,
   });
 
+  const defaultMessage = "todo";
+
   return {
     puzzle,
     mainPath,
@@ -50,5 +52,7 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
     numberCount: 0,
     maxNumber,
     validNextIndexes,
+    defaultMessage,
+    message: defaultMessage,
   };
 }
