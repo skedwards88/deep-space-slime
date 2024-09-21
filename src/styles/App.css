@@ -143,6 +143,7 @@ button:disabled {
   flex-direction: row;
   grid-area: acquiredFeatures;
   border-top: 3px solid white;
+  padding-top: 1vh;
 }
 
 #acquiredFeatures>div {
@@ -159,6 +160,18 @@ button:disabled {
   height: 10vw;
 }
 
+#acquiredFeatures .flask {
+  background-image: url("../images/icons/flask.svg");
+}
+
+#acquiredFeatures .key {
+  background-image: url("../images/icons/key.svg");
+}
+
+#acquiredFeatures .jet {
+  background-image: url("../images/icons/jet.svg");
+}
+
 #puzzle {
   --puzzle-square-size: 12vmin;
   grid-area: puzzle;
@@ -170,18 +183,16 @@ button:disabled {
   margin: 5vmin;
 }
 
+/* todo make --puzzle-square-size more robust for different screen sizes */
 .puzzleSquare {
   touch-action: none;
   border: 1px solid black;
-  /* todo make square size more robust for different screen sizes */
   width: var(--puzzle-square-size);
   height: var(--puzzle-square-size);
   background-color: rgb(137, 132, 132);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* todo make icons smaller */
-
   box-sizing: border-box;
 }
 
@@ -194,20 +205,23 @@ button:disabled {
   background-color: black;
 }
 
-.puzzleSquare.flask, #acquiredFeatures .flask {
+.puzzleSquare.flask {
   background-image: url("../images/icons/flask.svg");
+  background-size: calc(100% - 10px);
 }
 
-.puzzleSquare.key, #acquiredFeatures .key {
+.puzzleSquare.key {
   background-image: url("../images/icons/key.svg");
+  background-size: calc(100% - 10px);
 }
 
 .puzzleSquare.door {
   background-image: url("../images/icons/door.svg");
 }
 
-.puzzleSquare.jet, #acquiredFeatures .jet {
+.puzzleSquare.jet {
   background-image: url("../images/icons/jet.svg");
+  background-size: calc(100% - 10px);
 }
 
 .puzzleSquare.portal {
@@ -250,6 +264,8 @@ button:disabled {
 
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
+  background-size: calc(100% + 5px);
+
 }
 
 .puzzleSquare.validNext {
