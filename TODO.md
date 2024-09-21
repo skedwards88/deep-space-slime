@@ -8,39 +8,14 @@
 - [ ] Remove these dependencies if they aren't needed:
   - seedrandom
   - lodash.clonedeep
-- [ ] Potentially bump package versions
-- [ ] Run `npm install`
-
-## `.gitignore`
-
-- [ ] Remove `package-lock.json` and associated comment
-
-## `index.js`
-
-- [ ] If this app uses a custom url instead of the default GitHub Pages url, adjust the `path` and `scope` variables
-
-## `.github/workflows`
-
-- [ ] In your GitHub Pages settings, specify that GitHub Pages is built from GitHub Actions.
 
 ## `README`
 
 - [ ] Customize this for the game
 
-## `index.html`
-
-- [ ] Adust the theme color
-- [ ] Adjust the name and description
-
 ## `manifest.json`
 
-- [ ] If using a custom url, update `start_url`
-- [ ] Update `name`
-- [ ] Update `short_name`
-- [ ] Update `description`
-- [ ] Update `id`
 - [ ] Change or remove `orientation` if needed
-- [ ] Update `background` and `theme_color`
 - [ ] Update `categories`
 - [ ] Update `icons`
 - [ ] Update `screenshots`
@@ -51,18 +26,10 @@
   - [ ] `index.html`
   - [ ] `manifest.json`
   - [ ] `webpack.config.js`
-- [ ] Delete unneeded icons
 - [ ] Add a maskable icon, screenshots, and PNG icons and reflect them in:
   - [ ] `index.html`
   - [ ] `manifest.json`
   - [ ] `webpack.config.js`
-
-## Custom domains
-
-- [ ] If you are using a custom domain, follow the steps in https://github.com/skedwards88/react-base?tab=readme-ov-file#custom-domain-name
-  - [ ] update `start_url` in `manifest.json`
-  - [ ] adjust the `path` and `scope` variables in `index.js`
-  - [ ] update the URLs in `privacy.html` and in `src/components/Heart`
 
 ## PWA
 
@@ -84,3 +51,7 @@
 - [ ] Upload the .aab file to Google Play
 - [ ] Update the sha 256 fingerprint in the assetlinks.json file with the re-signed value on Google Play
 - [ ] If using the default GitHub Pages URL, upload the asset links to https://github.com/skedwards88/.well-known
+
+## Other
+
+- Add a hook to prevent pushing to main without running linters
