@@ -47,7 +47,7 @@ export default function App() {
 
   React.useEffect(() => {
     window.localStorage.setItem(
-      "TODOGameSavedStateName",
+      "deepSpaceSlimeSavedState",
       JSON.stringify(gameState),
     );
   }, [gameState]);
@@ -55,7 +55,7 @@ export default function App() {
   switch (display) {
     default:
       return (
-        <div className="App" id="todo-app-name">
+        <div className="App" id="deep-space-slime">
           <Game
             dispatchGameState={dispatchGameState}
             gameState={gameState}

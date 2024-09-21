@@ -4,7 +4,7 @@ import {puzzles} from "./puzzles";
 
 export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
   const savedState = useSaved
-    ? JSON.parse(localStorage.getItem("TODOGameSavedStateName"))
+    ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
     : undefined;
 
   if (

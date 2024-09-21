@@ -1,5 +1,5 @@
 {
-  "name": "TODO-template-app",
+  "name": "Deep Space Slime",
   "version": "1.0.6",
   "description": "",
   "main": "index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skedwards88/TODO-template-app.git"
+    "url": "git+https://github.com/skedwards88/deep-space-slime.git"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "bugs": {
-    "url": "https://github.com/skedwards88/TODO-template-app/issues"
+    "url": "https://github.com/skedwards88/deep-space-slime/issues"
   },
-  "homepage": "https://github.com/skedwards88/TODO-template-app#readme",
+  "homepage": "https://github.com/skedwards88/deep-space-slime#readme",
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
     "react": "^18.2.0",
