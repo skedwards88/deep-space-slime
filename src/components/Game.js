@@ -8,6 +8,8 @@ function handlePointerDown(event) {
 }
 
 function handlePointerEnter(event, index, dispatchGameState) {
+  // todo this doesn't work for desktop
+  console.log(`ENTER ${index}`);
   event.preventDefault();
   dispatchGameState({action: "continueDrag", index});
 }
@@ -38,9 +40,7 @@ function PuzzleSquare({
       className={`puzzleSquare ${featureClass} ${visited ? "visited" : ""} ${
         current ? "person" : ""
       } ${validNext ? "validNext" : ""}`}
-      onPointerDown={(
-        event, //todo delete this?
-      ) => handlePointerDown(event)}
+      onPointerDown={(event) => handlePointerDown(event)}
       {...(feature !== "blank" && {
         onPointerEnter: (event) =>
           handlePointerEnter(event, index, dispatchGameState),
@@ -74,7 +74,6 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature key"></div>
   ));
 
-  console.log(gameState.jetCount);
   const jets = Array.from({length: gameState.jetCount}, (_, index) => (
     <div key={index} className="feature jet"></div>
   ));
@@ -96,6 +95,7 @@ function Game({dispatchGameState, gameState}) {
           </option>
         ))}
       </select>
+      <div id="message">{gameState.message}</div>
       <div id="acquiredFeatures">
         <div>{flasks}</div>
         <div>{keys}</div>
