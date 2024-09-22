@@ -136,8 +136,6 @@ button:disabled {
   margin: 0 3vmin;
 }
 
-
-
 #acquiredFeatures {
   display: flex;
   flex-direction: row;
@@ -146,7 +144,7 @@ button:disabled {
   padding-top: 1vh;
 }
 
-#acquiredFeatures>div {
+#acquiredFeatures > div {
   display: flex;
   flex-direction: row;
   height: 10vw;
@@ -174,6 +172,7 @@ button:disabled {
 
 #puzzle {
   --puzzle-square-size: 12vmin;
+
   grid-area: puzzle;
   touch-action: none;
   display: grid;
@@ -189,7 +188,7 @@ button:disabled {
   border: 1px solid black;
   width: var(--puzzle-square-size);
   height: var(--puzzle-square-size);
-  background-color: rgb(137, 132, 132);
+  background-color: rgb(137 132 132);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -198,7 +197,7 @@ button:disabled {
 
 .puzzleSquare.start {
   background-image: url("../images/icons/start.svg");
-  background-color: rgb(200, 190, 78);
+  background-color: rgb(200 190 78);
 }
 
 .puzzleSquare.outer {
@@ -225,7 +224,7 @@ button:disabled {
 }
 
 .puzzleSquare.portal {
-  background-color: rgb(205, 152, 238);
+  background-color: rgb(205 152 238);
   background-image: url("../images/icons/portal.svg");
 }
 
@@ -240,34 +239,96 @@ button:disabled {
 .puzzleSquare.number3 {
   background-image: url("../images/icons/number3.svg");
 }
+
 .puzzleSquare.number4 {
   background-image: url("../images/icons/number4.svg");
 }
+
 .puzzleSquare.number5 {
   background-image: url("../images/icons/number5.svg");
 }
+
 /* todo numbers 6-9 */
 
 .puzzleSquare.exit-opened {
   background-image: url("../images/icons/exit-opened.svg");
-  background-color: rgb(200, 190, 78);
+  background-color: rgb(200 190 78);
 }
 
 .puzzleSquare.exit-closed {
   background-image: url("../images/icons/exit-closed.svg");
-  background-color: rgb(200, 190, 78);
-}
-
-.puzzleSquare.visited {
-  background-image: url("../images/icons/slime.svg");
+  background-color: rgb(200 190 78);
 }
 
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
   background-size: calc(100% + 5px);
-
 }
 
 .puzzleSquare.validNext {
-  border: 3px solid rgb(17, 239, 47);;
+  border: 3px solid rgb(17 239 47);
+}
+
+.puzzleSquare.visited {
+  position: relative;
+}
+
+.puzzleSquare.visited::before {
+  content: "";
+  position: absolute;
+  width: var(--puzzle-square-size);
+  height: var(--puzzle-square-size);
+  background-size: contain;
+}
+
+.puzzleSquare.visited.top-left::before,
+.puzzleSquare.visited.left-top::before,
+.puzzleSquare.visited.bottom-left::before,
+.puzzleSquare.visited.left-bottom::before,
+.puzzleSquare.visited.top-right::before,
+.puzzleSquare.visited.right-top::before,
+.puzzleSquare.visited.bottom-right::before,
+.puzzleSquare.visited.right-bottom::before {
+  background-image: url("../images/icons/slime-turn.svg");
+}
+
+.puzzleSquare.visited.top-bottom::before,
+.puzzleSquare.visited.bottom-top::before,
+.puzzleSquare.visited.left-right::before,
+.puzzleSquare.visited.right-left::before {
+  background-image: url("../images/icons/slime-straight.svg");
+}
+
+.puzzleSquare.visited.center-bottom::before,
+.puzzleSquare.visited.bottom-center::before,
+.puzzleSquare.visited.center-top::before,
+.puzzleSquare.visited.top-center::before,
+.puzzleSquare.visited.center-right::before,
+.puzzleSquare.visited.right-center::before,
+.puzzleSquare.visited.center-left::before,
+.puzzleSquare.visited.left-center::before {
+  background-image: url("../images/icons/slime-half.svg");
+}
+
+.puzzleSquare.visited.top-right::before,
+.puzzleSquare.visited.right-top::before,
+.puzzleSquare.visited.top-bottom::before,
+.puzzleSquare.visited.bottom-top::before,
+.puzzleSquare.visited.center-right::before,
+.puzzleSquare.visited.right-center::before {
+  transform: rotate(90deg);
+}
+
+.puzzleSquare.visited.bottom-right::before,
+.puzzleSquare.visited.right-bottom::before,
+.puzzleSquare.visited.center-bottom::before,
+.puzzleSquare.visited.bottom-center::before {
+  transform: rotate(180deg);
+}
+
+.puzzleSquare.visited.bottom-left::before,
+.puzzleSquare.visited.left-bottom::before,
+.puzzleSquare.visited.center-left::before,
+.puzzleSquare.visited.left-center::before {
+  transform: rotate(270deg);
 }
