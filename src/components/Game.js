@@ -1,5 +1,6 @@
 import React from "react";
 import {puzzles} from "../logic/puzzles";
+import {getSlimeDirections} from "../logic/getSlimeDirection";
 
 function handlePointerDown(event) {
   event.preventDefault();
@@ -14,62 +15,6 @@ function handlePointerEnter(event, index, dispatchGameState) {
   dispatchGameState({action: "continueDrag", index});
 }
 
-function getDirection(square1, square2) {
-  let direction;
-
-  if (square1 - square2 === 1) {
-    direction = "left";
-  } else if (square1 - square2 === -1) {
-    direction = "right";
-  } else if (square1 < square2) {
-    direction = "bottom";
-  } else if (square1 > square2) {
-    direction = "top";
-  }
-  return direction;
-}
-
-function getSlimeDirection(currentSquare, mainPath, currentFeature) {
-  if (currentFeature === "start" && mainPath.length > 1) {
-    const exitDirection = getDirection(mainPath[0], mainPath[1]);
-    return `center-${exitDirection}`;
-  }
-
-  const positionInPath = mainPath.findIndex((i) => i === currentSquare);
-  if (positionInPath === -1) {
-    return;
-  }
-  const previousSquare = mainPath[positionInPath - 1];
-  if (previousSquare === undefined) {
-    return;
-  }
-
-  // todo need to handle jets
-
-  if (currentFeature === "portal") {
-    // todo need to handle portal enter vs portal exit
-    const enterDirection = getDirection(currentSquare, previousSquare);
-
-    return `${enterDirection}-center`;
-  }
-
-  const nextSquare = mainPath[positionInPath + 1];
-  if (nextSquare === undefined) {
-    return;
-  }
-  let direction = "";
-
-  // Enters from...
-  direction += getDirection(currentSquare, previousSquare);
-
-  direction += "-";
-
-  // Exits to...
-  direction += getDirection(currentSquare, nextSquare);
-
-  return direction;
-}
-
 function PuzzleSquare({
   feature,
   index,
@@ -78,7 +23,7 @@ function PuzzleSquare({
   dispatchGameState,
   exitUnlocked,
   current,
-  mainPath,
+  direction,
 }) {
   let featureClass;
 
@@ -93,10 +38,6 @@ function PuzzleSquare({
   } else {
     featureClass = feature;
   }
-
-  const direction = visited
-    ? getSlimeDirection(index, mainPath, feature)
-    : undefined;
 
   if (direction) {
     console.log(`${index}: ${direction}`);
@@ -122,6 +63,12 @@ function Game({dispatchGameState, gameState}) {
   console.log(mainPath);
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
+  const directions = getSlimeDirections({
+    mainPath,
+    puzzle: gameState.puzzle,
+    numColumns: gameState.numColumns,
+    numRows: gameState.numRows,
+  });
   const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
@@ -132,7 +79,7 @@ function Game({dispatchGameState, gameState}) {
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
       dispatchGameState={dispatchGameState}
-      mainPath={gameState.mainPath}
+      direction={directions[index]}
     ></PuzzleSquare>
   ));
 
