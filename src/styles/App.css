@@ -260,6 +260,11 @@ button:disabled {
   background-color: rgb(200 190 78);
 }
 
+.puzzleSquare.ship {
+  background-image: url("../images/icons/ship.svg");
+  background-color: rgb(67, 67, 67);
+}
+
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
   background-size: calc(100% + 5px);

@@ -114,7 +114,7 @@ function Game({dispatchGameState, gameState}) {
           ))}
         </select>
       </div>
-      <div id="location">TODO location</div>
+      <div id="location">{gameState.location}</div>
       <div id="botFace"></div>
       <div id="message">{gameState.message}</div>
       <div id="acquiredFeatures">
