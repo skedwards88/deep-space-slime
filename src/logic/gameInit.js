@@ -2,7 +2,7 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 
-export function gameInit({useSaved = true, puzzleID = "FINAL"}) {
+export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
     : undefined;
