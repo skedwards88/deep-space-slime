@@ -27,6 +27,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The space is the exit and you haven't visited all numbers
+  // todo unlike the exit, the player can always enter the ship. Is that desired?
   if (
     currentGameState.puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
@@ -88,6 +89,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
 export function gameReducer(currentGameState, payload) {
   console.log(`call reducer`);
   if (payload.action === "continueDrag") {
+    // todo move the add to path and remove from path logic out. Add tests.
     const index = payload.index;
 
     // If the index isn't one of the valid indexes, determine why and return early
@@ -156,7 +158,7 @@ export function gameReducer(currentGameState, payload) {
 
       return {
         ...currentGameState,
-        message: currentGameState.defaultMessage,
+        message: currentGameState.startingText,
         validNextIndexes: newValidNextIndexes,
         mainPath: newMainPath,
         flaskCount:
@@ -220,9 +222,27 @@ export function gameReducer(currentGameState, payload) {
       maxNumber: currentGameState.maxNumber,
     });
 
+    // If at the exit, update the message
+    let newMessage;
+    if (
+      currentGameState.puzzle[index] === "exit" ||
+      currentGameState.puzzle[index] === "ship"
+    ) {
+      const maxFlasks = currentGameState.puzzle.filter(
+        (feature) => feature === "flask",
+      ).length;
+      if (currentGameState.flaskCount < maxFlasks) {
+        newMessage = currentGameState.hintText;
+      } else {
+        newMessage = currentGameState.winText;
+      }
+    } else {
+      newMessage = currentGameState.startingText;
+    }
+
     return {
       ...currentGameState,
-      message: currentGameState.defaultMessage,
+      message: newMessage,
       validNextIndexes: newValidNextIndexes,
       mainPath: newMainPath,
       flaskCount:
@@ -236,7 +256,7 @@ export function gameReducer(currentGameState, payload) {
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 
-    return gameInit({puzzleID});
+    return gameInit({puzzleID, useSaved: false});
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentGameState;

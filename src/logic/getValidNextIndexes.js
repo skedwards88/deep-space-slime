@@ -21,6 +21,7 @@ export function getValidNextIndexes({
   //   - key
   //   - jet
   //   - portal
+  //   - ship
   //   - door, if you have a key
   //   - exit, if all numbers found
   //   - next number
@@ -68,7 +69,8 @@ export function getValidNextIndexes({
         feature === "flask" ||
         feature === "key" ||
         feature === "jet" ||
-        feature === "portal"
+        feature === "portal" ||
+        feature === "ship"
       ) {
         validIndexes.push(adjacentIndex);
       } else if (feature === "door" && hasKey) {

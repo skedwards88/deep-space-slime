@@ -16,12 +16,10 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
 
   sendAnalytics("new_game");
 
-  const puzzle = puzzles[puzzleID];
+  //todo later can just look up this info from the puzzle object instead of saving in the game state
+  const {puzzle, location, startingText, winText, hintText} = puzzles[puzzleID];
 
-  // If you have a jet, you can jump over a blob space to an otherwise valid space on the other side. You can only move in a straight line.
-
-  // If a square has been visited, any icon on that space becomes transparent.
-  // Highlight squares that are valid to visit next.
+  // todo If a square has been visited, any icon on that space becomes transparent.
 
   const numColumns = 7;
   const numRows = 9;
@@ -39,9 +37,6 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
     maxNumber,
   });
 
-  const defaultMessage =
-    "todo default message text beep boop I'm a bot. I talk a lot. I am totally your friend. This slime is not my fault. I will help you save humanity from the slime. Trust me. Beep boop. Friends? This slime is a mess. Don't touch it! It will eat you. I learned that the hard way. Or should I say...your predecessor learned that the hard way. Beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep beep boop boop beep.";
-
   return {
     puzzle,
     mainPath,
@@ -53,7 +48,10 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
     numberCount: 0,
     maxNumber,
     validNextIndexes,
-    defaultMessage,
-    message: defaultMessage,
+    startingText,
+    winText,
+    hintText,
+    message: startingText,
+    location,
   };
 }
