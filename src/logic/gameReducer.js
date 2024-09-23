@@ -12,9 +12,12 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
 
   let message = "";
 
+  //todo decide if this is the order of errors that we want
+
   // The space is an 'outer' space
   if (currentGameState.puzzle[index] === "outer") {
-    message = "todo: can't travel to outer space";
+    message =
+      "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
     return message;
   }
 
@@ -22,7 +25,8 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   // (and you aren't backtracking, which is already considered when calculating the validity)
   const hasBeenVisited = mainPath.includes(index);
   if (hasBeenVisited) {
-    message = "todo: already full";
+    message =
+      "Don’t step on the SLIME! The only way to cross a SLIME space is to use a SPRAY BOTTLE to travel straight across the slime trail to a slime-free space.";
     return message;
   }
 
@@ -32,7 +36,8 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
-    message = "todo: must visit all numbers before exit";
+    message =
+      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work Subject 34!";
     return message;
   }
 
@@ -40,7 +45,8 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
   const spaceIsNumber = Number.isInteger(parsedNumber);
   if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
-    message = "todo: must get previous numbers first";
+    message =
+      "You need to hack the terminals in numerical order. Try counting on your fingers if you are confused! Silly human.";
     return message;
   }
 
@@ -51,7 +57,8 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.puzzle[index] !== "portal" &&
     currentGameState.puzzle[penultimateIndexInPath] !== "portal"
   ) {
-    message = "todo: must travel portal to portal";
+    message =
+      "You are currently outside of space and time. Try reentering spacetime through another portal.";
     return message;
   }
 
@@ -70,7 +77,8 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
       currentGameState.puzzle[index] === "portal"
     )
   ) {
-    message = "todo: must be adjacent";
+    message =
+      "That space is too far away, and you are confined to your physical body. Poor human…";
     return message;
   }
 
@@ -79,7 +87,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.puzzle[index] === "door" &&
     currentGameState.keyCount <= 0
   ) {
-    message = "todo: need a key";
+    message = "You need a CARD KEY for that!";
     return message;
   }
 
