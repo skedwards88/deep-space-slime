@@ -92,6 +92,9 @@ export function gameReducer(currentGameState, payload) {
     // todo move the add to path and remove from path logic out. Add tests.
     const index = payload.index;
 
+    // todo if on exit, you can only backtrack (don't show errors for other movement like swiping past exit to outer space)
+    // todo don't show error if tapping on own character
+
     // If the index isn't one of the valid indexes, determine why and return early
     if (!currentGameState.validNextIndexes.includes(index)) {
       const message = getReasonForMoveInvalidity({index, currentGameState});
