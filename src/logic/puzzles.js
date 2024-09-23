@@ -57,7 +57,7 @@ export const puzzles = [
 },
 { location: "Biolab station, room 5",startingText:"Hmm…can you grab all the items? If you get stuck, you can tap to retrace your steps or hit the refresh button to try again.",
     winText: "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
-    hintText: "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE can only be used to travel straight across the slime trail to a slime-free space",
+    hintText: "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE can only be used to travel straight across the slime trail to a slime-free space.",
     puzzle: ["outer","outer","outer","outer","outer","outer","outer",
 "outer","outer","outer","outer","outer","outer","outer",
 "outer","exit","outer","jet","basic","basic","outer",
