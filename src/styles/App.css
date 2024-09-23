@@ -174,6 +174,8 @@ button:disabled {
 #puzzle {
   --puzzle-square-size: 12vmin;
 
+  background-image: url("../images/background.svg");
+
   grid-area: puzzle;
   touch-action: none;
   display: grid;
@@ -202,7 +204,7 @@ button:disabled {
 }
 
 .puzzleSquare.outer {
-  background-color: black;
+  background-color: transparent;
 }
 
 .puzzleSquare.flask {
