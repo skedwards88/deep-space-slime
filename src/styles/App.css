@@ -121,7 +121,7 @@ button:disabled {
   border-bottom: 3px solid white;
 }
 
-#location {
+#location, #exitButtons {
   grid-area: location;
   text-align: center;
   margin: 3vmin 0;

@@ -58,6 +58,40 @@ function PuzzleSquare({
   );
 }
 
+function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
+  const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+
+  const continueButton = (
+    <button
+      onClick={() =>
+        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1})
+      }
+    >
+      Next Level
+    </button>
+  );
+
+  const hintButton =
+    flaskCount < maxFlasks ? (
+      <button
+        onClick={() =>
+          dispatchGameState({action: "newGame", puzzleID: puzzleID})
+        }
+      >
+        Retry Level
+      </button>
+    ) : (
+      <></>
+    );
+
+  return (
+    <div id="exitButtons">
+      {continueButton}
+      {hintButton}
+    </div>
+  );
+}
+
 function Game({dispatchGameState, gameState}) {
   const mainPath = gameState.mainPath;
   console.log(mainPath);
@@ -95,7 +129,7 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature jet"></div>
   ));
 
-  const puzzleKeys = Object.keys(puzzles);
+  const puzzleKeys = puzzles.map((puzzle) => puzzle.location);
 
   return (
     <div id="game">
@@ -114,7 +148,18 @@ function Game({dispatchGameState, gameState}) {
           ))}
         </select>
       </div>
-      <div id="location">{gameState.location}</div>
+      {gameState.puzzle[lastIndexInPath] === "exit" ||
+      gameState.puzzle[lastIndexInPath] === "ship" ? (
+        <ExitButtons
+          puzzle={gameState.puzzle}
+          flaskCount={gameState.flaskCount}
+          puzzleID={gameState.puzzleID}
+          dispatchGameState={dispatchGameState}
+        ></ExitButtons>
+      ) : (
+        <div id="location">{gameState.location}</div>
+      )}
+
       <div id="botFace"></div>
       <div id="message">{gameState.message}</div>
       <div id="acquiredFeatures">
