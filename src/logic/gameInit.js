@@ -2,7 +2,7 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 
-export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
+export function gameInit({useSaved = true, puzzleID = 0}) {
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
     : undefined;
@@ -17,6 +17,7 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
   sendAnalytics("new_game");
 
   //todo later can just look up this info from the puzzle object instead of saving in the game state
+  //todo handle case where puzzle does not exist
   const {puzzle, location, startingText, winText, hintText} = puzzles[puzzleID];
 
   // todo If a square has been visited, any icon on that space becomes transparent.
@@ -39,6 +40,7 @@ export function gameInit({useSaved = true, puzzleID = "S1L1"}) {
 
   return {
     puzzle,
+    puzzleID,
     mainPath,
     numColumns,
     numRows,
