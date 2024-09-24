@@ -129,8 +129,6 @@ function Game({dispatchGameState, gameState}) {
     <div key={index} className="feature jet"></div>
   ));
 
-  const puzzleKeys = puzzles.map((puzzle) => puzzle.location);
-
   return (
     <div id="game">
       {/* todo omit this dropdown after testing */}
@@ -141,9 +139,9 @@ function Game({dispatchGameState, gameState}) {
             dispatchGameState({action: "newGame", puzzleID: selectedValue});
           }}
         >
-          {puzzleKeys.map((key) => (
-            <option key={key} value={key}>
-              {key}
+          {puzzles.map((puzzle, index) => (
+            <option key={index} value={index}>
+              {puzzle.location}
             </option>
           ))}
         </select>
