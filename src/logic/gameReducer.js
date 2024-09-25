@@ -106,8 +106,6 @@ export function gameReducer(currentGameState, payload) {
     // If the index isn't one of the valid indexes, determine why and return early
     if (!currentGameState.validNextIndexes.includes(index)) {
       const message = getReasonForMoveInvalidity({index, currentGameState});
-      console.log(message);
-      // todo later show message
       return {...currentGameState, message};
     }
 
