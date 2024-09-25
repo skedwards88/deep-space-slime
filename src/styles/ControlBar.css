@@ -1,0 +1,24 @@
+
+#controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: controls;
+  width: 100vw;
+  border-bottom: 2px solid var(--light-color);
+}
+
+.controlButton {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: var(--default-font-size);
+  height: var(--default-font-size);
+  background-color: transparent;
+  padding: 1px 6px;
+}
+
+#mapButton {
+  background-image: url("../images/icons/map.svg");
+}
