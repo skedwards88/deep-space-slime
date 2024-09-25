@@ -1,11 +1,13 @@
 import React from "react";
 import Game from "./Game";
+import Map from "./Map";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
 } from "../common/handleInstall";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
+import {puzzles} from "../logic/puzzles";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -19,6 +21,8 @@ export default function App() {
     {},
     gameInit,
   );
+
+  const [score, setScore] = React.useState([]); // todo save and use saved
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
@@ -53,12 +57,24 @@ export default function App() {
   }, [gameState]);
 
   switch (display) {
+    case "map":
+      return (
+        <Map
+          currentStation={puzzles[gameState.puzzleID].station}
+          score={score}
+          setDisplay={setDisplay}
+          dispatchGameState={dispatchGameState}
+        ></Map>
+      );
     default:
       return (
         <div className="App" id="deep-space-slime">
           <Game
             dispatchGameState={dispatchGameState}
             gameState={gameState}
+            score={score}
+            setScore={setScore}
+            setDisplay={setDisplay}
           ></Game>
         </div>
       );

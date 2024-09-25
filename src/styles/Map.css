@@ -1,0 +1,37 @@
+#map {
+  display: flex;
+  flex-direction: column;
+}
+
+#mapStationSelect {
+  text-align: center;
+  font-size: calc(var(--default-font-size) * 0.75);
+  font-family: sans-serif;
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 5px;
+  color: black;
+  margin: 10px;
+  padding: 1px 6px;
+}
+
+.mapRoom {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  font-size: calc(var(--default-font-size) * 0.75);
+}
+
+.mapFlask {
+  background-image: url("../images/icons/flask.svg");
+  content: "";
+  width: calc(var(--default-font-size) * 0.75);
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mapScore.failed {
+  color: rgb(248, 77, 77);
+}

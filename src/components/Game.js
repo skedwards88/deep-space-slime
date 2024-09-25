@@ -1,4 +1,5 @@
 import React from "react";
+import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 
@@ -44,9 +45,9 @@ function PuzzleSquare({
   return (
     <div
       key={index}
-      className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${visited ? "visited" : ""} ${
-        direction ? direction : ""
-      } ${validNext ? "validNext" : ""}`}
+      className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
+        visited ? "visited" : ""
+      } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
       onPointerDown={(event) => handlePointerDown(event)}
       {...(feature !== "blank" && {
         onPointerEnter: (event) =>
@@ -56,14 +57,25 @@ function PuzzleSquare({
   );
 }
 
-function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
+function ExitButtons({
+  puzzle,
+  flaskCount,
+  puzzleID,
+  dispatchGameState,
+  score,
+  setScore,
+}) {
   const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+
+  let newScore = [...score];
+  newScore[puzzleID] = flaskCount;
 
   const continueButton = (
     <button
-      onClick={() =>
-        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1})
-      }
+      onClick={() => {
+        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
+        setScore(newScore);
+      }}
     >
       Next Level
     </button>
@@ -90,18 +102,18 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
   );
 }
 
-function Game({dispatchGameState, gameState}) {
+function Game({dispatchGameState, gameState, setScore, score, setDisplay}) {
   const mainPath = gameState.mainPath;
   console.log(mainPath);
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
     mainPath,
-    puzzle: gameState.puzzle,
+    puzzle: puzzles[gameState.puzzleID].puzzle,
     numColumns: gameState.numColumns,
     numRows: gameState.numRows,
   });
-  const squares = gameState.puzzle.map((feature, index) => (
+  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -129,31 +141,21 @@ function Game({dispatchGameState, gameState}) {
 
   return (
     <div id="game">
-      {/* todo omit this dropdown after testing */}
-      <div id="controls">
-        <select
-          onChange={(event) => {
-            const selectedValue = event.target.value;
-            dispatchGameState({action: "newGame", puzzleID: selectedValue});
-          }}
-        >
-          {puzzles.map((puzzle, index) => (
-            <option key={index} value={index}>
-              {puzzle.location}
-            </option>
-          ))}
-        </select>
-      </div>
-      {gameState.puzzle[lastIndexInPath] === "exit" ||
-      gameState.puzzle[lastIndexInPath] === "ship" ? (
+      <ControlBar setDisplay={setDisplay}></ControlBar>
+      {puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
+      puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship" ? (
         <ExitButtons
-          puzzle={gameState.puzzle}
+          puzzle={puzzles[gameState.puzzleID].puzzle}
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}
+          score={score}
+          setScore={setScore}
         ></ExitButtons>
       ) : (
-        <div id="location">{gameState.location}</div>
+        <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
+          puzzles[gameState.puzzleID].room
+        }`}</div>
       )}
 
       <div id="botFace"></div>

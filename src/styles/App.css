@@ -115,12 +115,6 @@ button:disabled {
   background-color: black;
 }
 
-#controls {
-  grid-area: controls;
-  border-bottom: 3px solid white;
-  background-color: black;
-}
-
 #location, #exitButtons {
   grid-area: location;
   text-align: center;
@@ -342,3 +336,5 @@ button:disabled {
 .puzzleSquare.visited.left-center::before {
   transform: rotate(270deg);
 }
+
+

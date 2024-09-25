@@ -4,18 +4,21 @@ import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {gameInit} from "./gameInit";
+import {puzzles} from "./puzzles";
 
 function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const penultimateIndexInPath = mainPath[mainPath.length - 2];
 
+  const puzzle = puzzles[currentGameState.puzzleID].puzzle;
+
   let message = "";
 
   //todo decide if this is the order of errors that we want
 
   // The space is an 'outer' space
-  if (currentGameState.puzzle[index] === "outer") {
+  if (puzzle[index] === "outer") {
     message =
       "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
     return message;
@@ -33,7 +36,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   // The space is the exit and you haven't visited all numbers
   // todo unlike the exit, the player can always enter the ship. Is that desired?
   if (
-    currentGameState.puzzle[index] === "exit" &&
+    puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
     message =
@@ -42,7 +45,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The space is a number and you haven't visited the previous numbers
-  const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+  const parsedNumber = Number.parseInt(puzzle[index]);
   const spaceIsNumber = Number.isInteger(parsedNumber);
   if (spaceIsNumber && parsedNumber - 1 !== currentGameState.numberCount) {
     message =
@@ -53,9 +56,9 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   // The previous space was a portal and this space is not a portal
   // (unless the last two spaces were portals)
   if (
-    currentGameState.puzzle[lastIndexInPath] === "portal" &&
-    currentGameState.puzzle[index] !== "portal" &&
-    currentGameState.puzzle[penultimateIndexInPath] !== "portal"
+    puzzle[lastIndexInPath] === "portal" &&
+    puzzle[index] !== "portal" &&
+    puzzle[penultimateIndexInPath] !== "portal"
   ) {
     message =
       "You are currently outside of space and time. Try reentering spacetime through another portal.";
@@ -72,10 +75,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   });
   if (
     !isAdjacent &&
-    !(
-      currentGameState.puzzle[lastIndexInPath] === "portal" &&
-      currentGameState.puzzle[index] === "portal"
-    )
+    !(puzzle[lastIndexInPath] === "portal" && puzzle[index] === "portal")
   ) {
     message =
       "That space is too far away, and you are confined to your physical body. Poor human…";
@@ -83,10 +83,7 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The index is a door and you don't have a key
-  if (
-    currentGameState.puzzle[index] === "door" &&
-    currentGameState.keyCount <= 0
-  ) {
+  if (puzzle[index] === "door" && currentGameState.keyCount <= 0) {
     message = "You need a CARD KEY for that!";
     return message;
   }
@@ -112,6 +109,7 @@ export function gameReducer(currentGameState, payload) {
     const mainPath = currentGameState.mainPath;
     const lastIndexInPath = mainPath[mainPath.length - 1];
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
+    const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
     // If the index is the second to last index in the path,
     // remove the last index in the path.
@@ -123,15 +121,15 @@ export function gameReducer(currentGameState, payload) {
     // If the last index was previously accessed with a jet, add a jet to the jet count.
     if (penultimateIndexInPath === index) {
       let newKeyCount = currentGameState.keyCount;
-      if (currentGameState.puzzle[lastIndexInPath] === "key") {
+      if (puzzle[lastIndexInPath] === "key") {
         newKeyCount--;
       }
-      if (currentGameState.puzzle[lastIndexInPath] === "door") {
+      if (puzzle[lastIndexInPath] === "door") {
         newKeyCount++;
       }
 
       let newJetCount = currentGameState.jetCount;
-      if (currentGameState.puzzle[lastIndexInPath] === "jet") {
+      if (puzzle[lastIndexInPath] === "jet") {
         newJetCount--;
       }
       // If not moving to a portal or an adjacent index, assume that moving with a jet
@@ -140,15 +138,12 @@ export function gameReducer(currentGameState, payload) {
         numColumns: currentGameState.numColumns,
         numRows: currentGameState.numRows,
       });
-      if (
-        currentGameState.puzzle[index] !== "portal" &&
-        !adjacentIndexes.includes(index)
-      ) {
+      if (puzzle[index] !== "portal" && !adjacentIndexes.includes(index)) {
         newJetCount++;
       }
 
       const newNumberCount = Number.isInteger(
-        Number.parseInt(currentGameState.puzzle[lastIndexInPath]),
+        Number.parseInt(puzzle[lastIndexInPath]),
       )
         ? currentGameState.numberCount - 1
         : currentGameState.numberCount;
@@ -156,7 +151,7 @@ export function gameReducer(currentGameState, payload) {
       const newMainPath = mainPath.slice(0, mainPath.length - 1);
       const newValidNextIndexes = getValidNextIndexes({
         mainPath: newMainPath,
-        puzzle: currentGameState.puzzle,
+        puzzle: puzzle,
         numColumns: currentGameState.numColumns,
         numRows: currentGameState.numRows,
         hasKey: newKeyCount > 0,
@@ -167,11 +162,11 @@ export function gameReducer(currentGameState, payload) {
 
       return {
         ...currentGameState,
-        message: currentGameState.startingText,
+        message: puzzles[currentGameState.puzzleID].startingText,
         validNextIndexes: newValidNextIndexes,
         mainPath: newMainPath,
         flaskCount:
-          currentGameState.puzzle[lastIndexInPath] === "flask"
+          puzzle[lastIndexInPath] === "flask"
             ? currentGameState.flaskCount - 1
             : currentGameState.flaskCount,
         keyCount: newKeyCount,
@@ -190,15 +185,15 @@ export function gameReducer(currentGameState, payload) {
     const newMainPath = [...currentGameState.mainPath, index];
 
     let newKeyCount = currentGameState.keyCount;
-    if (currentGameState.puzzle[index] === "key") {
+    if (puzzle[index] === "key") {
       newKeyCount++;
     }
-    if (currentGameState.puzzle[index] === "door") {
+    if (puzzle[index] === "door") {
       newKeyCount--;
     }
 
     let newJetCount = currentGameState.jetCount;
-    if (currentGameState.puzzle[index] === "jet") {
+    if (puzzle[index] === "jet") {
       newJetCount++;
     }
     // If not moving to a portal or an adjacent index, assume that moving with a jet
@@ -207,14 +202,11 @@ export function gameReducer(currentGameState, payload) {
       numColumns: currentGameState.numColumns,
       numRows: currentGameState.numRows,
     });
-    if (
-      currentGameState.puzzle[index] !== "portal" &&
-      !adjacentIndexes.includes(index)
-    ) {
+    if (puzzle[index] !== "portal" && !adjacentIndexes.includes(index)) {
       newJetCount--;
     }
 
-    const parsedNumber = Number.parseInt(currentGameState.puzzle[index]);
+    const parsedNumber = Number.parseInt(puzzle[index]);
     const spaceIsNumber = Number.isInteger(parsedNumber);
     const newNumberCount = spaceIsNumber
       ? parsedNumber
@@ -222,7 +214,7 @@ export function gameReducer(currentGameState, payload) {
 
     const newValidNextIndexes = getValidNextIndexes({
       mainPath: newMainPath,
-      puzzle: currentGameState.puzzle,
+      puzzle: puzzle,
       numColumns: currentGameState.numColumns,
       numRows: currentGameState.numRows,
       hasKey: newKeyCount > 0,
@@ -233,20 +225,15 @@ export function gameReducer(currentGameState, payload) {
 
     // If at the exit, update the message
     let newMessage;
-    if (
-      currentGameState.puzzle[index] === "exit" ||
-      currentGameState.puzzle[index] === "ship"
-    ) {
-      const maxFlasks = currentGameState.puzzle.filter(
-        (feature) => feature === "flask",
-      ).length;
+    if (puzzle[index] === "exit" || puzzle[index] === "ship") {
+      const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
       if (currentGameState.flaskCount < maxFlasks) {
-        newMessage = currentGameState.hintText;
+        newMessage = puzzles[currentGameState.puzzleID].hintText;
       } else {
-        newMessage = currentGameState.winText;
+        newMessage = puzzles[currentGameState.puzzleID].winText;
       }
     } else {
-      newMessage = currentGameState.startingText;
+      newMessage = puzzles[currentGameState.puzzleID].startingText;
     }
 
     return {
@@ -255,7 +242,7 @@ export function gameReducer(currentGameState, payload) {
       validNextIndexes: newValidNextIndexes,
       mainPath: newMainPath,
       flaskCount:
-        currentGameState.puzzle[index] === "flask"
+        puzzle[index] === "flask"
           ? currentGameState.flaskCount + 1
           : currentGameState.flaskCount,
       jetCount: newJetCount,

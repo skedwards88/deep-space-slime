@@ -16,9 +16,7 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
 
   sendAnalytics("new_game");
 
-  //todo later can just look up this info from the puzzle object instead of saving in the game state
-  //todo handle case where puzzle does not exist
-  const {puzzle, location, startingText, winText, hintText} = puzzles[puzzleID];
+  const puzzle = puzzles[puzzleID].puzzle;
 
   // todo If a square has been visited, any icon on that space becomes transparent.
 
@@ -39,7 +37,6 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
   });
 
   return {
-    puzzle,
     puzzleID,
     mainPath,
     numColumns,
@@ -50,10 +47,7 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     numberCount: 0,
     maxNumber,
     validNextIndexes,
-    startingText,
-    winText,
-    hintText,
-    message: startingText,
-    location,
+    message: puzzles[puzzleID].startingText,
+    score: 0,
   };
 }
