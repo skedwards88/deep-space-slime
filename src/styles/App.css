@@ -4,8 +4,6 @@ html {
   --default-font-size: calc(var(--default-box-size) * 0.9);
   --dark-color: black;
   --light-color: white;
-
-  background-color: var(--dark-color);
 }
 
 body {
@@ -47,7 +45,7 @@ button:disabled {
 }
 
 .App {
-  background-color: var(--dark-color);
+  background-image: url("../images/background.svg");
   color: var(--light-color);
   font-family: sans-serif;
   font-size: var(--default-font-size);
@@ -114,17 +112,21 @@ button:disabled {
   font-size: calc(var(--default-font-size) * 0.6);
   overflow: scroll;
   white-space: pre-wrap;
+  background-color: black;
 }
 
 #controls {
   grid-area: controls;
   border-bottom: 3px solid white;
+  background-color: black;
 }
 
 #location, #exitButtons {
   grid-area: location;
   text-align: center;
-  margin: 3vmin 0;
+  border-top: 3vmin solid black;
+  border-bottom: 3vmin solid black;
+  background-color: black;
 }
 
 #botFace {
@@ -134,7 +136,9 @@ button:disabled {
   background-size: contain;
   width: 15vw;
   background-image: url("../images/icons/bot-smile.svg");
-  margin: 0 3vmin;
+  border-right: 3vmin solid black;
+  border-left: 3vmin solid black;
+  background-color: black;
 }
 
 #acquiredFeatures {
@@ -173,8 +177,6 @@ button:disabled {
 
 #puzzle {
   --puzzle-square-size: 12vmin;
-
-  background-image: url("../images/background.svg");
 
   grid-area: puzzle;
   touch-action: none;
