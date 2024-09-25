@@ -22,11 +22,7 @@
 
 ## `src/images`
 
-- [ ] Add an svg favicon and reflect it in:
-  - [ ] `index.html`
-  - [ ] `manifest.json`
-  - [ ] `webpack.config.js`
-- [ ] Add a maskable icon, screenshots, and PNG icons and reflect them in:
+- [ ] Add screenshots and reflect them in:
   - [ ] `index.html`
   - [ ] `manifest.json`
   - [ ] `webpack.config.js`
