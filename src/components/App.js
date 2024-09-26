@@ -18,7 +18,6 @@ export default function App() {
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
 
-  // TODO update values passed to inits
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
     {},
