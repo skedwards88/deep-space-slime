@@ -2,7 +2,7 @@
 export const puzzles = [
   {
     station: "Biolab station",
-    room: "1",
+    room: "Stasis pod",
     startingText:
       "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Tap or drag your figure on the map interface to exit your stasis pod and escape into the next room.",
     winText:
