@@ -316,12 +316,21 @@ button:disabled {
   background-image: url("../images/icons/slime-half.svg");
 }
 
+.puzzleSquare.visited.bottom-top-jet::before,
+.puzzleSquare.visited.top-bottom-jet::before,
+.puzzleSquare.visited.left-right-jet::before,
+.puzzleSquare.visited.right-left-jet::before {
+  background-image: url("../images/icons/slime-jet.svg");
+}
+
 .puzzleSquare.visited.top-right::before,
 .puzzleSquare.visited.right-top::before,
 .puzzleSquare.visited.top-bottom::before,
 .puzzleSquare.visited.bottom-top::before,
 .puzzleSquare.visited.center-right::before,
-.puzzleSquare.visited.right-center::before {
+.puzzleSquare.visited.right-center::before,
+.puzzleSquare.visited.left-right-jet::before,
+.puzzleSquare.visited.right-left-jet::before {
   transform: rotate(90deg);
 }
 

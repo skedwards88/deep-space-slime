@@ -1,5 +1,13 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 
+export function getIndexBetween({indexA, indexB, numColumns}) {
+  if (Math.abs(indexA - indexB) === 2) {
+    return 1 + Math.min(indexA, indexB);
+  } else {
+    return numColumns + Math.min(indexA, indexB);
+  }
+}
+
 export function getDirection(square1, square2) {
   let direction;
 
@@ -43,34 +51,6 @@ export function getSlimeDirectionForPortal({
   }
 }
 
-export function getSlimeDirectionForJet({
-  currentSquare,
-  previousSquare,
-  nextSquare,
-  jetStart,
-  jetEnd,
-}) {
-  let direction = "";
-
-  // Enters from...
-  if (jetStart) {
-    direction += "center";
-  } else {
-    direction += getDirection(currentSquare, previousSquare);
-  }
-
-  direction += "-";
-
-  // Exits to...
-  if (jetEnd) {
-    direction += "center";
-  } else {
-    direction += getDirection(currentSquare, nextSquare);
-  }
-
-  return direction;
-}
-
 export function getStandardSlimeDirection({
   currentSquare,
   previousSquare,
@@ -91,6 +71,7 @@ export function getStandardSlimeDirection({
 
 export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
   let directions = [];
+  let jettedSquares = [];
 
   for (let currentSquare = 0; currentSquare < puzzle.length; currentSquare++) {
     const currentFeature = puzzle[currentSquare];
@@ -131,28 +112,35 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
     }
 
     // If not a portal (handled above) and not moving to an adjacent index, assume that moving with a jet
-    // todo eventually want to change jet slime visual
-    const jetStart = !indexesAdjacentQ({
+    const isPostJet = !indexesAdjacentQ({
       indexA: currentSquare,
       indexB: previousSquare,
       numColumns,
       numRows,
     });
-    const jetEnd = !indexesAdjacentQ({
+    const isPreJet = !indexesAdjacentQ({
       indexA: currentSquare,
       indexB: nextSquare,
       numColumns,
       numRows,
     });
-    if (jetStart || jetEnd) {
-      const direction = getSlimeDirectionForJet({
+    if (isPostJet || isPreJet) {
+      const jettedSquare = getIndexBetween({
+        indexA: currentSquare,
+        indexB: isPreJet ? nextSquare : previousSquare,
+        numColumns,
+      });
+      const direction = getStandardSlimeDirection({
         currentSquare,
-        previousSquare,
-        nextSquare,
-        jetStart,
-        jetEnd,
+        previousSquare: isPostJet ? jettedSquare : previousSquare,
+        nextSquare: isPreJet ? jettedSquare : nextSquare,
       });
       directions.push(direction);
+
+      // Also later modify the direction of the square that was jetted over
+      if (isPreJet) {
+        jettedSquares.push(jettedSquare);
+      }
       continue;
     }
 
@@ -163,5 +151,10 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
     });
     directions.push(direction);
   }
+
+  for (const jettedSquare of jettedSquares) {
+    directions[jettedSquare] = directions[jettedSquare] + "-jet";
+  }
+
   return directions;
 }
