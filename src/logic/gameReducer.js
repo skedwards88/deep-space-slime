@@ -13,6 +13,12 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
 
   const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
+  // Return with no message if the player is at the exit
+  // (because players often swipe past the exit and would miss the end text if an error showed instead)
+  if (puzzle[lastIndexInPath] === "exit") {
+    return;
+  }
+
   let message = "";
 
   //todo decide if this is the order of errors that we want
@@ -97,13 +103,10 @@ export function gameReducer(currentGameState, payload) {
     // todo move the add to path and remove from path logic out. Add tests.
     const index = payload.index;
 
-    // todo if on exit, you can only backtrack (don't show errors for other movement like swiping past exit to outer space)
-    // todo don't show error if tapping on own character
-
     // If the index isn't one of the valid indexes, determine why and return early
     if (!currentGameState.validNextIndexes.includes(index)) {
       const message = getReasonForMoveInvalidity({index, currentGameState});
-      return {...currentGameState, message};
+      return message ? {...currentGameState, message} : currentGameState;
     }
 
     const mainPath = currentGameState.mainPath;
