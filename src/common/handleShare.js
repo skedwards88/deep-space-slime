@@ -10,7 +10,7 @@ export function handleShare({appName, text, url, seed}) {
 
   navigator
     .share({
-      title: {appName},
+      title: appName,
       text: `${text}\n\n`,
       url: fullUrl,
     })
