@@ -155,6 +155,8 @@ function Game({
         setInstallPromptEvent={setInstallPromptEvent}
         showInstallButton={showInstallButton}
         installPromptEvent={installPromptEvent}
+        dispatchGameState={dispatchGameState}
+        puzzleID={gameState.puzzleID}
       ></ControlBar>
       {puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
       puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship" ? (

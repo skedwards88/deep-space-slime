@@ -35,3 +35,7 @@
 #heartIcon {
   background-image: url("../images/icons/heart.svg");
 }
+
+#refreshIcon {
+  background-image: url("../images/icons/refresh.svg");
+}
