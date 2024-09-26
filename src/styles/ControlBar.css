@@ -26,3 +26,7 @@
 #shareIcon {
   background-image: url("../images/icons/share.svg");
 }
+
+#installIcon {
+  background-image: url("../images/icons/install.svg");
+}

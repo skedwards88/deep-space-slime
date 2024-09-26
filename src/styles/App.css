@@ -337,4 +337,6 @@ button:disabled {
   transform: rotate(270deg);
 }
 
-
+.infoText {
+  background-color: black;
+}

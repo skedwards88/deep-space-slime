@@ -1,6 +1,7 @@
 import React from "react";
 import Game from "./Game";
 import Map from "./Map";
+import FallbackInstall from "./FallbackInstall";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -12,6 +13,7 @@ import {puzzles} from "../logic/puzzles";
 export default function App() {
   const [display, setDisplay] = React.useState("game");
 
+  // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
 
@@ -66,6 +68,15 @@ export default function App() {
           dispatchGameState={dispatchGameState}
         ></Map>
       );
+
+    case "fallbackInstall":
+      return (
+        <FallbackInstall
+          setDisplay={setDisplay}
+          appName="Deep Space Slime"
+        ></FallbackInstall>
+      );
+
     default:
       return (
         <div className="App" id="deep-space-slime">
@@ -75,6 +86,9 @@ export default function App() {
             score={score}
             setScore={setScore}
             setDisplay={setDisplay}
+            setInstallPromptEvent={setInstallPromptEvent}
+            showInstallButton={showInstallButton}
+            installPromptEvent={installPromptEvent}
           ></Game>
         </div>
       );
