@@ -1,4 +1,3 @@
-// todo delete if unneeded: import cloneDeep from "lodash.clonedeep";
 // todo delete if unneeded: import sendAnalytics from "../common/sendAnalytics";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
