@@ -79,6 +79,7 @@ button:disabled {
 
 .infoText {
   margin: 2vmax;
+  background-color: black;
 }
 
 .info a {
@@ -115,7 +116,8 @@ button:disabled {
   background-color: black;
 }
 
-#location, #exitButtons {
+#location,
+#exitButtons {
   grid-area: location;
   text-align: center;
   border-top: 3vmin solid black;
@@ -261,7 +263,7 @@ button:disabled {
 
 .puzzleSquare.ship {
   background-image: url("../images/icons/ship.svg");
-  background-color: rgb(67, 67, 67);
+  background-color: rgb(67 67 67);
 }
 
 .puzzleSquare.person {
@@ -335,8 +337,4 @@ button:disabled {
 .puzzleSquare.visited.center-left::before,
 .puzzleSquare.visited.left-center::before {
   transform: rotate(270deg);
-}
-
-.infoText {
-  background-color: black;
 }
