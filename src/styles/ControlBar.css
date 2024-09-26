@@ -19,6 +19,10 @@
   padding: 1px 6px;
 }
 
-#mapButton {
+#mapIcon {
   background-image: url("../images/icons/map.svg");
+}
+
+#shareIcon {
+  background-image: url("../images/icons/share.svg");
 }
