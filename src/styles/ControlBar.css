@@ -6,6 +6,7 @@
   grid-area: controls;
   width: 100vw;
   border-bottom: 2px solid var(--light-color);
+  background-color: black;
 }
 
 .controlButton {
