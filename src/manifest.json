@@ -10,7 +10,7 @@
   "background_color": "#000000",
   "theme_color": "#000000",
   "shortcuts": [],
-  "categories": ["games", "entertainment", "education"],
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "favicon.svg",

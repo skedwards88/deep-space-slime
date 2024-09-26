@@ -10,7 +10,6 @@
 ## `manifest.json`
 
 - [ ] Change or remove `orientation` if needed
-- [ ] Update `categories`
 - [ ] Update `icons`
 - [ ] Update `screenshots`
 
