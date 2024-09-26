@@ -102,7 +102,16 @@ function ExitButtons({
   );
 }
 
-function Game({dispatchGameState, gameState, setScore, score, setDisplay}) {
+function Game({
+  dispatchGameState,
+  gameState,
+  setScore,
+  score,
+  setDisplay,
+  setInstallPromptEvent,
+  showInstallButton,
+  installPromptEvent,
+}) {
   const mainPath = gameState.mainPath;
   console.log(mainPath);
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -141,7 +150,12 @@ function Game({dispatchGameState, gameState, setScore, score, setDisplay}) {
 
   return (
     <div id="game">
-      <ControlBar setDisplay={setDisplay}></ControlBar>
+      <ControlBar
+        setDisplay={setDisplay}
+        setInstallPromptEvent={setInstallPromptEvent}
+        showInstallButton={showInstallButton}
+        installPromptEvent={installPromptEvent}
+      ></ControlBar>
       {puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
       puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship" ? (
         <ExitButtons
