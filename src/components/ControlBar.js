@@ -1,4 +1,5 @@
 import React from "react";
+import packageJson from "../../package.json";
 
 function ControlBar({setDisplay}) {
   return (
@@ -8,6 +9,7 @@ function ControlBar({setDisplay}) {
         className="controlButton"
         onClick={() => setDisplay("map")}
       ></button>
+      <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
 }
