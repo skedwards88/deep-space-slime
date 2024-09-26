@@ -43,6 +43,12 @@ function ControlBar({
         }
       ></button>
 
+      <button
+        id="heartIcon"
+        className="controlButton"
+        onClick={() => setDisplay("heart")}
+      ></button>
+
       {/* todo remove version number once done testing */}
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
