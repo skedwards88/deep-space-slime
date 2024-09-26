@@ -1,6 +1,7 @@
 import React from "react";
 import Game from "./Game";
 import Map from "./Map";
+import Heart from "./Heart";
 import FallbackInstall from "./FallbackInstall";
 import {
   handleAppInstalled,
@@ -67,6 +68,17 @@ export default function App() {
           setDisplay={setDisplay}
           dispatchGameState={dispatchGameState}
         ></Map>
+      );
+
+    case "heart":
+      return (
+        <Heart
+          setDisplay={setDisplay}
+          appName="Deep Space Slime"
+          shareText="Check out this maze puzzle!"
+          repoName="deep-space-slime"
+          url="https://skedwards88.github.io/deep-space-slime"
+        />
       );
 
     case "fallbackInstall":
