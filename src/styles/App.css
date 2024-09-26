@@ -165,6 +165,7 @@ button:disabled {
 
 #acquiredFeatures .key {
   background-image: url("../images/icons/key.svg");
+  background-size: calc(100% - 5px);
 }
 
 #acquiredFeatures .jet {
