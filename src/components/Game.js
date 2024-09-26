@@ -49,7 +49,7 @@ function PuzzleSquare({
         visited ? "visited" : ""
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
       onPointerDown={(event) => handlePointerDown(event)}
-      {...(feature !== "blank" && {
+      {...(!current && {
         onPointerEnter: (event) =>
           handlePointerEnter(event, index, dispatchGameState),
       })}
