@@ -23,9 +23,9 @@ function ControlBar({
           className="controlButton"
           onClick={() =>
             handleShare({
-              appName: "Crossjig",
-              text: "Check out this word game!",
-              url: "https://crossjig.com",
+              appName: "Deep Space Slime",
+              text: "Check out this puzzle maze game!",
+              url: "https://skedwards88.github.io/deep-space-slime",
             })
           }
         ></button>
