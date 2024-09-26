@@ -3,12 +3,6 @@
 
 - [ ] Replace TODO instances
 
-## `package.json`
-
-- [ ] Remove these dependencies if they aren't needed:
-  - seedrandom
-  - lodash.clonedeep
-
 ## `README`
 
 - [ ] Customize this for the game
