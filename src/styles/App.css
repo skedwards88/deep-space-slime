@@ -116,6 +116,20 @@ button:disabled {
   background-color: black;
 }
 
+#message::after {
+  content: " |";
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 #location,
 #exitButtons {
   grid-area: location;
