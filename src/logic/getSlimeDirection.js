@@ -8,28 +8,28 @@ export function getIndexBetween({indexA, indexB, numColumns}) {
   }
 }
 
-export function getDirection(square1, square2) {
-  let direction;
+export function getDirection(square1, square2, numColumns) {
+  const diff = square1 - square2;
+  const isRowOffset = diff % numColumns === 0;
 
-  if (square1 - square2 === 1) {
-    direction = "left";
-  } else if (square1 - square2 === -1) {
-    direction = "right";
-  } else if (square1 < square2) {
-    direction = "bottom";
-  } else if (square1 > square2) {
-    direction = "top";
+  if (isRowOffset && diff < 0) {
+    return "bottom";
+  } else if (isRowOffset && diff > 0) {
+    return "top";
+  } else if (diff < 0) {
+    return "right";
+  } else if (diff > 0) {
+    return "left";
   }
-  return direction;
 }
 
-export function getSlimeDirectionForStart(mainPath) {
+export function getSlimeDirectionForStart(mainPath, numColumns) {
   // If the player hasn't moved from start, no direction
   if (mainPath.length <= 1) {
     return;
   }
 
-  const exitDirection = getDirection(mainPath[0], mainPath[1]);
+  const exitDirection = getDirection(mainPath[0], mainPath[1], numColumns);
   return `center-${exitDirection}`;
 }
 
@@ -38,15 +38,20 @@ export function getSlimeDirectionForPortal({
   previousSquare,
   nextSquare,
   puzzle,
+  numColumns,
 }) {
   // For portal -> portal, need center-exitDirection
   // For non-portal -> portal, need enterDirection-center
   const previousFeature = puzzle[previousSquare];
   if (previousFeature === "portal") {
-    const exitDirection = getDirection(currentSquare, nextSquare);
+    const exitDirection = getDirection(currentSquare, nextSquare, numColumns);
     return `center-${exitDirection}`;
   } else {
-    const enterDirection = getDirection(currentSquare, previousSquare);
+    const enterDirection = getDirection(
+      currentSquare,
+      previousSquare,
+      numColumns,
+    );
     return `${enterDirection}-center`;
   }
 }
@@ -55,16 +60,17 @@ export function getStandardSlimeDirection({
   currentSquare,
   previousSquare,
   nextSquare,
+  numColumns,
 }) {
   let direction = "";
 
   // Enters from...
-  direction += getDirection(currentSquare, previousSquare);
+  direction += getDirection(currentSquare, previousSquare, numColumns);
 
   direction += "-";
 
   // Exits to...
-  direction += getDirection(currentSquare, nextSquare);
+  direction += getDirection(currentSquare, nextSquare, numColumns);
 
   return direction;
 }
@@ -77,7 +83,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
     const currentFeature = puzzle[currentSquare];
 
     if (currentFeature === "start") {
-      const direction = getSlimeDirectionForStart(mainPath);
+      const direction = getSlimeDirectionForStart(mainPath, numColumns);
       directions.push(direction);
       continue;
     }
@@ -106,6 +112,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
         previousSquare,
         nextSquare,
         puzzle,
+        numColumns,
       });
       directions.push(direction);
       continue;
@@ -124,21 +131,23 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       numColumns,
       numRows,
     });
+
     if (isPostJet || isPreJet) {
-      const jettedSquare = getIndexBetween({
-        indexA: currentSquare,
-        indexB: isPreJet ? nextSquare : previousSquare,
-        numColumns,
-      });
       const direction = getStandardSlimeDirection({
         currentSquare,
-        previousSquare: isPostJet ? jettedSquare : previousSquare,
-        nextSquare: isPreJet ? jettedSquare : nextSquare,
+        previousSquare,
+        nextSquare,
+        numColumns,
       });
       directions.push(direction);
 
       // Also later modify the direction of the square that was jetted over
       if (isPreJet) {
+        const jettedSquare = getIndexBetween({
+          indexA: currentSquare,
+          indexB: nextSquare,
+          numColumns,
+        });
         jettedSquares.push(jettedSquare);
       }
       continue;
@@ -148,6 +157,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       currentSquare,
       previousSquare,
       nextSquare,
+      numColumns,
     });
     directions.push(direction);
   }
