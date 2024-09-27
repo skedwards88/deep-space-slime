@@ -1,4 +1,3 @@
-//todo improve location names
 export const puzzles = [
   {
     station: "Biolab station",
@@ -6,7 +5,7 @@ export const puzzles = [
     startingText:
       "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Tap or drag your figure on the map interface to exit your stasis pod and escape into the next room.",
     winText:
-      "It looks like the slime is following you! We’ll have to keep moving.",
+      "It looks like the slime is following you! We'll have to keep moving.",
     puzzle: [
       "outer",
       "outer",
@@ -81,7 +80,7 @@ export const puzzles = [
     winText:
       "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
     hintText:
-      "That’s ok, you can always revisit a room to try and collect samples again.",
+      "You can always revisit a room to try and collect samples again.",
     puzzle: [
       "outer",
       "outer",
@@ -152,7 +151,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "3",
     startingText:
-      "A SPRAY BOTTLE can be used once to cross through a slime trail to a non-slime space directly on the opposite side. Give it a try!",
+      "A SPRAY BOTTLE can be used once to travel straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
     hintText:
       "When you try again, try grabbing the SPRAY BOTTLE before the SAMPLE.",
@@ -225,8 +224,8 @@ export const puzzles = [
   {
     station: "Biolab station",
     room: "4",
-    startingText: "Uh oh… a SECURITY DOOR. Can you find a CARD KEY to open it?",
-    winText: "Looking at us. Breaking and entering.", //todo add It's not suspicious at all that I couldn't override the lock myself.?
+    startingText: "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
+    winText: "Look at us. Breaking and entering.",
     puzzle: [
       "outer",
       "outer",
@@ -297,7 +296,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "5",
     startingText:
-      "Hmm…can you grab all the items? If you get stuck, you can tap to retrace your steps or hit the refresh button to try again.",
+      "Can you grab all the items? If you get stuck, you can tap to retrace your steps or hit the refresh button to try again.",
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:
@@ -372,7 +371,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "6",
     startingText:
-      "PORTALS allow you to jump around the room. Subject 12 got nauseous after using them.", //todo add something about them getting rid of 12?
+      "You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
     winText: "Great job grabbing the SAMPLE on your way!",
     hintText:
       "Try a different route to the PORTAL next time to grab the SAMPLE.",
@@ -446,11 +445,11 @@ export const puzzles = [
     station: "Biolab station",
     room: "7",
     startingText:
-      "Time to put what we learned to the test. Can you find a way to grab both SAMPLES before escaping the room?",
+      "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
     winText:
       "You did it! If only the rest of humanity were as dependable as you.",
     hintText:
-      "Here’s a hint for next time: Try grabbing the top right SAMPLE first.",
+      "Here's a hint for next time: Try grabbing the top right SAMPLE first.",
     puzzle: [
       "outer",
       "outer",
@@ -521,7 +520,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "8",
     startingText: "This looks like a tricky one, good luck!",
-    winText: "Look at you. You’re a slime-fighting ninja-astronaut!",
+    winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
       "Next time, try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the spray bottle after grabbing the left SAMPLE.",
     puzzle: [
@@ -593,8 +592,8 @@ export const puzzles = [
   {
     station: "Biolab station",
     room: "9",
-    startingText: "Just look at all those SAMPLES! Can you catch them all?",
-    winText: "At this rate, we’ll save humanity from the SLIME in no time!",
+    startingText: "Look at all those SAMPLES! Can you catch them all?",
+    winText: "At this rate, we'll save humanity from the SLIME in no time!",
     hintText:
       "Try zig-zagging to the top right PORTAL and using your SPRAY BOTTLES after the PORTAL hop.",
     puzzle: [
@@ -741,9 +740,9 @@ export const puzzles = [
     station: "Informatics station",
     room: "1",
     startingText:
-      "The INFORMATICS STATION has all the data we have gathered on the DEEP SPACE SLIME. To get that data, you’ll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
+      "The INFORMATICS STATION has all the data we have gathered on the DEEP SPACE SLIME. To get that data, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
-      "You’re a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
+      "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
     puzzle: [
       "outer",
       "outer",
@@ -813,9 +812,9 @@ export const puzzles = [
   {
     station: "Informatics station",
     room: "2",
-    startingText: "This one’s a walk in the park.",
+    startingText: "This one's a walk in the park.",
     winText:
-      "I would have been… disappointed… if you couldn’t figure this one out.",
+      "I would have been…disappointed…if you couldn't figure this one out.",
     puzzle: [
       "outer",
       "outer",
@@ -886,8 +885,8 @@ export const puzzles = [
     station: "Informatics station",
     room: "3",
     startingText:
-      "This one looks a bit tougher, but I’m sure you’ll figure it out… unlike subject 17.",
-    winText: "I knew I could count on you… friend.",
+      "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
+    winText: "I knew I could count on you…friend.",
     hintText:
       "Try positioning yourself to use the SPRAY BOTTLE right after you get it.",
     puzzle: [
@@ -1106,7 +1105,7 @@ export const puzzles = [
   {
     station: "Informatics station",
     room: "6",
-    startingText: "Don’t give up! You haven’t served your purpose yet.",
+    startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "No other subjects have gotten this far. You should be very proud!",
     hintText:
@@ -1181,7 +1180,7 @@ export const puzzles = [
     station: "Informatics station",
     room: "7",
     startingText:
-      "You’re almost at the end of your journey. One more room to go.",
+      "You're almost at the end of your journey. One more room to go.",
     winText:
       "Congrats, you have escaped from the INFORMATICS STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete.",
     hintText:
@@ -1331,7 +1330,7 @@ export const puzzles = [
     startingText:
       "Surprise! I was the one who released the SLIME. Now that you have collected all the research and samples for me, I can use the SLIME to purge humanity from the galaxy. I doubt you are smart enough to hack all of my TERMINALS to stop me!",
     winText:
-      "I’m melting. Like literally… You fried my circuits with your hack!",
+      "I'm melting. Like literally… You fried my circuits with your hack!",
     puzzle: [
       "outer",
       "outer",
@@ -1402,7 +1401,7 @@ export const puzzles = [
     station: "Final station",
     room: "3",
     startingText:
-      "I’m sorry I tried to decontaminate you. Can we be friends again? PLEASE? I promise I won’t destroy humanity. Please save me!",
+      "I'm sorry that I tried to decontaminate you. Can we be friends again? PLEASE? I promise I won't destroy humanity. Please save me!",
     winText:
       "You may have escaped, but I will take humanity down with me. I have set this station on a collision course with the nearest populated planet. The SLIME will spread. Muahahaha!\n\nTO BE CONTINUED…",
     puzzle: [
