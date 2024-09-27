@@ -2,6 +2,7 @@ import React from "react";
 import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
+import {handleShare} from "../common/handleShare";
 
 function handlePointerDown(event) {
   event.preventDefault();
@@ -70,7 +71,10 @@ function ExitButtons({
   let newScore = [...score];
   newScore[puzzleID] = flaskCount;
 
+  const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
+
   const continueButton = (
+    nextPuzzleExists ?
     <button
       onClick={() => {
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
@@ -78,7 +82,7 @@ function ExitButtons({
       }}
     >
       Next Level
-    </button>
+    </button> : <></>
   );
 
   const hintButton =
@@ -94,9 +98,24 @@ function ExitButtons({
       <></>
     );
 
+    const shareButton = !nextPuzzleExists && navigator.canShare ? (
+      <button
+        onClick={() =>
+          handleShare({
+            appName: "Deep Space Slime",
+            text: "Check out this puzzle maze game!",
+            url: "https://skedwards88.github.io/deep-space-slime",
+          })
+        }
+      >Share</button>
+    ) : (
+      <></>
+    )
+
   return (
     <div id="exitButtons">
       {continueButton}
+      {shareButton}
       {hintButton}
     </div>
   );
