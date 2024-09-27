@@ -131,10 +131,36 @@ button:disabled {
   background-repeat: no-repeat;
   background-size: contain;
   width: 15vw;
-  background-image: url("../images/icons/bot-smile.svg");
   border-right: 3vmin solid black;
   border-left: 3vmin solid black;
   background-color: black;
+}
+
+#botFace.happy, #botFace.glitchy-happy {
+  background-image: url("../images/icons/bot-smile.svg");
+}
+
+#botFace.sinister, #botFace.glitchy-sinister {
+  background-image: url("../images/icons/bot-sinister.svg");
+}
+
+#botFace.glitchy-sinister, #botFace.glitchy-happy {
+  animation: flicker 0.3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.3;
+  }
 }
 
 #acquiredFeatures {

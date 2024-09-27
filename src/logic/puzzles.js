@@ -6,6 +6,8 @@ export const puzzles = [
       "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Tap or drag your figure on the map interface to exit your stasis pod and escape into the next room.",
     winText:
       "It looks like the slime is following you! We'll have to keep moving.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -79,8 +81,9 @@ export const puzzles = [
       "The only way forward is through spaces that haven't been contaminated with slime. That's going to be tricky since the slime is following you. Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
     winText:
       "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
-    hintText:
-      "You can always revisit a room to try and collect samples again.",
+    hintText: "You can always revisit a room to try and collect samples again.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -155,6 +158,8 @@ export const puzzles = [
     winText: "Take that, SLIME!",
     hintText:
       "When you try again, try grabbing the SPRAY BOTTLE before the SAMPLE.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -224,8 +229,11 @@ export const puzzles = [
   {
     station: "Biolab station",
     room: "4",
-    startingText: "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
+    startingText:
+      "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
     winText: "Look at us. Breaking and entering.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -301,6 +309,8 @@ export const puzzles = [
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:
       "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE can only be used to travel straight across the slime trail to a slime-free space.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -375,6 +385,8 @@ export const puzzles = [
     winText: "Great job grabbing the SAMPLE on your way!",
     hintText:
       "Try a different route to the PORTAL next time to grab the SAMPLE.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -450,6 +462,8 @@ export const puzzles = [
       "You did it! If only the rest of humanity were as dependable as you.",
     hintText:
       "Here's a hint for next time: Try grabbing the top right SAMPLE first.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -523,6 +537,8 @@ export const puzzles = [
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
       "Next time, try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the spray bottle after grabbing the left SAMPLE.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -596,6 +612,8 @@ export const puzzles = [
     winText: "At this rate, we'll save humanity from the SLIME in no time!",
     hintText:
       "Try zig-zagging to the top right PORTAL and using your SPRAY BOTTLES after the PORTAL hop.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -670,6 +688,8 @@ export const puzzles = [
       "Congrats, you have escaped from the BIOLAB STATION. Next up, the INFORMATICS STATION!",
     hintText:
       "Congrats, you have escaped from the BIOLAB STATION. Next up, the INFORMATICS STATION! Maybe you can come back later to get all the SAMPLES.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -743,6 +763,8 @@ export const puzzles = [
       "The INFORMATICS STATION has all the data we have gathered on the DEEP SPACE SLIME. To get that data, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
       "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -815,6 +837,8 @@ export const puzzles = [
     startingText: "This one's a walk in the park.",
     winText:
       "I would have been…disappointed…if you couldn't figure this one out.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -889,6 +913,8 @@ export const puzzles = [
     winText: "I knew I could count on you…friend.",
     hintText:
       "Try positioning yourself to use the SPRAY BOTTLE right after you get it.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -962,6 +988,8 @@ export const puzzles = [
       "Do you think you can figure this one out? Try not to disappoint me.",
     winText: "I am well chuffed with your progress! Very well chuffed.",
     hintText: "Try collecting the SAMPLES in the middle column last.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -1036,6 +1064,8 @@ export const puzzles = [
     winText: "Impressive, if only all humans were as reliable as you…",
     hintText:
       "See if you can use the first SPRAY BOTTLE soon after TERMINAL 1, and the second SPRAY BOTTLE soon after TERMINAL 2.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -1110,6 +1140,8 @@ export const puzzles = [
       "No other subjects have gotten this far. You should be very proud!",
     hintText:
       "To get all the SAMPLES, focus on the left side before the right.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -1185,6 +1217,8 @@ export const puzzles = [
       "Congrats, you have escaped from the INFORMATICS STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete.",
     hintText:
       "Head directly to the closest portal, and save the SPRAY BOTTLE for after TERMINAL 3.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -1258,6 +1292,8 @@ export const puzzles = [
       "Great job! Please deposit the samples and data you have collected.",
     winText:
       "Please proceed to the FINAL STATION for decontamination and a fun surprise!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     puzzle: [
       "outer",
       "outer",
@@ -1331,6 +1367,8 @@ export const puzzles = [
       "Surprise! I was the one who released the SLIME. Now that you have collected all the research and samples for me, I can use the SLIME to purge humanity from the galaxy. I doubt you are smart enough to hack all of my TERMINALS to stop me!",
     winText:
       "I'm melting. Like literally… You fried my circuits with your hack!",
+    robotStartMood: "sinister",
+    robotEndMood: "glitchy-sinister",
     puzzle: [
       "outer",
       "outer",
@@ -1404,6 +1442,8 @@ export const puzzles = [
       "I'm sorry that I tried to decontaminate you. Can we be friends again? PLEASE? I promise I won't destroy humanity. Please save me!",
     winText:
       "You may have escaped, but I will take humanity down with me. I have set this station on a collision course with the nearest populated planet. The SLIME will spread. Muahahaha!\n\nTO BE CONTINUED…",
+    robotStartMood: "glitchy-happy",
+    robotEndMood: "glitchy-sinister",
     puzzle: [
       "outer",
       "outer",
