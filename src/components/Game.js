@@ -73,8 +73,7 @@ function ExitButtons({
 
   const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
 
-  const continueButton = (
-    nextPuzzleExists ?
+  const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
@@ -82,7 +81,9 @@ function ExitButtons({
       }}
     >
       Next Level
-    </button> : <></>
+    </button>
+  ) : (
+    <></>
   );
 
   const hintButton =
@@ -98,7 +99,8 @@ function ExitButtons({
       <></>
     );
 
-    const shareButton = !nextPuzzleExists && navigator.canShare ? (
+  const shareButton =
+    !nextPuzzleExists && navigator.canShare ? (
       <button
         onClick={() =>
           handleShare({
@@ -107,10 +109,12 @@ function ExitButtons({
             url: "https://skedwards88.github.io/deep-space-slime",
           })
         }
-      >Share</button>
+      >
+        Share
+      </button>
     ) : (
       <></>
-    )
+    );
 
   return (
     <div id="exitButtons">
@@ -167,6 +171,10 @@ function Game({
     <div key={index} className="feature jet"></div>
   ));
 
+  const isAtExit =
+    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
+    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship";
+
   return (
     <div id="game">
       <ControlBar
@@ -177,8 +185,7 @@ function Game({
         dispatchGameState={dispatchGameState}
         puzzleID={gameState.puzzleID}
       ></ControlBar>
-      {puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
-      puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship" ? (
+      {isAtExit ? (
         <ExitButtons
           puzzle={puzzles[gameState.puzzleID].puzzle}
           flaskCount={gameState.flaskCount}
@@ -193,7 +200,14 @@ function Game({
         }`}</div>
       )}
 
-      <div id="botFace"></div>
+      <div
+        id="botFace"
+        className={
+          isAtExit
+            ? puzzles[gameState.puzzleID].robotEndMood
+            : puzzles[gameState.puzzleID].robotStartMood
+        }
+      ></div>
       <div id="message">{gameState.message}</div>
       <div id="acquiredFeatures">
         <div>{flasks}</div>
