@@ -105,7 +105,7 @@ function ExitButtons({
         onClick={() =>
           handleShare({
             appName: "Deep Space Slime",
-            text: "Check out this puzzle maze game!",
+            text: "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
           })
         }
