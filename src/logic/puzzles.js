@@ -154,7 +154,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "3",
     startingText:
-      "A SPRAY BOTTLE can be used once to travel straight across the slime trail to a slime-free space. Give it a try!",
+      "Each SPRAY BOTTLE that you acquire lets you travel straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
     hintText:
       "When you try again, try grabbing the SPRAY BOTTLE before the SAMPLE.",
@@ -308,7 +308,7 @@ export const puzzles = [
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:
-      "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE can only be used to travel straight across the slime trail to a slime-free space.",
+      "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE only lets you travel straight across the slime trail to a slime-free space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -536,7 +536,7 @@ export const puzzles = [
     startingText: "This looks like a tricky one, good luck!",
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
-      "Next time, try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the spray bottle after grabbing the left SAMPLE.",
+      "Next time, try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the SPRAY BOTTLE after grabbing the left SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1063,7 +1063,7 @@ export const puzzles = [
       "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
     winText: "Impressive, if only all humans were as reliable as you…",
     hintText:
-      "See if you can use the first SPRAY BOTTLE soon after TERMINAL 1, and the second SPRAY BOTTLE soon after TERMINAL 2.",
+      "See if you can spend the first SPRAY BOTTLE soon after TERMINAL 1, and the second SPRAY BOTTLE soon after TERMINAL 2.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
