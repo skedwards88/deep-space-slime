@@ -25,7 +25,7 @@ export function getValidNextIndexes({
   //   - door, if you have a key
   //   - exit, if all numbers found
   //   - next number
-  //   - on the opposite side of a visited space, if you have a jet
+  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't your previous space
 
   let validIndexes = [];
 
@@ -87,7 +87,10 @@ export function getValidNextIndexes({
 
     if (hasJet) {
       for (const adjacentIndex of adjacentIndexes) {
-        if (!mainPath.includes(adjacentIndex)) {
+        if (
+          !mainPath.includes(adjacentIndex) ||
+          adjacentIndex === penultimateIndexInPath
+        ) {
           continue;
         }
         const nextAdjacentIndex = getNextAdjacentIndex({
