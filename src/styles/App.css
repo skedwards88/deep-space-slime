@@ -89,11 +89,13 @@ button:disabled {
     "location location"
     "botFace botMessage"
     "acquiredFeatures acquiredFeatures"
+    "exit exit"
     "puzzle puzzle";
   grid-template-rows:
     auto
     auto
     1fr
+    auto
     auto
     auto;
   grid-template-columns: auto 1fr;
@@ -110,14 +112,15 @@ button:disabled {
   background-color: black;
 }
 
-/* todo */
 #exitButtons {
-  grid-area: location;
-  text-align: center;
-  font-size: var(--square-size);
-  border-top: 3vmin solid black;
-  border-bottom: 3vmin solid black;
-  background-color: black;
+  grid-area: exit;
+  min-height: var(--square-size);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
 }
 
 #message {
