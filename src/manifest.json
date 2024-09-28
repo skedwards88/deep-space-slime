@@ -8,6 +8,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "https://skedwards88.github.io/deep-space-slime",
+  "scope": "/deep-space-slime/",
   "background_color": "#000000",
   "theme_color": "#000000",
   "shortcuts": [],
