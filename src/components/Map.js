@@ -55,36 +55,39 @@ export default function Map({
     </select>
   );
 
-  const locationButtons = puzzlesByStation[stationOnDisplay].map(
-    (puzzle, index) => (
-      <div key={index} className="mapRoom">
-        <button
-          disabled={puzzle.puzzleID > highestPuzzleID}
-          onClick={() => {
-            dispatchGameState({action: "newGame", puzzleID: puzzle.puzzleID});
-            setDisplay("game");
-          }}
-        >
-          {puzzle.room}
-        </button>
-        <div
-          className={
-            score[puzzle.puzzleID] >= puzzle.maxFlaskCount
-              ? "mapScore passed"
-              : "mapScore failed"
-          }
-        >
-          {score[puzzle.puzzleID] || 0}/{puzzle.maxFlaskCount}
-        </div>
-        <div className="mapFlask"></div>
-      </div>
-    ),
-  );
+  let mapRooms = [];
+  puzzlesByStation[stationOnDisplay].forEach((puzzle, index) => {
+    mapRooms.push(
+      <button
+        key={`room${index}`}
+        disabled={puzzle.puzzleID > highestPuzzleID}
+        onClick={() => {
+          dispatchGameState({action: "newGame", puzzleID: puzzle.puzzleID});
+          setDisplay("game");
+        }}
+      >
+        {puzzle.room}
+      </button>,
+    );
+
+    mapRooms.push(
+      <div key={`score${index}`} className="mapScore">
+        {Array.from({length: puzzle.maxFlaskCount}, (_, index) => (
+          <div
+            key={index}
+            className={
+              index < score[puzzle.puzzleID] ? "fullFlask" : "emptyFlask"
+            }
+          ></div>
+        ))}
+      </div>,
+    );
+  });
 
   return (
     <div className="App" id="map">
       {stationDropDown}
-      {locationButtons}
+      <div id="mapRooms">{mapRooms}</div>
       <button onClick={() => setDisplay("game")}>Return to current room</button>
     </div>
   );
