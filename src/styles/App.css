@@ -1,13 +1,15 @@
 /* General */
 html {
-  --default-box-size: min(8vw, 5.5vh);
-  --default-font-size: calc(var(--default-box-size) * 0.9);
-  --dark-color: black;
-  --light-color: white;
+  --square-size: min(6vmax, 1.5cm);
+  --default-font-size: min(4vh, 0.7cm);
+
+  background-image: url("../images/background.svg");
 }
 
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -22,7 +24,7 @@ small {
 }
 
 a {
-  color: var(--light-color);
+  color: white;
 }
 
 button {
@@ -32,8 +34,8 @@ button {
   appearance: none;
   font-size: calc(var(--default-font-size) * 0.75);
   font-family: sans-serif;
-  background-color: var(--light-color);
-  border: 1px solid var(--light-color);
+  background-color: white;
+  border: 1px solid white;
   border-radius: 5px;
   color: black;
   margin: 10px;
@@ -45,8 +47,7 @@ button:disabled {
 }
 
 .App {
-  background-image: url("../images/background.svg");
-  color: var(--light-color);
+  color: white;
   font-family: sans-serif;
   font-size: var(--default-font-size);
   display: grid;
@@ -54,11 +55,6 @@ button:disabled {
   height: 100svh;
   width: 100vw;
   overflow: scroll;
-}
-
-#info {
-  white-space: pre-line;
-  padding: 5vmin;
 }
 
 .close {
@@ -86,8 +82,6 @@ button:disabled {
   color: rgb(0 162 255);
 }
 
-/* todo delete unused above */
-
 #game {
   display: grid;
   grid-template-areas:
@@ -107,13 +101,33 @@ button:disabled {
   height: 100svh;
 }
 
+#location {
+  grid-area: location;
+  text-align: center;
+  font-size: calc(var(--square-size) * 0.6);
+  border-top: 1vmax solid black;
+  border-bottom: 1vmax solid black;
+  background-color: black;
+}
+
+/* todo */
+#exitButtons {
+  grid-area: location;
+  text-align: center;
+  font-size: var(--square-size);
+  border-top: 3vmin solid black;
+  border-bottom: 3vmin solid black;
+  background-color: black;
+}
+
 #message {
   grid-area: botMessage;
-  min-height: calc(var(--default-font-size) * 2);
-  font-size: calc(var(--default-font-size) * 0.6);
+  font-size: calc(var(--square-size) * 0.4);
+  min-height: calc(var(--square-size) * 2);
   overflow: scroll;
   white-space: pre-wrap;
   background-color: black;
+  border: 1vmax solid black;
 }
 
 #message::after {
@@ -122,21 +136,14 @@ button:disabled {
 }
 
 @keyframes blink {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
-}
-
-#location,
-#exitButtons {
-  grid-area: location;
-  text-align: center;
-  border-top: 3vmin solid black;
-  border-bottom: 3vmin solid black;
-  background-color: black;
 }
 
 #botFace {
@@ -144,34 +151,41 @@ button:disabled {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 15vw;
-  border-right: 3vmin solid black;
-  border-left: 3vmin solid black;
+  width: calc(var(--square-size) * 2);
+  border-right: 1vmax solid black;
+  border-left: 1vmax solid black;
   background-color: black;
 }
 
-#botFace.happy, #botFace.glitchy-happy {
+#botFace.happy,
+#botFace.glitchy-happy {
   background-image: url("../images/icons/bot-smile.svg");
 }
 
-#botFace.sinister, #botFace.glitchy-sinister {
+#botFace.sinister,
+#botFace.glitchy-sinister {
   background-image: url("../images/icons/bot-sinister.svg");
 }
 
-#botFace.glitchy-sinister, #botFace.glitchy-happy {
+#botFace.glitchy-sinister,
+#botFace.glitchy-happy {
   animation: flicker 0.3s infinite;
 }
 
 @keyframes flicker {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
+
   70% {
     opacity: 0.8;
   }
+
   90% {
     opacity: 0.3;
   }
@@ -181,8 +195,8 @@ button:disabled {
   display: flex;
   flex-direction: row;
   grid-area: acquiredFeatures;
-  border-top: 3px solid white;
-  padding-top: 1vh;
+  border-top: 0.5vmax solid white;
+  padding-top: 1vmax;
 }
 
 #acquiredFeatures > div {
@@ -195,8 +209,8 @@ button:disabled {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 10vw;
-  height: 10vw;
+  width: calc(var(--square-size) * 0.8);
+  height: calc(var(--square-size) * 0.8);
 }
 
 #acquiredFeatures .flask {
@@ -213,23 +227,21 @@ button:disabled {
 }
 
 #puzzle {
-  --puzzle-square-size: 12vmin;
-
   grid-area: puzzle;
   touch-action: none;
   display: grid;
-  grid-template-columns: repeat(7, var(--puzzle-square-size));
+  grid-template-columns: repeat(7, var(--square-size));
+  grid-template-rows: repeat(9, var(--square-size));
   column-gap: 0;
   justify-content: center;
-  margin: 5vmin;
+  margin: calc(var(--square-size) * 0.5);
 }
 
-/* todo make --puzzle-square-size more robust for different screen sizes */
 .puzzleSquare {
   touch-action: none;
   border: 1px solid black;
-  width: var(--puzzle-square-size);
-  height: var(--puzzle-square-size);
+  width: var(--square-size);
+  height: var(--square-size);
   background-color: rgb(137 132 132);
   background-position: center;
   background-repeat: no-repeat;
@@ -323,8 +335,8 @@ button:disabled {
 .puzzleSquare.visited::before {
   content: "";
   position: absolute;
-  width: var(--puzzle-square-size);
-  height: var(--puzzle-square-size);
+  width: var(--square-size);
+  height: var(--square-size);
   background-size: contain;
 }
 
@@ -387,4 +399,33 @@ button:disabled {
 .puzzleSquare.visited.center-left::before,
 .puzzleSquare.visited.left-center::before {
   transform: rotate(270deg);
+}
+
+/* Large screen, landscape */
+@media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
+  .App,
+  #game {
+    max-width: calc(var(--square-size) * 15);
+  }
+
+  #game {
+    grid-template-rows:
+      auto
+      auto
+      calc(var(--square-size) * 3)
+      auto
+      1fr;
+  }
+}
+
+/* Large screen, portrait */
+@media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+  #game {
+    grid-template-rows:
+      auto
+      auto
+      calc(var(--square-size) * 3)
+      auto
+      1fr;
+  }
 }

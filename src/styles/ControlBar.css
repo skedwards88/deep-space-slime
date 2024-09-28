@@ -3,8 +3,7 @@
   justify-content: space-evenly;
   align-items: center;
   grid-area: controls;
-  width: 100vw;
-  border-bottom: 2px solid var(--light-color);
+  border-bottom: 0.5vmax solid white;
   background-color: black;
 }
 
@@ -13,8 +12,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   border: 0;
-  width: var(--default-font-size);
-  height: var(--default-font-size);
+  width: calc(var(--square-size) * 0.6);
+  height: calc(var(--square-size) * 0.6);
   background-color: transparent;
   padding: 1px 6px;
 }
