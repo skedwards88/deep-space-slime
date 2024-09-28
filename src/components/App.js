@@ -24,7 +24,10 @@ export default function App() {
     gameInit,
   );
 
-  const [score, setScore] = React.useState([]); // todo save and use saved
+  const savedScore = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedScore"),
+  );
+  const [score, setScore] = React.useState(savedScore || []);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
@@ -57,6 +60,13 @@ export default function App() {
       JSON.stringify(gameState),
     );
   }, [gameState]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedScore",
+      JSON.stringify(score),
+    );
+  }, [score]);
 
   switch (display) {
     case "map":
