@@ -185,6 +185,28 @@ function Game({
         dispatchGameState={dispatchGameState}
         puzzleID={gameState.puzzleID}
       ></ControlBar>
+
+      <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
+        puzzles[gameState.puzzleID].room
+      }`}</div>
+
+      <div
+        id="botFace"
+        className={
+          isAtExit
+            ? puzzles[gameState.puzzleID].robotEndMood
+            : puzzles[gameState.puzzleID].robotStartMood
+        }
+      ></div>
+
+      <div id="message">{gameState.message}</div>
+
+      <div id="acquiredFeatures">
+        <div>{flasks}</div>
+        <div>{keys}</div>
+        <div>{jets}</div>
+      </div>
+
       {isAtExit ? (
         <ExitButtons
           puzzle={puzzles[gameState.puzzleID].puzzle}
@@ -195,25 +217,9 @@ function Game({
           setScore={setScore}
         ></ExitButtons>
       ) : (
-        <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
-          puzzles[gameState.puzzleID].room
-        }`}</div>
+        <div id="exitButtons"></div>
       )}
 
-      <div
-        id="botFace"
-        className={
-          isAtExit
-            ? puzzles[gameState.puzzleID].robotEndMood
-            : puzzles[gameState.puzzleID].robotStartMood
-        }
-      ></div>
-      <div id="message">{gameState.message}</div>
-      <div id="acquiredFeatures">
-        <div>{flasks}</div>
-        <div>{keys}</div>
-        <div>{jets}</div>
-      </div>
       <div id="puzzle">{squares}</div>
     </div>
   );
