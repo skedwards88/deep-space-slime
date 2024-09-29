@@ -37,9 +37,8 @@ jobs:
       - name: Install requirements
         run: npm install
 
-      # todo uncomment
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
 
       - name: Setup git config
         run: |
