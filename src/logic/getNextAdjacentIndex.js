@@ -6,7 +6,7 @@ export function getNextAdjacentIndex({
   numColumns,
   numRows,
 }) {
-  // Error if the index is outside of the grid
+  // Error if either index is outside of the grid
   if (index >= numColumns * numRows) {
     throw new Error(
       `Input index ${index} exceeds the array size ${numColumns * numRows}`,
