@@ -46,7 +46,7 @@ jobs:
           git config --global user.email "skedwards88@gmail.com"
 
       - name: Temporarily disable Husky
-        run: npm pkg set "scripts.prepare"=""
+        run: npm pkg delete scripts.prepare
 
       - name: Bump version
         run: npm version patch
