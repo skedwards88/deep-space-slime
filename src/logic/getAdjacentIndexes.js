@@ -1,5 +1,12 @@
-//todo add tests for this
+// Given an index in a flat array and the dimensions describing a 2D representation of the array,
+// return the indexes that are adjacent to the input index (top/down/left/right, no diagonals).
 export function getAdjacentIndexes({index, numColumns, numRows}) {
+  // Error if the index is outside of the grid
+  if (index >= numColumns * numRows) {
+    throw new Error(
+      `Input index ${index} exceeds the array size ${numColumns * numRows}`,
+    );
+  }
   const column = index % numColumns;
   const row = Math.floor(index / numColumns);
 
