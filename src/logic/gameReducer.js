@@ -1,4 +1,3 @@
-// todo delete if unneeded: import sendAnalytics from "../common/sendAnalytics";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
@@ -19,8 +18,6 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   let message = "";
-
-  //todo decide if this is the order of errors that we want
 
   // The space is an 'outer' space
   if (puzzle[index] === "outer") {
