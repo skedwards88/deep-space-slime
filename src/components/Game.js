@@ -12,7 +12,6 @@ function handlePointerDown(event) {
 
 function handlePointerEnter(event, index, dispatchGameState) {
   // todo this doesn't work for desktop
-  console.log(`ENTER ${index}`);
   event.preventDefault();
   dispatchGameState({action: "continueDrag", index});
 }
@@ -26,6 +25,10 @@ function PuzzleSquare({
   exitUnlocked,
   current,
   direction,
+  flaskCount,
+  puzzleID,
+  score,
+  setScore,
 }) {
   let featureClass;
 
@@ -39,10 +42,6 @@ function PuzzleSquare({
     featureClass = feature;
   }
 
-  if (direction) {
-    console.log(`${index}: ${direction}`);
-  }
-
   return (
     <div
       key={index}
@@ -51,25 +50,21 @@ function PuzzleSquare({
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
       onPointerDown={(event) => handlePointerDown(event)}
       {...(!current && {
-        onPointerEnter: (event) =>
-          handlePointerEnter(event, index, dispatchGameState),
+        onPointerEnter: (event) => {
+          if (feature === "exit-opened") {
+            let newScore = [...score];
+            newScore[puzzleID] = flaskCount;
+            setScore(newScore);
+          }
+          handlePointerEnter(event, index, dispatchGameState);
+        },
       })}
     ></div>
   );
 }
 
-function ExitButtons({
-  puzzle,
-  flaskCount,
-  puzzleID,
-  dispatchGameState,
-  score,
-  setScore,
-}) {
+function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
   const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
-
-  let newScore = [...score];
-  newScore[puzzleID] = flaskCount;
 
   const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
 
@@ -77,7 +72,6 @@ function ExitButtons({
     <button
       onClick={() => {
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
-        setScore(newScore);
       }}
     >
       Next Level
@@ -136,7 +130,6 @@ function Game({
   installPromptEvent,
 }) {
   const mainPath = gameState.mainPath;
-  console.log(mainPath);
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
@@ -156,6 +149,10 @@ function Game({
       exitUnlocked={exitUnlocked}
       dispatchGameState={dispatchGameState}
       direction={directions[index]}
+      flaskCount={gameState.flaskCount}
+      puzzleID={gameState.puzzleID}
+      score={score}
+      setScore={setScore}
     ></PuzzleSquare>
   ));
 
@@ -213,8 +210,6 @@ function Game({
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}
-          score={score}
-          setScore={setScore}
         ></ExitButtons>
       ) : (
         <div id="exitButtons"></div>
