@@ -702,7 +702,7 @@ export const puzzles = [
       "exit",
       "basic",
       "flask",
-      "basic",
+      "outer",
       "portal",
       "outer",
       "outer",
