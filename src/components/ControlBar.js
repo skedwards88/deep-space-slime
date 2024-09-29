@@ -59,7 +59,6 @@ function ControlBar({
         onClick={() => setDisplay("heart")}
       ></button>
 
-      {/* todo remove version number once done testing */}
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
