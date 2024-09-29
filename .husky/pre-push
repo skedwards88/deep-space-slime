@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Run the linters if pushing to main
+PROTECTED_BRANCH="main"
+
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+if [ "$current_branch" = "$PROTECTED_BRANCH" ]; then
+  echo "Running pre-push checks before pushing to $PROTECTED_BRANCH..."
+
+  npx prettier -c src/ README.md .github/workflows
+  if [ $? -ne 0 ]; then
+    echo "You must fix prettier errors before you can push to $PROTECTED_BRANCH"
+    exit 1
+  fi
+
+  npx eslint --ignore-path .gitignore .
+  if [ $? -ne 0 ]; then
+    echo "You must fix eslint errors before you can push to $PROTECTED_BRANCH"
+    exit 1
+  fi
+
+  npx stylelint '**/*.css'
+  if [ $? -ne 0 ]; then
+    echo "You must fix stylelint errors before you can push to $PROTECTED_BRANCH"
+    exit 1
+  fi
+fi
+
+exit 0
