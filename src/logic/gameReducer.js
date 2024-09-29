@@ -39,7 +39,6 @@ function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The space is the exit and you haven't visited all numbers
-  // todo unlike the exit, the player can always enter the ship. Is that desired?
   if (
     puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
