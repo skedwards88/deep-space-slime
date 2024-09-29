@@ -4,7 +4,6 @@ import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 
 export function gameReducer(currentGameState, payload) {
-  
   if (payload.action === "modifyPath") {
     const index = payload.index;
 
