@@ -13,7 +13,7 @@ function handlePointerDown(event) {
 function handlePointerEnter(event, index, dispatchGameState) {
   // todo this doesn't work for desktop
   event.preventDefault();
-  dispatchGameState({action: "continueDrag", index});
+  dispatchGameState({action: "modifyPath", index});
 }
 
 function PuzzleSquare({
