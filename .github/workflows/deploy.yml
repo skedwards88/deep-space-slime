@@ -46,7 +46,10 @@ jobs:
           git config --global user.email "skedwards88@gmail.com"
 
       - name: Temporarily disable Husky
-        run: npm pkg delete scripts.prepare
+        run: export HUSKY=0
+
+      - name: Temp debug
+        run: git status
 
       - name: Bump version
         run: npm version patch
@@ -69,6 +72,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-      - name: Re-enable Husky
-        run: npm pkg set scripts.prepare="husky install"
