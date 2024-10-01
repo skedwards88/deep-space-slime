@@ -1,8 +1,14 @@
 import {validateSavedState} from "./validateSavedState";
+import {convertPuzzleToString} from "./convertPuzzleString";
+import {puzzles} from "./puzzles";
 
 describe("validateSavedState", () => {
+  const puzzleID = 1;
+
+  const encodedPuzzle = convertPuzzleToString(puzzles[puzzleID].puzzle);
+
   const validState = {
-    puzzleID: 1,
+    puzzleID,
     mainPath: [0, 1, 2],
     flaskCount: 1,
     keyCount: 1,
@@ -12,6 +18,7 @@ describe("validateSavedState", () => {
     numColumns: 7,
     numRows: 9,
     validNextIndexes: [3, 4, 5],
+    encodedPuzzle,
   };
 
   test("returns true for a valid saved state", () => {
@@ -99,5 +106,25 @@ describe("validateSavedState", () => {
   test("returns false for invalid validNextIndexes (contains non-integers)", () => {
     const state = {...validState, validNextIndexes: [3, "4", 5]};
     expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for undefined encodedPuzzle", () => {
+    const state = {...validState, encodedPuzzle: undefined};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for empty encodedPuzzle", () => {
+    const state = {...validState, encodedPuzzle: ""};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for mismatched encodedPuzzle", () => {
+    const state = {...validState, encodedPuzzle: "BOOJFFBB"};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns true for valid encodedPuzzle", () => {
+    const state = {...validState};
+    expect(validateSavedState(state)).toBe(true);
   });
 });
