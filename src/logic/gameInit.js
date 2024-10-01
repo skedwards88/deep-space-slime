@@ -1,4 +1,5 @@
 import sendAnalytics from "../common/sendAnalytics";
+import {convertPuzzleToString} from "./convertPuzzleString";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
@@ -15,6 +16,11 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
   sendAnalytics("new_game");
 
   const puzzle = puzzles[puzzleID].puzzle;
+
+  // Get a string representation of the puzzle so that
+  // we can later verify that the puzzle has not been updated
+  // since the player started solving it
+  const encodedPuzzle = convertPuzzleToString(puzzle);
 
   const numColumns = 7;
   const numRows = 9;
@@ -45,5 +51,6 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     maxNumber,
     validNextIndexes,
     message: puzzles[puzzleID].startingText,
+    encodedPuzzle,
   };
 }

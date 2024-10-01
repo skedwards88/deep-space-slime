@@ -1,4 +1,4 @@
-const features = {
+export const features = {
   outer: "outer",
   basic: "basic",
   exit: "exit",

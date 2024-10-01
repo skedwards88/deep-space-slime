@@ -1,3 +1,4 @@
+import {convertPuzzleToString} from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
 
 export function validateSavedState(savedState) {
@@ -46,6 +47,18 @@ export function validateSavedState(savedState) {
     return false;
   }
   if (savedState.validNextIndexes.some((entry) => !Number.isInteger(entry))) {
+    return false;
+  }
+
+  // The string representation of the puzzle must match the saved string representation; otherwise, we have changed the puzzle and should reset their progress
+  const savedEncoding = savedState.encodedPuzzle;
+  if (!savedEncoding) {
+    return false;
+  }
+  const updatedEncoding = convertPuzzleToString(
+    puzzles[savedState.puzzleID].puzzle,
+  );
+  if (updatedEncoding != savedEncoding) {
     return false;
   }
 
