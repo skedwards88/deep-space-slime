@@ -4,10 +4,12 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
+import {convertPuzzleToString} from "./convertPuzzleString";
 
 jest.mock("../common/sendAnalytics");
 jest.mock("./getValidNextIndexes");
 jest.mock("./validateSavedState");
+jest.mock("./convertPuzzleString");
 
 describe("gameInit", () => {
   beforeEach(() => {
@@ -76,8 +78,10 @@ describe("gameInit", () => {
     const numbers = puzzle.map(Number).filter(Number.isInteger);
     const maxNumber = numbers.length ? Math.max(...numbers) : 0;
     const validNextIndexes = [1, 2, 3]; // Mocked value
+    const encodedPuzzle = "MOCK"; // Mocked value
 
     getValidNextIndexes.mockReturnValue(validNextIndexes);
+    convertPuzzleToString.mockReturnValue(encodedPuzzle);
 
     const result = gameInit({useSaved: false, puzzleID});
 
@@ -93,6 +97,7 @@ describe("gameInit", () => {
       maxNumber,
       validNextIndexes,
       message: puzzles[puzzleID].startingText,
+      encodedPuzzle,
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
