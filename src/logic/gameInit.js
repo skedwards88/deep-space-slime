@@ -18,6 +18,7 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
 
   const numColumns = 7;
   const numRows = 9;
+
   const startIndex = puzzle.indexOf("start");
   const mainPath = [startIndex];
 
