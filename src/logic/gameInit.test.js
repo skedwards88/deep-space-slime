@@ -44,7 +44,7 @@ describe("gameInit", () => {
 
     expect(result).not.toEqual(savedState);
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game");
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 0});
   });
 
   test("ignores saved state if useSaved is false", () => {
@@ -58,14 +58,14 @@ describe("gameInit", () => {
 
     expect(validateSavedState).not.toHaveBeenCalled();
     expect(result).toHaveProperty("puzzleID", 5);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game");
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 5});
   });
 
   test("uses default values when no arguments are provided", () => {
     const result = gameInit({});
 
     expect(result).toHaveProperty("puzzleID", 0);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game");
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 0});
   });
 
   test("returns correct structure for new game", () => {
