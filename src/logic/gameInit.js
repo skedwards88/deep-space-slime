@@ -13,7 +13,7 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     return savedState;
   }
 
-  sendAnalytics("new_game");
+  sendAnalytics("new_game", {puzzleID});
 
   const puzzle = puzzles[puzzleID].puzzle;
 
