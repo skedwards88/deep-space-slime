@@ -11,11 +11,12 @@ export function getValidNextIndexes({
   hasJet = false,
   numberCount = 0,
 }) {
+  console.log(mainPath);
   // Valid indexes are:
   // - The previous index
   // - If the last index was the exit or ship, no other options
-  // - If the last index was a portal but the second to last index was not a portal, any unvisited portal space
-  // - If the last index was not a portal, or if the last 2 indexes were portals, any unvisited adjacent space that is:
+  // - If the last index was a portal and you have visited an odd number of portals, any unvisited portal space
+  // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is:
   //   - basic
   //   - flask
   //   - key
@@ -43,10 +44,17 @@ export function getValidNextIndexes({
     return validIndexes;
   }
 
-  if (
-    puzzle[lastIndexInPath] === "portal" &&
-    puzzle[penultimateIndexInPath] !== "portal"
-  ) {
+  let numberPortalsVisited = 0;
+  if (puzzle[lastIndexInPath] === "portal") {
+    mainPath.forEach((index) => {
+      const feature = puzzle[index];
+      if (feature === "portal") {
+        numberPortalsVisited++;
+      }
+    });
+  }
+
+  if (numberPortalsVisited % 2 !== 0) {
     puzzle.forEach((feature, index) => {
       if (feature === "portal" && !mainPath.includes(index)) {
         validIndexes.push(index);
