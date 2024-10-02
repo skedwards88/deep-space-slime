@@ -4,16 +4,31 @@ import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
 
-function handlePointerDown(event) {
-  event.preventDefault();
+function handlePointerDown({event, index, dispatchGameState}) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
+
+  if (event.pointerType === "mouse") {
+    dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
+    dispatchGameState({
+      action: "modifyPath",
+      isMouse: true,
+      index,
+    });
+  }
 }
 
-function handlePointerEnter(event, index, dispatchGameState) {
-  // todo this doesn't work for desktop
+function handleMouseUp(dispatchGameState) {
+  dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
+}
+
+function handlePointerEnter({event, index, dispatchGameState}) {
   event.preventDefault();
-  dispatchGameState({action: "modifyPath", index});
+  dispatchGameState({
+    action: "modifyPath",
+    isMouse: event.pointerType === "mouse",
+    index,
+  });
 }
 
 function PuzzleSquare({
@@ -48,7 +63,10 @@ function PuzzleSquare({
       className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
         visited ? "visited" : ""
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
-      onPointerDown={(event) => handlePointerDown(event)}
+      onPointerDown={(event) =>
+        handlePointerDown({event, index, dispatchGameState})
+      }
+      onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current && {
         onPointerEnter: (event) => {
           if (feature === "exit-opened") {
@@ -56,7 +74,7 @@ function PuzzleSquare({
             newScore[puzzleID] = flaskCount;
             setScore(newScore);
           }
-          handlePointerEnter(event, index, dispatchGameState);
+          handlePointerEnter({event, index, dispatchGameState});
         },
       })}
     ></div>
@@ -173,7 +191,7 @@ function Game({
     puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship";
 
   return (
-    <div id="game">
+    <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
       <ControlBar
         setDisplay={setDisplay}
         setInstallPromptEvent={setInstallPromptEvent}

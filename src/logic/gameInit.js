@@ -10,7 +10,7 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     : undefined;
 
   if (savedState && validateSavedState(savedState)) {
-    return savedState;
+    return {...savedState, mouseIsActive: false};
   }
 
   sendAnalytics("new_game", {puzzleID});
