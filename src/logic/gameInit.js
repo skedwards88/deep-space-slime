@@ -52,5 +52,6 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     validNextIndexes,
     message: puzzles[puzzleID].startingText,
     encodedPuzzle,
+    mouseIsActive: false,
   };
 }

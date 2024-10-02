@@ -17,7 +17,7 @@ describe("gameInit", () => {
     jest.clearAllMocks();
   });
 
-  test("returns saved state if useSaved is true and saved state is valid", () => {
+  test("returns saved state (except sets mouseIsActive to false) if useSaved is true and saved state is valid", () => {
     const savedState = {some: "state"};
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -27,7 +27,7 @@ describe("gameInit", () => {
 
     const result = gameInit({useSaved: true, puzzleID: 0});
 
-    expect(result).toEqual(savedState);
+    expect(result).toEqual({...savedState, mouseIsActive: false});
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
     expect(sendAnalytics).not.toHaveBeenCalled();
   });
@@ -98,6 +98,7 @@ describe("gameInit", () => {
       validNextIndexes,
       message: puzzles[puzzleID].startingText,
       encodedPuzzle,
+      mouseIsActive: false,
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
