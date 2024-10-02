@@ -5,6 +5,11 @@ import {updateStateWithExtension} from "./updateStateWithExtension";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
+    // Return early if this was triggered by the mouse entering but the mouse is not depressed
+    if (payload.isMouse && !currentGameState.mouseIsActive) {
+      return currentGameState;
+    }
+
     const index = payload.index;
 
     // If the index isn't one of the valid indexes, determine why and return early
@@ -27,6 +32,12 @@ export function gameReducer(currentGameState, payload) {
     const puzzleID = payload.puzzleID;
 
     return gameInit({puzzleID, useSaved: false});
+  } else if (payload.action === "setMouseIsActive") {
+    if (currentGameState.mouseIsActive === payload.mouseIsActive) {
+      return currentGameState;
+    } else {
+      return {...currentGameState, mouseIsActive: payload.mouseIsActive};
+    }
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentGameState;
