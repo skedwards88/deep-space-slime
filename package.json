@@ -12,7 +12,8 @@
     "prettier": "npx prettier --write .",
     "style": "npx stylelint '**/*.css' --fix",
     "lint": "npm run eslint && npm run prettier && npm run style",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "testrun": "node -r esm"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "eslint": "^8.11.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "esm": "^3.2.25",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.0",
     "jest": "^29.7.0",
