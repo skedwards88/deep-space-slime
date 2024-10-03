@@ -11,7 +11,6 @@ export function getValidNextIndexes({
   hasJet = false,
   numberCount = 0,
 }) {
-  console.log(mainPath);
   // Valid indexes are:
   // - The previous index
   // - If the last index was the exit or ship, no other options
