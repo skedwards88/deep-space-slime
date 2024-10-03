@@ -38,7 +38,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
     message =
-      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work Subject 34!";
+      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work Subject 44!";
     return message;
   }
 
