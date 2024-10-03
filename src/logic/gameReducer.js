@@ -2,6 +2,7 @@ import {gameInit} from "./gameInit";
 import {getReasonForMoveInvalidity} from "./getReasonForMoveInvalidity";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
+import {puzzles} from "./puzzles";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -18,16 +19,44 @@ export function gameReducer(currentGameState, payload) {
       return message ? {...currentGameState, message} : currentGameState;
     }
 
-    // If the index is the second to last index in the path,
-    // then backtrack
+    const puzzle = puzzles[currentGameState.puzzleID].puzzle;
     const mainPath = currentGameState.mainPath;
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
+
+    // If the index is the second to last index in the path,
+    // then backtrack
     if (penultimateIndexInPath === index) {
-      return updateStateWithBacktrack(index, currentGameState);
+      const stateWithBacktrackedPath = updateStateWithBacktrack({
+        index,
+        currentGameState,
+        puzzle,
+      });
+      // and reset the message
+      return {
+        ...stateWithBacktrackedPath,
+        message: puzzles[currentGameState.puzzleID].startingText,
+      };
     }
 
     // Otherwise, extend the path
-    return updateStateWithExtension(index, currentGameState);
+    const stateWithExtendedPath = updateStateWithExtension({
+      index,
+      currentGameState,
+      puzzle,
+    });
+    // and update the message
+    let newMessage;
+    if (puzzle[index] === "exit" || puzzle[index] === "ship") {
+      const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+      if (currentGameState.flaskCount < maxFlasks) {
+        newMessage = puzzles[currentGameState.puzzleID].hintText;
+      } else {
+        newMessage = puzzles[currentGameState.puzzleID].winText;
+      }
+    } else {
+      newMessage = puzzles[currentGameState.puzzleID].startingText;
+    }
+    return {...stateWithExtendedPath, message: newMessage};
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 
