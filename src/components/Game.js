@@ -67,16 +67,17 @@ function PuzzleSquare({
         handlePointerDown({event, index, dispatchGameState})
       }
       onMouseUp={() => handleMouseUp(dispatchGameState)}
-      {...(!current && {
-        onPointerEnter: (event) => {
-          if (feature === "exit-opened") {
-            let newScore = [...score];
-            newScore[puzzleID] = flaskCount;
-            setScore(newScore);
-          }
-          handlePointerEnter({event, index, dispatchGameState});
-        },
-      })}
+      {...(!current &&
+        feature !== "outer" && {
+          onPointerEnter: (event) => {
+            if (feature === "exit-opened") {
+              let newScore = [...score];
+              newScore[puzzleID] = flaskCount;
+              setScore(newScore);
+            }
+            handlePointerEnter({event, index, dispatchGameState});
+          },
+        })}
     ></div>
   );
 }
