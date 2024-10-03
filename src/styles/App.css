@@ -153,12 +153,11 @@ button:disabled {
   grid-area: botFace;
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: calc(80%);
   width: calc(var(--square-size) * 2);
   border-right: 1vmax solid black;
   border-left: 1vmax solid black;
   background-color: black;
-  background-size: calc(80%);
 }
 
 #botFace.happy,
