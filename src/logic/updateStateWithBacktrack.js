@@ -1,4 +1,3 @@
-import {puzzles} from "./puzzles";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 
@@ -10,10 +9,9 @@ import {getAdjacentIndexes} from "./getAdjacentIndexes";
 // If the last index was a number, decrement the number count.
 // If the last index was a jet, remove the jet from the jet count.
 // If the last index was previously accessed with a jet, add a jet to the jet count.
-export function updateStateWithBacktrack(index, currentGameState) {
+export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
-  const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
   let newKeyCount = currentGameState.keyCount;
   if (puzzle[lastIndexInPath] === "key") {
@@ -57,7 +55,6 @@ export function updateStateWithBacktrack(index, currentGameState) {
 
   return {
     ...currentGameState,
-    message: puzzles[currentGameState.puzzleID].startingText,
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     flaskCount:

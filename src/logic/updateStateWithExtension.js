@@ -1,4 +1,3 @@
-import {puzzles} from "./puzzles";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 
@@ -10,10 +9,9 @@ import {getAdjacentIndexes} from "./getAdjacentIndexes";
 // If the index is a number, increment the number count.
 // If the index is a jet, acquire the jet.
 // If the index was only accessible with a jet, lose a jet.
-export function updateStateWithExtension(index, currentGameState) {
+export function updateStateWithExtension({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
-  const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
   const newMainPath = [...currentGameState.mainPath, index];
 
@@ -56,22 +54,8 @@ export function updateStateWithExtension(index, currentGameState) {
     maxNumber: currentGameState.maxNumber,
   });
 
-  // If at the exit, update the message
-  let newMessage;
-  if (puzzle[index] === "exit" || puzzle[index] === "ship") {
-    const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
-    if (currentGameState.flaskCount < maxFlasks) {
-      newMessage = puzzles[currentGameState.puzzleID].hintText;
-    } else {
-      newMessage = puzzles[currentGameState.puzzleID].winText;
-    }
-  } else {
-    newMessage = puzzles[currentGameState.puzzleID].startingText;
-  }
-
   return {
     ...currentGameState,
-    message: newMessage,
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     flaskCount:
