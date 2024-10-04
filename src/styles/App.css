@@ -193,6 +193,10 @@ button:disabled {
   justify-content: center;
 }
 
+#exitButtons > button {
+  margin: 0 10px;
+}
+
 #acquiredFeatures > div {
   display: flex;
   flex-direction: row;
