@@ -3,22 +3,32 @@
   flex-direction: column;
 }
 
-#mapStationSelect {
-  text-align: center;
-  font-size: calc(var(--default-font-size) * 0.75);
-  font-family: sans-serif;
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: black;
-  margin: 10px;
-  padding: 1px 6px;
+#map button {
+  background-color: black;
+  color: white;
+}
+
+#map button:disabled {
+  opacity: 0.6;
 }
 
 #mapRooms {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: 1fr auto;
   align-items: center;
+}
+
+.mapStationButton {
+  min-height: var(--square-size);
+}
+
+.mapRoomButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: calc(var(--square-size) * 0.5);
 }
 
 .mapScore {
