@@ -3,6 +3,7 @@ import {getReasonForMoveInvalidity} from "./getReasonForMoveInvalidity";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {puzzles} from "./puzzles";
+import {getValidNextIndexes} from "./getValidNextIndexes";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -22,6 +23,28 @@ export function gameReducer(currentGameState, payload) {
     const puzzle = puzzles[currentGameState.puzzleID].puzzle;
     const mainPath = currentGameState.mainPath;
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
+
+    // If the index is the start index, reset the path
+    const startIndex = puzzle.indexOf("start");
+    if (startIndex === index) {
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: [startIndex],
+        puzzle,
+        numColumns: currentGameState.numColumns,
+        numRows: currentGameState.numRows,
+        maxNumber: currentGameState.maxNumber,
+      });
+      return {
+        ...currentGameState,
+        validNextIndexes: newValidNextIndexes,
+        mainPath: [startIndex],
+        flaskCount: 0,
+        keyCount: 0,
+        numberCount: 0,
+        jetCount: 0,
+        message: puzzles[currentGameState.puzzleID].startingText,
+      };
+    }
 
     // If the index is the second to last index in the path,
     // then backtrack

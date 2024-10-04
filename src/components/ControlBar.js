@@ -8,19 +8,9 @@ function ControlBar({
   showInstallButton,
   installPromptEvent,
   setInstallPromptEvent,
-  dispatchGameState,
-  puzzleID,
 }) {
   return (
     <div id="controls">
-      <button
-        id="refreshIcon"
-        className="controlButton"
-        onClick={() =>
-          dispatchGameState({action: "newGame", puzzleID: puzzleID})
-        }
-      ></button>
-
       <button
         id="mapIcon"
         className="controlButton"

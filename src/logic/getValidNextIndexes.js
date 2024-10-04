@@ -13,6 +13,7 @@ export function getValidNextIndexes({
 }) {
   // Valid indexes are:
   // - The previous index
+  // - The start index (unless you are on the start)
   // - If the last index was the exit or ship, no other options
   // - If the last index was a portal and you have visited an odd number of portals, any unvisited portal space
   // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is:
@@ -34,6 +35,11 @@ export function getValidNextIndexes({
 
   if (penultimateIndexInPath !== undefined) {
     validIndexes.push(penultimateIndexInPath);
+  }
+
+  if (puzzle[lastIndexInPath] !== "start") {
+    const startIndex = puzzle.indexOf("start");
+    validIndexes.push(startIndex);
   }
 
   if (
