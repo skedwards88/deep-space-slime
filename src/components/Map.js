@@ -41,7 +41,7 @@ export default function Map({
 
     const acquiredFlasksForStation = puzzlesByStation[station].reduce(
       (acquiredFlaskCount, puzzleInfo) =>
-        acquiredFlaskCount + score[puzzleInfo.puzzleID],
+        acquiredFlaskCount + (score[puzzleInfo.puzzleID] || 0),
       0,
     );
 
