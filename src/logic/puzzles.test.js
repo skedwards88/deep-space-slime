@@ -33,16 +33,75 @@ describe("puzzle validation", () => {
     }
   });
 
+  test("all puzzles include an even number of portals", () => {
+    for (const {puzzle} of puzzles) {
+      const numberPortals = puzzle.filter(
+        (feature) => feature === features.portal,
+      ).length;
+      expect(numberPortals % 2).toEqual(0);
+    }
+  });
+
+  test("terminal tests ", () => {
+    for (const {puzzle, station, room} of puzzles) {
+      const numberTerminal1s = puzzle.filter(
+        (feature) => feature === features.terminal1,
+      ).length;
+      const numberTerminal2s = puzzle.filter(
+        (feature) => feature === features.terminal2,
+      ).length;
+      const numberTerminal3s = puzzle.filter(
+        (feature) => feature === features.terminal3,
+      ).length;
+      const numberTerminal4s = puzzle.filter(
+        (feature) => feature === features.terminal4,
+      ).length;
+
+      if (
+        numberTerminal1s > 1 ||
+        numberTerminal2s > 1 ||
+        numberTerminal3s > 1 ||
+        numberTerminal4s > 1
+      ) {
+        throw new Error(`${station} ${room} has a duplicate terminal`);
+      }
+
+      if (numberTerminal1s === 1 && numberTerminal2s === 0) {
+        throw new Error(`${station} ${room} has terminal 1 but no terminal 2`);
+      }
+
+      if (
+        (numberTerminal4s === 1 &&
+          (numberTerminal1s === 0 ||
+            numberTerminal2s === 0 ||
+            numberTerminal3s === 0)) ||
+        (numberTerminal3s === 1 &&
+          (numberTerminal1s === 0 || numberTerminal2s === 0)) ||
+        (numberTerminal2s === 1 && numberTerminal1s === 0)
+      ) {
+        throw new Error(`${station} ${room} has non-sequential terminals`);
+      }
+    }
+  });
+
+  test("all puzzles include an even number of doors and keys", () => {
+    for (const {puzzle} of puzzles) {
+      const numberDoors = puzzle.filter(
+        (feature) => feature === features.door,
+      ).length;
+      const numberKeys = puzzle.filter(
+        (feature) => feature === features.key,
+      ).length;
+      expect(numberDoors).toEqual(numberKeys);
+    }
+  });
+
   test("all puzzles have at least one solution", () => {
-    puzzles.forEach(({puzzle}, index) => {
+    for (const {puzzle, station, room} of puzzles) {
       const solutions = getAllValidPaths({puzzle, numColumns: 7, numRows: 9});
-      console.log(
-        `${index}: ${puzzles[index].station}-${puzzles[index].room} = ${solutions.length}`,
-      );
-      expect(solutions.length).toBeGreaterThan(
-        0,
-        `Puzzle at index ${index} has no solutions`,
-      ); //todo error message not passed out
-    });
+      if (solutions.length === 0) {
+        throw new Error(`${station} ${room} has no solutions`);
+      }
+    }
   });
 });
