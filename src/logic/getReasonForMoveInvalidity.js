@@ -28,7 +28,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   const hasBeenVisited = mainPath.includes(index);
   if (hasBeenVisited) {
     message =
-      "Don’t step on the SLIME! The only way to cross a SLIME space is to use a SPRAY BOTTLE to travel straight across the slime trail to a slime-free space.";
+      "Don’t step on the SLIME! The only way to cross a SLIME space is to use a SPRAY BOTTLE to jump straight across the slime trail to a slime-free space.";
     return message;
   }
 
