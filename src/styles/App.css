@@ -89,13 +89,11 @@ button:disabled {
     "location location"
     "botFace botMessage"
     "acquiredFeatures acquiredFeatures"
-    "exit exit"
     "puzzle puzzle";
   grid-template-rows:
     auto
     auto
     1fr
-    auto
     auto
     auto;
   grid-template-columns: auto 1fr;
@@ -110,17 +108,6 @@ button:disabled {
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
-}
-
-#exitButtons {
-  grid-area: exit;
-  min-height: var(--square-size);
-  background-color: rgb(0 0 0 / 50%);
-  z-index: 1;
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
 }
 
 #message {
@@ -194,18 +181,23 @@ button:disabled {
   }
 }
 
-#acquiredFeatures {
+#acquiredFeatures,
+#exitButtons {
   display: flex;
   flex-direction: row;
   grid-area: acquiredFeatures;
   border-top: 0.5vmax solid white;
   padding-top: 1vmax;
+  height: var(--square-size);
+}
+
+#exitButtons {
+  justify-content: center;
 }
 
 #acquiredFeatures > div {
   display: flex;
   flex-direction: row;
-  height: 10vw;
 }
 
 #acquiredFeatures .feature {
