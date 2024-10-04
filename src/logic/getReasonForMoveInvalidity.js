@@ -4,7 +4,6 @@ import {indexesAdjacentQ} from "./indexesAdjacentQ";
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
-  const penultimateIndexInPath = mainPath[mainPath.length - 2];
 
   const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
@@ -32,13 +31,19 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     return message;
   }
 
+  // The index is a door and you don't have a key
+  if (puzzle[index] === "door" && currentGameState.keyCount <= 0) {
+    message = "You need a CARD KEY for that!";
+    return message;
+  }
+
   // The space is the exit and you haven't visited all numbers
   if (
     puzzle[index] === "exit" &&
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
     message =
-      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work Subject 44!";
+      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work, Subject 44!";
     return message;
   }
 
@@ -51,12 +56,21 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     return message;
   }
 
-  // The previous space was a portal and this space is not a portal
-  // (unless the last two spaces were portals)
+  let numberPortalsVisited = 0;
+  if (puzzle[lastIndexInPath] === "portal") {
+    mainPath.forEach((index) => {
+      const feature = puzzle[index];
+      if (feature === "portal") {
+        numberPortalsVisited++;
+      }
+    });
+  }
+
+  // The last index was a portal and you have visited an odd number of portals, and this space isn't a portal
   if (
     puzzle[lastIndexInPath] === "portal" &&
     puzzle[index] !== "portal" &&
-    puzzle[penultimateIndexInPath] !== "portal"
+    numberPortalsVisited % 2 !== 0
   ) {
     message =
       "You are currently outside of space and time. Try reentering spacetime through another portal.";
@@ -64,25 +78,28 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The index is not adjacent to the last index in the path
-  // (unless the current and previous indexes are portals)
   const isAdjacent = indexesAdjacentQ({
     indexA: index,
     indexB: lastIndexInPath,
     numColumns: currentGameState.numColumns,
     numRows: currentGameState.numRows,
   });
+
+  // Trying to jump to a portal after exiting a portal
   if (
     !isAdjacent &&
-    !(puzzle[lastIndexInPath] === "portal" && puzzle[index] === "portal")
+    puzzle[lastIndexInPath] === "portal" &&
+    puzzle[index] === "portal" &&
+    numberPortalsVisited % 2 === 0
   ) {
     message =
-      "That space is too far away, and you are confined to your physical body. Poor human…";
+      "You just exited a portal. You'll have to walk to another portal before you can jump through spacetime again.";
     return message;
   }
 
-  // The index is a door and you don't have a key
-  if (puzzle[index] === "door" && currentGameState.keyCount <= 0) {
-    message = "You need a CARD KEY for that!";
+  if (!isAdjacent) {
+    message =
+      "That space is too far away, and you are confined to your physical body. Poor human…";
     return message;
   }
 
