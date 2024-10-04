@@ -184,7 +184,11 @@ function Game({
   ));
 
   const jets = Array.from({length: gameState.jetCount}, (_, index) => (
-    <div key={index} className="feature jet"></div>
+    <button
+      key={index}
+      className="feature jet"
+      onClick={() => setDisplay("jetExplanation")}
+    ></button>
   ));
 
   const isAtExit =
