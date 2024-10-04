@@ -208,6 +208,10 @@ button:disabled {
   height: calc(var(--square-size) * 0.8);
 }
 
+button.feature {
+  all: unset;
+}
+
 #acquiredFeatures .flask {
   background-image: url("../images/icons/flask.svg");
 }
@@ -217,7 +221,8 @@ button:disabled {
   background-size: calc(100% - 5px);
 }
 
-#acquiredFeatures .jet {
+#acquiredFeatures .jet,
+#jetIcon {
   background-image: url("../images/icons/jet.svg");
 }
 
@@ -396,6 +401,15 @@ button:disabled {
 .puzzleSquare.visited.center-left::before,
 .puzzleSquare.visited.left-center::before {
   transform: rotate(270deg);
+}
+
+.infoIcon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: var(--square-size);
+  height: var(--square-size);
 }
 
 /* Large screen, landscape */

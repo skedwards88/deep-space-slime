@@ -3,6 +3,7 @@ import Game from "./Game";
 import Map from "./Map";
 import Heart from "./Heart";
 import FallbackInstall from "./FallbackInstall";
+import JetExplanation from "./JetExplanation";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -97,6 +98,9 @@ export default function App() {
           appName="Deep Space Slime"
         ></FallbackInstall>
       );
+
+    case "jetExplanation":
+      return <JetExplanation setDisplay={setDisplay}></JetExplanation>;
 
     default:
       return (
