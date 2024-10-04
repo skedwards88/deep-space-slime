@@ -217,12 +217,6 @@ function Game({
 
       <div id="message">{gameState.message}</div>
 
-      <div id="acquiredFeatures">
-        <div>{flasks}</div>
-        <div>{keys}</div>
-        <div>{jets}</div>
-      </div>
-
       {isAtExit ? (
         <ExitButtons
           puzzle={puzzles[gameState.puzzleID].puzzle}
@@ -231,7 +225,11 @@ function Game({
           dispatchGameState={dispatchGameState}
         ></ExitButtons>
       ) : (
-        <div id="exitButtons"></div>
+        <div id="acquiredFeatures">
+          <div>{flasks}</div>
+          <div>{keys}</div>
+          <div>{jets}</div>
+        </div>
       )}
 
       <div id="puzzle">{squares}</div>
