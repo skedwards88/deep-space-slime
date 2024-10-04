@@ -320,7 +320,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "2",
     startingText:
-      "Can you grab all the items? If you get stuck, you can tap to retrace your steps or hit the refresh button to try again.",
+      "Can you grab all the items? If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:

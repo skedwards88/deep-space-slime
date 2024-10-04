@@ -202,8 +202,6 @@ function Game({
         setInstallPromptEvent={setInstallPromptEvent}
         showInstallButton={showInstallButton}
         installPromptEvent={installPromptEvent}
-        dispatchGameState={dispatchGameState}
-        puzzleID={gameState.puzzleID}
       ></ControlBar>
 
       <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
