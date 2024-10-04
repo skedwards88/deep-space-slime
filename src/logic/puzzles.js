@@ -245,7 +245,7 @@ export const puzzles = [
     station: "Biolab station",
     room: "1",
     startingText:
-      "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you travel straight across the slime trail to a slime-free space. Give it a try!",
+      "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
     hintText: "Try grabbing the SPRAY BOTTLE before the SAMPLE.",
     robotStartMood: "happy",
@@ -324,7 +324,7 @@ export const puzzles = [
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:
-      "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE only lets you travel straight across the slime trail to a slime-free space.",
+      "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE only lets you jump straight across the slime trail to a slime-free space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
