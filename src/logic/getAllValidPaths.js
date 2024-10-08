@@ -15,6 +15,7 @@ export function getAllValidPaths({puzzle, numColumns, numRows}) {
     numColumns,
     numRows,
     maxNumber,
+    allowStart: false,
   });
 
   let paths = appendNext({
