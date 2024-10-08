@@ -50,7 +50,7 @@ function ControlBar({
       ></button>
 
       <button
-        id="heartIcon"
+        id="eyeIcon"
         className="controlButton"
         onClick={() => setDisplay("pathfinder")}
       ></button>
