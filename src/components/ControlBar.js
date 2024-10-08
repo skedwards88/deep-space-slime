@@ -49,6 +49,11 @@ function ControlBar({
         onClick={() => setDisplay("heart")}
       ></button>
 
+      <button
+        id="heartIcon"
+        className="controlButton"
+        onClick={() => setDisplay("pathfinder")}
+      ></button>
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
