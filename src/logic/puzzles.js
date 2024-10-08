@@ -1922,4 +1922,65 @@ export const puzzles = [
       features.outer,
     ],
   },
+  {
+    station: "Beta station",
+    room: "Orbital",
+    startingText:
+      "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
+    winText:
+      "Impressive. Let us know what you thought of this level by commenting on https://patreon.com/skedwards88",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+features.outer,features.flask,features.basic,features.portal,features.basic,features.basic,features.outer,
+features.basic,features.door,features.outer,features.flask,features.outer,features.key,features.basic,
+features.portal,features.basic,features.flask,features.jet,features.flask,features.basic,features.portal,
+features.basic,features.basic,features.outer,features.flask,features.outer,features.basic,features.basic,
+features.outer,features.basic,features.basic,features.portal,features.basic,features.basic,features.outer,
+features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer
+    ],
+  },{
+    station: "Beta station",
+    room: "Protal Mania General",
+    startingText:
+      "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
+    winText:
+      "Impressive. Let us know what you thought of this level by commenting on https://patreon.com/skedwards88",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+features.outer,features.outer,features.portal,features.exit,features.portal,features.outer,features.outer,
+features.outer,features.flask,features.basic,features.door,features.basic,features.flask,features.outer,
+features.portal,features.basic,features.outer,features.portal,features.outer,features.basic,features.portal,
+features.flask,features.basic,features.basic,features.flask,features.basic,features.basic,features.flask,
+features.portal,features.basic,features.outer,features.basic,features.outer,features.basic,features.portal,
+features.outer,features.jet,features.basic,features.portal,features.basic,features.key,features.outer,
+features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer
+    ],
+  },{
+    station: "Beta station",
+    room: "Portal Mania Terminals",
+    startingText:
+      "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
+    winText:
+      "Impressive. Let us know what you thought of this level by commenting on https://patreon.com/skedwards88",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+features.outer,features.outer,features.portal,features.exit,features.portal,features.outer,features.outer,
+features.outer,features.basic,features.basic,features.door,features.basic,features.terminal2,features.outer,
+features.portal,features.basic,features.outer,features.portal,features.outer,features.basic,features.portal,
+features.flask,features.basic,features.basic,features.flask,features.basic,features.basic,features.terminal3,
+features.portal,features.basic,features.outer,features.terminal1,features.outer,features.basic,features.portal,
+features.outer,features.jet,features.basic,features.portal,features.basic,features.key,features.outer,
+features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer
+    ],
+  },
 ];
