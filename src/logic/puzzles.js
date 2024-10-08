@@ -242,12 +242,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine station",
+    station: "Quarantine station",
     room: "1",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
-    winText: "The next one's a bit harder",
-    hintText: "Try grabbing the lower right key first",
+    winText: "The next one's a bit harder.",
+    hintText: "Try grabbing the lower right key first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -317,12 +317,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine station",
+    station: "Quarantine station",
     room: "2",
     startingText:
-      "I guess these keys are all that remians of subjects devoured by the slime... so sad",
-    winText: "We've almose broken out of quarentine, keep going!",
-    hintText: "Try saving the sample in the middle for the very end",
+      "I guess these keys are all that remain of subjects devoured by the slime... So sad.",
+    winText: "We've almost broken out of quarantine. Keep going!",
+    hintText: "Try saving the sample in the middle for the very end.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -392,12 +392,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine station",
+    station: "Quarantine station",
     room: "3",
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
-    winText: "Impressive... for a human",
-    hintText: "Try grabbing the key above you, then immediately heading left.",
+    winText: "Impressive...for a human.",
+    hintText: "Try grabbing the key above you first, then immediately heading left.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -467,13 +467,13 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine station",
+    station: "Quarantine station",
     room: "4",
-    startingText: "Uh oh... do you think you can handle all these doors?",
+    startingText: "Uh oh...do you think you can handle all these doors?",
     winText:
-      "Phew... we broke out of Quarentine. Time to explore the other stations. You can always revisit old rooms by tappng the map icon above.",
+      "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon above.",
     hintText:
-      "Try leaving the key aobove you until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tappng the map icon above.",
+      "Try leaving the key above the start until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tapping the map icon above.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -922,9 +922,9 @@ export const puzzles = [
   {
     station: "Biolab station",
     room: "6",
-    startingText: "XXX",
-    winText: "XXX",
-    hintText: "XXX",
+    startingText: "Spray bottles, samples and doors, oh my!",
+    winText: "Onward, to the Portal station!",
+    hintText: "Try a spiral path and collecting the spray bottle partway through.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -2276,7 +2276,7 @@ export const puzzles = [
   },
   {
     station: "Beta station",
-    room: "Protal Mania General",
+    room: "Portal Mania General",
     startingText:
       "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
     winText:
