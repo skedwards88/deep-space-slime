@@ -7,5 +7,7 @@ const total = getAllValidPaths({
   numColumns: 7,
   numRows: 9,
 });
-console.log(`${total.length} solutions for ${puzzles[id].station} ${puzzles[id].room}`);
+console.log(
+  `${total.length} solutions for ${puzzles[id].station} ${puzzles[id].room}`,
+);
 console.log(total);
