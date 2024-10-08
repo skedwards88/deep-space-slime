@@ -240,6 +240,85 @@ export const puzzles = [
       features.outer,
       features.outer,
     ],
+  },{
+    station: "Quarentine Station",
+    room: "1",
+    startingText:
+      "We're totally allowed to be in here!",
+    winText:
+      "The next one's a bit harder",
+    hintText: "Try grabbing the lower right key first",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+      features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+      features.outer,features.door,features.basic,features.basic,features.basic,features.basic,features.outer,
+      features.outer,features.flask,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.door,features.basic,features.flask,features.basic,features.key,features.outer,
+      features.outer,features.basic,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.basic,features.basic,features.basic,features.basic,features.key,features.outer,
+      features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer]
+  },
+  {
+    station: "Quarentine Station",
+    room: "2",
+    startingText:
+      "I guess these keys are all that remians of subject devoured by the slime... so sad",
+    winText:
+      "XXX",
+    hintText: "Try saving the sample in the middle for the very end",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+      features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+      features.outer,features.door,features.basic,features.basic,features.basic,features.basic,features.outer,
+      features.outer,features.flask,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.door,features.basic,features.flask,features.basic,features.basic,features.outer,
+      features.outer,features.basic,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.key,features.basic,features.key,features.basic,features.basic,features.outer,
+      features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer]
+  },
+  {
+    station: "Quarentine Station",
+    room: "3",
+    startingText:
+      "XXX",
+    winText:
+      "XXX",
+    hintText: "XXX",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+      features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+      features.outer,features.basic,features.basic,features.door,features.basic,features.door,features.outer,
+      features.outer,features.flask,features.outer,features.basic,features.outer,features.flask,features.outer,
+      features.outer,features.door,features.basic,features.flask,features.basic,features.key,features.outer,
+      features.outer,features.basic,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.key,features.basic,features.key,features.basic,features.basic,features.outer,
+      features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer]
+  },
+  {
+    station: "Quarentine Station",
+    room: "4",
+    startingText:
+      "XXX",
+    winText:
+      "XXX",
+    hintText: "XXX",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+      features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+      features.outer,features.door,features.basic,features.door,features.basic,features.door,features.outer,
+      features.outer,features.flask,features.outer,features.basic,features.outer,features.flask,features.outer,
+      features.outer,features.door,features.basic,features.flask,features.basic,features.key,features.outer,
+      features.outer,features.basic,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.key,features.basic,features.key,features.basic,features.key,features.outer,
+      features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer]
   },
   {
     station: "Biolab station",
@@ -616,6 +695,25 @@ export const puzzles = [
       features.outer,
       features.outer,
       features.outer,
+    ],
+  },{
+    station: "Biolab station",
+    room: "6",
+    startingText: "XXX",
+    winText: "XXX",
+    hintText:
+      "XXX",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,
+      features.outer,features.outer,features.basic,features.exit,features.basic,features.outer,features.outer,
+      features.outer,features.key,features.basic,features.door,features.basic,features.basic,features.outer,
+      features.outer,features.flask,features.outer,features.basic,features.outer,features.flask,features.outer,
+      features.outer,features.door,features.basic,features.door,features.basic,features.basic,features.outer,
+      features.outer,features.basic,features.outer,features.basic,features.outer,features.basic,features.outer,
+      features.outer,features.key,features.basic,features.jet,features.basic,features.key,features.outer,
+      features.outer,features.outer,features.basic,features.start,features.basic,features.outer,features.outer,
+      features.outer,features.outer,features.outer,features.outer,features.outer,features.outer,features.outer
     ],
   },
   {
