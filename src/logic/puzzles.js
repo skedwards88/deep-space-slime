@@ -244,7 +244,8 @@ export const puzzles = [
   {
     station: "Quarentine station",
     room: "1",
-    startingText: "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
+    startingText:
+      "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
     winText: "The next one's a bit harder",
     hintText: "Try grabbing the lower right key first",
     robotStartMood: "happy",
@@ -393,7 +394,8 @@ export const puzzles = [
   {
     station: "Quarentine station",
     room: "3",
-    startingText: "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
+    startingText:
+      "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText: "Impressive... for a human",
     hintText: "Try grabbing the key above you, then immediately heading left.",
     robotStartMood: "happy",
@@ -468,8 +470,10 @@ export const puzzles = [
     station: "Quarentine station",
     room: "4",
     startingText: "Uh oh... do you think you can handle all these doors?",
-    winText: "Phew... we broke out of Quarentine. Time to explore the other stations. You can always revisit old rooms by tappng the map icon above.",
-    hintText: "Try leaving the key aobove you until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tappng the map icon above.",
+    winText:
+      "Phew... we broke out of Quarentine. Time to explore the other stations. You can always revisit old rooms by tappng the map icon above.",
+    hintText:
+      "Try leaving the key aobove you until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tappng the map icon above.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
