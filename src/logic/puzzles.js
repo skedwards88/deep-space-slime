@@ -20,7 +20,7 @@ export const puzzles = [
     station: "Stasis pod",
     room: "1",
     startingText:
-      "Beep boop. Time to wake up, Subject 44. The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap your figure on the map interface to exit your stasis pod and escape into the next room.",
+      "Beep boop. Time to wake up, Subject 44. The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
     winText:
       "It looks like the slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
@@ -244,7 +244,7 @@ export const puzzles = [
   {
     station: "Quarentine station",
     room: "1",
-    startingText: "We're totally allowed to be in here!",
+    startingText: "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
     winText: "The next one's a bit harder",
     hintText: "Try grabbing the lower right key first",
     robotStartMood: "happy",
@@ -319,8 +319,8 @@ export const puzzles = [
     station: "Quarentine station",
     room: "2",
     startingText:
-      "I guess these keys are all that remians of subject devoured by the slime... so sad",
-    winText: "XXX",
+      "I guess these keys are all that remians of subjects devoured by the slime... so sad",
+    winText: "We've almose broken out of quarentine, keep going!",
     hintText: "Try saving the sample in the middle for the very end",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -393,9 +393,9 @@ export const puzzles = [
   {
     station: "Quarentine station",
     room: "3",
-    startingText: "XXX",
-    winText: "XXX",
-    hintText: "XXX",
+    startingText: "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
+    winText: "Impressive... for a human",
+    hintText: "Try grabbing the key above you, then immediately heading left.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -467,9 +467,9 @@ export const puzzles = [
   {
     station: "Quarentine station",
     room: "4",
-    startingText: "XXX",
-    winText: "XXX",
-    hintText: "XXX",
+    startingText: "Uh oh... do you think you can handle all these doors?",
+    winText: "Phew... we broke out of Quarentine. Time to explore the other stations. You can always revisit old rooms by tappng the map icon above.",
+    hintText: "Try leaving the key aobove you until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tappng the map icon above.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -693,7 +693,7 @@ export const puzzles = [
   {
     station: "Biolab station",
     room: "3",
-    startingText: "Make sure to pick up all the subjects… I mean samples!",
+    startingText: "Make sure to pick up all the sub… I mean samples!",
     winText: "One step closer to saving humanity!",
     hintText:
       "Try turning right first, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
