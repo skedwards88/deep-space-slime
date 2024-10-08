@@ -242,7 +242,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine Station",
+    station: "Quarentine station",
     room: "1",
     startingText: "We're totally allowed to be in here!",
     winText: "The next one's a bit harder",
@@ -316,7 +316,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine Station",
+    station: "Quarentine station",
     room: "2",
     startingText:
       "I guess these keys are all that remians of subject devoured by the slime... so sad",
@@ -391,7 +391,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine Station",
+    station: "Quarentine station",
     room: "3",
     startingText: "XXX",
     winText: "XXX",
@@ -465,7 +465,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarentine Station",
+    station: "Quarentine station",
     room: "4",
     startingText: "XXX",
     winText: "XXX",
