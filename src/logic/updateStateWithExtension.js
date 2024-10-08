@@ -9,7 +9,12 @@ import {getAdjacentIndexes} from "./getAdjacentIndexes";
 // If the index is a number, increment the number count.
 // If the index is a jet, acquire the jet.
 // If the index was only accessible with a jet, lose a jet.
-export function updateStateWithExtension({index, currentGameState, puzzle}) {
+export function updateStateWithExtension({
+  index,
+  currentGameState,
+  puzzle,
+  allowStart = true,
+}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
@@ -52,6 +57,7 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     hasJet: newJetCount > 0,
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
+    allowStart,
   });
 
   return {

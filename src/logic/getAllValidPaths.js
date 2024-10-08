@@ -63,6 +63,7 @@ function appendNext({
         index: validIndex,
         currentGameState: pathState,
         puzzle,
+        allowStart: false,
       });
       appendNext({
         pathState: extendedPathState,
