@@ -11,6 +11,7 @@ import {
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
 import {puzzles} from "../logic/puzzles";
+import Pathfinder from "./Pathfinder";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -101,6 +102,11 @@ export default function App() {
 
     case "jetExplanation":
       return <JetExplanation setDisplay={setDisplay}></JetExplanation>;
+
+    case "pathfinder":
+      return (
+        <Pathfinder gameState={gameState} setDisplay={setDisplay}></Pathfinder>
+      );
 
     default:
       return (
