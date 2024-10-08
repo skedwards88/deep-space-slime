@@ -397,7 +397,8 @@ export const puzzles = [
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText: "Impressive...for a human.",
-    hintText: "Try grabbing the key above you first, then immediately heading left.",
+    hintText:
+      "Try grabbing the key above you first, then immediately heading left.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -924,7 +925,8 @@ export const puzzles = [
     room: "6",
     startingText: "Spray bottles, samples and doors, oh my!",
     winText: "Onward, to the Portal station!",
-    hintText: "Try a spiral path and collecting the spray bottle partway through.",
+    hintText:
+      "Try a spiral path and collecting the spray bottle partway through.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
