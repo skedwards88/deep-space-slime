@@ -27,7 +27,7 @@ export function getValidNextIndexes({
   //   - door, if you have a key
   //   - exit, if all numbers found
   //   - next number
-  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't your previous space
+  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't your previous space (and you have any key/terminals required to visit the space)
 
   let validIndexes = [];
 
@@ -117,13 +117,20 @@ export function getValidNextIndexes({
           numRows,
         });
 
+        const nextAdjacentFeature = puzzle[nextAdjacentIndex];
+
         if (
-          nextAdjacentIndex !== undefined &&
-          puzzle[nextAdjacentIndex] !== "outer" &&
-          !mainPath.includes(nextAdjacentIndex)
+          nextAdjacentIndex === undefined ||
+          nextAdjacentFeature === "outer" ||
+          mainPath.includes(nextAdjacentIndex) ||
+          (nextAdjacentFeature === "door" && !hasKey) ||
+          (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
+            Number.parseInt(nextAdjacentFeature) !== numberCount + 1)
         ) {
-          validIndexes.push(nextAdjacentIndex);
+          continue;
         }
+
+        validIndexes.push(nextAdjacentIndex);
       }
     }
   }
