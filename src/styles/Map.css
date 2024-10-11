@@ -20,7 +20,11 @@
 }
 
 .mapStationButton {
-  min-height: var(--square-size);
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(var(--square-size) * 0.7);
 }
 
 .mapRoomButton {
@@ -28,18 +32,19 @@
   align-items: center;
   justify-content: space-between;
   width: 80vw;
-  min-height: calc(var(--square-size) * 0.5);
+  min-height: calc(var(--square-size) * 0.7);
 }
 
 .mapScore {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .fullFlask,
 .emptyFlask {
-  width: var(--default-font-size);
-  height: var(--default-font-size);
+  width: calc(var(--square-size) / 2);
+  height: calc(var(--square-size) / 2);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
