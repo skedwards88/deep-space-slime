@@ -4,6 +4,8 @@ import Map from "./Map";
 import Heart from "./Heart";
 import FallbackInstall from "./FallbackInstall";
 import JetExplanation from "./JetExplanation";
+import FlaskExplanation from "./FlaskExplanation";
+import KeyExplanation from "./KeyExplanation";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -102,6 +104,12 @@ export default function App() {
 
     case "jetExplanation":
       return <JetExplanation setDisplay={setDisplay}></JetExplanation>;
+
+    case "flaskExplanation":
+      return <FlaskExplanation setDisplay={setDisplay}></FlaskExplanation>;
+
+    case "keyExplanation":
+      return <KeyExplanation setDisplay={setDisplay}></KeyExplanation>;
 
     case "pathfinder":
       return (
