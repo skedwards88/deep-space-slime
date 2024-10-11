@@ -176,11 +176,19 @@ function Game({
   ));
 
   const flasks = Array.from({length: gameState.flaskCount}, (_, index) => (
-    <div key={index} className="feature flask"></div>
+    <button
+      key={index}
+      className="feature flask"
+      onClick={() => setDisplay("flaskExplanation")}
+    ></button>
   ));
 
   const keys = Array.from({length: gameState.keyCount}, (_, index) => (
-    <div key={index} className="feature key"></div>
+    <button
+      key={index}
+      className="feature key"
+      onClick={() => setDisplay("keyExplanation")}
+    ></button>
   ));
 
   const jets = Array.from({length: gameState.jetCount}, (_, index) => (
