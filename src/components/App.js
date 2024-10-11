@@ -2,6 +2,7 @@ import React from "react";
 import Game from "./Game";
 import Map from "./Map";
 import Heart from "./Heart";
+import Builder from "./Builder";
 import FallbackInstall from "./FallbackInstall";
 import JetExplanation from "./JetExplanation";
 import FlaskExplanation from "./FlaskExplanation";
@@ -12,6 +13,8 @@ import {
 } from "../common/handleInstall";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
+import {builderInit} from "../logic/builderInit";
+import {builderReducer} from "../logic/builderReducer";
 import {puzzles} from "../logic/puzzles";
 import Pathfinder from "./Pathfinder";
 
@@ -26,6 +29,12 @@ export default function App() {
     gameReducer,
     {},
     gameInit,
+  );
+
+  const [builderState, dispatchBuilderState] = React.useReducer(
+    builderReducer,
+    {},
+    builderInit,
   );
 
   const savedScore = JSON.parse(
@@ -114,6 +123,15 @@ export default function App() {
     case "pathfinder":
       return (
         <Pathfinder gameState={gameState} setDisplay={setDisplay}></Pathfinder>
+      );
+
+    case "builder":
+      return (
+        <Builder
+          builderState={builderState}
+          dispatchBuilderState={dispatchBuilderState}
+          setDisplay={setDisplay}
+        ></Builder>
       );
 
     default:
