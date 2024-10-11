@@ -45,18 +45,6 @@ export default function Map({
       0,
     );
 
-    const flaskIconsForStation = Array.from(
-      {length: maxFlasksForStation},
-      (_, index) => (
-        <div
-          key={index}
-          className={
-            index < acquiredFlasksForStation ? "fullFlask" : "emptyFlask"
-          }
-        ></div>
-      ),
-    );
-
     const stationButton = (
       <button
         className="mapStationButton"
@@ -69,7 +57,23 @@ export default function Map({
         }
       >
         {station}
-        <div className="mapScore">{flaskIconsForStation}</div>
+        <div className="mapScore">
+          {acquiredFlasksForStation ? (
+            <div className="mapScore">
+              {acquiredFlasksForStation} <div className="fullFlask"></div>
+            </div>
+          ) : (
+            <></>
+          )}
+          {maxFlasksForStation - acquiredFlasksForStation ? (
+            <div className="mapScore">
+              {maxFlasksForStation - acquiredFlasksForStation}{" "}
+              <div className="emptyFlask"></div>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
       </button>
     );
 
