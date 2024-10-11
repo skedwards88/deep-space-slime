@@ -1,5 +1,32 @@
 import React from "react";
 
+function handlePointerDown({event, index, dispatchBuilderState}) {
+  // Release pointer capture so that pointer events can fire on other elements
+  event.target.releasePointerCapture(event.pointerId);
+
+  if (event.pointerType === "mouse") {
+    dispatchBuilderState({action: "setMouseIsActive", mouseIsActive: true});
+    dispatchBuilderState({
+      action: "modifyPuzzle",
+      isMouse: true,
+      index,
+    });
+  }
+}
+
+function handleMouseUp(dispatchBuilderState) {
+  dispatchBuilderState({action: "setMouseIsActive", mouseIsActive: false});
+}
+
+function handlePointerEnter({event, index, dispatchBuilderState}) {
+  event.preventDefault();
+  dispatchBuilderState({
+    action: "modifyPuzzle",
+    isMouse: event.pointerType === "mouse",
+    index,
+  });
+}
+
 function CustomSquare({feature, index, dispatchBuilderState}) {
   let featureClass;
 
@@ -9,7 +36,19 @@ function CustomSquare({feature, index, dispatchBuilderState}) {
     featureClass = feature;
   }
 
-  return <div key={index} className={`puzzleSquare ${featureClass}`}></div>;
+  return (
+    <div
+      key={index}
+      className={`puzzleSquare ${featureClass}`}
+      onPointerDown={(event) =>
+        handlePointerDown({event, index, dispatchBuilderState})
+      }
+      onMouseUp={() => handleMouseUp(dispatchBuilderState)}
+      onPointerEnter={(event) => {
+        handlePointerEnter({event, index, dispatchBuilderState});
+      }}
+    ></div>
+  );
 }
 
 export default function Builder({
@@ -60,7 +99,11 @@ export default function Builder({
   ));
 
   return (
-    <div className="App info" id="builder">
+    <div
+      className="App info"
+      id="builder"
+      onMouseUp={() => handleMouseUp(dispatchBuilderState)}
+    >
       <div id="botFace" className="happy"></div>
 
       <div id="message">{builderState.message}</div>
