@@ -1,11 +1,11 @@
 export const allLimitedFeatures = [
   "exit",
   "start",
-  "number1",
-  "number2",
-  "number3",
-  "number4",
-  "number5",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
 ].sort();
 
 export function builderInit() {
