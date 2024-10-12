@@ -1,5 +1,6 @@
 import {features} from "./puzzles";
 import {getAllValidPaths} from "./getAllValidPaths";
+import React from "react";
 
 export function validateBuilder({puzzle, numColumns, numRows}) {
   // The puzzle must have exactly one start
@@ -7,7 +8,15 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
     (feature) => feature === features.start,
   ).length;
   if (numberStarts !== 1) {
-    return {isValid: false, message: "You must include one entrance."};
+    return {
+      isValid: false,
+      message: (
+        <p>
+          You must include one entrance:{" "}
+          <span id="startIcon" className="smallInfoIcon"></span>
+        </p>
+      ),
+    };
   }
 
   // The puzzle must have exactly one exit
@@ -15,7 +24,15 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
     (feature) => feature === features.exit,
   ).length;
   if (numberExits !== 1) {
-    return {isValid: false, message: "You must include one exit."};
+    return {
+      isValid: false,
+      message: (
+        <p>
+          You must include one exit:{" "}
+          <span id="exitIcon" className="smallInfoIcon"></span>
+        </p>
+      ),
+    };
   }
 
   // Need an equal number of portals
@@ -25,8 +42,13 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
   if (numberPortals % 2 !== 0) {
     return {
       isValid: false,
-      message:
-        "You must have an even number of portals. Otherwise, you might get stuck outside of space and time.",
+      message: (
+        <p>
+          You must have an even number of{" "}
+          <span id="portalIcon" className="smallInfoIcon"></span>. Otherwise,
+          you might get stuck outside of space and time.
+        </p>
+      ),
     };
   }
 
@@ -40,7 +62,13 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
   if (numberDoors != numberKeys) {
     return {
       isValid: false,
-      message: "You need an equal number of doors and keys.",
+      message: (
+        <p>
+          You need an equal number of{" "}
+          <span id="doorIcon" className="smallInfoIcon"></span> and{" "}
+          <span id="keyIcon" className="smallInfoIcon"></span>
+        </p>
+      ),
     };
   }
 
@@ -65,13 +93,19 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
     numberTerminal3s > 1 ||
     numberTerminal4s > 1
   ) {
+    // This isn't possible via the UI, so don't need to style the message
     return {isValid: false, message: "No duplicate terminals."};
   }
 
   if (numberTerminal1s === 1 && numberTerminal2s === 0) {
     return {
       isValid: false,
-      message: "If you have terminal 1, you must have terminal 2",
+      message: (
+        <p>
+          If you have <span id="number1Icon" className="smallInfoIcon"></span>{" "}
+          you must have <span id="number2Icon" className="smallInfoIcon"></span>
+        </p>
+      ),
     };
   }
 
@@ -89,12 +123,43 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
 
   // Need at least one solution
   const solutions = getAllValidPaths({puzzle, numColumns, numRows});
-  if (solutions.length === 0) {
-    return {isValid: false, message: "Your puzzle must be solvable."};
+  const numSolutions = solutions.length;
+  if (numSolutions === 0) {
+    const numberFlasks = puzzle.filter(
+      (feature) => feature === features.flask,
+    ).length;
+    return {
+      isValid: false,
+      message:
+        numberFlasks === 0 ? (
+          "Your puzzle must have at least 1 solution."
+        ) : (
+          <p>
+            Your puzzle must have at least 1 solution that collects all{" "}
+            <span id="flaskIcon" className="smallInfoIcon"></span>
+          </p>
+        ),
+    };
   }
+
+  const hasPortals = puzzle.includes("portal");
 
   return {
     isValid: true,
-    message: `Your puzzle has ${solutions.length} solutions.`,
+    message: (
+      <p>
+        {`${
+          numSolutions === 1
+            ? `There is ${numSolutions} solution that collects`
+            : `There are ${numSolutions} solutions that collect`
+        } all flasks.${
+          hasPortals && numSolutions > 1
+            ? " Solutions with portal direction reversed will look identical."
+            : ""
+        }`}{" "}
+        Click the <span id="eyeIcon" className="smallInfoIcon"></span> to see
+        all solutions.
+      </p>
+    ),
   };
 }
