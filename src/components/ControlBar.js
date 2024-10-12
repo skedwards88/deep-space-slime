@@ -54,6 +54,13 @@ function ControlBar({
         className="controlButton"
         onClick={() => setDisplay("pathfinder")}
       ></button>
+
+      <button
+        id="builderIcon"
+        className="controlButton"
+        onClick={() => setDisplay("builder")}
+      ></button>
+      
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
