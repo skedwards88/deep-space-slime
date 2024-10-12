@@ -126,6 +126,10 @@ button:disabled {
   border-right: 2vmin solid black;
 }
 
+#message > p {
+  display: inline;
+}
+
 #message::after {
   content: " |";
   animation: blink 1s step-start infinite;
@@ -263,7 +267,8 @@ button.feature {
   box-sizing: border-box;
 }
 
-.puzzleSquare.start {
+.puzzleSquare.start,
+#startIcon {
   background-image: url("../images/icons/start.svg");
   background-color: rgb(200 190 78);
 }
@@ -292,33 +297,42 @@ button.feature {
   background-size: calc(100% - 10px);
 }
 
-.puzzleSquare.portal {
+.puzzleSquare.portal,
+#portalIcon {
   background-color: rgb(205 152 238);
   background-image: url("../images/icons/portal.svg");
 }
 
-.puzzleSquare.number1 {
+.puzzleSquare.number1,
+#number1Icon {
   background-image: url("../images/icons/number1.svg");
+  background-color: rgb(137 132 132);
 }
 
-.puzzleSquare.number2 {
+.puzzleSquare.number2,
+#number2Icon {
   background-image: url("../images/icons/number2.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number3 {
   background-image: url("../images/icons/number3.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number4 {
   background-image: url("../images/icons/number4.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number5 {
   background-image: url("../images/icons/number5.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.exit-opened,
-.puzzleSquare.exit {
+.puzzleSquare.exit,
+#exitIcon {
   background-image: url("../images/icons/exit-opened.svg");
   background-color: rgb(200 190 78);
 }
@@ -426,6 +440,15 @@ button.feature {
   background-size: contain;
   width: var(--square-size);
   height: var(--square-size);
+}
+
+.smallInfoIcon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(var(--square-size) * 0.37);
+  height: calc(var(--square-size) * 0.37);
 }
 
 /* Large screen, landscape */
