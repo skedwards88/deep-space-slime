@@ -122,17 +122,30 @@ export default function Builder({
       <div id="message">{builderState.message}</div>
 
       <div id="builderButtons">
-        <button onClick={() => dispatchBuilderState({action: "validate"})}>
-          V
-        </button>
-        <button>P</button>
+        <button
+          id="validateIcon"
+          className="controlButton"
+          onClick={() => dispatchBuilderState({action: "validate"})}
+        ></button>
+
+        {/* todo action */}
+        <button id="playIcon" className="controlButton"></button>
+
+        {/* todo action */}
         <button id="shareIcon" className="controlButton"></button>
+
+        {/* todo action */}
         <button
           id="eyeIcon"
           className="controlButton"
           onClick={() => setDisplay("builderPathfinder")} //todo
         ></button>
-        <button onClick={() => setDisplay("game")}>X</button>
+
+        <button
+          id="returnIcon"
+          className="controlButton"
+          onClick={() => setDisplay("game")}
+        ></button>
       </div>
 
       <div id="puzzle">{squares}</div>

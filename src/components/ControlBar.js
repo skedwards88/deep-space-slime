@@ -60,7 +60,7 @@ function ControlBar({
         className="controlButton"
         onClick={() => setDisplay("builder")}
       ></button>
-      
+
       <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
