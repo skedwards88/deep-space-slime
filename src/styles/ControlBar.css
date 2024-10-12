@@ -38,6 +38,27 @@
   background-image: url("../images/icons/eye.svg");
 }
 
-#builderIcon {
+#builderIcon,
+#editIcon {
   background-image: url("../images/icons/edit.svg");
+}
+
+#validateIcon {
+  background-image: url("../images/icons/check.svg");
+}
+
+#playIcon {
+  background-image: url("../images/icons/play.svg");
+}
+
+#copyIcon {
+  background-image: url("../images/icons/copy.svg");
+}
+
+#returnIcon {
+  background-image: url("../images/icons/return.svg");
+}
+
+#trashIcon {
+  background-image: url("../images/icons/trash.svg");
 }
