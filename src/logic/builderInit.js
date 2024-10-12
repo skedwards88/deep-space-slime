@@ -19,13 +19,17 @@ export function builderInit() {
     () => "outer",
   );
 
+  const defaultMessage = "todo";
+
   return {
     puzzle: startingPuzzle,
     activeFeature: "basic",
     remainingLimitedFeatures: allLimitedFeatures,
     numColumns,
     numRows,
-    message: "todo",
+    defaultMessage,
+    message: defaultMessage,
+    isValid: false,
     mouseIsActive: false,
   };
 }
