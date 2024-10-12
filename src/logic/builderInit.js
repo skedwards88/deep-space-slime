@@ -1,3 +1,13 @@
+export const allLimitedFeatures = [
+  "exit",
+  "start",
+  "number1",
+  "number2",
+  "number3",
+  "number4",
+  "number5",
+].sort();
+
 export function builderInit() {
   // todo any args? use saved?
 
@@ -12,7 +22,7 @@ export function builderInit() {
   return {
     puzzle: startingPuzzle,
     activeFeature: "basic",
-    remainingLimitedFeatures: ["exit", "start", "number1"],
+    remainingLimitedFeatures: allLimitedFeatures,
     numColumns,
     numRows,
     message: "todo",
