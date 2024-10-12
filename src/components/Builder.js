@@ -1,6 +1,6 @@
 import React from "react";
 
-function handlePointerDown({event, index, dispatchBuilderState}) {
+function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
 
@@ -10,6 +10,7 @@ function handlePointerDown({event, index, dispatchBuilderState}) {
       action: "modifyPuzzle",
       isMouse: true,
       index,
+      replacedFeature: feature,
     });
   }
 }
@@ -18,16 +19,17 @@ function handleMouseUp(dispatchBuilderState) {
   dispatchBuilderState({action: "setMouseIsActive", mouseIsActive: false});
 }
 
-function handlePointerEnter({event, index, dispatchBuilderState}) {
+function handlePointerEnter({event, index, feature, dispatchBuilderState}) {
   event.preventDefault();
   dispatchBuilderState({
     action: "modifyPuzzle",
     isMouse: event.pointerType === "mouse",
     index,
+    replacedFeature: feature,
   });
 }
 
-function CustomSquare({feature, index, dispatchBuilderState}) {
+function BuilderSquare({feature, index, dispatchBuilderState}) {
   let featureClass;
 
   if (Number.isInteger(Number.parseInt(feature))) {
@@ -41,11 +43,11 @@ function CustomSquare({feature, index, dispatchBuilderState}) {
       key={index}
       className={`puzzleSquare ${featureClass}`}
       onPointerDown={(event) =>
-        handlePointerDown({event, index, dispatchBuilderState})
+        handlePointerDown({event, index, feature, dispatchBuilderState})
       }
       onMouseUp={() => handleMouseUp(dispatchBuilderState)}
       onPointerEnter={(event) => {
-        handlePointerEnter({event, index, dispatchBuilderState});
+        handlePointerEnter({event, index, feature, dispatchBuilderState});
       }}
     ></div>
   );
@@ -77,6 +79,7 @@ export default function Builder({
       }
     ></button>
   ));
+
   const limitedFeatureButtons = builderState.remainingLimitedFeatures.map(
     (feature, index) => (
       <button
@@ -90,12 +93,12 @@ export default function Builder({
   );
 
   const squares = builderState.puzzle.map((feature, index) => (
-    <CustomSquare
+    <BuilderSquare
       key={index}
       feature={feature}
       index={index}
       dispatchBuilderState={dispatchBuilderState}
-    ></CustomSquare>
+    ></BuilderSquare>
   ));
 
   return (
