@@ -31,7 +31,6 @@ function handlePointerEnter({event, index, feature, dispatchBuilderState}) {
 
 function BuilderSquare({feature, index, dispatchBuilderState}) {
   let featureClass;
-
   if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
   } else {
@@ -81,15 +80,26 @@ export default function Builder({
   ));
 
   const limitedFeatureButtons = builderState.remainingLimitedFeatures.map(
-    (feature, index) => (
-      <button
-        key={index}
-        className={`builderFeatureButton ${feature}`}
-        onClick={() =>
-          dispatchBuilderState({action: "selectFeature", newFeature: feature})
-        }
-      ></button>
-    ),
+    (feature, index) => {
+      let featureClass;
+      if (Number.isInteger(Number.parseInt(feature))) {
+        featureClass = `numbered number${feature}`;
+      } else {
+        featureClass = feature;
+      }
+
+      return (
+        <button
+          key={index}
+          className={`builderFeatureButton ${featureClass}${
+            feature === builderState.activeFeature ? " active" : ""
+          }`}
+          onClick={() =>
+            dispatchBuilderState({action: "selectFeature", newFeature: feature})
+          }
+        ></button>
+      );
+    },
   );
 
   const squares = builderState.puzzle.map((feature, index) => (
