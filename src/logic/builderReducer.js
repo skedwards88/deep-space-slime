@@ -1,4 +1,5 @@
 import {allLimitedFeatures} from "./builderInit";
+import {validateBuilder} from "./validateBuilder";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -41,6 +42,8 @@ export function builderReducer(currentBuilderState, payload) {
       puzzle: newPuzzle,
       remainingLimitedFeatures: newRemainingLimitedFeatures,
       activeFeature: newActiveFeature,
+      isValid: false,
+      message: currentBuilderState.defaultMessage,
     };
   } else if (payload.action === "setMouseIsActive") {
     if (currentBuilderState.mouseIsActive === payload.mouseIsActive) {
@@ -48,6 +51,14 @@ export function builderReducer(currentBuilderState, payload) {
     } else {
       return {...currentBuilderState, mouseIsActive: payload.mouseIsActive};
     }
+  } else if (payload.action === "validate") {
+    const {isValid, message} = validateBuilder({
+      puzzle: currentBuilderState.puzzle,
+      numColumns: currentBuilderState.numColumns,
+      numRows: currentBuilderState.numRows,
+    });
+
+    return {...currentBuilderState, isValid, message};
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentBuilderState;
