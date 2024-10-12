@@ -118,6 +118,8 @@ button:disabled {
   grid-area: botMessage;
   font-size: calc(var(--square-size) * 0.37);
   min-height: calc(var(--square-size) * 2);
+  width: 100%;
+  text-align: left;
   overflow: scroll;
   white-space: pre-wrap;
   background-color: black;
@@ -146,6 +148,7 @@ button:disabled {
   background-repeat: no-repeat;
   background-size: calc(80%);
   width: calc(var(--square-size) * 2);
+  min-height: calc(var(--square-size) * 2);
   background-color: black;
 }
 
