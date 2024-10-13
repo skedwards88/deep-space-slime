@@ -131,22 +131,18 @@ export default function Builder({
           onClick={() => dispatchBuilderState({action: "validate"})}
         ></button>
 
-        {builderState.isValid ? (
-          <button
-            id="playIcon"
-            className="controlButton"
-            onClick={() => {
-              const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
-              dispatchGameState({
-                action: "playtestCustom",
-                customSeed: encodedPuzzle,
-              });
-              setDisplay("game");
-            }}
-          ></button>
-        ) : (
-          <></>
-        )}
+        <button
+          id="playIcon"
+          className="controlButton"
+          onClick={() => {
+            const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+            dispatchGameState({
+              action: "playtestCustom",
+              customSeed: encodedPuzzle,
+            });
+            setDisplay("game");
+          }}
+        ></button>
 
         {builderState.isValid ? (
           <button
