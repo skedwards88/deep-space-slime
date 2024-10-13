@@ -1,4 +1,5 @@
 import React from "react";
+import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -56,6 +57,7 @@ export default function Builder({
   setDisplay,
   builderState,
   dispatchBuilderState,
+  dispatchGameState,
 }) {
   const unlimitedFeatures = [
     "outer",
@@ -128,8 +130,24 @@ export default function Builder({
           onClick={() => dispatchBuilderState({action: "validate"})}
         ></button>
 
-        {/* todo action */}
-        <button id="playIcon" className="controlButton"></button>
+        {builderState.isValid ? (
+          <button
+            id="playIcon"
+            className="controlButton"
+            onClick={() => {
+              const stringifiedPuzzle = convertPuzzleToString(
+                builderState.puzzle,
+              );
+              dispatchGameState({
+                action: "playtestCustom",
+                customSeed: stringifiedPuzzle,
+              });
+              setDisplay("game");
+            }}
+          ></button>
+        ) : (
+          <></>
+        )}
 
         {/* todo action */}
         <button id="shareIcon" className="controlButton"></button>

@@ -1,9 +1,11 @@
 import sendAnalytics from "../common/sendAnalytics";
-import {convertPuzzleToString} from "./convertPuzzleString";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
-import {convertStringToPuzzle} from "./convertPuzzleString";
+import {
+  convertStringToPuzzle,
+  convertPuzzleToString,
+} from "./convertPuzzleString";
 
 export function gameInit({
   useSaved = true,

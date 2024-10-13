@@ -86,6 +86,12 @@ export function gameReducer(currentGameState, payload) {
     const puzzleID = payload.puzzleID;
 
     return gameInit({puzzleID, useSaved: false});
+  } else if (payload.action === "playtestCustom") {
+    return gameInit({
+      useSaved: false,
+      isCustom: true,
+      customSeed: payload.customSeed,
+    });
   } else if (payload.action === "setMouseIsActive") {
     if (currentGameState.mouseIsActive === payload.mouseIsActive) {
       return currentGameState;

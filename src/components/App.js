@@ -135,6 +135,7 @@ export default function App() {
         <Builder
           builderState={builderState}
           dispatchBuilderState={dispatchBuilderState}
+          dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}
         ></Builder>
       );
