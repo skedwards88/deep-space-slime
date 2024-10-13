@@ -3,16 +3,27 @@ import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 
 function BuilderEntry({
   encodedPuzzle,
+  name,
   index,
   dispatchBuilderState,
   dispatchGameState,
   setDisplay,
+  setSavedCustomBuilds,
+  savedCustomBuilds,
 }) {
   return (
     <div className="builderEntry">
-      <div>{index}</div>
-      {/* todo action */}
-      <button id="copyIcon" className="controlButton"></button>
+      <div>{name}</div>
+      <button
+        id="copyIcon"
+        className="controlButton"
+        disabled={savedCustomBuilds.length >= 100}
+        onClick={() => {
+          let newSavedBuilds = savedCustomBuilds.slice();
+          newSavedBuilds.splice(index, 0, savedCustomBuilds[index]);
+          setSavedCustomBuilds(newSavedBuilds);
+        }}
+      ></button>
 
       <button
         id="editIcon"
@@ -40,8 +51,15 @@ function BuilderEntry({
       {/* todo action */}
       <button id="shareIcon" className="controlButton"></button>
 
-      {/* todo action */}
-      <button id="trashIcon" className="controlButton"></button>
+      <button
+        id="trashIcon"
+        className="controlButton"
+        onClick={() => {
+          let newSavedBuilds = savedCustomBuilds.slice();
+          newSavedBuilds.splice(index, 1);
+          setSavedCustomBuilds(newSavedBuilds);
+        }}
+      ></button>
     </div>
   );
 }
@@ -52,20 +70,32 @@ export default function BuilderOverview({
   dispatchBuilderState,
   dispatchGameState,
 }) {
-  // todo need to store this. just a list of encodedpuzzle+name. in custom builder, display name and make editable.
-  const entries = [
-    "EBBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-    "EFBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-  ].map((encodedPuzzle, index) => (
-    <BuilderEntry
-      encodedPuzzle={encodedPuzzle}
-      index={index}
-      key={index}
-      dispatchBuilderState={dispatchBuilderState}
-      dispatchGameState={dispatchGameState}
-      setDisplay={setDisplay}
-    ></BuilderEntry>
-  ));
+  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState([
+    [
+      "Unnamed1",
+      "EBBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+    ],
+    [
+      "Unnamed2",
+      "EFBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+    ],
+  ]);
+
+  const entryElements = savedCustomBuilds.map(
+    ([name, encodedPuzzle], index) => (
+      <BuilderEntry
+        encodedPuzzle={encodedPuzzle}
+        name={name}
+        index={index}
+        key={index}
+        dispatchBuilderState={dispatchBuilderState}
+        dispatchGameState={dispatchGameState}
+        setDisplay={setDisplay}
+        setSavedCustomBuilds={setSavedCustomBuilds}
+        savedCustomBuilds={savedCustomBuilds}
+      ></BuilderEntry>
+    ),
+  );
 
   return (
     <div className="App info" id="builderOverview">
@@ -77,11 +107,16 @@ export default function BuilderOverview({
           custom puzzles.
         </div>
       </div>
-      <button onClick={() => setDisplay("builder")}>New custom puzzle</button>
+      <button
+        disabled={savedCustomBuilds.length >= 100}
+        onClick={() => setDisplay("builder")}
+      >
+        New custom puzzle
+      </button>
 
       <button onClick={() => setDisplay("game")}>Return to game</button>
 
-      {entries}
+      {entryElements}
     </div>
   );
 }
