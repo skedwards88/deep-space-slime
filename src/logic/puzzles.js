@@ -12,6 +12,7 @@ export const features = {
   terminal2: "2",
   terminal3: "3",
   terminal4: "4",
+  terminal5: "5",
   ship: "ship",
 };
 
