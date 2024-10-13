@@ -16,6 +16,7 @@ import {gameReducer} from "../logic/gameReducer";
 import {builderInit} from "../logic/builderInit";
 import {builderReducer} from "../logic/builderReducer";
 import Pathfinder from "./Pathfinder";
+import CustomShare from "./CustomShare";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 
 export default function App() {
@@ -138,6 +139,14 @@ export default function App() {
           dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}
         ></Builder>
+      );
+
+    case "customShare":
+      return (
+        <CustomShare
+          puzzle={builderState.puzzle}
+          setDisplay={setDisplay}
+        ></CustomShare>
       );
 
     default:
