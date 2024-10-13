@@ -153,11 +153,11 @@ function Game({
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
     mainPath,
-    puzzle: puzzles[gameState.puzzleID].puzzle,
+    puzzle: gameState.puzzle,
     numColumns: gameState.numColumns,
     numRows: gameState.numRows,
   });
-  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
+  const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -200,8 +200,8 @@ function Game({
   ));
 
   const isAtExit =
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship";
+    gameState.puzzle[lastIndexInPath] === "exit" ||
+    gameState.puzzle[lastIndexInPath] === "ship";
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -212,24 +212,18 @@ function Game({
         installPromptEvent={installPromptEvent}
       ></ControlBar>
 
-      <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
-        puzzles[gameState.puzzleID].room
-      }`}</div>
+      <div id="location">{`${gameState.station}: ${gameState.room}`}</div>
 
       <div
         id="botFace"
-        className={
-          isAtExit
-            ? puzzles[gameState.puzzleID].robotEndMood
-            : puzzles[gameState.puzzleID].robotStartMood
-        }
+        className={isAtExit ? gameState.robotEndMood : gameState.robotStartMood}
       ></div>
 
       <div id="message">{gameState.message}</div>
 
       {isAtExit ? (
         <ExitButtons
-          puzzle={puzzles[gameState.puzzleID].puzzle}
+          puzzle={gameState.puzzle}
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}

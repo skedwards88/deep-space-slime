@@ -3,19 +3,42 @@ import {convertPuzzleToString} from "./convertPuzzleString";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
+import {convertStringToPuzzle} from "./convertPuzzleString";
 
-export function gameInit({useSaved = true, puzzleID = 0}) {
+export function gameInit({
+  useSaved = true,
+  puzzleID = 0,
+  isCustom = false,
+  customSeed,
+}) {
+  // If custom, convert the query string into a puzzle
+  let customPuzzle;
+  if (isCustom) {
+    try {
+      customPuzzle = convertStringToPuzzle(customSeed);
+    } catch {
+      console.log("Error generating custom puzzle from query.");
+      isCustom = false;
+    }
+  }
+
+  // todo if custom, should make sure that passes all of the validation (in case someone edits/mangles the query string)
+
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
     : undefined;
 
-  if (savedState && validateSavedState(savedState)) {
+  if (
+    savedState &&
+    (!isCustom || (isCustom && customSeed === savedState.encodedPuzzle)) &&
+    validateSavedState(savedState)
+  ) {
     return {...savedState, mouseIsActive: false};
   }
 
   sendAnalytics("new_game", {puzzleID});
 
-  const puzzle = puzzles[puzzleID].puzzle;
+  const puzzle = isCustom ? customPuzzle : puzzles[puzzleID].puzzle;
 
   // Get a string representation of the puzzle so that
   // we can later verify that the puzzle has not been updated
@@ -39,9 +62,19 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     maxNumber,
   });
 
+  const defaultText = isCustom ? "todo" : puzzles[puzzleID].startingText;
+
   return {
-    puzzleID,
-    mainPath,
+    isCustom,
+    station: isCustom ? "Custom Simulation" : puzzles[puzzleID].station,
+    room: isCustom ? "" : puzzles[puzzleID].room,
+    startingText: defaultText,
+    hintText: isCustom ? undefined : puzzles[puzzleID].hintText,
+    winText: isCustom ? "todo" : puzzles[puzzleID].winText,
+    message: defaultText,
+    robotStartMood: isCustom ? "happy" : puzzles[puzzleID].robotStartMood,
+    robotEndMood: isCustom ? "happy" : puzzles[puzzleID].robotEndMood,
+    puzzle,
     numColumns,
     numRows,
     flaskCount: 0,
@@ -50,8 +83,9 @@ export function gameInit({useSaved = true, puzzleID = 0}) {
     numberCount: 0,
     maxNumber,
     validNextIndexes,
-    message: puzzles[puzzleID].startingText,
+    mainPath,
     encodedPuzzle,
     mouseIsActive: false,
+    puzzleID: isCustom ? "custom" : puzzleID,
   };
 }

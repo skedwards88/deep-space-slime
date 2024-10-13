@@ -36,7 +36,7 @@ function PuzzleSquare({
 
 function Pathfinder({gameState, setDisplay}) {
   const allPaths = getAllValidPaths({
-    puzzle: puzzles[gameState.puzzleID].puzzle,
+    puzzle: gameState.puzzle,
     numColumns: gameState.numColumns,
     numRows: gameState.numRows,
   });
@@ -50,11 +50,11 @@ function Pathfinder({gameState, setDisplay}) {
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
     mainPath,
-    puzzle: puzzles[gameState.puzzleID].puzzle,
+    puzzle: gameState.puzzle,
     numColumns: gameState.numColumns,
     numRows: gameState.numRows,
   });
-  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
+  const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -67,7 +67,7 @@ function Pathfinder({gameState, setDisplay}) {
     ></PuzzleSquare>
   ));
 
-  const hasPortals = puzzles[gameState.puzzleID].puzzle.includes("portal");
+  const hasPortals = gameState.puzzle.includes("portal");
 
   return (
     <div className="App" id="deep-space-slime">
@@ -76,9 +76,7 @@ function Pathfinder({gameState, setDisplay}) {
           Exit pathfinder
         </button>
 
-        <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
-          puzzles[gameState.puzzleID].room
-        }`}</div>
+        <div id="location">{`${gameState.station}: ${gameState.room}`}</div>
 
         <div id="botFace" className="happy"></div>
 

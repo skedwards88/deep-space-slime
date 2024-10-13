@@ -15,11 +15,13 @@ import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
 import {builderInit} from "../logic/builderInit";
 import {builderReducer} from "../logic/builderReducer";
-import {puzzles} from "../logic/puzzles";
 import Pathfinder from "./Pathfinder";
+import {parseUrlQuery} from "../logic/parseUrlQuery";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
+
+  const customSeed = parseUrlQuery();
 
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
@@ -27,7 +29,10 @@ export default function App() {
 
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
-    {},
+    {
+      customSeed,
+      isCustom: Boolean(customSeed),
+    },
     gameInit,
   );
 
@@ -85,7 +90,7 @@ export default function App() {
     case "map":
       return (
         <Map
-          currentStation={puzzles[gameState.puzzleID].station}
+          currentStation={gameState.station}
           score={score}
           setDisplay={setDisplay}
           dispatchGameState={dispatchGameState}
