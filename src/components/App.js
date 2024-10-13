@@ -49,6 +49,14 @@ export default function App() {
   );
   const [score, setScore] = React.useState(savedScore || []);
 
+  const presavedCustomBuilds = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedCustomBuilds"),
+  );
+
+  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState([
+    presavedCustomBuilds,
+  ]);
+
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
@@ -87,6 +95,13 @@ export default function App() {
       JSON.stringify(score),
     );
   }, [score]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedCustomBuilds",
+      JSON.stringify(savedCustomBuilds),
+    );
+  }, [savedCustomBuilds]);
 
   switch (display) {
     case "map":
@@ -158,6 +173,8 @@ export default function App() {
           dispatchBuilderState={dispatchBuilderState}
           dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}
+          savedCustomBuilds={savedCustomBuilds}
+          setSavedCustomBuilds={setSavedCustomBuilds}
         ></Builder>
       );
 
@@ -168,6 +185,8 @@ export default function App() {
           dispatchBuilderState={dispatchBuilderState}
           dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}
+          savedCustomBuilds={savedCustomBuilds}
+          setSavedCustomBuilds={setSavedCustomBuilds}
         ></BuilderOverview>
       );
 
