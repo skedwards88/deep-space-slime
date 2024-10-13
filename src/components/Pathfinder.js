@@ -32,7 +32,7 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
 
   const [currentSolution, setCurrentSolution] = React.useState(0);
 
-  const mainPath = allPaths[currentSolution];
+  const mainPath = allPaths[currentSolution] || [];
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const directions = getSlimeDirections({
     mainPath,
@@ -76,13 +76,15 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
 
         <div id="pathfinderButtons">
           <button
-            disabled={currentSolution === 0}
+            disabled={currentSolution === 0 || numSolutions === 0}
             onClick={() => setCurrentSolution(currentSolution - 1)}
           >
             Previous
           </button>
           <button
-            disabled={currentSolution === numSolutions - 1}
+            disabled={
+              currentSolution === numSolutions - 1 || numSolutions === 0
+            }
             onClick={() => setCurrentSolution(currentSolution + 1)}
           >
             Next
