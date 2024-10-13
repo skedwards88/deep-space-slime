@@ -3,6 +3,7 @@ import Game from "./Game";
 import Map from "./Map";
 import Heart from "./Heart";
 import Builder from "./Builder";
+import BuilderOverview from "./BuilderOverview";
 import FallbackInstall from "./FallbackInstall";
 import JetExplanation from "./JetExplanation";
 import FlaskExplanation from "./FlaskExplanation";
@@ -158,6 +159,16 @@ export default function App() {
           dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}
         ></Builder>
+      );
+
+    case "builderOverview":
+      return (
+        <BuilderOverview
+          builderState={builderState}
+          dispatchBuilderState={dispatchBuilderState}
+          dispatchGameState={dispatchGameState}
+          setDisplay={setDisplay}
+        ></BuilderOverview>
       );
 
     case "customShare":

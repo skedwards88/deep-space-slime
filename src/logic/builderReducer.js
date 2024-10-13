@@ -1,4 +1,4 @@
-import {allLimitedFeatures} from "./builderInit";
+import {allLimitedFeatures, builderInit} from "./builderInit";
 import {validateBuilder} from "./validateBuilder";
 
 export function builderReducer(currentBuilderState, payload) {
@@ -59,6 +59,8 @@ export function builderReducer(currentBuilderState, payload) {
     });
 
     return {...currentBuilderState, isValid, message};
+  } else if (payload.action === "newCustom") {
+    return builderInit({puzzle: payload.puzzle});
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentBuilderState;
