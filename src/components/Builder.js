@@ -172,12 +172,15 @@ export default function Builder({
           <></>
         )}
 
-        {/* todo action */}
-        <button
-          id="eyeIcon"
-          className="controlButton"
-          onClick={() => setDisplay("builderPathfinder")} //todo
-        ></button>
+        {builderState.isValid ? (
+          <button
+            id="eyeIcon"
+            className="controlButton"
+            onClick={() => setDisplay("builderPathfinder")}
+          ></button>
+        ) : (
+          <></>
+        )}
 
         <button
           id="returnIcon"

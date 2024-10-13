@@ -128,7 +128,26 @@ export default function App() {
 
     case "pathfinder":
       return (
-        <Pathfinder gameState={gameState} setDisplay={setDisplay}></Pathfinder>
+        <Pathfinder
+          puzzle={gameState.puzzle}
+          numRows={gameState.numRows}
+          numColumns={gameState.numColumns}
+          station={gameState.station}
+          room={gameState.room}
+          setDisplay={setDisplay}
+        ></Pathfinder>
+      );
+
+    case "builderPathfinder":
+      return (
+        <Pathfinder
+          puzzle={builderState.puzzle}
+          numRows={builderState.numRows}
+          numColumns={builderState.numColumns}
+          station="Custom todo"
+          room="todo"
+          setDisplay={setDisplay}
+        ></Pathfinder>
       );
 
     case "builder":
