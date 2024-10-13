@@ -8,7 +8,7 @@ export const allLimitedFeatures = [
   "5",
 ].sort();
 
-export function builderInit({puzzle}) {
+export function builderInit({puzzle, savedIndex}) {
   // todo any args? use saved?
 
   const numColumns = 7;
@@ -21,6 +21,7 @@ export function builderInit({puzzle}) {
 
   return {
     puzzle: startingPuzzle,
+    savedIndex,
     activeFeature: "basic",
     remainingLimitedFeatures: allLimitedFeatures,
     numColumns,

@@ -69,18 +69,9 @@ export default function BuilderOverview({
   builderState,
   dispatchBuilderState,
   dispatchGameState,
+  savedCustomBuilds,
+  setSavedCustomBuilds,
 }) {
-  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState([
-    [
-      "Unnamed1",
-      "EBBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-    ],
-    [
-      "Unnamed2",
-      "EFBSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-    ],
-  ]);
-
   const entryElements = savedCustomBuilds.map(
     ([name, encodedPuzzle], index) => (
       <BuilderEntry
