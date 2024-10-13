@@ -58,7 +58,7 @@ function ControlBar({
       <button
         id="builderIcon"
         className="controlButton"
-        onClick={() => setDisplay("builder")}
+        onClick={() => setDisplay("builderOverview")}
       ></button>
 
       <small id="rulesVersion">version {packageJson.version}</small>
