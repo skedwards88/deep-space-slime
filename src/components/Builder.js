@@ -1,5 +1,6 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {handleShare} from "../common/handleShare";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -135,12 +136,10 @@ export default function Builder({
             id="playIcon"
             className="controlButton"
             onClick={() => {
-              const stringifiedPuzzle = convertPuzzleToString(
-                builderState.puzzle,
-              );
+              const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
               dispatchGameState({
                 action: "playtestCustom",
-                customSeed: stringifiedPuzzle,
+                customSeed: encodedPuzzle,
               });
               setDisplay("game");
             }}
@@ -149,8 +148,29 @@ export default function Builder({
           <></>
         )}
 
-        {/* todo action */}
-        <button id="shareIcon" className="controlButton"></button>
+        {builderState.isValid ? (
+          <button
+            id="shareIcon"
+            className="controlButton"
+            onClick={() => {
+              if (navigator.canShare) {
+                const encodedPuzzle = convertPuzzleToString(
+                  builderState.puzzle,
+                );
+                handleShare({
+                  appName: "Deep Space Slime",
+                  text: "I created this custom Deep Space Slime puzzle. Give it a try!",
+                  url: "https://skedwards88.github.io/deep-space-slime",
+                  seed: `custom-${encodedPuzzle}`,
+                });
+              } else {
+                setDisplay("customShare");
+              }
+            }}
+          ></button>
+        ) : (
+          <></>
+        )}
 
         {/* todo action */}
         <button
