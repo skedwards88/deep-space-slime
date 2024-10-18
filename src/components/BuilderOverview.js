@@ -33,6 +33,7 @@ function BuilderEntry({
           dispatchBuilderState({
             action: "editCustom",
             puzzle,
+            name,
             savedIndex: index,
           });
           setDisplay("builder");

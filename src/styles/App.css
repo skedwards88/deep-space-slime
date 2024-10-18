@@ -112,6 +112,7 @@ button:disabled {
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
+  color: white;
 }
 
 #message {

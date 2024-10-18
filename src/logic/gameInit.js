@@ -64,7 +64,9 @@ export function gameInit({
     maxNumber,
   });
 
-  const defaultText = isCustom ? "todo" : puzzles[puzzleID].startingText;
+  const defaultText = isCustom
+    ? "todo add text for playing a custom puzzle"
+    : puzzles[puzzleID].startingText;
 
   return {
     isCustom,

@@ -59,11 +59,14 @@ export function builderReducer(currentBuilderState, payload) {
     });
 
     return {...currentBuilderState, isValid, message};
+  } else if (payload.action === "editName") {
+    return {...currentBuilderState, name: payload.name};
   } else if (payload.action === "newCustom") {
     return builderInit({savedIndex: payload.savedIndex});
   } else if (payload.action === "editCustom") {
     return builderInit({
       puzzle: payload.puzzle,
+      name: payload.name,
       savedIndex: payload.savedIndex,
     });
   } else {
