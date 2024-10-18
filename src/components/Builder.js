@@ -120,6 +120,15 @@ export default function Builder({
       id="builder"
       onMouseUp={() => handleMouseUp(dispatchBuilderState)}
     >
+      <input
+        id="location"
+        name="customLocationInput"
+        maxLength={15}
+        value={builderState.name}
+        onChange={(event) =>
+          dispatchBuilderState({action: "editName", name: event.target.value})
+        }
+      />
       <div id="botFace" className="happy"></div>
 
       <div id="message">{builderState.message}</div>

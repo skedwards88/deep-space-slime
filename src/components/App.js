@@ -108,12 +108,9 @@ export default function App() {
     }
     const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
     let newSavedBuilds = savedCustomBuilds.slice();
-    newSavedBuilds.splice(indexToUpdate, 1, [
-      Date.now().toString(),
-      encodedPuzzle,
-    ]);
+    newSavedBuilds.splice(indexToUpdate, 1, [builderState.name, encodedPuzzle]);
     setSavedCustomBuilds(newSavedBuilds);
-  }, [builderState.puzzle]);
+  }, [builderState.puzzle, builderState.name]);
 
   React.useEffect(() => {
     window.localStorage.setItem(

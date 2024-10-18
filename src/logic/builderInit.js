@@ -8,7 +8,7 @@ export const allLimitedFeatures = [
   "5",
 ].sort();
 
-export function builderInit({puzzle, savedIndex}) {
+export function builderInit({puzzle, name = "Unnamed", savedIndex}) {
   const numColumns = 7;
   const numRows = 9;
 
@@ -20,6 +20,7 @@ export function builderInit({puzzle, savedIndex}) {
 
   return {
     puzzle: startingPuzzle,
+    name: name,
     savedIndex,
     activeFeature: "basic",
     remainingLimitedFeatures: allLimitedFeatures,

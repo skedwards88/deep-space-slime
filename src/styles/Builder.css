@@ -1,11 +1,13 @@
 #builder {
   display: grid;
   grid-template-areas:
+    "location location"
     "botFace botMessage"
     "controls controls"
     "puzzle puzzle"
     "features features";
   grid-template-rows:
+    auto
     auto
     auto
     auto
