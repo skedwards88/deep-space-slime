@@ -60,7 +60,12 @@ export function builderReducer(currentBuilderState, payload) {
 
     return {...currentBuilderState, isValid, message};
   } else if (payload.action === "newCustom") {
-    return builderInit({puzzle: payload.puzzle});
+    return builderInit({savedIndex: payload.savedIndex});
+  } else if (payload.action === "editCustom") {
+    return builderInit({
+      puzzle: payload.puzzle,
+      savedIndex: payload.savedIndex,
+    });
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentBuilderState;

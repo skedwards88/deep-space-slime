@@ -9,15 +9,14 @@ export const allLimitedFeatures = [
 ].sort();
 
 export function builderInit({puzzle, savedIndex}) {
-  // todo any args? use saved?
-
   const numColumns = 7;
   const numRows = 9;
 
   const startingPuzzle =
     puzzle || Array.from({length: numColumns * numRows}, () => "outer");
 
-  const defaultMessage = "todo";
+  const defaultMessage =
+    "todo update the default message for the builder screen";
 
   return {
     puzzle: startingPuzzle,

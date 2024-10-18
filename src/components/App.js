@@ -14,11 +14,11 @@ import {
 } from "../common/handleInstall";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
-import {builderInit} from "../logic/builderInit";
 import {builderReducer} from "../logic/builderReducer";
 import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
+import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -38,24 +38,26 @@ export default function App() {
     gameInit,
   );
 
+  const presavedCustomBuilds = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedCustomBuilds"),
+  );
+
+  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState(
+    presavedCustomBuilds || [],
+  );
+
+  // Don't bother initializing the builderState to anything useful yet.
+  // We need the dispatcher to pass to other components, but we won't ever use this initial state.
+  // This feels sloppy to me, but I haven't thought of a better solution yet.
   const [builderState, dispatchBuilderState] = React.useReducer(
     builderReducer,
     {},
-    builderInit,
   );
 
   const savedScore = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedScore"),
   );
   const [score, setScore] = React.useState(savedScore || []);
-
-  const presavedCustomBuilds = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedCustomBuilds"),
-  );
-
-  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState([
-    presavedCustomBuilds,
-  ]);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
@@ -95,6 +97,23 @@ export default function App() {
       JSON.stringify(score),
     );
   }, [score]);
+
+  React.useEffect(() => {
+    const indexToUpdate = builderState.savedIndex;
+    // The builderState gets initialized in this parent so that I can pass the dispatcher to various children, but the initialized state isn't actually used.
+    // To prevent the blank initialized state from appearing in the list of saved puzzles, ignore updates where indexToUpdate is not defined.
+    // This feels sloppy to me, but I haven't thought of a better solution yet.
+    if (indexToUpdate === undefined) {
+      return;
+    }
+    const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+    let newSavedBuilds = savedCustomBuilds.slice();
+    newSavedBuilds.splice(indexToUpdate, 1, [
+      Date.now().toString(),
+      encodedPuzzle,
+    ]);
+    setSavedCustomBuilds(newSavedBuilds);
+  }, [builderState.puzzle]);
 
   React.useEffect(() => {
     window.localStorage.setItem(
@@ -181,7 +200,6 @@ export default function App() {
     case "builderOverview":
       return (
         <BuilderOverview
-          builderState={builderState}
           dispatchBuilderState={dispatchBuilderState}
           dispatchGameState={dispatchGameState}
           setDisplay={setDisplay}

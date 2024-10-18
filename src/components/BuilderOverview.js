@@ -30,7 +30,11 @@ function BuilderEntry({
         className="controlButton"
         onClick={() => {
           const puzzle = convertStringToPuzzle(encodedPuzzle);
-          dispatchBuilderState({action: "newCustom", puzzle});
+          dispatchBuilderState({
+            action: "editCustom",
+            puzzle,
+            savedIndex: index,
+          });
           setDisplay("builder");
         }}
       ></button>
@@ -66,7 +70,6 @@ function BuilderEntry({
 
 export default function BuilderOverview({
   setDisplay,
-  builderState,
   dispatchBuilderState,
   dispatchGameState,
   savedCustomBuilds,
@@ -100,7 +103,13 @@ export default function BuilderOverview({
       </div>
       <button
         disabled={savedCustomBuilds.length >= 100}
-        onClick={() => setDisplay("builder")}
+        onClick={() => {
+          dispatchBuilderState({
+            action: "newCustom",
+            savedIndex: savedCustomBuilds.length,
+          });
+          setDisplay("builder");
+        }}
       >
         New custom puzzle
       </button>
