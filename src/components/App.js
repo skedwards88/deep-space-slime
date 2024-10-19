@@ -209,6 +209,7 @@ export default function App() {
       return (
         <CustomShare
           puzzle={builderState.puzzle}
+          name={builderState.name}
           setDisplay={setDisplay}
         ></CustomShare>
       );

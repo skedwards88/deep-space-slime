@@ -14,10 +14,13 @@ export function gameInit({
   customSeed,
 }) {
   // If custom, convert the query string into a puzzle
+  let customName;
+  let customEncodedPuzzle;
   let customPuzzle;
   if (isCustom) {
     try {
-      customPuzzle = convertStringToPuzzle(customSeed);
+      [customName, customEncodedPuzzle] = customSeed.split("-"); //todo test for spaces in name. todo disallow dash in name for this to work
+      customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
     } catch {
       console.log("Error generating custom puzzle from query.");
       isCustom = false;
@@ -71,7 +74,7 @@ export function gameInit({
   return {
     isCustom,
     station: isCustom ? "Custom Simulation" : puzzles[puzzleID].station,
-    room: isCustom ? "" : puzzles[puzzleID].room,
+    room: isCustom ? customName : puzzles[puzzleID].room,
     startingText: defaultText,
     hintText: isCustom ? undefined : puzzles[puzzleID].hintText,
     winText: isCustom ? "todo" : puzzles[puzzleID].winText,
