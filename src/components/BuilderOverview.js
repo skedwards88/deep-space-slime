@@ -46,7 +46,7 @@ function BuilderEntry({
         onClick={() => {
           dispatchGameState({
             action: "playtestCustom",
-            customSeed: encodedPuzzle,
+            customSeed: `${name}-${encodedPuzzle}`,
           });
           setDisplay("game");
         }}

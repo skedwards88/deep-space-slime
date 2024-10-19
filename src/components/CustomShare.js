@@ -1,10 +1,11 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
-export default function CustomShare({puzzle, setDisplay}) {
+export default function CustomShare({puzzle, name, setDisplay}) {
   const encodedPuzzle = convertPuzzleToString(puzzle);
+  const customSeed = `${name}-${encodedPuzzle}`;
 
-  const link = `https://skedwards88.github.io/deep-space-slime?id=custom-${encodedPuzzle}`;
+  const link = `https://skedwards88.github.io/deep-space-slime?id=custom-${customSeed}`;
 
   return (
     <div className="App customMessage">
