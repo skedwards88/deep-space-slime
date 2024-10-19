@@ -98,8 +98,8 @@ export default function BuilderOverview({
         <div id="botFace" className="happy"></div>
 
         <div id="message">
-          TODO Here are all of your custom puzzles. You can create up to TODO
-          custom puzzles.
+          Here are all of your custom puzzles. You can create up to 100 custom
+          puzzles.
         </div>
       </div>
       <button
