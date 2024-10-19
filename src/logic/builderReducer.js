@@ -62,12 +62,12 @@ export function builderReducer(currentBuilderState, payload) {
   } else if (payload.action === "editName") {
     return {...currentBuilderState, name: payload.name};
   } else if (payload.action === "newCustom") {
-    return builderInit({savedIndex: payload.savedIndex});
+    return builderInit({customIndex: payload.customIndex});
   } else if (payload.action === "editCustom") {
     return builderInit({
       puzzle: payload.puzzle,
       name: payload.name,
-      savedIndex: payload.savedIndex,
+      customIndex: payload.customIndex,
     });
   } else {
     console.log(`unknown action: ${payload.action}`);

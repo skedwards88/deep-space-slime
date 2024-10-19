@@ -148,7 +148,7 @@ export default function Builder({
             dispatchGameState({
               action: "playtestCustom",
               customSeed: `${builderState.name}-${encodedPuzzle}`,
-              savedIndex: builderState.savedIndex,
+              customIndex: builderState.customIndex,
             });
             setDisplay("game");
           }}
