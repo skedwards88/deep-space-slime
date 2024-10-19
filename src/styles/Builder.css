@@ -17,6 +17,15 @@
   height: 100svh;
 }
 
+.builderEntry {
+  background-color: black;
+}
+
+.builderEntry > #customName {
+  width: 15ch;
+  overflow: scroll;
+  text-align: left;
+}
 #builderButtons {
   grid-area: controls;
   display: flex;
