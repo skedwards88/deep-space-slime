@@ -34,7 +34,7 @@ function BuilderEntry({
             action: "editCustom",
             puzzle,
             name,
-            savedIndex: index,
+            customIndex: index,
           });
           setDisplay("builder");
         }}
@@ -47,7 +47,7 @@ function BuilderEntry({
           dispatchGameState({
             action: "playtestCustom",
             customSeed: `${name}-${encodedPuzzle}`,
-            savedIndex: index,
+            customIndex: index,
           });
           setDisplay("game");
         }}
@@ -108,7 +108,7 @@ export default function BuilderOverview({
         onClick={() => {
           dispatchBuilderState({
             action: "newCustom",
-            savedIndex: savedCustomBuilds.length,
+            customIndex: savedCustomBuilds.length,
           });
           setDisplay("builder");
         }}

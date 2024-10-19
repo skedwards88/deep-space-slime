@@ -99,7 +99,7 @@ export default function App() {
   }, [score]);
 
   React.useEffect(() => {
-    const indexToUpdate = builderState.savedIndex;
+    const indexToUpdate = builderState.customIndex;
     // The builderState gets initialized in this parent so that I can pass the dispatcher to various children, but the initialized state isn't actually used.
     // To prevent the blank initialized state from appearing in the list of saved puzzles, ignore updates where indexToUpdate is not defined.
     // This feels sloppy to me, but I haven't thought of a better solution yet.

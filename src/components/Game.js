@@ -123,7 +123,7 @@ function ExitButtons({
           action: "editCustom",
           puzzle,
           name: room,
-          savedIndex: customIndex, // todo unify savedIndex and customIndex var names to just be customIndex
+          customIndex: customIndex,
         });
         setDisplay("builder");
       }}
