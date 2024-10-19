@@ -12,6 +12,7 @@ export function gameInit({
   puzzleID = 0,
   isCustom = false,
   customSeed,
+  customIndex,
 }) {
   // If custom, convert the query string into a puzzle
   let customName;
@@ -73,11 +74,14 @@ export function gameInit({
 
   return {
     isCustom,
+    customIndex,
     station: isCustom ? "Custom Simulation" : puzzles[puzzleID].station,
     room: isCustom ? customName : puzzles[puzzleID].room,
     startingText: defaultText,
     hintText: isCustom ? undefined : puzzles[puzzleID].hintText,
-    winText: isCustom ? "todo" : puzzles[puzzleID].winText,
+    winText: isCustom
+      ? "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game."
+      : puzzles[puzzleID].winText,
     message: defaultText,
     robotStartMood: isCustom ? "happy" : puzzles[puzzleID].robotStartMood,
     robotEndMood: isCustom ? "happy" : puzzles[puzzleID].robotEndMood,

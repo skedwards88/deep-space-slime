@@ -226,6 +226,12 @@ export default function App() {
             setInstallPromptEvent={setInstallPromptEvent}
             showInstallButton={showInstallButton}
             installPromptEvent={installPromptEvent}
+            dispatchBuilderState={dispatchBuilderState}
+            customIndex={
+              gameState.isCustom
+                ? gameState.customIndex ?? savedCustomBuilds.length
+                : undefined
+            }
           ></Game>
         </div>
       );

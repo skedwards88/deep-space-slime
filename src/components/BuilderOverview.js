@@ -47,6 +47,7 @@ function BuilderEntry({
           dispatchGameState({
             action: "playtestCustom",
             customSeed: `${name}-${encodedPuzzle}`,
+            savedIndex: index,
           });
           setDisplay("game");
         }}

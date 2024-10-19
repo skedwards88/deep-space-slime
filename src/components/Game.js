@@ -82,7 +82,18 @@ function PuzzleSquare({
   );
 }
 
-function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
+function ExitButtons({
+  puzzle,
+  flaskCount,
+  puzzleID,
+  dispatchGameState,
+  isCustom,
+  setDisplay,
+  room,
+  encodedPuzzle,
+  dispatchBuilderState,
+  customIndex,
+}) {
   const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
 
   const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
@@ -99,18 +110,29 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
     <></>
   );
 
-  const hintButton =
-    flaskCount < maxFlasks ? (
-      <button
-        onClick={() =>
-          dispatchGameState({action: "newGame", puzzleID: puzzleID})
-        }
-      >
-        Retry Level
-      </button>
-    ) : (
-      <></>
-    );
+  const returnToGameButton = isCustom ? (
+    <button onClick={() => setDisplay("map")}>Return to map</button>
+  ) : (
+    <></>
+  );
+
+  const editButton = isCustom ? (
+    <button
+      onClick={() => {
+        dispatchBuilderState({
+          action: "editCustom",
+          puzzle,
+          name: room,
+          savedIndex: customIndex, // todo unify savedIndex and customIndex var names to just be customIndex
+        });
+        setDisplay("builder");
+      }}
+    >
+      Edit
+    </button>
+  ) : (
+    <></>
+  );
 
   const shareButton =
     !nextPuzzleExists && navigator.canShare ? (
@@ -118,8 +140,11 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
         onClick={() =>
           handleShare({
             appName: "Deep Space Slime",
-            text: "I just beat Deep Space Slime! Try it out:",
+            text: isCustom
+              ? "Check out this custom Deep Space Slime puzzle!"
+              : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
+            seed: `custom-${room}-${encodedPuzzle}`,
           })
         }
       >
@@ -133,20 +158,23 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
     <div id="exitButtons">
       {continueButton}
       {shareButton}
-      {hintButton}
+      {editButton}
+      {returnToGameButton}
     </div>
   );
 }
 
 function Game({
   dispatchGameState,
-  gameState,
+  gameState, // todo should pass specific props instead
   setScore,
   score,
   setDisplay,
   setInstallPromptEvent,
   showInstallButton,
   installPromptEvent,
+  dispatchBuilderState,
+  customIndex,
 }) {
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -227,6 +255,12 @@ function Game({
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}
+          isCustom={gameState.isCustom}
+          setDisplay={setDisplay}
+          room={gameState.room}
+          encodedPuzzle={gameState.encodedPuzzle}
+          dispatchBuilderState={dispatchBuilderState}
+          customIndex={customIndex}
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">
