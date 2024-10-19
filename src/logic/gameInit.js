@@ -68,7 +68,7 @@ export function gameInit({
   });
 
   const defaultText = isCustom
-    ? "todo add text for playing a custom puzzle"
+    ? "This is a custom puzzle built by a human subject."
     : puzzles[puzzleID].startingText;
 
   return {

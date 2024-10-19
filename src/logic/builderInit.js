@@ -16,7 +16,7 @@ export function builderInit({puzzle, name = "Unnamed", savedIndex}) {
     puzzle || Array.from({length: numColumns * numRows}, () => "outer");
 
   const defaultMessage =
-    "todo update the default message for the builder screen";
+    "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";
 
   return {
     puzzle: startingPuzzle,

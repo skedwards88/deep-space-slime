@@ -176,8 +176,8 @@ export default function App() {
           puzzle={builderState.puzzle}
           numRows={builderState.numRows}
           numColumns={builderState.numColumns}
-          station="Custom todo"
-          room="todo"
+          station="Custom Simulation"
+          room={builderState.name}
           setDisplay={setDisplay}
         ></Pathfinder>
       );
