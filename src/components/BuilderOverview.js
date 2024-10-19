@@ -13,7 +13,7 @@ function BuilderEntry({
 }) {
   return (
     <div className="builderEntry">
-      <div>{name}</div>
+      <div id="customName">{name}</div>
       <button
         id="copyIcon"
         className="controlButton"
