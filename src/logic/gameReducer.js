@@ -91,6 +91,7 @@ export function gameReducer(currentGameState, payload) {
       useSaved: false,
       isCustom: true,
       customSeed: payload.customSeed,
+      customIndex: payload.savedIndex,
     });
   } else if (payload.action === "setMouseIsActive") {
     if (currentGameState.mouseIsActive === payload.mouseIsActive) {
