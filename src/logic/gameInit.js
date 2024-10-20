@@ -2,6 +2,7 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
+import {validateBuilder} from "./validateBuilder";
 import {
   convertStringToPuzzle,
   convertPuzzleToString,
@@ -14,6 +15,9 @@ export function gameInit({
   customSeed,
   customIndex,
 }) {
+  const numColumns = 7;
+  const numRows = 9;
+
   // If custom, convert the query string into a puzzle
   let customName;
   let customEncodedPuzzle;
@@ -23,13 +27,21 @@ export function gameInit({
       [customName, customEncodedPuzzle] = customSeed.split("_");
       customName = customName.replaceAll("+", " ");
       customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
+
+      // Mane sure that the puzzle passes all of the validation (in case someone edits/mangles the query string)
+      const {isValid} = validateBuilder({
+        puzzle: customPuzzle,
+        numColumns,
+        numRows,
+      });
+      if (!isValid) {
+        throw new Error("Custom puzzle is not valid.");
+      }
     } catch {
       console.log("Error generating custom puzzle from query.");
       isCustom = false;
     }
   }
-
-  // todo if custom, should make sure that passes all of the validation (in case someone edits/mangles the query string)
 
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
@@ -51,9 +63,6 @@ export function gameInit({
   // we can later verify that the puzzle has not been updated
   // since the player started solving it
   const encodedPuzzle = convertPuzzleToString(puzzle);
-
-  const numColumns = 7;
-  const numRows = 9;
 
   const startIndex = puzzle.indexOf("start");
   const mainPath = [startIndex];
