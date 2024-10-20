@@ -160,7 +160,7 @@ export default function Builder({
             const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
             dispatchGameState({
               action: "playtestCustom",
-              customSeed: `${builderState.name}-${encodedPuzzle}`,
+              customSeed: `${builderState.name}_${encodedPuzzle}`,
               customIndex: builderState.customIndex,
             });
             setDisplay("game");
@@ -180,7 +180,7 @@ export default function Builder({
                   appName: "Deep Space Slime",
                   text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                   url: "https://skedwards88.github.io/deep-space-slime",
-                  seed: `custom-${builderState.name}-${encodedPuzzle}`,
+                  seed: `custom-${builderState.name}_${encodedPuzzle}`,
                 });
               } else {
                 setDisplay("customShare");

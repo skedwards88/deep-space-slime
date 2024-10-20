@@ -48,7 +48,7 @@ function BuilderEntry({
         onClick={() => {
           dispatchGameState({
             action: "playtestCustom",
-            customSeed: `${name}-${encodedPuzzle}`,
+            customSeed: `${name}_${encodedPuzzle}`,
             customIndex: index,
           });
           setDisplay("game");
@@ -76,7 +76,7 @@ function BuilderEntry({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                 url: "https://skedwards88.github.io/deep-space-slime",
-                seed: `custom-${name}-${encodedPuzzle}`,
+                seed: `custom-${name}_${encodedPuzzle}`,
               });
             } else {
               dispatchBuilderState({

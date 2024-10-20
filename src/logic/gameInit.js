@@ -20,7 +20,7 @@ export function gameInit({
   let customPuzzle;
   if (isCustom) {
     try {
-      [customName, customEncodedPuzzle] = customSeed.split("-"); //todo test for spaces in name. todo disallow dash in name for this to work
+      [customName, customEncodedPuzzle] = customSeed.split("_");
       customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
     } catch {
       console.log("Error generating custom puzzle from query.");
