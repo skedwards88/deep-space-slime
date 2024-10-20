@@ -18,12 +18,14 @@ export function builderInit({puzzle, name = "Unnamed", customIndex}) {
   const defaultMessage =
     "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";
 
+  const remainingLimitedFeatures = allLimitedFeatures.filter(feature => !startingPuzzle.includes(feature))
+
   return {
     puzzle: startingPuzzle,
     name: name,
     customIndex,
     activeFeature: "basic",
-    remainingLimitedFeatures: allLimitedFeatures, //todo need to subtrac used ones if editing a puzzle
+    remainingLimitedFeatures,
     numColumns,
     numRows,
     defaultMessage,
