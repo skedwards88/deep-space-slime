@@ -3,6 +3,7 @@ import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
+import {generateSeed} from "../logic/generateSeed";
 
 function handlePointerDown({event, index, dispatchGameState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -144,7 +145,9 @@ function ExitButtons({
               ? "Check out this custom Deep Space Slime puzzle!"
               : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
-            seed: `custom-${room}_${encodedPuzzle}`,
+            seed: isCustom
+              ? `custom-${generateSeed(room, encodedPuzzle)}`
+              : undefined,
           })
         }
       >

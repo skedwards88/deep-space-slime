@@ -2,6 +2,7 @@ import React from "react";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 import {validateBuilder} from "../logic/validateBuilder";
 import {handleShare} from "../common/handleShare";
+import {generateSeed} from "../logic/generateSeed";
 
 function BuilderEntry({
   encodedPuzzle,
@@ -48,7 +49,7 @@ function BuilderEntry({
         onClick={() => {
           dispatchGameState({
             action: "playtestCustom",
-            customSeed: `${name}_${encodedPuzzle}`,
+            customSeed: generateSeed(name, encodedPuzzle),
             customIndex: index,
           });
           setDisplay("game");
@@ -76,7 +77,7 @@ function BuilderEntry({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                 url: "https://skedwards88.github.io/deep-space-slime",
-                seed: `custom-${name}_${encodedPuzzle}`,
+                seed: generateSeed(name, encodedPuzzle),
               });
             } else {
               dispatchBuilderState({

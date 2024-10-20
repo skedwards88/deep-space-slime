@@ -1,6 +1,7 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {handleShare} from "../common/handleShare";
+import {generateSeed} from "../logic/generateSeed";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -128,7 +129,7 @@ export default function Builder({
         maxLength={15}
         value={builderState.name}
         onChange={(event) => {
-          const validationRegex = new RegExp("^[a-zA-Z0-9-]*$");
+          const validationRegex = new RegExp("^[a-zA-Z0-9- ]*$");
           if (validationRegex.test(event.target.value)) {
             dispatchBuilderState({
               action: "editName",
@@ -160,7 +161,7 @@ export default function Builder({
             const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
             dispatchGameState({
               action: "playtestCustom",
-              customSeed: `${builderState.name}_${encodedPuzzle}`,
+              customSeed: generateSeed(builderState.name, encodedPuzzle),
               customIndex: builderState.customIndex,
             });
             setDisplay("game");
@@ -180,7 +181,7 @@ export default function Builder({
                   appName: "Deep Space Slime",
                   text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                   url: "https://skedwards88.github.io/deep-space-slime",
-                  seed: `custom-${builderState.name}_${encodedPuzzle}`,
+                  seed: generateSeed(builderState.name, encodedPuzzle),
                 });
               } else {
                 setDisplay("customShare");

@@ -21,6 +21,7 @@ export function gameInit({
   if (isCustom) {
     try {
       [customName, customEncodedPuzzle] = customSeed.split("_");
+      customName = customName.replaceAll("+", " ");
       customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
     } catch {
       console.log("Error generating custom puzzle from query.");
