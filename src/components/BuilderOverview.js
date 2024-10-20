@@ -63,7 +63,7 @@ function BuilderEntry({
           const puzzle = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateBuilder({
             puzzle: puzzle,
-            numColumns: 7, // todo can I just make this a constant that I can import wherever needed instead of storing in the game and builder state?
+            numColumns: 7,
             numRows: 9,
           });
           // If not valid, the player can't share

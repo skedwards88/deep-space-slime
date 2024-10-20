@@ -166,7 +166,7 @@ function ExitButtons({
 
 function Game({
   dispatchGameState,
-  gameState, // todo should pass specific props instead
+  gameState,
   setScore,
   score,
   setDisplay,
