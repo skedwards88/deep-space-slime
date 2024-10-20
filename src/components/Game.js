@@ -144,7 +144,7 @@ function ExitButtons({
               ? "Check out this custom Deep Space Slime puzzle!"
               : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
-            seed: `custom-${room}-${encodedPuzzle}`,
+            seed: `custom-${room}_${encodedPuzzle}`,
           })
         }
       >

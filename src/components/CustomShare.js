@@ -3,7 +3,7 @@ import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
 export default function CustomShare({puzzle, name, setDisplay}) {
   const encodedPuzzle = convertPuzzleToString(puzzle);
-  const customSeed = `${name}-${encodedPuzzle}`;
+  const customSeed = `${name}_${encodedPuzzle}`;
 
   const link = `https://skedwards88.github.io/deep-space-slime?id=custom-${customSeed}`;
 
