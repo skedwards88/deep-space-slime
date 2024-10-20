@@ -2,6 +2,7 @@
   display: grid;
   grid-template-areas:
     "location location"
+    "locationError locationError"
     "botFace botMessage"
     "controls controls"
     "puzzle puzzle"
@@ -11,10 +12,17 @@
     auto
     auto
     auto
+    auto
     1fr;
   grid-template-columns: auto 1fr;
   height: 90vh;
   height: 100svh;
+}
+
+#locationError {
+  grid-area: locationError;
+  color: red;
+  height: calc(var(--default-font-size) * 0.5);;
 }
 
 .builderEntry {
