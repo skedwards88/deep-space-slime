@@ -1,9 +1,10 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {generateSeed} from "../logic/generateSeed";
 
 export default function CustomShare({puzzle, name, setDisplay}) {
   const encodedPuzzle = convertPuzzleToString(puzzle);
-  const customSeed = `${name}_${encodedPuzzle}`;
+  const customSeed = generateSeed(name, encodedPuzzle);
 
   const link = `https://skedwards88.github.io/deep-space-slime?id=custom-${customSeed}`;
 
