@@ -114,6 +114,8 @@ export default function Builder({
     ></BuilderSquare>
   ));
 
+  const [nameError, setNameError] = React.useState("");
+
   return (
     <div
       className="App info"
@@ -125,10 +127,21 @@ export default function Builder({
         name="customLocationInput"
         maxLength={15}
         value={builderState.name}
-        onChange={(event) =>
-          dispatchBuilderState({action: "editName", name: event.target.value})
-        }
+        onChange={(event) => {
+          const validationRegex = new RegExp("^[a-zA-Z0-9-]*$");
+          if (validationRegex.test(event.target.value)) {
+            dispatchBuilderState({
+              action: "editName",
+              name: event.target.value,
+            });
+            setNameError("");
+          } else {
+            setNameError("Only letters, numbers, and hyphens are allowed");
+          }
+        }}
       />
+
+      <small id="locationError">{nameError}</small>
       <div id="botFace" className="happy"></div>
 
       <div id="message">{builderState.message}</div>
