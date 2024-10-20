@@ -1,5 +1,7 @@
 import React from "react";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
+import {validateBuilder} from "../logic/validateBuilder";
+import {handleShare} from "../common/handleShare";
 
 function BuilderEntry({
   encodedPuzzle,
@@ -53,9 +55,41 @@ function BuilderEntry({
         }}
       ></button>
 
-      {/* todo can only share if valid? */}
-      {/* todo action */}
-      <button id="shareIcon" className="controlButton"></button>
+      <button
+        id="shareIcon"
+        className="controlButton"
+        onClick={() => {
+          // Check if valid
+          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const {isValid} = validateBuilder({
+            puzzle: puzzle,
+            numColumns: 7, // todo can I just make this a constant that I can import wherever needed instead of storing in the game and builder state?
+            numRows: 9,
+          });
+          // If not valid, the player can't share
+          if (!isValid) {
+            setDisplay("invalidShareMessage");
+          } else {
+            // If valid, allow share (or if can't share, show link to copy)
+            if (navigator.canShare) {
+              handleShare({
+                appName: "Deep Space Slime",
+                text: "I created this custom Deep Space Slime puzzle. Give it a try!",
+                url: "https://skedwards88.github.io/deep-space-slime",
+                seed: `custom-${name}-${encodedPuzzle}`,
+              });
+            } else {
+              dispatchBuilderState({
+                action: "editCustom",
+                puzzle,
+                name,
+                customIndex: index,
+              });
+              setDisplay("customShare");
+            }
+          }
+        }}
+      ></button>
 
       <button
         id="trashIcon"

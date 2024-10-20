@@ -5,6 +5,7 @@ import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
 import FallbackInstall from "./FallbackInstall";
+import InvalidShareMessage from "./InvalidShareMessage";
 import JetExplanation from "./JetExplanation";
 import FlaskExplanation from "./FlaskExplanation";
 import KeyExplanation from "./KeyExplanation";
@@ -212,6 +213,11 @@ export default function App() {
           name={builderState.name}
           setDisplay={setDisplay}
         ></CustomShare>
+      );
+
+    case "invalidShareMessage":
+      return (
+        <InvalidShareMessage setDisplay={setDisplay}></InvalidShareMessage>
       );
 
     default:

@@ -23,7 +23,7 @@ export function builderInit({puzzle, name = "Unnamed", customIndex}) {
     name: name,
     customIndex,
     activeFeature: "basic",
-    remainingLimitedFeatures: allLimitedFeatures,
+    remainingLimitedFeatures: allLimitedFeatures, //todo need to subtrac used ones if editing a puzzle
     numColumns,
     numRows,
     defaultMessage,
