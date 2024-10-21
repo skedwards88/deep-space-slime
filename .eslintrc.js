@@ -23,7 +23,11 @@ module.exports = {
   rules: {
     "react/prop-types": "off",
   },
-  ignorePatterns: ["dist/*"],
+  ignorePatterns: [
+    "dist/*",
+    "src/logic/testrun.js",
+    "src/logic/forColinConversion.js",
+  ],
   settings: {
     react: {
       version: "detect",

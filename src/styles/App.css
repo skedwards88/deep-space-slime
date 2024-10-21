@@ -112,16 +112,23 @@ button:disabled {
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
+  color: white;
 }
 
 #message {
   grid-area: botMessage;
   font-size: calc(var(--square-size) * 0.37);
   min-height: calc(var(--square-size) * 2);
+  width: 100%;
+  text-align: left;
   overflow: scroll;
   white-space: pre-wrap;
   background-color: black;
   border-right: 2vmin solid black;
+}
+
+#message > p {
+  display: inline;
 }
 
 #message::after {
@@ -146,6 +153,7 @@ button:disabled {
   background-repeat: no-repeat;
   background-size: calc(80%);
   width: calc(var(--square-size) * 2);
+  min-height: calc(var(--square-size) * 2);
   background-color: black;
 }
 
@@ -260,7 +268,8 @@ button.feature {
   box-sizing: border-box;
 }
 
-.puzzleSquare.start {
+.puzzleSquare.start,
+#startIcon {
   background-image: url("../images/icons/start.svg");
   background-color: rgb(200 190 78);
 }
@@ -289,32 +298,42 @@ button.feature {
   background-size: calc(100% - 10px);
 }
 
-.puzzleSquare.portal {
+.puzzleSquare.portal,
+#portalIcon {
   background-color: rgb(205 152 238);
   background-image: url("../images/icons/portal.svg");
 }
 
-.puzzleSquare.number1 {
+.puzzleSquare.number1,
+#number1Icon {
   background-image: url("../images/icons/number1.svg");
+  background-color: rgb(137 132 132);
 }
 
-.puzzleSquare.number2 {
+.puzzleSquare.number2,
+#number2Icon {
   background-image: url("../images/icons/number2.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number3 {
   background-image: url("../images/icons/number3.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number4 {
   background-image: url("../images/icons/number4.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number5 {
   background-image: url("../images/icons/number5.svg");
+  background-color: rgb(137 132 132);
 }
 
-.puzzleSquare.exit-opened {
+.puzzleSquare.exit-opened,
+.puzzleSquare.exit,
+#exitIcon {
   background-image: url("../images/icons/exit-opened.svg");
   background-color: rgb(200 190 78);
 }
@@ -422,6 +441,46 @@ button.feature {
   background-size: contain;
   width: var(--square-size);
   height: var(--square-size);
+}
+
+.smallInfoIcon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(var(--square-size) * 0.37);
+  height: calc(var(--square-size) * 0.37);
+}
+
+.customMessage {
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: scroll;
+  justify-items: center;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: calc(var(--default-font-size) * 0.75);
+}
+
+.customMessage > a {
+  white-space: pre-line;
+  text-wrap: wrap;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+}
+
+#custom-message-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#custom-message-buttons > button {
+  margin: 10px;
 }
 
 /* Large screen, landscape */

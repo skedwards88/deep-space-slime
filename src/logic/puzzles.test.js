@@ -26,10 +26,10 @@ describe("puzzle validation", () => {
 
   test("all puzzles include exactly one exit or ship", () => {
     for (const {puzzle} of puzzles) {
-      const numberStarts = puzzle.filter(
+      const numberExits = puzzle.filter(
         (feature) => feature === features.exit || feature === features.ship,
       ).length;
-      expect(numberStarts).toEqual(1);
+      expect(numberExits).toEqual(1);
     }
   });
 
@@ -84,7 +84,7 @@ describe("puzzle validation", () => {
     }
   });
 
-  test("all puzzles include an even number of doors and keys", () => {
+  test("all puzzles include an equal number of doors and keys", () => {
     for (const {puzzle} of puzzles) {
       const numberDoors = puzzle.filter(
         (feature) => feature === features.door,
