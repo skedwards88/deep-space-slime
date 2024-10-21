@@ -4,6 +4,8 @@ import App from "./components/App";
 import "./styles/App.css";
 import "./styles/Map.css";
 import "./styles/ControlBar.css";
+import "./styles/Builder.css";
+import "./styles/BuilderOverview.css";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
   const path =
