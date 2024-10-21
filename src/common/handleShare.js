@@ -7,7 +7,6 @@ export function assembleShareLink({url, seed}) {
 
 export function handleShare({appName, text, url, seed}) {
   const fullUrl = assembleShareLink({url, seed});
-  console.log(fullUrl);
 
   navigator
     .share({

@@ -2,6 +2,7 @@ import {gameInit} from "./gameInit";
 import {getReasonForMoveInvalidity} from "./getReasonForMoveInvalidity";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
+import {puzzles} from "./puzzles";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 
 export function gameReducer(currentGameState, payload) {
@@ -19,7 +20,7 @@ export function gameReducer(currentGameState, payload) {
       return message ? {...currentGameState, message} : currentGameState;
     }
 
-    const puzzle = currentGameState.puzzle;
+    const puzzle = puzzles[currentGameState.puzzleID].puzzle;
     const mainPath = currentGameState.mainPath;
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
 
@@ -41,7 +42,7 @@ export function gameReducer(currentGameState, payload) {
         keyCount: 0,
         numberCount: 0,
         jetCount: 0,
-        message: currentGameState.startingText,
+        message: puzzles[currentGameState.puzzleID].startingText,
       };
     }
 
@@ -56,7 +57,7 @@ export function gameReducer(currentGameState, payload) {
       // and reset the message
       return {
         ...stateWithBacktrackedPath,
-        message: currentGameState.startingText,
+        message: puzzles[currentGameState.puzzleID].startingText,
       };
     }
 
@@ -70,29 +71,19 @@ export function gameReducer(currentGameState, payload) {
     let newMessage;
     if (puzzle[index] === "exit" || puzzle[index] === "ship") {
       const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
-      if (
-        currentGameState.flaskCount < maxFlasks &&
-        currentGameState.hintText
-      ) {
-        newMessage = currentGameState.hintText;
+      if (currentGameState.flaskCount < maxFlasks) {
+        newMessage = puzzles[currentGameState.puzzleID].hintText;
       } else {
-        newMessage = currentGameState.winText;
+        newMessage = puzzles[currentGameState.puzzleID].winText;
       }
     } else {
-      newMessage = currentGameState.startingText;
+      newMessage = puzzles[currentGameState.puzzleID].startingText;
     }
     return {...stateWithExtendedPath, message: newMessage};
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 
     return gameInit({puzzleID, useSaved: false});
-  } else if (payload.action === "playtestCustom") {
-    return gameInit({
-      useSaved: false,
-      isCustom: true,
-      customSeed: payload.customSeed,
-      customIndex: payload.customIndex,
-    });
   } else if (payload.action === "setMouseIsActive") {
     if (currentGameState.mouseIsActive === payload.mouseIsActive) {
       return currentGameState;
