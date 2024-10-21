@@ -22,7 +22,7 @@
 #locationError {
   grid-area: locationError;
   color: red;
-  height: calc(var(--default-font-size) * 0.5);;
+  height: calc(var(--default-font-size) * 0.5);
 }
 
 .builderEntry {
@@ -34,6 +34,7 @@
   overflow: scroll;
   text-align: left;
 }
+
 #builderButtons {
   grid-area: controls;
   display: flex;
