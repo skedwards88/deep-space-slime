@@ -1,11 +1,13 @@
-import {getPuzzlesForColin} from "./forColinConversion";
+import {puzzles} from "./puzzles";
+import {getAllValidPaths} from "./getAllValidPaths";
 
-// Notes for Colin:
-// 1. Put the URLs in inputURLs
-//    e.g. const inputURLs = ["url1", "url2"];
-// 2. In the terminal, run: npm run testrun src/logic/testrun.js
-// 3. Copy the printed output
-
-const inputURLs = [];
-
-console.log(getPuzzlesForColin(inputURLs));
+const id = 12;
+const total = getAllValidPaths({
+  puzzle: puzzles[id].puzzle,
+  numColumns: 7,
+  numRows: 9,
+});
+console.log(
+  `${total.length} solutions for ${puzzles[id].station} ${puzzles[id].room}`,
+);
+console.log(total);

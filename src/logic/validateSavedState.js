@@ -7,17 +7,15 @@ export function validateSavedState(savedState) {
     return false;
   }
 
-  // puzzleID must be an int between 0 and number of puzzles if not custom
-  if (savedState.puzzleID !== "custom") {
-    if (!Number.isInteger(savedState.puzzleID)) {
-      return false;
-    }
-    if (savedState.puzzleID < 0) {
-      return false;
-    }
-    if (savedState.puzzleID > puzzles.length - 1) {
-      return false;
-    }
+  // puzzleID must be an int between 0 and number of puzzles
+  if (!Number.isInteger(savedState.puzzleID)) {
+    return false;
+  }
+  if (savedState.puzzleID < 0) {
+    return false;
+  }
+  if (savedState.puzzleID > puzzles.length - 1) {
+    return false;
   }
 
   // mainPath must be array of ints
@@ -57,7 +55,9 @@ export function validateSavedState(savedState) {
   if (!savedEncoding) {
     return false;
   }
-  const updatedEncoding = convertPuzzleToString(savedState.puzzle);
+  const updatedEncoding = convertPuzzleToString(
+    puzzles[savedState.puzzleID].puzzle,
+  );
   if (updatedEncoding != savedEncoding) {
     return false;
   }

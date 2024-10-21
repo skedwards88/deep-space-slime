@@ -1,10 +1,11 @@
+import {puzzles} from "./puzzles";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
-  const puzzle = currentGameState.puzzle;
+  const puzzle = puzzles[currentGameState.puzzleID].puzzle;
 
   // Return with no message if the player is at the exit
   // (because players often swipe past the exit and would miss the end text if an error showed instead)
