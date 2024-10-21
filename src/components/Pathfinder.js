@@ -1,9 +1,22 @@
 import React from "react";
+import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {getAllValidPaths} from "../logic/getAllValidPaths";
 
-function PuzzleSquare({feature, index, visited, current, direction}) {
+function PuzzleSquare({
+  feature,
+  index,
+  visited,
+  validNext,
+  exitUnlocked,
+  current,
+  direction,
+}) {
   let featureClass;
+
+  if (feature === "exit") {
+    feature = exitUnlocked ? "exit-opened" : "exit-closed";
+  }
 
   if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
@@ -16,42 +29,45 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
       key={index}
       className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
         visited ? "visited" : ""
-      } ${direction ? direction : ""}`}
+      } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
     ></div>
   );
 }
 
-function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
+function Pathfinder({gameState, setDisplay}) {
   const allPaths = getAllValidPaths({
-    puzzle,
-    numColumns,
-    numRows,
+    puzzle: puzzles[gameState.puzzleID].puzzle,
+    numColumns: gameState.numColumns,
+    numRows: gameState.numRows,
   });
 
   const numSolutions = allPaths.length;
 
   const [currentSolution, setCurrentSolution] = React.useState(0);
 
-  const mainPath = allPaths[currentSolution] || [];
+  const mainPath = allPaths[currentSolution];
   const lastIndexInPath = mainPath[mainPath.length - 1];
+  const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
     mainPath,
-    puzzle,
-    numColumns,
-    numRows,
+    puzzle: puzzles[gameState.puzzleID].puzzle,
+    numColumns: gameState.numColumns,
+    numRows: gameState.numRows,
   });
-  const squares = puzzle.map((feature, index) => (
+  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
+      validNext={gameState.validNextIndexes.includes(index)}
       current={lastIndexInPath === index}
+      exitUnlocked={exitUnlocked}
       direction={directions[index]}
     ></PuzzleSquare>
   ));
 
-  const hasPortals = puzzle.includes("portal");
+  const hasPortals = puzzles[gameState.puzzleID].puzzle.includes("portal");
 
   return (
     <div className="App" id="deep-space-slime">
@@ -60,7 +76,9 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
           Exit pathfinder
         </button>
 
-        <div id="location">{`${station}: ${room}`}</div>
+        <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
+          puzzles[gameState.puzzleID].room
+        }`}</div>
 
         <div id="botFace" className="happy"></div>
 
@@ -76,15 +94,13 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
 
         <div id="pathfinderButtons">
           <button
-            disabled={currentSolution === 0 || numSolutions === 0}
+            disabled={currentSolution === 0}
             onClick={() => setCurrentSolution(currentSolution - 1)}
           >
             Previous
           </button>
           <button
-            disabled={
-              currentSolution === numSolutions - 1 || numSolutions === 0
-            }
+            disabled={currentSolution === numSolutions - 1}
             onClick={() => setCurrentSolution(currentSolution + 1)}
           >
             Next
