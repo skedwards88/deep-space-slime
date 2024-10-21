@@ -5,9 +5,13 @@ import {puzzles} from "./puzzles";
 describe("validateSavedState", () => {
   const puzzleID = 1;
 
-  const encodedPuzzle = convertPuzzleToString(puzzles[puzzleID].puzzle);
+  const puzzle = puzzles[1].puzzle;
+
+  const encodedPuzzle = convertPuzzleToString(puzzle);
 
   const validState = {
+    isCustom: false,
+    puzzle,
     puzzleID,
     mainPath: [0, 1, 2],
     flaskCount: 1,
