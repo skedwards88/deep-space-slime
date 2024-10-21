@@ -20,6 +20,11 @@ export function validateSavedState(savedState) {
     }
   }
 
+  // puzzle must exist
+  if (!savedState.puzzle) {
+    return false;
+  }
+
   // mainPath must be array of ints
   if (!Array.isArray(savedState.mainPath)) {
     return false;
