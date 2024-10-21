@@ -2,7 +2,10 @@ import React from "react";
 import Game from "./Game";
 import Map from "./Map";
 import Heart from "./Heart";
+import Builder from "./Builder";
+import BuilderOverview from "./BuilderOverview";
 import FallbackInstall from "./FallbackInstall";
+import InvalidShareMessage from "./InvalidShareMessage";
 import JetExplanation from "./JetExplanation";
 import FlaskExplanation from "./FlaskExplanation";
 import KeyExplanation from "./KeyExplanation";
@@ -12,11 +15,16 @@ import {
 } from "../common/handleInstall";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
-import {puzzles} from "../logic/puzzles";
+import {builderReducer} from "../logic/builderReducer";
 import Pathfinder from "./Pathfinder";
+import CustomShare from "./CustomShare";
+import {parseUrlQuery} from "../logic/parseUrlQuery";
+import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
+
+  const customSeed = parseUrlQuery();
 
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
@@ -24,8 +32,27 @@ export default function App() {
 
   const [gameState, dispatchGameState] = React.useReducer(
     gameReducer,
-    {},
+    {
+      customSeed,
+      isCustom: Boolean(customSeed),
+    },
     gameInit,
+  );
+
+  const presavedCustomBuilds = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedCustomBuilds"),
+  );
+
+  const [savedCustomBuilds, setSavedCustomBuilds] = React.useState(
+    presavedCustomBuilds || [],
+  );
+
+  // Don't bother initializing the builderState to anything useful yet.
+  // We need the dispatcher to pass to other components, but we won't ever use this initial state.
+  // This feels sloppy to me, but I haven't thought of a better solution yet.
+  const [builderState, dispatchBuilderState] = React.useReducer(
+    builderReducer,
+    {},
   );
 
   const savedScore = JSON.parse(
@@ -72,11 +99,32 @@ export default function App() {
     );
   }, [score]);
 
+  React.useEffect(() => {
+    const indexToUpdate = builderState.customIndex;
+    // The builderState gets initialized in this parent so that I can pass the dispatcher to various children, but the initialized state isn't actually used.
+    // To prevent the blank initialized state from appearing in the list of saved puzzles, ignore updates where indexToUpdate is not defined.
+    // This feels sloppy to me, but I haven't thought of a better solution yet.
+    if (indexToUpdate === undefined) {
+      return;
+    }
+    const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+    let newSavedBuilds = savedCustomBuilds.slice();
+    newSavedBuilds.splice(indexToUpdate, 1, [builderState.name, encodedPuzzle]);
+    setSavedCustomBuilds(newSavedBuilds);
+  }, [builderState.puzzle, builderState.name]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedCustomBuilds",
+      JSON.stringify(savedCustomBuilds),
+    );
+  }, [savedCustomBuilds]);
+
   switch (display) {
     case "map":
       return (
         <Map
-          currentStation={puzzles[gameState.puzzleID].station}
+          currentStation={gameState.station}
           score={score}
           setDisplay={setDisplay}
           dispatchGameState={dispatchGameState}
@@ -113,7 +161,63 @@ export default function App() {
 
     case "pathfinder":
       return (
-        <Pathfinder gameState={gameState} setDisplay={setDisplay}></Pathfinder>
+        <Pathfinder
+          puzzle={gameState.puzzle}
+          numRows={gameState.numRows}
+          numColumns={gameState.numColumns}
+          station={gameState.station}
+          room={gameState.room}
+          setDisplay={setDisplay}
+        ></Pathfinder>
+      );
+
+    case "builderPathfinder":
+      return (
+        <Pathfinder
+          puzzle={builderState.puzzle}
+          numRows={builderState.numRows}
+          numColumns={builderState.numColumns}
+          station="Custom Simulation"
+          room={builderState.name}
+          setDisplay={setDisplay}
+        ></Pathfinder>
+      );
+
+    case "builder":
+      return (
+        <Builder
+          builderState={builderState}
+          dispatchBuilderState={dispatchBuilderState}
+          dispatchGameState={dispatchGameState}
+          setDisplay={setDisplay}
+          savedCustomBuilds={savedCustomBuilds}
+          setSavedCustomBuilds={setSavedCustomBuilds}
+        ></Builder>
+      );
+
+    case "builderOverview":
+      return (
+        <BuilderOverview
+          dispatchBuilderState={dispatchBuilderState}
+          dispatchGameState={dispatchGameState}
+          setDisplay={setDisplay}
+          savedCustomBuilds={savedCustomBuilds}
+          setSavedCustomBuilds={setSavedCustomBuilds}
+        ></BuilderOverview>
+      );
+
+    case "customShare":
+      return (
+        <CustomShare
+          puzzle={builderState.puzzle}
+          name={builderState.name}
+          setDisplay={setDisplay}
+        ></CustomShare>
+      );
+
+    case "invalidShareMessage":
+      return (
+        <InvalidShareMessage setDisplay={setDisplay}></InvalidShareMessage>
       );
 
     default:
@@ -128,6 +232,12 @@ export default function App() {
             setInstallPromptEvent={setInstallPromptEvent}
             showInstallButton={showInstallButton}
             installPromptEvent={installPromptEvent}
+            dispatchBuilderState={dispatchBuilderState}
+            customIndex={
+              gameState.isCustom
+                ? gameState.customIndex ?? savedCustomBuilds.length
+                : undefined
+            }
           ></Game>
         </div>
       );
