@@ -86,8 +86,17 @@ describe("gameInit", () => {
     const result = gameInit({useSaved: false, puzzleID});
 
     expect(result).toEqual({
-      puzzleID,
-      mainPath,
+      isCustom: false,
+      customIndex: undefined,
+      station: puzzles[puzzleID].station,
+      room: puzzles[puzzleID].room,
+      startingText: puzzles[puzzleID].startingText,
+      hintText: puzzles[puzzleID].hintText,
+      winText: puzzles[puzzleID].winText,
+      message: puzzles[puzzleID].startingText,
+      robotStartMood: puzzles[puzzleID].robotStartMood,
+      robotEndMood: puzzles[puzzleID].robotEndMood,
+      puzzle,
       numColumns,
       numRows,
       flaskCount: 0,
@@ -96,9 +105,10 @@ describe("gameInit", () => {
       numberCount: 0,
       maxNumber,
       validNextIndexes,
-      message: puzzles[puzzleID].startingText,
+      mainPath,
       encodedPuzzle,
       mouseIsActive: false,
+      puzzleID,
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,

@@ -3,6 +3,7 @@ import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
+import {generateSeed} from "../logic/generateSeed";
 
 function handlePointerDown({event, index, dispatchGameState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -82,7 +83,18 @@ function PuzzleSquare({
   );
 }
 
-function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
+function ExitButtons({
+  puzzle,
+  flaskCount,
+  puzzleID,
+  dispatchGameState,
+  isCustom,
+  setDisplay,
+  room,
+  encodedPuzzle,
+  dispatchBuilderState,
+  customIndex,
+}) {
   const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
 
   const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
@@ -99,18 +111,41 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
     <></>
   );
 
-  const hintButton =
-    flaskCount < maxFlasks ? (
-      <button
-        onClick={() =>
-          dispatchGameState({action: "newGame", puzzleID: puzzleID})
-        }
-      >
-        Retry Level
-      </button>
-    ) : (
-      <></>
-    );
+  const retryButton = isCustom ? (
+    <></>
+  ) : flaskCount < maxFlasks ? (
+    <button
+      onClick={() => dispatchGameState({action: "newGame", puzzleID: puzzleID})}
+    >
+      Retry Level
+    </button>
+  ) : (
+    <></>
+  );
+
+  const returnToGameButton = isCustom ? (
+    <button onClick={() => setDisplay("map")}>Return to map</button>
+  ) : (
+    <></>
+  );
+
+  const editButton = isCustom ? (
+    <button
+      onClick={() => {
+        dispatchBuilderState({
+          action: "editCustom",
+          puzzle,
+          name: room,
+          customIndex: customIndex,
+        });
+        setDisplay("builder");
+      }}
+    >
+      Edit
+    </button>
+  ) : (
+    <></>
+  );
 
   const shareButton =
     !nextPuzzleExists && navigator.canShare ? (
@@ -118,8 +153,13 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
         onClick={() =>
           handleShare({
             appName: "Deep Space Slime",
-            text: "I just beat Deep Space Slime! Try it out:",
+            text: isCustom
+              ? "Check out this custom Deep Space Slime puzzle!"
+              : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
+            seed: isCustom
+              ? `custom-${generateSeed(room, encodedPuzzle)}`
+              : undefined,
           })
         }
       >
@@ -133,7 +173,9 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
     <div id="exitButtons">
       {continueButton}
       {shareButton}
-      {hintButton}
+      {editButton}
+      {retryButton}
+      {returnToGameButton}
     </div>
   );
 }
@@ -147,17 +189,19 @@ function Game({
   setInstallPromptEvent,
   showInstallButton,
   installPromptEvent,
+  dispatchBuilderState,
+  customIndex,
 }) {
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
   const directions = getSlimeDirections({
     mainPath,
-    puzzle: puzzles[gameState.puzzleID].puzzle,
+    puzzle: gameState.puzzle,
     numColumns: gameState.numColumns,
     numRows: gameState.numRows,
   });
-  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
+  const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -200,8 +244,8 @@ function Game({
   ));
 
   const isAtExit =
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship";
+    gameState.puzzle[lastIndexInPath] === "exit" ||
+    gameState.puzzle[lastIndexInPath] === "ship";
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -212,27 +256,27 @@ function Game({
         installPromptEvent={installPromptEvent}
       ></ControlBar>
 
-      <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
-        puzzles[gameState.puzzleID].room
-      }`}</div>
+      <div id="location">{`${gameState.station}: ${gameState.room}`}</div>
 
       <div
         id="botFace"
-        className={
-          isAtExit
-            ? puzzles[gameState.puzzleID].robotEndMood
-            : puzzles[gameState.puzzleID].robotStartMood
-        }
+        className={isAtExit ? gameState.robotEndMood : gameState.robotStartMood}
       ></div>
 
       <div id="message">{gameState.message}</div>
 
       {isAtExit ? (
         <ExitButtons
-          puzzle={puzzles[gameState.puzzleID].puzzle}
+          puzzle={gameState.puzzle}
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}
+          isCustom={gameState.isCustom}
+          setDisplay={setDisplay}
+          room={gameState.room}
+          encodedPuzzle={gameState.encodedPuzzle}
+          dispatchBuilderState={dispatchBuilderState}
+          customIndex={customIndex}
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">
