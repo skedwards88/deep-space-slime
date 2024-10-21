@@ -111,6 +111,18 @@ function ExitButtons({
     <></>
   );
 
+  const retryButton = isCustom ? (
+    <></>
+  ) : flaskCount < maxFlasks ? (
+    <button
+      onClick={() => dispatchGameState({action: "newGame", puzzleID: puzzleID})}
+    >
+      Retry Level
+    </button>
+  ) : (
+    <></>
+  );
+
   const returnToGameButton = isCustom ? (
     <button onClick={() => setDisplay("map")}>Return to map</button>
   ) : (
@@ -162,6 +174,7 @@ function ExitButtons({
       {continueButton}
       {shareButton}
       {editButton}
+      {retryButton}
       {returnToGameButton}
     </div>
   );
