@@ -4,6 +4,7 @@ import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
+import {convertPuzzleToString} from "../logic/convertPuzzleString";
 
 function handlePointerDown({event, index, dispatchGameState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -91,7 +92,6 @@ function ExitButtons({
   isCustom,
   setDisplay,
   room,
-  encodedPuzzle,
   dispatchBuilderState,
   customIndex,
 }) {
@@ -158,7 +158,7 @@ function ExitButtons({
               : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
             seed: isCustom
-              ? `custom-${generateSeed(room, encodedPuzzle)}`
+              ? `custom-${generateSeed(room, convertPuzzleToString(puzzle))}`
               : undefined,
           })
         }
@@ -274,7 +274,6 @@ function Game({
           isCustom={gameState.isCustom}
           setDisplay={setDisplay}
           room={gameState.room}
-          encodedPuzzle={gameState.encodedPuzzle}
           dispatchBuilderState={dispatchBuilderState}
           customIndex={customIndex}
         ></ExitButtons>
