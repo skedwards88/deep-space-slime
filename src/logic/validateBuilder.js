@@ -122,7 +122,13 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
   }
 
   // Need at least one solution
-  const solutions = getAllValidPaths({puzzle, numColumns, numRows});
+  const maxPathsToFind = 10;
+  const solutions = getAllValidPaths({
+    puzzle,
+    numColumns,
+    numRows,
+    maxPathsToFind,
+  });
   const numSolutions = solutions.length;
   if (numSolutions === 0) {
     const numberFlasks = puzzle.filter(
@@ -151,7 +157,9 @@ export function validateBuilder({puzzle, numColumns, numRows}) {
         {`${
           numSolutions === 1
             ? `There is ${numSolutions} solution that collects`
-            : `There are ${numSolutions} solutions that collect`
+            : `There are ${
+                numSolutions >= maxPathsToFind ? "at least " : ""
+              }${numSolutions} solutions that collect`
         } all flasks.${
           hasPortals && numSolutions > 1
             ? " Solutions with portal direction reversed will look identical."

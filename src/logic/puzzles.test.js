@@ -98,7 +98,12 @@ describe("puzzle validation", () => {
 
   test("all puzzles have at least one solution", () => {
     for (const {puzzle, station, room} of puzzles) {
-      const solutions = getAllValidPaths({puzzle, numColumns: 7, numRows: 9});
+      const solutions = getAllValidPaths({
+        puzzle,
+        numColumns: 7,
+        numRows: 9,
+        maxPathsToFind: 1,
+      });
       if (solutions.length === 0) {
         throw new Error(`${station} ${room} has no solutions`);
       }
