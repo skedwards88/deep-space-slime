@@ -22,10 +22,12 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
 }
 
 function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
+  const maxPathsToFind = 100;
   const allPaths = getAllValidPaths({
     puzzle,
     numColumns,
     numRows,
+    maxPathsToFind,
   });
 
   const numSolutions = allPaths.length;
@@ -67,7 +69,9 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
         <div id="message">{`${
           numSolutions === 1
             ? `There is ${numSolutions} solution that collects`
-            : `There are ${numSolutions} solutions that collect`
+            : `There are ${
+                numSolutions >= maxPathsToFind ? "at least " : ""
+              }${numSolutions} solutions that collect`
         } all flasks.${
           hasPortals && numSolutions > 1
             ? " Solutions with portal direction reversed will look identical."

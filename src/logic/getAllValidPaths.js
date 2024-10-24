@@ -1,7 +1,12 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 
-export function getAllValidPaths({puzzle, numColumns, numRows}) {
+export function getAllValidPaths({
+  puzzle,
+  numColumns,
+  numRows,
+  maxPathsToFind = Infinity,
+}) {
   const startIndex = puzzle.indexOf("start");
 
   const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -35,6 +40,7 @@ export function getAllValidPaths({puzzle, numColumns, numRows}) {
     numRows,
     maxNumber,
     maxFlasks,
+    maxPathsToFind,
   });
 
   return paths;
@@ -48,8 +54,13 @@ function appendNext({
   maxNumber,
   maxFlasks,
   completePaths = [],
+  maxPathsToFind = Infinity,
 }) {
   for (const validIndex of pathState.validNextIndexes) {
+    if (completePaths.length >= maxPathsToFind) {
+      break;
+    }
+
     if (
       pathState.flaskCount === maxFlasks &&
       pathState.numberCount === maxNumber &&
@@ -73,6 +84,7 @@ function appendNext({
         maxNumber,
         maxFlasks,
         completePaths,
+        maxPathsToFind,
       });
     }
   }
