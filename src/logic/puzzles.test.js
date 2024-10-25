@@ -6,6 +6,16 @@ import {features, puzzles} from "./puzzles";
 import {getAllValidPaths} from "./getAllValidPaths";
 
 describe("puzzle validation", () => {
+  let anyTestFailed = false;
+
+  afterEach(() => {
+    if (
+      expect.getState().assertionCalls !== expect.getState().numPassingAsserts
+    ) {
+      anyTestFailed = true;
+    }
+  });
+
   test("all puzzles can be converted to a string and back again without error", () => {
     for (const {puzzle} of puzzles) {
       const encodedPuzzle = convertPuzzleToString(puzzle);
@@ -42,45 +52,43 @@ describe("puzzle validation", () => {
     }
   });
 
-  test("terminal tests ", () => {
-    for (const {puzzle, station, room} of puzzles) {
-      const numberTerminal1s = puzzle.filter(
-        (feature) => feature === features.terminal1,
-      ).length;
-      const numberTerminal2s = puzzle.filter(
-        (feature) => feature === features.terminal2,
-      ).length;
-      const numberTerminal3s = puzzle.filter(
-        (feature) => feature === features.terminal3,
-      ).length;
-      const numberTerminal4s = puzzle.filter(
-        (feature) => feature === features.terminal4,
-      ).length;
+  test.each(puzzles)("Terminal test for $station $room", ({puzzle}) => {
+    const numberTerminal1s = puzzle.filter(
+      (feature) => feature === features.terminal1,
+    ).length;
+    const numberTerminal2s = puzzle.filter(
+      (feature) => feature === features.terminal2,
+    ).length;
+    const numberTerminal3s = puzzle.filter(
+      (feature) => feature === features.terminal3,
+    ).length;
+    const numberTerminal4s = puzzle.filter(
+      (feature) => feature === features.terminal4,
+    ).length;
 
-      if (
-        numberTerminal1s > 1 ||
-        numberTerminal2s > 1 ||
-        numberTerminal3s > 1 ||
-        numberTerminal4s > 1
-      ) {
-        throw new Error(`${station} ${room} has a duplicate terminal`);
-      }
+    // No duplicate terminals
+    expect(numberTerminal1s).toBeLessThanOrEqual(1);
+    expect(numberTerminal2s).toBeLessThanOrEqual(1);
+    expect(numberTerminal3s).toBeLessThanOrEqual(1);
+    expect(numberTerminal4s).toBeLessThanOrEqual(1);
 
-      if (numberTerminal1s === 1 && numberTerminal2s === 0) {
-        throw new Error(`${station} ${room} has terminal 1 but no terminal 2`);
-      }
+    // If terminal 1, must have terminal 2
+    if (numberTerminal1s === 1) {
+      expect(numberTerminal2s).toBe(1);
+    }
 
-      if (
-        (numberTerminal4s === 1 &&
-          (numberTerminal1s === 0 ||
-            numberTerminal2s === 0 ||
-            numberTerminal3s === 0)) ||
-        (numberTerminal3s === 1 &&
-          (numberTerminal1s === 0 || numberTerminal2s === 0)) ||
-        (numberTerminal2s === 1 && numberTerminal1s === 0)
-      ) {
-        throw new Error(`${station} ${room} has non-sequential terminals`);
-      }
+    // Terminals must be sequential
+    if (numberTerminal4s === 1) {
+      expect(numberTerminal3s).toBe(1);
+      expect(numberTerminal2s).toBe(1);
+      expect(numberTerminal1s).toBe(1);
+    }
+    if (numberTerminal3s === 1) {
+      expect(numberTerminal2s).toBe(1);
+      expect(numberTerminal1s).toBe(1);
+    }
+    if (numberTerminal2s === 1) {
+      expect(numberTerminal1s).toBe(1);
     }
   });
 
@@ -97,6 +105,14 @@ describe("puzzle validation", () => {
   });
 
   test("all puzzles have at least one solution", () => {
+    // This only works if the tests run serially and this is the last test
+    if (anyTestFailed) {
+      console.warn(
+        "Skipping this test since other puzzle validation tests failed.",
+      );
+      return;
+    }
+
     for (const {puzzle, station, room} of puzzles) {
       const solutions = getAllValidPaths({
         puzzle,
