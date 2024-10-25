@@ -47,12 +47,25 @@ function BuilderEntry({
         id="playIcon"
         className="controlButton"
         onClick={() => {
-          dispatchGameState({
-            action: "playtestCustom",
-            customSeed: generateSeed(name, encodedPuzzle),
-            customIndex: index,
+          // Check if valid
+          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const {isValid} = validateBuilder({
+            puzzle: puzzle,
+            numColumns: 7,
+            numRows: 9,
           });
-          setDisplay("game");
+
+          // If not valid, the player can't play
+          if (!isValid) {
+            setDisplay("invalidShareMessage");
+          } else {
+            dispatchGameState({
+              action: "playtestCustom",
+              customSeed: generateSeed(name, encodedPuzzle),
+              customIndex: index,
+            });
+            setDisplay("game");
+          }
         }}
       ></button>
 

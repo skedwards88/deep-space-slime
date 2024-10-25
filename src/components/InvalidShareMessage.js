@@ -4,7 +4,7 @@ export default function InvalidShareMessage({setDisplay}) {
   return (
     <div className="App info">
       <div className="infoText">
-        <p>{`This puzzle isn't valid, so you can't share it yet.`}</p>
+        <p>{`This puzzle isn't valid, so you can't play or share it yet.`}</p>
         <p>
           Go edit the puzzle, and click the{" "}
           <span id="validateIcon" className="smallInfoIcon"></span> to see
