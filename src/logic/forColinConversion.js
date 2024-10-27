@@ -16,9 +16,9 @@ function getPuzzleForColin({
 
   customName = customName.replaceAll("+", " ");
 
-  console.log(`...`)
-  console.log(customName)
-  console.log(customEncodedPuzzle)
+  console.log(`...`);
+  console.log(customName);
+  console.log(customEncodedPuzzle);
   // return
   const puzzle = convertStringToPuzzle(customEncodedPuzzle);
 
@@ -59,9 +59,10 @@ export function getPuzzlesForColin({
 // 3. Copy the printed output (minus the open and closing square brackets)
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
 
-const stationName = "Pteroglyph Station";
+const stationName = "Dial Up Station";
 
-const startingText = "Giving picasso a run for his money!";
+const startingText =
+  "Back in my day, we had these ‘phones’ with numbers on them…";
 
 const winText =
   "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!";
@@ -71,17 +72,15 @@ const robotStartMood = "happy";
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Wolf+1_OOOOOOOOOPOOOOO4FOOOOBBBOOOOOFBJ1BOO3B2BBPOOBOOBOOOSOOEOOOOOOOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+1_OOOEOOOOPBBBPOOFB1BFOOBOBOBOOPBFBPOOBOBOBOO3BFB2OOPBBBPOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=custom-Bow+2_OOOOOOOOOOOOOOOBOJFFEOO3FPBOOJF1FOOOFPF2OOOFBOOBOOSOOOOBOOOOOOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+2_OOOEOOOOPBBBPOOFB1BFOOBOBOBOOPB3BPOOBOBOBOOFB2BFOOPBBBPOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=custom-Horse+3_OOOOOOOOOOPOOOOOEFOOOPF2JOOOOOFFJOOO1FFF3OOPOOFFPOOOOFOOOOOOSOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+3_OOOEOOOOPBBBPOOFB2B1OOBOBOBOOPBFBPOOBOBOBOO4B3B5OOPBBBPOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=custom-Stag+4_OOOOOOOOPOPOOOPF2FPOOO3F4OOOOOEOOOOO5F1FJOOFFFFJPOFFOOJOOPOOOSO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+4_OOOEOOOOPBBBPOO4B1B2OOBOBOBOOPBFBPOOBOBOBOOFB3BFOOPBBBPOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=custom-Chief+5_OOOOOOOOOPEPOOOOFFFOOOOODOOOOOJKJOOPF3J1FPOO2S4OOOOFOFOOOPFOFPO",
-
-"https://skedwards88.github.io/deep-space-slime?id=custom-Shaman+6_OPOOOPOO2KEKBOOOBDBOOOOO5OOOP3BJBBPBDFKFDBP1BSB4POPFOFPOOOBOBOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+5_OOOEOOOOPBBBPOO3B4B5OOBOBOBOOPB1BPOOBOBOBOOFB2BFOOPBBBPOOOOSOOO",
 ];
 
 console.log(
