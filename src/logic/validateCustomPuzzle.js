@@ -2,7 +2,7 @@ import {features} from "./puzzles";
 import {getAllValidPaths} from "./getAllValidPaths";
 import React from "react";
 
-export function validateBuilder({puzzle, numColumns, numRows}) {
+export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   // The puzzle must have exactly one start
   const numberStarts = puzzle.filter(
     (feature) => feature === features.start,
