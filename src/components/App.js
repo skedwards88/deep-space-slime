@@ -169,6 +169,7 @@ export default function App() {
           station={gameState.station}
           room={gameState.room}
           setDisplay={setDisplay}
+          origin="game"
         ></Pathfinder>
       );
 
@@ -181,6 +182,7 @@ export default function App() {
           station="Custom Simulation"
           room={builderState.name}
           setDisplay={setDisplay}
+          origin="builder"
         ></Pathfinder>
       );
 
