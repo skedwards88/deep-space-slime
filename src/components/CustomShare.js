@@ -6,7 +6,7 @@ export default function CustomShare({puzzle, name, setDisplay}) {
   const encodedPuzzle = convertPuzzleToString(puzzle);
   const customSeed = generateSeed(name, encodedPuzzle);
 
-  const link = `https://skedwards88.github.io/deep-space-slime?id=custom-${customSeed}`;
+  const link = `https://skedwards88.github.io/deep-space-slime?id=${customSeed}`;
 
   return (
     <div className="App customMessage">
