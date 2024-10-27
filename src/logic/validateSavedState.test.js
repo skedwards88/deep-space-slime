@@ -1,28 +1,51 @@
 import {validateSavedState} from "./validateSavedState";
-import {convertPuzzleToString} from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
 
 describe("validateSavedState", () => {
   const puzzleID = 1;
 
-  const encodedPuzzle = convertPuzzleToString(puzzles[puzzleID].puzzle);
+  const puzzle = puzzles[puzzleID].puzzle;
 
-  const validState = {
+  const validNonCustomState = {
+    isCustom: false,
+    customIndex: undefined,
     puzzleID,
-    mainPath: [0, 1, 2],
+    puzzle,
+    numColumns: 7,
+    numRows: 9,
     flaskCount: 1,
     keyCount: 1,
     jetCount: 1,
     numberCount: 1,
     maxNumber: 1,
-    numColumns: 7,
-    numRows: 9,
     validNextIndexes: [3, 4, 5],
-    encodedPuzzle,
+    mainPath: [0, 1, 2],
+    mouseIsActive: false,
   };
 
-  test("returns true for a valid saved state", () => {
-    expect(validateSavedState(validState)).toBe(true);
+  const validCustomState = {
+    isCustom: true,
+    customIndex: 5,
+    puzzleID: "custom",
+    puzzle,
+    numColumns: 7,
+    numRows: 9,
+    flaskCount: 1,
+    keyCount: 1,
+    jetCount: 1,
+    numberCount: 1,
+    maxNumber: 1,
+    validNextIndexes: [3, 4, 5],
+    mainPath: [0, 1, 2],
+    mouseIsActive: false,
+  };
+
+  test("returns true for a valid non-custom saved state", () => {
+    expect(validateSavedState(validNonCustomState)).toBe(true);
+  });
+
+  test("returns true for a valid custom saved state", () => {
+    expect(validateSavedState(validCustomState)).toBe(true);
   });
 
   test("returns false for null saved state", () => {
@@ -34,97 +57,126 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for invalid puzzleID (non-integer)", () => {
-    const state = {...validState, puzzleID: "invalid"};
+    const state = {...validNonCustomState, puzzleID: "invalid"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid puzzleID (negative)", () => {
-    const state = {...validState, puzzleID: -1};
+    const state = {...validNonCustomState, puzzleID: -1};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid puzzleID (out of range)", () => {
-    const state = {...validState, puzzleID: 100};
+    const state = {...validNonCustomState, puzzleID: puzzles.length + 5};
     expect(validateSavedState(state)).toBe(false);
   });
 
+  test("returns false for invalid puzzleID (for custom)", () => {
+    const state = {...validCustomState, puzzleID: 4};
+    expect(validateSavedState(state)).toBe(false);
+  });
   test("returns false for invalid mainPath (non-array)", () => {
-    const state = {...validState, mainPath: "1"};
+    const state = {...validNonCustomState, mainPath: "1"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid mainPath (contains non-integers)", () => {
-    const state = {...validState, mainPath: [0, "2", 2]};
+    const state = {...validNonCustomState, mainPath: [0, "2", 2]};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid acquired flasks (non-integers)", () => {
-    const state = {...validState, flaskCount: "3"};
+    const state = {...validNonCustomState, flaskCount: "3"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid acquired keys (non-integers)", () => {
-    const state = {...validState, keyCount: "3"};
+    const state = {...validNonCustomState, keyCount: "3"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid acquired jets (non-integers)", () => {
-    const state = {...validState, jetCount: "3"};
+    const state = {...validNonCustomState, jetCount: "3"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid acquired terminals (non-integers)", () => {
-    const state = {...validState, numberCount: "3"};
+    const state = {...validNonCustomState, numberCount: "3"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid maxNumber (non-integers)", () => {
-    const state = {...validState, maxNumber: "3"};
+    const state = {...validNonCustomState, maxNumber: "3"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid dimensions (numColumns)", () => {
-    const state = {...validState, numColumns: 8};
+    const state = {...validNonCustomState, numColumns: 8};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid dimensions (numRows)", () => {
-    const state = {...validState, numRows: 10};
+    const state = {...validNonCustomState, numRows: 10};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for string dimensions (numColumns)", () => {
-    const state = {...validState, numColumns: "7"};
+    const state = {...validNonCustomState, numColumns: "7"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for string dimensions (numRows)", () => {
-    const state = {...validState, numRows: "9"};
+    const state = {...validNonCustomState, numRows: "9"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid validNextIndexes (non-array)", () => {
-    const state = {...validState, validNextIndexes: "4"};
+    const state = {...validNonCustomState, validNextIndexes: "4"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid validNextIndexes (contains non-integers)", () => {
-    const state = {...validState, validNextIndexes: [3, "4", 5]};
+    const state = {...validNonCustomState, validNextIndexes: [3, "4", 5]};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for undefined encodedPuzzle", () => {
-    const state = {...validState, encodedPuzzle: undefined};
+  test("returns false for puzzle of wrong dimension", () => {
+    const state = {...validCustomState, puzzle: ["outer", "jet"]};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for empty encodedPuzzle", () => {
-    const state = {...validState, encodedPuzzle: ""};
+  test("returns false for unknown isCustom", () => {
+    const state = {...validCustomState, isCustom: undefined};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for mismatched encodedPuzzle", () => {
-    const state = {...validState, encodedPuzzle: "BOOJFFBB"};
+  test("returns false for custom without customIndex", () => {
+    const state = {...validCustomState, customIndex: undefined};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns true for valid encodedPuzzle", () => {
-    const state = {...validState};
-    expect(validateSavedState(state)).toBe(true);
+  test("returns false for custom with invalid customIndex", () => {
+    const state = {...validCustomState, customIndex: -4};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for non custom with customIndex", () => {
+    const state = {...validNonCustomState, customIndex: 4};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for no puzzle", () => {
+    const state = {...validNonCustomState, puzzle: undefined};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for mismatched puzzle", () => {
+    const state = {
+      ...validNonCustomState,
+      puzzle: puzzles[puzzleID + 1].puzzle,
+    };
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for puzzle with invalid feature", () => {
+    const newPuzzle = [...validCustomState.puzzle];
+    newPuzzle[1] = "desk";
+    const state = {...validCustomState, puzzle: newPuzzle};
+    expect(validateSavedState(state)).toBe(false);
   });
 });
