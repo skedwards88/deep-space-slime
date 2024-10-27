@@ -4130,7 +4130,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Wolf",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -4204,7 +4204,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Bow",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -4278,7 +4278,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Horse",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -4352,7 +4352,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Stag",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -4426,7 +4426,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Chief",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -4500,7 +4500,7 @@ export const puzzles = [
   {
     station: "Pteroglyph Station",
     room: "Shaman",
-    startingText: "Giving picasso a run for his money!",
+    startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
