@@ -16,6 +16,10 @@ function getPuzzleForColin({
 
   customName = customName.replaceAll("+", " ");
 
+  console.log(`...`)
+  console.log(customName)
+  console.log(customEncodedPuzzle)
+  // return
   const puzzle = convertStringToPuzzle(customEncodedPuzzle);
 
   return {
@@ -55,10 +59,9 @@ export function getPuzzlesForColin({
 // 3. Copy the printed output (minus the open and closing square brackets)
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
 
-const stationName = "Needle Station";
+const stationName = "Plant Station";
 
-const startingText = "Even a camel could pass through this one!"
-;
+const startingText = "Plants are better than humans. They don’t talk back when you experiment on them.";
 
 const winText =
   "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!";
@@ -68,19 +71,21 @@ const robotStartMood = "happy";
 const robotEndMood = "happy";
 
 const inputURLs = [
-"https://skedwards88.github.io/deep-space-slime?id=Needle+1_OOBEBOOOOBBBOOOJBBBJOOBFOFBOOBOOOBOOBOOOBOOBFOFBOOJBBBJOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Daisy+1_OBFDFBOOKPEPKOOBDKDBOOOOBOOOOOOBFFOOFFBFFOOFFBOOOOOOBOOOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+2_OOBEBOOOOFDFOOOOPFKOOOOBFPOOOOKDBOOOOPFKOOOOBDPOOOOFBFOOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Fern+Frond+2_OOOOOOOOOFF2OOOFFEFFOO3FFFFOOOFFFOOOOFF1OOOOFOOOOOOFOOOOOOSOOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+3_OOBEBOOOOFDKOOOOPB2OOOOBFPOOOOKBFOOOOP1BOOOOBFPOOOOFDFOOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Vine+3_OOFFFOOOFFOFFOOFOEOFOOFFFOFOOOOPOFOFFFFFFPFOFFOOFFFOFFFFOSOOOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+4_OOBEBOOOOBPBOOOO2B3OOOOBPBOOOOBFBOOOOBPBOOOO4B1OOOOBPBOOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Willow+4_BBDEDKBKOBDBOFFOOBOOPPOOBOOOOOBBDFBKBBOFPKFOBOPOFPOBOOOPOOSOOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+5_OOBEBOOOOF2FOOOOPBBOOOO3BPOOOOBFBOOOOPBFOOOOB4POOOOFB1OOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Orchid+5_OOBJBOOFBBPBBFBPFEFPBFBBPBBFOOFBFOOOOOFOOOOOOFOOOOOOFOOOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+6_OOBEBOOOOFBKOOOOPD1OOOOBBPOOOOK3JOOOOPBBOOOO2DPOOOOFBBOOOOBSBOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Rose+6_OOP4POOOP3E5POOP1B2POOOPFPOOOOOFOOOOOFFJOOOOJFFOOOOFFOOOOOOSOOO",
 
-"https://skedwards88.github.io/deep-space-slime?id=Needle+7_OOOEOOOOOOFOOOOOOPOOOOOPPPOOOO5JBOOOOB1BOOOO3B2OOOO4BBOOOOPSPOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Fly+Trap+7_OOOOOOOOOPJPOOOPD1DPOOO3E4OOOKD2DKOOPKJKPOOOPFPOOOOOFOOOOOOSOOO",
+
+"https://skedwards88.github.io/deep-space-slime?id=custom-Cherry+Blossom_OPOPOOOPFJ3FOPO5OFPOFPJOEOPFOF1P2FJOPFJF4POOOFOOOOOOFOOOOOOSOOO",
 ];
 
 console.log(
