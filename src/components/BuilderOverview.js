@@ -1,6 +1,6 @@
 import React from "react";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
-import {validateBuilder} from "../logic/validateBuilder";
+import {validateCustomPuzzle} from "../logic/validateCustomPuzzle";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 
@@ -49,7 +49,7 @@ function BuilderEntry({
         onClick={() => {
           // Check if valid
           const puzzle = convertStringToPuzzle(encodedPuzzle);
-          const {isValid} = validateBuilder({
+          const {isValid} = validateCustomPuzzle({
             puzzle: puzzle,
             numColumns: 7,
             numRows: 9,
@@ -75,7 +75,7 @@ function BuilderEntry({
         onClick={() => {
           // Check if valid
           const puzzle = convertStringToPuzzle(encodedPuzzle);
-          const {isValid} = validateBuilder({
+          const {isValid} = validateCustomPuzzle({
             puzzle: puzzle,
             numColumns: 7,
             numRows: 9,

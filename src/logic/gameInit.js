@@ -2,7 +2,7 @@ import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState, puzzleIdIsValid} from "./validateSavedState";
-import {validateBuilder} from "./validateBuilder";
+import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
 
 export function gameInit({
@@ -82,7 +82,7 @@ export function gameInit({
       customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
 
       // Mane sure that the puzzle passes all of the validation (in case someone edits/mangles the query string)
-      const {isValid} = validateBuilder({
+      const {isValid} = validateCustomPuzzle({
         puzzle: customPuzzle,
         numColumns,
         numRows,
