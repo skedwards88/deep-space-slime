@@ -158,7 +158,7 @@ function ExitButtons({
               : "I just beat Deep Space Slime! Try it out:",
             url: "https://skedwards88.github.io/deep-space-slime",
             seed: isCustom
-              ? `custom-${generateSeed(room, convertPuzzleToString(puzzle))}`
+              ? generateSeed(room, convertPuzzleToString(puzzle))
               : undefined,
           })
         }
