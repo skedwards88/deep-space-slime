@@ -54,9 +54,9 @@ export function getPuzzlesForColin({
 // 2. In the terminal, run: npm run testrun src/logic/forColinConversion.js
 // 3. Copy the printed output (minus the open and closing square brackets)
 
-const stationName = "Chest Station";
+const stationName = "Pteroglyph Station";
 
-const startingText = "Yo ho ho and a bottle of slime!";
+const startingText = "Giving picasso a run for his money!";
 
 const winText =
   "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!";
@@ -66,15 +66,17 @@ const robotStartMood = "happy";
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://skedwards88.github.io/deep-space-slime?id=Chest+1_OOOOOOOOOOOOOOOOOOOOOOPFFFPOOFFEFFOOFFSFFOOPFFFPOOOOOOOOOOOOOOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Wolf+1_OOOOOOOOOPOOOOO4FOOOOBBBOOOOOFBJ1BOO3B2BBPOOBOOBOOOSOOEOOOOOOOO",
 
-  "https://skedwards88.github.io/deep-space-slime?id=Chest+2_OOOOOOOOOOOOOOOOOOOOOOPF4FPOOFFEFFOO2FSF1OOPF3FPOOOOOOOOOOOOOOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Bow+2_OOOOOOOOOOOOOOOBOJFFEOO3FPBOOJF1FOOOFPF2OOOFBOOBOOSOOOOBOOOOOOO",
 
-  "https://skedwards88.github.io/deep-space-slime?id=Chest+3_OOOOOOOOOOOOOOOOOOOOOOP4F3POOFFEFFOO2FSF1OOPFFFPOOOOOOOOOOOOOOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Horse+3_OOOOOOOOOOPOOOOOEFOOOPF2JOOOOOFFJOOO1FFF3OOPOOFFPOOOOFOOOOOOSOO",
 
-  "https://skedwards88.github.io/deep-space-slime?id=Chest+4_OOOOOOOOOOOOOOOOOOOOOOPFFFPOOF4E5FOO2FSF3OOPF1FPOOOOOOOOOOOOOOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Stag+4_OOOOOOOOPOPOOOPF2FPOOO3F4OOOOOEOOOOO5F1FJOOFFFFJPOFFOOJOOPOOOSO",
 
-  "https://skedwards88.github.io/deep-space-slime?id=Chest+5_OOOOOOOOOOOOOOOOOOOOOOPF4FPOOF5E3FOO2FSF1OOPFFFPOOOOOOOOOOOOOOO",
+"https://skedwards88.github.io/deep-space-slime?id=custom-Chief+5_OOOOOOOOOPEPOOOOFFFOOOOODOOOOOJKJOOPF3J1FPOO2S4OOOOFOFOOOPFOFPO",
+
+"https://skedwards88.github.io/deep-space-slime?id=custom-Shaman+6_OPOOOPOO2KEKBOOOBDBOOOOO5OOOP3BJBBPBDFKFDBP1BSB4POPFOFPOOOBOBOO",
 ];
 
 console.log(
