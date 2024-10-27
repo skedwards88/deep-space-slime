@@ -20,7 +20,7 @@ function BuilderEntry({
       <button
         id="copyIcon"
         className="controlButton"
-        disabled={savedCustomBuilds.length >= 100}
+        disabled={savedCustomBuilds.length >= 400}
         onClick={() => {
           let newSavedBuilds = savedCustomBuilds.slice();
           newSavedBuilds.splice(index, 0, savedCustomBuilds[index]);
@@ -147,12 +147,12 @@ export default function BuilderOverview({
         <div id="botFace" className="happy"></div>
 
         <div id="message">
-          Here are all of your custom puzzles. You can create up to 100 custom
+          Here are all of your custom puzzles. You can create up to 400 custom
           puzzles.
         </div>
       </div>
       <button
-        disabled={savedCustomBuilds.length >= 100}
+        disabled={savedCustomBuilds.length >= 400}
         onClick={() => {
           dispatchBuilderState({
             action: "newCustom",
