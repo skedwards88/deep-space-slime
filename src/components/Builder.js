@@ -209,7 +209,7 @@ export default function Builder({
         <button
           id="returnIcon"
           className="controlButton"
-          onClick={() => setDisplay("game")}
+          onClick={() => setDisplay("builderOverview")}
         ></button>
       </div>
 
