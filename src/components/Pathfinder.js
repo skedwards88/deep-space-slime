@@ -21,7 +21,15 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
   );
 }
 
-function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
+function Pathfinder({
+  puzzle,
+  numColumns,
+  numRows,
+  station,
+  room,
+  setDisplay,
+  origin,
+}) {
   const maxPathsToFind = 100;
   const allPaths = getAllValidPaths({
     puzzle,
@@ -58,7 +66,7 @@ function Pathfinder({puzzle, numColumns, numRows, station, room, setDisplay}) {
   return (
     <div className="App" id="deep-space-slime">
       <div id="game">
-        <button id="pathfinderControls" onClick={() => setDisplay("game")}>
+        <button id="pathfinderControls" onClick={() => setDisplay(origin)}>
           Exit pathfinder
         </button>
 
