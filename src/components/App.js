@@ -35,6 +35,7 @@ export default function App() {
     {
       customSeed,
       isCustom: Boolean(customSeed),
+      useSaved: customSeed ? false : undefined,
     },
     gameInit,
   );
