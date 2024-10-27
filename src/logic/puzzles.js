@@ -2206,7 +2206,7 @@ export const puzzles = [
   {
     station: "Chest Station",
     room: "1",
-    startingText: "Yo ho ho and a bottle of slime!",
+    startingText: "By beating the main game, you've unlocked new thematic stations like this one! Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -6060,9 +6060,8 @@ export const puzzles = [
   {
     station: "Cube station",
     room: "1",
-    startingText:
-      "By beating the story, you've unlocked spectial stations! This one's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
+    startingText: "It's actually just a square, but you'll have to think outside the box to get through.",
+    winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -6136,8 +6135,8 @@ export const puzzles = [
     room: "2",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       features.outer,
@@ -6210,8 +6209,8 @@ export const puzzles = [
     room: "3",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       features.outer,
@@ -6284,8 +6283,8 @@ export const puzzles = [
     room: "4",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       features.outer,
@@ -6358,8 +6357,8 @@ export const puzzles = [
     room: "5",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       "outer",
@@ -6432,8 +6431,8 @@ export const puzzles = [
     room: "6",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       features.outer,
@@ -6506,8 +6505,8 @@ export const puzzles = [
     room: "7",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
+      winText: "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       features.outer,
@@ -7694,7 +7693,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "1",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7769,7 +7768,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "2",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7844,7 +7843,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "3",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7919,7 +7918,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "4",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7994,7 +7993,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "5",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8069,7 +8068,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "6",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8144,7 +8143,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Natiuls Station",
+    station: "Nautilus Station",
     room: "7",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8222,7 +8221,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "1",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8297,7 +8296,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "2",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8372,7 +8371,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "3",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8447,7 +8446,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "4",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8522,7 +8521,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "5",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8597,7 +8596,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "6",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8672,7 +8671,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "7",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8747,7 +8746,7 @@ export const puzzles = [
     station: "Criss Cross Station",
     room: "8",
     startingText:
-      "If you need inspiration, just think about that that time I double crossed you!",
+      "If you need inspiration, just think about that time I double crossed you!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8821,7 +8820,7 @@ export const puzzles = [
   {
     station: "Dial Up Station",
     room: "1",
-    startingText: "Back in my day, we had these ‘phones’ with numbers on them…",
+    startingText: "Back in my day, we had these 'phones' with numbers on them...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8895,7 +8894,7 @@ export const puzzles = [
   {
     station: "Dial Up Station",
     room: "2",
-    startingText: "Back in my day, we had these ‘phones’ with numbers on them…",
+    startingText: "Back in my day, we had these 'phones' with numbers on them...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -8969,7 +8968,7 @@ export const puzzles = [
   {
     station: "Dial Up Station",
     room: "3",
-    startingText: "Back in my day, we had these ‘phones’ with numbers on them…",
+    startingText: "Back in my day, we had these 'phones' with numbers on them...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -9043,7 +9042,7 @@ export const puzzles = [
   {
     station: "Dial Up Station",
     room: "4",
-    startingText: "Back in my day, we had these ‘phones’ with numbers on them…",
+    startingText: "Back in my day, we had these 'phones' with numbers on them...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -9117,7 +9116,7 @@ export const puzzles = [
   {
     station: "Dial Up Station",
     room: "5",
-    startingText: "Back in my day, we had these ‘phones’ with numbers on them…",
+    startingText: "Back in my day, we had these 'phones' with numbers on them...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
