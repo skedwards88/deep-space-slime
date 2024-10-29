@@ -1,4 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
+import {features} from "./constants";
 
 export function getIndexBetween({indexA, indexB, numColumns}) {
   if (Math.abs(indexA - indexB) === 2) {
@@ -43,7 +44,7 @@ export function getSlimeDirectionForPortal({
   // For portal -> portal, need center-exitDirection
   // For non-portal -> portal, need enterDirection-center
   const previousFeature = puzzle[previousSquare];
-  if (previousFeature === "portal") {
+  if (previousFeature === features.portal) {
     const exitDirection = getDirection(currentSquare, nextSquare, numColumns);
     return `center-${exitDirection}`;
   } else {
@@ -82,7 +83,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
   for (let currentSquare = 0; currentSquare < puzzle.length; currentSquare++) {
     const currentFeature = puzzle[currentSquare];
 
-    if (currentFeature === "start") {
+    if (currentFeature === features.start) {
       const direction = getSlimeDirectionForStart(mainPath, numColumns);
       directions.push(direction);
       continue;
@@ -106,7 +107,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       continue;
     }
 
-    if (currentFeature === "portal") {
+    if (currentFeature === features.portal) {
       const direction = getSlimeDirectionForPortal({
         currentSquare,
         previousSquare,

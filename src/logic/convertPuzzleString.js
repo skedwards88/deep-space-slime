@@ -1,20 +1,4 @@
-const featureToLetterLookup = {
-  outer: "O",
-  basic: "B",
-  exit: "E",
-  start: "S",
-  flask: "F",
-  jet: "J",
-  portal: "P",
-  key: "K",
-  door: "D",
-  1: "1",
-  2: "2",
-  3: "3",
-  4: "4",
-  5: "5",
-  ship: "H",
-};
+import {featureToLetterLookup} from "./constants";
 
 const letterToFeatureLookup = Object.fromEntries(
   Object.entries(featureToLetterLookup).map(([feature, letter]) => [

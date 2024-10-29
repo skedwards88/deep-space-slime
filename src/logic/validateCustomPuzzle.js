@@ -1,4 +1,4 @@
-import {features} from "./puzzles";
+import {features} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 import React from "react";
 
@@ -148,7 +148,7 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
     };
   }
 
-  const hasPortals = puzzle.includes("portal");
+  const hasPortals = puzzle.includes(features.portal);
 
   return {
     isValid: true,

@@ -1,5 +1,6 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
+import {features} from "./constants";
 
 // To backtrack:
 // Remove the last index in the path.
@@ -14,15 +15,15 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
   let newKeyCount = currentGameState.keyCount;
-  if (puzzle[lastIndexInPath] === "key") {
+  if (puzzle[lastIndexInPath] === features.key) {
     newKeyCount--;
   }
-  if (puzzle[lastIndexInPath] === "door") {
+  if (puzzle[lastIndexInPath] === features.door) {
     newKeyCount++;
   }
 
   let newJetCount = currentGameState.jetCount;
-  if (puzzle[lastIndexInPath] === "jet") {
+  if (puzzle[lastIndexInPath] === features.jet) {
     newJetCount--;
   }
   // If not moving to a portal or an adjacent index, assume that moving with a jet
@@ -31,7 +32,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     numColumns: currentGameState.numColumns,
     numRows: currentGameState.numRows,
   });
-  if (puzzle[index] !== "portal" && !adjacentIndexes.includes(index)) {
+  if (puzzle[index] !== features.portal && !adjacentIndexes.includes(index)) {
     newJetCount++;
   }
 
@@ -58,7 +59,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     flaskCount:
-      puzzle[lastIndexInPath] === "flask"
+      puzzle[lastIndexInPath] === features.flask
         ? currentGameState.flaskCount - 1
         : currentGameState.flaskCount,
     keyCount: newKeyCount,
