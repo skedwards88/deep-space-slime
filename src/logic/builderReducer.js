@@ -1,5 +1,6 @@
-import {allLimitedFeatures, builderInit} from "./builderInit";
+import {builderInit} from "./builderInit";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
+import {limitedFeatures, features} from "./constants";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -27,11 +28,11 @@ export function builderReducer(currentBuilderState, payload) {
         currentBuilderState.remainingLimitedFeatures.filter(
           (feature) => feature !== currentBuilderState.activeFeature,
         );
-      newActiveFeature = "basic";
+      newActiveFeature = features.basic;
     }
 
     // If a limited feature is being replaced, add the feature back to the options
-    if (allLimitedFeatures.includes(payload.replacedFeature)) {
+    if (limitedFeatures.includes(payload.replacedFeature)) {
       console.log("replacing " + payload.replacedFeature);
       newRemainingLimitedFeatures.push(payload.replacedFeature);
       newRemainingLimitedFeatures.sort();

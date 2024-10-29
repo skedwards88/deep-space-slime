@@ -1,4 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
+import {features} from "./constants";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -8,14 +9,14 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // Return with no message if the player is at the exit
   // (because players often swipe past the exit and would miss the end text if an error showed instead)
-  if (puzzle[lastIndexInPath] === "exit") {
+  if (puzzle[lastIndexInPath] === features.exit) {
     return;
   }
 
   let message = "";
 
   // The space is an 'outer' space
-  if (puzzle[index] === "outer") {
+  if (puzzle[index] === features.outer) {
     message =
       "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
     return message;
@@ -31,14 +32,14 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   // The index is a door and you don't have a key
-  if (puzzle[index] === "door" && currentGameState.keyCount <= 0) {
+  if (puzzle[index] === features.door && currentGameState.keyCount <= 0) {
     message = "You need a CARD KEY for that!";
     return message;
   }
 
   // The space is the exit and you haven't visited all numbers
   if (
-    puzzle[index] === "exit" &&
+    puzzle[index] === features.exit &&
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
     message =
@@ -56,10 +57,10 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   }
 
   let numberPortalsVisited = 0;
-  if (puzzle[lastIndexInPath] === "portal") {
+  if (puzzle[lastIndexInPath] === features.portal) {
     mainPath.forEach((index) => {
       const feature = puzzle[index];
-      if (feature === "portal") {
+      if (feature === features.portal) {
         numberPortalsVisited++;
       }
     });
@@ -67,8 +68,8 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // The last index was a portal and you have visited an odd number of portals, and this space isn't a portal
   if (
-    puzzle[lastIndexInPath] === "portal" &&
-    puzzle[index] !== "portal" &&
+    puzzle[lastIndexInPath] === features.portal &&
+    puzzle[index] !== features.portal &&
     numberPortalsVisited % 2 !== 0
   ) {
     message =
@@ -87,8 +88,8 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   // Trying to jump to a portal after exiting a portal
   if (
     !isAdjacent &&
-    puzzle[lastIndexInPath] === "portal" &&
-    puzzle[index] === "portal" &&
+    puzzle[lastIndexInPath] === features.portal &&
+    puzzle[index] === features.portal &&
     numberPortalsVisited % 2 === 0
   ) {
     message =

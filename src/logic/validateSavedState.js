@@ -1,4 +1,5 @@
-import {puzzles, features} from "./puzzles";
+import {puzzles} from "./puzzles";
+import {features} from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 
 export function puzzleIdIsValid(puzzleID) {

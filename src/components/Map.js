@@ -1,8 +1,9 @@
 import React from "react";
 import {puzzles} from "../logic/puzzles";
+import {features} from "../logic/constants";
 
 function getMaxFlaskCount(puzzle) {
-  return puzzle.filter((feature) => feature === "flask").length;
+  return puzzle.filter((feature) => feature === features.flask).length;
 }
 
 export default function Map({

@@ -1,5 +1,6 @@
 import {validateSavedState} from "./validateSavedState";
 import {puzzles} from "./puzzles";
+import {features} from "./constants";
 
 describe("validateSavedState", () => {
   const puzzleID = 1;
@@ -136,7 +137,7 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for puzzle of wrong dimension", () => {
-    const state = {...validCustomState, puzzle: ["outer", "jet"]};
+    const state = {...validCustomState, puzzle: [features.outer, features.jet]};
     expect(validateSavedState(state)).toBe(false);
   });
 

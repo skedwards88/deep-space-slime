@@ -2,6 +2,7 @@ import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
+import {unlimitedFeatures} from "../logic/constants";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -61,16 +62,6 @@ export default function Builder({
   dispatchBuilderState,
   dispatchGameState,
 }) {
-  const unlimitedFeatures = [
-    "outer",
-    "basic",
-    "flask",
-    "jet",
-    "portal",
-    "key",
-    "door",
-  ];
-
   const unlimitedFeatureButtons = unlimitedFeatures.map((feature, index) => (
     <button
       key={index}

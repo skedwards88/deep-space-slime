@@ -5,6 +5,7 @@ import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {features} from "../logic/constants";
 
 function handlePointerDown({event, index, dispatchGameState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -49,7 +50,7 @@ function PuzzleSquare({
 }) {
   let featureClass;
 
-  if (feature === "exit") {
+  if (feature === features.exit) {
     feature = exitUnlocked ? "exit-opened" : "exit-closed";
   }
 
@@ -70,7 +71,7 @@ function PuzzleSquare({
       }
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
-        feature !== "outer" && {
+        feature !== features.outer && {
           onPointerEnter: (event) => {
             if (feature === "exit-opened") {
               let newScore = [...score];
@@ -95,7 +96,9 @@ function ExitButtons({
   dispatchBuilderState,
   customIndex,
 }) {
-  const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+  const maxFlasks = puzzle.filter(
+    (feature) => feature === features.flask,
+  ).length;
 
   const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
 
@@ -244,8 +247,8 @@ function Game({
   ));
 
   const isAtExit =
-    gameState.puzzle[lastIndexInPath] === "exit" ||
-    gameState.puzzle[lastIndexInPath] === "ship";
+    gameState.puzzle[lastIndexInPath] === features.exit ||
+    gameState.puzzle[lastIndexInPath] === features.ship;
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
