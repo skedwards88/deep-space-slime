@@ -3,6 +3,7 @@ import {getReasonForMoveInvalidity} from "./getReasonForMoveInvalidity";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {getValidNextIndexes} from "./getValidNextIndexes";
+import {features} from "./constants";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -24,7 +25,7 @@ export function gameReducer(currentGameState, payload) {
     const penultimateIndexInPath = mainPath[mainPath.length - 2];
 
     // If the index is the start index, reset the path
-    const startIndex = puzzle.indexOf("start");
+    const startIndex = puzzle.indexOf(features.start);
     if (startIndex === index) {
       const newValidNextIndexes = getValidNextIndexes({
         mainPath: [startIndex],
@@ -68,8 +69,10 @@ export function gameReducer(currentGameState, payload) {
     });
     // and update the message
     let newMessage;
-    if (puzzle[index] === "exit" || puzzle[index] === "ship") {
-      const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+    if (puzzle[index] === features.exit || puzzle[index] === features.ship) {
+      const maxFlasks = puzzle.filter(
+        (feature) => feature === features.flask,
+      ).length;
       if (
         currentGameState.flaskCount < maxFlasks &&
         currentGameState.hintText

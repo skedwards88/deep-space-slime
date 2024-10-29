@@ -4,6 +4,7 @@ import {puzzles} from "./puzzles";
 import {validateSavedState, puzzleIdIsValid} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
+import {features} from "./constants";
 
 export function gameInit({
   useSaved = true,
@@ -98,7 +99,7 @@ export function gameInit({
 
   const puzzle = isCustom ? customPuzzle : puzzles[puzzleID].puzzle;
 
-  const startIndex = puzzle.indexOf("start");
+  const startIndex = puzzle.indexOf(features.start);
   const mainPath = [startIndex];
 
   const numbers = puzzle.map(Number).filter(Number.isInteger);

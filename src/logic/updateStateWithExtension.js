@@ -1,5 +1,6 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
+import {features} from "./constants";
 
 // To extend:
 // Add the index to the path.
@@ -21,15 +22,15 @@ export function updateStateWithExtension({
   const newMainPath = [...currentGameState.mainPath, index];
 
   let newKeyCount = currentGameState.keyCount;
-  if (puzzle[index] === "key") {
+  if (puzzle[index] === features.key) {
     newKeyCount++;
   }
-  if (puzzle[index] === "door") {
+  if (puzzle[index] === features.door) {
     newKeyCount--;
   }
 
   let newJetCount = currentGameState.jetCount;
-  if (puzzle[index] === "jet") {
+  if (puzzle[index] === features.jet) {
     newJetCount++;
   }
   // If not moving to a portal or an adjacent index, assume that moving with a jet
@@ -38,7 +39,7 @@ export function updateStateWithExtension({
     numColumns: currentGameState.numColumns,
     numRows: currentGameState.numRows,
   });
-  if (puzzle[index] !== "portal" && !adjacentIndexes.includes(index)) {
+  if (puzzle[index] !== features.portal && !adjacentIndexes.includes(index)) {
     newJetCount--;
   }
 
@@ -65,7 +66,7 @@ export function updateStateWithExtension({
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     flaskCount:
-      puzzle[index] === "flask"
+      puzzle[index] === features.flask
         ? currentGameState.flaskCount + 1
         : currentGameState.flaskCount,
     jetCount: newJetCount,
