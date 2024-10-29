@@ -2,7 +2,8 @@ import {
   convertPuzzleToString,
   convertStringToPuzzle,
 } from "./convertPuzzleString";
-import {features, puzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
+import {features} from "./constants";
 
 describe("convertPuzzleToString", () => {
   test("converts a puzzle array to a string correctly", () => {
@@ -27,7 +28,7 @@ describe("convertPuzzleToString", () => {
   });
 
   test("throws an error for an unknown feature", () => {
-    const puzzle = ["basic", "unknown"];
+    const puzzle = [features.basic, "unknown"];
     expect(() => convertPuzzleToString(puzzle)).toThrow(
       'Feature "unknown" not found in featureToLetterLookup',
     );

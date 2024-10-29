@@ -2,7 +2,8 @@ import {
   convertPuzzleToString,
   convertStringToPuzzle,
 } from "./convertPuzzleString";
-import {features, puzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
+import {features} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 
 describe("puzzle validation", () => {

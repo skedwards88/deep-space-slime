@@ -1,6 +1,7 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {getAllValidPaths} from "../logic/getAllValidPaths";
+import {features} from "../logic/constants";
 
 function PuzzleSquare({feature, index, visited, current, direction}) {
   let featureClass;
@@ -61,7 +62,7 @@ function Pathfinder({
     ></PuzzleSquare>
   ));
 
-  const hasPortals = puzzle.includes("portal");
+  const hasPortals = puzzle.includes(features.portal);
 
   return (
     <div className="App" id="deep-space-slime">

@@ -1,5 +1,6 @@
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
+import {features} from "./constants";
 
 export function getValidNextIndexes({
   mainPath,
@@ -38,23 +39,23 @@ export function getValidNextIndexes({
     validIndexes.push(penultimateIndexInPath);
   }
 
-  if (allowStart && puzzle[lastIndexInPath] !== "start") {
-    const startIndex = puzzle.indexOf("start");
+  if (allowStart && puzzle[lastIndexInPath] !== features.start) {
+    const startIndex = puzzle.indexOf(features.start);
     validIndexes.push(startIndex);
   }
 
   if (
-    puzzle[lastIndexInPath] === "exit" ||
-    puzzle[lastIndexInPath] === "ship"
+    puzzle[lastIndexInPath] === features.exit ||
+    puzzle[lastIndexInPath] === features.ship
   ) {
     return validIndexes;
   }
 
   let numberPortalsVisited = 0;
-  if (puzzle[lastIndexInPath] === "portal") {
+  if (puzzle[lastIndexInPath] === features.portal) {
     mainPath.forEach((index) => {
       const feature = puzzle[index];
-      if (feature === "portal") {
+      if (feature === features.portal) {
         numberPortalsVisited++;
       }
     });
@@ -62,7 +63,7 @@ export function getValidNextIndexes({
 
   if (numberPortalsVisited % 2 !== 0) {
     puzzle.forEach((feature, index) => {
-      if (feature === "portal" && !mainPath.includes(index)) {
+      if (feature === features.portal && !mainPath.includes(index)) {
         validIndexes.push(index);
       }
     });
@@ -79,20 +80,20 @@ export function getValidNextIndexes({
       }
       const feature = puzzle[adjacentIndex];
 
-      if (feature === "outer") {
+      if (feature === features.outer) {
         continue;
       } else if (
-        feature === "basic" ||
-        feature === "flask" ||
-        feature === "key" ||
-        feature === "jet" ||
-        feature === "portal" ||
-        feature === "ship"
+        feature === features.basic ||
+        feature === features.flask ||
+        feature === features.key ||
+        feature === features.jet ||
+        feature === features.portal ||
+        feature === features.ship
       ) {
         validIndexes.push(adjacentIndex);
-      } else if (feature === "door" && hasKey) {
+      } else if (feature === features.door && hasKey) {
         validIndexes.push(adjacentIndex);
-      } else if (feature === "exit" && numberCount === maxNumber) {
+      } else if (feature === features.exit && numberCount === maxNumber) {
         validIndexes.push(adjacentIndex);
       } else if (
         Number.isInteger(Number.parseInt(feature)) &&
@@ -121,9 +122,9 @@ export function getValidNextIndexes({
 
         if (
           nextAdjacentIndex === undefined ||
-          nextAdjacentFeature === "outer" ||
+          nextAdjacentFeature === features.outer ||
           mainPath.includes(nextAdjacentIndex) ||
-          (nextAdjacentFeature === "door" && !hasKey) ||
+          (nextAdjacentFeature === features.door && !hasKey) ||
           (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
             Number.parseInt(nextAdjacentFeature) !== numberCount + 1)
         ) {
