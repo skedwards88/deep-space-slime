@@ -59,28 +59,20 @@ export function getPuzzlesForColin({
 // 3. Copy the printed output (minus the open and closing square brackets)
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
 
-const stationName = "Dial Up Station";
+const stationName = "Terminals Station";
 
-const startingText =
-  "Back in my day, we had these ‘phones’ with numbers on them…";
+const startingText = "Basic terminal training.";
 
 const winText =
-  "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!";
+  "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!";
 
 const robotStartMood = "happy";
 
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+1_OOOEOOOOPBBBPOOFB1BFOOBOBOBOOPBFBPOOBOBOBOO3BFB2OOPBBBPOOOOSOOO",
-
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+2_OOOEOOOOPBBBPOOFB1BFOOBOBOBOOPB3BPOOBOBOBOOFB2BFOOPBBBPOOOOSOOO",
-
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+3_OOOEOOOOPBBBPOOFB2B1OOBOBOBOOPBFBPOOBOBOBOO4B3B5OOPBBBPOOOOSOOO",
-
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+4_OOOEOOOOPBBBPOO4B1B2OOBOBOBOOPBFBPOOBOBOBOOFB3BFOOPBBBPOOOOSOOO",
-
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Dial+Up+5_OOOEOOOOPBBBPOO3B4B5OOBOBOBOOPB1BPOOBOBOBOOFB2BFOOPBBBPOOOOSOOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Zigger+1_OOBEBOOOOBOBOOOPBFBPOOOBOBOOOPBJBPOOOFOFOOOPBFBPOOOFOFOOOPJSJPO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Nautilus+6_OOOBFBBOBBBBB1B3OOPSBBOOBBBFBOB2PBOBO5EOBBJBPOPB4OBBBBBOOOFBFOO",
 ];
 
 console.log(
