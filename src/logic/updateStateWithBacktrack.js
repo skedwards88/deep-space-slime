@@ -13,6 +13,7 @@ import {features} from "./constants";
 export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
+  const newMainPath = mainPath.slice(0, mainPath.length - 1);
 
   let newKeyCount = currentGameState.keyCount;
   if (puzzle[lastIndexInPath] === features.key) {
@@ -26,14 +27,29 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   if (puzzle[lastIndexInPath] === features.jet) {
     newJetCount--;
   }
-  // If not moving to a portal or an adjacent index, assume that moving with a jet
+
+  // Assume that moving with a jet if not moving to an adjacent index
+  // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
     numColumns: currentGameState.numColumns,
     numRows: currentGameState.numRows,
   });
-  if (puzzle[index] !== features.portal && !adjacentIndexes.includes(index)) {
-    newJetCount++;
+  if (!adjacentIndexes.includes(index)) {
+    let numberPortalsVisited = 0;
+    if (puzzle[index] === features.portal) {
+      newMainPath.forEach((index) => {
+        const feature = puzzle[index];
+        if (feature === features.portal) {
+          numberPortalsVisited++;
+        }
+      });
+    }
+    const isPortalTravel =
+      puzzle[index] === features.portal && numberPortalsVisited % 2 !== 0;
+    if (!isPortalTravel) {
+      newJetCount++;
+    }
   }
 
   const newNumberCount = Number.isInteger(
@@ -42,7 +58,6 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     ? currentGameState.numberCount - 1
     : currentGameState.numberCount;
 
-  const newMainPath = mainPath.slice(0, mainPath.length - 1);
   const newValidNextIndexes = getValidNextIndexes({
     mainPath: newMainPath,
     puzzle: puzzle,

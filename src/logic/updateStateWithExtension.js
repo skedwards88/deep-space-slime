@@ -33,14 +33,31 @@ export function updateStateWithExtension({
   if (puzzle[index] === features.jet) {
     newJetCount++;
   }
-  // If not moving to a portal or an adjacent index, assume that moving with a jet
+  // Assume that moving with a jet if not moving to an adjacent index
+  // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
     numColumns: currentGameState.numColumns,
     numRows: currentGameState.numRows,
   });
-  if (puzzle[index] !== features.portal && !adjacentIndexes.includes(index)) {
-    newJetCount--;
+  if (!adjacentIndexes.includes(index)) {
+    let numberPortalsVisited = 0;
+    if (puzzle[index] === features.portal) {
+      newMainPath.forEach((index) => {
+        const feature = puzzle[index];
+        if (feature === features.portal) {
+          numberPortalsVisited++;
+        }
+      });
+    }
+    // console.log(`ending at portal? ${puzzle[index] === features.portal}`)
+    // console.log(`even portals? ${numberPortalsVisited % 2 === 0} (${numberPortalsVisited})`)
+    const isPortalTravel =
+      puzzle[index] === features.portal && numberPortalsVisited % 2 === 0;
+    // console.log(`isPortalTravel? ${isPortalTravel}`)
+    if (!isPortalTravel) {
+      newJetCount--;
+    }
   }
 
   const parsedNumber = Number.parseInt(puzzle[index]);
