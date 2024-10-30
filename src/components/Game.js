@@ -282,9 +282,9 @@ function Game({
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">
-          <div>{flasks}</div>
-          <div>{keys}</div>
-          <div>{jets}</div>
+          {flasks}
+          {keys}
+          {jets}
         </div>
       )}
 

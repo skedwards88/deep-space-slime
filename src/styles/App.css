@@ -212,11 +212,6 @@ button:disabled {
   margin: 0 10px;
 }
 
-#acquiredFeatures > div {
-  display: flex;
-  flex-direction: row;
-}
-
 #acquiredFeatures .feature {
   background-position: center;
   background-repeat: no-repeat;
