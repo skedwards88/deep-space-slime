@@ -28,7 +28,10 @@ export function getValidNextIndexes({
   //   - door, if you have a key
   //   - exit, if all numbers found
   //   - next number
-  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't your previous space (and you have any key/terminals required to visit the space)
+  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't:
+  //      - your previous space (and you have any key/terminals required to visit the space)
+  //      - a portal space
+  //      - the start space
 
   let validIndexes = [];
 
@@ -107,7 +110,9 @@ export function getValidNextIndexes({
       for (const adjacentIndex of adjacentIndexes) {
         if (
           !mainPath.includes(adjacentIndex) ||
-          adjacentIndex === penultimateIndexInPath
+          adjacentIndex === penultimateIndexInPath ||
+          puzzle[adjacentIndex] == features.portal ||
+          puzzle[adjacentIndex] == features.start
         ) {
           continue;
         }
