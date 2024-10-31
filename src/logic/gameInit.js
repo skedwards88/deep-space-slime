@@ -78,6 +78,10 @@ export function gameInit({
   let customPuzzle;
   if (isCustom) {
     try {
+      if (!customSeed.startsWith("custom-")) {
+        throw new Error("Custom seed did not start with 'custom-'");
+      }
+      customSeed = customSeed.substring("custom-".length);
       [customName, customEncodedPuzzle] = customSeed.split("_");
       customName = customName.replaceAll("+", " ");
       customPuzzle = convertStringToPuzzle(customEncodedPuzzle);
@@ -92,7 +96,7 @@ export function gameInit({
         throw new Error("Custom puzzle is not valid.");
       }
     } catch (error) {
-      console.log("Error generating custom puzzle from query.");
+      console.error("Error generating custom puzzle from query: " + error);
       isCustom = false;
     }
   }
