@@ -7,11 +7,6 @@ import {features} from "./constants";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
-    // Return early if this was triggered by the mouse entering but the mouse is not depressed
-    if (payload.isMouse && !currentGameState.mouseIsActive) {
-      return currentGameState;
-    }
-
     const index = payload.index;
 
     // If the index isn't one of the valid indexes, determine why and return early
@@ -85,6 +80,29 @@ export function gameReducer(currentGameState, payload) {
       newMessage = currentGameState.startingText;
     }
     return {...stateWithExtendedPath, message: newMessage};
+  }
+  if (payload.action === "resetPuzzle") {
+    const puzzle = currentGameState.puzzle;
+
+    // If the index is the start index, reset the path
+    const startIndex = puzzle.indexOf(features.start);
+    const newValidNextIndexes = getValidNextIndexes({
+      mainPath: [startIndex],
+      puzzle,
+      numColumns: currentGameState.numColumns,
+      numRows: currentGameState.numRows,
+      maxNumber: currentGameState.maxNumber,
+    });
+    return {
+      ...currentGameState,
+      validNextIndexes: newValidNextIndexes,
+      mainPath: [startIndex],
+      flaskCount: 0,
+      keyCount: 0,
+      numberCount: 0,
+      jetCount: 0,
+      message: currentGameState.startingText,
+    };
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 

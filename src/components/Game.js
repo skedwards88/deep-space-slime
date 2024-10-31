@@ -7,17 +7,27 @@ import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {features} from "../logic/constants";
 
-function handlePointerDown({event, index, dispatchGameState}) {
+function handlePointerDown({
+  event,
+  index,
+  dispatchGameState,
+  confirmReset,
+  setDisplay,
+}) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
 
   if (event.pointerType === "mouse") {
-    dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
-    dispatchGameState({
-      action: "modifyPath",
-      isMouse: true,
-      index,
-    });
+    if (confirmReset) {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
+      setDisplay("confirmReset");
+    } else {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
+      dispatchGameState({
+        action: "modifyPath",
+        index,
+      });
+    }
   }
 }
 
@@ -25,13 +35,31 @@ function handleMouseUp(dispatchGameState) {
   dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
 }
 
-function handlePointerEnter({event, index, dispatchGameState}) {
+function handlePointerEnter({
+  event,
+  index,
+  dispatchGameState,
+  confirmReset,
+  setDisplay,
+  mouseIsActive,
+}) {
   event.preventDefault();
-  dispatchGameState({
-    action: "modifyPath",
-    isMouse: event.pointerType === "mouse",
-    index,
-  });
+  // Return early if this was triggered by the mouse entering but the mouse is not depressed
+  if (event.pointerType === "mouse" && !mouseIsActive) {
+    return;
+  }
+
+  if (confirmReset) {
+    if (event.pointerType === "mouse") {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
+    }
+    setDisplay("confirmReset");
+  } else {
+    dispatchGameState({
+      action: "modifyPath",
+      index,
+    });
+  }
 }
 
 function PuzzleSquare({
@@ -47,6 +75,9 @@ function PuzzleSquare({
   puzzleID,
   score,
   setScore,
+  setDisplay,
+  mouseIsActive,
+  mainPath,
 }) {
   let featureClass;
 
@@ -67,7 +98,13 @@ function PuzzleSquare({
         visited ? "visited" : ""
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
       onPointerDown={(event) =>
-        handlePointerDown({event, index, dispatchGameState})
+        handlePointerDown({
+          event,
+          index,
+          dispatchGameState,
+          confirmReset: feature === features.start && mainPath.length > 2,
+          setDisplay,
+        })
       }
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
@@ -78,7 +115,14 @@ function PuzzleSquare({
               newScore[puzzleID] = flaskCount;
               setScore(newScore);
             }
-            handlePointerEnter({event, index, dispatchGameState});
+            handlePointerEnter({
+              event,
+              index,
+              dispatchGameState,
+              confirmReset: feature === features.start && mainPath.length > 2,
+              setDisplay,
+              mouseIsActive,
+            });
           },
         })}
     ></div>
@@ -219,6 +263,9 @@ function Game({
       puzzleID={gameState.puzzleID}
       score={score}
       setScore={setScore}
+      setDisplay={setDisplay}
+      mouseIsActive={gameState.mouseIsActive}
+      mainPath={mainPath}
     ></PuzzleSquare>
   ));
 
