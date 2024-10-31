@@ -9,6 +9,7 @@ import InvalidShareMessage from "./InvalidShareMessage";
 import JetExplanation from "./JetExplanation";
 import FlaskExplanation from "./FlaskExplanation";
 import KeyExplanation from "./KeyExplanation";
+import ConfirmReset from "./ConfirmReset";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -221,6 +222,14 @@ export default function App() {
     case "invalidShareMessage":
       return (
         <InvalidShareMessage setDisplay={setDisplay}></InvalidShareMessage>
+      );
+
+    case "confirmReset":
+      return (
+        <ConfirmReset
+          setDisplay={setDisplay}
+          dispatchGameState={dispatchGameState}
+        ></ConfirmReset>
       );
 
     default:
