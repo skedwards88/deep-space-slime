@@ -170,7 +170,7 @@ describe("gameInit saved state usage", () => {
       useSaved: false,
       isCustom: true,
       customIndex,
-      customSeed: `Test+custom+room_${encodedPuzzle}`,
+      customSeed: `custom-Test+custom+room_${encodedPuzzle}`,
     });
 
     expect(result).toEqual({
