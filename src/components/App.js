@@ -57,6 +57,81 @@ export default function App() {
     {},
   );
 
+  const maxPathsToFind = 100;
+  const [allGamePaths, setAllGamePaths] = React.useState([]);
+  const [calculatingGamePaths, setCalculatingGamePaths] = React.useState(true);
+  const [allBuilderPaths, setAllBuilderPaths] = React.useState([]);
+  const [calculatingBuilderPaths, setCalculatingBuilderPaths] =
+    React.useState(true);
+
+  React.useEffect(() => {
+    console.log("CALCULATING game paths");
+
+    // Use a worker instead of async to make sure that this isn't blocking
+    const worker = new Worker(
+      new URL("./getAllValidPathsWorker.js", import.meta.url),
+    );
+
+    worker.postMessage({
+      puzzle: gameState.puzzle,
+      numColumns: gameState.numColumns,
+      numRows: gameState.numRows,
+      maxPathsToFind,
+    });
+
+    worker.onmessage = (event) => {
+      setAllGamePaths(event.data);
+      setCalculatingGamePaths(false);
+      console.log(
+        `DONE CALCULATING game paths. Found ${event.data.length} paths.`,
+      );
+    };
+
+    return () => {
+      console.log("terminating game path calculation");
+      worker.terminate();
+    };
+  }, [gameState.puzzle, gameState.numColumns, gameState.numRows]);
+
+  React.useEffect(() => {
+    console.log("CALCULATING builder paths");
+
+    if (!builderState.isValid) {
+      console.log("Builder is invalid. Won't calculate.");
+      return;
+    }
+
+    // Use a worker instead of async to make sure that this isn't blocking
+    const worker = new Worker(
+      new URL("./getAllValidPathsWorker.js", import.meta.url),
+    );
+
+    worker.postMessage({
+      puzzle: builderState.puzzle,
+      numColumns: builderState.numColumns,
+      numRows: builderState.numRows,
+      maxPathsToFind,
+    });
+
+    worker.onmessage = (event) => {
+      setAllBuilderPaths(event.data);
+      setCalculatingBuilderPaths(false);
+      console.log(
+        `DONE CALCULATING builder paths. Found ${event.data.length} paths.`,
+      );
+    };
+
+    return () => {
+      console.log("terminating builder path calculation");
+      worker.terminate();
+    };
+  }, [
+    builderState.puzzle,
+    builderState.numColumns,
+    builderState.numRows,
+    builderState.isValid,
+  ]);
+
   const savedScore = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedScore"),
   );
@@ -171,6 +246,9 @@ export default function App() {
           room={gameState.room}
           setDisplay={setDisplay}
           origin="game"
+          loading={calculatingGamePaths}
+          allPaths={allGamePaths}
+          maxPathsToFind={maxPathsToFind}
         ></Pathfinder>
       );
 
@@ -184,6 +262,9 @@ export default function App() {
           room={builderState.name}
           setDisplay={setDisplay}
           origin="builder"
+          loading={calculatingBuilderPaths}
+          allPaths={allBuilderPaths}
+          maxPathsToFind={maxPathsToFind}
         ></Pathfinder>
       );
 

@@ -29,37 +29,14 @@ function Pathfinder({
   room,
   setDisplay,
   origin,
+  loading,
+  allPaths,
+  maxPathsToFind,
 }) {
-  const maxPathsToFind = 100;
-
-  // This will be updated in the useEffect hook
-  // since paths can sometimes take a while to calculate
-  const [allPaths, setAllPaths] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    // Use a worker instead of async to make sure that this isn't blocking
-    const worker = new Worker(
-      new URL("./getAllValidPathsWorker.js", import.meta.url),
-    );
-
-    worker.postMessage({
-      puzzle,
-      numColumns,
-      numRows,
-      maxPathsToFind,
-    });
-
-    worker.onmessage = (event) => {
-      setAllPaths(event.data);
-      setLoading(false);
-    };
-
-    return () => {
-      worker.terminate();
-    };
-  }, [puzzle, numColumns, numRows]);
-
+  // loading and allPaths are states passed from the App component.
+  // The Pathfinder component will update when those states are updated,
+  // so even if the paths are still being calculated when Pathfinder is opened
+  //Pathfinder will be updated once the calculation is complete.
   const numSolutions = allPaths.length;
 
   const [currentSolution, setCurrentSolution] = React.useState(0);
