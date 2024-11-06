@@ -122,7 +122,7 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   }
 
   // Need at least one solution
-  const maxPathsToFind = 10;
+  const maxPathsToFind = 1;
   const solutions = getAllValidPaths({
     puzzle,
     numColumns,
@@ -148,23 +148,11 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
     };
   }
 
-  const hasPortals = puzzle.includes(features.portal);
-
   return {
     isValid: true,
     message: (
       <p>
-        {`${
-          numSolutions === 1
-            ? `There is ${numSolutions} solution that collects`
-            : `There are ${
-                numSolutions >= maxPathsToFind ? "at least " : ""
-              }${numSolutions} solutions that collect`
-        } all flasks.${
-          hasPortals && numSolutions > 1
-            ? " Solutions with portal direction reversed will look identical."
-            : ""
-        }`}{" "}
+        {`There is at least ${maxPathsToFind} solution that collects all flasks.`}{" "}
         Click the <span id="eyeIcon" className="smallInfoIcon"></span> to see
         all solutions.
       </p>
