@@ -4,6 +4,7 @@ import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {features} from "./constants";
+import {updatePathWithHint} from "./updatePathWithHint";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -102,6 +103,59 @@ export function gameReducer(currentGameState, payload) {
       numberCount: 0,
       jetCount: 0,
       message: currentGameState.startingText,
+    };
+  } else if (payload.action === "hint") {
+    const puzzle = currentGameState.puzzle;
+    const newPath = updatePathWithHint(
+      currentGameState.mainPath,
+      payload.allPaths,
+    );
+
+    // Iteratively update the state with the new path so that the inventory matches
+    // (It would be more efficient to break the validNextPaths calculation into
+    // a separate function since we don't need that value until the very end.
+    let updatedState = {
+      ...currentGameState,
+      mainPath: [newPath[0]],
+      flaskCount: 0,
+      keyCount: 0,
+      numberCount: 0,
+      jetCount: 0,
+    };
+    for (let index = 1; index < newPath.length; index++) {
+      updatedState = updateStateWithExtension({
+        index: newPath[index],
+        currentGameState: {...updatedState},
+        puzzle,
+      });
+    }
+
+    // and update the message
+    let newMessage;
+    let currentIndex = newPath[newPath.length - 1];
+    if (
+      puzzle[currentIndex] === features.exit ||
+      puzzle[currentIndex] === features.ship
+    ) {
+      const maxFlasks = puzzle.filter(
+        (feature) => feature === features.flask,
+      ).length;
+      if (
+        currentGameState.flaskCount < maxFlasks &&
+        currentGameState.hintText
+      ) {
+        newMessage = currentGameState.hintText;
+      } else {
+        newMessage = currentGameState.winText;
+      }
+    } else {
+      newMessage = currentGameState.startingText;
+    }
+
+    return {
+      ...updatedState,
+      mainPath: newPath,
+      message: newMessage,
     };
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
