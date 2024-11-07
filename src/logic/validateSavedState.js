@@ -1,5 +1,5 @@
 import {puzzles} from "./puzzles";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 
 export function puzzleIdIsValid(puzzleID) {
@@ -28,10 +28,7 @@ export function validateSavedState(savedState) {
   }
 
   // dimensions are as expected
-  if (savedState.numColumns !== 7 || savedState.numRows !== 9) {
-    return false;
-  }
-  if (savedState.puzzle.length !== savedState.numColumns * savedState.numRows) {
+  if (savedState.puzzle.length !== numColumns * numRows) {
     return false;
   }
 

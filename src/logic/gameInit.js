@@ -4,7 +4,7 @@ import {puzzles} from "./puzzles";
 import {validateSavedState, puzzleIdIsValid} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 
 export function gameInit({
   useSaved = true,
@@ -13,8 +13,6 @@ export function gameInit({
   customSeed,
   customIndex,
 }) {
-  const numColumns = 7;
-  const numRows = 9;
   const customStationName = "Custom Simulation"; // todo could set elsewhere for import
   const customWinText =
     "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.";
@@ -136,8 +134,6 @@ export function gameInit({
       : puzzles[puzzleID].robotStartMood,
     robotEndMood: isCustom ? customRobotMood : puzzles[puzzleID].robotEndMood,
     puzzle,
-    numColumns,
-    numRows,
     flaskCount: 0,
     keyCount: 0,
     jetCount: 0,

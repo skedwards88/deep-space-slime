@@ -1,6 +1,6 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 
 // To extend:
 // Add the index to the path.
@@ -37,8 +37,8 @@ export function updateStateWithExtension({
   // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
-    numColumns: currentGameState.numColumns,
-    numRows: currentGameState.numRows,
+    numColumns,
+    numRows,
   });
   if (!adjacentIndexes.includes(index)) {
     let numberPortalsVisited = 0;
@@ -69,8 +69,8 @@ export function updateStateWithExtension({
   const newValidNextIndexes = getValidNextIndexes({
     mainPath: newMainPath,
     puzzle: puzzle,
-    numColumns: currentGameState.numColumns,
-    numRows: currentGameState.numRows,
+    numColumns,
+    numRows,
     hasKey: newKeyCount > 0,
     hasJet: newJetCount > 0,
     numberCount: newNumberCount,

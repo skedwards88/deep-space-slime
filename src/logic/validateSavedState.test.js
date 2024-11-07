@@ -12,8 +12,6 @@ describe("validateSavedState", () => {
     customIndex: undefined,
     puzzleID,
     puzzle,
-    numColumns: 7,
-    numRows: 9,
     flaskCount: 1,
     keyCount: 1,
     jetCount: 1,
@@ -29,8 +27,6 @@ describe("validateSavedState", () => {
     customIndex: 5,
     puzzleID: "custom",
     puzzle,
-    numColumns: 7,
-    numRows: 9,
     flaskCount: 1,
     keyCount: 1,
     jetCount: 1,
@@ -104,25 +100,6 @@ describe("validateSavedState", () => {
   });
   test("returns false for invalid maxNumber (non-integers)", () => {
     const state = {...validNonCustomState, maxNumber: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid dimensions (numColumns)", () => {
-    const state = {...validNonCustomState, numColumns: 8};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid dimensions (numRows)", () => {
-    const state = {...validNonCustomState, numRows: 10};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for string dimensions (numColumns)", () => {
-    const state = {...validNonCustomState, numColumns: "7"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for string dimensions (numRows)", () => {
-    const state = {...validNonCustomState, numRows: "9"};
     expect(validateSavedState(state)).toBe(false);
   });
 

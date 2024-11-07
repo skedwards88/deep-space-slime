@@ -6,7 +6,7 @@ import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {convertPuzzleToString} from "./convertPuzzleString";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
 jest.mock("../common/sendAnalytics");
@@ -105,8 +105,6 @@ describe("gameInit saved state usage", () => {
   test("returns correct structure for new non-custom game", () => {
     const puzzleID = 0;
     const puzzle = puzzles[puzzleID].puzzle;
-    const numColumns = 7;
-    const numRows = 9;
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -129,8 +127,6 @@ describe("gameInit saved state usage", () => {
       robotStartMood: puzzles[puzzleID].robotStartMood,
       robotEndMood: puzzles[puzzleID].robotEndMood,
       puzzle,
-      numColumns,
-      numRows,
       flaskCount: 0,
       keyCount: 0,
       jetCount: 0,
@@ -151,8 +147,6 @@ describe("gameInit saved state usage", () => {
   });
 
   test("returns correct structure for new custom game", () => {
-    const numColumns = 7;
-    const numRows = 9;
     const puzzle = puzzles[5].puzzle;
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
@@ -186,8 +180,6 @@ describe("gameInit saved state usage", () => {
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzle,
-      numColumns,
-      numRows,
       flaskCount: 0,
       keyCount: 0,
       jetCount: 0,

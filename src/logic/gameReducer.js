@@ -3,7 +3,7 @@ import {getReasonForMoveInvalidity} from "./getReasonForMoveInvalidity";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {getValidNextIndexes} from "./getValidNextIndexes";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 import {updatePathWithHint} from "./updatePathWithHint";
 
 export function gameReducer(currentGameState, payload) {
@@ -26,8 +26,8 @@ export function gameReducer(currentGameState, payload) {
       const newValidNextIndexes = getValidNextIndexes({
         mainPath: [startIndex],
         puzzle,
-        numColumns: currentGameState.numColumns,
-        numRows: currentGameState.numRows,
+        numColumns,
+        numRows,
         maxNumber: currentGameState.maxNumber,
       });
       return {
@@ -90,8 +90,8 @@ export function gameReducer(currentGameState, payload) {
     const newValidNextIndexes = getValidNextIndexes({
       mainPath: [startIndex],
       puzzle,
-      numColumns: currentGameState.numColumns,
-      numRows: currentGameState.numRows,
+      numColumns,
+      numRows,
       maxNumber: currentGameState.maxNumber,
     });
     return {

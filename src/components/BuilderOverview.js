@@ -3,6 +3,7 @@ import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 import {validateCustomPuzzle} from "../logic/validateCustomPuzzle";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
+import {numColumns, numRows} from "../logic/constants";
 
 function BuilderEntry({
   encodedPuzzle,
@@ -51,8 +52,8 @@ function BuilderEntry({
           const puzzle = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
             puzzle: puzzle,
-            numColumns: 7,
-            numRows: 9,
+            numColumns,
+            numRows,
           });
 
           // If not valid, the player can't play
@@ -77,8 +78,8 @@ function BuilderEntry({
           const puzzle = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
             puzzle: puzzle,
-            numColumns: 7,
-            numRows: 9,
+            numColumns,
+            numRows,
           });
           // If not valid, the player can't share
           if (!isValid) {
