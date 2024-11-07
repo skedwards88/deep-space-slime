@@ -1,5 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -81,8 +81,8 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   const isAdjacent = indexesAdjacentQ({
     indexA: index,
     indexB: lastIndexInPath,
-    numColumns: currentGameState.numColumns,
-    numRows: currentGameState.numRows,
+    numColumns,
+    numRows,
   });
 
   // Trying to jump to a portal after exiting a portal

@@ -1,6 +1,6 @@
 import {builderInit} from "./builderInit";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {limitedFeatures, features} from "./constants";
+import {limitedFeatures, features, numColumns, numRows} from "./constants";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -55,8 +55,8 @@ export function builderReducer(currentBuilderState, payload) {
   } else if (payload.action === "validate") {
     const {isValid, message} = validateCustomPuzzle({
       puzzle: currentBuilderState.puzzle,
-      numColumns: currentBuilderState.numColumns,
-      numRows: currentBuilderState.numRows,
+      numColumns,
+      numRows,
     });
 
     return {...currentBuilderState, isValid, message};

@@ -3,7 +3,7 @@ import {
   convertStringToPuzzle,
 } from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
-import {features} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 
 describe("puzzle validation", () => {
@@ -117,8 +117,8 @@ describe("puzzle validation", () => {
     for (const {puzzle, station, room} of puzzles) {
       const solutions = getAllValidPaths({
         puzzle,
-        numColumns: 7,
-        numRows: 9,
+        numColumns,
+        numRows,
         maxPathsToFind: 1,
       });
       if (solutions.length === 0) {

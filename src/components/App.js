@@ -21,6 +21,7 @@ import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {numColumns, numRows} from "../logic/constants";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -74,8 +75,8 @@ export default function App() {
 
     worker.postMessage({
       puzzle: gameState.puzzle,
-      numColumns: gameState.numColumns,
-      numRows: gameState.numRows,
+      numColumns,
+      numRows,
       maxPathsToFind,
     });
 
@@ -91,7 +92,7 @@ export default function App() {
       console.log("terminating game path calculation");
       worker.terminate();
     };
-  }, [gameState.puzzle, gameState.numColumns, gameState.numRows]);
+  }, [gameState.puzzle]);
 
   React.useEffect(() => {
     console.log("CALCULATING builder paths");
@@ -108,8 +109,8 @@ export default function App() {
 
     worker.postMessage({
       puzzle: builderState.puzzle,
-      numColumns: builderState.numColumns,
-      numRows: builderState.numRows,
+      numColumns,
+      numRows,
       maxPathsToFind,
     });
 
@@ -125,12 +126,7 @@ export default function App() {
       console.log("terminating builder path calculation");
       worker.terminate();
     };
-  }, [
-    builderState.puzzle,
-    builderState.numColumns,
-    builderState.numRows,
-    builderState.isValid,
-  ]);
+  }, [builderState.puzzle, builderState.isValid]);
 
   const savedScore = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedScore"),
@@ -240,8 +236,6 @@ export default function App() {
       return (
         <Pathfinder
           puzzle={gameState.puzzle}
-          numRows={gameState.numRows}
-          numColumns={gameState.numColumns}
           station={gameState.station}
           room={gameState.room}
           setDisplay={setDisplay}
@@ -256,8 +250,6 @@ export default function App() {
       return (
         <Pathfinder
           puzzle={builderState.puzzle}
-          numRows={builderState.numRows}
-          numColumns={builderState.numColumns}
           station="Custom Simulation"
           room={builderState.name}
           setDisplay={setDisplay}

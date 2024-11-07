@@ -1,6 +1,6 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
-import {features} from "../logic/constants";
+import {features, numColumns, numRows} from "../logic/constants";
 
 function PuzzleSquare({feature, index, visited, current, direction}) {
   let featureClass;
@@ -23,8 +23,6 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
 
 function Pathfinder({
   puzzle,
-  numColumns,
-  numRows,
   station,
   room,
   setDisplay,

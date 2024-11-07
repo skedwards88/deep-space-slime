@@ -1,3 +1,6 @@
+export const numColumns = 7;
+export const numRows = 9;
+
 export const features = {
   outer: "outer",
   basic: "basic",

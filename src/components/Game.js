@@ -5,7 +5,7 @@ import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
-import {features} from "../logic/constants";
+import {features, numColumns, numRows} from "../logic/constants";
 
 function handlePointerDown({
   event,
@@ -247,8 +247,8 @@ function Game({
   const directions = getSlimeDirections({
     mainPath,
     puzzle: gameState.puzzle,
-    numColumns: gameState.numColumns,
-    numRows: gameState.numRows,
+    numColumns: numColumns,
+    numRows: numRows,
   });
   const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
