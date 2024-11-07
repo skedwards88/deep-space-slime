@@ -331,6 +331,8 @@ export default function App() {
                 ? gameState.customIndex ?? savedCustomBuilds.length
                 : undefined
             }
+            calculatingGamePaths={calculatingGamePaths}
+            allPaths={allGamePaths}
           ></Game>
         </div>
       );
