@@ -238,6 +238,8 @@ function Game({
   installPromptEvent,
   dispatchBuilderState,
   customIndex,
+  calculatingGamePaths,
+  allPaths,
 }) {
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -311,6 +313,11 @@ function Game({
       <div
         id="botFace"
         className={isAtExit ? gameState.robotEndMood : gameState.robotStartMood}
+        onClick={
+          calculatingGamePaths
+            ? null
+            : () => dispatchGameState({action: "hint", allPaths})
+        }
       ></div>
 
       <div id="message">{gameState.message}</div>
