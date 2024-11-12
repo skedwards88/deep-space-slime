@@ -68,6 +68,8 @@ export default function App() {
   React.useEffect(() => {
     console.log("CALCULATING game paths");
 
+    setCalculatingGamePaths(true);
+
     // Use a worker instead of async to make sure that this isn't blocking
     const worker = new Worker(
       new URL("./getAllValidPathsWorker.js", import.meta.url),
@@ -101,6 +103,8 @@ export default function App() {
       console.log("Builder is invalid. Won't calculate.");
       return;
     }
+
+    setCalculatingBuilderPaths(true);
 
     // Use a worker instead of async to make sure that this isn't blocking
     const worker = new Worker(

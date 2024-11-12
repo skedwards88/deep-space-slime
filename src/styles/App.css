@@ -167,6 +167,10 @@ button:disabled {
   background-image: url("../images/icons/bot-sinister.svg");
 }
 
+#botFace.idea {
+  background-image: url("../images/icons/bot-idea.svg");
+}
+
 #botFace.glitchy-sinister,
 #botFace.glitchy-happy {
   animation: flicker 0.3s infinite;
