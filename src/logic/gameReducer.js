@@ -130,32 +130,10 @@ export function gameReducer(currentGameState, payload) {
       });
     }
 
-    // and update the message
-    let newMessage;
-    let currentIndex = newPath[newPath.length - 1];
-    if (
-      puzzle[currentIndex] === features.exit ||
-      puzzle[currentIndex] === features.ship
-    ) {
-      const maxFlasks = puzzle.filter(
-        (feature) => feature === features.flask,
-      ).length;
-      if (
-        currentGameState.flaskCount < maxFlasks &&
-        currentGameState.hintText
-      ) {
-        newMessage = currentGameState.hintText;
-      } else {
-        newMessage = currentGameState.winText;
-      }
-    } else {
-      newMessage = currentGameState.startingText;
-    }
-
     return {
       ...updatedState,
       mainPath: newPath,
-      message: newMessage,
+      message: "I think you should go this way.",
     };
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;

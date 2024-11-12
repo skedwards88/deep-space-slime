@@ -78,6 +78,7 @@ function PuzzleSquare({
   setDisplay,
   mouseIsActive,
   mainPath,
+  setHintAvailable,
 }) {
   let featureClass;
 
@@ -115,6 +116,11 @@ function PuzzleSquare({
               newScore[puzzleID] = flaskCount;
               setScore(newScore);
             }
+
+            if (validNext) {
+              setHintAvailable(false);
+            }
+
             handlePointerEnter({
               event,
               index,
@@ -139,6 +145,7 @@ function ExitButtons({
   room,
   dispatchBuilderState,
   customIndex,
+  setHintAvailable,
 }) {
   const maxFlasks = puzzle.filter(
     (feature) => feature === features.flask,
@@ -149,6 +156,7 @@ function ExitButtons({
   const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
+        setHintAvailable(false);
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
       }}
     >
@@ -244,6 +252,10 @@ function Game({
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
+
+  const [hintAvailable, setHintAvailable] = React.useState(false);
+  const hintWaitTime = 10; // seconds
+
   const directions = getSlimeDirections({
     mainPath,
     puzzle: gameState.puzzle,
@@ -268,6 +280,7 @@ function Game({
       setDisplay={setDisplay}
       mouseIsActive={gameState.mouseIsActive}
       mainPath={mainPath}
+      setHintAvailable={setHintAvailable}
     ></PuzzleSquare>
   ));
 
@@ -299,6 +312,17 @@ function Game({
     gameState.puzzle[lastIndexInPath] === features.exit ||
     gameState.puzzle[lastIndexInPath] === features.ship;
 
+  // Change hintAvailable to true if the main path is unchanged for some time
+  React.useEffect(() => {
+    let timeout;
+    if (!hintAvailable) {
+      timeout = setTimeout(() => {
+        setHintAvailable(true);
+      }, hintWaitTime * 1000);
+    }
+    return () => clearTimeout(timeout);
+  }, [gameState.mainPath, hintAvailable]);
+
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
       <ControlBar
@@ -312,15 +336,24 @@ function Game({
 
       <div
         id="botFace"
-        className={isAtExit ? gameState.robotEndMood : gameState.robotStartMood}
+        className={`${
+          isAtExit ? gameState.robotEndMood : gameState.robotStartMood
+        }${hintAvailable && !calculatingGamePaths && !isAtExit ? " idea" : ""}`}
         onClick={
-          calculatingGamePaths
-            ? null
-            : () => dispatchGameState({action: "hint", allPaths})
+          hintAvailable && !calculatingGamePaths && !isAtExit
+            ? () => {
+                dispatchGameState({action: "hint", allPaths});
+                setHintAvailable(false);
+              }
+            : null
         }
       ></div>
 
-      <div id="message">{gameState.message}</div>
+      <div id="message">
+        {hintAvailable && !calculatingGamePaths && !isAtExit
+          ? "Tap me for a hint!"
+          : gameState.message}
+      </div>
 
       {isAtExit ? (
         <ExitButtons
@@ -333,6 +366,7 @@ function Game({
           room={gameState.room}
           dispatchBuilderState={dispatchBuilderState}
           customIndex={customIndex}
+          setHintAvailable={setHintAvailable}
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">
