@@ -236,20 +236,6 @@ export default function App() {
     case "keyExplanation":
       return <KeyExplanation setDisplay={setDisplay}></KeyExplanation>;
 
-    case "pathfinder":
-      return (
-        <Pathfinder
-          puzzle={gameState.puzzle}
-          station={gameState.station}
-          room={gameState.room}
-          setDisplay={setDisplay}
-          origin="game"
-          loading={calculatingGamePaths}
-          allPaths={allGamePaths}
-          maxPathsToFind={maxPathsToFind}
-        ></Pathfinder>
-      );
-
     case "builderPathfinder":
       return (
         <Pathfinder

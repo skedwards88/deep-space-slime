@@ -50,12 +50,6 @@ function ControlBar({
       ></button>
 
       <button
-        id="eyeIcon"
-        className="controlButton"
-        onClick={() => setDisplay("pathfinder")}
-      ></button>
-
-      <button
         id="builderIcon"
         className="controlButton"
         onClick={() => setDisplay("builderOverview")}
