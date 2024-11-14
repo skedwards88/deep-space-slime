@@ -2,10 +2,10 @@ import React from "react";
 import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
-import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {features, numColumns, numRows} from "../logic/constants";
+import Share from "./Share";
 
 function handlePointerDown({
   event,
@@ -78,7 +78,7 @@ function PuzzleSquare({
   setDisplay,
   mouseIsActive,
   mainPath,
-  setHintAvailable,
+  setHintWaitIsOver,
 }) {
   let featureClass;
 
@@ -118,7 +118,7 @@ function PuzzleSquare({
             }
 
             if (validNext) {
-              setHintAvailable(false);
+              setHintWaitIsOver(false);
             }
 
             handlePointerEnter({
@@ -145,7 +145,7 @@ function ExitButtons({
   room,
   dispatchBuilderState,
   customIndex,
-  setHintAvailable,
+  setHintWaitIsOver,
 }) {
   const maxFlasks = puzzle.filter(
     (feature) => feature === features.flask,
@@ -156,7 +156,7 @@ function ExitButtons({
   const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
-        setHintAvailable(false);
+        setHintWaitIsOver(false);
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
       }}
     >
@@ -202,27 +202,22 @@ function ExitButtons({
     <></>
   );
 
-  const shareButton =
-    !nextPuzzleExists && navigator.canShare ? (
-      <button
-        onClick={() =>
-          handleShare({
-            appName: "Deep Space Slime",
-            text: isCustom
-              ? "Check out this custom Deep Space Slime puzzle!"
-              : "I just beat Deep Space Slime! Try it out:",
-            url: "https://skedwards88.github.io/deep-space-slime",
-            seed: isCustom
-              ? generateSeed(room, convertPuzzleToString(puzzle))
-              : undefined,
-          })
-        }
-      >
-        Share
-      </button>
-    ) : (
-      <></>
-    );
+  const shareButton = !nextPuzzleExists ? (
+    <Share
+      appName="Deep Space Slime"
+      text={
+        isCustom
+          ? "Check out this custom Deep Space Slime puzzle!"
+          : "I just beat Deep Space Slime! Try it out:"
+      }
+      url="https://skedwards88.github.io/deep-space-slime"
+      seed={
+        isCustom ? generateSeed(room, convertPuzzleToString(puzzle)) : undefined
+      }
+    ></Share>
+  ) : (
+    <></>
+  );
 
   return (
     <div id="exitButtons">
@@ -248,13 +243,15 @@ function Game({
   customIndex,
   calculatingGamePaths,
   allPaths,
+  hintsRemaining,
+  setHintsRemaining,
 }) {
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
 
-  const [hintAvailable, setHintAvailable] = React.useState(false);
-  const hintWaitTime = 10; // seconds
+  const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
+  const hintWaitTime = 1; // seconds
 
   const directions = getSlimeDirections({
     mainPath,
@@ -280,7 +277,7 @@ function Game({
       setDisplay={setDisplay}
       mouseIsActive={gameState.mouseIsActive}
       mainPath={mainPath}
-      setHintAvailable={setHintAvailable}
+      setHintWaitIsOver={setHintWaitIsOver}
     ></PuzzleSquare>
   ));
 
@@ -312,16 +309,16 @@ function Game({
     gameState.puzzle[lastIndexInPath] === features.exit ||
     gameState.puzzle[lastIndexInPath] === features.ship;
 
-  // Change hintAvailable to true if the main path is unchanged for some time
+  // Change setHintWaitIsOver to true if the main path is unchanged for some time
   React.useEffect(() => {
     let timeout;
-    if (!hintAvailable) {
+    if (!hintWaitIsOver) {
       timeout = setTimeout(() => {
-        setHintAvailable(true);
+        setHintWaitIsOver(true);
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
-  }, [gameState.mainPath, hintAvailable]);
+  }, [gameState.mainPath, hintWaitIsOver]);
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -338,22 +335,37 @@ function Game({
         id="botFace"
         className={`${
           isAtExit ? gameState.robotEndMood : gameState.robotStartMood
-        }${hintAvailable && !calculatingGamePaths && !isAtExit ? " idea" : ""}`}
+        }${
+          hintWaitIsOver && !calculatingGamePaths && !isAtExit ? " idea" : ""
+        }`}
         onClick={
-          hintAvailable && !calculatingGamePaths && !isAtExit
+          hintWaitIsOver && !calculatingGamePaths && !isAtExit && hintsRemaining
             ? () => {
                 dispatchGameState({action: "hint", allPaths});
-                setHintAvailable(false);
+                setHintsRemaining(hintsRemaining - 1);
+                setHintWaitIsOver(false);
               }
             : null
         }
       ></div>
 
-      <div id="message">
-        {hintAvailable && !calculatingGamePaths && !isAtExit
-          ? "Tap me for a hint!"
-          : gameState.message}
-      </div>
+      {hintWaitIsOver && !calculatingGamePaths && !isAtExit ? (
+        hintsRemaining ? (
+          <div id="message">{`Tap me for a hint!`}</div>
+        ) : (
+          <div id="message">
+            {"Share to get more hints!"}
+            <Share
+              appName="Deep Space Slime"
+              text="Check out this maze puzzle!"
+              url="https://skedwards88.github.io/deep-space-slime"
+              secondaryEffect={() => setHintsRemaining(5)}
+            ></Share>
+          </div>
+        )
+      ) : (
+        <div id="message">{gameState.message}</div>
+      )}
 
       {isAtExit ? (
         <ExitButtons
@@ -366,7 +378,7 @@ function Game({
           room={gameState.room}
           dispatchBuilderState={dispatchBuilderState}
           customIndex={customIndex}
-          setHintAvailable={setHintAvailable}
+          setHintWaitIsOver={setHintWaitIsOver}
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">

@@ -197,6 +197,20 @@ export default function App() {
     );
   }, [savedCustomBuilds]);
 
+  // Players have a max of 5 hints. Sharing will cap the hints off at 5.
+  const savedHintsRemaining = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedHintsRemaining"),
+  );
+  const [hintsRemaining, setHintsRemaining] = React.useState(
+    savedHintsRemaining ?? 5,
+  );
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedHintsRemaining",
+      JSON.stringify(hintsRemaining),
+    );
+  }, [hintsRemaining]);
+
   switch (display) {
     case "map":
       return (
@@ -315,6 +329,8 @@ export default function App() {
             }
             calculatingGamePaths={calculatingGamePaths}
             allPaths={allGamePaths}
+            hintsRemaining={hintsRemaining}
+            setHintsRemaining={setHintsRemaining}
           ></Game>
         </div>
       );
