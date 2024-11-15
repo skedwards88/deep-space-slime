@@ -1,18 +1,26 @@
 import React from "react";
-import {handleShare} from "../common/handleShare";
+import {useShareContext} from "./ShareContextProvider";
 
-export default function Share({appName, text, url, seed, secondaryEffect}) {
+export default function Share({
+  appName,
+  text,
+  url,
+  seed,
+  id,
+  className,
+  buttonText,
+}) {
+  const {shareAndCapHints} = useShareContext();
   if (navigator.canShare) {
     return (
       <button
+        id={id}
+        className={className}
         onClick={() => {
-          if (secondaryEffect) {
-            secondaryEffect();
-          }
-          handleShare({appName, text, url, seed});
+          shareAndCapHints({appName, text, url, seed});
         }}
       >
-        Share
+        {buttonText}
       </button>
     );
   } else {

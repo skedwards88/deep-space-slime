@@ -7,7 +7,14 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
       <h1>{appName}</h1>
       <div className="infoText">
         <p>Like this game? Share it with your friends.</p>
-        {<Share appName={appName} text={shareText} url={url}></Share>}
+        {
+          <Share
+            appName={appName}
+            text={shareText}
+            url={url}
+            buttonText="Share"
+          ></Share>
+        }
         <hr></hr>
         <p>
           Follow our{" "}

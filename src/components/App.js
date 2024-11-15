@@ -18,6 +18,7 @@ import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import {GameContextProvider} from "./GameContextProvider";
 import {BuilderContextProvider} from "./BuilderContextProvider";
+import {ShareContextProvider} from "./ShareContextProvider";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -128,7 +129,9 @@ export default function App() {
 
   return (
     <GameContextProvider>
-      <BuilderContextProvider>{componentToRender}</BuilderContextProvider>
+      <BuilderContextProvider>
+        <ShareContextProvider>{componentToRender}</ShareContextProvider>
+      </BuilderContextProvider>
     </GameContextProvider>
   );
 }

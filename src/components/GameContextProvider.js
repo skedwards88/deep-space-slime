@@ -77,19 +77,6 @@ export function GameContextProvider({children}) {
     );
   }, [score]);
 
-  const savedHintsRemaining = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedHintsRemaining"),
-  );
-  const [hintsRemaining, setHintsRemaining] = useState(
-    savedHintsRemaining ?? 5,
-  );
-  useEffect(() => {
-    window.localStorage.setItem(
-      "deepSpaceSlimeSavedHintsRemaining",
-      JSON.stringify(hintsRemaining),
-    );
-  }, [hintsRemaining]);
-
   return (
     <GameContext.Provider
       value={{
@@ -97,8 +84,6 @@ export function GameContextProvider({children}) {
         dispatchGameState,
         score,
         setScore,
-        hintsRemaining,
-        setHintsRemaining,
         allGamePaths,
         calculatingGamePaths,
       }}
