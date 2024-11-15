@@ -3,6 +3,8 @@ import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {unlimitedFeatures} from "../logic/constants";
+import {useBuilderContext} from "./BuilderContextProvider";
+import {useGameContext} from "./GameContextProvider";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -56,12 +58,11 @@ function BuilderSquare({feature, index, dispatchBuilderState}) {
   );
 }
 
-export default function Builder({
-  setDisplay,
-  builderState,
-  dispatchBuilderState,
-  dispatchGameState,
-}) {
+export default function Builder({setDisplay}) {
+  const {builderState, dispatchBuilderState} = useBuilderContext();
+
+  const {dispatchGameState} = useGameContext();
+
   const unlimitedFeatureButtons = unlimitedFeatures.map((feature, index) => (
     <button
       key={index}
@@ -118,13 +119,13 @@ export default function Builder({
         id="location"
         name="customLocationInput"
         maxLength={15}
-        value={builderState.name}
+        value={builderState.roomName}
         onChange={(event) => {
           const validationRegex = new RegExp("^[a-zA-Z0-9- ]*$");
           if (validationRegex.test(event.target.value)) {
             dispatchBuilderState({
               action: "editName",
-              name: event.target.value,
+              roomName: event.target.value,
             });
             setNameError("");
           } else {
@@ -153,7 +154,7 @@ export default function Builder({
               const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
               dispatchGameState({
                 action: "playtestCustom",
-                customSeed: generateSeed(builderState.name, encodedPuzzle),
+                customSeed: generateSeed(builderState.roomName, encodedPuzzle),
                 customIndex: builderState.customIndex,
               });
               setDisplay("game");
@@ -176,7 +177,7 @@ export default function Builder({
                   appName: "Deep Space Slime",
                   text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                   url: "https://skedwards88.github.io/deep-space-slime",
-                  seed: generateSeed(builderState.name, encodedPuzzle),
+                  seed: generateSeed(builderState.roomName, encodedPuzzle),
                 });
               } else {
                 setDisplay("customShare");

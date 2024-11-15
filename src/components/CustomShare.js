@@ -1,10 +1,15 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {generateSeed} from "../logic/generateSeed";
+import {useBuilderContext} from "./BuilderContextProvider";
 
-export default function CustomShare({puzzle, name, setDisplay}) {
+export default function CustomShare({setDisplay}) {
+  const {
+    builderState: {roomName, puzzle},
+  } = useBuilderContext();
+
   const encodedPuzzle = convertPuzzleToString(puzzle);
-  const customSeed = generateSeed(name, encodedPuzzle);
+  const customSeed = generateSeed(roomName, encodedPuzzle);
 
   const link = `https://skedwards88.github.io/deep-space-slime?id=${customSeed}`;
 

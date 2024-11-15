@@ -6,6 +6,8 @@ import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {features, numColumns, numRows} from "../logic/constants";
 import Share from "./Share";
+import {useGameContext} from "./GameContextProvider";
+import {useBuilderContext} from "./BuilderContextProvider";
 
 function handlePointerDown({
   event,
@@ -142,7 +144,7 @@ function ExitButtons({
   dispatchGameState,
   isCustom,
   setDisplay,
-  room,
+  roomName,
   dispatchBuilderState,
   customIndex,
   setHintWaitIsOver,
@@ -190,7 +192,7 @@ function ExitButtons({
         dispatchBuilderState({
           action: "editCustom",
           puzzle,
-          name: room,
+          roomName,
           customIndex: customIndex,
         });
         setDisplay("builder");
@@ -212,7 +214,9 @@ function ExitButtons({
       }
       url="https://skedwards88.github.io/deep-space-slime"
       seed={
-        isCustom ? generateSeed(room, convertPuzzleToString(puzzle)) : undefined
+        isCustom
+          ? generateSeed(roomName, convertPuzzleToString(puzzle))
+          : undefined
       }
     ></Share>
   ) : (
@@ -231,21 +235,28 @@ function ExitButtons({
 }
 
 function Game({
-  dispatchGameState,
-  gameState,
-  setScore,
-  score,
   setDisplay,
   setInstallPromptEvent,
   showInstallButton,
   installPromptEvent,
-  dispatchBuilderState,
-  customIndex,
-  calculatingGamePaths,
-  allPaths,
-  hintsRemaining,
-  setHintsRemaining,
 }) {
+  const {
+    gameState,
+    dispatchGameState,
+    score,
+    setScore,
+    hintsRemaining,
+    setHintsRemaining,
+    allGamePaths,
+    calculatingGamePaths,
+  } = useGameContext();
+
+  const {savedCustomBuilds, dispatchBuilderState} = useBuilderContext();
+
+  const customIndex = gameState.isCustom
+    ? gameState.customIndex ?? savedCustomBuilds.length
+    : undefined;
+
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
@@ -329,7 +340,7 @@ function Game({
         installPromptEvent={installPromptEvent}
       ></ControlBar>
 
-      <div id="location">{`${gameState.station}: ${gameState.room}`}</div>
+      <div id="location">{`${gameState.station}: ${gameState.roomName}`}</div>
 
       <div
         id="botFace"
@@ -341,7 +352,7 @@ function Game({
         onClick={
           hintWaitIsOver && !calculatingGamePaths && !isAtExit && hintsRemaining
             ? () => {
-                dispatchGameState({action: "hint", allPaths});
+                dispatchGameState({action: "hint", allGamePaths});
                 setHintsRemaining(hintsRemaining - 1);
                 setHintWaitIsOver(false);
               }
@@ -375,7 +386,7 @@ function Game({
           dispatchGameState={dispatchGameState}
           isCustom={gameState.isCustom}
           setDisplay={setDisplay}
-          room={gameState.room}
+          roomName={gameState.roomName}
           dispatchBuilderState={dispatchBuilderState}
           customIndex={customIndex}
           setHintWaitIsOver={setHintWaitIsOver}

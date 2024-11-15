@@ -4,10 +4,12 @@ import {validateCustomPuzzle} from "../logic/validateCustomPuzzle";
 import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {numColumns, numRows} from "../logic/constants";
+import {useBuilderContext} from "./BuilderContextProvider";
+import {useGameContext} from "./GameContextProvider";
 
 function BuilderEntry({
   encodedPuzzle,
-  name,
+  roomName,
   index,
   dispatchBuilderState,
   dispatchGameState,
@@ -17,7 +19,7 @@ function BuilderEntry({
 }) {
   return (
     <div className="builderEntry">
-      <div id="customName">{name}</div>
+      <div id="customName">{roomName}</div>
       <button
         id="copyIcon"
         className="controlButton"
@@ -37,7 +39,7 @@ function BuilderEntry({
           dispatchBuilderState({
             action: "editCustom",
             puzzle,
-            name,
+            roomName,
             customIndex: index,
           });
           setDisplay("builder");
@@ -62,7 +64,7 @@ function BuilderEntry({
           } else {
             dispatchGameState({
               action: "playtestCustom",
-              customSeed: generateSeed(name, encodedPuzzle),
+              customSeed: generateSeed(roomName, encodedPuzzle),
               customIndex: index,
             });
             setDisplay("game");
@@ -91,13 +93,13 @@ function BuilderEntry({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                 url: "https://skedwards88.github.io/deep-space-slime",
-                seed: generateSeed(name, encodedPuzzle),
+                seed: generateSeed(roomName, encodedPuzzle),
               });
             } else {
               dispatchBuilderState({
                 action: "editCustom",
                 puzzle,
-                name,
+                roomName,
                 customIndex: index,
               });
               setDisplay("customShare");
@@ -119,18 +121,17 @@ function BuilderEntry({
   );
 }
 
-export default function BuilderOverview({
-  setDisplay,
-  dispatchBuilderState,
-  dispatchGameState,
-  savedCustomBuilds,
-  setSavedCustomBuilds,
-}) {
+export default function BuilderOverview({setDisplay}) {
+  const {dispatchBuilderState, savedCustomBuilds, setSavedCustomBuilds} =
+    useBuilderContext();
+
+  const {dispatchGameState} = useGameContext();
+
   const entryElements = savedCustomBuilds.map(
-    ([name, encodedPuzzle], index) => (
+    ([roomName, encodedPuzzle], index) => (
       <BuilderEntry
         encodedPuzzle={encodedPuzzle}
-        name={name}
+        roomName={roomName}
         index={index}
         key={index}
         dispatchBuilderState={dispatchBuilderState}

@@ -1,6 +1,7 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {features, numColumns, numRows} from "../logic/constants";
+import {useBuilderContext} from "./BuilderContextProvider";
 
 function PuzzleSquare({feature, index, visited, current, direction}) {
   let featureClass;
@@ -21,25 +22,23 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
   );
 }
 
-function Pathfinder({
-  puzzle,
-  station,
-  room,
-  setDisplay,
-  origin,
-  loading,
-  allPaths,
-  maxPathsToFind,
-}) {
-  // loading and allPaths are states passed from the App component.
-  // The Pathfinder component will update when those states are updated,
+function Pathfinder({setDisplay}) {
+  const {
+    builderState: {puzzle, roomName},
+    maxPathsToFind,
+    calculatingBuilderPaths,
+    allBuilderPaths,
+  } = useBuilderContext();
+
+  // todo reverify that this still works with context
+  // The Pathfinder component will update when the calculatingBuilderPaths and allBuilderPaths states are updated,
   // so even if the paths are still being calculated when Pathfinder is opened
   //Pathfinder will be updated once the calculation is complete.
-  const numSolutions = allPaths.length;
+  const numSolutions = allBuilderPaths.length;
 
   const [currentSolution, setCurrentSolution] = React.useState(0);
 
-  const mainPath = allPaths[currentSolution] || [];
+  const mainPath = allBuilderPaths[currentSolution] || [];
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const directions = getSlimeDirections({
     mainPath,
@@ -63,15 +62,15 @@ function Pathfinder({
   return (
     <div className="App" id="deep-space-slime">
       <div id="game">
-        <button id="pathfinderControls" onClick={() => setDisplay(origin)}>
+        <button id="pathfinderControls" onClick={() => setDisplay("builder")}>
           Exit pathfinder
         </button>
 
-        <div id="location">{`${station}: ${room}`}</div>
+        <div id="location">{`Custom Simulation: ${roomName}`}</div>
 
         <div id="botFace" className="happy"></div>
 
-        {loading ? (
+        {calculatingBuilderPaths ? (
           <div id="message">{"I'm calculating the solutions..."}</div>
         ) : (
           <div id="message">{`${

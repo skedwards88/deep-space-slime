@@ -24,7 +24,7 @@ function getPuzzleForColin({
 
   return {
     station: stationName,
-    room: customName,
+    roomName: customName,
     startingText,
     winText,
     robotStartMood,

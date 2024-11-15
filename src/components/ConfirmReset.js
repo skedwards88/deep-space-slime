@@ -1,6 +1,9 @@
 import React from "react";
+import {useGameContext} from "./GameContextProvider";
 
-export default function ConfirmReset({setDisplay, dispatchGameState}) {
+export default function ConfirmReset({setDisplay}) {
+  const {dispatchGameState} = useGameContext();
+
   return (
     <div className="App info">
       <div className="infoText">

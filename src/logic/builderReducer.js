@@ -61,13 +61,13 @@ export function builderReducer(currentBuilderState, payload) {
 
     return {...currentBuilderState, isValid, message};
   } else if (payload.action === "editName") {
-    return {...currentBuilderState, name: payload.name};
+    return {...currentBuilderState, roomName: payload.roomName};
   } else if (payload.action === "newCustom") {
     return builderInit({customIndex: payload.customIndex});
   } else if (payload.action === "editCustom") {
     return builderInit({
       puzzle: payload.puzzle,
-      name: payload.name,
+      roomName: payload.roomName,
       customIndex: payload.customIndex,
     });
   } else {
