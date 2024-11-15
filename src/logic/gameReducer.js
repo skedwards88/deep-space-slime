@@ -108,7 +108,7 @@ export function gameReducer(currentGameState, payload) {
     const puzzle = currentGameState.puzzle;
     const newPath = updatePathWithHint(
       currentGameState.mainPath,
-      payload.allPaths,
+      payload.allGamePaths,
     );
 
     // Iteratively update the state with the new path so that the inventory matches

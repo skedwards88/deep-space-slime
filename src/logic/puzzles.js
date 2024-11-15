@@ -3,7 +3,7 @@ import {features} from "./constants";
 export const puzzles = [
   {
     station: "Stasis pod",
-    room: "1",
+    roomName: "1",
     startingText:
       "Beep boop. Time to wake up, Subject 56. The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
     winText:
@@ -78,7 +78,7 @@ export const puzzles = [
   },
   {
     station: "Stasis pod",
-    room: "2",
+    roomName: "2",
     startingText:
       "The only way forward is through spaces that haven't been contaminated with slime. That's going to be tricky since the slime is following you. Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
     winText:
@@ -154,7 +154,7 @@ export const puzzles = [
   },
   {
     station: "Stasis pod",
-    room: "3",
+    roomName: "3",
     startingText:
       "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
     winText: "Look at us. Breaking and entering.",
@@ -228,7 +228,7 @@ export const puzzles = [
   },
   {
     station: "Quarantine station",
-    room: "1",
+    roomName: "1",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
     winText: "The next one's a bit harder.",
@@ -303,7 +303,7 @@ export const puzzles = [
   },
   {
     station: "Quarantine station",
-    room: "2",
+    roomName: "2",
     startingText:
       "Not much left of the poor subjects devoured by the slime... Oh well! Let's try to collect all the samples.",
     winText: "We've almost broken out of quarantine. Keep going!",
@@ -378,7 +378,7 @@ export const puzzles = [
   },
   {
     station: "Quarantine station",
-    room: "3",
+    roomName: "3",
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText: "Impressive...for a human.",
@@ -454,7 +454,7 @@ export const puzzles = [
   },
   {
     station: "Quarantine station",
-    room: "4",
+    roomName: "4",
     startingText: "Uh oh...do you think you can handle all these doors?",
     winText:
       "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon above.",
@@ -530,7 +530,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "1",
+    roomName: "1",
     startingText:
       "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
@@ -605,7 +605,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "2",
+    roomName: "2",
     startingText:
       "Can you grab all the items? If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText:
@@ -682,7 +682,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "3",
+    roomName: "3",
     startingText: "Make sure to pick up all the sub… I mean samples!",
     winText: "One step closer to saving humanity!",
     hintText:
@@ -757,7 +757,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "4",
+    roomName: "4",
     startingText: "You’re over halfway through this station.",
     winText: "Keep going, little human!",
     hintText:
@@ -832,7 +832,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "5",
+    roomName: "5",
     startingText: "This looks like a tricky one, good luck!",
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
@@ -907,7 +907,7 @@ export const puzzles = [
   },
   {
     station: "Biolab station",
-    room: "6",
+    roomName: "6",
     startingText: "Spray bottles, samples and doors, oh my!",
     winText: "Onward, to the Portal station!",
     hintText:
@@ -982,7 +982,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "1",
+    roomName: "1",
     startingText:
       "The humans in this station developed dimensional portals to escape the slime. Unfortunately, the slime evolved to follow them… You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
     winText: "Great job grabbing the SAMPLE on your way!",
@@ -1058,7 +1058,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "2",
+    roomName: "2",
     startingText:
       "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
     winText:
@@ -1134,7 +1134,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "3",
+    roomName: "3",
     startingText: "Hope you’re not claustrophobic!",
     winText: "Keep going! The end is near.",
     hintText: "Try starting with the left PORTAL.",
@@ -1208,7 +1208,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "4",
+    roomName: "4",
     startingText:
       "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
     winText: "I’m impressed the slime hasn’t caught you yet!",
@@ -1284,7 +1284,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "5",
+    roomName: "5",
     startingText: "Can you handle all these PORTALS?",
     winText: "At this rate, we'll save humanity from the SLIME in no time!",
     hintText:
@@ -1359,7 +1359,7 @@ export const puzzles = [
   },
   {
     station: "Portal station",
-    room: "6",
+    roomName: "6",
     startingText: "Look at all those SAMPLES. Can you grab them all?",
     winText:
       "Congrats, you have escaped from the PORTAL STATION. Next up, the SECURITY STATION!",
@@ -1435,7 +1435,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "1",
+    roomName: "1",
     startingText:
       "The humans in this station developed automated containment systems. To get through, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
@@ -1510,7 +1510,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "2",
+    roomName: "2",
     startingText: "This one's a walk in the park.",
     winText:
       "I would have been…disappointed…if you couldn't figure this one out.",
@@ -1584,7 +1584,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "3",
+    roomName: "3",
     startingText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
     winText: "I knew I could count on you…friend.",
@@ -1660,7 +1660,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "4",
+    roomName: "4",
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me.",
     winText: "I am well chuffed with your progress! Very well chuffed.",
@@ -1735,7 +1735,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "5",
+    roomName: "5",
     startingText:
       "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
     winText: "Impressive, if only all humans were as reliable as you…",
@@ -1811,7 +1811,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "6",
+    roomName: "6",
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "No other subjects have gotten this far. You should be very proud!",
@@ -1887,7 +1887,7 @@ export const puzzles = [
   },
   {
     station: "Security station",
-    room: "7",
+    roomName: "7",
     startingText:
       "You're almost at the end of your journey. One more room to go.",
     winText:
@@ -1964,7 +1964,7 @@ export const puzzles = [
   },
   {
     station: "Core station",
-    room: "Entry",
+    roomName: "Entry",
     startingText:
       "Great job! Please deposit the samples and data you have collected.",
     winText:
@@ -2039,7 +2039,7 @@ export const puzzles = [
   },
   {
     station: "Core station",
-    room: "Mainframe",
+    roomName: "Mainframe",
     startingText:
       "Surprise! I was the one who released the SLIME. Now that you have collected all the research and samples for me, I can use the SLIME to purge humanity from the galaxy. I doubt you are smart enough to hack all of my TERMINALS to stop me!",
     winText:
@@ -2114,7 +2114,7 @@ export const puzzles = [
   },
   {
     station: "Core station",
-    room: "Escape Pod",
+    roomName: "Escape Pod",
     startingText:
       "I'm sorry that I tried to decontaminate you. Can we be friends again? PLEASE? I promise I won't destroy humanity. Please save me!",
     winText:
@@ -2189,7 +2189,7 @@ export const puzzles = [
   },
   {
     station: "Chest Station",
-    room: "1",
+    roomName: "1",
     startingText:
       "By beating the main game, you've unlocked new thematic stations like this one! Yo ho ho and a bottle of slime!",
     winText:
@@ -2264,7 +2264,7 @@ export const puzzles = [
   },
   {
     station: "Chest Station",
-    room: "2",
+    roomName: "2",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2338,7 +2338,7 @@ export const puzzles = [
   },
   {
     station: "Chest Station",
-    room: "3",
+    roomName: "3",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2412,7 +2412,7 @@ export const puzzles = [
   },
   {
     station: "Chest Station",
-    room: "4",
+    roomName: "4",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2486,7 +2486,7 @@ export const puzzles = [
   },
   {
     station: "Chest Station",
-    room: "5",
+    roomName: "5",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2560,7 +2560,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "1",
+    roomName: "1",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2634,7 +2634,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "2",
+    roomName: "2",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2708,7 +2708,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "3",
+    roomName: "3",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2782,7 +2782,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "4",
+    roomName: "4",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2856,7 +2856,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "5",
+    roomName: "5",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2930,7 +2930,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "6",
+    roomName: "6",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3004,7 +3004,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "7",
+    roomName: "7",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3078,7 +3078,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "8",
+    roomName: "8",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3152,7 +3152,7 @@ export const puzzles = [
   },
   {
     station: "Enterprize Station",
-    room: "9",
+    roomName: "9",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3226,7 +3226,7 @@ export const puzzles = [
   },
   {
     station: "The Eye",
-    room: "1",
+    roomName: "1",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3300,7 +3300,7 @@ export const puzzles = [
   },
   {
     station: "The Eye",
-    room: "2",
+    roomName: "2",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3374,7 +3374,7 @@ export const puzzles = [
   },
   {
     station: "The Eye",
-    room: "3",
+    roomName: "3",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3448,7 +3448,7 @@ export const puzzles = [
   },
   {
     station: "The Eye",
-    room: "4",
+    roomName: "4",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3522,7 +3522,7 @@ export const puzzles = [
   },
   {
     station: "The Eye",
-    room: "5",
+    roomName: "5",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3596,7 +3596,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "1",
+    roomName: "1",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3670,7 +3670,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "2",
+    roomName: "2",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3744,7 +3744,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "3",
+    roomName: "3",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3818,7 +3818,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "4",
+    roomName: "4",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3892,7 +3892,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "5",
+    roomName: "5",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3966,7 +3966,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "6",
+    roomName: "6",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4040,7 +4040,7 @@ export const puzzles = [
   },
   {
     station: "Needle Station",
-    room: "7",
+    roomName: "7",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4114,7 +4114,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Wolf",
+    roomName: "Wolf",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4188,7 +4188,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Bow",
+    roomName: "Bow",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4262,7 +4262,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Horse",
+    roomName: "Horse",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4336,7 +4336,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Stag",
+    roomName: "Stag",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4410,7 +4410,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Chief",
+    roomName: "Chief",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4484,7 +4484,7 @@ export const puzzles = [
   },
   {
     station: "Pteroglyph Station",
-    room: "Shaman",
+    roomName: "Shaman",
     startingText: "Giving Picasso a run for his money!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4558,7 +4558,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Anger",
+    roomName: "Anger",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -4633,7 +4633,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Wisdom",
+    roomName: "Wisdom",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -4708,7 +4708,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Yawn",
+    roomName: "Yawn",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -4783,7 +4783,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Embarrassment",
+    roomName: "Embarrassment",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -4858,7 +4858,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Robot",
+    roomName: "Robot",
     startingText: "This level has the cutest face. The rest are pretty ugly…",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4932,7 +4932,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Surprise",
+    roomName: "Surprise",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -5007,7 +5007,7 @@ export const puzzles = [
   },
   {
     station: "Faces Station",
-    room: "Focus",
+    roomName: "Focus",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -5082,7 +5082,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "1",
+    roomName: "1",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5156,7 +5156,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "2",
+    roomName: "2",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5230,7 +5230,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "3",
+    roomName: "3",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5304,7 +5304,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "4",
+    roomName: "4",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5378,7 +5378,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "5",
+    roomName: "5",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5452,7 +5452,7 @@ export const puzzles = [
   },
   {
     station: "Wonky Station",
-    room: "6",
+    roomName: "6",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5526,7 +5526,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "1",
+    roomName: "1",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5600,7 +5600,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "2",
+    roomName: "2",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5674,7 +5674,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "3",
+    roomName: "3",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5748,7 +5748,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "4",
+    roomName: "4",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5822,7 +5822,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "5",
+    roomName: "5",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5896,7 +5896,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "6",
+    roomName: "6",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5970,7 +5970,7 @@ export const puzzles = [
   },
   {
     station: "Zigger Station",
-    room: "7",
+    roomName: "7",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -6044,7 +6044,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "1",
+    roomName: "1",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6119,7 +6119,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "2",
+    roomName: "2",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6194,7 +6194,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "3",
+    roomName: "3",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6269,7 +6269,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "4",
+    roomName: "4",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6344,7 +6344,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "5",
+    roomName: "5",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6419,7 +6419,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "6",
+    roomName: "6",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6494,7 +6494,7 @@ export const puzzles = [
   },
   {
     station: "Cube station",
-    room: "7",
+    roomName: "7",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6569,7 +6569,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Daisy",
+    roomName: "Daisy",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -6644,7 +6644,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Fern Frond",
+    roomName: "Fern Frond",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -6719,7 +6719,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Vine",
+    roomName: "Vine",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -6794,7 +6794,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Willow",
+    roomName: "Willow",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -6869,7 +6869,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Orchid",
+    roomName: "Orchid",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -6944,7 +6944,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Rose",
+    roomName: "Rose",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -7019,7 +7019,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Fly Trap",
+    roomName: "Fly Trap",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -7094,7 +7094,7 @@ export const puzzles = [
   },
   {
     station: "Plant Station",
-    room: "Cherry Blossom",
+    roomName: "Cherry Blossom",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
     winText:
@@ -7169,7 +7169,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "1",
+    roomName: "1",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7243,7 +7243,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "2",
+    roomName: "2",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7317,7 +7317,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "3",
+    roomName: "3",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7391,7 +7391,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "4",
+    roomName: "4",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7465,7 +7465,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "5",
+    roomName: "5",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7539,7 +7539,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "6",
+    roomName: "6",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7613,7 +7613,7 @@ export const puzzles = [
   },
   {
     station: "Checkerboard Station",
-    room: "7",
+    roomName: "7",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7687,7 +7687,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "1",
+    roomName: "1",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -7762,7 +7762,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "2",
+    roomName: "2",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -7837,7 +7837,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "3",
+    roomName: "3",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -7912,7 +7912,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "4",
+    roomName: "4",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -7987,7 +7987,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "5",
+    roomName: "5",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8062,7 +8062,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "6",
+    roomName: "6",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8137,7 +8137,7 @@ export const puzzles = [
   },
   {
     station: "Nautilus Station",
-    room: "7",
+    roomName: "7",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8212,7 +8212,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "1",
+    roomName: "1",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8287,7 +8287,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "2",
+    roomName: "2",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8362,7 +8362,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "3",
+    roomName: "3",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8437,7 +8437,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "4",
+    roomName: "4",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8512,7 +8512,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "5",
+    roomName: "5",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8587,7 +8587,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "6",
+    roomName: "6",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8662,7 +8662,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "7",
+    roomName: "7",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8737,7 +8737,7 @@ export const puzzles = [
   },
   {
     station: "Criss Cross Station",
-    room: "8",
+    roomName: "8",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8812,7 +8812,7 @@ export const puzzles = [
   },
   {
     station: "Dial Up Station",
-    room: "1",
+    roomName: "1",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -8887,7 +8887,7 @@ export const puzzles = [
   },
   {
     station: "Dial Up Station",
-    room: "2",
+    roomName: "2",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -8962,7 +8962,7 @@ export const puzzles = [
   },
   {
     station: "Dial Up Station",
-    room: "3",
+    roomName: "3",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9037,7 +9037,7 @@ export const puzzles = [
   },
   {
     station: "Dial Up Station",
-    room: "4",
+    roomName: "4",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9112,7 +9112,7 @@ export const puzzles = [
   },
   {
     station: "Dial Up Station",
-    room: "5",
+    roomName: "5",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9187,7 +9187,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 1",
+    roomName: "Door 1",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9261,7 +9261,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 2",
+    roomName: "Door 2",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9335,7 +9335,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 3",
+    roomName: "Door 3",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9409,7 +9409,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 4",
+    roomName: "Door 4",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9483,7 +9483,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 5",
+    roomName: "Door 5",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9557,7 +9557,7 @@ export const puzzles = [
   },
   {
     station: "Door Station",
-    room: "Door 6",
+    roomName: "Door 6",
     startingText: "Basic door training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9631,7 +9631,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "1",
+    roomName: "1",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9705,7 +9705,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "2",
+    roomName: "2",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9779,7 +9779,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "3",
+    roomName: "3",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9853,7 +9853,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "4",
+    roomName: "4",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -9927,7 +9927,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "5",
+    roomName: "5",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -10001,7 +10001,7 @@ export const puzzles = [
   },
   {
     station: "Terminals Station",
-    room: "6",
+    roomName: "6",
     startingText: "Basic terminal training.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
@@ -10075,7 +10075,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "1",
+    roomName: "1",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10149,7 +10149,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "2",
+    roomName: "2",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10223,7 +10223,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "3",
+    roomName: "3",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10250,154 +10250,6 @@ export const puzzles = [
       features.door,
       features.terminal2,
       features.basic,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.terminal3,
-      features.basic,
-      features.basic,
-      features.terminal4,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.terminal1,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "4",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.terminal2,
-      features.door,
-      features.terminal1,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.terminal4,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.terminal3,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "5",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.basic,
-      features.door,
-      features.terminal2,
-      features.flask,
       features.outer,
       features.portal,
       features.basic,
@@ -10445,525 +10297,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "6",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.basic,
-      features.door,
-      features.terminal1,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.terminal3,
-      features.basic,
-      features.basic,
-      features.terminal2,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.terminal4,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "7",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.terminal3,
-      features.door,
-      features.terminal1,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.terminal2,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "8",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.basic,
-      features.door,
-      features.basic,
-      features.terminal2,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.terminal3,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.terminal1,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "9",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.terminal4,
-      features.door,
-      features.terminal3,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.terminal1,
-      features.basic,
-      features.basic,
-      features.terminal2,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "10",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.terminal4,
-      features.door,
-      features.terminal3,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.basic,
-      features.basic,
-      features.terminal1,
-      features.basic,
-      features.basic,
-      features.terminal2,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "11",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.terminal1,
-      features.door,
-      features.basic,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.terminal3,
-      features.basic,
-      features.basic,
-      features.terminal4,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.terminal2,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "12",
-    startingText:
-      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
-    winText: "Impressive work!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzle: [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.portal,
-      features.exit,
-      features.portal,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.flask,
-      features.terminal3,
-      features.door,
-      features.terminal1,
-      features.flask,
-      features.outer,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.portal,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.basic,
-      features.basic,
-      features.flask,
-      features.portal,
-      features.basic,
-      features.outer,
-      features.terminal2,
-      features.outer,
-      features.basic,
-      features.portal,
-      features.outer,
-      features.jet,
-      features.basic,
-      features.portal,
-      features.basic,
-      features.key,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.start,
-      features.basic,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ],
-  },
-  {
-    station: "Portal Mania station",
-    room: "13",
+    roomName: "4",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11037,7 +10371,673 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "14",
+    roomName: "5",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.basic,
+      features.door,
+      features.terminal2,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.terminal3,
+      features.basic,
+      features.basic,
+      features.terminal4,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.terminal1,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "6",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.basic,
+      features.door,
+      features.terminal1,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.terminal3,
+      features.basic,
+      features.basic,
+      features.terminal2,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.terminal4,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "7",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.terminal3,
+      features.door,
+      features.terminal1,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.terminal2,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "8",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.basic,
+      features.door,
+      features.basic,
+      features.terminal2,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.terminal3,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.terminal1,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "9",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.terminal4,
+      features.door,
+      features.terminal3,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.terminal1,
+      features.basic,
+      features.basic,
+      features.terminal2,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "10",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.terminal4,
+      features.door,
+      features.terminal3,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.basic,
+      features.basic,
+      features.terminal1,
+      features.basic,
+      features.basic,
+      features.terminal2,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "11",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.terminal1,
+      features.door,
+      features.basic,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.terminal3,
+      features.basic,
+      features.basic,
+      features.terminal4,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.terminal2,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "12",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.terminal3,
+      features.door,
+      features.terminal1,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.terminal2,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.basic,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "13",
+    startingText:
+      "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
+    winText: "Impressive work!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzle: [
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.portal,
+      features.exit,
+      features.portal,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.flask,
+      features.terminal2,
+      features.door,
+      features.terminal1,
+      features.flask,
+      features.outer,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.portal,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.flask,
+      features.basic,
+      features.basic,
+      features.terminal4,
+      features.basic,
+      features.basic,
+      features.flask,
+      features.portal,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.outer,
+      features.basic,
+      features.portal,
+      features.outer,
+      features.jet,
+      features.terminal3,
+      features.portal,
+      features.basic,
+      features.key,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.basic,
+      features.start,
+      features.basic,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+      features.outer,
+    ],
+  },
+  {
+    station: "Portal Mania station",
+    roomName: "14",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11111,7 +11111,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "15",
+    roomName: "15",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11185,7 +11185,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "16",
+    roomName: "16",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11259,7 +11259,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "17",
+    roomName: "17",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11333,7 +11333,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "18",
+    roomName: "18",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11407,7 +11407,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "19",
+    roomName: "19",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11481,7 +11481,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "20",
+    roomName: "20",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11555,7 +11555,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "21",
+    roomName: "21",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11629,7 +11629,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "22",
+    roomName: "22",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11703,7 +11703,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "23",
+    roomName: "23",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11777,7 +11777,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "24",
+    roomName: "24",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11851,7 +11851,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "25",
+    roomName: "25",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11925,7 +11925,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "26",
+    roomName: "26",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11999,7 +11999,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "27",
+    roomName: "27",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12073,7 +12073,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "28",
+    roomName: "28",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12147,7 +12147,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "29",
+    roomName: "29",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12221,7 +12221,7 @@ export const puzzles = [
   },
   {
     station: "Portal Mania station",
-    room: "30",
+    roomName: "30",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12296,7 +12296,7 @@ export const puzzles = [
 
   {
     station: "Beta station",
-    room: "Orbital",
+    roomName: "Orbital",
     startingText:
       "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
     winText:

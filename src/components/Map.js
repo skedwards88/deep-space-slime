@@ -1,17 +1,17 @@
 import React from "react";
 import {puzzles} from "../logic/puzzles";
 import {features} from "../logic/constants";
+import {useGameContext} from "./GameContextProvider";
 
 function getMaxFlaskCount(puzzle) {
   return puzzle.filter((feature) => feature === features.flask).length;
 }
 
-export default function Map({
-  currentStation,
-  score,
-  setDisplay,
-  dispatchGameState,
-}) {
+export default function Map({setDisplay}) {
+  const {gameState, dispatchGameState, score} = useGameContext();
+
+  const currentStation = gameState.station;
+
   const [stationOnDisplay, setStationOnDisplay] =
     React.useState(currentStation);
 
@@ -22,7 +22,7 @@ export default function Map({
       puzzlesByStation[puzzle.station] = [];
     }
     puzzlesByStation[puzzle.station].push({
-      room: puzzle.room,
+      roomName: puzzle.roomName,
       maxFlaskCount: getMaxFlaskCount(puzzle.puzzle),
       puzzleID: index,
     });
@@ -105,7 +105,7 @@ export default function Map({
               setDisplay("game");
             }}
           >
-            <div>{puzzle.room}</div>
+            <div>{puzzle.roomName}</div>
             <div className="mapScore">{flaskIconsForRoom}</div>
           </button>,
         );

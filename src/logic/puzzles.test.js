@@ -53,7 +53,7 @@ describe("puzzle validation", () => {
     }
   });
 
-  test.each(puzzles)("Terminal test for $station $room", ({puzzle}) => {
+  test.each(puzzles)("Terminal test for $station $roomName", ({puzzle}) => {
     const numberTerminal1s = puzzle.filter(
       (feature) => feature === features.terminal1,
     ).length;
@@ -114,7 +114,7 @@ describe("puzzle validation", () => {
       return;
     }
 
-    for (const {puzzle, station, room} of puzzles) {
+    for (const {puzzle, station, roomName} of puzzles) {
       const solutions = getAllValidPaths({
         puzzle,
         numColumns,
@@ -122,7 +122,7 @@ describe("puzzle validation", () => {
         maxPathsToFind: 1,
       });
       if (solutions.length === 0) {
-        throw new Error(`${station} ${room} has no solutions`);
+        throw new Error(`${station} ${roomName} has no solutions`);
       }
     }
   });

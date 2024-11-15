@@ -35,9 +35,9 @@ export function gameInit({
       station: savedState.isCustom
         ? customStationName
         : puzzles[savedState.puzzleID].station,
-      room: savedState.isCustom
-        ? customName
-        : puzzles[savedState.puzzleID].room,
+      roomName: savedState.isCustom
+        ? savedState.roomName
+        : puzzles[savedState.puzzleID].roomName,
       startingText: savedState.isCustom
         ? customStartingText
         : puzzles[savedState.puzzleID].startingText,
@@ -122,7 +122,7 @@ export function gameInit({
     customIndex,
     puzzleID: isCustom ? "custom" : puzzleID,
     station: isCustom ? customStationName : puzzles[puzzleID].station,
-    room: isCustom ? customName : puzzles[puzzleID].room,
+    roomName: isCustom ? customName : puzzles[puzzleID].roomName,
     startingText: isCustom
       ? customStartingText
       : puzzles[puzzleID].startingText,

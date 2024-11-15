@@ -1,7 +1,7 @@
 import {features, numColumns, numRows} from "./constants";
 import {limitedFeatures} from "./constants";
 
-export function builderInit({puzzle, name = "Unnamed", customIndex}) {
+export function builderInit({puzzle, roomName = "Unnamed", customIndex}) {
   const startingPuzzle =
     puzzle || Array.from({length: numColumns * numRows}, () => features.outer);
 
@@ -14,7 +14,7 @@ export function builderInit({puzzle, name = "Unnamed", customIndex}) {
 
   return {
     puzzle: startingPuzzle,
-    name: name,
+    roomName: roomName,
     customIndex,
     activeFeature: features.basic,
     remainingLimitedFeatures,
