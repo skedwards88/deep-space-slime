@@ -1,11 +1,11 @@
 import React from "react";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 import {validateCustomPuzzle} from "../logic/validateCustomPuzzle";
-import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {numColumns, numRows} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
 import {useGameContext} from "./GameContextProvider";
+import {useShareContext} from "./ShareContextProvider";
 
 function BuilderEntry({
   encodedPuzzle,
@@ -17,6 +17,8 @@ function BuilderEntry({
   setSavedCustomBuilds,
   savedCustomBuilds,
 }) {
+  const {shareAndCapHints} = useShareContext();
+
   return (
     <div className="builderEntry">
       <div id="customName">{roomName}</div>
@@ -89,7 +91,7 @@ function BuilderEntry({
           } else {
             // If valid, allow share (or if can't share, show link to copy)
             if (navigator.canShare) {
-              handleShare({
+              shareAndCapHints({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                 url: "https://skedwards88.github.io/deep-space-slime",

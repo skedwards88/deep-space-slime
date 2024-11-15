@@ -1,7 +1,7 @@
 import React from "react";
-import {handleShare} from "../common/handleShare";
 import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
+import Share from "./Share";
 
 function ControlBar({
   setDisplay,
@@ -17,21 +17,14 @@ function ControlBar({
         onClick={() => setDisplay("map")}
       ></button>
 
-      {navigator.canShare ? (
-        <button
-          id="shareIcon"
-          className="controlButton"
-          onClick={() =>
-            handleShare({
-              appName: "Deep Space Slime",
-              text: "Check out this puzzle maze game!",
-              url: "https://skedwards88.github.io/deep-space-slime",
-            })
-          }
-        ></button>
-      ) : (
-        <></>
-      )}
+      <Share
+        appName="Deep Space Slime"
+        text="Check out this puzzle maze game!"
+        url="https://skedwards88.github.io/deep-space-slime"
+        id="shareIcon"
+        className="controlButton"
+        buttonText=""
+      ></Share>
 
       <button
         id="installIcon"

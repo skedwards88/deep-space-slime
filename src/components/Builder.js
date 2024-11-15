@@ -1,10 +1,10 @@
 import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
-import {handleShare} from "../common/handleShare";
 import {generateSeed} from "../logic/generateSeed";
 import {unlimitedFeatures} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
 import {useGameContext} from "./GameContextProvider";
+import Share from "./Share";
 
 function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   // Release pointer capture so that pointer events can fire on other elements
@@ -165,25 +165,28 @@ export default function Builder({setDisplay}) {
         )}
 
         {builderState.isValid ? (
-          <button
-            id="shareIcon"
-            className="controlButton"
-            onClick={() => {
-              if (navigator.canShare) {
-                const encodedPuzzle = convertPuzzleToString(
-                  builderState.puzzle,
-                );
-                handleShare({
-                  appName: "Deep Space Slime",
-                  text: "I created this custom Deep Space Slime puzzle. Give it a try!",
-                  url: "https://skedwards88.github.io/deep-space-slime",
-                  seed: generateSeed(builderState.roomName, encodedPuzzle),
-                });
-              } else {
+          navigator.canShare ? (
+            <Share
+              appName="Deep Space Slime"
+              text="I created this custom Deep Space Slime puzzle. Give it a try!"
+              url="https://skedwards88.github.io/deep-space-slime"
+              seed={generateSeed(
+                builderState.roomName,
+                convertPuzzleToString(builderState.puzzle),
+              )}
+              id="shareIcon"
+              className="controlButton"
+              buttonText=""
+            ></Share>
+          ) : (
+            <button
+              id="shareIcon"
+              className="controlButton"
+              onClick={() => {
                 setDisplay("customShare");
-              }
-            }}
-          ></button>
+              }}
+            ></button>
+          )
         ) : (
           <></>
         )}

@@ -2,11 +2,14 @@ import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {generateSeed} from "../logic/generateSeed";
 import {useBuilderContext} from "./BuilderContextProvider";
+import {useShareContext} from "./ShareContextProvider";
 
 export default function CustomShare({setDisplay}) {
   const {
     builderState: {roomName, puzzle},
   } = useBuilderContext();
+
+  const {setHintsRemaining, maxHints} = useShareContext();
 
   const encodedPuzzle = convertPuzzleToString(puzzle);
   const customSeed = generateSeed(roomName, encodedPuzzle);
@@ -21,6 +24,7 @@ export default function CustomShare({setDisplay}) {
         <button
           onClick={() => {
             try {
+              setHintsRemaining(maxHints);
               navigator.clipboard.writeText(link);
             } catch (error) {
               console.log("Error copying", error);

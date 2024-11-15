@@ -8,6 +8,7 @@ import {features, numColumns, numRows} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
+import {useShareContext} from "./ShareContextProvider";
 
 function handlePointerDown({
   event,
@@ -218,6 +219,7 @@ function ExitButtons({
           ? generateSeed(roomName, convertPuzzleToString(puzzle))
           : undefined
       }
+      buttonText="Share"
     ></Share>
   ) : (
     <></>
@@ -245,11 +247,11 @@ function Game({
     dispatchGameState,
     score,
     setScore,
-    hintsRemaining,
-    setHintsRemaining,
     allGamePaths,
     calculatingGamePaths,
   } = useGameContext();
+
+  const {hintsRemaining, setHintsRemaining} = useShareContext();
 
   const {savedCustomBuilds, dispatchBuilderState} = useBuilderContext();
 
@@ -262,7 +264,7 @@ function Game({
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 1; // seconds
+  const hintWaitTime = 10; // seconds
 
   const directions = getSlimeDirections({
     mainPath,
@@ -370,7 +372,7 @@ function Game({
               appName="Deep Space Slime"
               text="Check out this maze puzzle!"
               url="https://skedwards88.github.io/deep-space-slime"
-              secondaryEffect={() => setHintsRemaining(5)}
+              buttonText="Share"
             ></Share>
           </div>
         )
