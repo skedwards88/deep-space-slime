@@ -71,8 +71,7 @@ const robotStartMood = "happy";
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Zigger+1_OOBEBOOOOBOBOOOPBFBPOOOBOBOOOPBJBPOOOFOFOOOPBFBPOOOFOFOOOPJSJPO",
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Nautilus+6_OOOBFBBOBBBBB1B3OOPSBBOOBBBFBOB2PBOBO5EOBBJBPOPB4OBBBBBOOOFBFOO",
+  "https://skedwards88.github.io/deep-space-slime?id=custom-Terminals+12_OOOOOOOOOOOOOOOOOOOOOOO1BJOOOEBFBOOOOFB2OOOOSOOOOOOOOOOOOOOOOOO",
 ];
 
 console.log(
