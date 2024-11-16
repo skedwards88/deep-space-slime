@@ -415,7 +415,7 @@ export const puzzles = [
       "outer",
       "flask",
       "key",
-      "door",
+      "flask",
       "outer",
       "outer",
       "outer",
