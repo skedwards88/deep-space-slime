@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: calc(var(--square-size) * 0.7);
+  width: 90vw;
 }
 
 .mapRoomButton {

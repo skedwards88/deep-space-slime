@@ -40,6 +40,7 @@ button {
   color: black;
   margin: 10px;
   padding: 1px 6px;
+  width: fit-content;
 }
 
 button:disabled {
@@ -125,6 +126,8 @@ button:disabled {
   white-space: pre-wrap;
   background-color: black;
   border-right: 2vmin solid black;
+  display: flex;
+  flex-direction: column;
 }
 
 #message > p {
