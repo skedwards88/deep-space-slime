@@ -1,11 +1,29 @@
 import {createContext, useContext, useState, useEffect} from "react";
 import React from "react";
 import {handleShare} from "../common/handleShare";
+import {getSeedFromDate} from "../logic/getSeedFromDate";
 
 const ShareContext = createContext();
 
 export function ShareContextProvider({children}) {
   const maxHints = 5;
+
+  const savedHintsLastReset = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedHintsLastReset"),
+  );
+
+  const today = getSeedFromDate();
+
+  const [hintsLastReset, setHintsLastReset] = useState(
+    savedHintsLastReset ?? today,
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedHintsLastReset",
+      JSON.stringify(hintsLastReset),
+    );
+  }, [hintsLastReset]);
 
   const savedHintsRemaining = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedHintsRemaining"),
@@ -21,6 +39,11 @@ export function ShareContextProvider({children}) {
       JSON.stringify(hintsRemaining),
     );
   }, [hintsRemaining]);
+
+  if (hintsLastReset !== today) {
+    setHintsLastReset(today);
+    setHintsRemaining(maxHints);
+  }
 
   function shareAndCapHints({appName, text, url, seed}) {
     setHintsRemaining(maxHints);
