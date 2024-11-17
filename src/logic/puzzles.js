@@ -5,7 +5,7 @@ export const puzzles = [
     station: "Stasis pod",
     roomName: "1",
     startingText:
-      "Beep boop. Time to wake up, Subject 56. The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
+      "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
     winText:
       "It looks like the slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
@@ -80,10 +80,10 @@ export const puzzles = [
     station: "Stasis pod",
     roomName: "2",
     startingText:
-      "The only way forward is through spaces that haven't been contaminated with slime. That's going to be tricky since the slime is following you. Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+      "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
     winText:
       "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
-    hintText: "Make sure to grab the sample if you can!",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -153,7 +153,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
+    station: "Quarantine station",
     roomName: "1",
     startingText:
       "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
@@ -227,11 +227,11 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
-    roomName: "Door 2",
-    startingText: "Basic door training.",
-    winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+    station: "Quarantine station",
+    roomName: "2",
+    startingText: "The only way forward is through spaces that haven't been contaminated with the slime that is chasing you. You can undo moves by tapping or dragging to retrace your steps.",
+    winText: "I would have been...disappointed...if you couldn't figure this one out."    
+    hintText: "If you retry this level to get all the samples, grab the card key right away then head for the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -301,11 +301,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
-    roomName: "Door 3",
-    startingText: "Basic door training.",
+    station: "Quarantine station",
+    roomName: "3",
+    startingText: "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping! You can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Impressive, if only all humans were as reliable as you…",
+    hintText: "If you retry this level to get all the samples, try heading straight for the card key on the right.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -375,12 +376,13 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
-    roomName: "Door 4",
-    startingText: "Basic door training.",
+    station: "Quarantine station",
+    roomName: "4",
+    startingText: "If you get stuck, just wait for several seconds and I'll give you a hint!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
-    robotStartMood: "happy",
+      "Good job navigating through such tight quarters!",
+      hintText: "If you retry this level to get all the samples, try moving into the empty spaces first.",
+      robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
       "outer",
@@ -449,11 +451,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
-    roomName: "Door 5",
-    startingText: "Basic door training.",
+    station: "Quarantine station",
+    roomName: "5",
+    startingText: "This one looks tricky. If you get stuck, you can retrace your steps or tap the start space to reset the room.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "We've almost broken out of quarantine. Keep going!",
+    hintText: "You can retry this level to get all the samples. Try heading right immediatly after grabbing the closest card key.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -523,11 +526,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Door Station",
-    roomName: "Door 6",
-    startingText: "Basic door training.",
+    station: "Quarantine station",
+    roomName: "6",
+    startingText: "Remember, you can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over. If you get stuck and wait for several seconds, I'll even give you a hint!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon at the top left of the screen.",
+    hintText: "You can retry this level to get all the samples. Try heading clockwise along the perimeter first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -602,7 +606,7 @@ export const puzzles = [
     startingText:
       "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
-    hintText: "Try grabbing the SPRAY BOTTLE before the SAMPLE.",
+    hintText: "You can retry this level to get the sample. Try grabbing the SPRAY BOTTLE before the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -675,11 +679,11 @@ export const puzzles = [
     station: "Biolab station",
     roomName: "2",
     startingText:
-      "Can you grab all the items? If you get stuck, you can backtrack or tap the start space to reset the room.",
+      "Can you grab the sample and cut across your trail with the spray bottle? If you get stuck, you can retrace your steps or wait for a hint. ",
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
     hintText:
-      "Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE. Remember that the SPRAY BOTTLE only lets you jump straight across the slime trail to a slime-free space.",
+      "You can retry this level to get the sample. Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE to cross your trail. Remember that the SPRAY BOTTLE only lets you jump straight across the slime trail to a slime-free space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -754,7 +758,7 @@ export const puzzles = [
     startingText: "Make sure to pick up all the sub… I mean samples!",
     winText: "One step closer to saving humanity!",
     hintText:
-      "Try turning right first, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
+      "You can retry this level to get all the samples. Try turning right first, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -829,7 +833,7 @@ export const puzzles = [
     startingText: "You’re over halfway through this station.",
     winText: "Keep going, little human!",
     hintText:
-      "Try starting with the lower left FLASK, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
+      "You can retry this level to get all the samples. Try starting with the lower left FLASK, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -904,7 +908,7 @@ export const puzzles = [
     startingText: "This looks like a tricky one, good luck!",
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
-      "Try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the SPRAY BOTTLE after grabbing the left SAMPLE.",
+      "You can retry this level to get all the samples. Try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the SPRAY BOTTLE after grabbing the left SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -979,7 +983,7 @@ export const puzzles = [
     startingText: "Spray bottles, samples and doors, oh my!",
     winText: "Onward, to the Portal station!",
     hintText:
-      "Try a spiral path and collecting the spray bottle partway through.",
+      "You can retry this level to get all the samples. Try a spiral path and collecting the spray bottle partway through.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1055,7 +1059,7 @@ export const puzzles = [
       "The humans in this station developed dimensional portals to escape the slime. Unfortunately, the slime evolved to follow them… You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
     winText: "Great job grabbing the SAMPLE on your way!",
     hintText:
-      "Try a different route to the PORTAL next time to grab the SAMPLE.",
+      "You can retry this level to get the sample. Try a different route to the PORTAL next time to grab the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1130,7 +1134,7 @@ export const puzzles = [
     startingText:
       "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
     winText:
-      "You did it! If only the rest of humanity were as dependable as you.",
+      "You can retry this level to get all the samples. You did it! If only the rest of humanity were as dependable as you.",
     hintText: "Try grabbing the top right SAMPLE first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -1205,7 +1209,7 @@ export const puzzles = [
     roomName: "3",
     startingText: "Hope you’re not claustrophobic!",
     winText: "Keep going! The end is near.",
-    hintText: "Try starting with the left PORTAL.",
+    hintText: "You can retry this level to get all the samples. Try starting with the left PORTAL.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1281,7 +1285,7 @@ export const puzzles = [
       "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
     winText: "I’m impressed the slime hasn’t caught you yet!",
     hintText:
-      "Try grabbing the closest flask before using the leftmost portal.",
+      "You can retry this level to get all the samples. Try grabbing the closest flask before using the leftmost portal.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1356,7 +1360,7 @@ export const puzzles = [
     startingText: "Can you handle all these PORTALS?",
     winText: "At this rate, we'll save humanity from the SLIME in no time!",
     hintText:
-      "Try waiting until after your final portal jump to use the key card on the door.",
+      "You can retry this level to get all the samples. Try waiting until after your final portal jump to use the key card on the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1430,9 +1434,9 @@ export const puzzles = [
     roomName: "6",
     startingText: "Look at all those SAMPLES. Can you grab them all?",
     winText:
-      "Congrats, you have escaped from the PORTAL STATION. Next up, the SECURITY STATION!",
+      "Congrats, you have escaped from the PORTAL station. Next up, the SECURITY station!",
     hintText:
-      "Try taking a path to the upper right portal that will set you up to use two spray bottles.",
+      "You can retry this level to get all the samples. Try taking a path to the upper right portal that will set you up to use two spray bottles.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1502,12 +1506,13 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals station",
+    station: "Security station",
     roomName: "1",
     startingText:
       "The humans in this station developed automated containment systems. To get through, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
       "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1577,11 +1582,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "2",
-    startingText: "Basic terminal training.",
+    startingText: "This one's a bit harde, but I'm sure you're up to the challenge!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice loop de loop!",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1651,11 +1657,11 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "3",
-    startingText: "Basic terminal training.",
-    winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+    startingText: "Don't give up! You haven't served your purpose yet.",
+    winText: "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17."
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1725,11 +1731,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "4",
-    startingText: "Basic terminal training.",
+    startingText: "Do you think you can figure this one out? Try not to disappoint me...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "You are such a smart human!",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1799,11 +1806,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "5",
-    startingText: "Basic terminal training.",
+    startingText: "No other subjects have gotten this far. You should be very proud subject 62!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Excellent, you've done a great job of collecting all these samples for me!",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1873,11 +1881,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "6",
     startingText: "Basic terminal training.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "You're almost at the end of your journey. One more room to go!",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -1947,11 +1956,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Terminals Station",
+    station: "Security station",
     roomName: "7",
-    startingText: "Basic terminal training.",
+    startingText: "You're almost finished...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Congrats, you have escaped from the SECURITY STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
+    hintText: "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -2026,7 +2036,7 @@ export const puzzles = [
     startingText:
       "Great job! Please deposit the samples and data you have collected.",
     winText:
-      "Please proceed to the FINAL STATION for decontamination and a fun surprise!",
+      "Please proceed to the FINAL station for decontamination and a fun surprise!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzle: [
@@ -2246,10 +2256,10 @@ export const puzzles = [
     ],
   },
   {
-    station: "Chest Station",
+    station: "Chest station",
     roomName: "1",
     startingText:
-      "By beating the main game, you've unlocked new thematic stations like this one! Yo ho ho and a bottle of slime!",
+      "By beating the main storyline, you've unlocked new thematic slime-infested stations like this one! Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -2321,7 +2331,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Chest Station",
+    station: "Chest station",
     roomName: "2",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
@@ -2395,7 +2405,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Chest Station",
+    station: "Chest station",
     roomName: "3",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
@@ -2469,7 +2479,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Chest Station",
+    station: "Chest station",
     roomName: "4",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
@@ -2543,7 +2553,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Chest Station",
+    station: "Chest station",
     roomName: "5",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
@@ -2617,7 +2627,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "1",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -2691,7 +2701,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "2",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -2765,7 +2775,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "3",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -2839,7 +2849,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "4",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -2913,7 +2923,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "5",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -2987,7 +2997,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "6",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -3061,7 +3071,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "7",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -3135,7 +3145,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "8",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -3209,7 +3219,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Enterprize Station",
+    station: "Enterprize station",
     roomName: "9",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
@@ -3653,7 +3663,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "1",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -3727,7 +3737,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "2",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -3801,7 +3811,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "3",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -3875,7 +3885,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "4",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -3949,7 +3959,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "5",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -4023,7 +4033,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "6",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -4097,7 +4107,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Needle Station",
+    station: "Needle station",
     roomName: "7",
     startingText: "Even a camel could pass through this one!",
     winText:
@@ -4171,7 +4181,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Wolf",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4245,7 +4255,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Bow",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4319,7 +4329,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Horse",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4393,7 +4403,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Stag",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4467,7 +4477,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Chief",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4541,7 +4551,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Pteroglyph Station",
+    station: "Pteroglyph station",
     roomName: "Shaman",
     startingText: "Giving Picasso a run for his money!",
     winText:
@@ -4615,7 +4625,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Anger",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -4690,7 +4700,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Wisdom",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -4765,7 +4775,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Yawn",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -4840,7 +4850,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Embarrassment",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -4915,7 +4925,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Robot",
     startingText: "This level has the cutest face. The rest are pretty ugly…",
     winText:
@@ -4989,7 +4999,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Surprise",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -5064,7 +5074,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Faces Station",
+    station: "Faces station",
     roomName: "Focus",
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
@@ -5139,7 +5149,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "1",
     startingText: "Embrace the chaos!",
     winText:
@@ -5213,7 +5223,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "2",
     startingText: "Embrace the chaos!",
     winText:
@@ -5287,7 +5297,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "3",
     startingText: "Embrace the chaos!",
     winText:
@@ -5361,7 +5371,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "4",
     startingText: "Embrace the chaos!",
     winText:
@@ -5435,7 +5445,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "5",
     startingText: "Embrace the chaos!",
     winText:
@@ -5509,7 +5519,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Wonky Station",
+    station: "Wonky station",
     roomName: "6",
     startingText: "Embrace the chaos!",
     winText:
@@ -5583,7 +5593,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "1",
     startingText: "Try zigging and zagging!",
     winText:
@@ -5657,7 +5667,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "2",
     startingText: "Try zigging and zagging!",
     winText:
@@ -5731,7 +5741,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "3",
     startingText: "Try zigging and zagging!",
     winText:
@@ -5805,7 +5815,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "4",
     startingText: "Try zigging and zagging!",
     winText:
@@ -5879,7 +5889,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "5",
     startingText: "Try zigging and zagging!",
     winText:
@@ -5953,7 +5963,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "6",
     startingText: "Try zigging and zagging!",
     winText:
@@ -6027,7 +6037,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Zigger Station",
+    station: "Zigger station",
     roomName: "7",
     startingText: "Try zigging and zagging!",
     winText:
@@ -6626,7 +6636,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Daisy",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -6701,7 +6711,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Fern Frond",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -6776,7 +6786,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Vine",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -6851,7 +6861,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Willow",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -6926,7 +6936,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Orchid",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -7001,7 +7011,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Rose",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -7076,7 +7086,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Fly Trap",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -7151,7 +7161,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Plant Station",
+    station: "Plant station",
     roomName: "Cherry Blossom",
     startingText:
       "Plants are better than humans. They don’t talk back when you experiment on them.",
@@ -7226,7 +7236,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "1",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7300,7 +7310,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "2",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7374,7 +7384,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "3",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7448,7 +7458,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "4",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7522,7 +7532,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "5",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7596,7 +7606,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "6",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7670,7 +7680,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "7",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7744,7 +7754,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Checkerboard Station",
+    station: "Checkerboard station",
     roomName: "8",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
@@ -7818,7 +7828,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "1",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7893,7 +7903,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "2",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -7968,7 +7978,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "3",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8043,7 +8053,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "4",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8118,7 +8128,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "5",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8193,7 +8203,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "6",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8268,7 +8278,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Nautilus Station",
+    station: "Nautilus station",
     roomName: "7",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
@@ -8343,7 +8353,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "1",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8418,7 +8428,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "2",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8493,7 +8503,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "3",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8568,7 +8578,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "4",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8643,7 +8653,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "5",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8718,7 +8728,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "6",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8793,7 +8803,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "7",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8868,7 +8878,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Criss Cross Station",
+    station: "Criss Cross station",
     roomName: "8",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
@@ -8943,7 +8953,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Dial Up Station",
+    station: "Dial Up station",
     roomName: "1",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
@@ -9018,7 +9028,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Dial Up Station",
+    station: "Dial Up station",
     roomName: "2",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
@@ -9093,7 +9103,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Dial Up Station",
+    station: "Dial Up station",
     roomName: "3",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
@@ -9168,7 +9178,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Dial Up Station",
+    station: "Dial Up station",
     roomName: "4",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
@@ -9243,7 +9253,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Dial Up Station",
+    station: "Dial Up station",
     roomName: "5",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
@@ -9318,7 +9328,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarantine station",
+    station: "Doors station",
     roomName: "1",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
@@ -9393,7 +9403,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarantine station",
+    station: "Doors station",
     roomName: "2",
     startingText:
       "Not much left of the poor subjects devoured by the slime... Oh well! Let's try to collect all the samples.",
@@ -9468,7 +9478,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarantine station",
+    station: "Doors station",
     roomName: "3",
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
@@ -9544,7 +9554,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Quarantine station",
+    station: "Doors station",
     roomName: "4",
     startingText: "Uh oh...do you think you can handle all these doors?",
     winText:
@@ -9620,7 +9630,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "1",
     startingText: "This one's a walk in the park.",
     winText:
@@ -9694,7 +9704,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "2",
     startingText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
@@ -9770,7 +9780,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "3",
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me.",
@@ -9845,7 +9855,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "4",
     startingText:
       "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
@@ -9921,7 +9931,7 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "5",
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
@@ -9997,12 +10007,12 @@ export const puzzles = [
     ],
   },
   {
-    station: "Security station",
+    station: "Terminals station",
     roomName: "6",
     startingText:
       "You're almost at the end of your journey. One more room to go.",
     winText:
-      "Congrats, you have escaped from the SECURITY STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
+      "Congrats, you have escaped from the SECURITY station. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
     hintText:
       "Head directly to the closest portal, and save the SPRAY BOTTLE for after TERMINAL 3.",
     robotStartMood: "happy",
