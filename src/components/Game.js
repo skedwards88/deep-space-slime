@@ -264,7 +264,7 @@ function Game({
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 10; // seconds
+  const hintWaitTime = 7; // seconds
 
   const directions = getSlimeDirections({
     mainPath,
