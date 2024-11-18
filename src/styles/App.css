@@ -363,6 +363,28 @@ button.feature {
   transition: box-shadow 0.3s ease-in-out;
 }
 
+@keyframes boxShadowBlink {
+  0%, 100% {
+    box-shadow:
+      0 0 10px 5px rgba(103, 218, 240, 0.8),
+      inset 0 0 10px 10px rgba(103, 218, 240, 0.8);
+  }
+  50% {
+    box-shadow:
+      0 0 10px 5px rgba(103, 218, 240, 0.4),
+      inset 0 0 10px 10px rgba(103, 218, 240, 0.5);
+  }
+}
+
+.puzzleSquare.hint {
+  position: relative;
+  box-shadow:
+    0 0 10px 5px rgba(103, 218, 240, 0.8),
+    inset 0 0 10px 10px rgba(103, 218, 240, 0.8);
+  transition: box-shadow 0.3s ease-in-out;
+  animation: boxShadowBlink 1s step-start infinite;
+}
+
 .puzzleSquare.visited {
   position: relative;
 }

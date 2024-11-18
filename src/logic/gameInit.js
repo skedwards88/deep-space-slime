@@ -142,5 +142,6 @@ export function gameInit({
     validNextIndexes,
     mainPath,
     mouseIsActive: false,
+    hint: undefined,
   };
 }
