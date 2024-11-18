@@ -4,7 +4,8 @@ import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {features, numColumns, numRows} from "./constants";
-import {updatePathWithHint} from "./updatePathWithHint";
+import {getHint} from "./getHint";
+import {arraysMatchQ} from "../common/arraysMatchQ";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -13,7 +14,9 @@ export function gameReducer(currentGameState, payload) {
     // If the index isn't one of the valid indexes, determine why and return early
     if (!currentGameState.validNextIndexes.includes(index)) {
       const message = getReasonForMoveInvalidity({index, currentGameState});
-      return message ? {...currentGameState, message} : currentGameState;
+      return message
+        ? {...currentGameState, message, hint: undefined}
+        : {...currentGameState, hint: undefined};
     }
 
     const puzzle = currentGameState.puzzle;
@@ -39,6 +42,7 @@ export function gameReducer(currentGameState, payload) {
         numberCount: 0,
         jetCount: 0,
         message: currentGameState.startingText,
+        hint: undefined,
       };
     }
 
@@ -54,6 +58,7 @@ export function gameReducer(currentGameState, payload) {
       return {
         ...stateWithBacktrackedPath,
         message: currentGameState.startingText,
+        hint: undefined,
       };
     }
 
@@ -80,7 +85,7 @@ export function gameReducer(currentGameState, payload) {
     } else {
       newMessage = currentGameState.startingText;
     }
-    return {...stateWithExtendedPath, message: newMessage};
+    return {...stateWithExtendedPath, message: newMessage, hint: undefined};
   }
   if (payload.action === "resetPuzzle") {
     const puzzle = currentGameState.puzzle;
@@ -103,37 +108,43 @@ export function gameReducer(currentGameState, payload) {
       numberCount: 0,
       jetCount: 0,
       message: currentGameState.startingText,
+      hint: undefined,
     };
   } else if (payload.action === "hint") {
     const puzzle = currentGameState.puzzle;
-    const newPath = updatePathWithHint(
+    const [newPath, hint] = getHint(
       currentGameState.mainPath,
       payload.allGamePaths,
     );
 
-    // Iteratively update the state with the new path so that the inventory matches
+    // If the hint requires backtracking:
+    // iteratively update the state with the new path so that the inventory matches
     // (It would be more efficient to break the validNextPaths calculation into
     // a separate function since we don't need that value until the very end.
-    let updatedState = {
-      ...currentGameState,
-      mainPath: [newPath[0]],
-      flaskCount: 0,
-      keyCount: 0,
-      numberCount: 0,
-      jetCount: 0,
-    };
-    for (let index = 1; index < newPath.length; index++) {
-      updatedState = updateStateWithExtension({
-        index: newPath[index],
-        currentGameState: {...updatedState},
-        puzzle,
-      });
+    let updatedState = currentGameState;
+    if (!arraysMatchQ(newPath, currentGameState.mainPath)) {
+      updatedState = {
+        ...currentGameState,
+        mainPath: [newPath[0]],
+        flaskCount: 0,
+        keyCount: 0,
+        numberCount: 0,
+        jetCount: 0,
+      };
+      for (let index = 1; index < newPath.length; index++) {
+        updatedState = updateStateWithExtension({
+          index: newPath[index],
+          currentGameState: {...updatedState},
+          puzzle,
+        });
+      }
     }
 
     return {
       ...updatedState,
       mainPath: newPath,
       message: "I think you should go this way.",
+      hint,
     };
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;

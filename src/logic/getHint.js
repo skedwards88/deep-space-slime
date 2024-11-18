@@ -11,7 +11,9 @@ function scorePathMatch(path, comparisonPath) {
   return score;
 }
 
-export function updatePathWithHint(currentPath, possiblePaths) {
+// Backtrack path if needed
+// Then propose next spot
+export function getHint(currentPath, possiblePaths) {
   // For each possible path, calculate how many indexes
   // match the current path before the paths diverge
   const scores = possiblePaths.map((comparisonPath) =>
@@ -31,5 +33,7 @@ export function updatePathWithHint(currentPath, possiblePaths) {
 
   // If the max score equals the current path length, just extend the current path by 1
   // Otherwise, backtrack to where the paths diverged, and then add 1
-  return bestMatch.slice(0, maxScore + 1);
+  const newPath = bestMatch.slice(0, maxScore);
+  const hint = bestMatch[maxScore];
+  return [newPath, hint];
 }

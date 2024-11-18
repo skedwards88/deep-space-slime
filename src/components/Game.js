@@ -70,6 +70,7 @@ function PuzzleSquare({
   index,
   visited,
   validNext,
+  isHint,
   dispatchGameState,
   exitUnlocked,
   current,
@@ -100,7 +101,9 @@ function PuzzleSquare({
       key={index}
       className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
         visited ? "visited" : ""
-      } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
+      } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
+        isHint ? "hint" : ""
+      }`}
       onPointerDown={(event) =>
         handlePointerDown({
           event,
@@ -279,6 +282,7 @@ function Game({
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
       validNext={gameState.validNextIndexes.includes(index)}
+      isHint={index === gameState.hint}
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
       dispatchGameState={dispatchGameState}
@@ -349,10 +353,19 @@ function Game({
         className={`${
           isAtExit ? gameState.robotEndMood : gameState.robotStartMood
         }${
-          hintWaitIsOver && !calculatingGamePaths && !isAtExit ? " idea" : ""
+          hintWaitIsOver &&
+          !calculatingGamePaths &&
+          !isAtExit &&
+          gameState.hint === undefined
+            ? " idea"
+            : ""
         }`}
         onClick={
-          hintWaitIsOver && !calculatingGamePaths && !isAtExit && hintsRemaining
+          hintWaitIsOver &&
+          !calculatingGamePaths &&
+          !isAtExit &&
+          gameState.hint === undefined &&
+          hintsRemaining
             ? () => {
                 dispatchGameState({action: "hint", allGamePaths});
                 setHintsRemaining(hintsRemaining - 1);
@@ -362,7 +375,10 @@ function Game({
         }
       ></div>
 
-      {hintWaitIsOver && !calculatingGamePaths && !isAtExit ? (
+      {hintWaitIsOver &&
+      !calculatingGamePaths &&
+      !isAtExit &&
+      gameState.hint === undefined ? (
         hintsRemaining ? (
           <div id="message">{`Tap me for a hint!`}</div>
         ) : (
