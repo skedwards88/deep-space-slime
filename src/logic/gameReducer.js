@@ -123,8 +123,16 @@ export function gameReducer(currentGameState, payload) {
     // a separate function since we don't need that value until the very end.
     let updatedState = currentGameState;
     if (!arraysMatchQ(newPath, currentGameState.mainPath)) {
+      const validNextIndexes = getValidNextIndexes({
+        mainPath: [newPath[0]],
+        puzzle: currentGameState.puzzle,
+        numColumns,
+        numRows,
+        maxNumber: currentGameState.maxNumber,
+      });
       updatedState = {
         ...currentGameState,
+        validNextIndexes,
         mainPath: [newPath[0]],
         flaskCount: 0,
         keyCount: 0,
