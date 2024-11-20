@@ -303,7 +303,7 @@ function Game({
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 2; // seconds
+  const hintWaitTime = 7; // seconds
 
   const [hintIndex, setHintIndex] = React.useState(undefined);
 
@@ -361,14 +361,18 @@ function Game({
   // Change setHintWaitIsOver to true if the main path is unchanged for some time
   React.useEffect(() => {
     let timeout;
-    if (!hintWaitIsOver && !isAtExit) {
+    if (
+      !hintWaitIsOver &&
+      !isAtExit &&
+      (navigator.canShare || hintsRemaining)
+    ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
         setCurrentMessage("Tap me to get a hint!");
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
-  }, [gameState.mainPath, hintWaitIsOver, isAtExit]);
+  }, [gameState.mainPath, hintWaitIsOver, isAtExit, hintsRemaining]);
 
   const isTimeToShowAHint =
     hintWaitIsOver &&
@@ -407,7 +411,7 @@ function Game({
         }
       ></div>
 
-      {isTimeToShowAHint && !hintsRemaining ? (
+      {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
         <div id="message">
           {"Share to get more hints!"}
           <Share
