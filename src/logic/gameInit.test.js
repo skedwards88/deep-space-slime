@@ -40,7 +40,6 @@ describe("gameInit saved state usage", () => {
       startingText: puzzles[savedState.puzzleID].startingText,
       hintText: puzzles[savedState.puzzleID].hintText,
       winText: puzzles[savedState.puzzleID].winText,
-      message: puzzles[savedState.puzzleID].startingText,
       robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
       robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
     });
@@ -123,7 +122,6 @@ describe("gameInit saved state usage", () => {
       startingText: puzzles[puzzleID].startingText,
       hintText: puzzles[puzzleID].hintText,
       winText: puzzles[puzzleID].winText,
-      message: puzzles[puzzleID].startingText,
       robotStartMood: puzzles[puzzleID].robotStartMood,
       robotEndMood: puzzles[puzzleID].robotEndMood,
       puzzle,
@@ -176,7 +174,6 @@ describe("gameInit saved state usage", () => {
       hintText: undefined,
       winText:
         "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.",
-      message: "This is a custom puzzle built by a human subject.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzle,

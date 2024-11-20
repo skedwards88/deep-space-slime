@@ -47,9 +47,6 @@ export function gameInit({
       winText: savedState.isCustom
         ? customWinText
         : puzzles[savedState.puzzleID].winText,
-      message: savedState.isCustom
-        ? customStartingText
-        : puzzles[savedState.puzzleID].startingText,
       robotStartMood: savedState.isCustom
         ? customRobotMood
         : puzzles[savedState.puzzleID].robotStartMood,
@@ -128,7 +125,6 @@ export function gameInit({
       : puzzles[puzzleID].startingText,
     hintText: isCustom ? customHintText : puzzles[puzzleID].hintText,
     winText: isCustom ? customWinText : puzzles[puzzleID].winText,
-    message: isCustom ? customStartingText : puzzles[puzzleID].startingText,
     robotStartMood: isCustom
       ? customRobotMood
       : puzzles[puzzleID].robotStartMood,
@@ -142,6 +138,5 @@ export function gameInit({
     validNextIndexes,
     mainPath,
     mouseIsActive: false,
-    hint: undefined,
   };
 }

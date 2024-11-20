@@ -9,6 +9,9 @@ import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
 import {useShareContext} from "./ShareContextProvider";
+import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
+import {getHint} from "../logic/getHint";
+import {arraysMatchQ} from "../common/arraysMatchQ";
 
 function handlePointerDown({
   event,
@@ -68,22 +71,34 @@ function handlePointerEnter({
 function PuzzleSquare({
   feature,
   index,
-  visited,
-  validNext,
-  isHint,
-  dispatchGameState,
   exitUnlocked,
   current,
+  visited,
   direction,
-  flaskCount,
-  puzzleID,
-  score,
-  setScore,
   setDisplay,
-  mouseIsActive,
-  mainPath,
   setHintWaitIsOver,
+  setCurrentMessage,
+  setHintIndex,
+  hintIndex,
 }) {
+  const {gameState, dispatchGameState, score, setScore} = useGameContext();
+
+  const {
+    flaskCount,
+    puzzleID,
+    mouseIsActive,
+    mainPath,
+    validNextIndexes,
+    puzzle,
+    startingText,
+    hintText,
+    winText,
+  } = gameState;
+
+  const validNext = validNextIndexes.includes(index);
+
+  const isHint = index === hintIndex;
+
   let featureClass;
 
   if (feature === features.exit) {
@@ -124,17 +139,40 @@ function PuzzleSquare({
             }
 
             if (validNext) {
-              setHintWaitIsOver(false);
+              handlePointerEnter({
+                event,
+                index,
+                dispatchGameState,
+                confirmReset: feature === features.start && mainPath.length > 2,
+                setDisplay,
+                mouseIsActive,
+              });
+              let newMessage;
+              if (
+                puzzle[index] === features.exit ||
+                puzzle[index] === features.ship
+              ) {
+                const maxFlasks = puzzle.filter(
+                  (feature) => feature === features.flask,
+                ).length;
+                if (flaskCount < maxFlasks && hintText) {
+                  newMessage = hintText;
+                } else {
+                  newMessage = winText;
+                }
+              } else {
+                newMessage = startingText;
+              }
+              setCurrentMessage(newMessage);
+            } else {
+              const errorMessage = getReasonForMoveInvalidity({
+                index,
+                currentGameState: gameState,
+              });
+              setCurrentMessage(errorMessage);
             }
-
-            handlePointerEnter({
-              event,
-              index,
-              dispatchGameState,
-              confirmReset: feature === features.start && mainPath.length > 2,
-              setDisplay,
-              mouseIsActive,
-            });
+            setHintWaitIsOver(false);
+            setHintIndex(undefined);
           },
         })}
     ></div>
@@ -245,14 +283,8 @@ function Game({
   showInstallButton,
   installPromptEvent,
 }) {
-  const {
-    gameState,
-    dispatchGameState,
-    score,
-    setScore,
-    allGamePaths,
-    calculatingGamePaths,
-  } = useGameContext();
+  const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
+    useGameContext();
 
   const {hintsRemaining, setHintsRemaining} = useShareContext();
 
@@ -266,8 +298,14 @@ function Game({
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const exitUnlocked = gameState.maxNumber === gameState.numberCount;
 
+  const [currentMessage, setCurrentMessage] = React.useState(
+    gameState.startingText,
+  );
+
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 7; // seconds
+  const hintWaitTime = 2; // seconds
+
+  const [hintIndex, setHintIndex] = React.useState(undefined);
 
   const directions = getSlimeDirections({
     mainPath,
@@ -281,20 +319,14 @@ function Game({
       feature={feature}
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
-      validNext={gameState.validNextIndexes.includes(index)}
-      isHint={index === gameState.hint}
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
-      dispatchGameState={dispatchGameState}
       direction={directions[index]}
-      flaskCount={gameState.flaskCount}
-      puzzleID={gameState.puzzleID}
-      score={score}
-      setScore={setScore}
       setDisplay={setDisplay}
-      mouseIsActive={gameState.mouseIsActive}
-      mainPath={mainPath}
       setHintWaitIsOver={setHintWaitIsOver}
+      setCurrentMessage={setCurrentMessage}
+      setHintIndex={setHintIndex}
+      hintIndex={hintIndex}
     ></PuzzleSquare>
   ));
 
@@ -329,13 +361,20 @@ function Game({
   // Change setHintWaitIsOver to true if the main path is unchanged for some time
   React.useEffect(() => {
     let timeout;
-    if (!hintWaitIsOver) {
+    if (!hintWaitIsOver && !isAtExit) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
+        setCurrentMessage("Tap me to get a hint!");
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
-  }, [gameState.mainPath, hintWaitIsOver]);
+  }, [gameState.mainPath, hintWaitIsOver, isAtExit]);
+
+  const isTimeToShowAHint =
+    hintWaitIsOver &&
+    !calculatingGamePaths &&
+    !isAtExit &&
+    hintIndex === undefined;
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -352,48 +391,34 @@ function Game({
         id="botFace"
         className={`${
           isAtExit ? gameState.robotEndMood : gameState.robotStartMood
-        }${
-          hintWaitIsOver &&
-          !calculatingGamePaths &&
-          !isAtExit &&
-          gameState.hint === undefined
-            ? " idea"
-            : ""
-        }`}
+        }${isTimeToShowAHint ? " idea" : ""}`}
         onClick={
-          hintWaitIsOver &&
-          !calculatingGamePaths &&
-          !isAtExit &&
-          gameState.hint === undefined &&
-          hintsRemaining
+          isTimeToShowAHint && hintsRemaining
             ? () => {
-                dispatchGameState({action: "hint", allGamePaths});
+                const [newPath, hint] = getHint(mainPath, allGamePaths);
+                setHintIndex(hint);
+                if (!arraysMatchQ(newPath, mainPath)) {
+                  dispatchGameState({action: "overwritePath", newPath});
+                }
+                setCurrentMessage("I think you should go here.");
                 setHintsRemaining(hintsRemaining - 1);
-                setHintWaitIsOver(false);
               }
             : null
         }
       ></div>
 
-      {hintWaitIsOver &&
-      !calculatingGamePaths &&
-      !isAtExit &&
-      gameState.hint === undefined ? (
-        hintsRemaining ? (
-          <div id="message">{`Tap me for a hint!`}</div>
-        ) : (
-          <div id="message">
-            {"Share to get more hints!"}
-            <Share
-              appName="Deep Space Slime"
-              text="Check out this maze puzzle!"
-              url="https://skedwards88.github.io/deep-space-slime"
-              buttonText="Share"
-            ></Share>
-          </div>
-        )
+      {isTimeToShowAHint && !hintsRemaining ? (
+        <div id="message">
+          {"Share to get more hints!"}
+          <Share
+            appName="Deep Space Slime"
+            text="Check out this maze puzzle!"
+            url="https://skedwards88.github.io/deep-space-slime"
+            buttonText="Share"
+          ></Share>
+        </div>
       ) : (
-        <div id="message">{gameState.message}</div>
+        <div id="message">{currentMessage}</div>
       )}
 
       {isAtExit ? (
