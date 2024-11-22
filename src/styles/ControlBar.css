@@ -62,3 +62,10 @@
 #trashIcon {
   background-image: url("../images/icons/trash.svg");
 }
+
+#playIcon {
+  background-image: url("../images/icons/mute.svg");
+}
+#muteIcon {
+  background-image: url("../images/icons/unmute.svg");
+}
