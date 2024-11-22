@@ -1,24 +1,41 @@
 import React from "react";
-import musicFile from "../images/music.mp3"
+import musicFile from "../images/music.mp3";
 
 export default function Audio() {
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const savedIsPlaying = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedAudio"),
+  );
+
+  const [isPlaying, setIsPlaying] = React.useState(savedIsPlaying || false);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "deepSpaceSlimeSavedAudio",
+      JSON.stringify(isPlaying),
+    );
+  }, [isPlaying]);
+
   const audioRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    }
+  });
 
   return (
     <div>
-      <audio ref={audioRef} src={musicFile}/>
+      <audio ref={audioRef} src={musicFile} />
       <button
-      className="controlButton"
-      id={isPlaying ? "playIcon" : "muteIcon"}
-      onClick={() => {
-        isPlaying ? audioRef.current.pause() : audioRef.current.play();
-        setIsPlaying(!isPlaying)
-      }}></button>
+        className="controlButton"
+        id={isPlaying ? "playIcon" : "muteIcon"}
+        onClick={() => {
+          isPlaying ? audioRef.current.pause() : audioRef.current.play();
+          setIsPlaying(!isPlaying);
+        }}
+      ></button>
     </div>
-  )
+  );
 }
 
 // todo: add uppbeat credit to heart screen
-// todo: hoist up the play/mute state.
-// todo decide whether to play music everywhere or just where control bar is visible
