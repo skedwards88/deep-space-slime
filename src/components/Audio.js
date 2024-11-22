@@ -18,10 +18,16 @@ export default function Audio() {
   const audioRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play();
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.log(
+          "Error with auto play, probably because user didn't interact first.",
+        );
+        console.log(error);
+        setIsPlaying(false);
+      });
     }
-  });
+  }, []);
 
   return (
     <div>
