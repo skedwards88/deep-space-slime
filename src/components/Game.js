@@ -190,6 +190,7 @@ function ExitButtons({
   dispatchBuilderState,
   customIndex,
   setHintWaitIsOver,
+  setCurrentMessage,
 }) {
   const maxFlasks = puzzle.filter(
     (feature) => feature === features.flask,
@@ -201,6 +202,7 @@ function ExitButtons({
     <button
       onClick={() => {
         setHintWaitIsOver(false);
+        setCurrentMessage(puzzles[puzzleID + 1].startingText);
         dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
       }}
     >
@@ -214,7 +216,10 @@ function ExitButtons({
     <></>
   ) : flaskCount < maxFlasks ? (
     <button
-      onClick={() => dispatchGameState({action: "newGame", puzzleID: puzzleID})}
+      onClick={() => {
+        setCurrentMessage(puzzles[puzzleID].startingText);
+        dispatchGameState({action: "newGame", puzzleID: puzzleID});
+      }}
     >
       Retry Level
     </button>
@@ -437,6 +442,7 @@ function Game({
           dispatchBuilderState={dispatchBuilderState}
           customIndex={customIndex}
           setHintWaitIsOver={setHintWaitIsOver}
+          setCurrentMessage={setCurrentMessage}
         ></ExitButtons>
       ) : (
         <div id="acquiredFeatures">
