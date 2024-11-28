@@ -418,12 +418,13 @@ function Game({
 
       {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
         <div id="message">
-          {"Share to get more hints!"}
+          {"Share with a new person to get 5 more hints!\n\n(We don’t track who you share with, but we hope you help us spread the game like slime across the galaxy.)"}
           <Share
             appName="Deep Space Slime"
             text="Check out this maze puzzle!"
             url="https://skedwards88.github.io/deep-space-slime"
             buttonText="Share"
+            id="sharePrompt"
           ></Share>
         </div>
       ) : (

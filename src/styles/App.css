@@ -122,7 +122,7 @@ button:disabled {
   grid-area: botMessage;
   font-size: calc(var(--square-size) * 0.37);
   min-height: calc(var(--square-size) * 2);
-  width: 100%;
+  width: 99%;
   text-align: left;
   overflow: scroll;
   white-space: pre-wrap;
@@ -509,6 +509,10 @@ button.feature {
 
 #custom-message-buttons > button {
   margin: 10px;
+}
+
+#sharePrompt {
+  align-self: center;
 }
 
 /* Large screen, landscape */
