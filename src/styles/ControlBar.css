@@ -16,6 +16,7 @@
   height: calc(var(--square-size) * 0.6);
   background-color: transparent;
   padding: 1px 6px;
+  margin: 5px 10px;
 }
 
 #mapIcon {
