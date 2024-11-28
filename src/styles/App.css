@@ -128,8 +128,6 @@ button:disabled {
   white-space: pre-wrap;
   background-color: black;
   border-right: 2vmin solid black;
-  display: flex;
-  flex-direction: column;
 }
 
 #message > p {
