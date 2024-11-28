@@ -1,7 +1,7 @@
 import {createContext, useContext, useState, useEffect} from "react";
 import React from "react";
-import {handleShare} from "../common/handleShare";
 import {getSeedFromDate} from "../logic/getSeedFromDate";
+import sendAnalytics from "../common/sendAnalytics";
 
 const ShareContext = createContext();
 
@@ -46,8 +46,24 @@ export function ShareContextProvider({children}) {
   }
 
   function shareAndCapHints({appName, text, url, seed}) {
-    setHintsRemaining(maxHints);
-    handleShare({appName, text, url, seed});
+    const fullUrl = seed ? `${url}?id=${seed}` : url;
+    console.log(fullUrl);
+
+    navigator
+      .share({
+        title: appName,
+        text: `${text}\n\n`,
+        url: fullUrl,
+      })
+      .then(() => {
+        setHintsRemaining(maxHints);
+        console.log("Successful share");
+      })
+      .catch((error) => {
+        console.log("Error sharing or share was canceled", error);
+      });
+
+    sendAnalytics("share");
   }
 
   return (
