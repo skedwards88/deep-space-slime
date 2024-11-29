@@ -23,6 +23,7 @@ describe("gameInit saved state usage", () => {
     const savedState = {
       puzzleID: 1,
       isCustom: false,
+      flaskCount: 5,
     };
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -62,7 +63,7 @@ describe("gameInit saved state usage", () => {
     expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 0});
   });
 
-  test("uses the saved ID useSaved is true and the saved puzzle is custom but the saved state is invalid", () => {
+  test("uses the saved ID if useSaved is true and the saved puzzle is custom but the saved state is invalid", () => {
     const savedID = 5;
     const savedState = {isCustom: false, puzzleID: savedID, some: "state"};
     localStorage.setItem(
@@ -71,7 +72,7 @@ describe("gameInit saved state usage", () => {
     );
     validateSavedState.mockReturnValue(false);
 
-    const result = gameInit({useSaved: true, puzzleID: 0});
+    const result = gameInit({useSaved: true, puzzleID: 3});
 
     expect(result).not.toEqual(savedState);
     expect(result.puzzleID).toBe(savedID);
