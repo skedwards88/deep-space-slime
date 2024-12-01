@@ -1,16 +1,16 @@
 import {validateSavedState} from "./validateSavedState";
-import {puzzles} from "./puzzles";
+import {newPuzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("validateSavedState", () => {
-  const puzzleID = 1;
+  const newPuzzleID = "campaign_stasis-pod_2";
 
-  const puzzle = puzzles[puzzleID].puzzle;
+  const puzzle = newPuzzles[newPuzzleID].puzzle;
 
   const validNonCustomState = {
     isCustom: false,
     customIndex: undefined,
-    puzzleID,
+    newPuzzleID,
     puzzle,
     flaskCount: 1,
     keyCount: 1,
@@ -25,7 +25,7 @@ describe("validateSavedState", () => {
   const validCustomState = {
     isCustom: true,
     customIndex: 5,
-    puzzleID: "custom",
+    newPuzzleID: "custom",
     puzzle,
     flaskCount: 1,
     keyCount: 1,
@@ -53,23 +53,13 @@ describe("validateSavedState", () => {
     expect(validateSavedState("invalid")).toBe(false);
   });
 
-  test("returns false for invalid puzzleID (non-integer)", () => {
-    const state = {...validNonCustomState, puzzleID: "invalid"};
+  test("returns false for invalid newPuzzleID (out of range)", () => {
+    const state = {...validNonCustomState, newPuzzleID: "does_not_exist"};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for invalid puzzleID (negative)", () => {
-    const state = {...validNonCustomState, puzzleID: -1};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid puzzleID (out of range)", () => {
-    const state = {...validNonCustomState, puzzleID: puzzles.length + 5};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid puzzleID (for custom)", () => {
-    const state = {...validCustomState, puzzleID: 4};
+  test("returns false for invalid newPuzzleID (for custom)", () => {
+    const state = {...validCustomState, newPuzzleID: "not-custom"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid mainPath (non-array)", () => {
@@ -146,7 +136,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: puzzles[puzzleID + 1].puzzle,
+      puzzle: newPuzzles["campaign_stasis-pod_1"].puzzle,
     };
     expect(validateSavedState(state)).toBe(false);
   });

@@ -69,7 +69,7 @@ export function GameContextProvider({children}) {
   const savedScore = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedScore"),
   );
-  const [score, setScore] = useState(savedScore || []);
+  const [score, setScore] = useState(savedScore || {});
   useEffect(() => {
     window.localStorage.setItem(
       "deepSpaceSlimeSavedScore",
