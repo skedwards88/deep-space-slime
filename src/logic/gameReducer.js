@@ -112,9 +112,9 @@ export function gameReducer(currentGameState, payload) {
       mainPath: newPath,
     };
   } else if (payload.action === "newGame") {
-    const puzzleID = payload.puzzleID;
+    const newPuzzleID = payload.newPuzzleID;
 
-    return gameInit({puzzleID, useSaved: false});
+    return gameInit({newPuzzleID, useSaved: false});
   } else if (payload.action === "playtestCustom") {
     return gameInit({
       useSaved: false,

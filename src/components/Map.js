@@ -3,6 +3,7 @@ import {puzzles} from "../logic/puzzles";
 import {features} from "../logic/constants";
 import {useGameContext} from "./GameContextProvider";
 
+// todo need to make work with newpuzzle and new score struct
 function getMaxFlaskCount(puzzle) {
   return puzzle.filter((feature) => feature === features.flask).length;
 }

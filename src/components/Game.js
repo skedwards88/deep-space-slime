@@ -1,6 +1,6 @@
 import React from "react";
 import ControlBar from "./ControlBar";
-import {puzzles} from "../logic/puzzles";
+import {newPuzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
@@ -85,7 +85,7 @@ function PuzzleSquare({
 
   const {
     flaskCount,
-    puzzleID,
+    newPuzzleID,
     mouseIsActive,
     mainPath,
     validNextIndexes,
@@ -133,8 +133,8 @@ function PuzzleSquare({
         feature !== features.outer && {
           onPointerEnter: (event) => {
             if (feature === "exit-opened") {
-              let newScore = [...score];
-              newScore[puzzleID] = flaskCount;
+              let newScore = {...score};
+              newScore[newPuzzleID] = flaskCount;
               setScore(newScore);
             }
 
@@ -182,7 +182,7 @@ function PuzzleSquare({
 function ExitButtons({
   puzzle,
   flaskCount,
-  puzzleID,
+  newPuzzleID,
   dispatchGameState,
   isCustom,
   setDisplay,
@@ -196,14 +196,15 @@ function ExitButtons({
     (feature) => feature === features.flask,
   ).length;
 
-  const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
+  const nextPuzzleID = newPuzzles[newPuzzleID].nextPuzzle;
+  const nextPuzzleExists = nextPuzzleID && nextPuzzleID !== "map";
 
   const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
         setHintWaitIsOver(false);
-        setCurrentMessage(puzzles[puzzleID + 1].startingText);
-        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
+        setCurrentMessage(newPuzzles[nextPuzzleID].startingText);
+        dispatchGameState({action: "newGame", newPuzzleID: nextPuzzleID});
       }}
     >
       Next Level
@@ -217,8 +218,8 @@ function ExitButtons({
   ) : flaskCount < maxFlasks ? (
     <button
       onClick={() => {
-        setCurrentMessage(puzzles[puzzleID].startingText);
-        dispatchGameState({action: "newGame", puzzleID: puzzleID});
+        setCurrentMessage(newPuzzles[nextPuzzleID].startingText);
+        dispatchGameState({action: "newGame", newPuzzleID});
       }}
     >
       Retry Level
@@ -437,7 +438,7 @@ function Game({
         <ExitButtons
           puzzle={gameState.puzzle}
           flaskCount={gameState.flaskCount}
-          puzzleID={gameState.puzzleID}
+          newPuzzleID={gameState.newPuzzleID}
           dispatchGameState={dispatchGameState}
           isCustom={gameState.isCustom}
           setDisplay={setDisplay}

@@ -1,7 +1,7 @@
 import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
-import {puzzles} from "./puzzles";
-import {validateSavedState, puzzleIdIsValid} from "./validateSavedState";
+import {newPuzzles} from "./puzzles";
+import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
 import {features, numColumns, numRows} from "./constants";
@@ -63,17 +63,17 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let puzzleID = 0;
-    if (savedState.puzzleID && puzzleIdIsValid(savedState.puzzleID)) {
-      puzzleID = savedState.puzzleID;
+    let newPuzzleID = "campaign_stasis-pod_1";
+    if (savedState?.newPuzzleID && newPuzzleID in newPuzzles) {
+      newPuzzleID = savedState.newPuzzleID;
     }
-    return nonCustomInit({useSaved, puzzleID});
+    return nonCustomInit({useSaved, newPuzzleID});
   }
 
   return {
     isCustom: true,
     customIndex,
-    puzzleID: "custom",
+    newPuzzleID: "custom",
     station: customStationName,
     roomName: customName,
     startingText: customStartingText,
@@ -85,7 +85,13 @@ function customInit({useSaved, customSeed, customIndex}) {
   };
 }
 
-function nonCustomInit({useSaved, puzzleID}) {
+function nonCustomInit({useSaved, newPuzzleID}) {
+  if (!(newPuzzleID in newPuzzles)) {
+    newPuzzleID = "campaign_stasis-pod_1";
+  }
+
+  let puzzleData = newPuzzles[newPuzzleID];
+
   // Return the saved state if we can
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
@@ -97,42 +103,47 @@ function nonCustomInit({useSaved, puzzleID}) {
       mouseIsActive: false,
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
-      station: puzzles[savedState.puzzleID].station,
-      roomName: puzzles[savedState.puzzleID].roomName,
-      startingText: puzzles[savedState.puzzleID].startingText,
-      hintText: puzzles[savedState.puzzleID].hintText,
-      winText: puzzles[savedState.puzzleID].winText,
-      robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
-      robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
+      station: newPuzzles[savedState.newPuzzleID].station,
+      roomName: newPuzzles[savedState.newPuzzleID].roomName,
+      startingText: newPuzzles[savedState.newPuzzleID].startingText,
+      hintText: newPuzzles[savedState.newPuzzleID].hintText,
+      winText: newPuzzles[savedState.newPuzzleID].winText,
+      robotStartMood: newPuzzles[savedState.newPuzzleID].robotStartMood,
+      robotEndMood: newPuzzles[savedState.newPuzzleID].robotEndMood,
     };
   }
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
-  // use the puzzleID from the saved state if possible
-  if (useSaved && savedState && puzzleIdIsValid(savedState.puzzleID)) {
-    puzzleID = savedState.puzzleID;
+  // use the newPuzzleID from the saved state if possible
+  if (useSaved && savedState?.newPuzzleID && newPuzzleID in newPuzzles) {
+    try {
+      puzzleData = newPuzzles[savedState.newPuzzleID];
+      newPuzzleID = savedState.newPuzzleID;
+    } catch (error) {
+      error;
+    }
   }
 
-  const puzzle = puzzles[puzzleID].puzzle;
+  const puzzle = puzzleData.puzzle;
 
   return {
     isCustom: false,
     customIndex: undefined,
-    puzzleID,
-    station: puzzles[puzzleID].station,
-    roomName: puzzles[puzzleID].roomName,
-    startingText: puzzles[puzzleID].startingText,
-    hintText: puzzles[puzzleID].hintText,
-    winText: puzzles[puzzleID].winText,
-    robotStartMood: puzzles[puzzleID].robotStartMood,
-    robotEndMood: puzzles[puzzleID].robotEndMood,
+    newPuzzleID,
+    station: puzzleData.station,
+    roomName: puzzleData.roomName,
+    startingText: puzzleData.startingText,
+    hintText: puzzleData.hintText,
+    winText: puzzleData.winText,
+    robotStartMood: puzzleData.robotStartMood,
+    robotEndMood: puzzleData.robotEndMood,
     puzzle,
   };
 }
 
 export function gameInit({
   useSaved = true,
-  puzzleID = 0,
+  newPuzzleID,
   isCustom = false,
   customSeed,
   customIndex,
@@ -144,7 +155,7 @@ export function gameInit({
   const baseState =
     isCustom || savedCustom
       ? customInit({useSaved, customSeed, customIndex})
-      : nonCustomInit({useSaved, puzzleID});
+      : nonCustomInit({useSaved, newPuzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
   if ("flaskCount" in baseState) {
@@ -168,7 +179,7 @@ export function gameInit({
   });
 
   sendAnalytics("new_game", {
-    puzzleID: baseState.puzzleID,
+    newPuzzleID: baseState.newPuzzleID,
   });
 
   return {

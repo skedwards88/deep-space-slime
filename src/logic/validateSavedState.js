@@ -1,20 +1,6 @@
-import {puzzles} from "./puzzles";
+import {newPuzzles} from "./puzzles";
 import {features, numColumns, numRows} from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
-
-export function puzzleIdIsValid(puzzleID) {
-  if (!Number.isInteger(puzzleID)) {
-    return false;
-  }
-  if (puzzleID < 0) {
-    return false;
-  }
-  if (puzzleID > puzzles.length - 1) {
-    return false;
-  }
-
-  return true;
-}
 
 export function validateSavedState(savedState) {
   // saved state must exist
@@ -51,20 +37,20 @@ export function validateSavedState(savedState) {
     }
   }
 
-  // puzzleID must be an int between 0 and number of puzzles if not custom
+  // newPuzzleID must match a puzzle if not custom
   if (!savedState.isCustom) {
-    if (!puzzleIdIsValid(savedState.puzzleID)) {
+    if (!(savedState.newPuzzleID in newPuzzles)) {
       return false;
     }
   } else {
-    if (savedState.puzzleID !== "custom") {
+    if (savedState.newPuzzleID !== "custom") {
       return false;
     }
   }
 
   // if not custom, puzzle must match expected puzzle
   if (!savedState.isCustom) {
-    const expectedPuzzle = puzzles[savedState.puzzleID].puzzle;
+    const expectedPuzzle = newPuzzles[savedState.newPuzzleID].puzzle;
     const puzzlesMatch = arraysMatchQ(expectedPuzzle, savedState.puzzle);
     if (!puzzlesMatch) {
       return false;
