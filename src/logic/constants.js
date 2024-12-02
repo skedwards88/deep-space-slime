@@ -1,6 +1,8 @@
 export const numColumns = 7;
 export const numRows = 9;
 
+export const firstPuzzle = "campaign/stasis-pod/1";
+
 export const features = {
   outer: "outer",
   basic: "basic",
