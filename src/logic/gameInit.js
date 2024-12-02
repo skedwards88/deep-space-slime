@@ -63,8 +63,8 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let newPuzzleID = "campaign_stasis-pod_1";
-    if (savedState?.newPuzzleID && newPuzzleID in newPuzzles) {
+    let newPuzzleID = "campaign/stasis-pod/1";
+    if (savedState?.newPuzzleID && savedState.newPuzzleID in newPuzzles) {
       newPuzzleID = savedState.newPuzzleID;
     }
     return nonCustomInit({useSaved, newPuzzleID});
@@ -87,7 +87,7 @@ function customInit({useSaved, customSeed, customIndex}) {
 
 function nonCustomInit({useSaved, newPuzzleID}) {
   if (!(newPuzzleID in newPuzzles)) {
-    newPuzzleID = "campaign_stasis-pod_1";
+    newPuzzleID = "campaign/stasis-pod/1";
   }
 
   let puzzleData = newPuzzles[newPuzzleID];
@@ -115,7 +115,11 @@ function nonCustomInit({useSaved, newPuzzleID}) {
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
   // use the newPuzzleID from the saved state if possible
-  if (useSaved && savedState?.newPuzzleID && newPuzzleID in newPuzzles) {
+  if (
+    useSaved &&
+    savedState?.newPuzzleID &&
+    savedState?.newPuzzleID in newPuzzles
+  ) {
     try {
       puzzleData = newPuzzles[savedState.newPuzzleID];
       newPuzzleID = savedState.newPuzzleID;

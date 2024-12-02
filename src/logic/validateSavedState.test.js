@@ -3,7 +3,7 @@ import {newPuzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("validateSavedState", () => {
-  const newPuzzleID = "campaign_stasis-pod_2";
+  const newPuzzleID = "campaign/stasis-pod/2";
 
   const puzzle = newPuzzles[newPuzzleID].puzzle;
 
@@ -54,7 +54,7 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for invalid newPuzzleID (out of range)", () => {
-    const state = {...validNonCustomState, newPuzzleID: "does_not_exist"};
+    const state = {...validNonCustomState, newPuzzleID: "does/not/exist"};
     expect(validateSavedState(state)).toBe(false);
   });
 
@@ -136,7 +136,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: newPuzzles["campaign_stasis-pod_1"].puzzle,
+      puzzle: newPuzzles["campaign/stasis-pod/1"].puzzle,
     };
     expect(validateSavedState(state)).toBe(false);
   });
