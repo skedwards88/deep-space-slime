@@ -63,17 +63,17 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let newPuzzleID = firstPuzzle;
-    if (savedState?.newPuzzleID && savedState.newPuzzleID in newPuzzles) {
-      newPuzzleID = savedState.newPuzzleID;
+    let puzzleID = firstPuzzle;
+    if (savedState?.puzzleID && savedState.puzzleID in newPuzzles) {
+      puzzleID = savedState.puzzleID;
     }
-    return nonCustomInit({useSaved, newPuzzleID});
+    return nonCustomInit({useSaved, puzzleID});
   }
 
   return {
     isCustom: true,
     customIndex,
-    newPuzzleID: "custom",
+    puzzleID: "custom",
     station: customStationName,
     roomName: customName,
     startingText: customStartingText,
@@ -85,12 +85,12 @@ function customInit({useSaved, customSeed, customIndex}) {
   };
 }
 
-function nonCustomInit({useSaved, newPuzzleID}) {
-  if (!(newPuzzleID in newPuzzles)) {
-    newPuzzleID = firstPuzzle;
+function nonCustomInit({useSaved, puzzleID}) {
+  if (!(puzzleID in newPuzzles)) {
+    puzzleID = firstPuzzle;
   }
 
-  let puzzleData = newPuzzles[newPuzzleID];
+  let puzzleData = newPuzzles[puzzleID];
 
   // Return the saved state if we can
   const savedState = useSaved
@@ -103,26 +103,26 @@ function nonCustomInit({useSaved, newPuzzleID}) {
       mouseIsActive: false,
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
-      station: newPuzzles[savedState.newPuzzleID].station,
-      roomName: newPuzzles[savedState.newPuzzleID].roomName,
-      startingText: newPuzzles[savedState.newPuzzleID].startingText,
-      hintText: newPuzzles[savedState.newPuzzleID].hintText,
-      winText: newPuzzles[savedState.newPuzzleID].winText,
-      robotStartMood: newPuzzles[savedState.newPuzzleID].robotStartMood,
-      robotEndMood: newPuzzles[savedState.newPuzzleID].robotEndMood,
+      station: newPuzzles[savedState.puzzleID].station,
+      roomName: newPuzzles[savedState.puzzleID].roomName,
+      startingText: newPuzzles[savedState.puzzleID].startingText,
+      hintText: newPuzzles[savedState.puzzleID].hintText,
+      winText: newPuzzles[savedState.puzzleID].winText,
+      robotStartMood: newPuzzles[savedState.puzzleID].robotStartMood,
+      robotEndMood: newPuzzles[savedState.puzzleID].robotEndMood,
     };
   }
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
-  // use the newPuzzleID from the saved state if possible
+  // use the puzzleID from the saved state if possible
   if (
     useSaved &&
-    savedState?.newPuzzleID &&
-    savedState?.newPuzzleID in newPuzzles
+    savedState?.puzzleID &&
+    savedState?.puzzleID in newPuzzles
   ) {
     try {
-      puzzleData = newPuzzles[savedState.newPuzzleID];
-      newPuzzleID = savedState.newPuzzleID;
+      puzzleData = newPuzzles[savedState.puzzleID];
+      puzzleID = savedState.puzzleID;
     } catch (error) {
       error;
     }
@@ -133,7 +133,7 @@ function nonCustomInit({useSaved, newPuzzleID}) {
   return {
     isCustom: false,
     customIndex: undefined,
-    newPuzzleID,
+    puzzleID,
     station: puzzleData.station,
     roomName: puzzleData.roomName,
     startingText: puzzleData.startingText,
@@ -147,7 +147,7 @@ function nonCustomInit({useSaved, newPuzzleID}) {
 
 export function gameInit({
   useSaved = true,
-  newPuzzleID,
+  puzzleID,
   isCustom = false,
   customSeed,
   customIndex,
@@ -159,7 +159,7 @@ export function gameInit({
   const baseState =
     isCustom || savedCustom
       ? customInit({useSaved, customSeed, customIndex})
-      : nonCustomInit({useSaved, newPuzzleID});
+      : nonCustomInit({useSaved, puzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
   if ("flaskCount" in baseState) {
@@ -183,7 +183,7 @@ export function gameInit({
   });
 
   sendAnalytics("new_game", {
-    newPuzzleID: baseState.newPuzzleID,
+    puzzleID: baseState.puzzleID,
   });
 
   return {

@@ -6,7 +6,7 @@
 // add test to make sure all features in the puzzle exist in features lookup
 //? shorten puzzle to just be a string? or maybe array of letters?
 // convertPuzzleString.test.js and src/logic/puzzles.test.js need to be updated to use new puzzles
-// rename newPuzzleID and newPuzzles once old usages are all deleted
+// rename  and newPuzzles once old usages are all deleted
 // put campaign and bonus into a dict like features
 
 // For paid bonus stations, once you play the first level, you are prompted to unlock the station

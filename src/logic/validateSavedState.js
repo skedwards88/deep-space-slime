@@ -37,20 +37,20 @@ export function validateSavedState(savedState) {
     }
   }
 
-  // newPuzzleID must match a puzzle if not custom
+  // puzzleID must match a puzzle if not custom
   if (!savedState.isCustom) {
-    if (!(savedState.newPuzzleID in newPuzzles)) {
+    if (!(savedState.puzzleID in newPuzzles)) {
       return false;
     }
   } else {
-    if (savedState.newPuzzleID !== "custom") {
+    if (savedState.puzzleID !== "custom") {
       return false;
     }
   }
 
   // if not custom, puzzle must match expected puzzle
   if (!savedState.isCustom) {
-    const expectedPuzzle = newPuzzles[savedState.newPuzzleID].puzzle;
+    const expectedPuzzle = newPuzzles[savedState.puzzleID].puzzle;
     const puzzlesMatch = arraysMatchQ(expectedPuzzle, savedState.puzzle);
     if (!puzzlesMatch) {
       return false;
