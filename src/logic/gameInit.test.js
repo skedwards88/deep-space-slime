@@ -3,7 +3,7 @@ import {gameInit} from "./gameInit";
 import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
-import {newPuzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {convertPuzzleToString} from "./convertPuzzleString";
 import {features, numColumns, numRows, firstPuzzle} from "./constants";
@@ -39,13 +39,13 @@ describe("gameInit saved state usage", () => {
     expect(result).toEqual({
       ...savedState,
       mouseIsActive: false,
-      station: newPuzzles[savedState.puzzleID].station,
-      roomName: newPuzzles[savedState.puzzleID].roomName,
-      startingText: newPuzzles[savedState.puzzleID].startingText,
-      hintText: newPuzzles[savedState.puzzleID].hintText,
-      winText: newPuzzles[savedState.puzzleID].winText,
-      robotStartMood: newPuzzles[savedState.puzzleID].robotStartMood,
-      robotEndMood: newPuzzles[savedState.puzzleID].robotEndMood,
+      station: puzzles[savedState.puzzleID].station,
+      roomName: puzzles[savedState.puzzleID].roomName,
+      startingText: puzzles[savedState.puzzleID].startingText,
+      hintText: puzzles[savedState.puzzleID].hintText,
+      winText: puzzles[savedState.puzzleID].winText,
+      robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
+      robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
     });
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
     expect(sendAnalytics).not.toHaveBeenCalled();
@@ -106,10 +106,7 @@ describe("gameInit saved state usage", () => {
     });
 
     expect(validateSavedState).not.toHaveBeenCalled();
-    expect(result).toHaveProperty(
-      "puzzleID",
-      "campaign/quarantine-station/1",
-    );
+    expect(result).toHaveProperty("puzzleID", "campaign/quarantine-station/1");
     expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
       puzzleID: "campaign/quarantine-station/1",
     });
@@ -127,7 +124,7 @@ describe("gameInit saved state usage", () => {
 
   test("returns correct structure for new non-custom game", () => {
     const puzzleID = "campaign/quarantine-station/1";
-    const puzzle = newPuzzles[puzzleID].puzzle;
+    const puzzle = puzzles[puzzleID].puzzle;
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -141,13 +138,13 @@ describe("gameInit saved state usage", () => {
     expect(result).toEqual({
       isCustom: false,
       customIndex: undefined,
-      station: newPuzzles[puzzleID].station,
-      roomName: newPuzzles[puzzleID].roomName,
-      startingText: newPuzzles[puzzleID].startingText,
-      hintText: newPuzzles[puzzleID].hintText,
-      winText: newPuzzles[puzzleID].winText,
-      robotStartMood: newPuzzles[puzzleID].robotStartMood,
-      robotEndMood: newPuzzles[puzzleID].robotEndMood,
+      station: puzzles[puzzleID].station,
+      roomName: puzzles[puzzleID].roomName,
+      startingText: puzzles[puzzleID].startingText,
+      hintText: puzzles[puzzleID].hintText,
+      winText: puzzles[puzzleID].winText,
+      robotStartMood: puzzles[puzzleID].robotStartMood,
+      robotEndMood: puzzles[puzzleID].robotEndMood,
       puzzle,
       flaskCount: 0,
       keyCount: 0,
@@ -169,7 +166,7 @@ describe("gameInit saved state usage", () => {
   });
 
   test("returns correct structure for new custom game", () => {
-    const puzzle = newPuzzles["campaign/quarantine-station/1"].puzzle;
+    const puzzle = puzzles["campaign/quarantine-station/1"].puzzle;
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];

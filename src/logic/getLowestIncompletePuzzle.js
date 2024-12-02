@@ -1,4 +1,4 @@
-import {newPuzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
 import {firstPuzzle} from "./constants";
 
 export function getLowestIncompletePuzzle(score) {
@@ -11,7 +11,7 @@ export function getLowestIncompletePuzzle(score) {
       return currentPuzzle;
     }
 
-    currentPuzzle = newPuzzles[currentPuzzle].nextPuzzle;
+    currentPuzzle = puzzles[currentPuzzle].nextPuzzle;
   }
 
   // If made it all the way through without finding and incomplete room, return undefined

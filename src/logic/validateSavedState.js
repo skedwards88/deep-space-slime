@@ -1,4 +1,4 @@
-import {newPuzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
 import {features, numColumns, numRows} from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 
@@ -39,7 +39,7 @@ export function validateSavedState(savedState) {
 
   // puzzleID must match a puzzle if not custom
   if (!savedState.isCustom) {
-    if (!(savedState.puzzleID in newPuzzles)) {
+    if (!(savedState.puzzleID in puzzles)) {
       return false;
     }
   } else {
@@ -50,7 +50,7 @@ export function validateSavedState(savedState) {
 
   // if not custom, puzzle must match expected puzzle
   if (!savedState.isCustom) {
-    const expectedPuzzle = newPuzzles[savedState.puzzleID].puzzle;
+    const expectedPuzzle = puzzles[savedState.puzzleID].puzzle;
     const puzzlesMatch = arraysMatchQ(expectedPuzzle, savedState.puzzle);
     if (!puzzlesMatch) {
       return false;

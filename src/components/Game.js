@@ -1,6 +1,6 @@
 import React from "react";
 import ControlBar from "./ControlBar";
-import {newPuzzles} from "../logic/puzzles";
+import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
@@ -196,14 +196,14 @@ function ExitButtons({
     (feature) => feature === features.flask,
   ).length;
 
-  const nextPuzzleID = newPuzzles[puzzleID].nextPuzzle;
+  const nextPuzzleID = puzzles[puzzleID].nextPuzzle;
   const nextPuzzleExists = nextPuzzleID && nextPuzzleID !== "map";
 
   const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
         setHintWaitIsOver(false);
-        setCurrentMessage(newPuzzles[nextPuzzleID].startingText);
+        setCurrentMessage(puzzles[nextPuzzleID].startingText);
         dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
@@ -218,7 +218,7 @@ function ExitButtons({
   ) : flaskCount < maxFlasks ? (
     <button
       onClick={() => {
-        setCurrentMessage(newPuzzles[nextPuzzleID].startingText);
+        setCurrentMessage(puzzles[nextPuzzleID].startingText);
         dispatchGameState({action: "newGame", puzzleID});
       }}
     >

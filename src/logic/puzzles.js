@@ -6,7 +6,6 @@
 // add test to make sure all features in the puzzle exist in features lookup
 //? shorten puzzle to just be a string? or maybe array of letters?
 // convertPuzzleString.test.js and src/logic/puzzles.test.js need to be updated to use new puzzles
-// rename  and newPuzzles once old usages are all deleted
 // put campaign and bonus into a dict like features
 
 // For paid bonus stations, once you play the first level, you are prompted to unlock the station
@@ -14,7 +13,7 @@
 // When you complete the last level in the campaign, the "next level" button brings you to the first level in the first bonus station. (The robot end text indicates that you have completed the campaign and tells you to try out the next station?)
 // When you complete the last level in a bonus station, the "next level" button brings you to the first level in the next bonus station. (The robot end text indicates that you have completed the station and tells you to try out the next station?)
 
-export const newPuzzles = {
+export const puzzles = {
   "campaign/stasis-pod/1": {
     station: "Stasis pod",
     roomName: "1",

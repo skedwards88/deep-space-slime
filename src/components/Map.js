@@ -1,5 +1,5 @@
 import React from "react";
-import {newPuzzles} from "../logic/puzzles";
+import {puzzles} from "../logic/puzzles";
 import {useGameContext} from "./GameContextProvider";
 import {getLowestIncompletePuzzle} from "../logic/getLowestIncompletePuzzle";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
@@ -7,7 +7,7 @@ import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
 import {firstPuzzle} from "../logic/constants";
 
 function assembleMap(puzzleID, mapData = new Map()) {
-  const {type, station, roomName, nextPuzzle} = newPuzzles[puzzleID];
+  const {type, station, roomName, nextPuzzle} = puzzles[puzzleID];
 
   if (!mapData.get(type)) {
     mapData.set(type, new Map());
@@ -17,7 +17,7 @@ function assembleMap(puzzleID, mapData = new Map()) {
     mapData.get(type).set(station, []);
   }
 
-  const maxFlaskCount = getMaxFlaskCount(newPuzzles[puzzleID].puzzle);
+  const maxFlaskCount = getMaxFlaskCount(puzzles[puzzleID].puzzle);
 
   mapData.get(type).get(station).push({roomName, puzzleID, maxFlaskCount});
 
@@ -178,10 +178,7 @@ function RoomLevelMapEntry({
   let roomIsAvailable = false;
   if (score[puzzleID] !== undefined) {
     roomIsAvailable = true;
-  } else if (
-    !campaignIsComplete &&
-    puzzleID === lowestUnsolvedCampaignRoom
-  ) {
+  } else if (!campaignIsComplete && puzzleID === lowestUnsolvedCampaignRoom) {
     roomIsAvailable = true;
   } else if (campaignIsComplete && isLowestUnsolvedOrLower) {
     roomIsAvailable = true;
@@ -213,7 +210,7 @@ export default function GameMap({setDisplay}) {
   const {gameState, dispatchGameState, score} = useGameContext();
 
   const currentStation = gameState.station;
-  const currentStationType = newPuzzles[gameState.puzzleID].type;
+  const currentStationType = puzzles[gameState.puzzleID].type;
 
   const [stationOnDisplay, setStationOnDisplay] =
     React.useState(currentStation);
