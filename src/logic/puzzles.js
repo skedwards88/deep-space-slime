@@ -1,7 +1,5 @@
-// every puzzle needs to point to another puzzle or "map"
-// if pointing to another puzzle, that file must exist
-// each file must be pointed to exactly 1 time unless it is the first file in a bonus station (maybe allow an exception list?)
-// map would look at path -- campaign vs bonus -- station -- room
+// every puzzle (except the last) needs to point to another puzzle that exists
+// each puzzle must be pointed to exactly 1 time unless it is the first file in a bonus station (maybe allow an exception list?)
 // score should be lookup of path (abbreviated to store?) : score for room.
 //    if room no longer exists, remove from score lookup
 //    if room exists but has changed, ??? maybe nothing. Just clamp the displayed score between maxFlasks and 0
@@ -11,6 +9,16 @@
 // delete the old puzzles object
 // update the map to use the new puzzles object and the new score structure
 // rename newPuzzleID and newPuzzles once old usages are all deleted
+// make sure key matches type-station-room
+// put campaign and bonus into a dict like features
+
+// Until the campaign is complete, you can only access the levels you have solved and the lowest level that you have not solved. (Cannot access later levels in the campaign or any bonus levels.)
+// Once the campaign is complete, the first level of every bonus station is unlocked
+// For free bonus stations, once you play the first level, the next level is unlocked and so on
+// For paid bonus stations, once you play the first level, you are prompted to unlock the station
+
+// When you complete the last level in the campaign, the "next level" button brings you to the first level in the first bonus station. (The robot end text indicates that you have completed the campaign and tells you to try out the next station?)
+// When you complete the last level in a bonus station, the "next level" button brings you to the first level in the next bonus station. (The robot end text indicates that you have completed the station and tells you to try out the next station?)
 
 import {features} from "./constants";
 
@@ -12415,7 +12423,7 @@ export const puzzles = [
 ];
 
 export const newPuzzles = {
-  "campaign_stasis-pod_1": {
+  "campaign/stasis-pod/1": {
     station: "Stasis pod",
     roomName: "1",
     startingText:
@@ -12489,9 +12497,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_stasis-pod_2",
+    nextPuzzle: "campaign/stasis-pod/2",
+    type: "Campaign",
   },
-  "campaign_stasis-pod_2": {
+  "campaign/stasis-pod/2": {
     station: "Stasis pod",
     roomName: "2",
     startingText:
@@ -12567,9 +12576,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_1",
+    nextPuzzle: "campaign/quarantine-station/1",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_1": {
+  "campaign/quarantine-station/1": {
     station: "Quarantine station",
     roomName: "1",
     startingText:
@@ -12642,9 +12652,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_2",
+    nextPuzzle: "campaign/quarantine-station/2",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_2": {
+  "campaign/quarantine-station/2": {
     station: "Quarantine station",
     roomName: "2",
     startingText:
@@ -12720,9 +12731,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_3",
+    nextPuzzle: "campaign/quarantine-station/3",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_3": {
+  "campaign/quarantine-station/3": {
     station: "Quarantine station",
     roomName: "3",
     startingText:
@@ -12797,9 +12809,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_4",
+    nextPuzzle: "campaign/quarantine-station/4",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_4": {
+  "campaign/quarantine-station/4": {
     station: "Quarantine station",
     roomName: "4",
     startingText:
@@ -12874,9 +12887,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_5",
+    nextPuzzle: "campaign/quarantine-station/5",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_5": {
+  "campaign/quarantine-station/5": {
     station: "Quarantine station",
     roomName: "5",
     startingText:
@@ -12951,9 +12965,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_quarantine-station_6",
+    nextPuzzle: "campaign/quarantine-station/6",
+    type: "Campaign",
   },
-  "campaign_quarantine-station_6": {
+  "campaign/quarantine-station/6": {
     station: "Quarantine station",
     roomName: "6",
     startingText:
@@ -13029,9 +13044,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_1",
+    nextPuzzle: "campaign/biolab-station/1",
+    type: "Campaign",
   },
-  "campaign_biolab-station_1": {
+  "campaign/biolab-station/1": {
     station: "Biolab station",
     roomName: "1",
     startingText:
@@ -13106,9 +13122,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_2",
+    nextPuzzle: "campaign/biolab-station/2",
+    type: "Campaign",
   },
-  "campaign_biolab-station_2": {
+  "campaign/biolab-station/2": {
     station: "Biolab station",
     roomName: "2",
     startingText:
@@ -13184,9 +13201,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_3",
+    nextPuzzle: "campaign/biolab-station/3",
+    type: "Campaign",
   },
-  "campaign_biolab-station_3": {
+  "campaign/biolab-station/3": {
     station: "Biolab station",
     roomName: "3",
     startingText: "Make sure to pick up all the sub… I mean samples!",
@@ -13260,9 +13278,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_4",
+    nextPuzzle: "campaign/biolab-station/4",
+    type: "Campaign",
   },
-  "campaign_biolab-station_4": {
+  "campaign/biolab-station/4": {
     station: "Biolab station",
     roomName: "4",
     startingText: "You’re over halfway through this station.",
@@ -13336,9 +13355,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_5",
+    nextPuzzle: "campaign/biolab-station/5",
+    type: "Campaign",
   },
-  "campaign_biolab-station_5": {
+  "campaign/biolab-station/5": {
     station: "Biolab station",
     roomName: "5",
     startingText: "This looks like a tricky one, good luck!",
@@ -13412,9 +13432,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_biolab-station_6",
+    nextPuzzle: "campaign/biolab-station/6",
+    type: "Campaign",
   },
-  "campaign_biolab-station_6": {
+  "campaign/biolab-station/6": {
     station: "Biolab station",
     roomName: "6",
     startingText: "Spray bottles, samples and doors, oh my!",
@@ -13488,9 +13509,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_1",
+    nextPuzzle: "campaign/portal-station/1",
+    type: "Campaign",
   },
-  "campaign_portal-station_1": {
+  "campaign/portal-station/1": {
     station: "Portal station",
     roomName: "1",
     startingText:
@@ -13565,9 +13587,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_2",
+    nextPuzzle: "campaign/portal-station/2",
+    type: "Campaign",
   },
-  "campaign_portal-station_2": {
+  "campaign/portal-station/2": {
     station: "Portal station",
     roomName: "2",
     startingText:
@@ -13642,9 +13665,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_3",
+    nextPuzzle: "campaign/portal-station/3",
+    type: "Campaign",
   },
-  "campaign_portal-station_3": {
+  "campaign/portal-station/3": {
     station: "Portal station",
     roomName: "3",
     startingText: "Hope you’re not claustrophobic!",
@@ -13718,9 +13742,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_4",
+    nextPuzzle: "campaign/portal-station/4",
+    type: "Campaign",
   },
-  "campaign_portal-station_4": {
+  "campaign/portal-station/4": {
     station: "Portal station",
     roomName: "4",
     startingText:
@@ -13795,9 +13820,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_5",
+    nextPuzzle: "campaign/portal-station/5",
+    type: "Campaign",
   },
-  "campaign_portal-station_5": {
+  "campaign/portal-station/5": {
     station: "Portal station",
     roomName: "5",
     startingText: "Can you handle all these PORTALS?",
@@ -13871,9 +13897,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_portal-station_6",
+    nextPuzzle: "campaign/portal-station/6",
+    type: "Campaign",
   },
-  "campaign_portal-station_6": {
+  "campaign/portal-station/6": {
     station: "Portal station",
     roomName: "6",
     startingText: "Look at all those SAMPLES. Can you grab them all?",
@@ -13948,9 +13975,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_1",
+    nextPuzzle: "campaign/security-station/1",
+    type: "Campaign",
   },
-  "campaign_security-station_1": {
+  "campaign/security-station/1": {
     station: "Security station",
     roomName: "1",
     startingText:
@@ -14026,9 +14054,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_2",
+    nextPuzzle: "campaign/security-station/2",
+    type: "Campaign",
   },
-  "campaign_security-station_2": {
+  "campaign/security-station/2": {
     station: "Security station",
     roomName: "2",
     startingText:
@@ -14103,9 +14132,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_3",
+    nextPuzzle: "campaign/security-station/3",
+    type: "Campaign",
   },
-  "campaign_security-station_3": {
+  "campaign/security-station/3": {
     station: "Security station",
     roomName: "3",
     startingText: "Don't give up! You haven't served your purpose yet.",
@@ -14180,9 +14210,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_4",
+    nextPuzzle: "campaign/security-station/4",
+    type: "Campaign",
   },
-  "campaign_security-station_4": {
+  "campaign/security-station/4": {
     station: "Security station",
     roomName: "4",
     startingText:
@@ -14257,9 +14288,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_5",
+    nextPuzzle: "campaign/security-station/5",
+    type: "Campaign",
   },
-  "campaign_security-station_5": {
+  "campaign/security-station/5": {
     station: "Security station",
     roomName: "5",
     startingText:
@@ -14335,9 +14367,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_6",
+    nextPuzzle: "campaign/security-station/6",
+    type: "Campaign",
   },
-  "campaign_security-station_6": {
+  "campaign/security-station/6": {
     station: "Security station",
     roomName: "6",
     startingText: "Basic terminal training.",
@@ -14411,9 +14444,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_security-station_7",
+    nextPuzzle: "campaign/security-station/7",
+    type: "Campaign",
   },
-  "campaign_security-station_7": {
+  "campaign/security-station/7": {
     station: "Security station",
     roomName: "7",
     startingText: "You're almost finished...",
@@ -14488,9 +14522,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_core-station_entry",
+    nextPuzzle: "campaign/core-station/entry",
+    type: "Campaign",
   },
-  "campaign_core-station_entry": {
+  "campaign/core-station/entry": {
     station: "Core station",
     roomName: "Entry",
     startingText:
@@ -14564,9 +14599,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_core-station_mainframe",
+    nextPuzzle: "campaign/core-station/mainframe",
+    type: "Campaign",
   },
-  "campaign_core-station_mainframe": {
+  "campaign/core-station/mainframe": {
     station: "Core station",
     roomName: "Mainframe",
     startingText:
@@ -14640,9 +14676,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "campaign_core-station_escape-pod",
+    nextPuzzle: "campaign/core-station/escape-pod",
+    type: "Campaign",
   },
-  "campaign_core-station_escape-pod": {
+  "campaign/core-station/escape-pod": {
     station: "Core station",
     roomName: "Escape Pod",
     startingText:
@@ -14716,9 +14753,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/chest-station/1",
+    type: "Campaign",
   },
-  "bonus_chest-station_1": {
+  "bonus/chest-station/1": {
     station: "Chest station",
     roomName: "1",
     startingText:
@@ -14792,9 +14830,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_chest-station_2",
+    nextPuzzle: "bonus/chest-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_chest-station_2": {
+  "bonus/chest-station/2": {
     station: "Chest station",
     roomName: "2",
     startingText: "Yo ho ho and a bottle of slime!",
@@ -14867,9 +14906,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_chest-station_3",
+    nextPuzzle: "bonus/chest-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_chest-station_3": {
+  "bonus/chest-station/3": {
     station: "Chest station",
     roomName: "3",
     startingText: "Yo ho ho and a bottle of slime!",
@@ -14942,9 +14982,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_chest-station_4",
+    nextPuzzle: "bonus/chest-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_chest-station_4": {
+  "bonus/chest-station/4": {
     station: "Chest station",
     roomName: "4",
     startingText: "Yo ho ho and a bottle of slime!",
@@ -15017,9 +15058,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_chest-station_5",
+    nextPuzzle: "bonus/chest-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_chest-station_5": {
+  "bonus/chest-station/5": {
     station: "Chest station",
     roomName: "5",
     startingText: "Yo ho ho and a bottle of slime!",
@@ -15092,9 +15134,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/enterprize-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_1": {
+  "bonus/enterprize-station/1": {
     station: "Enterprize station",
     roomName: "1",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15167,9 +15210,10 @@ export const newPuzzles = {
       "flask",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_2",
+    nextPuzzle: "bonus/enterprize-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_2": {
+  "bonus/enterprize-station/2": {
     station: "Enterprize station",
     roomName: "2",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15242,9 +15286,10 @@ export const newPuzzles = {
       "flask",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_3",
+    nextPuzzle: "bonus/enterprize-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_3": {
+  "bonus/enterprize-station/3": {
     station: "Enterprize station",
     roomName: "3",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15317,9 +15362,10 @@ export const newPuzzles = {
       "basic",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_4",
+    nextPuzzle: "bonus/enterprize-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_4": {
+  "bonus/enterprize-station/4": {
     station: "Enterprize station",
     roomName: "4",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15392,9 +15438,10 @@ export const newPuzzles = {
       "flask",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_5",
+    nextPuzzle: "bonus/enterprize-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_5": {
+  "bonus/enterprize-station/5": {
     station: "Enterprize station",
     roomName: "5",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15467,9 +15514,10 @@ export const newPuzzles = {
       "basic",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_6",
+    nextPuzzle: "bonus/enterprize-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_6": {
+  "bonus/enterprize-station/6": {
     station: "Enterprize station",
     roomName: "6",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15542,9 +15590,10 @@ export const newPuzzles = {
       "basic",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_7",
+    nextPuzzle: "bonus/enterprize-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_7": {
+  "bonus/enterprize-station/7": {
     station: "Enterprize station",
     roomName: "7",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15617,9 +15666,10 @@ export const newPuzzles = {
       "flask",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_8",
+    nextPuzzle: "bonus/enterprize-station/8",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_8": {
+  "bonus/enterprize-station/8": {
     station: "Enterprize station",
     roomName: "8",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15692,9 +15742,10 @@ export const newPuzzles = {
       "jet",
       "outer",
     ],
-    nextPuzzle: "bonus_enterprize-station_9",
+    nextPuzzle: "bonus/enterprize-station/9",
+    type: "Bonus Levels",
   },
-  "bonus_enterprize-station_9": {
+  "bonus/enterprize-station/9": {
     station: "Enterprize station",
     roomName: "9",
     startingText: "This is not the final frontier. There are more stations.",
@@ -15767,9 +15818,10 @@ export const newPuzzles = {
       "jet",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/the-eye/1",
+    type: "Bonus Levels",
   },
-  "bonus_the-eye_1": {
+  "bonus/the-eye/1": {
     station: "The Eye",
     roomName: "1",
     startingText: "Eyes always watching!",
@@ -15842,9 +15894,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_the-eye_2",
+    nextPuzzle: "bonus/the-eye/2",
+    type: "Bonus Levels",
   },
-  "bonus_the-eye_2": {
+  "bonus/the-eye/2": {
     station: "The Eye",
     roomName: "2",
     startingText: "Eyes always watching!",
@@ -15917,9 +15970,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_the-eye_3",
+    nextPuzzle: "bonus/the-eye/3",
+    type: "Bonus Levels",
   },
-  "bonus_the-eye_3": {
+  "bonus/the-eye/3": {
     station: "The Eye",
     roomName: "3",
     startingText: "Eyes always watching!",
@@ -15992,9 +16046,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_the-eye_4",
+    nextPuzzle: "bonus/the-eye/4",
+    type: "Bonus Levels",
   },
-  "bonus_the-eye_4": {
+  "bonus/the-eye/4": {
     station: "The Eye",
     roomName: "4",
     startingText: "Eyes always watching!",
@@ -16067,9 +16122,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_the-eye_5",
+    nextPuzzle: "bonus/the-eye/5",
+    type: "Bonus Levels",
   },
-  "bonus_the-eye_5": {
+  "bonus/the-eye/5": {
     station: "The Eye",
     roomName: "5",
     startingText: "Eyes always watching!",
@@ -16142,9 +16198,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/needle-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_1": {
+  "bonus/needle-station/1": {
     station: "Needle station",
     roomName: "1",
     startingText: "Even a camel could pass through this one!",
@@ -16217,9 +16274,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_2",
+    nextPuzzle: "bonus/needle-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_2": {
+  "bonus/needle-station/2": {
     station: "Needle station",
     roomName: "2",
     startingText: "Even a camel could pass through this one!",
@@ -16292,9 +16350,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_3",
+    nextPuzzle: "bonus/needle-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_3": {
+  "bonus/needle-station/3": {
     station: "Needle station",
     roomName: "3",
     startingText: "Even a camel could pass through this one!",
@@ -16367,9 +16426,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_4",
+    nextPuzzle: "bonus/needle-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_4": {
+  "bonus/needle-station/4": {
     station: "Needle station",
     roomName: "4",
     startingText: "Even a camel could pass through this one!",
@@ -16442,9 +16502,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_5",
+    nextPuzzle: "bonus/needle-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_5": {
+  "bonus/needle-station/5": {
     station: "Needle station",
     roomName: "5",
     startingText: "Even a camel could pass through this one!",
@@ -16517,9 +16578,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_6",
+    nextPuzzle: "bonus/needle-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_6": {
+  "bonus/needle-station/6": {
     station: "Needle station",
     roomName: "6",
     startingText: "Even a camel could pass through this one!",
@@ -16592,9 +16654,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_needle-station_7",
+    nextPuzzle: "bonus/needle-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_needle-station_7": {
+  "bonus/needle-station/7": {
     station: "Needle station",
     roomName: "7",
     startingText: "Even a camel could pass through this one!",
@@ -16667,9 +16730,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/petroglyph-station/wolf",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_wolf": {
+  "bonus/petroglyph-station/wolf": {
     station: "Petroglyph station",
     roomName: "Wolf",
     startingText: "Giving Picasso a run for his money!",
@@ -16742,9 +16806,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_petroglyph-station_bow",
+    nextPuzzle: "bonus/petroglyph-station/bow",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_bow": {
+  "bonus/petroglyph-station/bow": {
     station: "Petroglyph station",
     roomName: "Bow",
     startingText: "Giving Picasso a run for his money!",
@@ -16817,9 +16882,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_petroglyph-station_horse",
+    nextPuzzle: "bonus/petroglyph-station/horse",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_horse": {
+  "bonus/petroglyph-station/horse": {
     station: "Petroglyph station",
     roomName: "Horse",
     startingText: "Giving Picasso a run for his money!",
@@ -16892,9 +16958,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_petroglyph-station_stag",
+    nextPuzzle: "bonus/petroglyph-station/stag",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_stag": {
+  "bonus/petroglyph-station/stag": {
     station: "Petroglyph station",
     roomName: "Stag",
     startingText: "Giving Picasso a run for his money!",
@@ -16967,9 +17034,10 @@ export const newPuzzles = {
       "start",
       "outer",
     ],
-    nextPuzzle: "bonus_petroglyph-station_chief",
+    nextPuzzle: "bonus/petroglyph-station/chief",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_chief": {
+  "bonus/petroglyph-station/chief": {
     station: "Petroglyph station",
     roomName: "Chief",
     startingText: "Giving Picasso a run for his money!",
@@ -17042,9 +17110,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_petroglyph-station_shaman",
+    nextPuzzle: "bonus/petroglyph-station/shaman",
+    type: "Bonus Levels",
   },
-  "bonus_petroglyph-station_shaman": {
+  "bonus/petroglyph-station/shaman": {
     station: "Petroglyph station",
     roomName: "Shaman",
     startingText: "Giving Picasso a run for his money!",
@@ -17117,9 +17186,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/faces-station/anger",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_anger": {
+  "bonus/faces-station/anger": {
     station: "Faces station",
     roomName: "Anger",
     startingText:
@@ -17193,9 +17263,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_wisdom",
+    nextPuzzle: "bonus/faces-station/wisdom",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_wisdom": {
+  "bonus/faces-station/wisdom": {
     station: "Faces station",
     roomName: "Wisdom",
     startingText:
@@ -17269,9 +17340,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_yawn",
+    nextPuzzle: "bonus/faces-station/yawn",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_yawn": {
+  "bonus/faces-station/yawn": {
     station: "Faces station",
     roomName: "Yawn",
     startingText:
@@ -17345,9 +17417,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_embarrassment",
+    nextPuzzle: "bonus/faces-station/embarrassment",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_embarrassment": {
+  "bonus/faces-station/embarrassment": {
     station: "Faces station",
     roomName: "Embarrassment",
     startingText:
@@ -17421,9 +17494,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_robot",
+    nextPuzzle: "bonus/faces-station/robot",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_robot": {
+  "bonus/faces-station/robot": {
     station: "Faces station",
     roomName: "Robot",
     startingText: "This level has the cutest face. The rest are pretty ugly…",
@@ -17496,9 +17570,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_surprise",
+    nextPuzzle: "bonus/faces-station/surprise",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_surprise": {
+  "bonus/faces-station/surprise": {
     station: "Faces station",
     roomName: "Surprise",
     startingText:
@@ -17572,9 +17647,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_faces-station_focus",
+    nextPuzzle: "bonus/faces-station/focus",
+    type: "Bonus Levels",
   },
-  "bonus_faces-station_focus": {
+  "bonus/faces-station/focus": {
     station: "Faces station",
     roomName: "Focus",
     startingText:
@@ -17648,9 +17724,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/wonky-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_1": {
+  "bonus/wonky-station/1": {
     station: "Wonky station",
     roomName: "1",
     startingText: "Embrace the chaos!",
@@ -17723,9 +17800,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_wonky-station_2",
+    nextPuzzle: "bonus/wonky-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_2": {
+  "bonus/wonky-station/2": {
     station: "Wonky station",
     roomName: "2",
     startingText: "Embrace the chaos!",
@@ -17798,9 +17876,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_wonky-station_3",
+    nextPuzzle: "bonus/wonky-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_3": {
+  "bonus/wonky-station/3": {
     station: "Wonky station",
     roomName: "3",
     startingText: "Embrace the chaos!",
@@ -17873,9 +17952,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_wonky-station_4",
+    nextPuzzle: "bonus/wonky-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_4": {
+  "bonus/wonky-station/4": {
     station: "Wonky station",
     roomName: "4",
     startingText: "Embrace the chaos!",
@@ -17948,9 +18028,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_wonky-station_5",
+    nextPuzzle: "bonus/wonky-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_5": {
+  "bonus/wonky-station/5": {
     station: "Wonky station",
     roomName: "5",
     startingText: "Embrace the chaos!",
@@ -18023,9 +18104,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_wonky-station_6",
+    nextPuzzle: "bonus/wonky-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_wonky-station_6": {
+  "bonus/wonky-station/6": {
     station: "Wonky station",
     roomName: "6",
     startingText: "Embrace the chaos!",
@@ -18098,9 +18180,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/zigger-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_1": {
+  "bonus/zigger-station/1": {
     station: "Zigger station",
     roomName: "1",
     startingText: "Try zigging and zagging!",
@@ -18173,9 +18256,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_2",
+    nextPuzzle: "bonus/zigger-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_2": {
+  "bonus/zigger-station/2": {
     station: "Zigger station",
     roomName: "2",
     startingText: "Try zigging and zagging!",
@@ -18248,9 +18332,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_3",
+    nextPuzzle: "bonus/zigger-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_3": {
+  "bonus/zigger-station/3": {
     station: "Zigger station",
     roomName: "3",
     startingText: "Try zigging and zagging!",
@@ -18323,9 +18408,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_4",
+    nextPuzzle: "bonus/zigger-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_4": {
+  "bonus/zigger-station/4": {
     station: "Zigger station",
     roomName: "4",
     startingText: "Try zigging and zagging!",
@@ -18398,9 +18484,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_5",
+    nextPuzzle: "bonus/zigger-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_5": {
+  "bonus/zigger-station/5": {
     station: "Zigger station",
     roomName: "5",
     startingText: "Try zigging and zagging!",
@@ -18473,9 +18560,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_6",
+    nextPuzzle: "bonus/zigger-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_6": {
+  "bonus/zigger-station/6": {
     station: "Zigger station",
     roomName: "6",
     startingText: "Try zigging and zagging!",
@@ -18548,9 +18636,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_zigger-station_7",
+    nextPuzzle: "bonus/zigger-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_zigger-station_7": {
+  "bonus/zigger-station/7": {
     station: "Zigger station",
     roomName: "7",
     startingText: "Try zigging and zagging!",
@@ -18623,9 +18712,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/cube-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_1": {
+  "bonus/cube-station/1": {
     station: "Cube station",
     roomName: "1",
     startingText:
@@ -18699,9 +18789,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_2",
+    nextPuzzle: "bonus/cube-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_2": {
+  "bonus/cube-station/2": {
     station: "Cube station",
     roomName: "2",
     startingText:
@@ -18775,9 +18866,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_3",
+    nextPuzzle: "bonus/cube-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_3": {
+  "bonus/cube-station/3": {
     station: "Cube station",
     roomName: "3",
     startingText:
@@ -18851,9 +18943,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_4",
+    nextPuzzle: "bonus/cube-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_4": {
+  "bonus/cube-station/4": {
     station: "Cube station",
     roomName: "4",
     startingText:
@@ -18927,9 +19020,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_5",
+    nextPuzzle: "bonus/cube-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_5": {
+  "bonus/cube-station/5": {
     station: "Cube station",
     roomName: "5",
     startingText:
@@ -19003,9 +19097,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_6",
+    nextPuzzle: "bonus/cube-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_6": {
+  "bonus/cube-station/6": {
     station: "Cube station",
     roomName: "6",
     startingText:
@@ -19079,9 +19174,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_cube-station_7",
+    nextPuzzle: "bonus/cube-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_cube-station_7": {
+  "bonus/cube-station/7": {
     station: "Cube station",
     roomName: "7",
     startingText:
@@ -19155,9 +19251,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/plant-station/daisy",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_daisy": {
+  "bonus/plant-station/daisy": {
     station: "Plant station",
     roomName: "Daisy",
     startingText:
@@ -19231,9 +19328,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_fern-frond",
+    nextPuzzle: "bonus/plant-station/fern-frond",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_fern-frond": {
+  "bonus/plant-station/fern-frond": {
     station: "Plant station",
     roomName: "Fern Frond",
     startingText:
@@ -19307,9 +19405,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_vine",
+    nextPuzzle: "bonus/plant-station/vine",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_vine": {
+  "bonus/plant-station/vine": {
     station: "Plant station",
     roomName: "Vine",
     startingText:
@@ -19383,9 +19482,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_willow",
+    nextPuzzle: "bonus/plant-station/willow",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_willow": {
+  "bonus/plant-station/willow": {
     station: "Plant station",
     roomName: "Willow",
     startingText:
@@ -19459,9 +19559,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_orchid",
+    nextPuzzle: "bonus/plant-station/orchid",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_orchid": {
+  "bonus/plant-station/orchid": {
     station: "Plant station",
     roomName: "Orchid",
     startingText:
@@ -19535,9 +19636,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_rose",
+    nextPuzzle: "bonus/plant-station/rose",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_rose": {
+  "bonus/plant-station/rose": {
     station: "Plant station",
     roomName: "Rose",
     startingText:
@@ -19611,9 +19713,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_fly-trap",
+    nextPuzzle: "bonus/plant-station/fly-trap",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_fly-trap": {
+  "bonus/plant-station/fly-trap": {
     station: "Plant station",
     roomName: "Fly Trap",
     startingText:
@@ -19687,9 +19790,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_plant-station_cherry-blossom",
+    nextPuzzle: "bonus/plant-station/cherry-blossom",
+    type: "Bonus Levels",
   },
-  "bonus_plant-station_cherry-blossom": {
+  "bonus/plant-station/cherry-blossom": {
     station: "Plant station",
     roomName: "Cherry Blossom",
     startingText:
@@ -19763,9 +19867,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/checkerboard-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_1": {
+  "bonus/checkerboard-station/1": {
     station: "Checkerboard station",
     roomName: "1",
     startingText: "I love board games, especially with human playing pieces!",
@@ -19838,9 +19943,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_2",
+    nextPuzzle: "bonus/checkerboard-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_2": {
+  "bonus/checkerboard-station/2": {
     station: "Checkerboard station",
     roomName: "2",
     startingText: "I love board games, especially with human playing pieces!",
@@ -19913,9 +20019,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_3",
+    nextPuzzle: "bonus/checkerboard-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_3": {
+  "bonus/checkerboard-station/3": {
     station: "Checkerboard station",
     roomName: "3",
     startingText: "I love board games, especially with human playing pieces!",
@@ -19988,9 +20095,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_4",
+    nextPuzzle: "bonus/checkerboard-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_4": {
+  "bonus/checkerboard-station/4": {
     station: "Checkerboard station",
     roomName: "4",
     startingText: "I love board games, especially with human playing pieces!",
@@ -20063,9 +20171,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_5",
+    nextPuzzle: "bonus/checkerboard-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_5": {
+  "bonus/checkerboard-station/5": {
     station: "Checkerboard station",
     roomName: "5",
     startingText: "I love board games, especially with human playing pieces!",
@@ -20138,9 +20247,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_6",
+    nextPuzzle: "bonus/checkerboard-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_6": {
+  "bonus/checkerboard-station/6": {
     station: "Checkerboard station",
     roomName: "6",
     startingText: "I love board games, especially with human playing pieces!",
@@ -20213,9 +20323,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_7",
+    nextPuzzle: "bonus/checkerboard-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_7": {
+  "bonus/checkerboard-station/7": {
     station: "Checkerboard station",
     roomName: "7",
     startingText: "I love board games, especially with human playing pieces!",
@@ -20288,9 +20399,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_checkerboard-station_8",
+    nextPuzzle: "bonus/checkerboard-station/8",
+    type: "Bonus Levels",
   },
-  "bonus_checkerboard-station_8": {
+  "bonus/checkerboard-station/8": {
     station: "Checkerboard station",
     roomName: "8",
     startingText: "I love board games, especially with human playing pieces!",
@@ -20363,9 +20475,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/nautilus-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_1": {
+  "bonus/nautilus-station/1": {
     station: "Nautilus station",
     roomName: "1",
     startingText:
@@ -20439,9 +20552,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_2",
+    nextPuzzle: "bonus/nautilus-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_2": {
+  "bonus/nautilus-station/2": {
     station: "Nautilus station",
     roomName: "2",
     startingText:
@@ -20515,9 +20629,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_3",
+    nextPuzzle: "bonus/nautilus-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_3": {
+  "bonus/nautilus-station/3": {
     station: "Nautilus station",
     roomName: "3",
     startingText:
@@ -20591,9 +20706,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_4",
+    nextPuzzle: "bonus/nautilus-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_4": {
+  "bonus/nautilus-station/4": {
     station: "Nautilus station",
     roomName: "4",
     startingText:
@@ -20667,9 +20783,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_5",
+    nextPuzzle: "bonus/nautilus-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_5": {
+  "bonus/nautilus-station/5": {
     station: "Nautilus station",
     roomName: "5",
     startingText:
@@ -20743,9 +20860,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_6",
+    nextPuzzle: "bonus/nautilus-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_6": {
+  "bonus/nautilus-station/6": {
     station: "Nautilus station",
     roomName: "6",
     startingText:
@@ -20819,9 +20937,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_nautilus-station_7",
+    nextPuzzle: "bonus/nautilus-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_nautilus-station_7": {
+  "bonus/nautilus-station/7": {
     station: "Nautilus station",
     roomName: "7",
     startingText:
@@ -20895,9 +21014,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/criss-cross-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_1": {
+  "bonus/criss-cross-station/1": {
     station: "Criss Cross station",
     roomName: "1",
     startingText:
@@ -20971,9 +21091,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_2",
+    nextPuzzle: "bonus/criss-cross-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_2": {
+  "bonus/criss-cross-station/2": {
     station: "Criss Cross station",
     roomName: "2",
     startingText:
@@ -21047,9 +21168,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_3",
+    nextPuzzle: "bonus/criss-cross-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_3": {
+  "bonus/criss-cross-station/3": {
     station: "Criss Cross station",
     roomName: "3",
     startingText:
@@ -21123,9 +21245,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_4",
+    nextPuzzle: "bonus/criss-cross-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_4": {
+  "bonus/criss-cross-station/4": {
     station: "Criss Cross station",
     roomName: "4",
     startingText:
@@ -21199,9 +21322,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_5",
+    nextPuzzle: "bonus/criss-cross-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_5": {
+  "bonus/criss-cross-station/5": {
     station: "Criss Cross station",
     roomName: "5",
     startingText:
@@ -21275,9 +21399,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_6",
+    nextPuzzle: "bonus/criss-cross-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_6": {
+  "bonus/criss-cross-station/6": {
     station: "Criss Cross station",
     roomName: "6",
     startingText:
@@ -21351,9 +21476,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_7",
+    nextPuzzle: "bonus/criss-cross-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_7": {
+  "bonus/criss-cross-station/7": {
     station: "Criss Cross station",
     roomName: "7",
     startingText:
@@ -21427,9 +21553,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "bonus_criss-cross-station_8",
+    nextPuzzle: "bonus/criss-cross-station/8",
+    type: "Bonus Levels",
   },
-  "bonus_criss-cross-station_8": {
+  "bonus/criss-cross-station/8": {
     station: "Criss Cross station",
     roomName: "8",
     startingText:
@@ -21503,9 +21630,10 @@ export const newPuzzles = {
       "portal",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/dial-up-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_dial-up-station_1": {
+  "bonus/dial-up-station/1": {
     station: "Dial Up station",
     roomName: "1",
     startingText:
@@ -21579,9 +21707,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_dial-up-station_2",
+    nextPuzzle: "bonus/dial-up-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_dial-up-station_2": {
+  "bonus/dial-up-station/2": {
     station: "Dial Up station",
     roomName: "2",
     startingText:
@@ -21655,9 +21784,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_dial-up-station_3",
+    nextPuzzle: "bonus/dial-up-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_dial-up-station_3": {
+  "bonus/dial-up-station/3": {
     station: "Dial Up station",
     roomName: "3",
     startingText:
@@ -21731,9 +21861,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_dial-up-station_4",
+    nextPuzzle: "bonus/dial-up-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_dial-up-station_4": {
+  "bonus/dial-up-station/4": {
     station: "Dial Up station",
     roomName: "4",
     startingText:
@@ -21807,9 +21938,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_dial-up-station_5",
+    nextPuzzle: "bonus/dial-up-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_dial-up-station_5": {
+  "bonus/dial-up-station/5": {
     station: "Dial Up station",
     roomName: "5",
     startingText:
@@ -21883,9 +22015,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/doors-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_doors-station_1": {
+  "bonus/doors-station/1": {
     station: "Doors station",
     roomName: "1",
     startingText:
@@ -21959,9 +22092,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_doors-station_2",
+    nextPuzzle: "bonus/doors-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_doors-station_2": {
+  "bonus/doors-station/2": {
     station: "Doors station",
     roomName: "2",
     startingText:
@@ -22035,9 +22169,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_doors-station_3",
+    nextPuzzle: "bonus/doors-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_doors-station_3": {
+  "bonus/doors-station/3": {
     station: "Doors station",
     roomName: "3",
     startingText:
@@ -22112,9 +22247,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_doors-station_4",
+    nextPuzzle: "bonus/doors-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_doors-station_4": {
+  "bonus/doors-station/4": {
     station: "Doors station",
     roomName: "4",
     startingText: "Uh oh...do you think you can handle all these doors?",
@@ -22189,9 +22325,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/terminals-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_1": {
+  "bonus/terminals-station/1": {
     station: "Terminals station",
     roomName: "1",
     startingText: "This one's a walk in the park.",
@@ -22264,9 +22401,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_terminals-station_2",
+    nextPuzzle: "bonus/terminals-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_2": {
+  "bonus/terminals-station/2": {
     station: "Terminals station",
     roomName: "2",
     startingText:
@@ -22341,9 +22479,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_terminals-station_3",
+    nextPuzzle: "bonus/terminals-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_3": {
+  "bonus/terminals-station/3": {
     station: "Terminals station",
     roomName: "3",
     startingText:
@@ -22417,9 +22556,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_terminals-station_4",
+    nextPuzzle: "bonus/terminals-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_4": {
+  "bonus/terminals-station/4": {
     station: "Terminals station",
     roomName: "4",
     startingText:
@@ -22494,9 +22634,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_terminals-station_5",
+    nextPuzzle: "bonus/terminals-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_5": {
+  "bonus/terminals-station/5": {
     station: "Terminals station",
     roomName: "5",
     startingText: "Don't give up! You haven't served your purpose yet.",
@@ -22571,9 +22712,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_terminals-station_6",
+    nextPuzzle: "bonus/terminals-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_terminals-station_6": {
+  "bonus/terminals-station/6": {
     station: "Terminals station",
     roomName: "6",
     startingText:
@@ -22649,9 +22791,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/portal-mania-station/1",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_1": {
+  "bonus/portal-mania-station/1": {
     station: "Portal Mania station",
     roomName: "1",
     startingText:
@@ -22724,9 +22867,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_2",
+    nextPuzzle: "bonus/portal-mania-station/2",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_2": {
+  "bonus/portal-mania-station/2": {
     station: "Portal Mania station",
     roomName: "2",
     startingText:
@@ -22799,9 +22943,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_3",
+    nextPuzzle: "bonus/portal-mania-station/3",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_3": {
+  "bonus/portal-mania-station/3": {
     station: "Portal Mania station",
     roomName: "3",
     startingText:
@@ -22874,9 +23019,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_4",
+    nextPuzzle: "bonus/portal-mania-station/4",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_4": {
+  "bonus/portal-mania-station/4": {
     station: "Portal Mania station",
     roomName: "4",
     startingText:
@@ -22949,9 +23095,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_5",
+    nextPuzzle: "bonus/portal-mania-station/5",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_5": {
+  "bonus/portal-mania-station/5": {
     station: "Portal Mania station",
     roomName: "5",
     startingText:
@@ -23024,9 +23171,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_6",
+    nextPuzzle: "bonus/portal-mania-station/6",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_6": {
+  "bonus/portal-mania-station/6": {
     station: "Portal Mania station",
     roomName: "6",
     startingText:
@@ -23099,9 +23247,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_7",
+    nextPuzzle: "bonus/portal-mania-station/7",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_7": {
+  "bonus/portal-mania-station/7": {
     station: "Portal Mania station",
     roomName: "7",
     startingText:
@@ -23174,9 +23323,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_8",
+    nextPuzzle: "bonus/portal-mania-station/8",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_8": {
+  "bonus/portal-mania-station/8": {
     station: "Portal Mania station",
     roomName: "8",
     startingText:
@@ -23249,9 +23399,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_9",
+    nextPuzzle: "bonus/portal-mania-station/9",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_9": {
+  "bonus/portal-mania-station/9": {
     station: "Portal Mania station",
     roomName: "9",
     startingText:
@@ -23324,9 +23475,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_10",
+    nextPuzzle: "bonus/portal-mania-station/10",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_10": {
+  "bonus/portal-mania-station/10": {
     station: "Portal Mania station",
     roomName: "10",
     startingText:
@@ -23399,9 +23551,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_11",
+    nextPuzzle: "bonus/portal-mania-station/11",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_11": {
+  "bonus/portal-mania-station/11": {
     station: "Portal Mania station",
     roomName: "11",
     startingText:
@@ -23474,9 +23627,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_12",
+    nextPuzzle: "bonus/portal-mania-station/12",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_12": {
+  "bonus/portal-mania-station/12": {
     station: "Portal Mania station",
     roomName: "12",
     startingText:
@@ -23549,9 +23703,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_13",
+    nextPuzzle: "bonus/portal-mania-station/13",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_13": {
+  "bonus/portal-mania-station/13": {
     station: "Portal Mania station",
     roomName: "13",
     startingText:
@@ -23624,9 +23779,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_14",
+    nextPuzzle: "bonus/portal-mania-station/14",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_14": {
+  "bonus/portal-mania-station/14": {
     station: "Portal Mania station",
     roomName: "14",
     startingText:
@@ -23699,9 +23855,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_15",
+    nextPuzzle: "bonus/portal-mania-station/15",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_15": {
+  "bonus/portal-mania-station/15": {
     station: "Portal Mania station",
     roomName: "15",
     startingText:
@@ -23774,9 +23931,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_16",
+    nextPuzzle: "bonus/portal-mania-station/16",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_16": {
+  "bonus/portal-mania-station/16": {
     station: "Portal Mania station",
     roomName: "16",
     startingText:
@@ -23849,9 +24007,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_17",
+    nextPuzzle: "bonus/portal-mania-station/17",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_17": {
+  "bonus/portal-mania-station/17": {
     station: "Portal Mania station",
     roomName: "17",
     startingText:
@@ -23924,9 +24083,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_18",
+    nextPuzzle: "bonus/portal-mania-station/18",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_18": {
+  "bonus/portal-mania-station/18": {
     station: "Portal Mania station",
     roomName: "18",
     startingText:
@@ -23999,9 +24159,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_19",
+    nextPuzzle: "bonus/portal-mania-station/19",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_19": {
+  "bonus/portal-mania-station/19": {
     station: "Portal Mania station",
     roomName: "19",
     startingText:
@@ -24074,9 +24235,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_20",
+    nextPuzzle: "bonus/portal-mania-station/20",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_20": {
+  "bonus/portal-mania-station/20": {
     station: "Portal Mania station",
     roomName: "20",
     startingText:
@@ -24149,9 +24311,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_21",
+    nextPuzzle: "bonus/portal-mania-station/21",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_21": {
+  "bonus/portal-mania-station/21": {
     station: "Portal Mania station",
     roomName: "21",
     startingText:
@@ -24224,9 +24387,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_22",
+    nextPuzzle: "bonus/portal-mania-station/22",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_22": {
+  "bonus/portal-mania-station/22": {
     station: "Portal Mania station",
     roomName: "22",
     startingText:
@@ -24299,9 +24463,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_23",
+    nextPuzzle: "bonus/portal-mania-station/23",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_23": {
+  "bonus/portal-mania-station/23": {
     station: "Portal Mania station",
     roomName: "23",
     startingText:
@@ -24374,9 +24539,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_24",
+    nextPuzzle: "bonus/portal-mania-station/24",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_24": {
+  "bonus/portal-mania-station/24": {
     station: "Portal Mania station",
     roomName: "24",
     startingText:
@@ -24449,9 +24615,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_25",
+    nextPuzzle: "bonus/portal-mania-station/25",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_25": {
+  "bonus/portal-mania-station/25": {
     station: "Portal Mania station",
     roomName: "25",
     startingText:
@@ -24524,9 +24691,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_26",
+    nextPuzzle: "bonus/portal-mania-station/26",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_26": {
+  "bonus/portal-mania-station/26": {
     station: "Portal Mania station",
     roomName: "26",
     startingText:
@@ -24599,9 +24767,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_27",
+    nextPuzzle: "bonus/portal-mania-station/27",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_27": {
+  "bonus/portal-mania-station/27": {
     station: "Portal Mania station",
     roomName: "27",
     startingText:
@@ -24674,9 +24843,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_28",
+    nextPuzzle: "bonus/portal-mania-station/28",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_28": {
+  "bonus/portal-mania-station/28": {
     station: "Portal Mania station",
     roomName: "28",
     startingText:
@@ -24749,9 +24919,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_29",
+    nextPuzzle: "bonus/portal-mania-station/29",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_29": {
+  "bonus/portal-mania-station/29": {
     station: "Portal Mania station",
     roomName: "29",
     startingText:
@@ -24824,9 +24995,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "bonus_portal-mania-station_30",
+    nextPuzzle: "bonus/portal-mania-station/30",
+    type: "Bonus Levels",
   },
-  "bonus_portal-mania-station_30": {
+  "bonus/portal-mania-station/30": {
     station: "Portal Mania station",
     roomName: "30",
     startingText:
@@ -24899,9 +25071,10 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    nextPuzzle: "bonus/beta-station/orbital",
+    type: "Bonus Levels",
   },
-  "bonus_beta-station_orbital": {
+  "bonus/beta-station/orbital": {
     station: "Beta station",
     roomName: "Orbital",
     startingText:
@@ -24975,6 +25148,6 @@ export const newPuzzles = {
       "outer",
       "outer",
     ],
-    nextPuzzle: "map",
+    type: "Bonus Levels",
   },
 };

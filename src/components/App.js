@@ -1,6 +1,6 @@
 import React from "react";
 import Game from "./Game";
-import Map from "./Map";
+import GameMap from "./Map";
 import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
@@ -56,7 +56,7 @@ export default function App() {
 
   switch (display) {
     case "map":
-      componentToRender = <Map setDisplay={setDisplay} />;
+      componentToRender = <GameMap setDisplay={setDisplay} />;
       break;
     case "heart":
       componentToRender = (
