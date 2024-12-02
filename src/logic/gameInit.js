@@ -1,6 +1,6 @@
 import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
-import {newPuzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
@@ -64,7 +64,7 @@ function customInit({useSaved, customSeed, customIndex}) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
     let puzzleID = firstPuzzle;
-    if (savedState?.puzzleID && savedState.puzzleID in newPuzzles) {
+    if (savedState?.puzzleID && savedState.puzzleID in puzzles) {
       puzzleID = savedState.puzzleID;
     }
     return nonCustomInit({useSaved, puzzleID});
@@ -86,11 +86,11 @@ function customInit({useSaved, customSeed, customIndex}) {
 }
 
 function nonCustomInit({useSaved, puzzleID}) {
-  if (!(puzzleID in newPuzzles)) {
+  if (!(puzzleID in puzzles)) {
     puzzleID = firstPuzzle;
   }
 
-  let puzzleData = newPuzzles[puzzleID];
+  let puzzleData = puzzles[puzzleID];
 
   // Return the saved state if we can
   const savedState = useSaved
@@ -103,25 +103,21 @@ function nonCustomInit({useSaved, puzzleID}) {
       mouseIsActive: false,
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
-      station: newPuzzles[savedState.puzzleID].station,
-      roomName: newPuzzles[savedState.puzzleID].roomName,
-      startingText: newPuzzles[savedState.puzzleID].startingText,
-      hintText: newPuzzles[savedState.puzzleID].hintText,
-      winText: newPuzzles[savedState.puzzleID].winText,
-      robotStartMood: newPuzzles[savedState.puzzleID].robotStartMood,
-      robotEndMood: newPuzzles[savedState.puzzleID].robotEndMood,
+      station: puzzles[savedState.puzzleID].station,
+      roomName: puzzles[savedState.puzzleID].roomName,
+      startingText: puzzles[savedState.puzzleID].startingText,
+      hintText: puzzles[savedState.puzzleID].hintText,
+      winText: puzzles[savedState.puzzleID].winText,
+      robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
+      robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
     };
   }
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
   // use the puzzleID from the saved state if possible
-  if (
-    useSaved &&
-    savedState?.puzzleID &&
-    savedState?.puzzleID in newPuzzles
-  ) {
+  if (useSaved && savedState?.puzzleID && savedState?.puzzleID in puzzles) {
     try {
-      puzzleData = newPuzzles[savedState.puzzleID];
+      puzzleData = puzzles[savedState.puzzleID];
       puzzleID = savedState.puzzleID;
     } catch (error) {
       error;

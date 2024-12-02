@@ -1,11 +1,11 @@
 import {validateSavedState} from "./validateSavedState";
-import {newPuzzles} from "./puzzles";
+import {puzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("validateSavedState", () => {
   const puzzleID = "campaign/stasis-pod/2";
 
-  const puzzle = newPuzzles[puzzleID].puzzle;
+  const puzzle = puzzles[puzzleID].puzzle;
 
   const validNonCustomState = {
     isCustom: false,
@@ -136,7 +136,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: newPuzzles["campaign/stasis-pod/1"].puzzle,
+      puzzle: puzzles["campaign/stasis-pod/1"].puzzle,
     };
     expect(validateSavedState(state)).toBe(false);
   });
