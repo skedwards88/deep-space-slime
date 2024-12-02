@@ -1,17 +1,11 @@
 // every puzzle (except the last) needs to point to another puzzle that exists
 // each puzzle must be pointed to exactly 1 time unless it is the first file in a bonus station (maybe allow an exception list?)
-// score should be lookup of path (abbreviated to store?) : score for room.
 //    if room no longer exists, remove from score lookup
-//    if room exists but has changed, ??? maybe nothing. Just clamp the displayed score between maxFlasks and 0
 // add test to make sure all features in the puzzle exist in features lookup
-//? shorten puzzle to just be a string? or maybe array of letters?
-// convertPuzzleString.test.js and src/logic/puzzles.test.js need to be updated to use new puzzles
 // put campaign and bonus into a dict like features
 
 // For paid bonus stations, once you play the first level, you are prompted to unlock the station
 
-// When you complete the last level in the campaign, the "next level" button brings you to the first level in the first bonus station. (The robot end text indicates that you have completed the campaign and tells you to try out the next station?)
-// When you complete the last level in a bonus station, the "next level" button brings you to the first level in the next bonus station. (The robot end text indicates that you have completed the station and tells you to try out the next station?)
 
 export const puzzles = {
   "campaign/stasis-pod/1": {
