@@ -2,9 +2,11 @@ import {
   convertPuzzleToString,
   convertStringToPuzzle,
 } from "./convertPuzzleString";
-import {puzzles} from "./puzzles";
+import {newPuzzles} from "./puzzles";
 import {features, numColumns, numRows} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
+
+const puzzles = Object.values(newPuzzles)
 
 describe("puzzle validation", () => {
   let anyTestFailed = false;

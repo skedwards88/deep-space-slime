@@ -70,9 +70,7 @@ function TopLevelMapEntry({
   return (
     <div>
       <button
-        className={`mapTypeButton ${
-          typeOnDisplay === topLevelKey ? "expanded" : "collapsed"
-        }`}
+        className="mapTypeButton"
         onClick={() => setTypeOnDisplay(topLevelKey)}
         disabled={!campaignIsComplete && topLevelKey !== "Campaign"}
       >
