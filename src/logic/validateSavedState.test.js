@@ -3,14 +3,14 @@ import {newPuzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("validateSavedState", () => {
-  const newPuzzleID = "campaign/stasis-pod/2";
+  const puzzleID = "campaign/stasis-pod/2";
 
-  const puzzle = newPuzzles[newPuzzleID].puzzle;
+  const puzzle = newPuzzles[puzzleID].puzzle;
 
   const validNonCustomState = {
     isCustom: false,
     customIndex: undefined,
-    newPuzzleID,
+    puzzleID,
     puzzle,
     flaskCount: 1,
     keyCount: 1,
@@ -25,7 +25,7 @@ describe("validateSavedState", () => {
   const validCustomState = {
     isCustom: true,
     customIndex: 5,
-    newPuzzleID: "custom",
+    puzzleID: "custom",
     puzzle,
     flaskCount: 1,
     keyCount: 1,
@@ -53,13 +53,13 @@ describe("validateSavedState", () => {
     expect(validateSavedState("invalid")).toBe(false);
   });
 
-  test("returns false for invalid newPuzzleID (out of range)", () => {
-    const state = {...validNonCustomState, newPuzzleID: "does/not/exist"};
+  test("returns false for invalid puzzleID (out of range)", () => {
+    const state = {...validNonCustomState, puzzleID: "does/not/exist"};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for invalid newPuzzleID (for custom)", () => {
-    const state = {...validCustomState, newPuzzleID: "not-custom"};
+  test("returns false for invalid puzzleID (for custom)", () => {
+    const state = {...validCustomState, puzzleID: "not-custom"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid mainPath (non-array)", () => {
