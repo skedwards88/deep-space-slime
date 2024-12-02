@@ -6,7 +6,7 @@ import {getAllValidPaths} from "./getAllValidPaths";
 import {newPuzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {convertPuzzleToString} from "./convertPuzzleString";
-import {features, numColumns, numRows} from "./constants";
+import {features, numColumns, numRows, firstPuzzle} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
 jest.mock("../common/sendAnalytics");
@@ -118,10 +118,10 @@ describe("gameInit saved state usage", () => {
   test("uses default values when no arguments are provided", () => {
     const result = gameInit({});
 
-    expect(result).toHaveProperty("newPuzzleID", "campaign/stasis-pod/1");
+    expect(result).toHaveProperty("newPuzzleID", firstPuzzle);
     expect(result).toHaveProperty("isCustom", false);
     expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      newPuzzleID: "campaign/stasis-pod/1",
+      newPuzzleID: firstPuzzle,
     });
   });
 

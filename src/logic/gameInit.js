@@ -4,7 +4,7 @@ import {newPuzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
-import {features, numColumns, numRows} from "./constants";
+import {features, numColumns, numRows, firstPuzzle} from "./constants";
 
 function customInit({useSaved, customSeed, customIndex}) {
   const customStationName = "Custom Simulation"; // todo could set elsewhere for import
@@ -63,7 +63,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let newPuzzleID = "campaign/stasis-pod/1";
+    let newPuzzleID = firstPuzzle;
     if (savedState?.newPuzzleID && savedState.newPuzzleID in newPuzzles) {
       newPuzzleID = savedState.newPuzzleID;
     }
@@ -87,7 +87,7 @@ function customInit({useSaved, customSeed, customIndex}) {
 
 function nonCustomInit({useSaved, newPuzzleID}) {
   if (!(newPuzzleID in newPuzzles)) {
-    newPuzzleID = "campaign/stasis-pod/1";
+    newPuzzleID = firstPuzzle;
   }
 
   let puzzleData = newPuzzles[newPuzzleID];
