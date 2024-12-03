@@ -1,7 +1,3 @@
-// put campaign and bonus into a dict like features
-
-// For paid bonus stations, once you play the first level, you are prompted to unlock the station
-
 export const puzzles = {
   "campaign/stasis-pod/1": {
     station: "Stasis pod",

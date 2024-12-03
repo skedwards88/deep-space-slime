@@ -3,6 +3,11 @@ export const numRows = 9;
 
 export const firstPuzzle = "campaign/stasis-pod/1";
 
+export const mapTypes = {
+  campaign: "Campaign",
+  bonus: "Bonus Levels",
+};
+
 export const features = {
   outer: "outer",
   basic: "basic",

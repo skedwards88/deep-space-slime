@@ -4,7 +4,7 @@ import {useGameContext} from "./GameContextProvider";
 import {getLowestIncompletePuzzle} from "../logic/getLowestIncompletePuzzle";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
-import {firstPuzzle} from "../logic/constants";
+import {firstPuzzle, mapTypes} from "../logic/constants";
 
 function assembleMap(puzzleID, mapData = new Map()) {
   const {type, station, roomName, nextPuzzle} = puzzles[puzzleID];
@@ -43,7 +43,7 @@ function TopLevelMapEntry({
   let stationElements = [];
 
   let lowestUnsolvedCampaignRoom;
-  if (!campaignIsComplete && topLevelKey === "Campaign") {
+  if (!campaignIsComplete && topLevelKey === mapTypes.campaign) {
     lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(score);
     console.log(lowestUnsolvedCampaignRoom);
   }
@@ -72,7 +72,7 @@ function TopLevelMapEntry({
       <button
         className="mapTypeButton"
         onClick={() => setTypeOnDisplay(topLevelKey)}
-        disabled={!campaignIsComplete && topLevelKey !== "Campaign"}
+        disabled={!campaignIsComplete && topLevelKey !== mapTypes.campaign}
       >
         {topLevelKey}
       </button>
