@@ -1,4 +1,3 @@
-//    if room no longer exists, remove from score lookup
 // put campaign and bonus into a dict like features
 
 // For paid bonus stations, once you play the first level, you are prompted to unlock the station
