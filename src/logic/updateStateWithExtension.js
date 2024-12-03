@@ -50,11 +50,8 @@ export function updateStateWithExtension({
         }
       });
     }
-    // console.log(`ending at portal? ${puzzle[index] === features.portal}`)
-    // console.log(`even portals? ${numberPortalsVisited % 2 === 0} (${numberPortalsVisited})`)
     const isPortalTravel =
       puzzle[index] === features.portal && numberPortalsVisited % 2 === 0;
-    // console.log(`isPortalTravel? ${isPortalTravel}`)
     if (!isPortalTravel) {
       newJetCount--;
     }

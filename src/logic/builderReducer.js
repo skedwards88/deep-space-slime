@@ -33,7 +33,6 @@ export function builderReducer(currentBuilderState, payload) {
 
     // If a limited feature is being replaced, add the feature back to the options
     if (limitedFeatures.includes(payload.replacedFeature)) {
-      console.log("replacing " + payload.replacedFeature);
       newRemainingLimitedFeatures.push(payload.replacedFeature);
       newRemainingLimitedFeatures.sort();
     }

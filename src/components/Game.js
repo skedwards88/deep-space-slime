@@ -197,7 +197,7 @@ function ExitButtons({
   ).length;
 
   const nextPuzzleID = puzzles[puzzleID].nextPuzzle;
-  const nextPuzzleExists = nextPuzzleID && nextPuzzleID !== "map";
+  const nextPuzzleExists = nextPuzzleID in puzzles;
 
   const continueButton = nextPuzzleExists ? (
     <button
