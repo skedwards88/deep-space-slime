@@ -1,10 +1,10 @@
 import sendAnalytics from "../common/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
-import {validateSavedState, puzzleIdIsValid} from "./validateSavedState";
+import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {convertStringToPuzzle} from "./convertPuzzleString";
-import {features, numColumns, numRows} from "./constants";
+import {features, numColumns, numRows, firstPuzzle} from "./constants";
 
 function customInit({useSaved, customSeed, customIndex}) {
   const customStationName = "Custom Simulation"; // todo could set elsewhere for import
@@ -63,8 +63,8 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let puzzleID = 0;
-    if (savedState.puzzleID && puzzleIdIsValid(savedState.puzzleID)) {
+    let puzzleID = firstPuzzle;
+    if (savedState?.puzzleID && savedState.puzzleID in puzzles) {
       puzzleID = savedState.puzzleID;
     }
     return nonCustomInit({useSaved, puzzleID});
@@ -86,6 +86,12 @@ function customInit({useSaved, customSeed, customIndex}) {
 }
 
 function nonCustomInit({useSaved, puzzleID}) {
+  if (!(puzzleID in puzzles)) {
+    puzzleID = firstPuzzle;
+  }
+
+  let puzzleData = puzzles[puzzleID];
+
   // Return the saved state if we can
   const savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
@@ -109,30 +115,35 @@ function nonCustomInit({useSaved, puzzleID}) {
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
   // use the puzzleID from the saved state if possible
-  if (useSaved && savedState && puzzleIdIsValid(savedState.puzzleID)) {
-    puzzleID = savedState.puzzleID;
+  if (useSaved && savedState?.puzzleID && savedState?.puzzleID in puzzles) {
+    try {
+      puzzleData = puzzles[savedState.puzzleID];
+      puzzleID = savedState.puzzleID;
+    } catch (error) {
+      error;
+    }
   }
 
-  const puzzle = puzzles[puzzleID].puzzle;
+  const puzzle = puzzleData.puzzle;
 
   return {
     isCustom: false,
     customIndex: undefined,
     puzzleID,
-    station: puzzles[puzzleID].station,
-    roomName: puzzles[puzzleID].roomName,
-    startingText: puzzles[puzzleID].startingText,
-    hintText: puzzles[puzzleID].hintText,
-    winText: puzzles[puzzleID].winText,
-    robotStartMood: puzzles[puzzleID].robotStartMood,
-    robotEndMood: puzzles[puzzleID].robotEndMood,
+    station: puzzleData.station,
+    roomName: puzzleData.roomName,
+    startingText: puzzleData.startingText,
+    hintText: puzzleData.hintText,
+    winText: puzzleData.winText,
+    robotStartMood: puzzleData.robotStartMood,
+    robotEndMood: puzzleData.robotEndMood,
     puzzle,
   };
 }
 
 export function gameInit({
   useSaved = true,
-  puzzleID = 0,
+  puzzleID,
   isCustom = false,
   customSeed,
   customIndex,

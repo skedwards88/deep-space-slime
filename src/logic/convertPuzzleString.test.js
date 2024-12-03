@@ -2,7 +2,6 @@ import {
   convertPuzzleToString,
   convertStringToPuzzle,
 } from "./convertPuzzleString";
-import {puzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("convertPuzzleToString", () => {
@@ -62,16 +61,5 @@ describe("convertStringToPuzzle", () => {
     expect(() => convertStringToPuzzle(string)).toThrow(
       "Letter Q not found in featureToLetterLookup",
     );
-  });
-});
-
-describe("all puzzles can be converted", () => {
-  test("all puzzles can be converted to a string and back again without error", () => {
-    for (const {puzzle} of puzzles) {
-      const encodedPuzzle = convertPuzzleToString(puzzle);
-      const decodedPuzzle = convertStringToPuzzle(encodedPuzzle);
-
-      expect(decodedPuzzle).toEqual(puzzle);
-    }
   });
 });

@@ -2,20 +2,6 @@ import {puzzles} from "./puzzles";
 import {features, numColumns, numRows} from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 
-export function puzzleIdIsValid(puzzleID) {
-  if (!Number.isInteger(puzzleID)) {
-    return false;
-  }
-  if (puzzleID < 0) {
-    return false;
-  }
-  if (puzzleID > puzzles.length - 1) {
-    return false;
-  }
-
-  return true;
-}
-
 export function validateSavedState(savedState) {
   // saved state must exist
   if (typeof savedState !== "object" || savedState === null) {
@@ -51,9 +37,9 @@ export function validateSavedState(savedState) {
     }
   }
 
-  // puzzleID must be an int between 0 and number of puzzles if not custom
+  // puzzleID must match a puzzle if not custom
   if (!savedState.isCustom) {
-    if (!puzzleIdIsValid(savedState.puzzleID)) {
+    if (!(savedState.puzzleID in puzzles)) {
       return false;
     }
   } else {

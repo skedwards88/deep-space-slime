@@ -10,6 +10,7 @@ import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 import {numColumns, numRows} from "../logic/constants";
+import {puzzles} from "../logic/puzzles";
 
 const GameContext = createContext();
 
@@ -69,11 +70,19 @@ export function GameContextProvider({children}) {
   const savedScore = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedScore"),
   );
-  const [score, setScore] = useState(savedScore || []);
+  const [score, setScore] = useState(savedScore || {});
   useEffect(() => {
+    // Before saving, purge any obsolete entries
+    let purgedScore = {...score};
+    const validKeys = Object.keys(puzzles);
+    for (const key in purgedScore) {
+      if (!validKeys.includes(key)) {
+        delete purgedScore[key];
+      }
+    }
     window.localStorage.setItem(
       "deepSpaceSlimeSavedScore",
-      JSON.stringify(score),
+      JSON.stringify(purgedScore),
     );
   }, [score]);
 

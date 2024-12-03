@@ -3,7 +3,7 @@ import {puzzles} from "./puzzles";
 import {features} from "./constants";
 
 describe("validateSavedState", () => {
-  const puzzleID = 1;
+  const puzzleID = "campaign/stasis-pod/2";
 
   const puzzle = puzzles[puzzleID].puzzle;
 
@@ -53,23 +53,13 @@ describe("validateSavedState", () => {
     expect(validateSavedState("invalid")).toBe(false);
   });
 
-  test("returns false for invalid puzzleID (non-integer)", () => {
-    const state = {...validNonCustomState, puzzleID: "invalid"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid puzzleID (negative)", () => {
-    const state = {...validNonCustomState, puzzleID: -1};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
   test("returns false for invalid puzzleID (out of range)", () => {
-    const state = {...validNonCustomState, puzzleID: puzzles.length + 5};
+    const state = {...validNonCustomState, puzzleID: "does/not/exist"};
     expect(validateSavedState(state)).toBe(false);
   });
 
   test("returns false for invalid puzzleID (for custom)", () => {
-    const state = {...validCustomState, puzzleID: 4};
+    const state = {...validCustomState, puzzleID: "not-custom"};
     expect(validateSavedState(state)).toBe(false);
   });
   test("returns false for invalid mainPath (non-array)", () => {
@@ -146,7 +136,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: puzzles[puzzleID + 1].puzzle,
+      puzzle: puzzles["campaign/stasis-pod/1"].puzzle,
     };
     expect(validateSavedState(state)).toBe(false);
   });

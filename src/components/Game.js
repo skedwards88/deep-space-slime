@@ -133,7 +133,7 @@ function PuzzleSquare({
         feature !== features.outer && {
           onPointerEnter: (event) => {
             if (feature === "exit-opened") {
-              let newScore = [...score];
+              let newScore = {...score};
               newScore[puzzleID] = flaskCount;
               setScore(newScore);
             }
@@ -196,14 +196,15 @@ function ExitButtons({
     (feature) => feature === features.flask,
   ).length;
 
-  const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
+  const nextPuzzleID = puzzles[puzzleID].nextPuzzle;
+  const nextPuzzleExists = nextPuzzleID in puzzles;
 
   const continueButton = nextPuzzleExists ? (
     <button
       onClick={() => {
         setHintWaitIsOver(false);
-        setCurrentMessage(puzzles[puzzleID + 1].startingText);
-        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
+        setCurrentMessage(puzzles[nextPuzzleID].startingText);
+        dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
       Next Level
@@ -217,8 +218,8 @@ function ExitButtons({
   ) : flaskCount < maxFlasks ? (
     <button
       onClick={() => {
-        setCurrentMessage(puzzles[puzzleID].startingText);
-        dispatchGameState({action: "newGame", puzzleID: puzzleID});
+        setCurrentMessage(puzzles[nextPuzzleID].startingText);
+        dispatchGameState({action: "newGame", puzzleID});
       }}
     >
       Retry Level

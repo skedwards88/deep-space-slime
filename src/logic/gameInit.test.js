@@ -6,7 +6,7 @@ import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {convertPuzzleToString} from "./convertPuzzleString";
-import {features, numColumns, numRows} from "./constants";
+import {features, numColumns, numRows, firstPuzzle} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
 jest.mock("../common/sendAnalytics");
@@ -21,7 +21,7 @@ describe("gameInit saved state usage", () => {
 
   test("returns saved state (except sets mouseIsActive to false and overwrites some fields) if useSaved is true and saved state is valid", () => {
     const savedState = {
-      puzzleID: 1,
+      puzzleID: "campaign/quarantine-station/1",
       isCustom: false,
       flaskCount: 5,
     };
@@ -31,7 +31,10 @@ describe("gameInit saved state usage", () => {
     );
     validateSavedState.mockReturnValue(true);
 
-    const result = gameInit({useSaved: true, puzzleID: 0});
+    const result = gameInit({
+      useSaved: true,
+      puzzleID: "campaign/stasis-pod/2",
+    });
 
     expect(result).toEqual({
       ...savedState,
@@ -56,15 +59,20 @@ describe("gameInit saved state usage", () => {
     );
     validateSavedState.mockReturnValue(false);
 
-    const result = gameInit({useSaved: true, puzzleID: 0});
+    const result = gameInit({
+      useSaved: true,
+      puzzleID: "campaign/quarantine-station/1",
+    });
 
     expect(result).not.toEqual(savedState);
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 0});
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
+      puzzleID: "campaign/quarantine-station/1",
+    });
   });
 
-  test("uses the saved ID if useSaved is true and the saved puzzle is custom but the saved state is invalid", () => {
-    const savedID = 5;
+  test("uses the saved ID if useSaved is true and the saved puzzle is not custom but the saved state is invalid", () => {
+    const savedID = "campaign/quarantine-station/1";
     const savedState = {isCustom: false, puzzleID: savedID, some: "state"};
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -72,12 +80,17 @@ describe("gameInit saved state usage", () => {
     );
     validateSavedState.mockReturnValue(false);
 
-    const result = gameInit({useSaved: true, puzzleID: 3});
+    const result = gameInit({
+      useSaved: true,
+      puzzleID: "campaign/quarantine-station/3",
+    });
 
     expect(result).not.toEqual(savedState);
     expect(result.puzzleID).toBe(savedID);
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 5});
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
+      puzzleID: "campaign/quarantine-station/1",
+    });
   });
 
   test("ignores saved state if useSaved is false", () => {
@@ -87,23 +100,30 @@ describe("gameInit saved state usage", () => {
       JSON.stringify(savedState),
     );
 
-    const result = gameInit({useSaved: false, puzzleID: 5});
+    const result = gameInit({
+      useSaved: false,
+      puzzleID: "campaign/quarantine-station/1",
+    });
 
     expect(validateSavedState).not.toHaveBeenCalled();
-    expect(result).toHaveProperty("puzzleID", 5);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 5});
+    expect(result).toHaveProperty("puzzleID", "campaign/quarantine-station/1");
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
+      puzzleID: "campaign/quarantine-station/1",
+    });
   });
 
   test("uses default values when no arguments are provided", () => {
     const result = gameInit({});
 
-    expect(result).toHaveProperty("puzzleID", 0);
+    expect(result).toHaveProperty("puzzleID", firstPuzzle);
     expect(result).toHaveProperty("isCustom", false);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {puzzleID: 0});
+    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
+      puzzleID: firstPuzzle,
+    });
   });
 
   test("returns correct structure for new non-custom game", () => {
-    const puzzleID = 0;
+    const puzzleID = "campaign/quarantine-station/1";
     const puzzle = puzzles[puzzleID].puzzle;
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
@@ -146,7 +166,7 @@ describe("gameInit saved state usage", () => {
   });
 
   test("returns correct structure for new custom game", () => {
-    const puzzle = puzzles[5].puzzle;
+    const puzzle = puzzles["campaign/quarantine-station/1"].puzzle;
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
