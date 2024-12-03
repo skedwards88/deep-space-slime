@@ -1,5 +1,5 @@
 import {puzzles} from "./puzzles";
-import {firstPuzzle} from "./constants";
+import {firstPuzzle, mapTypes} from "./constants";
 
 export function campaignIsCompleteQ(score) {
   let campaignIsComplete = false;
@@ -13,7 +13,7 @@ export function campaignIsCompleteQ(score) {
     }
 
     currentPuzzle = puzzles[currentPuzzle].nextPuzzle;
-    campaignIsComplete = puzzles[currentPuzzle].type !== "Campaign";
+    campaignIsComplete = puzzles[currentPuzzle].type !== mapTypes.campaign;
   }
 
   return campaignIsComplete;

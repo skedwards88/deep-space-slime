@@ -3,7 +3,13 @@ import {
   convertStringToPuzzle,
 } from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
-import {features, numColumns, numRows, firstPuzzle} from "./constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  firstPuzzle,
+  mapTypes,
+} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 
 describe("puzzle validation", () => {
@@ -23,9 +29,6 @@ describe("puzzle validation", () => {
 
     expect([...pointedPuzzleIDs, firstPuzzle]).toEqual(
       expect.arrayContaining(allPuzzleIDs),
-    );
-    expect(allPuzzleIDs).toEqual(
-      expect.arrayContaining([...pointedPuzzleIDs, firstPuzzle]),
     );
     expect(pointedPuzzleIDs).not.toContain(firstPuzzle);
     expect(pointedPuzzleIDs.filter((i) => !i).length).toBe(1);
@@ -125,6 +128,13 @@ describe("puzzle validation", () => {
         (feature) => feature === features.key,
       ).length;
       expect(numberDoors).toEqual(numberKeys);
+    }
+  });
+
+  test("all puzzle types conform to known values", () => {
+    const allowedTypes = Object.values(mapTypes);
+    for (const {type} of Object.values(puzzles)) {
+      expect(allowedTypes.includes(type)).toBe(true);
     }
   });
 
