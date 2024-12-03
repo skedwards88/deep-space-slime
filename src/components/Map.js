@@ -45,7 +45,6 @@ function TopLevelMapEntry({
   let lowestUnsolvedCampaignRoom;
   if (!campaignIsComplete && topLevelKey === mapTypes.campaign) {
     lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(score);
-    console.log(lowestUnsolvedCampaignRoom);
   }
 
   if (typeOnDisplay === topLevelKey) {
