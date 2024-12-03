@@ -240,5 +240,12 @@ export default function GameMap({setDisplay}) {
     );
   }
 
-  return <div id="map">{mapElements}</div>;
+  return (
+    <div id="map">
+      <button onClick={() => setDisplay("game")} className="mapTypeButton">
+        Return to current room
+      </button>
+      {mapElements}
+    </div>
+  );
 }
