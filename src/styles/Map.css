@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.mapTypeButton{
+.mapTypeButton {
   border: 2px solid white;
   display: flex;
   align-items: center;
@@ -33,6 +33,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .mapStationButton {
   border: 2px solid white;
   display: flex;
