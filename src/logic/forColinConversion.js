@@ -2,6 +2,8 @@ import {convertStringToPuzzle} from "./convertPuzzleString";
 
 function getPuzzleForColin({
   url,
+  stationType = "TODO",
+  nextPuzzle = "TODO",
   stationName = "TODO",
   winText = "TODO",
   startingText = "TODO",
@@ -23,6 +25,8 @@ function getPuzzleForColin({
   const puzzle = convertStringToPuzzle(customEncodedPuzzle);
 
   return {
+    stationType,
+    nextPuzzle,
     station: stationName,
     roomName: customName,
     startingText,
@@ -35,6 +39,7 @@ function getPuzzleForColin({
 
 export function getPuzzlesForColin({
   urls,
+  stationType,
   stationName,
   winText,
   startingText,
@@ -44,6 +49,7 @@ export function getPuzzlesForColin({
   return urls.map((url) =>
     getPuzzleForColin({
       url,
+      stationType,
       stationName,
       winText,
       startingText,
@@ -57,7 +63,13 @@ export function getPuzzlesForColin({
 // 1. Fill in the text below and put the URLs in inputURLs as a comma separated list of strings
 // 2. In the terminal, run: npm run testrun src/logic/forColinConversion.js
 // 3. Copy the printed output (minus the open and closing square brackets)
+//    i. Give the puzzle a unique ID (e.g. "bonus/plant-station/fern-frond")
+//    ii. Paste the puzzle in the puzzles file as "unique-id": copied output
+//    iii. Update the "nextPuzzle" to point to the ID of the next puzzle
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
+
+// Can be "Campaign" or "Bonus Levels"
+const stationType = "Campaign";
 
 const stationName = "Terminals Station";
 
@@ -77,6 +89,7 @@ const inputURLs = [
 console.log(
   getPuzzlesForColin({
     urls: inputURLs,
+    stationType,
     stationName,
     startingText,
     winText,

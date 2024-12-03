@@ -19,13 +19,28 @@
   align-items: center;
 }
 
-.mapStationButton {
+.mapTypeButton {
   border: 2px solid white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: calc(var(--square-size) * 0.7);
   width: 90vw;
+}
+
+.mapStationBlock {
+  align-items: self-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapStationButton {
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(var(--square-size) * 0.7);
+  width: 85vw;
 }
 
 .mapRoomButton {
