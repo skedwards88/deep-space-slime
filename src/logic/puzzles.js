@@ -1,11 +1,7 @@
-// every puzzle (except the last) needs to point to another puzzle that exists
-// each puzzle must be pointed to exactly 1 time unless it is the first file in a bonus station (maybe allow an exception list?)
 //    if room no longer exists, remove from score lookup
-// add test to make sure all features in the puzzle exist in features lookup
 // put campaign and bonus into a dict like features
 
 // For paid bonus stations, once you play the first level, you are prompted to unlock the station
-
 
 export const puzzles = {
   "campaign/stasis-pod/1": {

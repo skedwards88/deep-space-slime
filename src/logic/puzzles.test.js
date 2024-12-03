@@ -3,7 +3,7 @@ import {
   convertStringToPuzzle,
 } from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
-import {features, numColumns, numRows} from "./constants";
+import {features, numColumns, numRows, firstPuzzle} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 
 describe("puzzle validation", () => {
@@ -15,6 +15,26 @@ describe("puzzle validation", () => {
     ) {
       anyTestFailed = true;
     }
+  });
+
+  test("every puzzle is pointed to exactly once, except for the first puzzle", () => {
+    const allPuzzleIDs = Object.keys(puzzles);
+    const pointedPuzzleIDs = allPuzzleIDs.map((id) => puzzles[id].nextPuzzle);
+
+    expect([...pointedPuzzleIDs, firstPuzzle]).toEqual(
+      expect.arrayContaining(allPuzzleIDs),
+    );
+    expect(allPuzzleIDs).toEqual(
+      expect.arrayContaining([...pointedPuzzleIDs, firstPuzzle]),
+    );
+    expect(pointedPuzzleIDs).not.toContain(firstPuzzle);
+    expect(pointedPuzzleIDs.filter((i) => !i).length).toBe(1);
+    expect(allPuzzleIDs).toHaveLength(pointedPuzzleIDs.length);
+  });
+
+  test("first puzzle exists", () => {
+    const allPuzzleIDs = Object.keys(puzzles);
+    expect(allPuzzleIDs).toContain(firstPuzzle);
   });
 
   test("all puzzles can be converted to a string and back again without error", () => {
