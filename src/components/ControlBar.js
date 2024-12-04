@@ -2,6 +2,7 @@ import React from "react";
 import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
 import Share from "./Share";
+import Audio from "./Audio";
 
 function ControlBar({
   setDisplay,
@@ -11,6 +12,7 @@ function ControlBar({
 }) {
   return (
     <div id="controls">
+      <Audio></Audio>
       <button
         id="mapIcon"
         className="controlButton"
