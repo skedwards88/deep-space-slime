@@ -1,0 +1,71 @@
+#controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: controls;
+  border-bottom: 0.5vmax solid white;
+  background-color: black;
+}
+
+.controlButton {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: calc(var(--square-size) * 0.6);
+  height: calc(var(--square-size) * 0.6);
+  background-color: transparent;
+  padding: 1px 6px;
+}
+
+#mapIcon {
+  background-image: url("../images/icons/map.svg");
+}
+
+#shareIcon {
+  background-image: url("../images/icons/share.svg");
+}
+
+#installIcon {
+  background-image: url("../images/icons/install.svg");
+}
+
+#heartIcon {
+  background-image: url("../images/icons/heart.svg");
+}
+
+#eyeIcon {
+  background-image: url("../images/icons/eye.svg");
+}
+
+#builderIcon,
+#editIcon {
+  background-image: url("../images/icons/edit.svg");
+}
+
+#validateIcon {
+  background-image: url("../images/icons/check.svg");
+}
+
+#playIcon {
+  background-image: url("../images/icons/play.svg");
+}
+
+#copyIcon {
+  background-image: url("../images/icons/copy.svg");
+}
+
+#returnIcon {
+  background-image: url("../images/icons/return.svg");
+}
+
+#trashIcon {
+  background-image: url("../images/icons/trash.svg");
+}
+
+#playIcon {
+  background-image: url("../images/icons/mute.svg");
+}
+#muteIcon {
+  background-image: url("../images/icons/unmute.svg");
+}
