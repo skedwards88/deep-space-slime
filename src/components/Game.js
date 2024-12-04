@@ -132,7 +132,7 @@ function PuzzleSquare({
       {...(!current &&
         feature !== features.outer && {
           onPointerEnter: (event) => {
-            if (feature === "exit-opened") {
+            if (feature === "exit-opened" || feature === "ship") {
               let newScore = {...score};
               newScore[puzzleID] = flaskCount;
               setScore(newScore);
