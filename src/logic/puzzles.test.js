@@ -138,8 +138,22 @@ describe("puzzle validation", () => {
     }
   });
 
+  test("all puzzles have start text", () => {
+    for (const {startingText} of Object.values(puzzles)) {
+      expect(startingText).toBeDefined();
+      expect(startingText).not.toBe("");
+    }
+  });
+
+  test("all puzzles have end text", () => {
+    for (const {winText} of Object.values(puzzles)) {
+      expect(winText).toBeDefined();
+      expect(winText).not.toBe("");
+    }
+  });
+
   test("all puzzles have at least one solution", () => {
-    // This only works if the tests run serially and this is the last test
+    // !!!!! This only works if the tests run serially and this is the last test
     if (anyTestFailed) {
       console.warn(
         "Skipping this test since other puzzle validation tests failed.",
