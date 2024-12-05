@@ -424,6 +424,7 @@ function Game({
   React.useEffect(() => {
     let timeout;
     if (
+      gameState.robotStartMood !== "sinister" &&
       !hintWaitIsOver &&
       !isAtExit &&
       (navigator.canShare || hintsRemaining)
@@ -434,9 +435,16 @@ function Game({
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
-  }, [gameState.mainPath, hintWaitIsOver, isAtExit, hintsRemaining]);
+  }, [
+    gameState.mainPath,
+    hintWaitIsOver,
+    isAtExit,
+    hintsRemaining,
+    gameState.robotStartMood,
+  ]);
 
   const isTimeToShowAHint =
+    gameState.robotStartMood !== "sinister" &&
     hintWaitIsOver &&
     !calculatingGamePaths &&
     !isAtExit &&
