@@ -13,12 +13,73 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 
+function handleMovement({
+  validNext,
+  index,
+  gameState,
+  setCurrentMessage,
+  setHintWaitIsOver,
+  setHintIndex,
+  score,
+  setScore,
+  dispatchGameState,
+}) {
+  if (validNext) {
+    const isAtExit =
+      gameState.puzzle[index] === features.exit ||
+      gameState.puzzle[index] === features.ship;
+
+    if (isAtExit) {
+      let newScore = {...score};
+      newScore[gameState.puzzleID] = gameState.flaskCount;
+      setScore(newScore);
+    }
+
+    let newMessage;
+    if (isAtExit) {
+      const maxFlasks = gameState.puzzle.filter(
+        (feature) => feature === features.flask,
+      ).length;
+      if (gameState.flaskCount < maxFlasks && gameState.hintText) {
+        newMessage = gameState.hintText;
+      } else {
+        newMessage = gameState.winText;
+      }
+    } else {
+      newMessage = gameState.startingText;
+    }
+    setCurrentMessage(newMessage);
+
+    dispatchGameState({
+      action: "modifyPath",
+      index,
+    });
+  } else {
+    const errorMessage = getReasonForMoveInvalidity({
+      index,
+      currentGameState: gameState,
+    });
+    setCurrentMessage(errorMessage);
+  }
+
+  setHintWaitIsOver(false);
+  setHintIndex(undefined);
+}
+
 function handlePointerDown({
   event,
   index,
   dispatchGameState,
   confirmReset,
   setDisplay,
+
+  validNext,
+  gameState,
+  setCurrentMessage,
+  setHintWaitIsOver,
+  setHintIndex,
+  score,
+  setScore,
 }) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
@@ -29,9 +90,16 @@ function handlePointerDown({
       setDisplay("confirmReset");
     } else {
       dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
-      dispatchGameState({
-        action: "modifyPath",
+      handleMovement({
+        validNext,
         index,
+        gameState,
+        setCurrentMessage,
+        setHintWaitIsOver,
+        setHintIndex,
+        score,
+        setScore,
+        dispatchGameState,
       });
     }
   }
@@ -48,6 +116,13 @@ function handlePointerEnter({
   confirmReset,
   setDisplay,
   mouseIsActive,
+  validNext,
+  gameState,
+  setCurrentMessage,
+  setHintWaitIsOver,
+  setHintIndex,
+  score,
+  setScore,
 }) {
   event.preventDefault();
   // Return early if this was triggered by the mouse entering but the mouse is not depressed
@@ -61,9 +136,16 @@ function handlePointerEnter({
     }
     setDisplay("confirmReset");
   } else {
-    dispatchGameState({
-      action: "modifyPath",
+    handleMovement({
+      validNext,
       index,
+      gameState,
+      setCurrentMessage,
+      setHintWaitIsOver,
+      setHintIndex,
+      score,
+      setScore,
+      dispatchGameState,
     });
   }
 }
@@ -83,17 +165,7 @@ function PuzzleSquare({
 }) {
   const {gameState, dispatchGameState, score, setScore} = useGameContext();
 
-  const {
-    flaskCount,
-    puzzleID,
-    mouseIsActive,
-    mainPath,
-    validNextIndexes,
-    puzzle,
-    startingText,
-    hintText,
-    winText,
-  } = gameState;
+  const {mouseIsActive, mainPath, validNextIndexes} = gameState;
 
   const validNext = validNextIndexes.includes(index);
 
@@ -119,60 +191,44 @@ function PuzzleSquare({
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
         isHint ? "hint" : ""
       }`}
-      onPointerDown={(event) =>
-        handlePointerDown({
-          event,
-          index,
-          dispatchGameState,
-          confirmReset: feature === features.start && mainPath.length > 2,
-          setDisplay,
-        })
-      }
+      {...(!current &&
+        feature !== features.outer && {
+          onPointerDown: (event) => {
+            handlePointerDown({
+              event,
+              index,
+              dispatchGameState,
+              confirmReset: feature === features.start && mainPath.length > 2,
+              setDisplay,
+              validNext,
+              gameState,
+              setCurrentMessage,
+              setHintWaitIsOver,
+              setHintIndex,
+              score,
+              setScore,
+            });
+          },
+        })}
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
         feature !== features.outer && {
           onPointerEnter: (event) => {
-            if (feature === "exit-opened" || feature === "ship") {
-              let newScore = {...score};
-              newScore[puzzleID] = flaskCount;
-              setScore(newScore);
-            }
-
-            if (validNext) {
-              handlePointerEnter({
-                event,
-                index,
-                dispatchGameState,
-                confirmReset: feature === features.start && mainPath.length > 2,
-                setDisplay,
-                mouseIsActive,
-              });
-              let newMessage;
-              if (
-                puzzle[index] === features.exit ||
-                puzzle[index] === features.ship
-              ) {
-                const maxFlasks = puzzle.filter(
-                  (feature) => feature === features.flask,
-                ).length;
-                if (flaskCount < maxFlasks && hintText) {
-                  newMessage = hintText;
-                } else {
-                  newMessage = winText;
-                }
-              } else {
-                newMessage = startingText;
-              }
-              setCurrentMessage(newMessage);
-            } else {
-              const errorMessage = getReasonForMoveInvalidity({
-                index,
-                currentGameState: gameState,
-              });
-              setCurrentMessage(errorMessage);
-            }
-            setHintWaitIsOver(false);
-            setHintIndex(undefined);
+            handlePointerEnter({
+              event,
+              index,
+              dispatchGameState,
+              confirmReset: feature === features.start && mainPath.length > 2,
+              setDisplay,
+              mouseIsActive,
+              validNext,
+              gameState,
+              setCurrentMessage,
+              setHintWaitIsOver,
+              setHintIndex,
+              score,
+              setScore,
+            });
           },
         })}
     ></div>
