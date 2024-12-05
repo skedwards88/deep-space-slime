@@ -25,18 +25,18 @@ function handleMovement({
   dispatchGameState,
 }) {
   if (validNext) {
-    const isAtExit =
+    const isMovingToExit =
       gameState.puzzle[index] === features.exit ||
       gameState.puzzle[index] === features.ship;
 
-    if (isAtExit) {
+    if (isMovingToExit) {
       let newScore = {...score};
       newScore[gameState.puzzleID] = gameState.flaskCount;
       setScore(newScore);
     }
 
     let newMessage;
-    if (isAtExit) {
+    if (isMovingToExit) {
       const maxFlasks = gameState.puzzle.filter(
         (feature) => feature === features.flask,
       ).length;
@@ -55,11 +55,18 @@ function handleMovement({
       index,
     });
   } else {
-    const errorMessage = getReasonForMoveInvalidity({
-      index,
-      currentGameState: gameState,
-    });
-    setCurrentMessage(errorMessage);
+    const currentIndex = gameState.mainPath[gameState.mainPath.length - 1];
+    const isCurrentlyAtExit =
+      gameState.puzzle[currentIndex] === features.exit ||
+      gameState.puzzle[currentIndex] === features.ship;
+
+    if (!isCurrentlyAtExit) {
+      const errorMessage = getReasonForMoveInvalidity({
+        index,
+        currentGameState: gameState,
+      });
+      setCurrentMessage(errorMessage);
+    }
   }
 
   setHintWaitIsOver(false);
