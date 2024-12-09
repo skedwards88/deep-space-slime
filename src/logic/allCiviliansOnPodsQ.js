@@ -1,5 +1,5 @@
-import { features } from "./constants"
+import {features} from "./constants";
 
 export function allCiviliansOnPodsQ(civilians, puzzle) {
-  return civilians.every(civilian => puzzle[civilian] === features.pod)
+  return civilians.every((civilian) => puzzle[civilian] === features.pod);
 }
