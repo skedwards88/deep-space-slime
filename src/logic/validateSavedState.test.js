@@ -18,8 +18,9 @@ describe("validateSavedState", () => {
     numberCount: 1,
     maxNumber: 1,
     validNextIndexes: [3, 4, 5],
-    mainPath: [0, 1, 2],
+    mainPath: [0, 1, 2, 18],
     mouseIsActive: false,
+    civilians: [],
   };
 
   const validCustomState = {
@@ -35,6 +36,7 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2],
     mouseIsActive: false,
+    civilians: [],
   };
 
   test("returns true for a valid non-custom saved state", () => {
@@ -145,6 +147,29 @@ describe("validateSavedState", () => {
     const newPuzzle = [...validCustomState.puzzle];
     newPuzzle[1] = "desk";
     const state = {...validCustomState, puzzle: newPuzzle};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for invalid civilians (non-array)", () => {
+    const state = {...validNonCustomState, civilians: 20};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for invalid civilians (contains non-integers)", () => {
+    const state = {...validNonCustomState, civilians: [19, "18"]};
+    expect(validateSavedState(state)).toBe(false);
+  });
+
+  test("returns false for invalid civilians (out of range)", () => {
+    const state = {...validNonCustomState, civilians: [63]};
+    expect(validateSavedState(state)).toBe(false);
+  });
+  test("returns false for invalid civilians (on outer space)", () => {
+    const state = {...validNonCustomState, civilians: [5]};
+    expect(validateSavedState(state)).toBe(false);
+  });
+  test("returns false for invalid civilians (on slime space)", () => {
+    const state = {...validNonCustomState, civilians: [18]};
     expect(validateSavedState(state)).toBe(false);
   });
 });
