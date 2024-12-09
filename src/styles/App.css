@@ -350,6 +350,10 @@ button.feature {
   background-color: rgb(67 67 67);
 }
 
+.puzzleSquare.pod {
+  background-image: url("../images/icons/pod.svg");
+}
+
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
   background-size: calc(100% + 5px);
@@ -361,6 +365,22 @@ button.feature {
     0 0 10px 5px rgb(60 255 0 / 80%),
     inset 0 0 10px 10px rgb(60 255 0 / 80%);
   transition: box-shadow 0.3s ease-in-out;
+}
+
+.puzzleSquare.civilian {
+  position: relative;
+}
+
+.puzzleSquare.civilian::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/icons/civilian.svg");
+  touch-action: none;
+  background-size: contain;
 }
 
 @keyframes boxShadowBlink {
