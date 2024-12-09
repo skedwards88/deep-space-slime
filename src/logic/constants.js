@@ -24,6 +24,7 @@ export const features = {
   terminal4: "4",
   terminal5: "5",
   ship: "ship",
+  pod: "pod",
 };
 
 export const featureToLetterLookup = {
@@ -42,6 +43,7 @@ export const featureToLetterLookup = {
   [features.terminal4]: "4",
   [features.terminal5]: "5",
   [features.ship]: "H",
+  [features.pod]: "X",
 };
 
 export const unlimitedFeatures = [
@@ -64,4 +66,13 @@ export const limitedFeatures = [
   features.terminal5,
 ].sort();
 
-export const excludedFeatures = [features.ship];
+export const excludedFeatures = [features.ship, features.pod];
+
+export const civilianForbiddenFeatures = [
+  features.exit,
+  features.ship,
+  features.portal,
+  features.start,
+  features.outer,
+  features.door,
+];
