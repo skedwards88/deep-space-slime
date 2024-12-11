@@ -1,6 +1,7 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {features, numColumns, numRows} from "./constants";
+import {pushCivilians} from "./pushCivilians";
 
 // To extend:
 // Add the index to the path.
@@ -10,6 +11,7 @@ import {features, numColumns, numRows} from "./constants";
 // If the index is a number, increment the number count.
 // If the index is a jet, acquire the jet.
 // If the index was only accessible with a jet, lose a jet.
+// Push any civilians
 export function updateStateWithExtension({
   index,
   currentGameState,
@@ -20,6 +22,16 @@ export function updateStateWithExtension({
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
   const newMainPath = [...currentGameState.mainPath, index];
+
+  // todo verify that civlianpushvalidq is always called before this. or just call again? or add call to functino?
+  const newCivilians = pushCivilians({
+    pushedFrom: lastIndexInPath,
+    pushedCivilian: index,
+    civilians:
+      currentGameState.civilianHistory[
+        currentGameState.civilianHistory.length - 1
+      ],
+  });
 
   let newKeyCount = currentGameState.keyCount;
   if (puzzle[index] === features.key) {
@@ -73,6 +85,7 @@ export function updateStateWithExtension({
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
     allowStart,
+    currentCivilians: newCivilians,
   });
 
   return {
@@ -86,5 +99,6 @@ export function updateStateWithExtension({
     jetCount: newJetCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
+    civilianHistory: [...currentGameState.civilianHistory, newCivilians],
   };
 }

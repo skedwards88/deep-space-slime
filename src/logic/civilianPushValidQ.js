@@ -4,7 +4,7 @@ import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
 export function civilianPushValidQ({
   pushedCivilian,
   pushedFrom,
-  civilians,
+  currentCivilians,
   puzzle,
 }) {
   const civilianEndIndex = getNextAdjacentIndex({
@@ -15,12 +15,12 @@ export function civilianPushValidQ({
   });
 
   // If the civilian would be pushed onto another civilian, then check the result of that push instead
-  const civilianDomino = civilians.includes(civilianEndIndex);
+  const civilianDomino = currentCivilians.includes(civilianEndIndex);
   if (civilianDomino) {
     return civilianPushValidQ({
       pushedCivilian: civilianEndIndex,
       pushedFrom: pushedCivilian,
-      civilians,
+      currentCivilians,
       puzzle,
     });
   }
@@ -29,3 +29,5 @@ export function civilianPushValidQ({
 
   return !civilianForbiddenFeatures.includes(civilianEndFeature);
 }
+
+// todo dont allow civilians to be pushed to a new row (no wrapping). also add a test for this

@@ -125,6 +125,7 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   const maxPathsToFind = 1;
   const solutions = getAllValidPaths({
     puzzle,
+    startingCivilians: [], // todo update if we ever allow civilians in custom puzzles
     numColumns,
     numRows,
     maxPathsToFind,

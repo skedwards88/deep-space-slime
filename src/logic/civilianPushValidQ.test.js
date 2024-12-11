@@ -16,7 +16,7 @@ describe("civilianPushValidQ", () => {
       civilianPushValidQ({
         pushedCivilian: 3,
         pushedFrom: 2,
-        civilians: [3],
+        currentCivilians: [3],
         puzzle,
       }),
     ).toBe(false);
@@ -31,7 +31,7 @@ describe("civilianPushValidQ", () => {
       civilianPushValidQ({
         pushedCivilian: 3,
         pushedFrom: 2,
-        civilians: [3],
+        currentCivilians: [3],
         puzzle,
       }),
     ).toBe(true);
@@ -46,7 +46,7 @@ describe("civilianPushValidQ", () => {
       civilianPushValidQ({
         pushedCivilian: 2,
         pushedFrom: 1,
-        civilians: [2, 3, 4],
+        currentCivilians: [2, 3, 4],
         puzzle,
       }),
     ).toBe(true);
@@ -61,7 +61,7 @@ describe("civilianPushValidQ", () => {
       civilianPushValidQ({
         pushedCivilian: 2,
         pushedFrom: 1,
-        civilians: [2, 3, 4],
+        currentCivilians: [2, 3, 4],
         puzzle,
       }),
     ).toBe(false);

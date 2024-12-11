@@ -20,6 +20,7 @@ export function gameReducer(currentGameState, payload) {
         numColumns,
         numRows,
         maxNumber: currentGameState.maxNumber,
+        currentCivilians: currentGameState.civilianHistory[0],
       });
       return {
         ...currentGameState,
@@ -29,6 +30,7 @@ export function gameReducer(currentGameState, payload) {
         keyCount: 0,
         numberCount: 0,
         jetCount: 0,
+        civilianHistory: [currentGameState.civilianHistory[0]],
       };
     }
 
@@ -64,6 +66,7 @@ export function gameReducer(currentGameState, payload) {
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
+      currentCivilians: currentGameState.civilianHistory[0],
     });
     return {
       ...currentGameState,
@@ -73,6 +76,7 @@ export function gameReducer(currentGameState, payload) {
       keyCount: 0,
       numberCount: 0,
       jetCount: 0,
+      civilianHistory: [currentGameState.civilianHistory[0]],
     };
   } else if (payload.action === "overwritePath") {
     const puzzle = currentGameState.puzzle;
@@ -81,6 +85,7 @@ export function gameReducer(currentGameState, payload) {
     // Iteratively update the state with the new path so that the inventory matches
     // (It would be more efficient to break the validNextPaths calculation into
     // a separate function since we don't need that value until the very end.
+    // todo need to account for civilians here
     const validNextIndexes = getValidNextIndexes({
       mainPath: [newPath[0]],
       puzzle: currentGameState.puzzle,

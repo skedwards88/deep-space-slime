@@ -46,6 +46,7 @@ export function BuilderContextProvider({children}) {
 
     worker.postMessage({
       puzzle: builderState.puzzle,
+      startingCivilians: [], // todo update if we ever allow civilians in custom puzzles
       numColumns,
       numRows,
       maxPathsToFind,

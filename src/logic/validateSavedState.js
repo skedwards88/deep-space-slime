@@ -117,21 +117,27 @@ export function validateSavedState(savedState) {
   }
 
   // Civilians exist, is an array of ints, are within the puzzle, are not on an outer space, and are not on slime space
-  if (!Array.isArray(savedState.civilians)) {
-    console.log("civilians not array");
+  if (!Array.isArray(savedState.civilianHistory)) {
+    console.log("civilianHistory not array");
     return false;
   }
-  if (
-    savedState.civilians.some(
-      (entry) =>
-        !Number.isInteger(entry) ||
-        entry >= savedState.puzzle.length ||
-        civilianForbiddenFeatures.includes(savedState.puzzle[entry]) ||
-        savedState.mainPath.includes(entry),
-    )
-  ) {
-    console.log("civilians wrong");
-    return false;
+  for (const civilians of savedState.civilianHistory) {
+    if (!Array.isArray(civilians)) {
+      console.log("civilians not array");
+      return false;
+    }
+    if (
+      civilians.some(
+        (entry) =>
+          !Number.isInteger(entry) ||
+          entry >= savedState.puzzle.length ||
+          civilianForbiddenFeatures.includes(savedState.puzzle[entry]) ||
+          savedState.mainPath.includes(entry),
+      )
+    ) {
+      console.log("civilians wrong");
+      return false;
+    }
   }
 
   // Not validating station or room name or texts or moods so that those can change without losing player progress

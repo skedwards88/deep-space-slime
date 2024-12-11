@@ -1,5 +1,12 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
-import {features, numColumns, numRows} from "./constants";
+import {
+  civilianForbiddenFeatures,
+  features,
+  numColumns,
+  numRows,
+} from "./constants";
+import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
+import {civilianPushValidQ} from "./civilianPushValidQ";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -19,6 +26,13 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   if (puzzle[index] === features.outer) {
     message =
       "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
+    return message;
+  }
+
+  // The space is a 'pod' space
+  if (puzzle[index] === features.pod) {
+    message =
+      "I'm sure you would love to escape, but pods are for civilians only. Push every civilian onto a pod, and then make your way to the exit.";
     return message;
   }
 
@@ -44,6 +58,36 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   ) {
     message =
       "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work, Subject 56!";
+    return message;
+  }
+
+  // The space is the exit and you have not rescued all civilians
+  const currentCivilians =
+    currentGameState.civilianHistory[
+      currentGameState.civilianHistory.length - 1
+    ];
+  if (
+    puzzle[index] === features.exit &&
+    !allCiviliansOnPodsQ(currentCivilians, puzzle)
+  ) {
+    message =
+      "I won't let you out until you save all of the civilians. Push each civilian onto an escape pod!";
+    return message;
+  }
+
+  // The space includes a civilian who would be pushed to an invalid space
+  if (
+    currentCivilians.includes(index) &&
+    !civilianPushValidQ({
+      pushedCivilian: index,
+      pushedFrom: lastIndexInPath,
+      puzzle,
+      currentCivilians,
+    })
+  ) {
+    message = `Civilians can't be pushed onto ${civilianForbiddenFeatures.join(
+      " or ",
+    )}.`; //todo colin to revise this text
     return message;
   }
 

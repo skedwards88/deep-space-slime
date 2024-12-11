@@ -20,7 +20,7 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2, 18],
     mouseIsActive: false,
-    civilians: [],
+    civilianHistory: [[]],
   };
 
   const validCustomState = {
@@ -36,7 +36,7 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2],
     mouseIsActive: false,
-    civilians: [],
+    civilianHistory: [[]],
   };
 
   test("returns true for a valid non-custom saved state", () => {
@@ -150,26 +150,31 @@ describe("validateSavedState", () => {
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for invalid civilians (non-array)", () => {
-    const state = {...validNonCustomState, civilians: 20};
+  test("returns false for invalid civilianHistory (non-array)", () => {
+    const state = {...validNonCustomState, civilianHistory: 20};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for invalid civilians (contains non-integers)", () => {
-    const state = {...validNonCustomState, civilians: [19, "18"]};
+  test("returns false for invalid civilians in civilianHistory (non-array)", () => {
+    const state = {...validNonCustomState, civilianHistory: [20]};
     expect(validateSavedState(state)).toBe(false);
   });
 
-  test("returns false for invalid civilians (out of range)", () => {
-    const state = {...validNonCustomState, civilians: [63]};
+  test("returns false for invalid civilians in civilianHistory (contains non-integers)", () => {
+    const state = {...validNonCustomState, civilianHistory: [[19, "18"]]};
     expect(validateSavedState(state)).toBe(false);
   });
-  test("returns false for invalid civilians (on outer space)", () => {
-    const state = {...validNonCustomState, civilians: [5]};
+
+  test("returns false for invalid civilians in civilianHistory (out of range)", () => {
+    const state = {...validNonCustomState, civilianHistory: [[63]]};
     expect(validateSavedState(state)).toBe(false);
   });
-  test("returns false for invalid civilians (on slime space)", () => {
-    const state = {...validNonCustomState, civilians: [18]};
+  test("returns false for invalid civilians in civilianHistory (on outer space)", () => {
+    const state = {...validNonCustomState, civilianHistory: [[5]]};
+    expect(validateSavedState(state)).toBe(false);
+  });
+  test("returns false for invalid civilians in civilianHistory (on slime space)", () => {
+    const state = {...validNonCustomState, civilianHistory: [[18]]};
     expect(validateSavedState(state)).toBe(false);
   });
 });

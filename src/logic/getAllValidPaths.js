@@ -1,9 +1,11 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {features} from "./constants";
+import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 
 export function getAllValidPaths({
   puzzle,
+  startingCivilians,
   numColumns,
   numRows,
   maxPathsToFind = Infinity,
@@ -20,6 +22,7 @@ export function getAllValidPaths({
   const validNextIndexes = getValidNextIndexes({
     mainPath: [startIndex],
     puzzle,
+    currentCivilians: startingCivilians,
     numColumns,
     numRows,
     maxNumber,
@@ -37,6 +40,7 @@ export function getAllValidPaths({
       numberCount: 0,
       maxNumber,
       validNextIndexes,
+      civilianHistory: [startingCivilians],
     },
     puzzle,
     numColumns,
@@ -67,6 +71,10 @@ function appendNext({
     if (
       pathState.flaskCount === maxFlasks &&
       pathState.numberCount === maxNumber &&
+      allCiviliansOnPodsQ(
+        pathState.civilianHistory[pathState.civilianHistory.length - 1],
+        puzzle,
+      ) &&
       (puzzle[validIndex] === features.exit ||
         puzzle[validIndex] === features.ship)
     ) {

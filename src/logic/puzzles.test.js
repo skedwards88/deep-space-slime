@@ -161,9 +161,12 @@ describe("puzzle validation", () => {
       return;
     }
 
-    for (const {puzzle, station, roomName} of Object.values(puzzles)) {
+    for (const {puzzle, station, roomName, startingCivilians} of Object.values(
+      puzzles,
+    )) {
       const solutions = getAllValidPaths({
         puzzle,
+        startingCivilians: startingCivilians || [], //todo decide if ok defaulting
         numColumns,
         numRows,
         maxPathsToFind: 1,
