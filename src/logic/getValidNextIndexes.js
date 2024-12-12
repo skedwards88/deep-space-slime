@@ -14,7 +14,7 @@ export function getValidNextIndexes({
   hasJet = false,
   numberCount = 0,
   allowStart = true,
-  currentCivilians = [], //todo need to update everywhere to pass in currentCivilians. then remove default
+  currentCivilians,
 }) {
   // Valid indexes are:
   // - The previous index
