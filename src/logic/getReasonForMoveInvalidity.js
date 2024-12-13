@@ -63,7 +63,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // The space is the exit and you have not rescued all civilians
   const currentCivilians =
-    currentGameState.civilianHistory[
+    currentGameState.civilianHistory?.[
       currentGameState.civilianHistory.length - 1
     ];
   if (
@@ -77,7 +77,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // The space includes a civilian who would be pushed to an invalid space
   if (
-    currentCivilians.includes(index) &&
+    currentCivilians?.includes(index) &&
     !civilianPushValidQ({
       pushedCivilian: index,
       pushedFrom: lastIndexInPath,
@@ -87,7 +87,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   ) {
     message = `Civilians can't be pushed onto ${civilianForbiddenFeatures.join(
       " or ",
-    )}.`; //todo colin to revise this text
+    )}.`; //todo colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
     return message;
   }
 

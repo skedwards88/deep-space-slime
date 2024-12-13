@@ -368,7 +368,7 @@ function Game({
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const currentCivilians =
-  gameState.civilianHistory[gameState.civilianHistory.length - 1];
+    gameState.civilianHistory?.[gameState.civilianHistory.length - 1];
   const exitUnlocked =
     gameState.maxNumber === gameState.numberCount &&
     allCiviliansOnPodsQ(currentCivilians, gameState.puzzle);
@@ -402,7 +402,7 @@ function Game({
       setCurrentMessage={setCurrentMessage}
       setHintIndex={setHintIndex}
       hintIndex={hintIndex}
-      hasCivilian={currentCivilians.includes(index)}
+      hasCivilian={currentCivilians?.includes(index)}
     ></PuzzleSquare>
   ));
 

@@ -80,13 +80,15 @@ export function getValidNextIndexes({
       numRows,
     });
 
+    const allCiviliansOnPods = allCiviliansOnPodsQ(currentCivilians, puzzle);
+
     for (const adjacentIndex of adjacentIndexes) {
       if (mainPath.includes(adjacentIndex)) {
         continue;
       }
       const feature = puzzle[adjacentIndex];
 
-      const hasCivilian = currentCivilians.includes(adjacentIndex);
+      const hasCivilian = currentCivilians?.includes(adjacentIndex);
 
       const civilianPushIsValid = hasCivilian
         ? civilianPushValidQ({
@@ -115,7 +117,7 @@ export function getValidNextIndexes({
       } else if (
         feature === features.exit &&
         numberCount === maxNumber &&
-        allCiviliansOnPodsQ(currentCivilians, puzzle)
+        allCiviliansOnPods
       ) {
         validIndexes.push(adjacentIndex);
       } else if (

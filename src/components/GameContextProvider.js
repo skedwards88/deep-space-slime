@@ -48,7 +48,7 @@ export function GameContextProvider({children}) {
 
     worker.postMessage({
       puzzle: gameState.puzzle,
-      startingCivilians: gameState.civilianHistory[0],
+      startingCivilians: gameState.civilianHistory?.[0],
       numColumns,
       numRows,
       maxPathsToFind,

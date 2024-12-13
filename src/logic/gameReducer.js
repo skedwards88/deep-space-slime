@@ -20,7 +20,7 @@ export function gameReducer(currentGameState, payload) {
         numColumns,
         numRows,
         maxNumber: currentGameState.maxNumber,
-        currentCivilians: currentGameState.civilianHistory[0],
+        currentCivilians: currentGameState.civilianHistory?.[0],
       });
       return {
         ...currentGameState,
@@ -30,7 +30,7 @@ export function gameReducer(currentGameState, payload) {
         keyCount: 0,
         numberCount: 0,
         jetCount: 0,
-        civilianHistory: [currentGameState.civilianHistory[0]],
+        civilianHistory: [currentGameState.civilianHistory?.[0]],
       };
     }
 
@@ -66,7 +66,7 @@ export function gameReducer(currentGameState, payload) {
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
-      currentCivilians: currentGameState.civilianHistory[0],
+      currentCivilians: currentGameState.civilianHistory?.[0],
     });
     return {
       ...currentGameState,
@@ -76,7 +76,7 @@ export function gameReducer(currentGameState, payload) {
       keyCount: 0,
       numberCount: 0,
       jetCount: 0,
-      civilianHistory: [currentGameState.civilianHistory[0]],
+      civilianHistory: [currentGameState.civilianHistory?.[0]],
     };
   } else if (payload.action === "overwritePath") {
     const puzzle = currentGameState.puzzle;

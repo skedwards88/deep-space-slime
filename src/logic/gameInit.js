@@ -124,8 +124,6 @@ function nonCustomInit({useSaved, puzzleID}) {
     }
   }
 
-  const puzzle = puzzleData.puzzle;
-
   return {
     isCustom: false,
     customIndex: undefined,
@@ -137,7 +135,10 @@ function nonCustomInit({useSaved, puzzleID}) {
     winText: puzzleData.winText,
     robotStartMood: puzzleData.robotStartMood,
     robotEndMood: puzzleData.robotEndMood,
-    puzzle,
+    puzzle: puzzleData.puzzle,
+    civilianHistory: puzzleData.startingCivilians && [
+      puzzleData.startingCivilians,
+    ],
   };
 }
 
@@ -159,7 +160,7 @@ export function gameInit({
 
   // Use this as a proxy to see if using the saved state and can return here
   if ("flaskCount" in baseState) {
-    // return baseState; todo revert this commented out line
+    return baseState;
   }
 
   const puzzle = baseState.puzzle;
@@ -170,15 +171,13 @@ export function gameInit({
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
-  const startingCivilians = [38]; //todo need to pull from puzzle  //todo update valid init to verify that startCivilians hasn't changed like we do for noncustom puzzles
-
   const validNextIndexes = getValidNextIndexes({
     mainPath,
     puzzle,
     numColumns,
     numRows,
     maxNumber,
-    currentCivilians: startingCivilians,
+    currentCivilians: baseState.civilianHistory?.[0],
   });
 
   sendAnalytics("new_game", {
@@ -195,7 +194,5 @@ export function gameInit({
     validNextIndexes,
     mainPath,
     mouseIsActive: false,
-    // Need to track the full civilian history for backtracking because we can't infer it from the rest of the game state
-    civilianHistory: [startingCivilians],
   };
 }

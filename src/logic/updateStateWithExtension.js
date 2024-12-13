@@ -28,7 +28,7 @@ export function updateStateWithExtension({
     pushedFrom: lastIndexInPath,
     pushedCivilian: index,
     civilians:
-      currentGameState.civilianHistory[
+      currentGameState.civilianHistory?.[
         currentGameState.civilianHistory.length - 1
       ],
   });
@@ -99,6 +99,9 @@ export function updateStateWithExtension({
     jetCount: newJetCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
-    civilianHistory: [...currentGameState.civilianHistory, newCivilians],
+    civilianHistory: newCivilians && [
+      ...currentGameState.civilianHistory,
+      newCivilians,
+    ],
   };
 }
