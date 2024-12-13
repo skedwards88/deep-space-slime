@@ -2,8 +2,255 @@ import {validateSavedState} from "./validateSavedState";
 import {puzzles} from "./puzzles";
 import {features} from "./constants";
 
+jest.mock("./puzzles", () => ({
+  puzzles: {
+    mockedNoCivilians: {
+      station: "Stasis pod",
+      roomName: "2",
+      startingText:
+        "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+      winText:
+        "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
+      hintText:
+        "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
+      robotStartMood: "happy",
+      robotEndMood: "happy",
+      puzzle: [
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "exit",
+        "basic",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "outer",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "basic",
+        "flask",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "start",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+      ],
+      nextPuzzle: "campaign/quarantine-station/1",
+      type: "Campaign",
+    },
+    mocked2: {
+      station: "Stasis pod",
+      roomName: "1",
+      startingText:
+        "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
+      winText:
+        "It looks like the slime is following you! We'll have to keep moving.",
+      robotStartMood: "happy",
+      robotEndMood: "happy",
+      puzzle: [
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "exit",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "flask",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "pod",
+        "basic",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "basic",
+        "basic",
+        "basic",
+        "basic",
+        "basic",
+        "basic",
+        "start",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+      ],
+      nextPuzzle: "campaign/stasis-pod/2",
+      type: "Campaign",
+    },
+    mockedCivilians: {
+      startingCivilians: [2],
+      station: "Stasis pod",
+      roomName: "2",
+      startingText:
+        "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+      winText:
+        "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
+      hintText:
+        "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
+      robotStartMood: "happy",
+      robotEndMood: "happy",
+      puzzle: [
+        "outer",
+        "basic",
+        "basic",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "exit",
+        "basic",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "outer",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "basic",
+        "flask",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "basic",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "start",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+        "outer",
+      ],
+      nextPuzzle: "campaign/quarantine-station/1",
+      type: "Campaign",
+    },
+  },
+}));
+
 describe("validateSavedState", () => {
-  const puzzleID = "campaign/stasis-pod/2";
+  const logSpy = jest.spyOn(console, "log");
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  const puzzleID = "mockedNoCivilians";
 
   const puzzle = puzzles[puzzleID].puzzle;
 
@@ -20,7 +267,6 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2, 18],
     mouseIsActive: false,
-    civilianHistory: [[]],
   };
 
   const validCustomState = {
@@ -36,145 +282,340 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2],
     mouseIsActive: false,
-    civilianHistory: [[]],
+  };
+
+  const validNonCustomStateWithCivilians = {
+    ...validNonCustomState,
+    puzzleID: "mockedCivilians",
+    puzzle: puzzles["mockedCivilians"].puzzle,
+    civilianHistory: [[2], [1]],
+    mainPath: [0, 18],
   };
 
   test("returns true for a valid non-custom saved state", () => {
     expect(validateSavedState(validNonCustomState)).toBe(true);
+    expect(logSpy).toHaveBeenCalledTimes(0);
   });
 
   test("returns true for a valid custom saved state", () => {
     expect(validateSavedState(validCustomState)).toBe(true);
+    expect(logSpy).toHaveBeenCalledTimes(0);
+  });
+
+  test("returns true for a valid custom saved state with civilians", () => {
+    expect(validateSavedState(validNonCustomStateWithCivilians)).toBe(true);
+    expect(logSpy).toHaveBeenCalledTimes(0);
   });
 
   test("returns false for null saved state", () => {
     expect(validateSavedState(null)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("no saved state");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for non-object saved state", () => {
     expect(validateSavedState("invalid")).toBe(false);
-  });
 
-  test("returns false for invalid puzzleID (out of range)", () => {
-    const state = {...validNonCustomState, puzzleID: "does/not/exist"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid puzzleID (for custom)", () => {
-    const state = {...validCustomState, puzzleID: "not-custom"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for invalid mainPath (non-array)", () => {
-    const state = {...validNonCustomState, mainPath: "1"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid mainPath (contains non-integers)", () => {
-    const state = {...validNonCustomState, mainPath: [0, "2", 2]};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid acquired flasks (non-integers)", () => {
-    const state = {...validNonCustomState, flaskCount: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for invalid acquired keys (non-integers)", () => {
-    const state = {...validNonCustomState, keyCount: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for invalid acquired jets (non-integers)", () => {
-    const state = {...validNonCustomState, jetCount: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for invalid acquired terminals (non-integers)", () => {
-    const state = {...validNonCustomState, numberCount: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-  test("returns false for invalid maxNumber (non-integers)", () => {
-    const state = {...validNonCustomState, maxNumber: "3"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid validNextIndexes (non-array)", () => {
-    const state = {...validNonCustomState, validNextIndexes: "4"};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for invalid validNextIndexes (contains non-integers)", () => {
-    const state = {...validNonCustomState, validNextIndexes: [3, "4", 5]};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for puzzle of wrong dimension", () => {
-    const state = {...validCustomState, puzzle: [features.outer, features.jet]};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for unknown isCustom", () => {
-    const state = {...validCustomState, isCustom: undefined};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for custom without customIndex", () => {
-    const state = {...validCustomState, customIndex: undefined};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for custom with invalid customIndex", () => {
-    const state = {...validCustomState, customIndex: -4};
-    expect(validateSavedState(state)).toBe(false);
-  });
-
-  test("returns false for non custom with customIndex", () => {
-    const state = {...validNonCustomState, customIndex: 4};
-    expect(validateSavedState(state)).toBe(false);
+    expect(logSpy).toHaveBeenCalledWith("no saved state");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for no puzzle", () => {
     const state = {...validNonCustomState, puzzle: undefined};
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("no puzzle");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for puzzle of wrong dimension", () => {
+    const state = {...validCustomState, puzzle: [features.outer, features.jet]};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("wrong dimensions");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for unknown isCustom", () => {
+    const state = {...validCustomState, isCustom: undefined};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("iscustom not bool");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for custom without customIndex", () => {
+    const state = {...validCustomState, customIndex: undefined};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("customindex not int");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for custom with invalid customIndex", () => {
+    const state = {...validCustomState, customIndex: -4};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("custom index negative");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for non custom with customIndex", () => {
+    const state = {...validNonCustomState, customIndex: 4};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("customindex given but not expected");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid puzzleID", () => {
+    const state = {...validNonCustomState, puzzleID: "does/not/exist"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("puzzleID mismatch");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid puzzleID (for custom)", () => {
+    const state = {...validCustomState, puzzleID: "not-custom"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("puzzleID not custom");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: puzzles["campaign/stasis-pod/1"].puzzle,
+      puzzle: puzzles["mocked2"].puzzle,
     };
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("puzzle not matching expected");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for puzzle with invalid feature", () => {
+  test("returns false for puzzle with invalid feature (custom)", () => {
     const newPuzzle = [...validCustomState.puzzle];
     newPuzzle[1] = "desk";
     const state = {...validCustomState, puzzle: newPuzzle};
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("unknown feature");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid mainPath (non-array)", () => {
+    const state = {...validNonCustomState, mainPath: "1"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("main path not array");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid mainPath (contains non-integers)", () => {
+    const state = {...validNonCustomState, mainPath: [0, "2", 2]};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("mainpath not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid acquired flasks (non-integers)", () => {
+    const state = {...validNonCustomState, flaskCount: "3"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid acquired keys (non-integers)", () => {
+    const state = {...validNonCustomState, keyCount: "3"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid acquired jets (non-integers)", () => {
+    const state = {...validNonCustomState, jetCount: "3"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid acquired terminals (non-integers)", () => {
+    const state = {...validNonCustomState, numberCount: "3"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid maxNumber (non-integers)", () => {
+    const state = {...validNonCustomState, maxNumber: "3"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid validNextIndexes (non-array)", () => {
+    const state = {...validNonCustomState, validNextIndexes: "4"};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("validnext not array");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for invalid validNextIndexes (contains non-integers)", () => {
+    const state = {...validNonCustomState, validNextIndexes: [3, "4", 5]};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("validnext not ints");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for mismatch civilianHistory (undefined, but civilians expected)", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: undefined,
+    };
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      "starting civilians not matching expected when one is undefined",
+    );
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for mismatch civilianHistory (defined, but civilians not expected)", () => {
+    const state = {...validNonCustomState, civilianHistory: [[20]]};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      "starting civilians not matching expected when one is undefined",
+    );
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for invalid civilianHistory (non-array)", () => {
-    const state = {...validNonCustomState, civilianHistory: 20};
+    const state = {...validNonCustomStateWithCivilians, civilianHistory: 20};
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilianHistory not array");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for invalid civilians in civilianHistory (non-array)", () => {
-    const state = {...validNonCustomState, civilianHistory: [20]};
+    const state = {...validNonCustomStateWithCivilians, civilianHistory: [20]};
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilianHistory entry not array");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for civilianHistory length not matching mainPath length", () => {
+    const state = {...validNonCustomStateWithCivilians, civilianHistory: [[2]]};
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian history wrong length");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for civilianHistory with invalid number of civilians (added)", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], [2, 4]],
+    };
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      "civilians added or removed during history",
+    );
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for civilianHistory with invalid number of civilians (removed)", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], []],
+    };
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      "civilians added or removed during history",
+    );
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("returns false for mismatched starting civilians", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[20], [2]],
+    };
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      "starting civilians not matching expected",
+    );
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for invalid civilians in civilianHistory (contains non-integers)", () => {
-    const state = {...validNonCustomState, civilianHistory: [[19, "18"]]};
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], ["18"]],
+    };
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian is not an int");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for invalid civilians in civilianHistory (out of range)", () => {
-    const state = {...validNonCustomState, civilianHistory: [[63]]};
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], [63]],
+    };
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian out of range");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
-  test("returns false for invalid civilians in civilianHistory (on outer space)", () => {
-    const state = {...validNonCustomState, civilianHistory: [[5]]};
+
+  test("returns false for invalid civilians in civilianHistory (negative)", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], [-2]],
+    };
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian out of range");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
+
+  test("returns false for invalid civilians in civilianHistory (on forbidden feature)", () => {
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], [5]],
+    };
+    expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian on forbidden feature");
+    expect(logSpy).toHaveBeenCalledTimes(1);
+  });
+
   test("returns false for invalid civilians in civilianHistory (on slime space)", () => {
-    const state = {...validNonCustomState, civilianHistory: [[18]]};
+    const state = {
+      ...validNonCustomStateWithCivilians,
+      civilianHistory: [[2], [18]],
+    };
     expect(validateSavedState(state)).toBe(false);
+
+    expect(logSpy).toHaveBeenCalledWith("civilian on slime");
+    expect(logSpy).toHaveBeenCalledTimes(1);
   });
 });
