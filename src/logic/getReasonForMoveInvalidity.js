@@ -87,7 +87,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   ) {
     message = `Civilians can't be pushed onto ${civilianForbiddenFeatures.join(
       " or ",
-    )}.`; //todo colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
+    )}.`; //todonow colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
     return message;
   }
 

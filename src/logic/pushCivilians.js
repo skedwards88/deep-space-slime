@@ -2,6 +2,14 @@ import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
 import {numColumns, numRows} from "./constants";
 
 export function pushCivilians({pushedFrom, pushedCivilian, civilians}) {
+  if (!civilians) {
+    return civilians;
+  }
+
+  if (!civilians.includes(pushedCivilian)) {
+    return civilians;
+  }
+
   let newCivilians = [...civilians];
 
   while (pushedCivilian !== undefined) {

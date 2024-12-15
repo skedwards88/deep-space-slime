@@ -20,6 +20,12 @@ describe("allCiviliansOnPodsQ", () => {
     expect(allCiviliansOnPodsQ(currentCivilians, puzzle)).toBe(true);
   });
 
+  test("returns true if civilians undefined", () => {
+    const puzzle = [features.pod, features.basic, features.outer, features.pod];
+    const currentCivilians = undefined;
+    expect(allCiviliansOnPodsQ(currentCivilians, puzzle)).toBe(true);
+  });
+
   test("not all pods have to be occupied", () => {
     const puzzle = [features.pod, features.basic, features.outer, features.pod];
     const currentCivilians = [3];

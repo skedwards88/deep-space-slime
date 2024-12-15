@@ -30,6 +30,25 @@ describe("pushCivilians", () => {
 
     expect(result).toEqual(expect.arrayContaining([2, 3, 4]));
   });
+
+  test("undefined civilians just return undefined", () => {
+    const result = pushCivilians({
+      pushedFrom: 0,
+      pushedCivilian: 1,
+    });
+
+    expect(result).toBe(undefined);
+  });
+
+  test("returns original civilians if none in push range", () => {
+    const result = pushCivilians({
+      pushedFrom: 0,
+      pushedCivilian: 1,
+      civilians: [3, 2, 4],
+    });
+
+    expect(result).toEqual(expect.arrayContaining([3, 2, 4]));
+  });
 });
 
 describe("pushCivilians: pushing will not wrap", () => {

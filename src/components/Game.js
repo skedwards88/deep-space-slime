@@ -438,6 +438,7 @@ function Game({
   React.useEffect(() => {
     let timeout;
     if (
+      !calculatingGamePaths &&
       gameState.robotStartMood !== "sinister" &&
       !hintWaitIsOver &&
       !isAtExit &&
@@ -455,6 +456,7 @@ function Game({
     isAtExit,
     hintsRemaining,
     gameState.robotStartMood,
+    calculatingGamePaths,
   ]);
 
   const isTimeToShowAHint =

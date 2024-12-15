@@ -23,7 +23,6 @@ export function updateStateWithExtension({
 
   const newMainPath = [...currentGameState.mainPath, index];
 
-  // todo verify that civlianpushvalidq is always called before this. or just call again? or add call to functino?
   const newCivilians = pushCivilians({
     pushedFrom: lastIndexInPath,
     pushedCivilian: index,

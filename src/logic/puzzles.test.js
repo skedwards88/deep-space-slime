@@ -166,7 +166,7 @@ describe("puzzle validation", () => {
     )) {
       const solutions = getAllValidPaths({
         puzzle,
-        startingCivilians: startingCivilians || [], //todo decide if ok defaulting
+        startingCivilians: startingCivilians,
         numColumns,
         numRows,
         maxPathsToFind: 1,

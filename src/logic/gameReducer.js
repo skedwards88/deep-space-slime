@@ -83,11 +83,11 @@ export function gameReducer(currentGameState, payload) {
     const newPath = payload.newPath;
 
     // Iteratively update the state with the new path so that the inventory matches
-    // (It would be more efficient to break the validNextPaths calculation into
+    // (todo It would be more efficient to break the validNextPaths calculation into
     // a separate function since we don't need that value until the very end.
-    // todo need to account for civilians here
     const validNextIndexes = getValidNextIndexes({
       mainPath: [newPath[0]],
+      currentCivilians: currentGameState.civilianHistory?.[0],
       puzzle: currentGameState.puzzle,
       numColumns,
       numRows,
@@ -98,6 +98,7 @@ export function gameReducer(currentGameState, payload) {
       ...currentGameState,
       validNextIndexes,
       mainPath: [newPath[0]],
+      civilianHistory: currentGameState.civilianHistory?.slice(0, 1),
       flaskCount: 0,
       keyCount: 0,
       numberCount: 0,
@@ -112,10 +113,7 @@ export function gameReducer(currentGameState, payload) {
       });
     }
 
-    return {
-      ...updatedState,
-      mainPath: newPath,
-    };
+    return updatedState;
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 

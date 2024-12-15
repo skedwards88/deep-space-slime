@@ -30,4 +30,4 @@ export function civilianPushValidQ({
   return !civilianForbiddenFeatures.includes(civilianEndFeature);
 }
 
-// todo dont allow civilians to be pushed to a new row (no wrapping). also add a test for this
+// todonow dont allow civilians to be pushed to a new row (no wrapping). also add a test for this
