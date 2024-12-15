@@ -83,9 +83,10 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
       pushedFrom: lastIndexInPath,
       puzzle,
       currentCivilians,
+      mainPath,
     })
   ) {
-    message = `Civilians can't be pushed onto ${civilianForbiddenFeatures.join(
+    message = `Civilians can't be pushed onto slime or ${civilianForbiddenFeatures.join(
       " or ",
     )}.`; //todonow colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
     return message;

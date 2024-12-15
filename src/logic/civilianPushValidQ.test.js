@@ -18,6 +18,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
+        mainPath: [10],
       }),
     ).toBe(false);
   });
@@ -33,6 +34,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
+        mainPath: [2],
       }),
     ).toBe(true);
   });
@@ -48,6 +50,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [2, 3, 4],
         puzzle,
+        mainPath: [1],
       }),
     ).toBe(true);
   });
@@ -63,6 +66,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [2, 3, 4],
         puzzle,
+        mainPath: [1],
       }),
     ).toBe(false);
   });
@@ -76,6 +80,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 5,
         currentCivilians: [6],
         puzzle,
+        mainPath: [5],
       }),
     ).toBe(false);
   });
@@ -89,6 +94,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 8,
         currentCivilians: [7],
         puzzle,
+        mainPath: [8],
       }),
     ).toBe(false);
   });
@@ -102,6 +108,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 52,
         currentCivilians: [59],
         puzzle,
+        mainPath: [52],
       }),
     ).toBe(false);
   });
@@ -115,6 +122,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 10,
         currentCivilians: [3],
         puzzle,
+        mainPath: [10],
       }),
     ).toBe(false);
   });
@@ -128,6 +136,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [0],
         puzzle,
+        mainPath: [1],
       }),
     ).toBe(false);
   });
@@ -141,6 +150,21 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 61,
         currentCivilians: [62],
         puzzle,
+        mainPath: [61],
+      }),
+    ).toBe(false);
+  });
+
+  test("false if civilian would be pushed onto slime", () => {
+    let puzzle = [...allBasicPuzzle];
+
+    expect(
+      civilianPushValidQ({
+        pushedCivilian: 3,
+        pushedFrom: 2,
+        currentCivilians: [3],
+        puzzle,
+        mainPath: [2, 4],
       }),
     ).toBe(false);
   });

@@ -36,6 +36,8 @@ export function getValidNextIndexes({
   //      - a portal space
   //      - the start space
 
+  // todonow make sure that you can jet onto a civilian
+  // todonow make sure that you cannot push a civilian onto a door even if you have a key
   let validIndexes = [];
 
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -96,6 +98,7 @@ export function getValidNextIndexes({
             pushedFrom: lastIndexInPath,
             currentCivilians,
             puzzle,
+            mainPath,
           })
         : true;
 
