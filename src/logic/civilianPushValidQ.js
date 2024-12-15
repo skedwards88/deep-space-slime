@@ -14,6 +14,11 @@ export function civilianPushValidQ({
     numRows,
   });
 
+  // if the civilian would be pushed to a new row (undefined adjacent index), return false
+  if (civilianEndIndex === undefined) {
+    return false;
+  }
+
   // If the civilian would be pushed onto another civilian, then check the result of that push instead
   const civilianDomino = currentCivilians.includes(civilianEndIndex);
   if (civilianDomino) {
@@ -29,5 +34,3 @@ export function civilianPushValidQ({
 
   return !civilianForbiddenFeatures.includes(civilianEndFeature);
 }
-
-// todonow dont allow civilians to be pushed to a new row (no wrapping). also add a test for this
