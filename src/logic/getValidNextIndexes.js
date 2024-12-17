@@ -21,11 +21,11 @@ export function getValidNextIndexes({
   // - The start index (unless you are on the start) (unless allowStart is false)
   // - If the last index was the exit or ship, no other options
   // - If the last index was a portal and you have visited an odd number of portals, any unvisited portal space
-  // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is:
-  //   - basic (if there is a civilian on this space, the civilian cannot be pushed to an invalid space)
-  //   - flask (if there is a civilian on this space, the civilian cannot be pushed to an invalid space)
-  //   - key (if there is a civilian on this space, the civilian cannot be pushed to an invalid space)
-  //   - jet (if there is a civilian on this space, the civilian cannot be pushed to an invalid space)
+  // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is one of the following (as long as any civilians are not pushed to invalid spaces):
+  //   - basic
+  //   - flask
+  //   - key
+  //   - jet
   //   - portal
   //   - ship
   //   - door, if you have a key
@@ -36,8 +36,6 @@ export function getValidNextIndexes({
   //      - a portal space
   //      - the start space
 
-  // todonow make sure that you can jet onto a civilian
-  // todonow make sure that you cannot push a civilian onto a door even if you have a key
   let validIndexes = [];
 
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -158,6 +156,22 @@ export function getValidNextIndexes({
           (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
             Number.parseInt(nextAdjacentFeature) !== numberCount + 1)
         ) {
+          continue;
+        }
+
+        const hasCivilian = currentCivilians?.includes(nextAdjacentIndex);
+
+        const civilianPushIsValid = hasCivilian
+          ? civilianPushValidQ({
+              pushedCivilian: nextAdjacentIndex,
+              pushedFrom: adjacentIndex,
+              currentCivilians,
+              puzzle,
+              mainPath,
+            })
+          : true;
+
+        if (!civilianPushIsValid) {
           continue;
         }
 
