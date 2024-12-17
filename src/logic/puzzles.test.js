@@ -131,6 +131,16 @@ describe("puzzle validation", () => {
     }
   });
 
+  test("all puzzles include at least as many pods as civilians", () => {
+    for (const {puzzle, startingCivilians} of Object.values(puzzles)) {
+      const numberPods = puzzle.filter(
+        (feature) => feature === features.pod,
+      ).length;
+      const numberCivilians = startingCivilians?.length || 0;
+      expect(numberPods).toBeGreaterThanOrEqual(numberCivilians);
+    }
+  });
+
   test("all puzzle types conform to known values", () => {
     const allowedTypes = Object.values(mapTypes);
     for (const {type} of Object.values(puzzles)) {
