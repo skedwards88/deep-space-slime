@@ -126,6 +126,10 @@ button.builderFeatureButton.active {
   background-image: url("../images/icons/number5.svg");
 }
 
+.builderFeatureButton.pod {
+  background-image: url("../images/icons/pod.svg");
+}
+
 .builderFeatureButton.exit {
   background-image: url("../images/icons/exit-opened.svg");
   background-color: rgb(200 190 78);

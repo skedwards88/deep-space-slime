@@ -54,6 +54,7 @@ export const unlimitedFeatures = [
   features.portal,
   features.key,
   features.door,
+  features.pod,
 ];
 
 export const limitedFeatures = [
@@ -66,7 +67,7 @@ export const limitedFeatures = [
   features.terminal5,
 ].sort();
 
-export const excludedFeatures = [features.ship, features.pod];
+export const excludedFeatures = [features.ship];
 
 export const civilianForbiddenFeatures = [
   features.exit,
