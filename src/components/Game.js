@@ -258,7 +258,7 @@ function ExitButtons({
     (feature) => feature === features.flask,
   ).length;
 
-  const nextPuzzleID = puzzles[puzzleID].nextPuzzle;
+  const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
   const continueButton = nextPuzzleExists ? (
