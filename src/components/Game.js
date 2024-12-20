@@ -198,8 +198,7 @@ function PuzzleSquare({
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
         isHint ? "hint" : ""
       }`}
-      {...(!current &&
-        feature !== features.outer && {
+      {...(feature !== features.outer && {
           onPointerDown: (event) => {
             handlePointerDown({
               event,
