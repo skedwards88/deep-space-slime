@@ -5,6 +5,7 @@ export function builderInit({puzzle, roomName = "Unnamed", customIndex}) {
   const startingPuzzle =
     puzzle || Array.from({length: numColumns * numRows}, () => features.outer);
 
+  // todo this doesn't need to be saved in the state, can just be a constant
   const defaultMessage =
     "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";
 
