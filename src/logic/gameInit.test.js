@@ -155,6 +155,7 @@ describe("gameInit saved state usage", () => {
       mainPath,
       mouseIsActive: false,
       puzzleID,
+      civilianHistory: [[]],
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
@@ -162,6 +163,7 @@ describe("gameInit saved state usage", () => {
       numColumns,
       numRows,
       maxNumber,
+      currentCivilians: result.civilianHistory[0],
     });
   });
 
@@ -207,6 +209,7 @@ describe("gameInit saved state usage", () => {
       mainPath,
       mouseIsActive: false,
       puzzleID: "custom",
+      civilianHistory: [[]],
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
@@ -214,6 +217,7 @@ describe("gameInit saved state usage", () => {
       numColumns,
       numRows,
       maxNumber,
+      currentCivilians: result.civilianHistory[0],
     });
   });
 });

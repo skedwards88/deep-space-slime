@@ -8,7 +8,10 @@ import {
 import React from "react";
 import {builderReducer} from "../logic/builderReducer";
 import {numColumns, numRows} from "../logic/constants";
-import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {
+  convertPuzzleToString,
+  convertPuzzleToPuzzleAndCivilians,
+} from "../logic/convertPuzzleString";
 
 const BuilderContext = createContext();
 
@@ -44,9 +47,12 @@ export function BuilderContextProvider({children}) {
       new URL("./getAllValidPathsWorker.js", import.meta.url),
     );
 
+    const [puzzleWithCiviliansReplaced, startingCivilians] =
+      convertPuzzleToPuzzleAndCivilians(builderState.puzzle);
+
     worker.postMessage({
-      puzzle: builderState.puzzle,
-      startingCivilians: [], // todonow update if we ever allow civilians in custom puzzles
+      puzzle: puzzleWithCiviliansReplaced,
+      startingCivilians,
       numColumns,
       numRows,
       maxPathsToFind,

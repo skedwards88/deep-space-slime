@@ -63,7 +63,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // The space is the exit and you have not rescued all civilians
   const currentCivilians =
-    currentGameState.civilianHistory?.[
+    currentGameState.civilianHistory[
       currentGameState.civilianHistory.length - 1
     ];
   if (
@@ -72,23 +72,6 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   ) {
     message =
       "I won't let you out until you save all of the civilians. Push each civilian onto an escape pod!";
-    return message;
-  }
-
-  // The space includes a civilian who would be pushed to an invalid space
-  if (
-    currentCivilians?.includes(index) &&
-    !civilianPushValidQ({
-      pushedCivilian: index,
-      pushedFrom: lastIndexInPath,
-      puzzle,
-      currentCivilians,
-      mainPath,
-    })
-  ) {
-    message = `Civilians can't be pushed onto slime or ${civilianForbiddenFeatures.join(
-      " or ",
-    )}.`; //todonow colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
     return message;
   }
 
@@ -145,6 +128,23 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   if (!isAdjacent) {
     message =
       "That space is too far away, and you are confined to your physical body. Poor human…";
+    return message;
+  }
+
+  // The space includes a civilian who would be pushed to an invalid space
+  if (
+    currentCivilians.includes(index) &&
+    !civilianPushValidQ({
+      pushedCivilian: index,
+      pushedFrom: lastIndexInPath,
+      puzzle,
+      currentCivilians,
+      mainPath,
+    })
+  ) {
+    message = `Civilians can't be pushed onto slime or ${civilianForbiddenFeatures.join(
+      " or ",
+    )}.`; //todonow colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
     return message;
   }
 

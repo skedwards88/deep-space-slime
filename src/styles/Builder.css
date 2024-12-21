@@ -130,6 +130,10 @@ button.builderFeatureButton.active {
   background-image: url("../images/icons/pod.svg");
 }
 
+.builderFeatureButton.civilian {
+  background-image: url("../images/icons/civilian.svg");
+}
+
 .builderFeatureButton.exit {
   background-image: url("../images/icons/exit-opened.svg");
   background-color: rgb(200 190 78);

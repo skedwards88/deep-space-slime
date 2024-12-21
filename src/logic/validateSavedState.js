@@ -6,6 +6,10 @@ import {
   civilianForbiddenFeatures,
 } from "./constants";
 import {arraysMatchQ} from "../common/arraysMatchQ";
+import {
+  convertPuzzleAndCiviliansToPuzzle,
+  convertPuzzleToPuzzleAndCivilians,
+} from "./convertPuzzleString";
 
 export function validateSavedState(savedState) {
   // saved state must exist
@@ -62,16 +66,6 @@ export function validateSavedState(savedState) {
     }
   }
 
-  // if not custom, puzzle must match expected puzzle
-  if (!savedState.isCustom) {
-    const expectedPuzzle = puzzles[savedState.puzzleID].puzzle;
-    const puzzlesMatch = arraysMatchQ(expectedPuzzle, savedState.puzzle);
-    if (!puzzlesMatch) {
-      console.log("puzzle not matching expected");
-      return false;
-    }
-  }
-
   // All features are known (can skip for non-custom, since we already check that the puzzle matches the stored puzzle for that ID)
   if (savedState.isCustom) {
     const allowedFeatures = Object.keys(features);
@@ -117,40 +111,64 @@ export function validateSavedState(savedState) {
   }
 
   // Civilian validation
-  const expectedStartingCivilians = savedState.isCustom
-    ? undefined
-    : puzzles[savedState.puzzleID].startingCivilians;
-  if (!!expectedStartingCivilians ^ !!savedState.civilianHistory) {
-    console.log(
-      "starting civilians not matching expected when one is undefined",
-    );
+  if (!Array.isArray(savedState.civilianHistory)) {
+    console.log("civilianHistory not array");
+    return false;
+  }
+  for (const civilians of savedState.civilianHistory) {
+    if (!Array.isArray(civilians)) {
+      console.log("civilianHistory entry not array");
+      return false;
+    }
+  }
+
+  if (savedState.civilianHistory.length != savedState.mainPath.length) {
+    console.log("civilian history wrong length");
     return false;
   }
 
-  if (expectedStartingCivilians && savedState.civilianHistory) {
-    if (!Array.isArray(savedState.civilianHistory)) {
-      console.log("civilianHistory not array");
+  for (const civilians of savedState.civilianHistory) {
+    if (civilians.length != savedState.civilianHistory[0].length) {
+      console.log("civilians added or removed during history");
       return false;
     }
-    for (const civilians of savedState.civilianHistory) {
-      if (!Array.isArray(civilians)) {
-        console.log("civilianHistory entry not array");
-        return false;
-      }
-    }
+  }
 
-    if (savedState.civilianHistory.length != savedState.mainPath.length) {
-      console.log("civilian history wrong length");
+  for (let index = 0; index < savedState.civilianHistory.length; index++) {
+    const civilians = savedState.civilianHistory[index];
+
+    if (civilians.some((entry) => !Number.isInteger(entry))) {
+      console.log("civilian is not an int");
       return false;
     }
 
-    for (const civilians of savedState.civilianHistory) {
-      if (civilians.length != savedState.civilianHistory[0].length) {
-        console.log("civilians added or removed during history");
-        return false;
-      }
+    if (
+      civilians.some((entry) => entry >= savedState.puzzle.length || entry < 0)
+    ) {
+      console.log("civilian out of range");
+      return false;
     }
 
+    if (
+      civilians.some((entry) =>
+        civilianForbiddenFeatures.includes(savedState.puzzle[entry]),
+      )
+    ) {
+      console.log("civilian on forbidden feature");
+      return false;
+    }
+
+    const mainPathAtPoint = savedState.mainPath.slice(0, index + 1);
+    if (civilians.some((entry) => mainPathAtPoint.includes(entry))) {
+      console.log("civilian on slime");
+      return false;
+    }
+  }
+
+  if (!savedState.isCustom) {
+    const [, expectedStartingCivilians] = convertPuzzleToPuzzleAndCivilians(
+      puzzles[savedState.puzzleID].puzzle,
+    );
     const civiliansMatch = arraysMatchQ(
       expectedStartingCivilians,
       savedState.civilianHistory[0],
@@ -159,38 +177,19 @@ export function validateSavedState(savedState) {
       console.log("starting civilians not matching expected");
       return false;
     }
+  }
 
-    for (let index = 0; index < savedState.civilianHistory.length; index++) {
-      const civilians = savedState.civilianHistory[index];
-
-      if (civilians.some((entry) => !Number.isInteger(entry))) {
-        console.log("civilian is not an int");
-        return false;
-      }
-
-      if (
-        civilians.some(
-          (entry) => entry >= savedState.puzzle.length || entry < 0,
-        )
-      ) {
-        console.log("civilian out of range");
-        return false;
-      }
-
-      if (
-        civilians.some((entry) =>
-          civilianForbiddenFeatures.includes(savedState.puzzle[entry]),
-        )
-      ) {
-        console.log("civilian on forbidden feature");
-        return false;
-      }
-
-      const mainPathAtPoint = savedState.mainPath.slice(0, index + 1);
-      if (civilians.some((entry) => mainPathAtPoint.includes(entry))) {
-        console.log("civilian on slime");
-        return false;
-      }
+  // if not custom, puzzle must match expected puzzle
+  if (!savedState.isCustom) {
+    const expectedPuzzle = puzzles[savedState.puzzleID].puzzle;
+    const actualPuzzle = convertPuzzleAndCiviliansToPuzzle(
+      savedState.puzzle,
+      savedState.civilianHistory[0],
+    );
+    const puzzlesMatch = arraysMatchQ(expectedPuzzle, actualPuzzle);
+    if (!puzzlesMatch) {
+      console.log("puzzle not matching expected");
+      return false;
     }
   }
 

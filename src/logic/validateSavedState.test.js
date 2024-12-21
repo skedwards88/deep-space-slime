@@ -161,7 +161,6 @@ jest.mock("./puzzles", () => ({
       type: "Campaign",
     },
     mockedCivilians: {
-      startingCivilians: [2],
       station: "Stasis pod",
       roomName: "2",
       startingText:
@@ -175,7 +174,7 @@ jest.mock("./puzzles", () => ({
       puzzle: [
         "outer",
         "basic",
-        "basic",
+        "civilian",
         "basic",
         "outer",
         "outer",
@@ -267,6 +266,7 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2, 18],
     mouseIsActive: false,
+    civilianHistory: [[], [], [], []],
   };
 
   const validCustomState = {
@@ -282,6 +282,7 @@ describe("validateSavedState", () => {
     validNextIndexes: [3, 4, 5],
     mainPath: [0, 1, 2],
     mouseIsActive: false,
+    civilianHistory: [[], [], []],
   };
 
   const validNonCustomStateWithCivilians = {
@@ -478,29 +479,6 @@ describe("validateSavedState", () => {
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for mismatch civilianHistory (undefined, but civilians expected)", () => {
-    const state = {
-      ...validNonCustomStateWithCivilians,
-      civilianHistory: undefined,
-    };
-    expect(validateSavedState(state)).toBe(false);
-
-    expect(logSpy).toHaveBeenCalledWith(
-      "starting civilians not matching expected when one is undefined",
-    );
-    expect(logSpy).toHaveBeenCalledTimes(1);
-  });
-
-  test("returns false for mismatch civilianHistory (defined, but civilians not expected)", () => {
-    const state = {...validNonCustomState, civilianHistory: [[20]]};
-    expect(validateSavedState(state)).toBe(false);
-
-    expect(logSpy).toHaveBeenCalledWith(
-      "starting civilians not matching expected when one is undefined",
-    );
-    expect(logSpy).toHaveBeenCalledTimes(1);
-  });
-
   test("returns false for invalid civilianHistory (non-array)", () => {
     const state = {...validNonCustomStateWithCivilians, civilianHistory: 20};
     expect(validateSavedState(state)).toBe(false);
@@ -554,7 +532,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched starting civilians", () => {
     const state = {
       ...validNonCustomStateWithCivilians,
-      civilianHistory: [[20], [2]],
+      civilianHistory: [[1], [2]],
     };
     expect(validateSavedState(state)).toBe(false);
 

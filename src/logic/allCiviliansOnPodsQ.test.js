@@ -31,4 +31,15 @@ describe("allCiviliansOnPodsQ", () => {
     const currentCivilians = [3];
     expect(allCiviliansOnPodsQ(currentCivilians, puzzle)).toBe(true);
   });
+
+  test("if the puzzle does not have civilians replaced, they are ignored", () => {
+    const puzzle = [
+      features.pod,
+      features.civilian,
+      features.outer,
+      features.pod,
+    ];
+    const currentCivilians = [3];
+    expect(allCiviliansOnPodsQ(currentCivilians, puzzle)).toBe(true);
+  });
 });

@@ -55,7 +55,7 @@ function BuilderEntry({
           // Check if valid
           const puzzle = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians: puzzle,
             numColumns,
             numRows,
           });
@@ -81,7 +81,7 @@ function BuilderEntry({
           // Check if valid
           const puzzle = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians: puzzle,
             numColumns,
             numRows,
           });

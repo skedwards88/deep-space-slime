@@ -1,6 +1,7 @@
 import {
   convertPuzzleToString,
   convertStringToPuzzle,
+  convertPuzzleToPuzzleAndCivilians,
 } from "./convertPuzzleString";
 import {puzzles} from "./puzzles";
 import {
@@ -132,11 +133,13 @@ describe("puzzle validation", () => {
   });
 
   test("all puzzles include at least as many pods as civilians", () => {
-    for (const {puzzle, startingCivilians} of Object.values(puzzles)) {
+    for (const {puzzle} of Object.values(puzzles)) {
       const numberPods = puzzle.filter(
         (feature) => feature === features.pod,
       ).length;
-      const numberCivilians = startingCivilians?.length || 0;
+      const numberCivilians = puzzle.filter(
+        (feature) => feature === features.civilian,
+      ).length;
       expect(numberPods).toBeGreaterThanOrEqual(numberCivilians);
     }
   });
@@ -171,12 +174,12 @@ describe("puzzle validation", () => {
       return;
     }
 
-    for (const {puzzle, station, roomName, startingCivilians} of Object.values(
-      puzzles,
-    )) {
+    for (const {puzzle, station, roomName} of Object.values(puzzles)) {
+      const [puzzleWithCiviliansReplaced, startingCivilians] =
+        convertPuzzleToPuzzleAndCivilians(puzzle);
       const solutions = getAllValidPaths({
-        puzzle,
-        startingCivilians: startingCivilians,
+        puzzle: puzzleWithCiviliansReplaced,
+        startingCivilians,
         numColumns,
         numRows,
         maxPathsToFind: 1,

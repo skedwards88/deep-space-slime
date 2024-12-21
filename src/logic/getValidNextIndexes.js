@@ -88,7 +88,7 @@ export function getValidNextIndexes({
       }
       const feature = puzzle[adjacentIndex];
 
-      const hasCivilian = currentCivilians?.includes(adjacentIndex);
+      const hasCivilian = currentCivilians.includes(adjacentIndex);
 
       const civilianPushIsValid = hasCivilian
         ? civilianPushValidQ({
@@ -159,7 +159,7 @@ export function getValidNextIndexes({
           continue;
         }
 
-        const hasCivilian = currentCivilians?.includes(nextAdjacentIndex);
+        const hasCivilian = currentCivilians.includes(nextAdjacentIndex);
 
         const civilianPushIsValid = hasCivilian
           ? civilianPushValidQ({

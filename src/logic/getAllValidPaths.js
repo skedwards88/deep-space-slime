@@ -22,7 +22,7 @@ export function getAllValidPaths({
   const validNextIndexes = getValidNextIndexes({
     mainPath: [startIndex],
     puzzle,
-    currentCivilians: startingCivilians && [startingCivilians],
+    currentCivilians: [startingCivilians],
     numColumns,
     numRows,
     maxNumber,
@@ -40,7 +40,7 @@ export function getAllValidPaths({
       numberCount: 0,
       maxNumber,
       validNextIndexes,
-      civilianHistory: startingCivilians && [startingCivilians],
+      civilianHistory: [startingCivilians],
     },
     puzzle,
     numColumns,
@@ -72,7 +72,7 @@ function appendNext({
       pathState.flaskCount === maxFlasks &&
       pathState.numberCount === maxNumber &&
       allCiviliansOnPodsQ(
-        pathState.civilianHistory?.[pathState.civilianHistory.length - 1],
+        pathState.civilianHistory[pathState.civilianHistory.length - 1],
         puzzle,
       ) &&
       (puzzle[validIndex] === features.exit ||

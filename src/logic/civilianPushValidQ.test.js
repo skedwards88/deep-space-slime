@@ -168,4 +168,19 @@ describe("civilianPushValidQ", () => {
       }),
     ).toBe(false);
   });
+
+  test("does not consider civilians that were not replaced in the original puzzle", () => {
+    let puzzle = [...allBasicPuzzle];
+    puzzle[4] = features.civilian;
+
+    expect(
+      civilianPushValidQ({
+        pushedCivilian: 3,
+        pushedFrom: 2,
+        currentCivilians: [3],
+        puzzle,
+        mainPath: [2],
+      }),
+    ).toBe(true);
+  });
 });

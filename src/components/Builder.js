@@ -63,40 +63,29 @@ export default function Builder({setDisplay}) {
 
   const {dispatchGameState} = useGameContext();
 
-  const unlimitedFeatureButtons = unlimitedFeatures.map((feature, index) => (
-    <button
-      key={index}
-      className={`builderFeatureButton ${feature}${
-        feature === builderState.activeFeature ? " active" : ""
-      }`}
-      onClick={() =>
-        dispatchBuilderState({action: "selectFeature", newFeature: feature})
-      }
-    ></button>
-  ));
+  const featureButtons = [
+    ...unlimitedFeatures,
+    ...builderState.remainingLimitedFeatures,
+  ].map((feature, index) => {
+    let featureClass;
+    if (Number.isInteger(Number.parseInt(feature))) {
+      featureClass = `numbered number${feature}`;
+    } else {
+      featureClass = feature;
+    }
 
-  const limitedFeatureButtons = builderState.remainingLimitedFeatures.map(
-    (feature, index) => {
-      let featureClass;
-      if (Number.isInteger(Number.parseInt(feature))) {
-        featureClass = `numbered number${feature}`;
-      } else {
-        featureClass = feature;
-      }
-
-      return (
-        <button
-          key={index}
-          className={`builderFeatureButton ${featureClass}${
-            feature === builderState.activeFeature ? " active" : ""
-          }`}
-          onClick={() =>
-            dispatchBuilderState({action: "selectFeature", newFeature: feature})
-          }
-        ></button>
-      );
-    },
-  );
+    return (
+      <button
+        key={index}
+        className={`builderFeatureButton ${featureClass}${
+          feature === builderState.activeFeature ? " active" : ""
+        }`}
+        onClick={() =>
+          dispatchBuilderState({action: "selectFeature", newFeature: feature})
+        }
+      ></button>
+    );
+  });
 
   const squares = builderState.puzzle.map((feature, index) => (
     <BuilderSquare
@@ -210,10 +199,7 @@ export default function Builder({setDisplay}) {
 
       <div id="puzzle">{squares}</div>
 
-      <div id="builderFeatureButtons">
-        {unlimitedFeatureButtons}
-        {limitedFeatureButtons}
-      </div>
+      <div id="builderFeatureButtons">{featureButtons}</div>
     </div>
   );
 }

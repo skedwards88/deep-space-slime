@@ -53,7 +53,7 @@ export function builderReducer(currentBuilderState, payload) {
     }
   } else if (payload.action === "validate") {
     const {isValid, message} = validateCustomPuzzle({
-      puzzle: currentBuilderState.puzzle,
+      puzzleWithCivilians: currentBuilderState.puzzle,
       numColumns,
       numRows,
     });
