@@ -3,7 +3,10 @@ import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
-import {convertPuzzleAndCiviliansToPuzzle, convertPuzzleAndCiviliansToString} from "../logic/convertPuzzleString";
+import {
+  convertPuzzleAndCiviliansToPuzzle,
+  convertPuzzleAndCiviliansToString,
+} from "../logic/convertPuzzleString";
 import {features, numColumns, numRows} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
@@ -329,7 +332,10 @@ function ExitButtons({
       url="https://skedwards88.github.io/deep-space-slime"
       seed={
         isCustom
-          ? generateSeed(roomName, convertPuzzleAndCiviliansToString(puzzle,startingCivilians))
+          ? generateSeed(
+              roomName,
+              convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
+            )
           : undefined
       }
       buttonText="Share"

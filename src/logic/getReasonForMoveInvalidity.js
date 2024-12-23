@@ -1,9 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
-import {
-  features,
-  numColumns,
-  numRows,
-} from "./constants";
+import {features, numColumns, numRows} from "./constants";
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 import {civilianPushValidQ} from "./civilianPushValidQ";
 
