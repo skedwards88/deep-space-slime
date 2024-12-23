@@ -7,7 +7,6 @@ const letterToFeatureLookup = Object.fromEntries(
   ]),
 );
 
-//todonow think can replace this with convertPuzzleAndCiviliansToString
 export function convertPuzzleToString(puzzle) {
   return puzzle
     .map((feature) => {
@@ -22,7 +21,6 @@ export function convertPuzzleToString(puzzle) {
     .join("");
 }
 
-//todonow think can replace this with convertStringToPuzzleAndCivilians below
 export function convertStringToPuzzle(string) {
   return string.split("").map((letter) => {
     const feature = letterToFeatureLookup[letter];

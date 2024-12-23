@@ -92,7 +92,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     robotStartMood: customRobotMood,
     robotEndMood: customRobotMood,
     puzzle,
-    civilianHistory: [startingCivilians], //todonow decide if don't want to track civilian history if no civilians. if want to always track, update the places that do `civilianHistory?.` to not do that. and update places that pass/receive civilianHistory[0]/startingCivilians to handle undefined
+    civilianHistory: [startingCivilians],
   };
 }
 
@@ -183,7 +183,6 @@ export function gameInit({
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
-  console.log(JSON.stringify());
   const validNextIndexes = getValidNextIndexes({
     mainPath,
     puzzle,

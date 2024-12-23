@@ -1,6 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {
-  civilianForbiddenFeatures,
   features,
   numColumns,
   numRows,
@@ -142,9 +141,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
       mainPath,
     })
   ) {
-    message = `Civilians can't be pushed onto slime or ${civilianForbiddenFeatures.join(
-      " or ",
-    )}.`; //todonow colin to revise this text. if have custom text per feature, add a test to make sure that every forbidden feature has a message
+    message = `Civilians can't be pushed onto slime, portals, doors, entrances/exits, or outer space.`;
     return message;
   }
 

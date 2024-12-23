@@ -3,7 +3,7 @@ import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
-import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {convertPuzzleAndCiviliansToPuzzle, convertPuzzleAndCiviliansToString} from "../logic/convertPuzzleString";
 import {features, numColumns, numRows} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
@@ -246,6 +246,7 @@ function PuzzleSquare({
 
 function ExitButtons({
   puzzle,
+  startingCivilians,
   flaskCount,
   puzzleID,
   dispatchGameState,
@@ -304,7 +305,7 @@ function ExitButtons({
       onClick={() => {
         dispatchBuilderState({
           action: "editCustom",
-          puzzle,
+          puzzle: convertPuzzleAndCiviliansToPuzzle(puzzle, startingCivilians),
           roomName,
           customIndex: customIndex,
         });
@@ -328,7 +329,7 @@ function ExitButtons({
       url="https://skedwards88.github.io/deep-space-slime"
       seed={
         isCustom
-          ? generateSeed(roomName, convertPuzzleToString(puzzle))
+          ? generateSeed(roomName, convertPuzzleAndCiviliansToString(puzzle,startingCivilians))
           : undefined
       }
       buttonText="Share"
@@ -517,6 +518,7 @@ function Game({
       {isAtExit ? (
         <ExitButtons
           puzzle={gameState.puzzle}
+          startingCivilians={gameState.civilianHistory[0]}
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}
