@@ -6,6 +6,8 @@
 #map button {
   background-color: black;
   color: white;
+  text-align: left;
+  margin: 7px;
 }
 
 #map button:disabled {
@@ -40,14 +42,14 @@
   align-items: center;
   justify-content: space-between;
   min-height: calc(var(--square-size) * 0.7);
-  width: 85vw;
+  width: 83vw;
 }
 
 .mapRoomButton {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80vw;
+  width: 75vw;
   min-height: calc(var(--square-size) * 0.7);
 }
 

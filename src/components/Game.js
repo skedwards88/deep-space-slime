@@ -203,25 +203,24 @@ function PuzzleSquare({
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
         isHint ? "hint" : ""
       } ${hasCivilian ? "civilian" : ""}`}
-      {...(!current &&
-        feature !== features.outer && {
-          onPointerDown: (event) => {
-            handlePointerDown({
-              event,
-              index,
-              dispatchGameState,
-              confirmReset: feature === features.start && mainPath.length > 2,
-              setDisplay,
-              validNext,
-              gameState,
-              setCurrentMessage,
-              setHintWaitIsOver,
-              setHintIndex,
-              score,
-              setScore,
-            });
-          },
-        })}
+      {...(feature !== features.outer && {
+        onPointerDown: (event) => {
+          handlePointerDown({
+            event,
+            index,
+            dispatchGameState,
+            confirmReset: feature === features.start && mainPath.length > 2,
+            setDisplay,
+            validNext,
+            gameState,
+            setCurrentMessage,
+            setHintWaitIsOver,
+            setHintIndex,
+            score,
+            setScore,
+          });
+        },
+      })}
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
         feature !== features.outer && {

@@ -208,6 +208,7 @@ function RoomLevelMapEntry({
 export default function GameMap({setDisplay}) {
   const {gameState, dispatchGameState, score} = useGameContext();
 
+  // If current station is custom, then the map will be fully collapsed
   const currentStation = gameState.station;
   const currentStationType = puzzles[gameState.puzzleID]?.type;
 
