@@ -63,7 +63,6 @@ export function convertStringToPuzzleAndCivilians(string) {
 }
 
 // Convert civilian spaces to basic spaces, and return the converted puzzle and the civilian indexes
-//todonow tests
 export function convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians) {
   const civilianIndexes = puzzleWithCivilians.reduce(
     (currentCivilianIndexes, feature, currentIndex) =>
@@ -79,7 +78,6 @@ export function convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians) {
   return [puzzleWithCiviliansReplaced, civilianIndexes];
 }
 
-//todonow tests
 export function convertPuzzleAndCiviliansToPuzzle(puzzle, civilians) {
   return puzzle.map((feature, index) =>
     civilians.includes(index) ? features.civilian : feature,
