@@ -31,7 +31,7 @@ export function getValidNextIndexes({
   //   - door, if you have a key
   //   - exit, if all numbers found + if all civilians on pods
   //   - next number
-  //   - on the opposite side of a visited space, if you have a jet and the visited space isn't:
+  //   - on the opposite side of a visited space, if you have a jet and the resulting space isn't a pod and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
   //      - a portal space
   //      - the start space
@@ -151,6 +151,7 @@ export function getValidNextIndexes({
         if (
           nextAdjacentIndex === undefined ||
           nextAdjacentFeature === features.outer ||
+          nextAdjacentFeature === features.pod ||
           mainPath.includes(nextAdjacentIndex) ||
           (nextAdjacentFeature === features.door && !hasKey) ||
           (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
