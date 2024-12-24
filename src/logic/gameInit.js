@@ -3,7 +3,11 @@ import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {convertStringToPuzzle} from "./convertPuzzleString";
+import {
+  convertStringToPuzzleAndCivilians,
+  convertPuzzleToPuzzleAndCivilians,
+  convertPuzzleAndCiviliansToPuzzle,
+} from "./convertPuzzleString";
 import {features, numColumns, numRows, firstPuzzle} from "./constants";
 
 function customInit({useSaved, customSeed, customIndex}) {
@@ -39,6 +43,7 @@ function customInit({useSaved, customSeed, customIndex}) {
   let customName;
   let customEncodedPuzzle;
   let puzzle;
+  let startingCivilians;
   try {
     if (!customSeed.startsWith("custom-")) {
       throw new Error("Custom seed did not start with 'custom-'");
@@ -46,11 +51,16 @@ function customInit({useSaved, customSeed, customIndex}) {
     customSeed = customSeed.substring("custom-".length);
     [customName, customEncodedPuzzle] = customSeed.split("_");
     customName = customName.replaceAll("+", " ");
-    puzzle = convertStringToPuzzle(customEncodedPuzzle);
+    [puzzle, startingCivilians] =
+      convertStringToPuzzleAndCivilians(customEncodedPuzzle);
+    const puzzleWithCivilians = convertPuzzleAndCiviliansToPuzzle(
+      puzzle,
+      startingCivilians,
+    );
 
     // Make sure that the puzzle passes all of the validation (in case someone edits/mangles the query string)
     const {isValid} = validateCustomPuzzle({
-      puzzle,
+      puzzleWithCivilians,
       numColumns,
       numRows,
     });
@@ -82,6 +92,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     robotStartMood: customRobotMood,
     robotEndMood: customRobotMood,
     puzzle,
+    civilianHistory: [startingCivilians],
   };
 }
 
@@ -124,8 +135,9 @@ function nonCustomInit({useSaved, puzzleID}) {
     }
   }
 
-  const puzzle = puzzleData.puzzle;
-
+  const [puzzle, startingCivilians] = convertPuzzleToPuzzleAndCivilians(
+    puzzleData.puzzleWithCivilians,
+  );
   return {
     isCustom: false,
     customIndex: undefined,
@@ -138,6 +150,7 @@ function nonCustomInit({useSaved, puzzleID}) {
     robotStartMood: puzzleData.robotStartMood,
     robotEndMood: puzzleData.robotEndMood,
     puzzle,
+    civilianHistory: [startingCivilians],
   };
 }
 
@@ -176,6 +189,7 @@ export function gameInit({
     numColumns,
     numRows,
     maxNumber,
+    currentCivilians: baseState.civilianHistory[0],
   });
 
   sendAnalytics("new_game", {

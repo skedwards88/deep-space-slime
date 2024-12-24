@@ -4,6 +4,7 @@ import {features, numColumns, numRows} from "./constants";
 
 // To backtrack:
 // Remove the last index in the path.
+// Remove the last civilian history entry
 // If the last index was a flask, remove the flask from the flask count.
 // If the last index was a key, remove the key from the key count.
 // If the last index was a door, add a key to the key count.
@@ -14,6 +15,10 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const newMainPath = mainPath.slice(0, mainPath.length - 1);
+  const newCivilianHistory = currentGameState.civilianHistory.slice(
+    0,
+    currentGameState.civilianHistory.length - 1,
+  );
 
   let newKeyCount = currentGameState.keyCount;
   if (puzzle[lastIndexInPath] === features.key) {
@@ -67,12 +72,14 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     hasJet: newJetCount > 0,
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
+    currentCivilians: newCivilianHistory[newCivilianHistory.length - 1],
   });
 
   return {
     ...currentGameState,
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
+    civilianHistory: newCivilianHistory,
     flaskCount:
       puzzle[lastIndexInPath] === features.flask
         ? currentGameState.flaskCount - 1

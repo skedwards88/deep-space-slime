@@ -37,10 +37,10 @@ function BuilderEntry({
         id="editIcon"
         className="controlButton"
         onClick={() => {
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           dispatchBuilderState({
             action: "editCustom",
-            puzzle,
+            puzzleWithCivilians,
             roomName,
             customIndex: index,
           });
@@ -53,9 +53,9 @@ function BuilderEntry({
         className="controlButton"
         onClick={() => {
           // Check if valid
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians,
             numColumns,
             numRows,
           });
@@ -79,9 +79,9 @@ function BuilderEntry({
         className="controlButton"
         onClick={() => {
           // Check if valid
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians,
             numColumns,
             numRows,
           });
@@ -100,7 +100,7 @@ function BuilderEntry({
             } else {
               dispatchBuilderState({
                 action: "editCustom",
-                puzzle,
+                puzzleWithCivilians,
                 roomName,
                 customIndex: index,
               });

@@ -24,6 +24,9 @@ export const features = {
   terminal4: "4",
   terminal5: "5",
   ship: "ship",
+  pod: "pod",
+  // even though civilians aren't a feature in the game, we consider them a feature in the builder and stored puzzles
+  civilian: "civilian",
 };
 
 export const featureToLetterLookup = {
@@ -42,6 +45,8 @@ export const featureToLetterLookup = {
   [features.terminal4]: "4",
   [features.terminal5]: "5",
   [features.ship]: "H",
+  [features.pod]: "X",
+  [features.civilian]: "C",
 };
 
 export const unlimitedFeatures = [
@@ -52,6 +57,8 @@ export const unlimitedFeatures = [
   features.portal,
   features.key,
   features.door,
+  features.pod,
+  features.civilian,
 ];
 
 export const limitedFeatures = [
@@ -65,3 +72,12 @@ export const limitedFeatures = [
 ].sort();
 
 export const excludedFeatures = [features.ship];
+
+export const civilianForbiddenFeatures = [
+  features.exit,
+  features.ship,
+  features.portal,
+  features.start,
+  features.outer,
+  features.door,
+];

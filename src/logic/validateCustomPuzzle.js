@@ -1,10 +1,15 @@
 import {features} from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 import React from "react";
+import {convertPuzzleToPuzzleAndCivilians} from "./convertPuzzleString";
 
-export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
+export function validateCustomPuzzle({
+  puzzleWithCivilians,
+  numColumns,
+  numRows,
+}) {
   // The puzzle must have exactly one start
-  const numberStarts = puzzle.filter(
+  const numberStarts = puzzleWithCivilians.filter(
     (feature) => feature === features.start,
   ).length;
   if (numberStarts !== 1) {
@@ -20,7 +25,7 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   }
 
   // The puzzle must have exactly one exit
-  const numberExits = puzzle.filter(
+  const numberExits = puzzleWithCivilians.filter(
     (feature) => feature === features.exit,
   ).length;
   if (numberExits !== 1) {
@@ -36,7 +41,7 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   }
 
   // Need an equal number of portals
-  const numberPortals = puzzle.filter(
+  const numberPortals = puzzleWithCivilians.filter(
     (feature) => feature === features.portal,
   ).length;
   if (numberPortals % 2 !== 0) {
@@ -53,10 +58,10 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
   }
 
   // Need even number of doors and keys
-  const numberDoors = puzzle.filter(
+  const numberDoors = puzzleWithCivilians.filter(
     (feature) => feature === features.door,
   ).length;
-  const numberKeys = puzzle.filter(
+  const numberKeys = puzzleWithCivilians.filter(
     (feature) => feature === features.key,
   ).length;
   if (numberDoors != numberKeys) {
@@ -72,17 +77,37 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
     };
   }
 
+  // Need at least as many pods as civilians
+  const numberPods = puzzleWithCivilians.filter(
+    (feature) => feature === features.pod,
+  ).length;
+  const numberCivilians = puzzleWithCivilians.filter(
+    (feature) => feature === features.civilian,
+  ).length;
+  if (numberPods < numberCivilians) {
+    return {
+      isValid: false,
+      message: (
+        <p>
+          You must have at least as many{" "}
+          <span id="podIcon" className="smallInfoIcon"></span> as{" "}
+          <span id="civilianIcon" className="smallInfoIcon"></span>
+        </p>
+      ),
+    };
+  }
+
   // Tally the terminals
-  const numberTerminal1s = puzzle.filter(
+  const numberTerminal1s = puzzleWithCivilians.filter(
     (feature) => feature === features.terminal1,
   ).length;
-  const numberTerminal2s = puzzle.filter(
+  const numberTerminal2s = puzzleWithCivilians.filter(
     (feature) => feature === features.terminal2,
   ).length;
-  const numberTerminal3s = puzzle.filter(
+  const numberTerminal3s = puzzleWithCivilians.filter(
     (feature) => feature === features.terminal3,
   ).length;
-  const numberTerminal4s = puzzle.filter(
+  const numberTerminal4s = puzzleWithCivilians.filter(
     (feature) => feature === features.terminal4,
   ).length;
 
@@ -123,15 +148,18 @@ export function validateCustomPuzzle({puzzle, numColumns, numRows}) {
 
   // Need at least one solution
   const maxPathsToFind = 1;
+  const [puzzle, civilianIndexes] =
+    convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
   const solutions = getAllValidPaths({
     puzzle,
+    startingCivilians: civilianIndexes,
     numColumns,
     numRows,
     maxPathsToFind,
   });
   const numSolutions = solutions.length;
   if (numSolutions === 0) {
-    const numberFlasks = puzzle.filter(
+    const numberFlasks = puzzleWithCivilians.filter(
       (feature) => feature === features.flask,
     ).length;
     return {

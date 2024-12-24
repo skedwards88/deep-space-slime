@@ -3,7 +3,10 @@ import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
-import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {
+  convertPuzzleAndCiviliansToPuzzle,
+  convertPuzzleAndCiviliansToString,
+} from "../logic/convertPuzzleString";
 import {features, numColumns, numRows} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
@@ -12,6 +15,7 @@ import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
+import {allCiviliansOnPodsQ} from "../logic/allCiviliansOnPodsQ";
 
 function handleMovement({
   validNext,
@@ -169,6 +173,7 @@ function PuzzleSquare({
   setCurrentMessage,
   setHintIndex,
   hintIndex,
+  hasCivilian,
 }) {
   const {gameState, dispatchGameState, score, setScore} = useGameContext();
 
@@ -197,7 +202,7 @@ function PuzzleSquare({
         visited ? "visited" : ""
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
         isHint ? "hint" : ""
-      }`}
+      } ${hasCivilian ? "civilian" : ""}`}
       {...(feature !== features.outer && {
         onPointerDown: (event) => {
           handlePointerDown({
@@ -243,6 +248,7 @@ function PuzzleSquare({
 
 function ExitButtons({
   puzzle,
+  startingCivilians,
   flaskCount,
   puzzleID,
   dispatchGameState,
@@ -301,7 +307,10 @@ function ExitButtons({
       onClick={() => {
         dispatchBuilderState({
           action: "editCustom",
-          puzzle,
+          puzzleWithCivilians: convertPuzzleAndCiviliansToPuzzle(
+            puzzle,
+            startingCivilians,
+          ),
           roomName,
           customIndex: customIndex,
         });
@@ -325,7 +334,10 @@ function ExitButtons({
       url="https://skedwards88.github.io/deep-space-slime"
       seed={
         isCustom
-          ? generateSeed(roomName, convertPuzzleToString(puzzle))
+          ? generateSeed(
+              roomName,
+              convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
+            )
           : undefined
       }
       buttonText="Share"
@@ -364,7 +376,11 @@ function Game({
 
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
-  const exitUnlocked = gameState.maxNumber === gameState.numberCount;
+  const currentCivilians =
+    gameState.civilianHistory[gameState.civilianHistory.length - 1];
+  const exitUnlocked =
+    gameState.maxNumber === gameState.numberCount &&
+    allCiviliansOnPodsQ(currentCivilians, gameState.puzzle);
 
   const [currentMessage, setCurrentMessage] = React.useState(
     gameState.startingText,
@@ -395,6 +411,7 @@ function Game({
       setCurrentMessage={setCurrentMessage}
       setHintIndex={setHintIndex}
       hintIndex={hintIndex}
+      hasCivilian={currentCivilians.includes(index)}
     ></PuzzleSquare>
   ));
 
@@ -430,6 +447,7 @@ function Game({
   React.useEffect(() => {
     let timeout;
     if (
+      !calculatingGamePaths &&
       gameState.robotStartMood !== "sinister" &&
       !hintWaitIsOver &&
       !isAtExit &&
@@ -447,6 +465,7 @@ function Game({
     isAtExit,
     hintsRemaining,
     gameState.robotStartMood,
+    calculatingGamePaths,
   ]);
 
   const isTimeToShowAHint =
@@ -507,6 +526,7 @@ function Game({
       {isAtExit ? (
         <ExitButtons
           puzzle={gameState.puzzle}
+          startingCivilians={gameState.civilianHistory[0]}
           flaskCount={gameState.flaskCount}
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}

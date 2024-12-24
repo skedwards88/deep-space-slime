@@ -8,7 +8,7 @@ export const puzzles = {
       "It looks like the slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -87,7 +87,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -163,7 +163,7 @@ export const puzzles = {
     winText: "Look at us. Breaking and entering.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -242,7 +242,7 @@ export const puzzles = {
       "If you retry this level to get all the samples, grab the card key right away then head for the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -320,7 +320,7 @@ export const puzzles = {
       "If you retry this level to get all the samples, try heading straight for the card key on the right.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -398,7 +398,7 @@ export const puzzles = {
       "If you retry this level to get all the samples, try moving into the empty spaces first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -476,7 +476,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try heading right immediatly after grabbing the closest card key.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -555,7 +555,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try heading clockwise along the perimeter first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -633,7 +633,7 @@ export const puzzles = {
       "You can retry this level to get the sample. Try grabbing the SPRAY BOTTLE before the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -712,7 +712,7 @@ export const puzzles = {
       "You can retry this level to get the sample. Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE to cross your trail. Remember that the SPRAY BOTTLE only lets you jump straight across the slime trail to a slime-free space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -789,7 +789,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try turning right first, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -866,7 +866,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try starting with the lower left FLASK, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -943,7 +943,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the SPRAY BOTTLE after grabbing the left SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1020,7 +1020,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try a spiral path and collecting the spray bottle partway through.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1098,7 +1098,7 @@ export const puzzles = {
       "You can retry this level to get the sample. Try a different route to the PORTAL next time to grab the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1176,7 +1176,7 @@ export const puzzles = {
     hintText: "Try grabbing the top right SAMPLE first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1253,7 +1253,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try starting with the left PORTAL.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1331,7 +1331,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try grabbing the closest flask before using the leftmost portal.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1408,7 +1408,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try waiting until after your final portal jump to use the key card on the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1486,7 +1486,7 @@ export const puzzles = {
       "You can retry this level to get all the samples. Try taking a path to the upper right portal that will set you up to use two spray bottles.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1565,7 +1565,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1643,7 +1643,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1721,7 +1721,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1799,7 +1799,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1878,7 +1878,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -1955,7 +1955,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2033,7 +2033,7 @@ export const puzzles = {
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2110,7 +2110,7 @@ export const puzzles = {
       "Please proceed to the FINAL station for decontamination and a fun surprise!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2187,7 +2187,7 @@ export const puzzles = {
       "I'm melting. Like literally… You fried my circuits with your hack!",
     robotStartMood: "sinister",
     robotEndMood: "glitchy-sinister",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -2264,7 +2264,7 @@ export const puzzles = {
       "You may have escaped, but I will take humanity down with me. I have set this station on a collision course with the nearest populated planet. The SLIME will spread. Muahahaha!\n\nTO BE CONTINUED…",
     robotStartMood: "glitchy-happy",
     robotEndMood: "glitchy-sinister",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2341,7 +2341,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2417,7 +2417,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2493,7 +2493,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2569,7 +2569,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2645,7 +2645,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -2721,7 +2721,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -2797,7 +2797,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -2873,7 +2873,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -2949,7 +2949,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -3025,7 +3025,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -3101,7 +3101,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -3177,7 +3177,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -3253,7 +3253,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "2",
@@ -3329,7 +3329,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -3405,7 +3405,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -3481,7 +3481,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -3557,7 +3557,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -3633,7 +3633,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -3709,7 +3709,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -3785,7 +3785,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -3861,7 +3861,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -3937,7 +3937,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -4013,7 +4013,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -4089,7 +4089,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -4165,7 +4165,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -4241,7 +4241,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4317,7 +4317,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4393,7 +4393,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4469,7 +4469,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4545,7 +4545,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4621,7 +4621,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4697,7 +4697,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "outer",
@@ -4774,7 +4774,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4851,7 +4851,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -4928,7 +4928,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5005,7 +5005,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5081,7 +5081,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5158,7 +5158,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "1",
       "flask",
@@ -5235,7 +5235,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -5311,7 +5311,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5387,7 +5387,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5463,7 +5463,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5539,7 +5539,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5615,7 +5615,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5691,7 +5691,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -5767,7 +5767,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -5843,7 +5843,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "basic",
@@ -5919,7 +5919,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -5995,7 +5995,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "basic",
@@ -6071,7 +6071,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -6147,7 +6147,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "flask",
@@ -6223,7 +6223,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "basic",
@@ -6300,7 +6300,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6377,7 +6377,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6454,7 +6454,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6531,7 +6531,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6608,7 +6608,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6685,7 +6685,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6762,7 +6762,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6839,7 +6839,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "basic",
       "flask",
@@ -6916,7 +6916,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -6993,7 +6993,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "flask",
@@ -7070,7 +7070,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "basic",
       "basic",
       "door",
@@ -7147,7 +7147,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "basic",
@@ -7224,7 +7224,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "portal",
@@ -7301,7 +7301,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7378,7 +7378,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "portal",
       "outer",
@@ -7454,7 +7454,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7530,7 +7530,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7606,7 +7606,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7682,7 +7682,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7758,7 +7758,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7834,7 +7834,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7910,7 +7910,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -7986,7 +7986,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8063,7 +8063,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8140,7 +8140,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8217,7 +8217,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8294,7 +8294,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8371,7 +8371,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8448,7 +8448,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8525,7 +8525,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8602,7 +8602,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8679,7 +8679,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8756,7 +8756,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8833,7 +8833,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8910,7 +8910,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -8987,7 +8987,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9064,7 +9064,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9141,7 +9141,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9218,7 +9218,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9295,7 +9295,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9372,7 +9372,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9449,7 +9449,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9526,7 +9526,7 @@ export const puzzles = {
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9603,7 +9603,7 @@ export const puzzles = {
     hintText: "Try grabbing the lower right key first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9680,7 +9680,7 @@ export const puzzles = {
     hintText: "Try heading right immediately from the starting space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9758,7 +9758,7 @@ export const puzzles = {
       "Try grabbing the key above you first, then immediately heading left.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9836,7 +9836,7 @@ export const puzzles = {
       "Try leaving the key above the start until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tapping the map icon above.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9912,7 +9912,7 @@ export const puzzles = {
       "I would have been…disappointed…if you couldn't figure this one out.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -9990,7 +9990,7 @@ export const puzzles = {
       "Try positioning yourself to use the SPRAY BOTTLE right after you get it.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10067,7 +10067,7 @@ export const puzzles = {
     hintText: "Try collecting the SAMPLES in the middle column last.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10145,7 +10145,7 @@ export const puzzles = {
       "See if you can spend the first SPRAY BOTTLE soon after TERMINAL 1, and the second SPRAY BOTTLE soon after TERMINAL 2.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10223,7 +10223,7 @@ export const puzzles = {
       "To get all the SAMPLES, focus on the left side before the right.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10302,7 +10302,7 @@ export const puzzles = {
       "Head directly to the closest portal, and save the SPRAY BOTTLE for after TERMINAL 3.",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10378,7 +10378,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10454,7 +10454,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10530,7 +10530,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10606,7 +10606,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10682,7 +10682,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10758,7 +10758,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10834,7 +10834,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10910,7 +10910,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -10986,7 +10986,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11062,7 +11062,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11138,7 +11138,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11214,7 +11214,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11290,7 +11290,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11366,7 +11366,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11442,7 +11442,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11518,7 +11518,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11594,7 +11594,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11670,7 +11670,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11746,7 +11746,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11822,7 +11822,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11898,7 +11898,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -11974,7 +11974,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12050,7 +12050,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12126,7 +12126,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12202,7 +12202,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12278,7 +12278,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12354,7 +12354,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12430,7 +12430,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12506,7 +12506,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12582,7 +12582,7 @@ export const puzzles = {
     winText: "Impressive work!",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",
@@ -12659,7 +12659,7 @@ export const puzzles = {
       "Impressive. Let us know what you thought of this level, or the game in general, by commenting on https://patreon.com/skedwards88",
     robotStartMood: "happy",
     robotEndMood: "happy",
-    puzzle: [
+    puzzleWithCivilians: [
       "outer",
       "outer",
       "outer",

@@ -17,7 +17,7 @@ function assembleMap(puzzleID, mapData = new Map()) {
     mapData.get(type).set(station, []);
   }
 
-  const maxFlaskCount = getMaxFlaskCount(puzzles[puzzleID].puzzle);
+  const maxFlaskCount = getMaxFlaskCount(puzzles[puzzleID].puzzleWithCivilians);
 
   mapData.get(type).get(station).push({roomName, puzzleID, maxFlaskCount});
 

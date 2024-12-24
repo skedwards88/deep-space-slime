@@ -24,7 +24,7 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
 
 function Pathfinder({setDisplay}) {
   const {
-    builderState: {puzzle, roomName},
+    builderState: {puzzleWithCivilians, roomName},
     maxPathsToFind,
     calculatingBuilderPaths,
     allBuilderPaths,
@@ -42,11 +42,11 @@ function Pathfinder({setDisplay}) {
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const directions = getSlimeDirections({
     mainPath,
-    puzzle,
+    puzzle: puzzleWithCivilians,
     numColumns,
     numRows,
   });
-  const squares = puzzle.map((feature, index) => (
+  const squares = puzzleWithCivilians.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -57,7 +57,7 @@ function Pathfinder({setDisplay}) {
     ></PuzzleSquare>
   ));
 
-  const hasPortals = puzzle.includes(features.portal);
+  const hasPortals = puzzleWithCivilians.includes(features.portal);
 
   return (
     <div className="App" id="deep-space-slime">

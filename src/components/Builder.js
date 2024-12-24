@@ -63,42 +63,31 @@ export default function Builder({setDisplay}) {
 
   const {dispatchGameState} = useGameContext();
 
-  const unlimitedFeatureButtons = unlimitedFeatures.map((feature, index) => (
-    <button
-      key={index}
-      className={`builderFeatureButton ${feature}${
-        feature === builderState.activeFeature ? " active" : ""
-      }`}
-      onClick={() =>
-        dispatchBuilderState({action: "selectFeature", newFeature: feature})
-      }
-    ></button>
-  ));
+  const featureButtons = [
+    ...unlimitedFeatures,
+    ...builderState.remainingLimitedFeatures,
+  ].map((feature, index) => {
+    let featureClass;
+    if (Number.isInteger(Number.parseInt(feature))) {
+      featureClass = `numbered number${feature}`;
+    } else {
+      featureClass = feature;
+    }
 
-  const limitedFeatureButtons = builderState.remainingLimitedFeatures.map(
-    (feature, index) => {
-      let featureClass;
-      if (Number.isInteger(Number.parseInt(feature))) {
-        featureClass = `numbered number${feature}`;
-      } else {
-        featureClass = feature;
-      }
+    return (
+      <button
+        key={index}
+        className={`builderFeatureButton ${featureClass}${
+          feature === builderState.activeFeature ? " active" : ""
+        }`}
+        onClick={() =>
+          dispatchBuilderState({action: "selectFeature", newFeature: feature})
+        }
+      ></button>
+    );
+  });
 
-      return (
-        <button
-          key={index}
-          className={`builderFeatureButton ${featureClass}${
-            feature === builderState.activeFeature ? " active" : ""
-          }`}
-          onClick={() =>
-            dispatchBuilderState({action: "selectFeature", newFeature: feature})
-          }
-        ></button>
-      );
-    },
-  );
-
-  const squares = builderState.puzzle.map((feature, index) => (
+  const squares = builderState.puzzleWithCivilians.map((feature, index) => (
     <BuilderSquare
       key={index}
       feature={feature}
@@ -151,7 +140,9 @@ export default function Builder({setDisplay}) {
             id="playIcon"
             className="controlButton"
             onClick={() => {
-              const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+              const encodedPuzzle = convertPuzzleToString(
+                builderState.puzzleWithCivilians,
+              );
               dispatchGameState({
                 action: "playtestCustom",
                 customSeed: generateSeed(builderState.roomName, encodedPuzzle),
@@ -172,7 +163,7 @@ export default function Builder({setDisplay}) {
               url="https://skedwards88.github.io/deep-space-slime"
               seed={generateSeed(
                 builderState.roomName,
-                convertPuzzleToString(builderState.puzzle),
+                convertPuzzleToString(builderState.puzzleWithCivilians),
               )}
               id="shareIcon"
               className="controlButton"
@@ -210,10 +201,7 @@ export default function Builder({setDisplay}) {
 
       <div id="puzzle">{squares}</div>
 
-      <div id="builderFeatureButtons">
-        {unlimitedFeatureButtons}
-        {limitedFeatureButtons}
-      </div>
+      <div id="builderFeatureButtons">{featureButtons}</div>
     </div>
   );
 }

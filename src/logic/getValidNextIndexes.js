@@ -1,6 +1,8 @@
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
 import {features} from "./constants";
+import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
+import {civilianPushValidQ} from "./civilianPushValidQ";
 
 export function getValidNextIndexes({
   mainPath,
@@ -12,13 +14,14 @@ export function getValidNextIndexes({
   hasJet = false,
   numberCount = 0,
   allowStart = true,
+  currentCivilians,
 }) {
   // Valid indexes are:
   // - The previous index
   // - The start index (unless you are on the start) (unless allowStart is false)
   // - If the last index was the exit or ship, no other options
   // - If the last index was a portal and you have visited an odd number of portals, any unvisited portal space
-  // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is:
+  // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is one of the following (as long as any civilians are not pushed to invalid spaces):
   //   - basic
   //   - flask
   //   - key
@@ -26,7 +29,7 @@ export function getValidNextIndexes({
   //   - portal
   //   - ship
   //   - door, if you have a key
-  //   - exit, if all numbers found
+  //   - exit, if all numbers found + if all civilians on pods
   //   - next number
   //   - on the opposite side of a visited space, if you have a jet and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
@@ -77,13 +80,29 @@ export function getValidNextIndexes({
       numRows,
     });
 
+    const allCiviliansOnPods = allCiviliansOnPodsQ(currentCivilians, puzzle);
+
     for (const adjacentIndex of adjacentIndexes) {
       if (mainPath.includes(adjacentIndex)) {
         continue;
       }
       const feature = puzzle[adjacentIndex];
 
-      if (feature === features.outer) {
+      const hasCivilian = currentCivilians.includes(adjacentIndex);
+
+      const civilianPushIsValid = hasCivilian
+        ? civilianPushValidQ({
+            pushedCivilian: adjacentIndex,
+            pushedFrom: lastIndexInPath,
+            currentCivilians,
+            puzzle,
+            mainPath,
+          })
+        : true;
+
+      if (!civilianPushIsValid) {
+        continue;
+      } else if (feature === features.outer) {
         continue;
       } else if (
         feature === features.basic ||
@@ -96,7 +115,11 @@ export function getValidNextIndexes({
         validIndexes.push(adjacentIndex);
       } else if (feature === features.door && hasKey) {
         validIndexes.push(adjacentIndex);
-      } else if (feature === features.exit && numberCount === maxNumber) {
+      } else if (
+        feature === features.exit &&
+        numberCount === maxNumber &&
+        allCiviliansOnPods
+      ) {
         validIndexes.push(adjacentIndex);
       } else if (
         Number.isInteger(Number.parseInt(feature)) &&
@@ -133,6 +156,22 @@ export function getValidNextIndexes({
           (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
             Number.parseInt(nextAdjacentFeature) !== numberCount + 1)
         ) {
+          continue;
+        }
+
+        const hasCivilian = currentCivilians.includes(nextAdjacentIndex);
+
+        const civilianPushIsValid = hasCivilian
+          ? civilianPushValidQ({
+              pushedCivilian: nextAdjacentIndex,
+              pushedFrom: adjacentIndex,
+              currentCivilians,
+              puzzle,
+              mainPath,
+            })
+          : true;
+
+        if (!civilianPushIsValid) {
           continue;
         }
 

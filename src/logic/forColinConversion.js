@@ -22,7 +22,7 @@ function getPuzzleForColin({
   console.log(customName);
   console.log(customEncodedPuzzle);
   // return
-  const puzzle = convertStringToPuzzle(customEncodedPuzzle);
+  const puzzleWithCivilians = convertStringToPuzzle(customEncodedPuzzle);
 
   return {
     stationType,
@@ -33,7 +33,7 @@ function getPuzzleForColin({
     winText,
     robotStartMood,
     robotEndMood,
-    puzzle,
+    puzzleWithCivilians,
   };
 }
 
