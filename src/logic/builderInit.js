@@ -1,9 +1,14 @@
 import {features, numColumns, numRows} from "./constants";
 import {limitedFeatures} from "./constants";
 
-export function builderInit({puzzle, roomName = "Unnamed", customIndex}) {
+export function builderInit({
+  puzzleWithCivilians,
+  roomName = "Unnamed",
+  customIndex,
+}) {
   const startingPuzzle =
-    puzzle || Array.from({length: numColumns * numRows}, () => features.outer);
+    puzzleWithCivilians ||
+    Array.from({length: numColumns * numRows}, () => features.outer);
 
   // todo this doesn't need to be saved in the state, can just be a constant
   const defaultMessage =
@@ -14,7 +19,7 @@ export function builderInit({puzzle, roomName = "Unnamed", customIndex}) {
   );
 
   return {
-    puzzle: startingPuzzle,
+    puzzleWithCivilians: startingPuzzle,
     roomName: roomName,
     customIndex,
     activeFeature: features.basic,

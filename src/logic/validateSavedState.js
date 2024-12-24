@@ -167,7 +167,7 @@ export function validateSavedState(savedState) {
 
   if (!savedState.isCustom) {
     const [, expectedStartingCivilians] = convertPuzzleToPuzzleAndCivilians(
-      puzzles[savedState.puzzleID].puzzle,
+      puzzles[savedState.puzzleID].puzzleWithCivilians,
     );
     const civiliansMatch = arraysMatchQ(
       expectedStartingCivilians,
@@ -181,7 +181,7 @@ export function validateSavedState(savedState) {
 
   // if not custom, puzzle must match expected puzzle
   if (!savedState.isCustom) {
-    const expectedPuzzle = puzzles[savedState.puzzleID].puzzle;
+    const expectedPuzzle = puzzles[savedState.puzzleID].puzzleWithCivilians;
     const actualPuzzle = convertPuzzleAndCiviliansToPuzzle(
       savedState.puzzle,
       savedState.civilianHistory[0],

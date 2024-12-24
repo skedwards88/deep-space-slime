@@ -6,12 +6,12 @@ import {useShareContext} from "./ShareContextProvider";
 
 export default function CustomShare({setDisplay}) {
   const {
-    builderState: {roomName, puzzle},
+    builderState: {roomName, puzzleWithCivilians},
   } = useBuilderContext();
 
   const {setHintsRemaining, maxHints} = useShareContext();
 
-  const encodedPuzzle = convertPuzzleToString(puzzle);
+  const encodedPuzzle = convertPuzzleToString(puzzleWithCivilians);
   const customSeed = generateSeed(roomName, encodedPuzzle);
 
   const link = `https://skedwards88.github.io/deep-space-slime?id=${customSeed}`;

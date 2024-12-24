@@ -136,7 +136,7 @@ function nonCustomInit({useSaved, puzzleID}) {
   }
 
   const [puzzle, startingCivilians] = convertPuzzleToPuzzleAndCivilians(
-    puzzleData.puzzle,
+    puzzleData.puzzleWithCivilians,
   );
   return {
     isCustom: false,

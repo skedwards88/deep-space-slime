@@ -15,7 +15,7 @@ jest.mock("./puzzles", () => ({
         "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
       robotStartMood: "happy",
       robotEndMood: "happy",
-      puzzle: [
+      puzzleWithCivilians: [
         "outer",
         "outer",
         "outer",
@@ -92,7 +92,7 @@ jest.mock("./puzzles", () => ({
         "It looks like the slime is following you! We'll have to keep moving.",
       robotStartMood: "happy",
       robotEndMood: "happy",
-      puzzle: [
+      puzzleWithCivilians: [
         "outer",
         "outer",
         "outer",
@@ -171,7 +171,7 @@ jest.mock("./puzzles", () => ({
         "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
       robotStartMood: "happy",
       robotEndMood: "happy",
-      puzzle: [
+      puzzleWithCivilians: [
         "outer",
         "basic",
         "civilian",
@@ -251,7 +251,7 @@ describe("validateSavedState", () => {
 
   const puzzleID = "mockedNoCivilians";
 
-  const puzzle = puzzles[puzzleID].puzzle;
+  const puzzle = puzzles[puzzleID].puzzleWithCivilians;
 
   const validNonCustomState = {
     isCustom: false,
@@ -288,7 +288,7 @@ describe("validateSavedState", () => {
   const validNonCustomStateWithCivilians = {
     ...validNonCustomState,
     puzzleID: "mockedCivilians",
-    puzzle: puzzles["mockedCivilians"].puzzle,
+    puzzle: puzzles["mockedCivilians"].puzzleWithCivilians,
     civilianHistory: [[2], [1]],
     mainPath: [0, 18],
   };
@@ -389,7 +389,7 @@ describe("validateSavedState", () => {
   test("returns false for mismatched puzzle", () => {
     const state = {
       ...validNonCustomState,
-      puzzle: puzzles["mocked2"].puzzle,
+      puzzle: puzzles["mocked2"].puzzleWithCivilians,
     };
     expect(validateSavedState(state)).toBe(false);
 

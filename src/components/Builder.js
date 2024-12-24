@@ -87,7 +87,7 @@ export default function Builder({setDisplay}) {
     );
   });
 
-  const squares = builderState.puzzle.map((feature, index) => (
+  const squares = builderState.puzzleWithCivilians.map((feature, index) => (
     <BuilderSquare
       key={index}
       feature={feature}
@@ -140,7 +140,9 @@ export default function Builder({setDisplay}) {
             id="playIcon"
             className="controlButton"
             onClick={() => {
-              const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+              const encodedPuzzle = convertPuzzleToString(
+                builderState.puzzleWithCivilians,
+              );
               dispatchGameState({
                 action: "playtestCustom",
                 customSeed: generateSeed(builderState.roomName, encodedPuzzle),
@@ -161,7 +163,7 @@ export default function Builder({setDisplay}) {
               url="https://skedwards88.github.io/deep-space-slime"
               seed={generateSeed(
                 builderState.roomName,
-                convertPuzzleToString(builderState.puzzle),
+                convertPuzzleToString(builderState.puzzleWithCivilians),
               )}
               id="shareIcon"
               className="controlButton"

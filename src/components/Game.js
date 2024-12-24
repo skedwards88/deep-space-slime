@@ -308,7 +308,10 @@ function ExitButtons({
       onClick={() => {
         dispatchBuilderState({
           action: "editCustom",
-          puzzle: convertPuzzleAndCiviliansToPuzzle(puzzle, startingCivilians),
+          puzzleWithCivilians: convertPuzzleAndCiviliansToPuzzle(
+            puzzle,
+            startingCivilians,
+          ),
           roomName,
           customIndex: customIndex,
         });

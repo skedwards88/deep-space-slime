@@ -124,7 +124,7 @@ describe("gameInit saved state usage", () => {
 
   test("returns correct structure for new non-custom game", () => {
     const puzzleID = "campaign/quarantine-station/1";
-    const puzzle = puzzles[puzzleID].puzzle;
+    const puzzle = puzzles[puzzleID].puzzleWithCivilians;
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -168,7 +168,7 @@ describe("gameInit saved state usage", () => {
   });
 
   test("returns correct structure for new custom game", () => {
-    const puzzle = puzzles["campaign/quarantine-station/1"].puzzle;
+    const puzzle = puzzles["campaign/quarantine-station/1"].puzzleWithCivilians;
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];

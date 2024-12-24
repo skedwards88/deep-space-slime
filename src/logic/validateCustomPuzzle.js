@@ -148,10 +148,10 @@ export function validateCustomPuzzle({
 
   // Need at least one solution
   const maxPathsToFind = 1;
-  const [puzzleWithCiviliansReplaced, civilianIndexes] =
+  const [puzzle, civilianIndexes] =
     convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
   const solutions = getAllValidPaths({
-    puzzle: puzzleWithCiviliansReplaced,
+    puzzle,
     startingCivilians: civilianIndexes,
     numColumns,
     numRows,
