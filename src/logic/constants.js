@@ -81,3 +81,6 @@ export const civilianForbiddenFeatures = [
   features.outer,
   features.door,
 ];
+
+export const defaultBuilderMessage =
+  "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";

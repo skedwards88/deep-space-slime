@@ -1,6 +1,12 @@
 import {builderInit} from "./builderInit";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {limitedFeatures, features, numColumns, numRows} from "./constants";
+import {
+  limitedFeatures,
+  features,
+  numColumns,
+  numRows,
+  defaultBuilderMessage,
+} from "./constants";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -43,7 +49,7 @@ export function builderReducer(currentBuilderState, payload) {
       remainingLimitedFeatures: newRemainingLimitedFeatures,
       activeFeature: newActiveFeature,
       isValid: false,
-      message: currentBuilderState.defaultMessage,
+      message: defaultBuilderMessage,
     };
   } else if (payload.action === "setMouseIsActive") {
     if (currentBuilderState.mouseIsActive === payload.mouseIsActive) {
