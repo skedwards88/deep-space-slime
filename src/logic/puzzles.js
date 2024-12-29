@@ -1,7 +1,7 @@
 export const puzzles = {
   "campaign/stasis-pod/1": {
     station: "Stasis pod",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
     winText:
@@ -78,7 +78,7 @@ export const puzzles = {
   },
   "campaign/stasis-pod/2": {
     station: "Stasis pod",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
     winText:
@@ -157,7 +157,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/1": {
     station: "Quarantine station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
     winText: "Look at us. Breaking and entering.",
@@ -233,7 +233,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/2": {
     station: "Quarantine station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "The only way forward is through spaces that haven't been contaminated with the slime that is chasing you. You can undo moves by tapping or dragging to retrace your steps.",
     winText:
@@ -312,7 +312,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/3": {
     station: "Quarantine station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping! You can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over.",
     winText: "Impressive, if only all humans were as reliable as you…",
@@ -390,7 +390,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/4": {
     station: "Quarantine station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "If you get stuck, just wait for several seconds and I'll give you a hint!",
     winText: "Good job navigating through such tight quarters!",
@@ -468,7 +468,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/5": {
     station: "Quarantine station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "This one looks tricky. If you get stuck, you can retrace your steps or tap the start space to reset the room.",
     winText: "We've almost broken out of quarantine. Keep going!",
@@ -546,7 +546,7 @@ export const puzzles = {
   },
   "campaign/quarantine-station/6": {
     station: "Quarantine station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "Remember, you can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over. If you get stuck and wait for several seconds, I'll even give you a hint!",
     winText:
@@ -625,7 +625,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/1": {
     station: "Biolab station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
@@ -703,7 +703,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/2": {
     station: "Biolab station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Can you grab the sample and cut across your trail with the spray bottle? If you get stuck, you can retrace your steps or wait for a hint. ",
     winText:
@@ -782,7 +782,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/3": {
     station: "Biolab station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Make sure to pick up all the sub… I mean samples!",
     winText: "One step closer to saving humanity!",
     hintText:
@@ -859,7 +859,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/4": {
     station: "Biolab station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "You’re over halfway through this station.",
     winText: "Keep going, little human!",
     hintText:
@@ -936,7 +936,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/5": {
     station: "Biolab station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "This looks like a tricky one, good luck!",
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
     hintText:
@@ -1013,7 +1013,7 @@ export const puzzles = {
   },
   "campaign/biolab-station/6": {
     station: "Biolab station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Spray bottles, samples and doors, oh my!",
     winText: "Onward, to the Portal station!",
     hintText:
@@ -1090,7 +1090,7 @@ export const puzzles = {
   },
   "campaign/portal-station/1": {
     station: "Portal station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "The humans in this station developed dimensional portals to escape the slime. Unfortunately, the slime evolved to follow them… You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
     winText: "Great job grabbing the SAMPLE on your way!",
@@ -1168,7 +1168,7 @@ export const puzzles = {
   },
   "campaign/portal-station/2": {
     station: "Portal station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
     winText:
@@ -1246,7 +1246,7 @@ export const puzzles = {
   },
   "campaign/portal-station/3": {
     station: "Portal station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Hope you’re not claustrophobic!",
     winText: "Keep going! The end is near.",
     hintText:
@@ -1323,7 +1323,7 @@ export const puzzles = {
   },
   "campaign/portal-station/4": {
     station: "Portal station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
     winText: "I’m impressed the slime hasn’t caught you yet!",
@@ -1401,7 +1401,7 @@ export const puzzles = {
   },
   "campaign/portal-station/5": {
     station: "Portal station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Can you handle all these PORTALS?",
     winText: "At this rate, we'll save humanity from the SLIME in no time!",
     hintText:
@@ -1478,7 +1478,7 @@ export const puzzles = {
   },
   "campaign/portal-station/6": {
     station: "Portal station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Look at all those SAMPLES. Can you grab them all?",
     winText:
       "Congrats, you have escaped from the PORTAL station. Next up, the SECURITY station!",
@@ -1556,7 +1556,7 @@ export const puzzles = {
   },
   "campaign/security-station/1": {
     station: "Security station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "The humans in this station developed automated containment systems. To get through, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
@@ -1635,7 +1635,7 @@ export const puzzles = {
   },
   "campaign/security-station/2": {
     station: "Security station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "This one's a bit harde, but I'm sure you're up to the challenge!",
     winText: "Nice loop de loop!",
@@ -1713,7 +1713,7 @@ export const puzzles = {
   },
   "campaign/security-station/3": {
     station: "Security station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
@@ -1791,7 +1791,7 @@ export const puzzles = {
   },
   "campaign/security-station/4": {
     station: "Security station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me...",
     winText: "You are such a smart human!",
@@ -1869,7 +1869,7 @@ export const puzzles = {
   },
   "campaign/security-station/5": {
     station: "Security station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "No other subjects have gotten this far. You should be very proud subject 62!",
     winText:
@@ -1948,7 +1948,7 @@ export const puzzles = {
   },
   "campaign/security-station/6": {
     station: "Security station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Basic terminal training.",
     winText: "You're almost at the end of your journey. One more room to go!",
     hintText:
@@ -2025,7 +2025,7 @@ export const puzzles = {
   },
   "campaign/security-station/7": {
     station: "Security station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText: "You're almost finished...",
     winText:
       "Congrats, you have escaped from the SECURITY STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
@@ -2334,7 +2334,7 @@ export const puzzles = {
   },
   "bonus/chest-station/1": {
     station: "Chest station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "By beating the main storyline, you've unlocked new thematic slime-infested stations like this one! Yo ho ho and a bottle of slime!",
     winText:
@@ -2411,7 +2411,7 @@ export const puzzles = {
   },
   "bonus/chest-station/2": {
     station: "Chest station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2487,7 +2487,7 @@ export const puzzles = {
   },
   "bonus/chest-station/3": {
     station: "Chest station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2563,7 +2563,7 @@ export const puzzles = {
   },
   "bonus/chest-station/4": {
     station: "Chest station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2639,7 +2639,7 @@ export const puzzles = {
   },
   "bonus/chest-station/5": {
     station: "Chest station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2715,7 +2715,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/1": {
     station: "Enterprize station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2791,7 +2791,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/2": {
     station: "Enterprize station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2867,7 +2867,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/3": {
     station: "Enterprize station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -2943,7 +2943,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/4": {
     station: "Enterprize station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3019,7 +3019,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/5": {
     station: "Enterprize station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3095,7 +3095,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/6": {
     station: "Enterprize station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3171,7 +3171,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/7": {
     station: "Enterprize station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3247,7 +3247,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/8": {
     station: "Enterprize station",
-    roomName: "8",
+    roomName: "Level 8",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3323,7 +3323,7 @@ export const puzzles = {
   },
   "bonus/enterprize-station/9": {
     station: "Enterprize station",
-    roomName: "9",
+    roomName: "Level 9",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3399,7 +3399,7 @@ export const puzzles = {
   },
   "bonus/the-eye/1": {
     station: "The Eye",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3475,7 +3475,7 @@ export const puzzles = {
   },
   "bonus/the-eye/2": {
     station: "The Eye",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3551,7 +3551,7 @@ export const puzzles = {
   },
   "bonus/the-eye/3": {
     station: "The Eye",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3627,7 +3627,7 @@ export const puzzles = {
   },
   "bonus/the-eye/4": {
     station: "The Eye",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3703,7 +3703,7 @@ export const puzzles = {
   },
   "bonus/the-eye/5": {
     station: "The Eye",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Eyes always watching!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3779,7 +3779,7 @@ export const puzzles = {
   },
   "bonus/needle-station/1": {
     station: "Needle station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3855,7 +3855,7 @@ export const puzzles = {
   },
   "bonus/needle-station/2": {
     station: "Needle station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -3931,7 +3931,7 @@ export const puzzles = {
   },
   "bonus/needle-station/3": {
     station: "Needle station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4007,7 +4007,7 @@ export const puzzles = {
   },
   "bonus/needle-station/4": {
     station: "Needle station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4083,7 +4083,7 @@ export const puzzles = {
   },
   "bonus/needle-station/5": {
     station: "Needle station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4159,7 +4159,7 @@ export const puzzles = {
   },
   "bonus/needle-station/6": {
     station: "Needle station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -4235,7 +4235,7 @@ export const puzzles = {
   },
   "bonus/needle-station/7": {
     station: "Needle station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText: "Even a camel could pass through this one!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5305,7 +5305,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/1": {
     station: "Wonky station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5381,7 +5381,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/2": {
     station: "Wonky station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5457,7 +5457,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/3": {
     station: "Wonky station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5533,7 +5533,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/4": {
     station: "Wonky station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5609,7 +5609,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/5": {
     station: "Wonky station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5685,7 +5685,7 @@ export const puzzles = {
   },
   "bonus/wonky-station/6": {
     station: "Wonky station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Embrace the chaos!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5761,7 +5761,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/1": {
     station: "Zigger station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5837,7 +5837,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/2": {
     station: "Zigger station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5913,7 +5913,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/3": {
     station: "Zigger station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -5989,7 +5989,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/4": {
     station: "Zigger station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -6065,7 +6065,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/5": {
     station: "Zigger station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -6141,7 +6141,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/6": {
     station: "Zigger station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -6217,7 +6217,7 @@ export const puzzles = {
   },
   "bonus/zigger-station/7": {
     station: "Zigger station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText: "Try zigging and zagging!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -6293,7 +6293,7 @@ export const puzzles = {
   },
   "bonus/cube-station/1": {
     station: "Cube station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6370,7 +6370,7 @@ export const puzzles = {
   },
   "bonus/cube-station/2": {
     station: "Cube station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6447,7 +6447,7 @@ export const puzzles = {
   },
   "bonus/cube-station/3": {
     station: "Cube station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6524,7 +6524,7 @@ export const puzzles = {
   },
   "bonus/cube-station/4": {
     station: "Cube station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6601,7 +6601,7 @@ export const puzzles = {
   },
   "bonus/cube-station/5": {
     station: "Cube station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6678,7 +6678,7 @@ export const puzzles = {
   },
   "bonus/cube-station/6": {
     station: "Cube station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -6755,7 +6755,7 @@ export const puzzles = {
   },
   "bonus/cube-station/7": {
     station: "Cube station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
@@ -7448,7 +7448,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/1": {
     station: "Checkerboard station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7524,7 +7524,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/2": {
     station: "Checkerboard station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7600,7 +7600,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/3": {
     station: "Checkerboard station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7676,7 +7676,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/4": {
     station: "Checkerboard station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7752,7 +7752,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/5": {
     station: "Checkerboard station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7828,7 +7828,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/6": {
     station: "Checkerboard station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7904,7 +7904,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/7": {
     station: "Checkerboard station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -7980,7 +7980,7 @@ export const puzzles = {
   },
   "bonus/checkerboard-station/8": {
     station: "Checkerboard station",
-    roomName: "8",
+    roomName: "Level 8",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
@@ -8056,7 +8056,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/1": {
     station: "Nautilus station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8133,7 +8133,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/2": {
     station: "Nautilus station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8210,7 +8210,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/3": {
     station: "Nautilus station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8287,7 +8287,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/4": {
     station: "Nautilus station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8364,7 +8364,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/5": {
     station: "Nautilus station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8441,7 +8441,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/6": {
     station: "Nautilus station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8518,7 +8518,7 @@ export const puzzles = {
   },
   "bonus/nautilus-station/7": {
     station: "Nautilus station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
@@ -8595,7 +8595,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/1": {
     station: "Criss Cross station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8672,7 +8672,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/2": {
     station: "Criss Cross station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8749,7 +8749,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/3": {
     station: "Criss Cross station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8826,7 +8826,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/4": {
     station: "Criss Cross station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8903,7 +8903,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/5": {
     station: "Criss Cross station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -8980,7 +8980,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/6": {
     station: "Criss Cross station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -9057,7 +9057,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/7": {
     station: "Criss Cross station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -9134,7 +9134,7 @@ export const puzzles = {
   },
   "bonus/criss-cross-station/8": {
     station: "Criss Cross station",
-    roomName: "8",
+    roomName: "Level 8",
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
@@ -9211,7 +9211,7 @@ export const puzzles = {
   },
   "bonus/dial-up-station/1": {
     station: "Dial Up station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9288,7 +9288,7 @@ export const puzzles = {
   },
   "bonus/dial-up-station/2": {
     station: "Dial Up station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9365,7 +9365,7 @@ export const puzzles = {
   },
   "bonus/dial-up-station/3": {
     station: "Dial Up station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9442,7 +9442,7 @@ export const puzzles = {
   },
   "bonus/dial-up-station/4": {
     station: "Dial Up station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9519,7 +9519,7 @@ export const puzzles = {
   },
   "bonus/dial-up-station/5": {
     station: "Dial Up station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
@@ -9596,7 +9596,7 @@ export const puzzles = {
   },
   "bonus/doors-station/1": {
     station: "Doors station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
     winText: "The next one's a bit harder.",
@@ -9673,7 +9673,7 @@ export const puzzles = {
   },
   "bonus/doors-station/2": {
     station: "Doors station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Not much left of the poor subjects devoured by the slime... Oh well! Let's try to collect all the samples.",
     winText: "We've almost broken out of quarantine. Keep going!",
@@ -9750,7 +9750,7 @@ export const puzzles = {
   },
   "bonus/doors-station/3": {
     station: "Doors station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText: "Impressive...for a human.",
@@ -9828,7 +9828,7 @@ export const puzzles = {
   },
   "bonus/doors-station/4": {
     station: "Doors station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText: "Uh oh...do you think you can handle all these doors?",
     winText:
       "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon above.",
@@ -9906,7 +9906,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/1": {
     station: "Terminals station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText: "This one's a walk in the park.",
     winText:
       "I would have been…disappointed…if you couldn't figure this one out.",
@@ -9982,7 +9982,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/2": {
     station: "Terminals station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
     winText: "I knew I could count on you…friend.",
@@ -10060,7 +10060,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/3": {
     station: "Terminals station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me.",
     winText: "I am well chuffed with your progress! Very well chuffed.",
@@ -10137,7 +10137,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/4": {
     station: "Terminals station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
     winText: "Impressive, if only all humans were as reliable as you…",
@@ -10215,7 +10215,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/5": {
     station: "Terminals station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "No other subjects have gotten this far. You should be very proud!",
@@ -10293,7 +10293,7 @@ export const puzzles = {
   },
   "bonus/terminals-station/6": {
     station: "Terminals station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "You're almost at the end of your journey. One more room to go.",
     winText:
@@ -10372,7 +10372,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/1": {
     station: "Portal Mania station",
-    roomName: "1",
+    roomName: "Level 1",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10448,7 +10448,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/2": {
     station: "Portal Mania station",
-    roomName: "2",
+    roomName: "Level 2",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10524,7 +10524,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/3": {
     station: "Portal Mania station",
-    roomName: "3",
+    roomName: "Level 3",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10600,7 +10600,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/4": {
     station: "Portal Mania station",
-    roomName: "4",
+    roomName: "Level 4",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10676,7 +10676,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/5": {
     station: "Portal Mania station",
-    roomName: "5",
+    roomName: "Level 5",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10752,7 +10752,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/6": {
     station: "Portal Mania station",
-    roomName: "6",
+    roomName: "Level 6",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10828,7 +10828,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/7": {
     station: "Portal Mania station",
-    roomName: "7",
+    roomName: "Level 7",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10904,7 +10904,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/8": {
     station: "Portal Mania station",
-    roomName: "8",
+    roomName: "Level 8",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -10980,7 +10980,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/9": {
     station: "Portal Mania station",
-    roomName: "9",
+    roomName: "Level 9",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11056,7 +11056,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/10": {
     station: "Portal Mania station",
-    roomName: "10",
+    roomName: "Level 10",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11132,7 +11132,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/11": {
     station: "Portal Mania station",
-    roomName: "11",
+    roomName: "Level 11",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11208,7 +11208,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/12": {
     station: "Portal Mania station",
-    roomName: "12",
+    roomName: "Level 12",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11284,7 +11284,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/13": {
     station: "Portal Mania station",
-    roomName: "13",
+    roomName: "Level 13",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11360,7 +11360,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/14": {
     station: "Portal Mania station",
-    roomName: "14",
+    roomName: "Level 14",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11436,7 +11436,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/15": {
     station: "Portal Mania station",
-    roomName: "15",
+    roomName: "Level 15",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11512,7 +11512,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/16": {
     station: "Portal Mania station",
-    roomName: "16",
+    roomName: "Level 16",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11588,7 +11588,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/17": {
     station: "Portal Mania station",
-    roomName: "17",
+    roomName: "Level 17",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11664,7 +11664,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/18": {
     station: "Portal Mania station",
-    roomName: "18",
+    roomName: "Level 18",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11740,7 +11740,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/19": {
     station: "Portal Mania station",
-    roomName: "19",
+    roomName: "Level 19",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11816,7 +11816,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/20": {
     station: "Portal Mania station",
-    roomName: "20",
+    roomName: "Level 20",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11892,7 +11892,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/21": {
     station: "Portal Mania station",
-    roomName: "21",
+    roomName: "Level 21",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -11968,7 +11968,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/22": {
     station: "Portal Mania station",
-    roomName: "22",
+    roomName: "Level 22",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12044,7 +12044,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/23": {
     station: "Portal Mania station",
-    roomName: "23",
+    roomName: "Level 23",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12120,7 +12120,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/24": {
     station: "Portal Mania station",
-    roomName: "24",
+    roomName: "Level 24",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12196,7 +12196,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/25": {
     station: "Portal Mania station",
-    roomName: "25",
+    roomName: "Level 25",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12272,7 +12272,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/26": {
     station: "Portal Mania station",
-    roomName: "26",
+    roomName: "Level 26",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12348,7 +12348,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/27": {
     station: "Portal Mania station",
-    roomName: "27",
+    roomName: "Level 27",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12424,7 +12424,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/28": {
     station: "Portal Mania station",
-    roomName: "28",
+    roomName: "Level 28",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12500,7 +12500,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/29": {
     station: "Portal Mania station",
-    roomName: "29",
+    roomName: "Level 29",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
@@ -12576,7 +12576,7 @@ export const puzzles = {
   },
   "bonus/portal-mania-station/30": {
     station: "Portal Mania station",
-    roomName: "30",
+    roomName: "Level 30",
     startingText:
       "Who the heck put all these portals here? Fortunately, there are mutliple solutions.",
     winText: "Impressive work!",
