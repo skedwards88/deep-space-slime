@@ -1,6 +1,11 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
-import {features, numColumns, numRows} from "../logic/constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  customStationName,
+} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
 
 function PuzzleSquare({feature, index, visited, current, direction}) {
@@ -66,7 +71,7 @@ function Pathfinder({setDisplay}) {
           Exit pathfinder
         </button>
 
-        <div id="location">{`Custom Simulation: ${roomName}`}</div>
+        <div id="location">{`${customStationName}: ${roomName}`}</div>
 
         <div id="botFace" className="happy"></div>
 

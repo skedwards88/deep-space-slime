@@ -8,17 +8,18 @@ import {
   convertPuzzleToPuzzleAndCivilians,
   convertPuzzleAndCiviliansToPuzzle,
 } from "./convertPuzzleString";
-import {features, numColumns, numRows, firstPuzzle} from "./constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  firstPuzzle,
+  customStationName,
+  customWinText,
+  customStartingText,
+  customRobotMood,
+} from "./constants";
 
 function customInit({useSaved, customSeed, customIndex}) {
-  const customStationName = "Custom Simulation"; // todo could set elsewhere for import
-  const customWinText =
-    "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.";
-  const customStartingText =
-    "This is a custom puzzle built by a human subject.";
-  const customHintText = undefined;
-  const customRobotMood = "happy";
-
   // Return the saved state if we can
   let savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
@@ -32,7 +33,7 @@ function customInit({useSaved, customSeed, customIndex}) {
       // They don't affect the puzzle, so we don't need to reset the player's progress.
       station: customStationName,
       startingText: customStartingText,
-      hintText: customHintText,
+      hintText: undefined,
       winText: customWinText,
       robotStartMood: customRobotMood,
       robotEndMood: customRobotMood,
@@ -87,7 +88,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     station: customStationName,
     roomName: customName,
     startingText: customStartingText,
-    hintText: customHintText,
+    hintText: undefined,
     winText: customWinText,
     robotStartMood: customRobotMood,
     robotEndMood: customRobotMood,

@@ -84,3 +84,10 @@ export const civilianForbiddenFeatures = [
 
 export const defaultBuilderMessage =
   "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";
+
+export const customStationName = "Custom Simulation";
+export const customWinText =
+  "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.";
+export const customStartingText =
+  "This is a custom puzzle built by a human subject.";
+export const customRobotMood = "happy";
