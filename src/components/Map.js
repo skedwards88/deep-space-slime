@@ -6,8 +6,8 @@ import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
 import {firstPuzzle, mapTypes} from "../logic/constants";
 
-function assembleMap(puzzleID, mapData = new Map()) {
-  const {type, station, roomName, nextPuzzle} = puzzles[puzzleID];
+function assembleMap(firstPuzzle, mapData = new Map()) {
+  const {type, station, roomName, nextPuzzle} = puzzles[firstPuzzle];
 
   if (!mapData.get(type)) {
     mapData.set(type, new Map());
@@ -17,9 +17,14 @@ function assembleMap(puzzleID, mapData = new Map()) {
     mapData.get(type).set(station, []);
   }
 
-  const maxFlaskCount = getMaxFlaskCount(puzzles[puzzleID].puzzleWithCivilians);
+  const maxFlaskCount = getMaxFlaskCount(
+    puzzles[firstPuzzle].puzzleWithCivilians,
+  );
 
-  mapData.get(type).get(station).push({roomName, puzzleID, maxFlaskCount});
+  mapData
+    .get(type)
+    .get(station)
+    .push({roomName, puzzleID: firstPuzzle, maxFlaskCount});
 
   if (nextPuzzle) {
     assembleMap(nextPuzzle, mapData);
