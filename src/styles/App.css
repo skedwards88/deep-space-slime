@@ -27,7 +27,8 @@ a {
   color: white;
 }
 
-button {
+button,
+#buttonLink {
   all: unset;
   text-decoration: none;
   text-align: center;
@@ -215,8 +216,11 @@ button:disabled {
 }
 
 #exitButtons > button,
-#pathfinderButtons > button {
+#pathfinderButtons > button,
+#exitButtons > #buttonLink {
   margin: 0 10px;
+  display: flex;
+  align-items: center;
 }
 
 #acquiredFeatures .feature {
@@ -263,7 +267,7 @@ button.feature {
   border: 1px solid black;
   width: var(--square-size);
   height: var(--square-size);
-  background-color: rgb(138, 133, 133);
+  background-color: rgb(138 133 133);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

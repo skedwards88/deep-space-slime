@@ -7,7 +7,13 @@ import {
   convertPuzzleAndCiviliansToPuzzle,
   convertPuzzleAndCiviliansToString,
 } from "../logic/convertPuzzleString";
-import {features, numColumns, numRows, mapTypes} from "../logic/constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  mapTypes,
+  firstPuzzle,
+} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
@@ -16,6 +22,11 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 import {allCiviliansOnPodsQ} from "../logic/allCiviliansOnPodsQ";
+import {
+  getMaxFlaskCount,
+  getMaxFlaskCountForCampaign,
+  getCollectedFlaskCount,
+} from "../logic/getMaxFlaskCount";
 
 function handleMovement({
   validNext,
@@ -41,10 +52,53 @@ function handleMovement({
 
     let newMessage;
     if (isMovingToExit) {
-      const maxFlasks = gameState.puzzle.filter(
-        (feature) => feature === features.flask,
-      ).length;
-      if (gameState.flaskCount < maxFlasks && gameState.hintText) {
+      const nextPuzzleID = puzzles[gameState.puzzleID]?.nextPuzzle;
+
+      const currentPuzzleIsCampaign =
+        puzzles[gameState.puzzleID]?.type === mapTypes.campaign;
+
+      const nextPuzzleIsCampaign =
+        nextPuzzleID in puzzles &&
+        currentPuzzleIsCampaign &&
+        puzzles[nextPuzzleID].type === mapTypes.campaign;
+
+      const isAtEndOfCampaign =
+        currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
+
+      const maxFlasks = getMaxFlaskCount(gameState.puzzle);
+      if (isAtEndOfCampaign) {
+        const collectedFlaskCount = getCollectedFlaskCount(score);
+        const maxFlaskCountForCampaign =
+          getMaxFlaskCountForCampaign(firstPuzzle);
+
+        newMessage = (
+          <p>
+            <p>
+              You collected {collectedFlaskCount} out of{" "}
+              {maxFlaskCountForCampaign}{" "}
+              <span id="flaskIcon" className="smallInfoIcon"></span> and
+              unlocked bonus levels! Tap on the{" "}
+              <span id="mapIcon" className="smallInfoIcon"></span> to open the
+              bonus levels
+              {collectedFlaskCount < maxFlaskCountForCampaign ? (
+                <span>
+                  {" "}
+                  or to revisit levels and collect all{" "}
+                  <span id="flaskIcon" className="smallInfoIcon"></span>
+                </span>
+              ) : (
+                ""
+              )}
+              .
+            </p>
+            <p>
+              Tap <strong>Share</strong> below to help spread the game! Follow
+              us to learn about new level releases.
+            </p>
+            <p>{gameState.winText}</p>
+          </p>
+        );
+      } else if (gameState.flaskCount < maxFlasks && gameState.hintText) {
         newMessage = gameState.hintText;
       } else {
         newMessage = gameState.winText;
@@ -253,25 +307,31 @@ function PuzzleSolvedButtons({
   dispatchGameState,
   setHintWaitIsOver,
   setCurrentMessage,
+  score,
 }) {
-  const maxFlasks = puzzle.filter(
-    (feature) => feature === features.flask,
-  ).length;
+  const maxFlasks = getMaxFlaskCount(puzzle);
 
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
+
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
   const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+
   const nextPuzzleIsCampaign =
     nextPuzzleExists &&
     currentPuzzleIsCampaign &&
     puzzles[nextPuzzleID].type === mapTypes.campaign;
+
   const isAtEndOfCampaign = currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
 
   const shareButton = isAtEndOfCampaign ? (
     <Share
       appName="Deep Space Slime"
-      text="I just beat Deep Space Slime! Try it out:"
+      text={`I beat Deep Space Slime and collected ${getCollectedFlaskCount(
+        score,
+      )} out of ${getMaxFlaskCountForCampaign(
+        firstPuzzle,
+      )} samples! Try it out:`}
       url="https://skedwards88.github.io/deep-space-slime"
       buttonText="Share"
     ></Share>
@@ -287,8 +347,16 @@ function PuzzleSolvedButtons({
         dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
-      Next Level
+      {isAtEndOfCampaign ? "Bonus Level" : "Next Level"}
     </button>
+  ) : (
+    <></>
+  );
+
+  const followButton = isAtEndOfCampaign ? (
+    <a id="buttonLink" href="https://www.patreon.com/skedwards88">
+      Follow
+    </a>
   ) : (
     <></>
   );
@@ -311,6 +379,7 @@ function PuzzleSolvedButtons({
     <div id="exitButtons">
       {nextLevelButton}
       {shareButton}
+      {followButton}
       {retryButton}
     </div>
   );
@@ -375,8 +444,13 @@ function Game({
   showInstallButton,
   installPromptEvent,
 }) {
-  const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
-    useGameContext();
+  const {
+    gameState,
+    dispatchGameState,
+    allGamePaths,
+    calculatingGamePaths,
+    score,
+  } = useGameContext();
 
   const {hintsRemaining, setHintsRemaining} = useShareContext();
 
@@ -553,6 +627,7 @@ function Game({
             dispatchGameState={dispatchGameState}
             setHintWaitIsOver={setHintWaitIsOver}
             setCurrentMessage={setCurrentMessage}
+            score={score}
           ></PuzzleSolvedButtons>
         )
       ) : (
