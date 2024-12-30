@@ -7,7 +7,7 @@ import {
   convertPuzzleAndCiviliansToPuzzle,
   convertPuzzleAndCiviliansToString,
 } from "../logic/convertPuzzleString";
-import {features, numColumns, numRows} from "../logic/constants";
+import {features, numColumns, numRows, mapTypes} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
@@ -246,17 +246,11 @@ function PuzzleSquare({
   );
 }
 
-function ExitButtons({
+function PuzzleSolvedButtons({
   puzzle,
-  startingCivilians,
   flaskCount,
   puzzleID,
   dispatchGameState,
-  isCustom,
-  setDisplay,
-  roomName,
-  dispatchBuilderState,
-  customIndex,
   setHintWaitIsOver,
   setCurrentMessage,
 }) {
@@ -267,7 +261,25 @@ function ExitButtons({
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
-  const continueButton = nextPuzzleExists ? (
+  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+  const nextPuzzleIsCampaign =
+    nextPuzzleExists &&
+    currentPuzzleIsCampaign &&
+    puzzles[nextPuzzleID].type === mapTypes.campaign;
+  const isAtEndOfCampaign = currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
+
+  const shareButton = isAtEndOfCampaign ? (
+    <Share
+      appName="Deep Space Slime"
+      text="I just beat Deep Space Slime! Try it out:"
+      url="https://skedwards88.github.io/deep-space-slime"
+      buttonText="Share"
+    ></Share>
+  ) : (
+    <></>
+  );
+
+  const nextLevelButton = nextPuzzleExists ? (
     <button
       onClick={() => {
         setHintWaitIsOver(false);
@@ -281,28 +293,42 @@ function ExitButtons({
     <></>
   );
 
-  const retryButton = isCustom ? (
-    <></>
-  ) : flaskCount < maxFlasks ? (
-    <button
-      onClick={() => {
-        setCurrentMessage(puzzles[nextPuzzleID].startingText);
-        dispatchGameState({action: "newGame", puzzleID});
-      }}
-    >
-      Retry Level
-    </button>
-  ) : (
-    <></>
-  );
+  const retryButton =
+    flaskCount < maxFlasks ? (
+      <button
+        onClick={() => {
+          setCurrentMessage(puzzles[puzzleID].startingText);
+          dispatchGameState({action: "newGame", puzzleID});
+        }}
+      >
+        Retry Level
+      </button>
+    ) : (
+      <></>
+    );
 
-  const returnToGameButton = isCustom ? (
+  return (
+    <div id="exitButtons">
+      {nextLevelButton}
+      {shareButton}
+      {retryButton}
+    </div>
+  );
+}
+
+function CustomPuzzleSolvedButtons({
+  puzzle,
+  startingCivilians,
+  setDisplay,
+  roomName,
+  dispatchBuilderState,
+  customIndex,
+}) {
+  const returnToMapButton = (
     <button onClick={() => setDisplay("map")}>Return to map</button>
-  ) : (
-    <></>
   );
 
-  const editButton = isCustom ? (
+  const editButton = (
     <button
       onClick={() => {
         dispatchBuilderState({
@@ -319,40 +345,26 @@ function ExitButtons({
     >
       Edit
     </button>
-  ) : (
-    <></>
   );
 
-  const shareButton = !nextPuzzleExists ? (
+  const shareButton = (
     <Share
       appName="Deep Space Slime"
-      text={
-        isCustom
-          ? "Check out this custom Deep Space Slime puzzle!"
-          : "I just beat Deep Space Slime! Try it out:"
-      }
+      text="Check out this custom Deep Space Slime puzzle!"
       url="https://skedwards88.github.io/deep-space-slime"
-      seed={
-        isCustom
-          ? generateSeed(
-              roomName,
-              convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
-            )
-          : undefined
-      }
+      seed={generateSeed(
+        roomName,
+        convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
+      )}
       buttonText="Share"
     ></Share>
-  ) : (
-    <></>
   );
 
   return (
     <div id="exitButtons">
-      {continueButton}
       {shareButton}
       {editButton}
-      {retryButton}
-      {returnToGameButton}
+      {returnToMapButton}
     </div>
   );
 }
@@ -524,20 +536,25 @@ function Game({
       )}
 
       {isAtExit ? (
-        <ExitButtons
-          puzzle={gameState.puzzle}
-          startingCivilians={gameState.civilianHistory[0]}
-          flaskCount={gameState.flaskCount}
-          puzzleID={gameState.puzzleID}
-          dispatchGameState={dispatchGameState}
-          isCustom={gameState.isCustom}
-          setDisplay={setDisplay}
-          roomName={gameState.roomName}
-          dispatchBuilderState={dispatchBuilderState}
-          customIndex={customIndex}
-          setHintWaitIsOver={setHintWaitIsOver}
-          setCurrentMessage={setCurrentMessage}
-        ></ExitButtons>
+        gameState.isCustom ? (
+          <CustomPuzzleSolvedButtons
+            puzzle={gameState.puzzle}
+            startingCivilians={gameState.civilianHistory[0]}
+            setDisplay={setDisplay}
+            roomName={gameState.roomName}
+            dispatchBuilderState={dispatchBuilderState}
+            customIndex={customIndex}
+          ></CustomPuzzleSolvedButtons>
+        ) : (
+          <PuzzleSolvedButtons
+            puzzle={gameState.puzzle}
+            flaskCount={gameState.flaskCount}
+            puzzleID={gameState.puzzleID}
+            dispatchGameState={dispatchGameState}
+            setHintWaitIsOver={setHintWaitIsOver}
+            setCurrentMessage={setCurrentMessage}
+          ></PuzzleSolvedButtons>
+        )
       ) : (
         <div id="acquiredFeatures">
           {flasks}
