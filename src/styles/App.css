@@ -33,12 +33,13 @@ button,
   text-decoration: none;
   text-align: center;
   appearance: none;
-  font-size: calc(var(--default-font-size) * 0.75);
+  font-size: calc(var(--default-font-size) * 0.7);
   font-family: sans-serif;
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: black;
+  font-weight: bold;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
   margin: 10px;
   padding: 1px 6px;
   width: fit-content;
@@ -59,7 +60,7 @@ button:disabled {
   overflow: scroll;
 }
 
-.close {
+.info button {
   margin-bottom: 2vh;
   padding: 1vh 2vh;
 }
