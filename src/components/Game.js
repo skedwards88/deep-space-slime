@@ -332,7 +332,7 @@ function PuzzleSolvedButtons({
       )} out of ${getMaxFlaskCountForCampaign(
         firstPuzzle,
       )} samples! Try it out:`}
-      url="https://skedwards88.github.io/deep-space-slime"
+      url="https://deepspaceslime.com"
       buttonText="Share"
     ></Share>
   ) : (
@@ -420,7 +420,7 @@ function CustomPuzzleSolvedButtons({
     <Share
       appName="Deep Space Slime"
       text="Check out this custom Deep Space Slime puzzle!"
-      url="https://skedwards88.github.io/deep-space-slime"
+      url="https://deepspaceslime.com"
       seed={generateSeed(
         roomName,
         convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
@@ -600,7 +600,7 @@ function Game({
           <Share
             appName="Deep Space Slime"
             text="Check out this maze puzzle!"
-            url="https://skedwards88.github.io/deep-space-slime"
+            url="https://deepspaceslime.com"
             buttonText="Share"
             id="sharePrompt"
           ></Share>

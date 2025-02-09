@@ -83,7 +83,7 @@ const robotStartMood = "happy";
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://skedwards88.github.io/deep-space-slime?id=custom-Terminals+12_OOOOOOOOOOOOOOOOOOOOOOO1BJOOOEBFBOOOOFB2OOOOSOOOOOOOOOOOOOOOOOO",
+  "https://deepspaceslime.com?id=custom-Terminals+12_OOOOOOOOOOOOOOOOOOOOOOO1BJOOOEBFBOOOOFB2OOOOSOOOOOOOOOOOOOOOOOO",
 ];
 
 console.log(

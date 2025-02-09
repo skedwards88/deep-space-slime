@@ -94,7 +94,7 @@ function BuilderEntry({
               shareAndCapHints({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
-                url: "https://skedwards88.github.io/deep-space-slime",
+                url: "https://deepspaceslime.com",
                 seed: generateSeed(roomName, encodedPuzzle),
               });
             } else {

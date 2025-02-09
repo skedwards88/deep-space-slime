@@ -20,7 +20,7 @@ function ControlBar({
       <Share
         appName="Deep Space Slime"
         text="Check out this puzzle maze game!"
-        url="https://skedwards88.github.io/deep-space-slime"
+        url="https://deepspaceslime.com"
         id="shareIcon"
         className="controlButton"
         buttonText=""

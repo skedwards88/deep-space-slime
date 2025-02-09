@@ -65,7 +65,7 @@ export default function App() {
           appName="Deep Space Slime"
           shareText="Check out this maze puzzle!"
           repoName="deep-space-slime"
-          url="https://skedwards88.github.io/deep-space-slime"
+          url="https://deepspaceslime.com"
         />
       );
       break;
