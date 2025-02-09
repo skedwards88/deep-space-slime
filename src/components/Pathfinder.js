@@ -67,7 +67,11 @@ function Pathfinder({setDisplay}) {
   return (
     <div className="App" id="deep-space-slime">
       <div id="game">
-        <button id="pathfinderControls" onClick={() => setDisplay("builder")}>
+        <button
+          className="textButton"
+          id="pathfinderControls"
+          onClick={() => setDisplay("builder")}
+        >
           Exit pathfinder
         </button>
 
@@ -93,12 +97,14 @@ function Pathfinder({setDisplay}) {
 
         <div id="pathfinderButtons">
           <button
+            className="textButton"
             disabled={currentSolution === 0 || numSolutions === 0}
             onClick={() => setCurrentSolution(currentSolution - 1)}
           >
             Previous
           </button>
           <button
+            className="textButton"
             disabled={
               currentSolution === numSolutions - 1 || numSolutions === 0
             }

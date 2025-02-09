@@ -334,6 +334,7 @@ function PuzzleSolvedButtons({
       )} samples! Try it out:`}
       url="https://deepspaceslime.com"
       buttonText="Share"
+      className="textButton"
     ></Share>
   ) : (
     <></>
@@ -341,6 +342,7 @@ function PuzzleSolvedButtons({
 
   const nextLevelButton = nextPuzzleExists ? (
     <button
+      className="textButton"
       onClick={() => {
         setHintWaitIsOver(false);
         setCurrentMessage(puzzles[nextPuzzleID].startingText);
@@ -354,7 +356,11 @@ function PuzzleSolvedButtons({
   );
 
   const followButton = isAtEndOfCampaign ? (
-    <a id="buttonLink" href="https://www.patreon.com/skedwards88">
+    <a
+      className="textButton"
+      id="buttonLink"
+      href="https://www.patreon.com/skedwards88"
+    >
       Follow
     </a>
   ) : (
@@ -364,6 +370,7 @@ function PuzzleSolvedButtons({
   const retryButton =
     flaskCount < maxFlasks ? (
       <button
+        className="textButton"
         onClick={() => {
           setCurrentMessage(puzzles[puzzleID].startingText);
           dispatchGameState({action: "newGame", puzzleID});
@@ -394,11 +401,14 @@ function CustomPuzzleSolvedButtons({
   customIndex,
 }) {
   const returnToMapButton = (
-    <button onClick={() => setDisplay("map")}>Return to map</button>
+    <button className="textButton" onClick={() => setDisplay("map")}>
+      Return to map
+    </button>
   );
 
   const editButton = (
     <button
+      className="textButton"
       onClick={() => {
         dispatchBuilderState({
           action: "editCustom",
@@ -425,6 +435,7 @@ function CustomPuzzleSolvedButtons({
         roomName,
         convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
       )}
+      className="textButton"
       buttonText="Share"
     ></Share>
   );
@@ -603,6 +614,7 @@ function Game({
             url="https://deepspaceslime.com"
             buttonText="Share"
             id="sharePrompt"
+            className="textButton"
           ></Share>
         </div>
       ) : (

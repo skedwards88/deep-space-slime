@@ -156,6 +156,7 @@ export default function BuilderOverview({setDisplay}) {
         </div>
       </div>
       <button
+        className="textButton"
         disabled={savedCustomBuilds.length >= 400}
         onClick={() => {
           dispatchBuilderState({
@@ -168,7 +169,9 @@ export default function BuilderOverview({setDisplay}) {
         New custom puzzle
       </button>
 
-      <button onClick={() => setDisplay("game")}>Return to game</button>
+      <button className="textButton" onClick={() => setDisplay("game")}>
+        Return to game
+      </button>
 
       {entryElements}
     </div>

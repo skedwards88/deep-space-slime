@@ -11,7 +11,7 @@ export default function ConfirmReset({setDisplay}) {
       </div>
       <div>
         <button
-          className="close"
+          className="textButton"
           onClick={() => {
             dispatchGameState({action: "resetPuzzle"});
             setDisplay("game");
@@ -19,7 +19,7 @@ export default function ConfirmReset({setDisplay}) {
         >
           Yes
         </button>
-        <button className="close" onClick={() => setDisplay("game")}>
+        <button className="textButton" onClick={() => setDisplay("game")}>
           No
         </button>
       </div>

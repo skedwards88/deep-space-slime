@@ -19,7 +19,7 @@ export default function KeyExplanation({setDisplay}) {
           from your inventory.
         </p>
       </div>
-      <button className="close" onClick={() => setDisplay("game")}>
+      <button className="textButton" onClick={() => setDisplay("game")}>
         Close
       </button>
     </div>

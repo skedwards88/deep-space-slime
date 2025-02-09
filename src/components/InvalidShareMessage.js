@@ -11,7 +11,10 @@ export default function InvalidShareMessage({setDisplay}) {
           what&apos;s wrong.
         </p>
       </div>
-      <button className="close" onClick={() => setDisplay("builderOverview")}>
+      <button
+        className="textButton"
+        onClick={() => setDisplay("builderOverview")}
+      >
         Close
       </button>
     </div>

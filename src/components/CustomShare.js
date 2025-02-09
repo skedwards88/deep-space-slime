@@ -22,6 +22,7 @@ export default function CustomShare({setDisplay}) {
       <a href={link}>{link}</a>
       <div id="custom-message-buttons">
         <button
+          className="textButton"
           onClick={() => {
             try {
               setHintsRemaining(maxHints);
@@ -34,6 +35,7 @@ export default function CustomShare({setDisplay}) {
           Copy
         </button>
         <button
+          className="textButton"
           onClick={() => {
             setDisplay("builder");
           }}

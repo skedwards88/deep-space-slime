@@ -12,6 +12,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
             appName={appName}
             text={shareText}
             url={url}
+            className="textButton"
             buttonText="Share"
           ></Share>
         }
@@ -41,7 +42,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         <hr></hr>
         <a href="./privacy.html">Privacy policy</a>
       </div>
-      <button className="close" onClick={() => setDisplay("game")}>
+      <button className="textButton" onClick={() => setDisplay("game")}>
         Close
       </button>
     </div>
