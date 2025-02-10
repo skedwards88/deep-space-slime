@@ -1,6 +1,9 @@
 /* General */
 html {
-  --square-size: min(6vmax, 1.5cm);
+  /* --square-size: min(6vmax, 1.5cm); */
+
+  /* --square-size: 1.5cm; */
+  --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
 
   background-image: url("../images/background.svg");
@@ -552,6 +555,10 @@ button.feature {
 
 /* Large screen, landscape */
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
+  html {
+    --square-size: min(6vmin, 1.5cm);
+  }
+
   .App,
   #game {
     max-width: calc(var(--square-size) * 15);
