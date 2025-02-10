@@ -1,8 +1,9 @@
-import {convertStringToPuzzle} from "./convertPuzzleString";
+// Use the .js extension so can run outside of bundle
+import {convertStringToPuzzle} from "./convertPuzzleString.js";
 
 function getPuzzleForColin({
   url,
-  stationType = "TODO",
+  type = "TODO",
   nextPuzzle = "TODO",
   stationName = "TODO",
   winText = "TODO",
@@ -25,7 +26,7 @@ function getPuzzleForColin({
   const puzzleWithCivilians = convertStringToPuzzle(customEncodedPuzzle);
 
   return {
-    stationType,
+    type,
     nextPuzzle,
     station: stationName,
     roomName: customName,
@@ -39,7 +40,7 @@ function getPuzzleForColin({
 
 export function getPuzzlesForColin({
   urls,
-  stationType,
+  type,
   stationName,
   winText,
   startingText,
@@ -49,7 +50,7 @@ export function getPuzzlesForColin({
   return urls.map((url) =>
     getPuzzleForColin({
       url,
-      stationType,
+      type,
       stationName,
       winText,
       startingText,
@@ -61,7 +62,7 @@ export function getPuzzlesForColin({
 
 // Notes for Colin:
 // 1. Fill in the text below and put the URLs in inputURLs as a comma separated list of strings
-// 2. In the terminal, run: npm run testrun src/logic/forColinConversion.js
+// 2. In the terminal, run: node src/logic/forColinConversion.js
 // 3. Copy the printed output (minus the open and closing square brackets)
 //    i. Give the puzzle a unique ID (e.g. "bonus/plant-station/fern-frond")
 //    ii. Paste the puzzle in the puzzles file as "unique-id": copied output
@@ -69,7 +70,7 @@ export function getPuzzlesForColin({
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
 
 // Can be "Campaign" or "Bonus Levels"
-const stationType = "Campaign";
+const type = "Campaign";
 
 const stationName = "Terminals Station";
 
@@ -89,7 +90,7 @@ const inputURLs = [
 console.log(
   getPuzzlesForColin({
     urls: inputURLs,
-    stationType,
+    type,
     stationName,
     startingText,
     winText,

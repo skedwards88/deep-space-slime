@@ -1,4 +1,5 @@
-import {featureToLetterLookup, features} from "./constants";
+// Use the .js extension so can run src/logic/forColinConversion.js outside of bundle
+import {featureToLetterLookup, features} from "./constants.js";
 
 const letterToFeatureLookup = Object.fromEntries(
   Object.entries(featureToLetterLookup).map(([feature, letter]) => [
