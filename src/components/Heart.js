@@ -27,7 +27,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         <hr></hr>
         <p>
           Want more games? See all of our puzzle games{" "}
-          <a href="https://skedwards88.github.io/">here</a> .
+          <a href="https://skedwards88.github.io/">here</a>.
         </p>
         <hr></hr>
         <p>
