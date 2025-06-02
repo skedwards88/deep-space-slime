@@ -1637,7 +1637,7 @@ export const puzzles = {
     station: "Security station",
     roomName: "Level 2",
     startingText:
-      "This one's a bit harde, but I'm sure you're up to the challenge!",
+      "This one's a bit harder, but I'm sure you're up to the challenge!",
     winText: "Nice loop de loop!",
     hintText:
       "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
