@@ -182,6 +182,18 @@ button:disabled {
 
 #botFace.idea {
   background-image: url("../images/icons/bot-idea.svg");
+  animation: idea 1s 3;
+}
+
+@keyframes idea {
+  0%,
+  100% {
+    background-image: url("../images/icons/bot-smile.svg");
+  }
+
+  50% {
+    background-image: url("../images/icons/bot-idea.svg");
+  }
 }
 
 #botFace.glitchy-sinister,
