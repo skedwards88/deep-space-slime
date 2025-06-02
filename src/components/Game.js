@@ -552,7 +552,7 @@ function Game({
     ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
-        setCurrentMessage("Tap me to get a hint!");
+        setCurrentMessage(`Tap me to get a hint!\n\n${gameState.startingText}`);
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
@@ -563,6 +563,7 @@ function Game({
     hintsRemaining,
     gameState.robotStartMood,
     calculatingGamePaths,
+    gameState.startingText,
   ]);
 
   const isTimeToShowAHint =
