@@ -59,7 +59,7 @@ button:disabled {
   height: 90vh; /* fallback if svh isn't handled */
   height: 100svh;
   width: 100vw;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .textButton {
@@ -78,7 +78,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -134,7 +134,7 @@ button:disabled {
   min-height: calc(var(--square-size) * 2);
   width: 99%;
   text-align: left;
-  overflow: scroll;
+  overflow: auto;
   white-space: pre-wrap;
   background-color: black;
   border-right: 2vmin solid black;
@@ -535,7 +535,7 @@ button.feature {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -574,6 +574,8 @@ button.feature {
   .App,
   #game {
     max-width: calc(var(--square-size) * 15);
+    height: auto;
+    overflow-x: hidden;
   }
 
   #game {
@@ -588,6 +590,12 @@ button.feature {
 
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+  .App,
+  #game {
+    height: auto;
+    overflow-x: hidden;
+  }
+
   #game {
     grid-template-rows:
       auto

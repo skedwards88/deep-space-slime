@@ -35,7 +35,7 @@
 
 .builderEntry > #customName {
   width: 15ch;
-  overflow: scroll;
+  overflow: auto;
   text-align: left;
 }
 
