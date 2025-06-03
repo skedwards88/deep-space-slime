@@ -611,7 +611,7 @@ function Game({
       {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
         <div id="message">
           {
-            "Share with a new person to get 5 more hints!\n\n(We don’t track who you share with, but we hope you help us spread the game like slime across the galaxy.)\n\n"
+            "Share with a new person to get 5 more hints!\n\n(We don't track who you share with, but we hope you help us spread the game like slime across the galaxy.)\n\n"
           }
           <Share
             appName="Deep Space Slime"

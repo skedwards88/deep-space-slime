@@ -860,7 +860,7 @@ export const puzzles = {
   "campaign/biolab-station/4": {
     station: "Biolab station",
     roomName: "Level 4",
-    startingText: "You’re over halfway through this station.",
+    startingText: "You're over halfway through this station.",
     winText: "Keep going, little human!",
     hintText:
       "You can retry this level to get all the samples. Try starting with the lower left FLASK, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
@@ -1247,7 +1247,7 @@ export const puzzles = {
   "campaign/portal-station/3": {
     station: "Portal station",
     roomName: "Level 3",
-    startingText: "Hope you’re not claustrophobic!",
+    startingText: "Hope you're not claustrophobic!",
     winText: "Keep going! The end is near.",
     hintText:
       "You can retry this level to get all the samples. Try starting with the left PORTAL.",
@@ -1326,7 +1326,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText:
       "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
-    winText: "I’m impressed the slime hasn’t caught you yet!",
+    winText: "I'm impressed the slime hasn't caught you yet!",
     hintText:
       "You can retry this level to get all the samples. Try grabbing the closest flask before using the leftmost portal.",
     robotStartMood: "happy",
@@ -2338,7 +2338,7 @@ export const puzzles = {
     startingText:
       "By beating the main storyline, you've unlocked new thematic slime-infested stations like this one! Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2414,7 +2414,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2490,7 +2490,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2566,7 +2566,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2642,7 +2642,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2718,7 +2718,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2794,7 +2794,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2870,7 +2870,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -2946,7 +2946,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3022,7 +3022,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3098,7 +3098,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3174,7 +3174,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3250,7 +3250,7 @@ export const puzzles = {
     roomName: "Level 8",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3326,7 +3326,7 @@ export const puzzles = {
     roomName: "Level 9",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3402,7 +3402,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3478,7 +3478,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3554,7 +3554,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3630,7 +3630,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3706,7 +3706,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3782,7 +3782,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3858,7 +3858,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -3934,7 +3934,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4010,7 +4010,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4086,7 +4086,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4162,7 +4162,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4238,7 +4238,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4314,7 +4314,7 @@ export const puzzles = {
     roomName: "Wolf",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4390,7 +4390,7 @@ export const puzzles = {
     roomName: "Bow",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4466,7 +4466,7 @@ export const puzzles = {
     roomName: "Horse",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4542,7 +4542,7 @@ export const puzzles = {
     roomName: "Stag",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4618,7 +4618,7 @@ export const puzzles = {
     roomName: "Chief",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4694,7 +4694,7 @@ export const puzzles = {
     roomName: "Shaman",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4771,7 +4771,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4848,7 +4848,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -4925,7 +4925,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5002,7 +5002,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5078,7 +5078,7 @@ export const puzzles = {
     roomName: "Robot",
     startingText: "This level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5155,7 +5155,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5232,7 +5232,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly…",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5308,7 +5308,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5384,7 +5384,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5460,7 +5460,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5536,7 +5536,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5612,7 +5612,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5688,7 +5688,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5764,7 +5764,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5840,7 +5840,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5916,7 +5916,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -5992,7 +5992,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6068,7 +6068,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6144,7 +6144,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6220,7 +6220,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6297,7 +6297,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6374,7 +6374,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6451,7 +6451,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6528,7 +6528,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6605,7 +6605,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6682,7 +6682,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6759,7 +6759,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6834,9 +6834,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Daisy",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6911,9 +6911,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Fern Frond",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -6988,9 +6988,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Vine",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7065,9 +7065,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Willow",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7142,9 +7142,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Orchid",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7219,9 +7219,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Rose",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7296,9 +7296,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Fly Trap",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7373,9 +7373,9 @@ export const puzzles = {
     station: "Plant station",
     roomName: "Cherry Blossom",
     startingText:
-      "Plants are better than humans. They don’t talk back when you experiment on them.",
+      "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7451,7 +7451,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7527,7 +7527,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7603,7 +7603,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7679,7 +7679,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7755,7 +7755,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7831,7 +7831,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7907,7 +7907,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -7983,7 +7983,7 @@ export const puzzles = {
     roomName: "Level 8",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8060,7 +8060,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8137,7 +8137,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8214,7 +8214,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8291,7 +8291,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8368,7 +8368,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8445,7 +8445,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8522,7 +8522,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8599,7 +8599,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8676,7 +8676,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8753,7 +8753,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8830,7 +8830,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8907,7 +8907,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -8984,7 +8984,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9061,7 +9061,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9138,7 +9138,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9215,7 +9215,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9292,7 +9292,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9369,7 +9369,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9446,7 +9446,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
@@ -9523,7 +9523,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We’re still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleWithCivilians: [
