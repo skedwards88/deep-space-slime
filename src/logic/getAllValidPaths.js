@@ -1,7 +1,7 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {features} from "./constants";
-import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
+import {exitUnlockedQ} from "./exitUnlockedQ";
 
 export function getAllValidPaths({
   puzzle,
@@ -15,11 +15,7 @@ export function getAllValidPaths({
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
-  const maxFlasks = puzzle.filter(
-    (feature) => feature === features.flask,
-  ).length;
-
-  const validNextIndexes = getValidNextIndexes({
+  const startingValidNextIndexes = getValidNextIndexes({
     mainPath: [startIndex],
     puzzle,
     currentCivilians: [startingCivilians],
@@ -27,6 +23,7 @@ export function getAllValidPaths({
     numRows,
     maxNumber,
     allowStart: false,
+    flaskCount: 0,
   });
 
   let paths = appendNext({
@@ -39,14 +36,13 @@ export function getAllValidPaths({
       jetCount: 0,
       numberCount: 0,
       maxNumber,
-      validNextIndexes,
+      validNextIndexes: startingValidNextIndexes,
       civilianHistory: [startingCivilians],
     },
     puzzle,
     numColumns,
     numRows,
     maxNumber,
-    maxFlasks,
     maxPathsToFind,
   });
 
@@ -59,7 +55,6 @@ function appendNext({
   numColumns,
   numRows,
   maxNumber,
-  maxFlasks,
   completePaths = [],
   maxPathsToFind = Infinity,
 }) {
@@ -69,12 +64,14 @@ function appendNext({
     }
 
     if (
-      pathState.flaskCount === maxFlasks &&
-      pathState.numberCount === maxNumber &&
-      allCiviliansOnPodsQ(
-        pathState.civilianHistory[pathState.civilianHistory.length - 1],
+      exitUnlockedQ({
+        numberCount: pathState.numberCount,
+        maxNumber,
+        flaskCount: pathState.flaskCount,
         puzzle,
-      ) &&
+        currentCivilians:
+          pathState.civilianHistory[pathState.civilianHistory.length - 1],
+      }) &&
       (puzzle[validIndex] === features.exit ||
         puzzle[validIndex] === features.ship)
     ) {
@@ -94,7 +91,6 @@ function appendNext({
         numColumns,
         numRows,
         maxNumber,
-        maxFlasks,
         completePaths,
         maxPathsToFind,
       });

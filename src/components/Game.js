@@ -21,12 +21,12 @@ import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
-import {allCiviliansOnPodsQ} from "../logic/allCiviliansOnPodsQ";
 import {
   getMaxFlaskCount,
   getMaxFlaskCountForCampaign,
   getCollectedFlaskCount,
 } from "../logic/getMaxFlaskCount";
+import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 
 function handleMovement({
   validNext,
@@ -475,9 +475,13 @@ function Game({
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const currentCivilians =
     gameState.civilianHistory[gameState.civilianHistory.length - 1];
-  const exitUnlocked =
-    gameState.maxNumber === gameState.numberCount &&
-    allCiviliansOnPodsQ(currentCivilians, gameState.puzzle);
+  const exitUnlocked = exitUnlockedQ({
+    numberCount: gameState.numberCount,
+    maxNumber: gameState.maxNumber,
+    currentCivilians,
+    puzzle: gameState.puzzle,
+    flaskCount: gameState.flaskCount,
+  });
 
   const [currentMessage, setCurrentMessage] = React.useState(
     gameState.startingText,

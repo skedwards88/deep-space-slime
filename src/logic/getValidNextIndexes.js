@@ -1,8 +1,8 @@
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
 import {features} from "./constants";
-import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 import {civilianPushValidQ} from "./civilianPushValidQ";
+import {exitUnlockedQ} from "./exitUnlockedQ";
 
 export function getValidNextIndexes({
   mainPath,
@@ -10,6 +10,7 @@ export function getValidNextIndexes({
   numColumns,
   numRows,
   maxNumber,
+  flaskCount,
   hasKey = false,
   hasJet = false,
   numberCount = 0,
@@ -29,7 +30,7 @@ export function getValidNextIndexes({
   //   - portal
   //   - ship
   //   - door, if you have a key
-  //   - exit, if all numbers found + if all civilians on pods
+  //   - exit, if all numbers found + if all civilians on pods + all flasks collected
   //   - next number
   //   - on the opposite side of a visited space, if you have a jet and the resulting space isn't a pod and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
@@ -80,8 +81,6 @@ export function getValidNextIndexes({
       numRows,
     });
 
-    const allCiviliansOnPods = allCiviliansOnPodsQ(currentCivilians, puzzle);
-
     for (const adjacentIndex of adjacentIndexes) {
       if (mainPath.includes(adjacentIndex)) {
         continue;
@@ -117,8 +116,13 @@ export function getValidNextIndexes({
         validIndexes.push(adjacentIndex);
       } else if (
         feature === features.exit &&
-        numberCount === maxNumber &&
-        allCiviliansOnPods
+        exitUnlockedQ({
+          numberCount,
+          maxNumber,
+          currentCivilians,
+          puzzle,
+          flaskCount,
+        })
       ) {
         validIndexes.push(adjacentIndex);
       } else if (
