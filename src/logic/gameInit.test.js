@@ -164,6 +164,7 @@ describe("gameInit saved state usage", () => {
       numRows,
       maxNumber,
       currentCivilians: result.civilianHistory[0],
+      flaskCount: 0,
     });
   });
 
@@ -218,6 +219,7 @@ describe("gameInit saved state usage", () => {
       numRows,
       maxNumber,
       currentCivilians: result.civilianHistory[0],
+      flaskCount: 0,
     });
   });
 });

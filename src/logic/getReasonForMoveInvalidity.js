@@ -2,6 +2,7 @@ import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {features, numColumns, numRows} from "./constants";
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 import {civilianPushValidQ} from "./civilianPushValidQ";
+import {getMaxFlaskCount} from "./getMaxFlaskCount";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -67,6 +68,16 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   ) {
     message =
       "I won't let you out until you save all of the civilians. Push each civilian onto an escape pod!";
+    return message;
+  }
+
+  // The space is the exit and you haven't gotten all flasks
+  if (
+    puzzle[index] === features.exit &&
+    currentGameState.flaskCount !== getMaxFlaskCount(puzzle)
+  ) {
+    message =
+      "I won't let you out until you bring me all of the flasks. I mean...please collect all of the flasks. It is essential to the future of humanity.";
     return message;
   }
 

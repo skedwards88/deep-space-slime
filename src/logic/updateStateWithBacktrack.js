@@ -63,6 +63,11 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     ? currentGameState.numberCount - 1
     : currentGameState.numberCount;
 
+  const newFlaskCount =
+    puzzle[lastIndexInPath] === features.flask
+      ? currentGameState.flaskCount - 1
+      : currentGameState.flaskCount;
+
   const newValidNextIndexes = getValidNextIndexes({
     mainPath: newMainPath,
     puzzle: puzzle,
@@ -73,6 +78,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
     currentCivilians: newCivilianHistory[newCivilianHistory.length - 1],
+    flaskCount: newFlaskCount,
   });
 
   return {
@@ -80,10 +86,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     civilianHistory: newCivilianHistory,
-    flaskCount:
-      puzzle[lastIndexInPath] === features.flask
-        ? currentGameState.flaskCount - 1
-        : currentGameState.flaskCount,
+    flaskCount: newFlaskCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
     jetCount: newJetCount,

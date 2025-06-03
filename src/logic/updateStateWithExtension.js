@@ -74,6 +74,11 @@ export function updateStateWithExtension({
     ? parsedNumber
     : currentGameState.numberCount;
 
+  const newFlaskCount =
+    puzzle[index] === features.flask
+      ? currentGameState.flaskCount + 1
+      : currentGameState.flaskCount;
+
   const newValidNextIndexes = getValidNextIndexes({
     mainPath: newMainPath,
     puzzle: puzzle,
@@ -85,16 +90,14 @@ export function updateStateWithExtension({
     maxNumber: currentGameState.maxNumber,
     allowStart,
     currentCivilians: newCivilians,
+    flaskCount: newFlaskCount,
   });
 
   return {
     ...currentGameState,
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
-    flaskCount:
-      puzzle[index] === features.flask
-        ? currentGameState.flaskCount + 1
-        : currentGameState.flaskCount,
+    flaskCount: newFlaskCount,
     jetCount: newJetCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,

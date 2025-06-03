@@ -21,6 +21,7 @@ export function gameReducer(currentGameState, payload) {
         numRows,
         maxNumber: currentGameState.maxNumber,
         currentCivilians: currentGameState.civilianHistory[0],
+        flaskCount: 0,
       });
       return {
         ...currentGameState,
@@ -67,6 +68,7 @@ export function gameReducer(currentGameState, payload) {
       numRows,
       maxNumber: currentGameState.maxNumber,
       currentCivilians: currentGameState.civilianHistory[0],
+      flaskCount: 0,
     });
     return {
       ...currentGameState,
@@ -85,18 +87,19 @@ export function gameReducer(currentGameState, payload) {
     // Iteratively update the state with the new path so that the inventory matches
     // (todo It would be more efficient to break the validNextPaths calculation into
     // a separate function since we don't need that value until the very end.
-    const validNextIndexes = getValidNextIndexes({
+    const startingValidNextIndexes = getValidNextIndexes({
       mainPath: [newPath[0]],
       currentCivilians: currentGameState.civilianHistory[0],
       puzzle: currentGameState.puzzle,
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
+      flaskCount: 0,
     });
 
     let updatedState = {
       ...currentGameState,
-      validNextIndexes,
+      validNextIndexes: startingValidNextIndexes,
       mainPath: [newPath[0]],
       civilianHistory: currentGameState.civilianHistory.slice(0, 1),
       flaskCount: 0,

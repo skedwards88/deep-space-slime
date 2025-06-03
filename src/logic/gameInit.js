@@ -191,6 +191,7 @@ export function gameInit({
     numRows,
     maxNumber,
     currentCivilians: baseState.civilianHistory[0],
+    flaskCount: 0,
   });
 
   sendAnalytics("new_game", {
