@@ -488,7 +488,7 @@ function Game({
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 7; // seconds
+  const hintWaitTime = 10; // seconds
 
   const [hintIndex, setHintIndex] = React.useState(undefined);
 
@@ -544,6 +544,8 @@ function Game({
     gameState.puzzle[lastIndexInPath] === features.exit ||
     gameState.puzzle[lastIndexInPath] === features.ship;
 
+  const isAtStart = gameState.puzzle[lastIndexInPath] === features.start;
+
   // Change setHintWaitIsOver to true if the main path is unchanged for some time
   React.useEffect(() => {
     let timeout;
@@ -552,6 +554,7 @@ function Game({
       gameState.robotStartMood !== "sinister" &&
       !hintWaitIsOver &&
       !isAtExit &&
+      !isAtStart &&
       (navigator.canShare || hintsRemaining)
     ) {
       timeout = setTimeout(() => {
@@ -564,6 +567,7 @@ function Game({
     gameState.mainPath,
     hintWaitIsOver,
     isAtExit,
+    isAtStart,
     hintsRemaining,
     gameState.robotStartMood,
     calculatingGamePaths,
@@ -575,6 +579,7 @@ function Game({
     hintWaitIsOver &&
     !calculatingGamePaths &&
     !isAtExit &&
+    !isAtStart &&
     hintIndex === undefined;
 
   return (
