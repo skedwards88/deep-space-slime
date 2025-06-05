@@ -33,6 +33,7 @@ function handleMovement({
   index,
   gameState,
   setCurrentMessage,
+  setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
   score,
@@ -108,6 +109,12 @@ function handleMovement({
     }
     setCurrentMessage(newMessage);
 
+    if (isMovingToExit) {
+      setCurrentBotMood(gameState.robotEndMood);
+    } else {
+      setCurrentBotMood(gameState.robotStartMood);
+    }
+
     dispatchGameState({
       action: "modifyPath",
       index,
@@ -124,6 +131,7 @@ function handleMovement({
         currentGameState: gameState,
       });
       setCurrentMessage(errorMessage);
+      setCurrentBotMood("sinister");
     }
   }
 
@@ -141,6 +149,7 @@ function handlePointerDown({
   validNext,
   gameState,
   setCurrentMessage,
+  setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
   score,
@@ -160,6 +169,7 @@ function handlePointerDown({
         index,
         gameState,
         setCurrentMessage,
+        setCurrentBotMood,
         setHintWaitIsOver,
         setHintIndex,
         score,
@@ -184,6 +194,7 @@ function handlePointerEnter({
   validNext,
   gameState,
   setCurrentMessage,
+  setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
   score,
@@ -206,6 +217,7 @@ function handlePointerEnter({
       index,
       gameState,
       setCurrentMessage,
+      setCurrentBotMood,
       setHintWaitIsOver,
       setHintIndex,
       score,
@@ -225,6 +237,7 @@ function PuzzleSquare({
   setDisplay,
   setHintWaitIsOver,
   setCurrentMessage,
+  setCurrentBotMood,
   setHintIndex,
   hintIndex,
   hasCivilian,
@@ -268,6 +281,7 @@ function PuzzleSquare({
             validNext,
             gameState,
             setCurrentMessage,
+            setCurrentBotMood,
             setHintWaitIsOver,
             setHintIndex,
             score,
@@ -289,6 +303,7 @@ function PuzzleSquare({
               validNext,
               gameState,
               setCurrentMessage,
+              setCurrentBotMood,
               setHintWaitIsOver,
               setHintIndex,
               score,
@@ -307,6 +322,7 @@ function PuzzleSolvedButtons({
   dispatchGameState,
   setHintWaitIsOver,
   setCurrentMessage,
+  setCurrentBotMood,
   score,
 }) {
   const maxFlasks = getMaxFlaskCount(puzzle);
@@ -346,6 +362,7 @@ function PuzzleSolvedButtons({
       onClick={() => {
         setHintWaitIsOver(false);
         setCurrentMessage(puzzles[nextPuzzleID].startingText);
+        setCurrentBotMood(puzzles[nextPuzzleID].robotStartMood);
         dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
@@ -373,6 +390,7 @@ function PuzzleSolvedButtons({
         className="textButton"
         onClick={() => {
           setCurrentMessage(puzzles[puzzleID].startingText);
+          setCurrentBotMood(puzzles[puzzleID].robotStartMood);
           dispatchGameState({action: "newGame", puzzleID});
         }}
       >
@@ -487,6 +505,10 @@ function Game({
     gameState.startingText,
   );
 
+  const [currentBotMood, setCurrentBotMood] = React.useState(
+    gameState.robotStartMood,
+  );
+
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
   const hintWaitTime = 10; // seconds
 
@@ -510,6 +532,7 @@ function Game({
       setDisplay={setDisplay}
       setHintWaitIsOver={setHintWaitIsOver}
       setCurrentMessage={setCurrentMessage}
+      setCurrentBotMood={setCurrentBotMood}
       setHintIndex={setHintIndex}
       hintIndex={hintIndex}
       hasCivilian={currentCivilians.includes(index)}
@@ -560,6 +583,7 @@ function Game({
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
         setCurrentMessage(`Tap me to get a hint!\n\n${gameState.startingText}`);
+        setCurrentBotMood("happy");
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
@@ -595,9 +619,7 @@ function Game({
 
       <div
         id="botFace"
-        className={`${
-          isAtExit ? gameState.robotEndMood : gameState.robotStartMood
-        }${isTimeToShowAHint ? " idea" : ""}`}
+        className={`${currentBotMood}${isTimeToShowAHint ? " idea" : ""}`}
         onClick={
           isTimeToShowAHint && hintsRemaining
             ? () => {
@@ -607,6 +629,7 @@ function Game({
                   dispatchGameState({action: "overwritePath", newPath});
                 }
                 setCurrentMessage("I think you should go here.");
+                setCurrentBotMood("happy");
                 setHintsRemaining(hintsRemaining - 1);
               }
             : null
@@ -649,6 +672,7 @@ function Game({
             dispatchGameState={dispatchGameState}
             setHintWaitIsOver={setHintWaitIsOver}
             setCurrentMessage={setCurrentMessage}
+            setCurrentBotMood={setCurrentBotMood}
             score={score}
           ></PuzzleSolvedButtons>
         )
