@@ -3,7 +3,7 @@ export const puzzles = {
     station: "Stasis pod",
     roomName: "Level 1",
     startingText:
-      "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch.",
+      "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch. You can move to any square that glows green.",
     winText:
       "It looks like the slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
