@@ -4,10 +4,12 @@ import {useGameContext} from "./GameContextProvider";
 import {getLowestIncompletePuzzle} from "../logic/getLowestIncompletePuzzle";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
-import {firstPuzzle, mapTypes} from "../logic/constants";
+import {firstPuzzleId, mapTypes} from "../logic/constants";
+import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 
-function assembleMap(firstPuzzle, mapData = new Map()) {
-  const {type, station, roomName, nextPuzzle} = puzzles[firstPuzzle];
+function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
+  const {type, station, roomName, nextPuzzle} =
+    puzzles[puzzleStringWithCivilians];
 
   if (!mapData.get(type)) {
     mapData.set(type, new Map());
@@ -18,13 +20,15 @@ function assembleMap(firstPuzzle, mapData = new Map()) {
   }
 
   const maxFlaskCount = getMaxFlaskCount(
-    puzzles[firstPuzzle].puzzleWithCivilians,
+    convertStringToPuzzle(
+      puzzles[puzzleStringWithCivilians].puzzleStringWithCivilians,
+    ),
   );
 
   mapData
     .get(type)
     .get(station)
-    .push({roomName, puzzleID: firstPuzzle, maxFlaskCount});
+    .push({roomName, puzzleID: puzzleStringWithCivilians, maxFlaskCount});
 
   if (nextPuzzle) {
     assembleMap(nextPuzzle, mapData);
@@ -225,7 +229,7 @@ export default function GameMap({setDisplay}) {
   const campaignIsComplete = campaignIsCompleteQ(score);
 
   // mapData is a map (keys = type names) of maps (keys = station names) of arrays of objects (containing room data)
-  const mapData = assembleMap(firstPuzzle);
+  const mapData = assembleMap(firstPuzzleId);
 
   let mapElements = [];
   for (const [topLevelKey, topLevelEntry] of mapData) {

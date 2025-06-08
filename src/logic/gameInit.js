@@ -5,14 +5,13 @@ import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
 import {
   convertStringToPuzzleAndCivilians,
-  convertPuzzleToPuzzleAndCivilians,
   convertPuzzleAndCiviliansToPuzzle,
 } from "./convertPuzzleString";
 import {
   features,
   numColumns,
   numRows,
-  firstPuzzle,
+  firstPuzzleId,
   customStationName,
   customWinText,
   customStartingText,
@@ -74,7 +73,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let puzzleID = firstPuzzle;
+    let puzzleID = firstPuzzleId;
     if (savedState?.puzzleID && savedState.puzzleID in puzzles) {
       puzzleID = savedState.puzzleID;
     }
@@ -99,7 +98,7 @@ function customInit({useSaved, customSeed, customIndex}) {
 
 function nonCustomInit({useSaved, puzzleID}) {
   if (!(puzzleID in puzzles)) {
-    puzzleID = firstPuzzle;
+    puzzleID = firstPuzzleId;
   }
 
   let puzzleData = puzzles[puzzleID];
@@ -136,8 +135,8 @@ function nonCustomInit({useSaved, puzzleID}) {
     }
   }
 
-  const [puzzle, startingCivilians] = convertPuzzleToPuzzleAndCivilians(
-    puzzleData.puzzleWithCivilians,
+  const [puzzle, startingCivilians] = convertStringToPuzzleAndCivilians(
+    puzzleData.puzzleStringWithCivilians,
   );
   return {
     isCustom: false,

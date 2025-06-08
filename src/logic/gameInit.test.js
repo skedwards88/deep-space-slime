@@ -5,8 +5,11 @@ import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
-import {convertPuzzleToString} from "./convertPuzzleString";
-import {features, numColumns, numRows, firstPuzzle} from "./constants";
+import {
+  convertPuzzleToString,
+  convertStringToPuzzle,
+} from "./convertPuzzleString";
+import {features, numColumns, numRows, firstPuzzleId} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
 jest.mock("../common/sendAnalytics");
@@ -115,16 +118,18 @@ describe("gameInit saved state usage", () => {
   test("uses default values when no arguments are provided", () => {
     const result = gameInit({});
 
-    expect(result).toHaveProperty("puzzleID", firstPuzzle);
+    expect(result).toHaveProperty("puzzleID", firstPuzzleId);
     expect(result).toHaveProperty("isCustom", false);
     expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: firstPuzzle,
+      puzzleID: firstPuzzleId,
     });
   });
 
   test("returns correct structure for new non-custom game", () => {
     const puzzleID = "campaign/quarantine-station/1";
-    const puzzle = puzzles[puzzleID].puzzleWithCivilians;
+    const puzzleStringWithCivilians =
+      puzzles[puzzleID].puzzleStringWithCivilians;
+    const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -169,7 +174,9 @@ describe("gameInit saved state usage", () => {
   });
 
   test("returns correct structure for new custom game", () => {
-    const puzzle = puzzles["campaign/quarantine-station/1"].puzzleWithCivilians;
+    const puzzleStringWithCivilians =
+      puzzles["campaign/quarantine-station/1"].puzzleStringWithCivilians;
+    const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];

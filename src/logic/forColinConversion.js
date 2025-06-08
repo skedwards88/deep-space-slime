@@ -1,5 +1,8 @@
 // Use the .js extension so can run outside of bundle
-import {convertStringToPuzzle} from "./convertPuzzleString.js";
+import {
+  convertPuzzleToString,
+  convertStringToPuzzle,
+} from "./convertPuzzleString.js";
 
 function getPuzzleForColin({
   url,
@@ -22,8 +25,10 @@ function getPuzzleForColin({
   console.log(`...`);
   console.log(customName);
   console.log(customEncodedPuzzle);
-  // return
+
+  // TODO temp conversion to convert old format to new format
   const puzzleWithCivilians = convertStringToPuzzle(customEncodedPuzzle);
+  const puzzleStringWithCivilians = convertPuzzleToString(puzzleWithCivilians);
 
   return {
     type,
@@ -34,7 +39,7 @@ function getPuzzleForColin({
     winText,
     robotStartMood,
     robotEndMood,
-    puzzleWithCivilians,
+    puzzleStringWithCivilians,
   };
 }
 

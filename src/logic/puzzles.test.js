@@ -8,7 +8,7 @@ import {
   features,
   numColumns,
   numRows,
-  firstPuzzle,
+  firstPuzzleId,
   mapTypes,
 } from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
@@ -28,30 +28,33 @@ describe("puzzle validation", () => {
     const allPuzzleIDs = Object.keys(puzzles);
     const pointedPuzzleIDs = allPuzzleIDs.map((id) => puzzles[id].nextPuzzle);
 
-    expect([...pointedPuzzleIDs, firstPuzzle]).toEqual(
+    expect([...pointedPuzzleIDs, firstPuzzleId]).toEqual(
       expect.arrayContaining(allPuzzleIDs),
     );
-    expect(pointedPuzzleIDs).not.toContain(firstPuzzle);
+    expect(pointedPuzzleIDs).not.toContain(firstPuzzleId);
     expect(pointedPuzzleIDs.filter((i) => !i).length).toBe(1);
     expect(allPuzzleIDs).toHaveLength(pointedPuzzleIDs.length);
   });
 
   test("first puzzle exists", () => {
     const allPuzzleIDs = Object.keys(puzzles);
-    expect(allPuzzleIDs).toContain(firstPuzzle);
+    expect(allPuzzleIDs).toContain(firstPuzzleId);
   });
 
-  test("all puzzles can be converted to a string and back again without error", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
-      const encodedPuzzle = convertPuzzleToString(puzzleWithCivilians);
-      const decodedPuzzle = convertStringToPuzzle(encodedPuzzle);
+  test("all puzzle strings can be converted to a puzzle and back again without error", () => {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const decodedPuzzle = convertStringToPuzzle(puzzleStringWithCivilians);
+      const encodedPuzzle = convertPuzzleToString(decodedPuzzle);
 
-      expect(decodedPuzzle).toEqual(puzzleWithCivilians);
+      expect(encodedPuzzle).toEqual(puzzleStringWithCivilians);
     }
   });
 
   test("all puzzles include exactly one start", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberStarts = puzzleWithCivilians.filter(
         (feature) => feature === features.start,
       ).length;
@@ -60,7 +63,10 @@ describe("puzzle validation", () => {
   });
 
   test("all puzzles include exactly one exit or ship", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberExits = puzzleWithCivilians.filter(
         (feature) => feature === features.exit || feature === features.ship,
       ).length;
@@ -69,7 +75,10 @@ describe("puzzle validation", () => {
   });
 
   test("all puzzles include an even number of portals", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberPortals = puzzleWithCivilians.filter(
         (feature) => feature === features.portal,
       ).length;
@@ -79,7 +88,10 @@ describe("puzzle validation", () => {
 
   test.each(Object.values(puzzles))(
     "Terminal test for $station $roomName",
-    ({puzzleWithCivilians}) => {
+    ({puzzleStringWithCivilians}) => {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberTerminal1s = puzzleWithCivilians.filter(
         (feature) => feature === features.terminal1,
       ).length;
@@ -121,7 +133,10 @@ describe("puzzle validation", () => {
   );
 
   test("all puzzles include an equal number of doors and keys", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberDoors = puzzleWithCivilians.filter(
         (feature) => feature === features.door,
       ).length;
@@ -133,7 +148,10 @@ describe("puzzle validation", () => {
   });
 
   test("all puzzles include at least as many pods as civilians", () => {
-    for (const {puzzleWithCivilians} of Object.values(puzzles)) {
+    for (const {puzzleStringWithCivilians} of Object.values(puzzles)) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const numberPods = puzzleWithCivilians.filter(
         (feature) => feature === features.pod,
       ).length;
@@ -174,9 +192,12 @@ describe("puzzle validation", () => {
       return;
     }
 
-    for (const {puzzleWithCivilians, station, roomName} of Object.values(
+    for (const {puzzleStringWithCivilians, station, roomName} of Object.values(
       puzzles,
     )) {
+      const puzzleWithCivilians = convertStringToPuzzle(
+        puzzleStringWithCivilians,
+      );
       const [puzzle, startingCivilians] =
         convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
       const solutions = getAllValidPaths({

@@ -12,7 +12,7 @@ import {
   numColumns,
   numRows,
   mapTypes,
-  firstPuzzle,
+  firstPuzzleId,
 } from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
@@ -70,7 +70,7 @@ function handleMovement({
       if (isAtEndOfCampaign) {
         const collectedFlaskCount = getCollectedFlaskCount(score);
         const maxFlaskCountForCampaign =
-          getMaxFlaskCountForCampaign(firstPuzzle);
+          getMaxFlaskCountForCampaign(firstPuzzleId);
 
         newMessage = (
           <p>
@@ -346,7 +346,7 @@ function PuzzleSolvedButtons({
       text={`I beat Deep Space Slime and collected ${getCollectedFlaskCount(
         score,
       )} out of ${getMaxFlaskCountForCampaign(
-        firstPuzzle,
+        firstPuzzleId,
       )} samples! Try it out:`}
       url="https://deepspaceslime.com"
       buttonText="Share"

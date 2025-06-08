@@ -1,8 +1,8 @@
 import {puzzles} from "./puzzles";
-import {firstPuzzle} from "./constants";
+import {firstPuzzleId} from "./constants";
 
 export function getLowestIncompletePuzzle(score) {
-  let currentPuzzle = firstPuzzle;
+  let currentPuzzle = firstPuzzleId;
 
   while (currentPuzzle) {
     const currentPuzzleIsComplete = score[currentPuzzle] !== undefined;

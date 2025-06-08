@@ -8,7 +8,8 @@ import {
 import {arraysMatchQ} from "../common/arraysMatchQ";
 import {
   convertPuzzleAndCiviliansToPuzzle,
-  convertPuzzleToPuzzleAndCivilians,
+  convertStringToPuzzle,
+  convertStringToPuzzleAndCivilians,
 } from "./convertPuzzleString";
 
 export function validateSavedState(savedState) {
@@ -166,8 +167,8 @@ export function validateSavedState(savedState) {
   }
 
   if (!savedState.isCustom) {
-    const [, expectedStartingCivilians] = convertPuzzleToPuzzleAndCivilians(
-      puzzles[savedState.puzzleID].puzzleWithCivilians,
+    const [, expectedStartingCivilians] = convertStringToPuzzleAndCivilians(
+      puzzles[savedState.puzzleID].puzzleStringWithCivilians,
     );
     const civiliansMatch = arraysMatchQ(
       expectedStartingCivilians,
@@ -181,7 +182,9 @@ export function validateSavedState(savedState) {
 
   // if not custom, puzzle must match expected puzzle
   if (!savedState.isCustom) {
-    const expectedPuzzle = puzzles[savedState.puzzleID].puzzleWithCivilians;
+    const expectedPuzzle = convertStringToPuzzle(
+      puzzles[savedState.puzzleID].puzzleStringWithCivilians,
+    );
     const actualPuzzle = convertPuzzleAndCiviliansToPuzzle(
       savedState.puzzle,
       savedState.civilianHistory[0],
