@@ -39,6 +39,45 @@ export function convertPuzzleToString(puzzle) {
 }
 
 export function convertStringToPuzzle(puzzleString) {
+  // TODO omit this backwards compatibility once Colin uploads his old custom puzzles
+  if (puzzleString.length === 63) {
+    const oldFeatureToLetterLookup = {
+      [features.outer]: "O",
+      [features.basic]: "B",
+      [features.exit]: "E",
+      [features.start]: "S",
+      [features.flask]: "F",
+      [features.jet]: "J",
+      [features.portal]: "P",
+      [features.key]: "K",
+      [features.door]: "D",
+      [features.pod]: "X",
+      [features.terminal1]: "1",
+      [features.terminal2]: "2",
+      [features.terminal3]: "3",
+      [features.terminal4]: "4",
+      [features.terminal5]: "5",
+      [features.ship]: "H",
+      [features.civilian]: "C",
+    };
+
+    const oldLetterToFeatureLookup = Object.fromEntries(
+      Object.entries(oldFeatureToLetterLookup).map(([feature, letter]) => [
+        letter,
+        feature,
+      ]),
+    );
+    return puzzleString.split("").map((letter) => {
+      const feature = oldLetterToFeatureLookup[letter];
+      if (!feature) {
+        throw new Error(
+          `Letter ${letter} not found in oldLetterToFeatureLookup`,
+        );
+      }
+      return feature;
+    });
+  }
+
   // Non-letter/numbers are omitted. Consecutive numbers are kept together.
   const symbols = puzzleString
     .match(/\d+|[A-Za-z]/g)
