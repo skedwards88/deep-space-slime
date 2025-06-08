@@ -27,53 +27,7 @@ describe("convertPuzzleToString", () => {
       features.ship,
     ];
     const result = convertPuzzleToString(puzzle);
-    expect(result).toBe("1BESFJPKDZYXWH");
-  });
-
-  test("strings of outer spaces are converted to numbers", () => {
-    const puzzle = [
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.exit,
-      features.outer,
-      features.start,
-      features.flask,
-      features.jet,
-      features.portal,
-      features.key,
-      features.door,
-      features.terminal1,
-      features.terminal2,
-      features.terminal3,
-      features.terminal4,
-      features.ship,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ];
-    const result = convertPuzzleToString(puzzle);
-    expect(result).toBe("12BE1SFJPKDZYXWH13");
+    expect(result).toBe("OBESFJPKD1234H");
   });
 
   test("converts a puzzle array with civilians to a string correctly", () => {
@@ -94,7 +48,7 @@ describe("convertPuzzleToString", () => {
       features.ship,
     ];
     const result = convertPuzzleToString(puzzle);
-    expect(result).toBe("1CESFJPKDZYXWH");
+    expect(result).toBe("OCESFJPKD1234H");
   });
 
   test("throws an error for an unknown feature", () => {
@@ -107,53 +61,7 @@ describe("convertPuzzleToString", () => {
 
 describe("convertStringToPuzzle", () => {
   test("converts a string to a puzzle array correctly", () => {
-    const string = "12BE1SFJPKDZYXWH13";
-    const result = convertStringToPuzzle(string);
-    expect(result).toEqual([
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.basic,
-      features.exit,
-      features.outer,
-      features.start,
-      features.flask,
-      features.jet,
-      features.portal,
-      features.key,
-      features.door,
-      features.terminal1,
-      features.terminal2,
-      features.terminal3,
-      features.terminal4,
-      features.ship,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-      features.outer,
-    ]);
-  });
-
-  test("integers are converted to a corresponding number of outer spaces", () => {
-    const string = "1BESFJPKDZYXWH";
+    const string = "OBESFJPKD1234H";
     const result = convertStringToPuzzle(string);
     expect(result).toEqual([
       features.outer,
@@ -174,7 +82,7 @@ describe("convertStringToPuzzle", () => {
   });
 
   test("converts a string with civilians to a puzzle array correctly", () => {
-    const string = "1BESFJPKDZYXCH";
+    const string = "OBESFJPKD123CH";
     const result = convertStringToPuzzle(string);
     expect(result).toEqual([
       features.outer,
@@ -195,7 +103,7 @@ describe("convertStringToPuzzle", () => {
   });
 
   test("throws an error for an unknown letter", () => {
-    const string = "1BJQBF";
+    const string = "OBJQBF";
     expect(() => convertStringToPuzzle(string)).toThrow(
       "Letter Q not found in featureToLetterLookup",
     );
@@ -222,7 +130,7 @@ describe("convertPuzzleAndCiviliansToString", () => {
     ];
     const civilians = [0, 12];
     const result = convertPuzzleAndCiviliansToString(puzzle, civilians);
-    expect(result).toBe("CBESFJPKDZYXCH");
+    expect(result).toBe("CBESFJPKD123CH");
   });
 
   test("converts a puzzle array and empty civilian array to a string correctly", () => {
@@ -244,7 +152,7 @@ describe("convertPuzzleAndCiviliansToString", () => {
     ];
     const civilians = [];
     const result = convertPuzzleAndCiviliansToString(puzzle, civilians);
-    expect(result).toBe("1BESFJPKDZYXWH");
+    expect(result).toBe("OBESFJPKD1234H");
   });
 
   test("throws an error for an unknown feature", () => {
@@ -257,7 +165,7 @@ describe("convertPuzzleAndCiviliansToString", () => {
 
 describe("convertStringToPuzzleAndCivilians", () => {
   test("converts a string without civilians to a puzzle array and civilian array correctly", () => {
-    const string = "1BESFJPKDZYXWH";
+    const string = "OBESFJPKD1234H";
     const [puzzle, civilians] = convertStringToPuzzleAndCivilians(string);
     expect(puzzle).toEqual([
       features.outer,
@@ -279,7 +187,7 @@ describe("convertStringToPuzzleAndCivilians", () => {
   });
 
   test("converts a string with civilians to a puzzle array correctly", () => {
-    const string = "1BESFCPKDZYXCH";
+    const string = "OBESFCPKD123CH";
     const [puzzle, civilians] = convertStringToPuzzleAndCivilians(string);
     expect(puzzle).toEqual([
       features.outer,
@@ -302,7 +210,7 @@ describe("convertStringToPuzzleAndCivilians", () => {
   });
 
   test("throws an error for an unknown letter", () => {
-    const string = "1BJQBF";
+    const string = "OBJQBF";
     expect(() => convertStringToPuzzleAndCivilians(string)).toThrow(
       "Letter Q not found in featureToLetterLookup",
     );

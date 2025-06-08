@@ -9,82 +9,28 @@ const letterToFeatureLookup = Object.fromEntries(
 );
 
 export function convertPuzzleToString(puzzle) {
-  let accumulatedOuterSpaces = 0;
-
-  let puzzleString = "";
-
-  for (const feature of puzzle) {
-    if (feature === features.outer) {
-      accumulatedOuterSpaces++;
-    } else {
+  return puzzle
+    .map((feature) => {
       const letter = featureToLetterLookup[feature];
       if (!letter) {
         throw new Error(
           `Feature "${feature}" not found in featureToLetterLookup`,
         );
       }
-      if (accumulatedOuterSpaces) {
-        puzzleString += accumulatedOuterSpaces.toString();
-        accumulatedOuterSpaces = 0;
-      }
-      puzzleString += letter;
-    }
-  }
-
-  if (accumulatedOuterSpaces) {
-    puzzleString += accumulatedOuterSpaces.toString();
-  }
-
-  return puzzleString;
+      return letter;
+    })
+    .join("");
 }
 
-export function convertStringToPuzzle(puzzleString) {
-  // Non-letter/numbers are omitted. Consecutive numbers are kept together.
-  const symbols = puzzleString
-    .match(/\d+|[A-Za-z]/g)
-    .map((item) => (/^\d+$/.test(item) ? Number(item) : item));
-
-  let puzzle = [];
-
-  for (const symbol of symbols) {
-    if (typeof symbol === "number") {
-      puzzle = puzzle.concat(
-        Array.from({length: symbol}, () => features.outer),
-      );
-    } else {
-      const feature = letterToFeatureLookup[symbol];
-      if (!feature) {
-        throw new Error(`Letter ${symbol} not found in featureToLetterLookup`);
-      }
-      puzzle.push(feature);
+export function convertStringToPuzzle(string) {
+  return string.split("").map((letter) => {
+    const feature = letterToFeatureLookup[letter];
+    if (!feature) {
+      throw new Error(`Letter ${letter} not found in featureToLetterLookup`);
     }
-  }
-  return puzzle;
+    return feature;
+  });
 }
-
-// export function convertPuzzleToString(puzzle) {
-//   return puzzle
-//     .map((feature) => {
-//       const letter = featureToLetterLookup[feature];
-//       if (!letter) {
-//         throw new Error(
-//           `Feature "${feature}" not found in featureToLetterLookup`,
-//         );
-//       }
-//       return letter;
-//     })
-//     .join("");
-// }
-
-// export function convertStringToPuzzle(string) {
-//   return string.split("").map((letter) => {
-//     const feature = letterToFeatureLookup[letter];
-//     if (!feature) {
-//       throw new Error(`Letter ${letter} not found in featureToLetterLookup`);
-//     }
-//     return feature;
-//   });
-// }
 
 export function convertPuzzleAndCiviliansToString(puzzle, civilians) {
   const puzzleWithCivilians = convertPuzzleAndCiviliansToPuzzle(
@@ -92,11 +38,27 @@ export function convertPuzzleAndCiviliansToString(puzzle, civilians) {
     civilians,
   );
 
-  return convertPuzzleToString(puzzleWithCivilians);
+  return puzzleWithCivilians
+    .map((feature) => {
+      const letter = featureToLetterLookup[feature];
+      if (!letter) {
+        throw new Error(
+          `Feature "${feature}" not found in featureToLetterLookup`,
+        );
+      }
+      return letter;
+    })
+    .join("");
 }
 
 export function convertStringToPuzzleAndCivilians(string) {
-  const puzzleWithCivilians = convertStringToPuzzle(string);
+  const puzzleWithCivilians = string.split("").map((letter) => {
+    const feature = letterToFeatureLookup[letter];
+    if (!feature) {
+      throw new Error(`Letter ${letter} not found in featureToLetterLookup`);
+    }
+    return feature;
+  });
 
   return convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
 }
