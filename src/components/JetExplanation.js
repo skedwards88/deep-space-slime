@@ -6,16 +6,14 @@ export default function JetExplanation({setDisplay}) {
       <div className="infoText">
         <span id="jetIcon" className="infoIcon"></span>
         <p>
-          A SPRAY BOTTLE lets you jump straight across the slime trail to a
+          If you have a <span id="jetIcon" className="smallInfoIcon"></span> in
+          your inventory, you can jump straight across the slime trail to a
           slime-free space.
         </p>
+        <p>Remember, the green glowing squares show you valid moves.</p>
         <p>
-          If you have a SPRAY BOTTLE in your inventory, the highlighted squares
-          that you can move to will include squares that can be accessed with a
-          SPRAY BOTTLE.
-        </p>
-        <p>
-          When you travel to one of these squares, a SPRAY BOTTLE will be
+          When you jump across the slime trail, the{" "}
+          <span id="jetIcon" className="smallInfoIcon"></span> is automatically
           removed from your inventory.
         </p>
       </div>
