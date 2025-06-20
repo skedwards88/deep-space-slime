@@ -18,7 +18,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         }
         <hr></hr>
         <p>
-          Follow our{" "}
+          Join our{" "}
           <a href="https://www.patreon.com/skedwards88">
             <strong>FREE</strong> Patreon
           </a>{" "}
@@ -29,6 +29,9 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
           Want more games? See all of our puzzle games{" "}
           <a href="https://skedwards88.github.io/">here</a>.
         </p>
+        <hr></hr>
+        <p>Thanks to our playtesters!</p>
+        <small>Armand R, Brian J, Jenni C, Joe C, Molly K, Rudy Y</small>
         <hr></hr>
         <p>
           Feedback?{" "}
