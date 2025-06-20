@@ -70,7 +70,7 @@ function TopLevelMapEntry({
   return (
     <div>
       <button
-        className="mapTypeButton"
+        className="mapTypeButton textButton"
         onClick={() => setTypeOnDisplay(topLevelKey)}
         disabled={!campaignIsComplete && topLevelKey !== mapTypes.campaign}
       >
@@ -116,7 +116,7 @@ function StationLevelMapEntry({
   return (
     <div className="mapStationBlock">
       <button
-        className="mapStationButton"
+        className="mapStationButton textButton"
         onClick={() => setStationOnDisplay(stationName)}
       >
         {stationName}
@@ -151,7 +151,7 @@ function RoomLevelMapEntry({
 
   return (
     <button
-      className="mapRoomButton"
+      className="mapRoomButton textButton"
       disabled={!roomIsAvailable}
       onClick={() => {
         dispatchGameState({action: "newGame", puzzleID: puzzleID});
@@ -201,7 +201,10 @@ export default function GameMap({setDisplay}) {
 
   return (
     <div id="map">
-      <button onClick={() => setDisplay("game")} className="mapTypeButton">
+      <button
+        onClick={() => setDisplay("game")}
+        className="mapTypeButton textButton"
+      >
         Return to current room
       </button>
       {mapElements}
