@@ -12,8 +12,6 @@ jest.mock("./puzzles", () => ({
         "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
       winText:
         "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
-      hintText:
-        "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -40,8 +38,6 @@ jest.mock("./puzzles", () => ({
         "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
       winText:
         "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
-      hintText:
-        "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "1BCB13EBB4B1B4BBF4B6S17",

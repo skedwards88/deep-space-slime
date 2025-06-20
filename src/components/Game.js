@@ -66,7 +66,6 @@ function handleMovement({
       const isAtEndOfCampaign =
         currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
 
-      const maxFlasks = getMaxFlaskCount(gameState.puzzle);
       if (isAtEndOfCampaign) {
         const collectedFlaskCount = getCollectedFlaskCount(score);
         const maxFlaskCountForCampaign =
@@ -99,8 +98,6 @@ function handleMovement({
             <p>{gameState.winText}</p>
           </p>
         );
-      } else if (gameState.flaskCount < maxFlasks && gameState.hintText) {
-        newMessage = gameState.hintText;
       } else {
         newMessage = gameState.winText;
       }

@@ -19,8 +19,6 @@ export const puzzles = {
       "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
     winText:
       "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -46,8 +44,6 @@ export const puzzles = {
       "The only way forward is through spaces that haven't been contaminated with the slime that is chasing you. You can undo moves by tapping or dragging to retrace your steps.",
     winText:
       "I would have been...disappointed...if you couldn't figure this one out.",
-    hintText:
-      "If you retry this level to get all the samples, grab the card key right away then head for the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17E5FBB4DBB4BBK5B6S10",
@@ -60,8 +56,6 @@ export const puzzles = {
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping! You can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over.",
     winText: "Impressive, if only all humans were as reliable as you…",
-    hintText:
-      "If you retry this level to get all the samples, try heading straight for the card key on the right.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17KBF3FB1B3DBED3BBB4SBK16",
@@ -74,8 +68,6 @@ export const puzzles = {
     startingText:
       "If you get stuck, just wait for several seconds and I'll give you a hint!",
     winText: "Good job navigating through such tight quarters!",
-    hintText:
-      "If you retry this level to get all the samples, try moving into the empty spaces first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16EKF4DFD4FKF4BBS23",
@@ -88,8 +80,6 @@ export const puzzles = {
     startingText:
       "This one looks tricky. If you get stuck, you can retrace your steps or tap the start space to reset the room.",
     winText: "We've almost broken out of quarantine. Keep going!",
-    hintText:
-      "You can retry this level to get all the samples. Try heading right immediatly after grabbing the closest card key.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22FBEBF2BDBDB2FB1BK2BKBBB3BSB9",
@@ -103,8 +93,6 @@ export const puzzles = {
       "Remember, you can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over. If you get stuck and wait for several seconds, I'll even give you a hint!",
     winText:
       "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon at the top left of the screen.",
-    hintText:
-      "You can retry this level to get all the samples. Try heading clockwise along the perimeter first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8KBDBF2BEF1B2FBDBD2B1B1B2KBKBB2B1B1B2FBBSB8",
@@ -117,8 +105,6 @@ export const puzzles = {
     startingText:
       "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
     winText: "Take that, SLIME!",
-    hintText:
-      "You can retry this level to get the sample. Try grabbing the SPRAY BOTTLE before the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17FBJ4B1B2EBBBB4B6S17",
@@ -132,8 +118,6 @@ export const puzzles = {
       "Can you grab the sample and cut across your trail with the spray bottle? If you get stuck, you can retrace your steps or wait for a hint. ",
     winText:
       "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
-    hintText:
-      "You can retry this level to get the sample. Try to grab the CARD KEY, then the SPRAY BOTTLE, and then the SAMPLE before using the SPRAY BOTTLE to cross your trail. Remember that the SPRAY BOTTLE only lets you jump straight across the slime trail to a slime-free space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E2JB2B2BB2DBBBF4BK5S17",
@@ -145,8 +129,6 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Make sure to pick up all the sub… I mean samples!",
     winText: "One step closer to saving humanity!",
-    hintText:
-      "You can retry this level to get all the samples. Try turning right first, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "24FBJ3BBEB3FBBF5S16",
@@ -158,8 +140,6 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "You're over halfway through this station.",
     winText: "Keep going, little human!",
-    hintText:
-      "You can retry this level to get all the samples. Try starting with the lower left FLASK, and use the SPRAY BOTTLE at the very end to jump straight to the exit!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17JBB4B1F3EBBB3BB1B4FBS15",
@@ -171,8 +151,6 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "This looks like a tricky one, good luck!",
     winText: "Look at you. You're a slime-fighting ninja-astronaut!",
-    hintText:
-      "You can retry this level to get all the samples. Try grabbing the SPRAY BOTTLE and then the CARD KEY. Leave a space open to use the SPRAY BOTTLE after grabbing the left SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDB6B3BBBBF2BB2B2FBBBB3K1JB3BBBS8",
@@ -184,8 +162,6 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Spray bottles, samples and doors, oh my!",
     winText: "Onward, to the Portal station!",
-    hintText:
-      "You can retry this level to get all the samples. Try a spiral path and collecting the spray bottle partway through.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3KBDBB2F1B1F2DBDBB2B1B1B2KBJBK3BSB9",
@@ -198,8 +174,6 @@ export const puzzles = {
     startingText:
       "The humans in this station developed dimensional portals to escape the slime. Unfortunately, the slime evolved to follow them… You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
     winText: "Great job grabbing the SAMPLE on your way!",
-    hintText:
-      "You can retry this level to get the sample. Try a different route to the PORTAL next time to grab the SAMPLE.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E1BBP2B1B1B2PBBBF4B6S17",
@@ -213,7 +187,6 @@ export const puzzles = {
       "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
     winText:
       "You can retry this level to get all the samples. You did it! If only the rest of humanity were as dependable as you.",
-    hintText: "Try grabbing the top right SAMPLE first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP5B3BBBBF2B3B2FBBBB3K1B3PBBBS8",
@@ -225,8 +198,6 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Hope you're not claustrophobic!",
     winText: "Keep going! The end is near.",
-    hintText:
-      "You can retry this level to get all the samples. Try starting with the left PORTAL.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23EKF4BBP4FDB4PBS16",
@@ -239,8 +210,6 @@ export const puzzles = {
     startingText:
       "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
     winText: "I'm impressed the slime hasn't caught you yet!",
-    hintText:
-      "You can retry this level to get all the samples. Try grabbing the closest flask before using the leftmost portal.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BEB3BPFPB2B1B1F2PBBFP3BSB16",
@@ -252,8 +221,6 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Can you handle all these PORTALS?",
     winText: "At this rate, we'll save humanity from the SLIME in no time!",
-    hintText:
-      "You can retry this level to get all the samples. Try waiting until after your final portal jump to use the key card on the door.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBF1P4B1B2FBJBF2B1B1B2KBDBP2F1B1B2PBP1S8",
@@ -266,8 +233,6 @@ export const puzzles = {
     startingText: "Look at all those SAMPLES. Can you grab them all?",
     winText:
       "Congrats, you have escaped from the PORTAL station. Next up, the SECURITY station!",
-    hintText:
-      "You can retry this level to get all the samples. Try taking a path to the upper right portal that will set you up to use two spray bottles.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBBBP4B1J2JBBBF2B1F1B2FBBBB2B1F1B2PBBBS8",
@@ -281,8 +246,6 @@ export const puzzles = {
       "The humans in this station developed automated containment systems. To get through, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
     winText:
       "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17XBY2EBB1B4FBZ4B6S17",
@@ -295,8 +258,6 @@ export const puzzles = {
     startingText:
       "This one's a bit harder, but I'm sure you're up to the challenge!",
     winText: "Nice loop de loop!",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23ZBJ3EBFB4FBY4S18",
@@ -309,8 +270,6 @@ export const puzzles = {
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16YBZ3BBJBB2SF1FE2BBBBB3XFW16",
@@ -323,8 +282,6 @@ export const puzzles = {
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me...",
     winText: "You are such a smart human!",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "21FBBEBBFB1BJB1BZBBXBBY2FBF4BSB9",
@@ -338,8 +295,6 @@ export const puzzles = {
       "No other subjects have gotten this far. You should be very proud subject 62!",
     winText:
       "Excellent, you've done a great job of collecting all these samples for me!",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4BBY4FBB4BZJ4FBB4BBX4SBB9",
@@ -351,8 +306,6 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Basic terminal training.",
     winText: "You're almost at the end of your journey. One more room to go!",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16FBE3BPXBB2FBZPF2BPYBB3SFP16",
@@ -365,8 +318,6 @@ export const puzzles = {
     startingText: "You're almost finished...",
     winText:
       "Congrats, you have escaped from the SECURITY STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
-    hintText:
-      "Collecting all the samples will help fight the slime. You can retry this level to get the sample.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4PBF4WBX4PVB4ZJP4BYB4FSP9",
@@ -1631,7 +1582,6 @@ export const puzzles = {
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping!",
     winText: "The next one's a bit harder.",
-    hintText: "Try grabbing the lower right key first.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3DBBBB2F1B1B2DBFBK2B1B1B2BBBBK3BSB9",
@@ -1644,7 +1594,6 @@ export const puzzles = {
     startingText:
       "Not much left of the poor subjects devoured by the slime... Oh well! Let's try to collect all the samples.",
     winText: "We've almost broken out of quarantine. Keep going!",
-    hintText: "Try heading right immediately from the starting space.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3DBBBB2F1B1B2DBFBB2B1B1B2KBKBF3BSB9",
@@ -1657,8 +1606,6 @@ export const puzzles = {
     startingText:
       "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
     winText: "Impressive...for a human.",
-    hintText:
-      "Try grabbing the key above you first, then immediately heading left.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3BBDBD2F1B1F2DBFBK2B1B1B2KBKBB3BSB9",
@@ -1671,8 +1618,6 @@ export const puzzles = {
     startingText: "Uh oh...do you think you can handle all these doors?",
     winText:
       "Phew...we broke out of quarantine. Time to explore the other stations. You can always revisit old rooms by tapping the map icon above.",
-    hintText:
-      "Try leaving the key above the start until you've crossed through a couple doors. Or tap next level to advance to the next station. You can always revisit old rooms by tapping the map icon above.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3DBDBD2F1B1F2DBFBK2B1B1B2KBKBK3BSB9",
@@ -1697,8 +1642,6 @@ export const puzzles = {
     startingText:
       "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
     winText: "I knew I could count on you…friend.",
-    hintText:
-      "Try positioning yourself to use the SPRAY BOTTLE right after you get it.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBB4B1X2ZBBBF2BB2Y2JBBBF3FBB4BKBS8",
@@ -1711,7 +1654,6 @@ export const puzzles = {
     startingText:
       "Do you think you can figure this one out? Try not to disappoint me.",
     winText: "I am well chuffed with your progress! Very well chuffed.",
-    hintText: "Try collecting the SAMPLES in the middle column last.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP4B1Y2BBFBF2BJB1Z2XBFBB3K1B4BPBS8",
@@ -1724,8 +1666,6 @@ export const puzzles = {
     startingText:
       "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
     winText: "Impressive, if only all humans were as reliable as you…",
-    hintText:
-      "See if you can spend the first SPRAY BOTTLE soon after TERMINAL 1, and the second SPRAY BOTTLE soon after TERMINAL 2.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP4F1X2YBBBF2BB1BZ2JBBBB3K1J4BPBS8",
@@ -1738,8 +1678,6 @@ export const puzzles = {
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
       "No other subjects have gotten this far. You should be very proud!",
-    hintText:
-      "To get all the SAMPLES, focus on the left side before the right.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP4B1Y2ZBBBF2BF1FB2JBBBX3KBB4BPBS8",
@@ -1753,8 +1691,6 @@ export const puzzles = {
       "You're almost at the end of your journey. One more room to go.",
     winText:
       "Congrats, you have escaped from the SECURITY station. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
-    hintText:
-      "Head directly to the closest portal, and save the SPRAY BOTTLE for after TERMINAL 3.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDPP4B1Z2YBFBB2BB1BX2JBBBF3KBF4PPBS8",
