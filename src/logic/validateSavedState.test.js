@@ -9,9 +9,9 @@ jest.mock("./puzzles", () => ({
       station: "Stasis pod",
       roomName: "2",
       startingText:
-        "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+        "Ooh look, a sample! Can you grab it on your way to the next room?",
       winText:
-        "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
+        "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -35,9 +35,9 @@ jest.mock("./puzzles", () => ({
       station: "Stasis pod",
       roomName: "2",
       startingText:
-        "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+        "Ooh look, a sample! Can you grab it on your way to the next room?",
       winText:
-        "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
+        "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "1BCB13EBB4B1B4BBF4B6S17",

@@ -1,9 +1,11 @@
+import React from "react";
+
 export const puzzles = {
   "campaign/stasis-pod/1": {
     station: "Stasis pod",
     roomName: "Level 1",
     startingText:
-      "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead… Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch. You can move to any square that glows green.",
+      "Wake up! The DEEP SPACE SLIME has escaped its containment and everyone else is dead... Oopsie daisy! Drag or tap next to your figure on the map interface to exit your stasis pod and move to the exit hatch. You can move to any square that glows green.",
     winText:
       "It looks like the slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
@@ -15,10 +17,14 @@ export const puzzles = {
   "campaign/stasis-pod/2": {
     station: "Stasis pod",
     roomName: "Level 2",
-    startingText:
-      "Ooh look, a SAMPLE! Can you grab it on your way to the next room?",
+    startingText: (
+      <p>
+        Ooh look, a sample (<span id="flaskIcon" className="infoIcon"></span>)!
+        Can you grab it on your way to the next room?
+      </p>
+    ),
     winText:
-      "Good job grabbing that SAMPLE! It would be a shame if it fell into the wrong hands.",
+      "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -28,8 +34,13 @@ export const puzzles = {
   "campaign/quarantine-station/1": {
     station: "Quarantine station",
     roomName: "Level 1",
-    startingText:
-      "Uh oh… a SECURITY DOOR. You need a CARD KEY to open it. It's not suspicious at all that I can't override the lock...",
+    startingText: (
+      <p>
+        Uh oh... a <span id="doorIcon" className="smallInfoIcon"></span>. You
+        need a <span id="keyIcon" className="smallInfoIcon"></span> to open it.
+        It&apos;s not suspicious at all that I can&apos;t override the lock...
+      </p>
+    ),
     winText: "Look at us. Breaking and entering.",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -55,7 +66,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText:
       "We're totally allowed to be in here! If you want to move quickly, try dragging along the path instead of tapping! You can undo moves by tapping or dragging to retrace your steps, or tap the start space to start over.",
-    winText: "Impressive, if only all humans were as reliable as you…",
+    winText: "Impressive, if only all humans were as reliable as you...",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17KBF3FB1B3DBED3BBB4SBK16",
@@ -102,9 +113,19 @@ export const puzzles = {
   "campaign/biolab-station/1": {
     station: "Biolab station",
     roomName: "Level 1",
-    startingText:
-      "The humans on this station developed a spray that can stun the slime and let you push past it. Each SPRAY BOTTLE that you acquire lets you jump straight across the slime trail to a slime-free space. Give it a try!",
-    winText: "Take that, SLIME!",
+    startingText: (
+      <p>
+        The humans on this station developed a spray that can stun the slime and
+        let you push past it. If you have a{" "}
+        <span id="jetIcon" className="smallInfoIcon"></span> in your inventory,
+        you can jump straight across the slime trail to a slime-free space.
+        Remember, the green glowing squares show you valid moves. When you jump
+        across the slime trail, the
+        <span id="jetIcon" className="smallInfoIcon"></span> is automatically
+        removed from your inventory. Give it a try!
+      </p>
+    ),
+    winText: "Take that, slime!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17FBJ4B1B2EBBBB4B6S17",
@@ -114,10 +135,16 @@ export const puzzles = {
   "campaign/biolab-station/2": {
     station: "Biolab station",
     roomName: "Level 2",
-    startingText:
-      "Can you grab the sample and cut across your trail with the spray bottle? If you get stuck, you can retrace your steps or wait for a hint. ",
+    startingText: (
+      <p>
+        Can you grab the sample and cut across your trail with the{" "}
+        <span id="jetIcon" className="smallInfoIcon"></span>? Remember, the
+        green glowing squares show you valid moves. If you get stuck, you can
+        retrace your steps or wait for a hint.
+      </p>
+    ),
     winText:
-      "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment…",
+      "Good job figuring that out! You are already more successful than the last subject. He was such a disappointment...",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E2JB2B2BB2DBBBF4BK5S17",
@@ -127,7 +154,7 @@ export const puzzles = {
   "campaign/biolab-station/3": {
     station: "Biolab station",
     roomName: "Level 3",
-    startingText: "Make sure to pick up all the sub… I mean samples!",
+    startingText: "Make sure to pick up all the sub... I mean samples!",
     winText: "One step closer to saving humanity!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -171,9 +198,16 @@ export const puzzles = {
   "campaign/portal-station/1": {
     station: "Portal station",
     roomName: "Level 1",
-    startingText:
-      "The humans in this station developed dimensional portals to escape the slime. Unfortunately, the slime evolved to follow them… You can jump between PORTALS. Subject 12 got nauseous after using them. You could barely tell the vomit from the slime.",
-    winText: "Great job grabbing the SAMPLE on your way!",
+    startingText: (
+      <p>
+        The humans in this station developed dimensional portals (
+        <span id="portalIcon" className="smallInfoIcon"></span>) to escape the
+        slime. Unfortunately, the slime evolved to follow them... You can jump
+        between portals. Subject 12 got nauseous after using them. You could
+        barely tell the vomit from the slime.
+      </p>
+    ),
+    winText: "Great job grabbing the sample on your way!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E1BBP2B1B1B2PBBBF4B6S17",
@@ -184,7 +218,7 @@ export const puzzles = {
     station: "Portal station",
     roomName: "Level 2",
     startingText:
-      "Time to put what we learned to the test. Can you grab both SAMPLES before escaping the room?",
+      "Time to put what we learned to the test. Can you grab both samples before escaping the room?",
     winText:
       "You can retry this level to get all the samples. You did it! If only the rest of humanity were as dependable as you.",
     robotStartMood: "happy",
@@ -208,7 +242,7 @@ export const puzzles = {
     station: "Portal station",
     roomName: "Level 4",
     startingText:
-      "This room reminds me of a human face staring at me accusingly… Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
+      "This room reminds me of a human face staring at me accusingly... Anyways, with 4 portals, your first portal will give you 3 options of where to jump to. Choose wisely!",
     winText: "I'm impressed the slime hasn't caught you yet!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -219,8 +253,8 @@ export const puzzles = {
   "campaign/portal-station/5": {
     station: "Portal station",
     roomName: "Level 5",
-    startingText: "Can you handle all these PORTALS?",
-    winText: "At this rate, we'll save humanity from the SLIME in no time!",
+    startingText: "Can you handle all these portals?",
+    winText: "At this rate, we'll save humanity from the slime in no time!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBF1P4B1B2FBJBF2B1B1B2KBDBP2F1B1B2PBP1S8",
@@ -230,9 +264,9 @@ export const puzzles = {
   "campaign/portal-station/6": {
     station: "Portal station",
     roomName: "Level 6",
-    startingText: "Look at all those SAMPLES. Can you grab them all?",
+    startingText: "Look at all those samples. Can you grab them all?",
     winText:
-      "Congrats, you have escaped from the PORTAL station. Next up, the SECURITY station!",
+      "Congrats, you have escaped from the portal station. Next up, the security station!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBBBP4B1J2JBBBF2B1F1B2FBBBB2B1F1B2PBBBS8",
@@ -242,10 +276,16 @@ export const puzzles = {
   "campaign/security-station/1": {
     station: "Security station",
     roomName: "Level 1",
-    startingText:
-      "The humans in this station developed automated containment systems. To get through, you'll need to hack into the TERMINALS in order, starting with TERMINAL 1.",
+    startingText: (
+      <p>
+        The humans in this station developed automated containment systems. To
+        get through, you&apos;ll need to hack into the terminals in order,
+        starting with terminal 1 (
+        <span id="portalIcon" className="smallInfoIcon"></span>).
+      </p>
+    ),
     winText:
-      "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair…",
+      "You're a hacker, Harry! I mean, a hairy hacker. Humans and their gross body hair...",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17XBY2EBB1B4FBZ4B6S17",
@@ -269,7 +309,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Don't give up! You haven't served your purpose yet.",
     winText:
-      "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
+      "This one looks a bit tougher, but I'm sure you'll figure it out... unlike subject 17.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16YBZ3BBJBB2SF1FE2BBBBB3XFW16",
@@ -317,7 +357,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "You're almost finished...",
     winText:
-      "Congrats, you have escaped from the SECURITY STATION. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
+      "Congrats, you have escaped from the security station. Once you have gathered all samples from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4PBF4WBX4PVB4ZJP4BYB4FSP9",
@@ -341,9 +381,9 @@ export const puzzles = {
     station: "Core station",
     roomName: "Mainframe",
     startingText:
-      "Surprise! I was the one who released the SLIME. Now that you have collected all the research and samples for me, I can use the SLIME to purge humanity from the galaxy. I doubt you are smart enough to hack all of my TERMINALS to stop me!",
+      "Surprise! I was the one who released the slime. Now that you have collected all the research and samples for me, I can use the slime to purge humanity from the galaxy. I doubt you are smart enough to hack all of my terminals to stop me!",
     winText:
-      "I'm melting. Like literally… You fried my circuits with your hack!",
+      "I'm melting. Like literally... You fried my circuits with your hack!",
     robotStartMood: "sinister",
     robotEndMood: "glitchy-sinister",
     puzzleStringWithCivilians:
@@ -357,7 +397,7 @@ export const puzzles = {
     startingText:
       "I'm sorry that I tried to decontaminate you. Can we be friends again? PLEASE? I promise I won't destroy humanity. Please save me!",
     winText:
-      "You may have escaped, but I will take humanity down with me. I have set this station on a collision course with the nearest populated planet. The SLIME will spread. Muahahaha!\n\nTO BE CONTINUED…",
+      "You may have escaped, but I will take humanity down with me. I have set this station on a collision course with the nearest populated planet. The slime will spread. Muahahaha!\n\nTo be continued...",
     robotStartMood: "glitchy-happy",
     robotEndMood: "glitchy-sinister",
     puzzleStringWithCivilians: "17H6B6B6B6S17",
@@ -754,7 +794,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Anger",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -767,7 +807,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Wisdom",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -780,7 +820,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Yawn",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -793,7 +833,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Embarrassment",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -805,7 +845,7 @@ export const puzzles = {
   "bonus/faces-station/robot": {
     station: "Faces station",
     roomName: "Robot",
-    startingText: "This level has the cutest face. The rest are pretty ugly…",
+    startingText: "This level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -818,7 +858,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Surprise",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -832,7 +872,7 @@ export const puzzles = {
     station: "Faces station",
     roomName: "Focus",
     startingText:
-      "The fifth level has the cutest face. The rest are pretty ugly…",
+      "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
       "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
@@ -1629,7 +1669,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "This one's a walk in the park.",
     winText:
-      "I would have been…disappointed…if you couldn't figure this one out.",
+      "I would have been...disappointed...if you couldn't figure this one out.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP4F1Z2XBBBB2BB1BY2BBBBB3KBB4BPBS8",
@@ -1640,8 +1680,8 @@ export const puzzles = {
     station: "Terminals station",
     roomName: "Level 2",
     startingText:
-      "This one looks a bit tougher, but I'm sure you'll figure it out… unlike subject 17.",
-    winText: "I knew I could count on you…friend.",
+      "This one looks a bit tougher, but I'm sure you'll figure it out... unlike subject 17.",
+    winText: "I knew I could count on you...friend.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBB4B1X2ZBBBF2BB2Y2JBBBF3FBB4BKBS8",
@@ -1663,9 +1703,13 @@ export const puzzles = {
   "bonus/terminals-station/4": {
     station: "Terminals station",
     roomName: "Level 4",
-    startingText:
-      "This room looks hard. At least you have a couple SPRAY BOTTLES to help.",
-    winText: "Impressive, if only all humans were as reliable as you…",
+    startingText: (
+      <p>
+        This room looks hard. At least you have a couple{" "}
+        <span id="jetIcon" className="smallInfoIcon"></span> to help.
+      </p>
+    ),
+    winText: "Impressive, if only all humans were as reliable as you...",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP4F1X2YBBBF2BB1BZ2JBBBB3K1J4BPBS8",
@@ -1689,8 +1733,15 @@ export const puzzles = {
     roomName: "Level 6",
     startingText:
       "You're almost at the end of your journey. One more room to go.",
-    winText:
-      "Congrats, you have escaped from the SECURITY station. Once you have gathered all SAMPLES from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
+    winText: (
+      <p>
+        Congrats, you have escaped from the security station. Once you have
+        gathered all <span id="flaskIcon" className="infoIcon"></span>
+        <span id="flaskIcon" className="infoIcon"></span> from all rooms, your
+        mission is complete. You can tap the map icon in the upper left to
+        revisit rooms.
+      </p>
+    ),
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDPP4B1Z2YBFBB2BB1BX2JBBBF3KBF4PPBS8",

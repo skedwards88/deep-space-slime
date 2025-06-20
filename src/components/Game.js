@@ -579,7 +579,9 @@ function Game({
     ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
-        setCurrentMessage(`Tap me to get a hint!\n\n${gameState.startingText}`);
+        setCurrentMessage(
+          <p>Tap me to get a hint! {gameState.startingText}</p>,
+        );
         setCurrentBotMood("happy");
       }, hintWaitTime * 1000);
     }

@@ -1,3 +1,4 @@
+import React from "react";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {features, numColumns, numRows} from "./constants";
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
@@ -21,7 +22,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   // The space is an 'outer' space
   if (puzzle[index] === features.outer) {
     message =
-      "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
+      "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay inside the station.";
     return message;
   }
 
@@ -36,14 +37,24 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   // (and you aren't backtracking, which is already considered when calculating the validity)
   const hasBeenVisited = mainPath.includes(index);
   if (hasBeenVisited) {
-    message =
-      "Don't step on the SLIME! The only way to cross a SLIME space is to use a SPRAY BOTTLE to jump straight across the slime trail to a slime-free space.";
+    message = (
+      <p>
+        Don&apos;t step on the slime! The only way to cross the slime trail is
+        to use a <span id="jetIcon" className="smallInfoIcon"></span> to jump
+        straight across the slime to a slime-free space.
+      </p>
+    );
     return message;
   }
 
   // The index is a door and you don't have a key
   if (puzzle[index] === features.door && currentGameState.keyCount <= 0) {
-    message = "You need a CARD KEY for that!";
+    message = (
+      <p>
+        You need a <span id="keyIcon" className="smallInfoIcon"></span> for
+        that!
+      </p>
+    );
     return message;
   }
 
