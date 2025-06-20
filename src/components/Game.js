@@ -24,7 +24,6 @@ import {arraysMatchQ} from "../common/arraysMatchQ";
 import {
   getMaxFlaskCount,
   getMaxFlaskCountForCampaign,
-  getCollectedFlaskCount,
 } from "../logic/getMaxFlaskCount";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 
@@ -36,8 +35,8 @@ function handleMovement({
   setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
-  score,
-  setScore,
+  completedLevels,
+  setCompletedLevels,
   dispatchGameState,
 }) {
   if (validNext) {
@@ -46,9 +45,9 @@ function handleMovement({
       gameState.puzzle[index] === features.ship;
 
     if (isMovingToExit) {
-      let newScore = {...score};
-      newScore[gameState.puzzleID] = gameState.flaskCount;
-      setScore(newScore);
+      let newCompletedLevels = [...completedLevels];
+      newCompletedLevels.push(gameState.puzzleID);
+      setCompletedLevels(newCompletedLevels);
     }
 
     let newMessage;
@@ -67,29 +66,18 @@ function handleMovement({
         currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
 
       if (isAtEndOfCampaign) {
-        const collectedFlaskCount = getCollectedFlaskCount(score);
         const maxFlaskCountForCampaign =
           getMaxFlaskCountForCampaign(firstPuzzleId);
 
         newMessage = (
           <p>
             <p>
-              You collected {collectedFlaskCount} out of{" "}
+              You collected
               {maxFlaskCountForCampaign}{" "}
               <span id="flaskIcon" className="smallInfoIcon"></span> and
               unlocked bonus levels! Tap on the{" "}
               <span id="mapIcon" className="smallInfoIcon"></span> to open the
-              bonus levels
-              {collectedFlaskCount < maxFlaskCountForCampaign ? (
-                <span>
-                  {" "}
-                  or to revisit levels and collect all{" "}
-                  <span id="flaskIcon" className="smallInfoIcon"></span>
-                </span>
-              ) : (
-                ""
-              )}
-              .
+              bonus levels.
             </p>
             <p>
               Tap <strong>Share</strong> below to help spread the game! Follow
@@ -142,15 +130,14 @@ function handlePointerDown({
   dispatchGameState,
   confirmReset,
   setDisplay,
-
   validNext,
   gameState,
   setCurrentMessage,
   setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
-  score,
-  setScore,
+  completedLevels,
+  setCompletedLevels,
 }) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
@@ -169,8 +156,8 @@ function handlePointerDown({
         setCurrentBotMood,
         setHintWaitIsOver,
         setHintIndex,
-        score,
-        setScore,
+        completedLevels,
+        setCompletedLevels,
         dispatchGameState,
       });
     }
@@ -194,8 +181,8 @@ function handlePointerEnter({
   setCurrentBotMood,
   setHintWaitIsOver,
   setHintIndex,
-  score,
-  setScore,
+  completedLevels,
+  setCompletedLevels,
 }) {
   event.preventDefault();
   // Return early if this was triggered by the mouse entering but the mouse is not depressed
@@ -217,8 +204,8 @@ function handlePointerEnter({
       setCurrentBotMood,
       setHintWaitIsOver,
       setHintIndex,
-      score,
-      setScore,
+      completedLevels,
+      setCompletedLevels,
       dispatchGameState,
     });
   }
@@ -239,7 +226,8 @@ function PuzzleSquare({
   hintIndex,
   hasCivilian,
 }) {
-  const {gameState, dispatchGameState, score, setScore} = useGameContext();
+  const {gameState, dispatchGameState, completedLevels, setCompletedLevels} =
+    useGameContext();
 
   const {mouseIsActive, mainPath, validNextIndexes} = gameState;
 
@@ -281,8 +269,8 @@ function PuzzleSquare({
             setCurrentBotMood,
             setHintWaitIsOver,
             setHintIndex,
-            score,
-            setScore,
+            completedLevels,
+            setCompletedLevels,
           });
         },
       })}
@@ -303,8 +291,8 @@ function PuzzleSquare({
               setCurrentBotMood,
               setHintWaitIsOver,
               setHintIndex,
-              score,
-              setScore,
+              completedLevels,
+              setCompletedLevels,
             });
           },
         })}
@@ -320,7 +308,6 @@ function PuzzleSolvedButtons({
   setHintWaitIsOver,
   setCurrentMessage,
   setCurrentBotMood,
-  score,
 }) {
   const maxFlasks = getMaxFlaskCount(puzzle);
 
@@ -340,11 +327,7 @@ function PuzzleSolvedButtons({
   const shareButton = isAtEndOfCampaign ? (
     <Share
       appName="Deep Space Slime"
-      text={`I beat Deep Space Slime and collected ${getCollectedFlaskCount(
-        score,
-      )} out of ${getMaxFlaskCountForCampaign(
-        firstPuzzleId,
-      )} samples! Try it out:`}
+      text={`I beat Deep Space Slime! Try it out:`}
       url="https://deepspaceslime.com"
       buttonText="Share"
       className="textButton"
@@ -470,13 +453,8 @@ function Game({
   showInstallButton,
   installPromptEvent,
 }) {
-  const {
-    gameState,
-    dispatchGameState,
-    allGamePaths,
-    calculatingGamePaths,
-    score,
-  } = useGameContext();
+  const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
+    useGameContext();
 
   const {hintsRemaining, setHintsRemaining} = useShareContext();
 
@@ -672,7 +650,6 @@ function Game({
             setHintWaitIsOver={setHintWaitIsOver}
             setCurrentMessage={setCurrentMessage}
             setCurrentBotMood={setCurrentBotMood}
-            score={score}
           ></PuzzleSolvedButtons>
         )
       ) : (

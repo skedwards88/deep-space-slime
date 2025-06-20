@@ -3,9 +3,7 @@ import {puzzles} from "../logic/puzzles";
 import {useGameContext} from "./GameContextProvider";
 import {getLowestIncompletePuzzle} from "../logic/getLowestIncompletePuzzle";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
-import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
 import {firstPuzzleId, mapTypes} from "../logic/constants";
-import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 
 function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
   const {type, station, roomName, nextPuzzle} =
@@ -19,16 +17,10 @@ function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
     mapData.get(type).set(station, []);
   }
 
-  const maxFlaskCount = getMaxFlaskCount(
-    convertStringToPuzzle(
-      puzzles[puzzleStringWithCivilians].puzzleStringWithCivilians,
-    ),
-  );
-
   mapData
     .get(type)
     .get(station)
-    .push({roomName, puzzleID: puzzleStringWithCivilians, maxFlaskCount});
+    .push({roomName, puzzleID: puzzleStringWithCivilians});
 
   if (nextPuzzle) {
     assembleMap(nextPuzzle, mapData);
@@ -46,14 +38,14 @@ function TopLevelMapEntry({
   setTypeOnDisplay,
   setDisplay,
   dispatchGameState,
-  score,
+  completedLevels,
   campaignIsComplete,
 }) {
   let stationElements = [];
 
   let lowestUnsolvedCampaignRoom;
   if (!campaignIsComplete && topLevelKey === mapTypes.campaign) {
-    lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(score);
+    lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(completedLevels);
   }
 
   if (typeOnDisplay === topLevelKey) {
@@ -67,7 +59,7 @@ function TopLevelMapEntry({
           setStationOnDisplay={setStationOnDisplay}
           setDisplay={setDisplay}
           dispatchGameState={dispatchGameState}
-          score={score}
+          completedLevels={completedLevels}
           campaignIsComplete={campaignIsComplete}
           lowestUnsolvedCampaignRoom={lowestUnsolvedCampaignRoom}
         ></StationLevelMapEntry>,
@@ -96,31 +88,14 @@ function StationLevelMapEntry({
   setStationOnDisplay,
   setDisplay,
   dispatchGameState,
-  score,
+  completedLevels,
   campaignIsComplete,
   lowestUnsolvedCampaignRoom,
 }) {
-  const maxFlasksForStation = roomDatas.reduce(
-    (currentFlaskCount, puzzleInfo) =>
-      currentFlaskCount + puzzleInfo.maxFlaskCount,
-    0,
-  );
-
-  const acquiredFlasksForStation = roomDatas.reduce(
-    (acquiredFlaskCount, puzzleInfo) =>
-      acquiredFlaskCount + (score[puzzleInfo.puzzleID] || 0),
-    0,
-  );
-
-  const remainingFlasksForStation = Math.max(
-    0,
-    maxFlasksForStation - acquiredFlasksForStation,
-  );
-
   let roomElements = [];
   if (stationOnDisplay === stationName) {
     const lowestUnsolvedIndex = roomDatas.findIndex(
-      (roomData) => !(roomData.puzzleID in score),
+      (roomData) => !completedLevels.includes(roomData.puzzleID),
     );
 
     roomElements = roomDatas.map((roomData, index) => (
@@ -128,10 +103,9 @@ function StationLevelMapEntry({
         key={`${stationName}-${index}`}
         roomName={roomData.roomName}
         puzzleID={roomData.puzzleID}
-        maxFlaskCount={roomData.maxFlaskCount}
         setDisplay={setDisplay}
         dispatchGameState={dispatchGameState}
-        score={score}
+        completedLevels={completedLevels}
         campaignIsComplete={campaignIsComplete}
         lowestUnsolvedCampaignRoom={lowestUnsolvedCampaignRoom}
         isLowestUnsolvedOrLower={index <= lowestUnsolvedIndex}
@@ -146,22 +120,6 @@ function StationLevelMapEntry({
         onClick={() => setStationOnDisplay(stationName)}
       >
         {stationName}
-        <div className="mapScore">
-          {acquiredFlasksForStation ? (
-            <div className="mapScore">
-              {acquiredFlasksForStation} <div className="fullFlask"></div>
-            </div>
-          ) : (
-            <></>
-          )}
-          {remainingFlasksForStation ? (
-            <div className="mapScore">
-              {remainingFlasksForStation} <div className="emptyFlask"></div>
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
       </button>
       {roomElements}
     </div>
@@ -171,33 +129,25 @@ function StationLevelMapEntry({
 function RoomLevelMapEntry({
   roomName,
   puzzleID,
-  maxFlaskCount,
   setDisplay,
   dispatchGameState,
-  score,
+  completedLevels,
   campaignIsComplete,
   lowestUnsolvedCampaignRoom,
   isLowestUnsolvedOrLower,
 }) {
   // The room is available if:
-  // - you previously solved it (i.e. a score is recorded)
+  // - you previously solved it (i.e. it is in the completedLevels list)
   // - the campaign is not complete AND this is the lowest unsolved level in the campaign
   // - the campaign is complete AND it is the lowest unsolved level of a bonus station
   let roomIsAvailable = false;
-  if (score[puzzleID] !== undefined) {
+  if (completedLevels.includes(puzzleID)) {
     roomIsAvailable = true;
   } else if (!campaignIsComplete && puzzleID === lowestUnsolvedCampaignRoom) {
     roomIsAvailable = true;
   } else if (campaignIsComplete && isLowestUnsolvedOrLower) {
     roomIsAvailable = true;
   }
-
-  const flaskIconsForRoom = Array.from({length: maxFlaskCount}, (_, index) => (
-    <div
-      key={index}
-      className={index < score[puzzleID] ? "fullFlask" : "emptyFlask"}
-    ></div>
-  ));
 
   return (
     <button
@@ -209,13 +159,12 @@ function RoomLevelMapEntry({
       }}
     >
       <div>{roomName}</div>
-      <div className="mapScore">{flaskIconsForRoom}</div>
     </button>
   );
 }
 
 export default function GameMap({setDisplay}) {
-  const {gameState, dispatchGameState, score} = useGameContext();
+  const {gameState, dispatchGameState, completedLevels} = useGameContext();
 
   // If current station is custom, then the map will be fully collapsed
   const currentStation = gameState.station;
@@ -226,7 +175,7 @@ export default function GameMap({setDisplay}) {
 
   const [typeOnDisplay, setTypeOnDisplay] = React.useState(currentStationType);
 
-  const campaignIsComplete = campaignIsCompleteQ(score);
+  const campaignIsComplete = campaignIsCompleteQ(completedLevels);
 
   // mapData is a map (keys = type names) of maps (keys = station names) of arrays of objects (containing room data)
   const mapData = assembleMap(firstPuzzleId);
@@ -244,7 +193,7 @@ export default function GameMap({setDisplay}) {
         setTypeOnDisplay={setTypeOnDisplay}
         setDisplay={setDisplay}
         dispatchGameState={dispatchGameState}
-        score={score}
+        completedLevels={completedLevels}
         campaignIsComplete={campaignIsComplete}
       ></TopLevelMapEntry>,
     );

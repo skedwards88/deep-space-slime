@@ -25,10 +25,3 @@ export function getMaxFlaskCountForCampaign(firstPuzzleId) {
 
   return accumulatedFlasks;
 }
-
-export function getCollectedFlaskCount(score) {
-  return Object.values(score).reduce(
-    (sum, currentScore) => sum + currentScore,
-    0,
-  );
-}
