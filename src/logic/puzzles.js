@@ -19,7 +19,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: (
       <p>
-        Ooh look, a sample (<span id="flaskIcon" className="infoIcon"></span>)!
+        Ooh look, a sample (<span id="flaskIcon" className="smallInfoIcon"></span>)!
         Can you grab it on your way to the next room?
       </p>
     ),
@@ -1736,8 +1736,8 @@ export const puzzles = {
     winText: (
       <p>
         Congrats, you have escaped from the security station. Once you have
-        gathered all <span id="flaskIcon" className="infoIcon"></span>
-        <span id="flaskIcon" className="infoIcon"></span> from all rooms, your
+        gathered all <span id="flaskIcon" className="smallInfoIcon"></span>
+        <span id="flaskIcon" className="smallInfoIcon"></span> from all rooms, your
         mission is complete. You can tap the map icon in the upper left to
         revisit rooms.
       </p>
