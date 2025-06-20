@@ -88,7 +88,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.flaskCount !== getMaxFlaskCount(puzzle)
   ) {
     message =
-      "I won't let you out until you bring me all of the flasks. I mean...please collect all of the flasks. It is essential to the future of humanity.";
+      "I won't let you out until you bring me all of the samples. I mean...please collect all of the samples. It is essential to the future of humanity.";
     return message;
   }
 
