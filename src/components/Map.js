@@ -73,7 +73,11 @@ function TopLevelMapEntry({
     <div>
       <button
         className="mapTypeButton textButton"
-        onClick={() => setTypeOnDisplay(topLevelKey)}
+        onClick={() =>
+          typeOnDisplay === topLevelKey
+            ? setTypeOnDisplay(undefined)
+            : setTypeOnDisplay(topLevelKey)
+        }
         disabled={bonusIsLocked}
       >
         {topLevelKey}
@@ -129,7 +133,11 @@ function StationLevelMapEntry({
       <button
         className="mapStationButton textButton"
         disabled={!stationIsAvailable}
-        onClick={() => setStationOnDisplay(stationName)}
+        onClick={() =>
+          stationOnDisplay === stationName
+            ? setStationOnDisplay(undefined)
+            : setStationOnDisplay(stationName)
+        }
       >
         {stationName}
         {!stationIsAvailable ? (
