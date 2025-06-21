@@ -124,8 +124,10 @@ function StationLevelMapEntry({
     ));
   }
 
-  const stationIsAvailable = roomDatas.some((roomData) =>
-    completedLevels.includes(roomData.puzzleID),
+  const stationIsAvailable = roomDatas.some(
+    (roomData) =>
+      completedLevels.includes(roomData.puzzleID) ||
+      roomData.puzzleID === firstPuzzleId,
   );
 
   return (
