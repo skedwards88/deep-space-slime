@@ -67,14 +67,21 @@ function TopLevelMapEntry({
     }
   }
 
+  const bonusIsLocked =
+    !campaignIsComplete && topLevelKey !== mapTypes.campaign;
   return (
     <div>
       <button
         className="mapTypeButton textButton"
         onClick={() => setTypeOnDisplay(topLevelKey)}
-        disabled={!campaignIsComplete && topLevelKey !== mapTypes.campaign}
+        disabled={bonusIsLocked}
       >
         {topLevelKey}
+        {bonusIsLocked ? (
+          <small>Complete the campaign to unlock the bonus levels</small>
+        ) : (
+          <></>
+        )}
       </button>
       {stationElements}
     </div>
@@ -113,13 +120,23 @@ function StationLevelMapEntry({
     ));
   }
 
+  const stationIsAvailable = roomDatas.some((roomData) =>
+    completedLevels.includes(roomData.puzzleID),
+  );
+
   return (
     <div className="mapStationBlock">
       <button
         className="mapStationButton textButton"
+        disabled={!stationIsAvailable}
         onClick={() => setStationOnDisplay(stationName)}
       >
         {stationName}
+        {!stationIsAvailable ? (
+          <small>Complete the earlier stations to unlock this station</small>
+        ) : (
+          <></>
+        )}
       </button>
       {roomElements}
     </div>
@@ -159,6 +176,11 @@ function RoomLevelMapEntry({
       }}
     >
       <div>{roomName}</div>
+      {!roomIsAvailable ? (
+        <small>Complete the earlier levels to unlock this level</small>
+      ) : (
+        <></>
+      )}
     </button>
   );
 }

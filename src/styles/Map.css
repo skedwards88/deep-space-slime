@@ -22,7 +22,6 @@
 .mapTypeButton {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 90vw;
 }
 
@@ -35,13 +34,17 @@
 .mapStationButton {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 83vw;
 }
 
 .mapRoomButton {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 75vw;
+}
+
+.mapRoomButton > small,
+.mapStationButton > small,
+.mapTypeButton > small {
+  padding-left: 3vw;
 }
