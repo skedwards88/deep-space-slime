@@ -6,6 +6,9 @@
 #map button {
   text-align: left;
   margin: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 #map button:disabled {
@@ -20,8 +23,6 @@
 }
 
 .mapTypeButton {
-  display: flex;
-  align-items: center;
   width: 90vw;
 }
 
@@ -32,19 +33,15 @@
 }
 
 .mapStationButton {
-  display: flex;
-  align-items: center;
   width: 83vw;
 }
 
 .mapRoomButton {
-  display: flex;
-  align-items: center;
   width: 75vw;
 }
 
 .mapRoomButton > small,
 .mapStationButton > small,
 .mapTypeButton > small {
-  padding-left: 3vw;
+  font-weight: lighter;
 }
