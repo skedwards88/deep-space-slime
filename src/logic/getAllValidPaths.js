@@ -64,6 +64,8 @@ function appendNext({
     }
 
     if (
+      (puzzle[validIndex] === features.exit ||
+        puzzle[validIndex] === features.ship) &&
       exitUnlockedQ({
         numberCount: pathState.numberCount,
         maxNumber,
@@ -71,9 +73,7 @@ function appendNext({
         puzzle,
         currentCivilians:
           pathState.civilianHistory[pathState.civilianHistory.length - 1],
-      }) &&
-      (puzzle[validIndex] === features.exit ||
-        puzzle[validIndex] === features.ship)
+      })
     ) {
       completePaths.push([...pathState.mainPath, validIndex]);
     } else if (
