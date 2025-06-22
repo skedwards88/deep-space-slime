@@ -54,7 +54,25 @@ export function gameReducer(currentGameState, payload) {
       puzzle,
     });
 
-    return stateWithExtendedPath;
+    // Get the new valid indexes
+    const newValidNextIndexes = getValidNextIndexes({
+      mainPath: stateWithExtendedPath.mainPath,
+      puzzle: puzzle,
+      numColumns,
+      numRows,
+      hasKey: stateWithExtendedPath.keyCount > 0,
+      hasJet: stateWithExtendedPath.jetCount > 0,
+      numberCount: stateWithExtendedPath.numberCount,
+      maxNumber: currentGameState.maxNumber,
+      currentCivilians:
+        stateWithExtendedPath.civilianHistory[
+          stateWithExtendedPath.civilianHistory.length - 1
+        ],
+      flaskCount: stateWithExtendedPath.flaskCount,
+      allowStart: true,
+    });
+
+    return {...stateWithExtendedPath, validNextIndexes: newValidNextIndexes};
   }
   if (payload.action === "resetPuzzle") {
     const puzzle = currentGameState.puzzle;
@@ -114,6 +132,23 @@ export function gameReducer(currentGameState, payload) {
         currentGameState: {...updatedState},
         puzzle,
       });
+
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: updatedState.mainPath,
+        puzzle: puzzle,
+        numColumns,
+        numRows,
+        hasKey: updatedState.keyCount > 0,
+        hasJet: updatedState.jetCount > 0,
+        numberCount: updatedState.numberCount,
+        maxNumber: currentGameState.maxNumber,
+        currentCivilians:
+          updatedState.civilianHistory[updatedState.civilianHistory.length - 1],
+        flaskCount: updatedState.flaskCount,
+        allowStart: true,
+      });
+
+      updatedState = {...updatedState, validNextIndexes: newValidNextIndexes};
     }
 
     return updatedState;

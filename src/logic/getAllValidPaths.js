@@ -85,8 +85,30 @@ function appendNext({
         puzzle,
         allowStart: false,
       });
+
+      // Get the new valid indexes
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: extendedPathState.mainPath,
+        puzzle: puzzle,
+        numColumns,
+        numRows,
+        hasKey: extendedPathState.keyCount > 0,
+        hasJet: extendedPathState.jetCount > 0,
+        numberCount: extendedPathState.numberCount,
+        maxNumber,
+        currentCivilians:
+          extendedPathState.civilianHistory[
+            extendedPathState.civilianHistory.length - 1
+          ],
+        flaskCount: extendedPathState.flaskCount,
+        allowStart: false,
+      });
+
       appendNext({
-        pathState: extendedPathState,
+        pathState: {
+          ...extendedPathState,
+          validNextIndexes: newValidNextIndexes,
+        },
         puzzle,
         numColumns,
         numRows,
