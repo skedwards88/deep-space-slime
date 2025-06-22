@@ -17,106 +17,93 @@ export function getAllValidPaths({
 
   // These will be mutated during the search
   const completePaths = [];
+  const visitedIndexes = new Set([startIndex]);
+  const pathStateHistory = [
+    {
+      mainPath: [startIndex],
+      flaskCount: 0,
+      jetCount: 0,
+      keyCount: 0,
+      numberCount: 0,
+      civilianHistory: [startingCivilians],
+    },
+  ];
 
-  const startingValidNextIndexes = getValidNextIndexes({
-    mainPath: [startIndex],
-    puzzle,
-    currentCivilians: [startingCivilians],
-    numColumns,
-    numRows,
-    maxNumber,
-    allowStart: false,
-    flaskCount: 0,
-  });
+  function searchPath() {
+    if (completePaths.length >= maxPathsToFind) {
+      console.log(`EARLY 1`);
+      return;
+    }
 
-  function appendNext({
-    pathState,
-    puzzle,
-    numColumns,
-    numRows,
-    maxNumber,
-    maxPathsToFind = Infinity,
-  }) {
-    for (const validIndex of pathState.validNextIndexes) {
+    const currentPathState = pathStateHistory[pathStateHistory.length - 1];
+
+    const validNextIndexes = getValidNextIndexes({
+      mainPath: currentPathState.mainPath,
+      flaskCount: currentPathState.flaskCount,
+      hasKey: currentPathState.keyCount > 0,
+      hasJet: currentPathState.jetCount > 0,
+      numberCount: currentPathState.numberCount,
+      currentCivilians:
+        currentPathState.civilianHistory[
+          currentPathState.civilianHistory.length - 1
+        ],
+      // These are constant every time
+      puzzle,
+      maxNumber,
+      numColumns,
+      numRows,
+      allowStart: false,
+    });
+
+    for (const nextIndex of validNextIndexes) {
       if (completePaths.length >= maxPathsToFind) {
+        console.log(`EARLY 2`);
         break;
       }
 
+      // Don't revisit a space
+      if (visitedIndexes.has(nextIndex)) {
+        continue;
+      }
+
       if (
-        (puzzle[validIndex] === features.exit ||
-          puzzle[validIndex] === features.ship) &&
+        (puzzle[nextIndex] === features.exit ||
+          puzzle[nextIndex] === features.ship) &&
         exitUnlockedQ({
-          numberCount: pathState.numberCount,
-          maxNumber,
-          flaskCount: pathState.flaskCount,
-          puzzle,
+          numberCount: currentPathState.numberCount,
+          flaskCount: currentPathState.flaskCount,
           currentCivilians:
-            pathState.civilianHistory[pathState.civilianHistory.length - 1],
+            currentPathState.civilianHistory[
+              currentPathState.civilianHistory.length - 1
+            ],
+          // These are constant every time
+          maxNumber,
+          puzzle,
         })
       ) {
-        completePaths.push([...pathState.mainPath, validIndex]);
-      } else if (
-        validIndex !== pathState.mainPath[pathState.mainPath.length - 2]
-      ) {
+        // Clone and record the path if it is complete
+        completePaths.push([...currentPathState.mainPath, nextIndex]);
+      } else {
+        // Extend the path, do the search on that new path, then step back for earlier branches
         const extendedPathState = updateStateWithExtension({
-          index: validIndex,
-          currentGameState: pathState,
+          index: nextIndex,
+          currentGameState: currentPathState,
           puzzle,
           allowStart: false,
         });
 
-        // Get the new valid indexes
-        const newValidNextIndexes = getValidNextIndexes({
-          mainPath: extendedPathState.mainPath,
-          puzzle: puzzle,
-          numColumns,
-          numRows,
-          hasKey: extendedPathState.keyCount > 0,
-          hasJet: extendedPathState.jetCount > 0,
-          numberCount: extendedPathState.numberCount,
-          maxNumber,
-          currentCivilians:
-            extendedPathState.civilianHistory[
-              extendedPathState.civilianHistory.length - 1
-            ],
-          flaskCount: extendedPathState.flaskCount,
-          allowStart: false,
-        });
+        visitedIndexes.add(nextIndex);
+        pathStateHistory.push(extendedPathState);
 
-        appendNext({
-          pathState: {
-            ...extendedPathState,
-            validNextIndexes: newValidNextIndexes,
-          },
-          puzzle,
-          numColumns,
-          numRows,
-          maxNumber,
-          maxPathsToFind,
-        });
+        searchPath();
+
+        pathStateHistory.pop();
+        visitedIndexes.delete(nextIndex);
       }
     }
   }
 
-  appendNext({
-    pathState: {
-      mainPath: [startIndex],
-      numColumns,
-      numRows,
-      flaskCount: 0,
-      keyCount: 0,
-      jetCount: 0,
-      numberCount: 0,
-      maxNumber,
-      validNextIndexes: startingValidNextIndexes,
-      civilianHistory: [startingCivilians],
-    },
-    puzzle,
-    numColumns,
-    numRows,
-    maxNumber,
-    maxPathsToFind,
-  });
+  searchPath();
 
   return completePaths;
 }
