@@ -8,7 +8,7 @@ export function getAllValidPaths({
   startingCivilians,
   numColumns,
   numRows,
-  maxPathsToFind = Infinity,
+  maxPathsToFind = 100, // Setting this too high (e.g. >1000000) will hit a memory limit
 }) {
   const startIndex = puzzle.indexOf(features.start);
 
