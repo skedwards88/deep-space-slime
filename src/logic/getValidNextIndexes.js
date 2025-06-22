@@ -28,9 +28,8 @@ export function getValidNextIndexes({
   //   - key
   //   - jet
   //   - portal
-  //   - ship
   //   - door, if you have a key
-  //   - exit, if all numbers found + if all civilians on pods + all flasks collected
+  //   - exit/ship, if all numbers found + if all civilians on pods + all flasks collected
   //   - next number
   //   - on the opposite side of a visited space, if you have a jet and the resulting space isn't a pod and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
@@ -108,14 +107,13 @@ export function getValidNextIndexes({
         feature === features.flask ||
         feature === features.key ||
         feature === features.jet ||
-        feature === features.portal ||
-        feature === features.ship
+        feature === features.portal
       ) {
         validIndexes.push(adjacentIndex);
       } else if (feature === features.door && hasKey) {
         validIndexes.push(adjacentIndex);
       } else if (
-        feature === features.exit &&
+        (feature === features.exit || feature === features.ship) &&
         exitUnlockedQ({
           numberCount,
           maxNumber,
