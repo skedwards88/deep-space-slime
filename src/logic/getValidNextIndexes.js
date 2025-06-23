@@ -88,12 +88,16 @@ export function getValidNextIndexes({
   });
 
   for (const adjacentIndex of adjacentIndexes) {
+    const feature = puzzle[adjacentIndex];
+
+    if (feature === features.outer) {
+      continue;
+    }
+
     // Don't add an adjacent index if you already accessed it
     if (mainPath.includes(adjacentIndex)) {
       continue;
     }
-
-    const feature = puzzle[adjacentIndex];
 
     const hasCivilian = currentCivilians.includes(adjacentIndex);
 
@@ -109,9 +113,9 @@ export function getValidNextIndexes({
 
     if (!civilianPushIsValid) {
       continue;
-    } else if (feature === features.outer) {
-      continue;
-    } else if (
+    }
+
+    if (
       feature === features.basic ||
       feature === features.flask ||
       feature === features.key ||
