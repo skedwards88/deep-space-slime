@@ -18,7 +18,7 @@ export function getAllValidPaths({
   const startingValidNextIndexes = getValidNextIndexes({
     mainPath: [startIndex],
     puzzle,
-    currentCivilians: [startingCivilians],
+    currentCivilians: startingCivilians,
     numColumns,
     numRows,
     maxNumber,
