@@ -30,7 +30,6 @@ export function getAllValidPaths({
 
   function searchPath() {
     if (completePaths.length >= maxPathsToFind) {
-      // console.log(`EARLY 1`);
       return;
     }
 
@@ -52,11 +51,11 @@ export function getAllValidPaths({
       numColumns,
       numRows,
       allowStart: false,
+      allowBacktracking: false,
     });
 
     for (const nextIndex of validNextIndexes) {
       if (completePaths.length >= maxPathsToFind) {
-        // console.log(`EARLY 2`);
         break;
       }
 
