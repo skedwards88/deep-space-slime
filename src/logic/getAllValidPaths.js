@@ -1,7 +1,6 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {features} from "./constants";
-import {exitUnlockedQ} from "./exitUnlockedQ";
 
 export function getAllValidPaths({
   puzzle,
@@ -31,7 +30,7 @@ export function getAllValidPaths({
 
   function searchPath() {
     if (completePaths.length >= maxPathsToFind) {
-      console.log(`EARLY 1`);
+      // console.log(`EARLY 1`);
       return;
     }
 
@@ -57,7 +56,7 @@ export function getAllValidPaths({
 
     for (const nextIndex of validNextIndexes) {
       if (completePaths.length >= maxPathsToFind) {
-        console.log(`EARLY 2`);
+        // console.log(`EARLY 2`);
         break;
       }
 
@@ -67,19 +66,8 @@ export function getAllValidPaths({
       }
 
       if (
-        (puzzle[nextIndex] === features.exit ||
-          puzzle[nextIndex] === features.ship) &&
-        exitUnlockedQ({
-          numberCount: currentPathState.numberCount,
-          flaskCount: currentPathState.flaskCount,
-          currentCivilians:
-            currentPathState.civilianHistory[
-              currentPathState.civilianHistory.length - 1
-            ],
-          // These are constant every time
-          maxNumber,
-          puzzle,
-        })
+        puzzle[nextIndex] === features.exit ||
+        puzzle[nextIndex] === features.ship
       ) {
         // Clone and record the path if it is complete
         completePaths.push([...currentPathState.mainPath, nextIndex]);
