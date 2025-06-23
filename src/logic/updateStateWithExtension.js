@@ -1,4 +1,3 @@
-import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {features, numColumns, numRows} from "./constants";
 import {pushCivilians} from "./pushCivilians";
@@ -12,12 +11,7 @@ import {pushCivilians} from "./pushCivilians";
 // If the index is a jet, acquire the jet.
 // If the index was only accessible with a jet, lose a jet.
 // Push any civilians
-export function updateStateWithExtension({
-  index,
-  currentGameState,
-  puzzle,
-  allowStart = true,
-}) {
+export function updateStateWithExtension({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
@@ -79,23 +73,8 @@ export function updateStateWithExtension({
       ? currentGameState.flaskCount + 1
       : currentGameState.flaskCount;
 
-  const newValidNextIndexes = getValidNextIndexes({
-    mainPath: newMainPath,
-    puzzle: puzzle,
-    numColumns,
-    numRows,
-    hasKey: newKeyCount > 0,
-    hasJet: newJetCount > 0,
-    numberCount: newNumberCount,
-    maxNumber: currentGameState.maxNumber,
-    allowStart,
-    currentCivilians: newCivilians,
-    flaskCount: newFlaskCount,
-  });
-
   return {
     ...currentGameState,
-    validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     flaskCount: newFlaskCount,
     jetCount: newJetCount,
