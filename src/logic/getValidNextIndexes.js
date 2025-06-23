@@ -150,6 +150,21 @@ export function getValidNextIndexes({
 
         const nextAdjacentFeature = puzzle[nextAdjacentIndex];
 
+        // Can't jump to locked exit
+        if (
+          (nextAdjacentFeature == features.exit ||
+            nextAdjacentFeature == features.ship) &&
+          !exitUnlockedQ({
+            numberCount,
+            maxNumber,
+            currentCivilians,
+            puzzle,
+            flaskCount,
+          })
+        ) {
+          continue;
+        }
+
         if (
           nextAdjacentIndex === undefined ||
           nextAdjacentFeature === features.outer ||
