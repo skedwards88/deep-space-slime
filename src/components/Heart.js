@@ -43,7 +43,10 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
           on GitHub or email SECTgames@gmail.com.
         </p>
         <hr></hr>
-        <a href="./privacy.html">Privacy policy</a>
+        <a href="./privacy.html" className="blockElement">
+          Privacy policy
+        </a>
+        <small>tl;dr: We collect anonymous data about game play</small>
       </div>
       <button className="textButton" onClick={() => setDisplay("game")}>
         Close

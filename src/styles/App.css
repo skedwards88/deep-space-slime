@@ -566,6 +566,10 @@ button.feature {
   align-self: center;
 }
 
+.blockElement {
+  display: block;
+}
+
 /* Large screen, landscape */
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
   html {
