@@ -158,21 +158,11 @@ export function validateCustomPuzzle({
     maxPathsToFind,
   });
   const numSolutions = solutions.length;
+
   if (numSolutions === 0) {
-    const numberFlasks = puzzleWithCivilians.filter(
-      (feature) => feature === features.flask,
-    ).length;
     return {
       isValid: false,
-      message:
-        numberFlasks === 0 ? (
-          "Your puzzle must have at least 1 solution."
-        ) : (
-          <p>
-            Your puzzle must have at least 1 solution that collects all{" "}
-            <span id="flaskIcon" className="smallInfoIcon"></span>
-          </p>
-        ),
+      message: "Your puzzle must have at least 1 solution.",
     };
   }
 
@@ -180,9 +170,9 @@ export function validateCustomPuzzle({
     isValid: true,
     message: (
       <p>
-        {`There is at least ${maxPathsToFind} solution that collects all flasks.`}{" "}
-        Click the <span id="eyeIcon" className="smallInfoIcon"></span> to see
-        all solutions.
+        {`There is at least 1 solution.`} Click the{" "}
+        <span id="eyeIcon" className="smallInfoIcon"></span> to see all
+        solutions.
       </p>
     ),
   };

@@ -84,11 +84,11 @@ function Pathfinder({setDisplay}) {
         ) : (
           <div id="message">{`${
             numSolutions === 1
-              ? `There is ${numSolutions} solution that collects`
+              ? `There is ${numSolutions} solution.`
               : `There are ${
                   numSolutions >= maxPathsToFind ? "at least " : ""
-                }${numSolutions} solutions that collect`
-          } all flasks.${
+                }${numSolutions} solutions.`
+          }${
             hasPortals && numSolutions > 1
               ? " Solutions with portal direction reversed will look identical."
               : ""
