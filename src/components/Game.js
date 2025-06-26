@@ -485,7 +485,7 @@ function Game({
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 10; // seconds
+  const hintWaitTime = 1; // seconds
 
   const [hintIndex, setHintIndex] = React.useState(undefined);
 
@@ -557,8 +557,13 @@ function Game({
     ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
+        // <br> elements to get the spacing to work when starting text is <p>
         setCurrentMessage(
-          <p>Tap me to get a hint! {gameState.startingText}</p>,
+          <>
+            Tap me to get a hint!<br></br>
+            <br></br>
+            {gameState.startingText}
+          </>,
         );
         setCurrentBotMood("happy");
       }, hintWaitTime * 1000);
