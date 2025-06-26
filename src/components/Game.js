@@ -485,7 +485,7 @@ function Game({
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
-  const hintWaitTime = 1; // seconds
+  const hintWaitTime = 10; // seconds
 
   const [hintIndex, setHintIndex] = React.useState(undefined);
 
