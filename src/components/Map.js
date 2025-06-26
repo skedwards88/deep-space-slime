@@ -235,7 +235,7 @@ export default function GameMap({setDisplay}) {
     <div id="map">
       <button
         onClick={() => setDisplay("game")}
-        className="mapTypeButton textButton"
+        className="mapTypeButton textButton sticky"
       >
         Return to current room
       </button>

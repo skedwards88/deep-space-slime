@@ -8,7 +8,6 @@
   margin: 7px;
   display: flex;
   flex-direction: column;
-  align-items: left;
 }
 
 #map button:disabled {
@@ -20,6 +19,11 @@
   flex-direction: column;
   grid-template-columns: 1fr auto;
   align-items: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 10px;
 }
 
 .mapTypeButton {
