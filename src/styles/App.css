@@ -165,7 +165,7 @@ button:disabled {
   grid-area: botFace;
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: calc(80%);
+  background-size: 80%;
   width: calc(var(--square-size) * 2);
   min-height: calc(var(--square-size) * 2);
   background-color: black;
@@ -181,20 +181,23 @@ button:disabled {
   background-image: url("../images/icons/bot-sinister.svg");
 }
 
+/* Safari has a bug where the background-size isn't respected
+if you change the background-image during animation.
+Using a pseudo element and changing the opacity works instead.
+*/
 #botFace.idea {
-  background-image: url("../images/icons/bot-idea.svg");
-  animation: idea 1s 3;
+  position: relative;
 }
 
-@keyframes idea {
-  0%,
-  100% {
-    background-image: url("../images/icons/bot-smile.svg");
-  }
-
-  50% {
-    background-image: url("../images/icons/bot-idea.svg");
-  }
+#botFace.idea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/icons/bot-idea.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: blink 1s step-start 3;
 }
 
 #botFace.glitchy-sinister,
