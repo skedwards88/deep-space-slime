@@ -124,11 +124,18 @@ function StationLevelMapEntry({
     ));
   }
 
-  const stationIsAvailable = roomDatas.some(
-    (roomData) =>
-      completedLevels.includes(roomData.puzzleID) ||
-      roomData.puzzleID === firstPuzzleId,
-  );
+  let stationIsAvailable;
+  if (campaignIsComplete) {
+    // If the campaign is complete, all bonus levels
+    // and all campaign levels are unlocked
+    stationIsAvailable = true;
+  } else {
+    stationIsAvailable = roomDatas.some(
+      (roomData) =>
+        completedLevels.includes(roomData.puzzleID) ||
+        roomData.puzzleID === firstPuzzleId,
+    );
+  }
 
   return (
     <div className="mapStationBlock">
