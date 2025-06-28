@@ -28,10 +28,10 @@ small {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
-button,
-#buttonLink {
+button {
   all: unset;
   text-decoration: none;
   text-align: center;

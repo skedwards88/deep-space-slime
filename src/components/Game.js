@@ -7,13 +7,7 @@ import {
   convertPuzzleAndCiviliansToPuzzle,
   convertPuzzleAndCiviliansToString,
 } from "../logic/convertPuzzleString";
-import {
-  features,
-  numColumns,
-  numRows,
-  mapTypes,
-  firstPuzzleId,
-} from "../logic/constants";
+import {features, numColumns, numRows, mapTypes} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
@@ -21,10 +15,7 @@ import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
-import {
-  getMaxFlaskCount,
-  getMaxFlaskCountForCampaign,
-} from "../logic/getMaxFlaskCount";
+import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 
 function handleMovement({
@@ -66,16 +57,10 @@ function handleMovement({
         currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
 
       if (isAtEndOfCampaign) {
-        const maxFlaskCountForCampaign =
-          getMaxFlaskCountForCampaign(firstPuzzleId);
-
         newMessage = (
           <p>
             <p>
-              You collected
-              {maxFlaskCountForCampaign}{" "}
-              <span id="flaskIcon" className="smallInfoIcon"></span> and
-              unlocked bonus levels! Tap on the{" "}
+              You completed the campaign and unlocked bonus levels! Tap on the{" "}
               <span id="mapIcon" className="smallInfoIcon"></span> to open the
               bonus levels.
             </p>
@@ -346,7 +331,7 @@ function PuzzleSolvedButtons({
         dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
-      {isAtEndOfCampaign ? "Bonus Level" : "Next Level"}
+      {isAtEndOfCampaign ? "Bonus" : "Next Level"}
     </button>
   ) : (
     <></>
