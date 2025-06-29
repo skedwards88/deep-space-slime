@@ -8,10 +8,8 @@ jest.mock("./puzzles", () => ({
     mockedNoCivilians: {
       station: "Stasis pod",
       roomName: "2",
-      startingText:
-        "Some starting text stasis 2",
-      winText:
-        "Some win text stasis 2",
+      startingText: "Some starting text stasis 2",
+      winText: "Some win text stasis 2",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -34,10 +32,8 @@ jest.mock("./puzzles", () => ({
     mockedCivilians: {
       station: "Stasis pod",
       roomName: "2",
-      startingText:
-        "Some starting text stasis 2",
-      winText:
-        "Some win text stasis 2",
+      startingText: "Some starting text stasis 2",
+      winText: "Some win text stasis 2",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "1BCB13EBB4B1B4BBF4B6S17",

@@ -20,7 +20,8 @@ export const puzzles = {
     startingText: (
       <p>
         Ooh look, a power cell (
-        <span id="powerIcon" className="smallInfoIcon"></span>)! You&apos;ll need to collect it in order to open the exit.
+        <span id="powerIcon" className="smallInfoIcon"></span>)! You&apos;ll
+        need to collect it in order to open the exit.
       </p>
     ),
     winText:
@@ -356,8 +357,7 @@ export const puzzles = {
     station: "Security station",
     roomName: "Level 7",
     startingText: "You're almost finished...",
-    winText:
-      "Congrats, you have escaped from the security station.",
+    winText: "Congrats, you have escaped from the security station.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4PBF4WBX4PVB4ZJP4BYB4FSP9",
@@ -367,8 +367,7 @@ export const puzzles = {
   "campaign/core-station/entry": {
     station: "Core station",
     roomName: "Entry",
-    startingText:
-      "Great job! You are almost done with your mission.",
+    startingText: "Great job! You are almost done with your mission.",
     winText:
       "Please proceed to the FINAL station for decontamination and a fun surprise!",
     robotStartMood: "happy",
