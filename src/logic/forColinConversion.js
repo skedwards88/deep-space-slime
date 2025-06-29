@@ -52,7 +52,7 @@ export function getPuzzlesForColin({
   robotEndMood,
   robotStartMood,
 }) {
-  return urls.map((url) =>
+  const puzzles = urls.map((url) =>
     getPuzzleForColin({
       url,
       type,
@@ -63,6 +63,15 @@ export function getPuzzlesForColin({
       robotStartMood,
     }),
   );
+
+  const puzzleDict = {};
+
+  for (const puzzle of puzzles) {
+    const puzzleKey = `${type.toLowerCase()}/${stationName}/${puzzle.roomName}`;
+    puzzleDict[puzzleKey] = puzzle;
+  }
+
+  return puzzleDict;
 }
 
 // Notes for Colin:
@@ -77,19 +86,21 @@ export function getPuzzlesForColin({
 // Can be "Campaign" or "Bonus Levels"
 const type = "Campaign";
 
-const stationName = "Terminals Station";
+const stationName = "Mastery";
 
-const startingText = "Basic terminal training.";
+const startingText = "XXX.";
 
-const winText =
-  "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!";
+const winText = "YYY";
 
 const robotStartMood = "happy";
 
 const robotEndMood = "happy";
 
 const inputURLs = [
-  "https://deepspaceslime.com?id=custom-Terminals+12_OOOOOOOOOOOOOOOOOOOOOOO1BJOOOEBFBOOOOFB2OOOOSOOOOOOOOOOOOOOOOOO",
+  "https://deepspaceslime.com/?id=custom-Key+Mastery_9FDF4KFK2FKFDFDFDEKFDSKFDFDFKF2DFK4FKF9",
+  "https://deepspaceslime.com/?id=custom-Blaster+Mastery_8FBBBF2BEF1B1FJFBFJFBB1FSFBFJFJFJF1FBFBF15",
+  "https://deepspaceslime.com/?id=custom-Portal+Mastery_15PFEFP2FBFBF2PFJFP2FJFJF2PFSFP15",
+  "https://deepspaceslime.com/?id=custom-Hacker+Mastery_9BWB3EBJB3BJBYB2JBVBJ2BZBJB3BJBS3BXB9",
 ];
 
 console.log(
