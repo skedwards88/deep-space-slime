@@ -65,9 +65,9 @@ function handleMovement({
         newMessage = (
           <p>
             <p>
-              You completed the campaign and unlocked bonus levels! Tap on the{" "}
+              You completed the campaign and unlocked bonus stations! Tap on the{" "}
               <span id="mapIcon" className="smallInfoIcon"></span> to open the
-              bonus levels.
+              bonus stations.
             </p>
             <p>
               Tap <strong>Share</strong> below to help spread the game! Follow

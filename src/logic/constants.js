@@ -5,7 +5,7 @@ export const firstPuzzleId = "campaign/stasis-pod/1";
 
 export const mapTypes = {
   campaign: "Campaign",
-  bonus: "Bonus Levels",
+  bonus: "Bonus",
 };
 
 export const features = {

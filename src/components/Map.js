@@ -82,7 +82,7 @@ function TopLevelMapEntry({
       >
         {topLevelKey}
         {bonusIsLocked ? (
-          <small>Complete the campaign to unlock the bonus levels</small>
+          <small>Complete the campaign to unlock the bonus stations</small>
         ) : (
           <></>
         )}
@@ -126,8 +126,8 @@ function StationLevelMapEntry({
 
   let stationIsAvailable;
   if (campaignIsComplete) {
-    // If the campaign is complete, all bonus levels
-    // and all campaign levels are unlocked
+    // If the campaign is complete, all bonus stations
+    // and all campaign stations are unlocked
     stationIsAvailable = true;
   } else {
     stationIsAvailable = roomDatas.some(

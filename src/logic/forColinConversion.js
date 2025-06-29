@@ -74,7 +74,7 @@ export function getPuzzlesForColin({
 //    iii. Update the "nextPuzzle" to point to the ID of the next puzzle
 // 4. To test, run: npm t -- src/logic/puzzles.test.js
 
-// Can be "Campaign" or "Bonus Levels"
+// Can be "Campaign" or "Bonus"
 const type = "Campaign";
 
 const stationName = "Terminals Station";
