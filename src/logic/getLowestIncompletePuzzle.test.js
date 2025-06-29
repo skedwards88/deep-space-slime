@@ -1,278 +1,59 @@
 import {getLowestIncompletePuzzle} from "./getLowestIncompletePuzzle";
+import {firstPuzzleId} from "./constants";
+import {puzzles} from "./puzzles";
 
-const completedLevelsThatLacksFirstRoom = [
-  "campaign/stasis-pod/2",
-  "campaign/quarantine-station/1",
-  "campaign/quarantine-station/2",
-  "campaign/quarantine-station/3",
-];
+const allCampaignLevels = Object.keys(puzzles).filter(
+  (key) => puzzles[key].type === "Campaign",
+);
 
-const completedLevelsThatLacksMiddleRoom = [
-  "campaign/stasis-pod/1",
-  "campaign/stasis-pod/2",
-  "campaign/quarantine-station/1",
-  "campaign/quarantine-station/2",
-  "campaign/quarantine-station/3",
-  "campaign/quarantine-station/5",
-];
-
-const incompleteCampaign = [
-  "campaign/stasis-pod/1",
-  "campaign/stasis-pod/2",
-  "campaign/quarantine-station/1",
-  "campaign/quarantine-station/2",
-  "campaign/quarantine-station/3",
-  "campaign/quarantine-station/4",
-  "campaign/quarantine-station/5",
-  "campaign/quarantine-station/6",
-  "campaign/biolab-station/1",
-  "campaign/biolab-station/2",
-  "campaign/biolab-station/3",
-  "campaign/biolab-station/4",
-  "campaign/biolab-station/5",
-  "campaign/biolab-station/6",
-];
-
-const incompleteBonus = [
-  "campaign/stasis-pod/1",
-  "campaign/stasis-pod/2",
-  "campaign/quarantine-station/1",
-  "campaign/quarantine-station/2",
-  "campaign/quarantine-station/3",
-  "campaign/quarantine-station/4",
-  "campaign/quarantine-station/5",
-  "campaign/quarantine-station/6",
-  "campaign/biolab-station/1",
-  "campaign/biolab-station/2",
-  "campaign/biolab-station/3",
-  "campaign/biolab-station/4",
-  "campaign/biolab-station/5",
-  "campaign/biolab-station/6",
-  "campaign/portal-station/1",
-  "campaign/portal-station/2",
-  "campaign/portal-station/3",
-  "campaign/portal-station/4",
-  "campaign/portal-station/5",
-  "campaign/portal-station/6",
-  "campaign/security-station/1",
-  "campaign/security-station/2",
-  "campaign/security-station/3",
-  "campaign/security-station/4",
-  "campaign/security-station/5",
-  "campaign/security-station/6",
-  "campaign/security-station/7",
-  "campaign/core-station/entry",
-  "campaign/core-station/mainframe",
-  "campaign/core-station/escape-pod",
-  "bonus/chest-station/1",
-  "bonus/chest-station/2",
-  "bonus/chest-station/3",
-  "bonus/chest-station/4",
-  "bonus/chest-station/5",
-  "bonus/enterprize-station/1",
-  "bonus/enterprize-station/2",
-  "bonus/enterprize-station/3",
-  "bonus/enterprize-station/4",
-  "bonus/enterprize-station/5",
-  "bonus/enterprize-station/6",
-  "bonus/enterprize-station/7",
-  "bonus/enterprize-station/8",
-  "bonus/enterprize-station/9",
-  "bonus/the-eye/1",
-  "bonus/the-eye/2",
-  "bonus/the-eye/3",
-];
-
-const complete = [
-  "campaign/stasis-pod/1",
-  "campaign/stasis-pod/2",
-  "campaign/quarantine-station/1",
-  "campaign/quarantine-station/2",
-  "campaign/quarantine-station/3",
-  "campaign/quarantine-station/4",
-  "campaign/quarantine-station/5",
-  "campaign/quarantine-station/6",
-  "campaign/biolab-station/1",
-  "campaign/biolab-station/2",
-  "campaign/biolab-station/3",
-  "campaign/biolab-station/4",
-  "campaign/biolab-station/5",
-  "campaign/biolab-station/6",
-  "campaign/portal-station/1",
-  "campaign/portal-station/2",
-  "campaign/portal-station/3",
-  "campaign/portal-station/4",
-  "campaign/portal-station/5",
-  "campaign/portal-station/6",
-  "campaign/security-station/1",
-  "campaign/security-station/2",
-  "campaign/security-station/3",
-  "campaign/security-station/4",
-  "campaign/security-station/5",
-  "campaign/security-station/6",
-  "campaign/security-station/7",
-  "campaign/core-station/entry",
-  "campaign/core-station/mainframe",
-  "campaign/core-station/escape-pod",
-  "bonus/chest-station/1",
-  "bonus/chest-station/2",
-  "bonus/chest-station/3",
-  "bonus/chest-station/4",
-  "bonus/chest-station/5",
-  "bonus/enterprize-station/1",
-  "bonus/enterprize-station/2",
-  "bonus/enterprize-station/3",
-  "bonus/enterprize-station/4",
-  "bonus/enterprize-station/5",
-  "bonus/enterprize-station/6",
-  "bonus/enterprize-station/7",
-  "bonus/enterprize-station/8",
-  "bonus/enterprize-station/9",
-  "bonus/the-eye/1",
-  "bonus/the-eye/2",
-  "bonus/the-eye/3",
-  "bonus/the-eye/4",
-  "bonus/the-eye/5",
-  "bonus/needle-station/1",
-  "bonus/needle-station/2",
-  "bonus/needle-station/3",
-  "bonus/needle-station/4",
-  "bonus/needle-station/5",
-  "bonus/needle-station/6",
-  "bonus/needle-station/7",
-  "bonus/petroglyph-station/wolf",
-  "bonus/petroglyph-station/bow",
-  "bonus/petroglyph-station/horse",
-  "bonus/petroglyph-station/stag",
-  "bonus/petroglyph-station/chief",
-  "bonus/petroglyph-station/shaman",
-  "bonus/faces-station/anger",
-  "bonus/faces-station/wisdom",
-  "bonus/faces-station/yawn",
-  "bonus/faces-station/embarrassment",
-  "bonus/faces-station/robot",
-  "bonus/faces-station/surprise",
-  "bonus/faces-station/focus",
-  "bonus/wonky-station/1",
-  "bonus/wonky-station/2",
-  "bonus/wonky-station/3",
-  "bonus/wonky-station/4",
-  "bonus/wonky-station/5",
-  "bonus/wonky-station/6",
-  "bonus/zigger-station/1",
-  "bonus/zigger-station/2",
-  "bonus/zigger-station/3",
-  "bonus/zigger-station/4",
-  "bonus/zigger-station/5",
-  "bonus/zigger-station/6",
-  "bonus/zigger-station/7",
-  "bonus/cube-station/1",
-  "bonus/cube-station/2",
-  "bonus/cube-station/3",
-  "bonus/cube-station/4",
-  "bonus/cube-station/5",
-  "bonus/cube-station/6",
-  "bonus/cube-station/7",
-  "bonus/plant-station/daisy",
-  "bonus/plant-station/fern-frond",
-  "bonus/plant-station/vine",
-  "bonus/plant-station/willow",
-  "bonus/plant-station/orchid",
-  "bonus/plant-station/rose",
-  "bonus/plant-station/fly-trap",
-  "bonus/plant-station/cherry-blossom",
-  "bonus/checkerboard-station/1",
-  "bonus/checkerboard-station/2",
-  "bonus/checkerboard-station/3",
-  "bonus/checkerboard-station/4",
-  "bonus/checkerboard-station/5",
-  "bonus/checkerboard-station/6",
-  "bonus/checkerboard-station/7",
-  "bonus/checkerboard-station/8",
-  "bonus/nautilus-station/1",
-  "bonus/nautilus-station/2",
-  "bonus/nautilus-station/3",
-  "bonus/nautilus-station/4",
-  "bonus/nautilus-station/5",
-  "bonus/nautilus-station/6",
-  "bonus/nautilus-station/7",
-  "bonus/criss-cross-station/1",
-  "bonus/criss-cross-station/2",
-  "bonus/criss-cross-station/3",
-  "bonus/criss-cross-station/4",
-  "bonus/criss-cross-station/5",
-  "bonus/criss-cross-station/6",
-  "bonus/criss-cross-station/7",
-  "bonus/criss-cross-station/8",
-  "bonus/dial-up-station/1",
-  "bonus/dial-up-station/2",
-  "bonus/dial-up-station/3",
-  "bonus/dial-up-station/4",
-  "bonus/dial-up-station/5",
-  "bonus/doors-station/1",
-  "bonus/doors-station/2",
-  "bonus/doors-station/3",
-  "bonus/doors-station/4",
-  "bonus/terminals-station/1",
-  "bonus/terminals-station/2",
-  "bonus/terminals-station/3",
-  "bonus/terminals-station/4",
-  "bonus/terminals-station/5",
-  "bonus/terminals-station/6",
-  "bonus/portal-mania-station/1",
-  "bonus/portal-mania-station/2",
-  "bonus/portal-mania-station/3",
-  "bonus/portal-mania-station/4",
-  "bonus/portal-mania-station/5",
-  "bonus/portal-mania-station/6",
-  "bonus/portal-mania-station/7",
-  "bonus/portal-mania-station/8",
-  "bonus/portal-mania-station/9",
-  "bonus/portal-mania-station/10",
-  "bonus/portal-mania-station/11",
-  "bonus/portal-mania-station/12",
-  "bonus/portal-mania-station/13",
-  "bonus/portal-mania-station/14",
-  "bonus/portal-mania-station/15",
-  "bonus/portal-mania-station/16",
-  "bonus/portal-mania-station/17",
-  "bonus/portal-mania-station/18",
-  "bonus/portal-mania-station/19",
-  "bonus/portal-mania-station/20",
-  "bonus/portal-mania-station/21",
-  "bonus/portal-mania-station/22",
-  "bonus/portal-mania-station/23",
-  "bonus/portal-mania-station/24",
-  "bonus/portal-mania-station/25",
-  "bonus/portal-mania-station/26",
-  "bonus/portal-mania-station/27",
-  "bonus/portal-mania-station/28",
-  "bonus/portal-mania-station/29",
-  "bonus/portal-mania-station/30",
-  "bonus/beta-station/orbital",
-];
+const allBonusLevels = Object.keys(puzzles).filter(
+  (key) => puzzles[key].type === "Bonus",
+);
 
 describe("getLowestIncompleteLevel", () => {
   test("returns undefined if all levels have been completed", () => {
-    const result = getLowestIncompletePuzzle(complete);
+    const result = getLowestIncompletePuzzle([
+      ...allCampaignLevels,
+      ...allBonusLevels,
+    ]);
     expect(result).toBe(undefined);
   });
 
   test("returns the first room that isn't in the completed levels", () => {
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const incompleteCampaign = [
+      ...allCampaignLevels.slice(0, allCampaignLevels.length - 4),
+    ];
+    const omitted1 = allCampaignLevels[allCampaignLevels.length - 4];
     const result = getLowestIncompletePuzzle(incompleteCampaign);
-    expect(result).toEqual("campaign/portal-station/1");
+    expect(result).toEqual(omitted1);
 
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const incompleteBonus = [
+      ...allCampaignLevels,
+      ...allBonusLevels.slice(0, allBonusLevels.length - 4),
+    ];
+    const omitted2 = allBonusLevels[allBonusLevels.length - 4];
     const result2 = getLowestIncompletePuzzle(incompleteBonus);
-    expect(result2).toEqual("bonus/the-eye/4");
+    expect(result2).toEqual(omitted2);
   });
 
   test("if the completed levels list has gaps, returns the first gap room", () => {
-    const result = getLowestIncompletePuzzle(completedLevelsThatLacksFirstRoom);
-    expect(result).toEqual("campaign/stasis-pod/1");
-
-    const result2 = getLowestIncompletePuzzle(
-      completedLevelsThatLacksMiddleRoom,
+    const completedLevelsThatLacksFirstRoom = allCampaignLevels.filter(
+      (level) => level !== firstPuzzleId,
     );
-    expect(result2).toEqual("campaign/quarantine-station/4");
+    const result = getLowestIncompletePuzzle(completedLevelsThatLacksFirstRoom);
+    expect(result).toEqual(firstPuzzleId);
+
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const completedLevelsThatLacksMiddleCampaignRoom = [
+      ...allCampaignLevels.slice(0, 3),
+      ...allCampaignLevels.slice(4, allCampaignLevels.length),
+    ];
+    const omitted = allCampaignLevels[3];
+    const result2 = getLowestIncompletePuzzle(
+      completedLevelsThatLacksMiddleCampaignRoom,
+    );
+    expect(result2).toEqual(omitted);
   });
 });
