@@ -8,8 +8,8 @@ import {pushCivilians} from "./pushCivilians";
 // If the index is a key, acquire the key.
 // If the index is a door, lose a key.
 // If the index is a number, increment the number count.
-// If the index is a jet, acquire the jet.
-// If the index was only accessible with a jet, lose a jet.
+// If the index is a blaster, acquire the blaster.
+// If the index was only accessible with a blaster, lose a blaster.
 // Push any civilians
 export function updateStateWithExtension({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
@@ -34,11 +34,11 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     newKeyCount--;
   }
 
-  let newJetCount = currentGameState.jetCount;
-  if (puzzle[index] === features.jet) {
-    newJetCount++;
+  let newBlasterCount = currentGameState.blasterCount;
+  if (puzzle[index] === features.blaster) {
+    newBlasterCount++;
   }
-  // Assume that moving with a jet if not moving to an adjacent index
+  // Assume that moving with a blaster if not moving to an adjacent index
   // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
@@ -58,7 +58,7 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     const isPortalTravel =
       puzzle[index] === features.portal && numberPortalsVisited % 2 === 0;
     if (!isPortalTravel) {
-      newJetCount--;
+      newBlasterCount--;
     }
   }
 
@@ -77,7 +77,7 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     ...currentGameState,
     mainPath: newMainPath,
     powerCount: newPowerCount,
-    jetCount: newJetCount,
+    blasterCount: newBlasterCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
     civilianHistory: [...currentGameState.civilianHistory, newCivilians],

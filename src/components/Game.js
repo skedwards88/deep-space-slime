@@ -522,11 +522,11 @@ function Game({
     ></button>
   ));
 
-  const jets = Array.from({length: gameState.jetCount}, (_, index) => (
+  const blasters = Array.from({length: gameState.blasterCount}, (_, index) => (
     <button
       key={index}
-      className="feature jet"
-      onClick={() => setDisplay("jetExplanation")}
+      className="feature blaster"
+      onClick={() => setDisplay("blasterExplanation")}
     ></button>
   ));
 
@@ -654,7 +654,7 @@ function Game({
         <div id="acquiredFeatures">
           {powers}
           {keys}
-          {jets}
+          {blasters}
         </div>
       )}
 

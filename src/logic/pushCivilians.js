@@ -15,15 +15,15 @@ export function pushCivilians({pushedFrom, pushedCivilian, civilians}) {
   let newCivilians = [...civilians];
 
   while (pushedCivilian !== undefined) {
-    // assume that the push uses a jet if the indexes are not adjacent (ignoring the portal case since civilians can't be on portals)
-    const isJetPush = !indexesAdjacentQ({
+    // assume that the push uses a blaster if the indexes are not adjacent (ignoring the portal case since civilians can't be on portals)
+    const isBlasterPush = !indexesAdjacentQ({
       indexA: pushedFrom,
       indexB: pushedCivilian,
       numColumns,
       numRows,
     });
 
-    if (isJetPush) {
+    if (isBlasterPush) {
       const indexBetween = getIndexBetween({
         indexA: pushedFrom,
         indexB: pushedCivilian,

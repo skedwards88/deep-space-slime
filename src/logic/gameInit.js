@@ -201,7 +201,7 @@ export function gameInit({
     ...baseState,
     powerCount: 0,
     keyCount: 0,
-    jetCount: 0,
+    blasterCount: 0,
     numberCount: 0,
     maxNumber,
     validNextIndexes,

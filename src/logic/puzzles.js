@@ -116,14 +116,14 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: (
       <p>
-        The humans on this station developed a spray that can stun the slime and
-        let you push past it. If you have a{" "}
-        <span id="jetIcon" className="smallInfoIcon"></span> in your inventory,
-        you can jump straight across the slime trail to a slime-free space.
-        Remember, the green glowing squares show you valid moves. When you jump
-        across the slime trail, the
-        <span id="jetIcon" className="smallInfoIcon"></span> is automatically
-        removed from your inventory. Give it a try!
+        The humans on this station developed a blaster that can stun the slime
+        and let you push past it. If you have a{" "}
+        <span id="blasterIcon" className="smallInfoIcon"></span> in your
+        inventory, you can jump straight across the slime trail to a slime-free
+        space. Remember, the green glowing squares show you valid moves. When
+        you jump across the slime trail, the
+        <span id="blasterIcon" className="smallInfoIcon"></span> is
+        automatically removed from your inventory. Give it a try!
       </p>
     ),
     winText: "Take that, slime!",
@@ -139,7 +139,7 @@ export const puzzles = {
     startingText: (
       <p>
         Can you grab the power cell and cut across your trail with the{" "}
-        <span id="jetIcon" className="smallInfoIcon"></span>? Remember, the
+        <span id="blasterIcon" className="smallInfoIcon"></span>? Remember, the
         green glowing squares show you valid moves. If you get stuck, you can
         retrace your steps or wait for a hint.
       </p>
@@ -188,7 +188,7 @@ export const puzzles = {
   "campaign/biolab-station/6": {
     station: "Biolab station",
     roomName: "Level 6",
-    startingText: "Spray bottles, power cells, and doors, oh my!",
+    startingText: "Blasters, power cells, and doors, oh my!",
     winText: "Onward, to the Portal station!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -1705,7 +1705,7 @@ export const puzzles = {
     startingText: (
       <p>
         This room looks hard. At least you have a couple{" "}
-        <span id="jetIcon" className="smallInfoIcon"></span> to help.
+        <span id="blasterIcon" className="smallInfoIcon"></span> to help.
       </p>
     ),
     winText: "Impressive, if only all humans were as reliable as you...",

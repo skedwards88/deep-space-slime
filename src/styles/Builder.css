@@ -98,8 +98,8 @@ button.builderFeatureButton.active {
   background-image: url("../images/icons/door.svg");
 }
 
-.builderFeatureButton.jet {
-  background-image: url("../images/icons/jet.svg");
+.builderFeatureButton.blaster {
+  background-image: url("../images/icons/blaster.svg");
   background-size: calc(100% - 10px);
 }
 

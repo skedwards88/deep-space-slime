@@ -40,8 +40,8 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     message = (
       <p>
         Don&apos;t step on the slime! The only way to cross the slime trail is
-        to use a <span id="jetIcon" className="smallInfoIcon"></span> to jump
-        straight across the slime to a slime-free space.
+        to use a <span id="blasterIcon" className="smallInfoIcon"></span> to
+        jump straight across the slime to a slime-free space.
       </p>
     );
     return message;

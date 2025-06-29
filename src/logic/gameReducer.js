@@ -30,7 +30,7 @@ export function gameReducer(currentGameState, payload) {
         powerCount: 0,
         keyCount: 0,
         numberCount: 0,
-        jetCount: 0,
+        blasterCount: 0,
         civilianHistory: [currentGameState.civilianHistory[0]],
       };
     }
@@ -61,7 +61,7 @@ export function gameReducer(currentGameState, payload) {
       numColumns,
       numRows,
       hasKey: stateWithExtendedPath.keyCount > 0,
-      hasJet: stateWithExtendedPath.jetCount > 0,
+      hasBlaster: stateWithExtendedPath.blasterCount > 0,
       numberCount: stateWithExtendedPath.numberCount,
       maxNumber: currentGameState.maxNumber,
       currentCivilians:
@@ -95,7 +95,7 @@ export function gameReducer(currentGameState, payload) {
       powerCount: 0,
       keyCount: 0,
       numberCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
       civilianHistory: [currentGameState.civilianHistory[0]],
     };
   } else if (payload.action === "overwritePath") {
@@ -123,7 +123,7 @@ export function gameReducer(currentGameState, payload) {
       powerCount: 0,
       keyCount: 0,
       numberCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
     };
 
     for (let index = 1; index < newPath.length; index++) {
@@ -139,7 +139,7 @@ export function gameReducer(currentGameState, payload) {
         numColumns,
         numRows,
         hasKey: updatedState.keyCount > 0,
-        hasJet: updatedState.jetCount > 0,
+        hasBlaster: updatedState.blasterCount > 0,
         numberCount: updatedState.numberCount,
         maxNumber: currentGameState.maxNumber,
         currentCivilians:

@@ -6,7 +6,7 @@ import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
 import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
-import JetExplanation from "./JetExplanation";
+import BlasterExplanation from "./BlasterExplanation";
 import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
@@ -77,9 +77,9 @@ export default function App() {
         ></FallbackInstall>
       );
       break;
-    case "jetExplanation":
+    case "blasterExplanation":
       componentToRender = (
-        <JetExplanation setDisplay={setDisplay}></JetExplanation>
+        <BlasterExplanation setDisplay={setDisplay}></BlasterExplanation>
       );
       break;
     case "powerExplanation":

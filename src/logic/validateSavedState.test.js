@@ -62,7 +62,7 @@ describe("validateSavedState", () => {
     puzzle,
     powerCount: 1,
     keyCount: 1,
-    jetCount: 1,
+    blasterCount: 1,
     numberCount: 1,
     maxNumber: 1,
     validNextIndexes: [3, 4, 5],
@@ -78,7 +78,7 @@ describe("validateSavedState", () => {
     puzzle,
     powerCount: 1,
     keyCount: 1,
-    jetCount: 1,
+    blasterCount: 1,
     numberCount: 1,
     maxNumber: 1,
     validNextIndexes: [3, 4, 5],
@@ -135,7 +135,10 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for puzzle of wrong dimension", () => {
-    const state = {...validCustomState, puzzle: [features.outer, features.jet]};
+    const state = {
+      ...validCustomState,
+      puzzle: [features.outer, features.blaster],
+    };
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("wrong dimensions");
@@ -245,8 +248,8 @@ describe("validateSavedState", () => {
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for invalid acquired jets (non-integers)", () => {
-    const state = {...validNonCustomState, jetCount: "3"};
+  test("returns false for invalid acquired blasters (non-integers)", () => {
+    const state = {...validNonCustomState, blasterCount: "3"};
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
