@@ -26,7 +26,7 @@ describe("gameInit saved state usage", () => {
     const savedState = {
       puzzleID: "campaign/quarantine-station/1",
       isCustom: false,
-      flaskCount: 5,
+      powerCount: 5,
       playerID: "test",
     };
     localStorage.setItem(
@@ -150,7 +150,7 @@ describe("gameInit saved state usage", () => {
       robotStartMood: puzzles[puzzleID].robotStartMood,
       robotEndMood: puzzles[puzzleID].robotEndMood,
       puzzle,
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
       jetCount: 0,
       numberCount: 0,
@@ -169,7 +169,7 @@ describe("gameInit saved state usage", () => {
       numRows,
       maxNumber,
       currentCivilians: result.civilianHistory[0],
-      flaskCount: 0,
+      powerCount: 0,
     });
   });
 
@@ -207,7 +207,7 @@ describe("gameInit saved state usage", () => {
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzle,
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
       jetCount: 0,
       numberCount: 0,
@@ -226,7 +226,7 @@ describe("gameInit saved state usage", () => {
       numRows,
       maxNumber,
       currentCivilians: result.civilianHistory[0],
-      flaskCount: 0,
+      powerCount: 0,
     });
   });
 });

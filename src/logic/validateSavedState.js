@@ -91,7 +91,7 @@ export function validateSavedState(savedState) {
 
   // acquired features must be ints
   if (
-    !Number.isInteger(savedState.flaskCount) ||
+    !Number.isInteger(savedState.powerCount) ||
     !Number.isInteger(savedState.keyCount) ||
     !Number.isInteger(savedState.jetCount) ||
     !Number.isInteger(savedState.numberCount) ||

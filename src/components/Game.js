@@ -15,7 +15,7 @@ import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
-import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
+import {getMaxPowerCount} from "../logic/getMaxPowerCount";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 import sendAnalytics from "../common/sendAnalytics";
 
@@ -292,14 +292,14 @@ function PuzzleSquare({
 
 function PuzzleSolvedButtons({
   puzzle,
-  flaskCount,
+  powerCount,
   puzzleID,
   dispatchGameState,
   setHintWaitIsOver,
   setCurrentMessage,
   setCurrentBotMood,
 }) {
-  const maxFlasks = getMaxFlaskCount(puzzle);
+  const maxPowers = getMaxPowerCount(puzzle);
 
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
@@ -356,7 +356,7 @@ function PuzzleSolvedButtons({
   );
 
   const retryButton =
-    flaskCount < maxFlasks ? (
+    powerCount < maxPowers ? (
       <button
         className="textButton"
         onClick={() => {
@@ -465,7 +465,7 @@ function Game({
     maxNumber: gameState.maxNumber,
     currentCivilians,
     puzzle: gameState.puzzle,
-    flaskCount: gameState.flaskCount,
+    powerCount: gameState.powerCount,
   });
 
   const [currentMessage, setCurrentMessage] = React.useState(
@@ -506,11 +506,11 @@ function Game({
     ></PuzzleSquare>
   ));
 
-  const flasks = Array.from({length: gameState.flaskCount}, (_, index) => (
+  const powers = Array.from({length: gameState.powerCount}, (_, index) => (
     <button
       key={index}
-      className="feature flask"
-      onClick={() => setDisplay("flaskExplanation")}
+      className="feature power"
+      onClick={() => setDisplay("powerExplanation")}
     ></button>
   ));
 
@@ -642,7 +642,7 @@ function Game({
         ) : (
           <PuzzleSolvedButtons
             puzzle={gameState.puzzle}
-            flaskCount={gameState.flaskCount}
+            powerCount={gameState.powerCount}
             puzzleID={gameState.puzzleID}
             dispatchGameState={dispatchGameState}
             setHintWaitIsOver={setHintWaitIsOver}
@@ -652,7 +652,7 @@ function Game({
         )
       ) : (
         <div id="acquiredFeatures">
-          {flasks}
+          {powers}
           {keys}
           {jets}
         </div>

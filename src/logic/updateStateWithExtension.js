@@ -4,7 +4,7 @@ import {pushCivilians} from "./pushCivilians";
 
 // To extend:
 // Add the index to the path.
-// If the index is a flask, acquire the flask.
+// If the index is a power cell, acquire the power.
 // If the index is a key, acquire the key.
 // If the index is a door, lose a key.
 // If the index is a number, increment the number count.
@@ -68,15 +68,15 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     ? parsedNumber
     : currentGameState.numberCount;
 
-  const newFlaskCount =
-    puzzle[index] === features.flask
-      ? currentGameState.flaskCount + 1
-      : currentGameState.flaskCount;
+  const newPowerCount =
+    puzzle[index] === features.power
+      ? currentGameState.powerCount + 1
+      : currentGameState.powerCount;
 
   return {
     ...currentGameState,
     mainPath: newMainPath,
-    flaskCount: newFlaskCount,
+    powerCount: newPowerCount,
     jetCount: newJetCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,

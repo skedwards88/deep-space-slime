@@ -171,7 +171,7 @@ export function gameInit({
       : nonCustomInit({useSaved, puzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
-  if ("flaskCount" in baseState) {
+  if ("powerCount" in baseState) {
     return baseState;
   }
 
@@ -190,7 +190,7 @@ export function gameInit({
     numRows,
     maxNumber,
     currentCivilians: baseState.civilianHistory[0],
-    flaskCount: 0,
+    powerCount: 0,
   });
 
   sendAnalytics("new_game", {
@@ -199,7 +199,7 @@ export function gameInit({
 
   return {
     ...baseState,
-    flaskCount: 0,
+    powerCount: 0,
     keyCount: 0,
     jetCount: 0,
     numberCount: 0,

@@ -3,7 +3,7 @@ import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {features, numColumns, numRows} from "./constants";
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 import {civilianPushValidQ} from "./civilianPushValidQ";
-import {getMaxFlaskCount} from "./getMaxFlaskCount";
+import {getMaxPowerCount} from "./getMaxPowerCount";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -82,13 +82,13 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     return message;
   }
 
-  // The space is the exit and you haven't gotten all flasks
+  // The space is the exit and you haven't gotten all power cells
   if (
     puzzle[index] === features.exit &&
-    currentGameState.flaskCount !== getMaxFlaskCount(puzzle)
+    currentGameState.powerCount !== getMaxPowerCount(puzzle)
   ) {
     message =
-      "I won't let you out until you bring me all of the samples. I mean...please collect all of the samples. It is essential to the future of humanity.";
+      "I can't unlock the exit until you collect all of the power cells.";
     return message;
   }
 

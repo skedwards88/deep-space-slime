@@ -7,7 +7,7 @@ import BuilderOverview from "./BuilderOverview";
 import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
 import JetExplanation from "./JetExplanation";
-import FlaskExplanation from "./FlaskExplanation";
+import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
 import {
@@ -82,9 +82,9 @@ export default function App() {
         <JetExplanation setDisplay={setDisplay}></JetExplanation>
       );
       break;
-    case "flaskExplanation":
+    case "powerExplanation":
       componentToRender = (
-        <FlaskExplanation setDisplay={setDisplay}></FlaskExplanation>
+        <PowerExplanation setDisplay={setDisplay}></PowerExplanation>
       );
       break;
     case "keyExplanation":

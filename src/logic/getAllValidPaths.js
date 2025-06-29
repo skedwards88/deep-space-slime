@@ -20,7 +20,7 @@ export function getAllValidPaths({
   const pathStateHistory = [
     {
       mainPath: [startIndex],
-      flaskCount: 0,
+      powerCount: 0,
       jetCount: 0,
       keyCount: 0,
       numberCount: 0,
@@ -37,7 +37,7 @@ export function getAllValidPaths({
 
     const validNextIndexes = getValidNextIndexes({
       mainPath: currentPathState.mainPath,
-      flaskCount: currentPathState.flaskCount,
+      powerCount: currentPathState.powerCount,
       hasKey: currentPathState.keyCount > 0,
       hasJet: currentPathState.jetCount > 0,
       numberCount: currentPathState.numberCount,

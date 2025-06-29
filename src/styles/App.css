@@ -260,9 +260,9 @@ button.feature {
   all: unset;
 }
 
-#acquiredFeatures .flask,
-#flaskIcon {
-  background-image: url("../images/icons/flask.svg");
+#acquiredFeatures .power,
+#powerIcon {
+  background-image: url("../images/icons/power.svg");
 }
 
 #acquiredFeatures .key,
@@ -309,8 +309,8 @@ button.feature {
   background-color: transparent;
 }
 
-.puzzleSquare.flask {
-  background-image: url("../images/icons/flask.svg");
+.puzzleSquare.power {
+  background-image: url("../images/icons/power.svg");
   background-size: calc(100% - 10px);
 }
 
