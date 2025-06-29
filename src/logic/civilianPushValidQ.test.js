@@ -26,7 +26,7 @@ describe("civilianPushValidQ", () => {
   test("true if civilian would not be pushed onto a forbidden location", () => {
     let puzzle = [...allBasicPuzzle];
 
-    puzzle[4] = features.flask;
+    puzzle[4] = features.power;
 
     expect(
       civilianPushValidQ({

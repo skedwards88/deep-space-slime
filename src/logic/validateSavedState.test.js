@@ -8,10 +8,8 @@ jest.mock("./puzzles", () => ({
     mockedNoCivilians: {
       station: "Stasis pod",
       roomName: "2",
-      startingText:
-        "Ooh look, a sample! Can you grab it on your way to the next room?",
-      winText:
-        "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
+      startingText: "Some starting text stasis 2",
+      winText: "Some win text stasis 2",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -34,10 +32,8 @@ jest.mock("./puzzles", () => ({
     mockedCivilians: {
       station: "Stasis pod",
       roomName: "2",
-      startingText:
-        "Ooh look, a sample! Can you grab it on your way to the next room?",
-      winText:
-        "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
+      startingText: "Some starting text stasis 2",
+      winText: "Some win text stasis 2",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "1BCB13EBB4B1B4BBF4B6S17",
@@ -64,7 +60,7 @@ describe("validateSavedState", () => {
     customIndex: undefined,
     puzzleID,
     puzzle,
-    flaskCount: 1,
+    powerCount: 1,
     keyCount: 1,
     jetCount: 1,
     numberCount: 1,
@@ -80,7 +76,7 @@ describe("validateSavedState", () => {
     customIndex: 5,
     puzzleID: "custom",
     puzzle,
-    flaskCount: 1,
+    powerCount: 1,
     keyCount: 1,
     jetCount: 1,
     numberCount: 1,
@@ -233,8 +229,8 @@ describe("validateSavedState", () => {
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for invalid acquired flasks (non-integers)", () => {
-    const state = {...validNonCustomState, flaskCount: "3"};
+  test("returns false for invalid acquired powers (non-integers)", () => {
+    const state = {...validNonCustomState, powerCount: "3"};
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");

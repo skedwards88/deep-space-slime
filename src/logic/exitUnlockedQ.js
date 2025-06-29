@@ -1,16 +1,16 @@
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
-import {getMaxFlaskCount} from "./getMaxFlaskCount";
+import {getMaxPowerCount} from "./getMaxPowerCount";
 
 export function exitUnlockedQ({
   numberCount,
   maxNumber,
   currentCivilians,
   puzzle,
-  flaskCount,
+  powerCount,
 }) {
   return (
     numberCount === maxNumber &&
     allCiviliansOnPodsQ(currentCivilians, puzzle) &&
-    getMaxFlaskCount(puzzle) === flaskCount
+    getMaxPowerCount(puzzle) === powerCount
   );
 }

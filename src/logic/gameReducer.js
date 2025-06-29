@@ -21,13 +21,13 @@ export function gameReducer(currentGameState, payload) {
         numRows,
         maxNumber: currentGameState.maxNumber,
         currentCivilians: currentGameState.civilianHistory[0],
-        flaskCount: 0,
+        powerCount: 0,
       });
       return {
         ...currentGameState,
         validNextIndexes: newValidNextIndexes,
         mainPath: [startIndex],
-        flaskCount: 0,
+        powerCount: 0,
         keyCount: 0,
         numberCount: 0,
         jetCount: 0,
@@ -68,7 +68,7 @@ export function gameReducer(currentGameState, payload) {
         stateWithExtendedPath.civilianHistory[
           stateWithExtendedPath.civilianHistory.length - 1
         ],
-      flaskCount: stateWithExtendedPath.flaskCount,
+      powerCount: stateWithExtendedPath.powerCount,
       allowStart: true,
     });
 
@@ -86,13 +86,13 @@ export function gameReducer(currentGameState, payload) {
       numRows,
       maxNumber: currentGameState.maxNumber,
       currentCivilians: currentGameState.civilianHistory[0],
-      flaskCount: 0,
+      powerCount: 0,
     });
     return {
       ...currentGameState,
       validNextIndexes: newValidNextIndexes,
       mainPath: [startIndex],
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
       numberCount: 0,
       jetCount: 0,
@@ -112,7 +112,7 @@ export function gameReducer(currentGameState, payload) {
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
-      flaskCount: 0,
+      powerCount: 0,
     });
 
     let updatedState = {
@@ -120,7 +120,7 @@ export function gameReducer(currentGameState, payload) {
       validNextIndexes: startingValidNextIndexes,
       mainPath: [newPath[0]],
       civilianHistory: currentGameState.civilianHistory.slice(0, 1),
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
       numberCount: 0,
       jetCount: 0,
@@ -144,7 +144,7 @@ export function gameReducer(currentGameState, payload) {
         maxNumber: currentGameState.maxNumber,
         currentCivilians:
           updatedState.civilianHistory[updatedState.civilianHistory.length - 1],
-        flaskCount: updatedState.flaskCount,
+        powerCount: updatedState.powerCount,
         allowStart: true,
       });
 

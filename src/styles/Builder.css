@@ -74,8 +74,8 @@ button.builderFeatureButton.active {
     inset 0 0 2px 2px rgb(60 255 0 / 80%);
 }
 
-.builderFeatureButton.flask {
-  background-image: url("../images/icons/flask.svg");
+.builderFeatureButton.power {
+  background-image: url("../images/icons/power.svg");
 
   /* background-size: calc(100% - 10px); */
 }

@@ -10,7 +10,7 @@ export function getValidNextIndexes({
   numColumns,
   numRows,
   maxNumber,
-  flaskCount,
+  powerCount,
   hasKey = false,
   hasJet = false,
   numberCount = 0,
@@ -25,12 +25,12 @@ export function getValidNextIndexes({
   // - If the last index was a portal and you have visited an odd number of portals, any unvisited portal space
   // - If the last index was not a portal, or if it was a portal but you have visited an even number of portals, any unvisited adjacent space that is one of the following (as long as any civilians are not pushed to invalid spaces):
   //   - basic
-  //   - flask
+  //   - power
   //   - key
   //   - jet
   //   - portal
   //   - door, if you have a key
-  //   - exit/ship, if all numbers found + if all civilians on pods + all flasks collected
+  //   - exit/ship, if all numbers found + if all civilians on pods + all power cells collected
   //   - next number
   //   - on the opposite side of a visited space, if you have a jet and the resulting space isn't a pod and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
@@ -117,7 +117,7 @@ export function getValidNextIndexes({
 
     if (
       feature === features.basic ||
-      feature === features.flask ||
+      feature === features.power ||
       feature === features.key ||
       feature === features.jet ||
       feature === features.portal
@@ -132,7 +132,7 @@ export function getValidNextIndexes({
         maxNumber,
         currentCivilians,
         puzzle,
-        flaskCount,
+        powerCount,
       })
     ) {
       validIndexes.push(adjacentIndex);
@@ -172,7 +172,7 @@ export function getValidNextIndexes({
           maxNumber,
           currentCivilians,
           puzzle,
-          flaskCount,
+          powerCount,
         })
       ) {
         continue;

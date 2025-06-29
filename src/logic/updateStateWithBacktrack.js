@@ -5,7 +5,7 @@ import {features, numColumns, numRows} from "./constants";
 // To backtrack:
 // Remove the last index in the path.
 // Remove the last civilian history entry
-// If the last index was a flask, remove the flask from the flask count.
+// If the last index was a power cell, remove the power from the power count.
 // If the last index was a key, remove the key from the key count.
 // If the last index was a door, add a key to the key count.
 // If the last index was a number, decrement the number count.
@@ -63,10 +63,10 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     ? currentGameState.numberCount - 1
     : currentGameState.numberCount;
 
-  const newFlaskCount =
-    puzzle[lastIndexInPath] === features.flask
-      ? currentGameState.flaskCount - 1
-      : currentGameState.flaskCount;
+  const newPowerCount =
+    puzzle[lastIndexInPath] === features.power
+      ? currentGameState.powerCount - 1
+      : currentGameState.powerCount;
 
   const newValidNextIndexes = getValidNextIndexes({
     mainPath: newMainPath,
@@ -78,7 +78,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
     currentCivilians: newCivilianHistory[newCivilianHistory.length - 1],
-    flaskCount: newFlaskCount,
+    powerCount: newPowerCount,
   });
 
   return {
@@ -86,7 +86,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     civilianHistory: newCivilianHistory,
-    flaskCount: newFlaskCount,
+    powerCount: newPowerCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
     jetCount: newJetCount,

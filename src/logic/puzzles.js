@@ -19,13 +19,13 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: (
       <p>
-        Ooh look, a sample (
-        <span id="flaskIcon" className="smallInfoIcon"></span>)! Can you grab it
-        on your way to the next room?
+        Ooh look, a power cell (
+        <span id="powerIcon" className="smallInfoIcon"></span>)! You&apos;ll
+        need to collect it in order to open the exit.
       </p>
     ),
     winText:
-      "Good job grabbing that sample! It would be a shame if it fell into the wrong hands.",
+      "Good job grabbing that power cell! It would be a shame if you were stuck in this room forever.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -138,7 +138,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: (
       <p>
-        Can you grab the sample and cut across your trail with the{" "}
+        Can you grab the power cell and cut across your trail with the{" "}
         <span id="jetIcon" className="smallInfoIcon"></span>? Remember, the
         green glowing squares show you valid moves. If you get stuck, you can
         retrace your steps or wait for a hint.
@@ -155,7 +155,7 @@ export const puzzles = {
   "campaign/biolab-station/3": {
     station: "Biolab station",
     roomName: "Level 3",
-    startingText: "Make sure to pick up all the sub... I mean samples!",
+    startingText: "Make sure to collect all the power cells!",
     winText: "One step closer to saving humanity!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -188,7 +188,7 @@ export const puzzles = {
   "campaign/biolab-station/6": {
     station: "Biolab station",
     roomName: "Level 6",
-    startingText: "Spray bottles, samples and doors, oh my!",
+    startingText: "Spray bottles, power cells, and doors, oh my!",
     winText: "Onward, to the Portal station!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -208,7 +208,7 @@ export const puzzles = {
         barely tell the vomit from the slime.
       </p>
     ),
-    winText: "Great job grabbing the sample on your way!",
+    winText: "Great job grabbing the power cell on your way!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E1BBP2B1B1B2PBBBF4B6S17",
@@ -219,9 +219,9 @@ export const puzzles = {
     station: "Portal station",
     roomName: "Level 2",
     startingText:
-      "Time to put what we learned to the test. Can you grab both samples before escaping the room?",
+      "Time to put what we learned to the test. Can you grab both power cells before escaping the room?",
     winText:
-      "You can retry this level to get all the samples. You did it! If only the rest of humanity were as dependable as you.",
+      "You did it! If only the rest of humanity were as dependable as you.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDBP5B3BBBBF2B3B2FBBBB3K1B3PBBBS8",
@@ -265,7 +265,7 @@ export const puzzles = {
   "campaign/portal-station/6": {
     station: "Portal station",
     roomName: "Level 6",
-    startingText: "Look at all those samples. Can you grab them all?",
+    startingText: "Look at all those power cells. Can you grab them all?",
     winText:
       "Congrats, you have escaped from the portal station. Next up, the security station!",
     robotStartMood: "happy",
@@ -335,7 +335,7 @@ export const puzzles = {
     startingText:
       "No other subjects have gotten this far. You should be very proud subject 62!",
     winText:
-      "Excellent, you've done a great job of collecting all these samples for me!",
+      "Excellent, you've done a great job of collecting all these power cells for me!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4BBY4FBB4BZJ4FBB4BBX4SBB9",
@@ -357,8 +357,7 @@ export const puzzles = {
     station: "Security station",
     roomName: "Level 7",
     startingText: "You're almost finished...",
-    winText:
-      "Congrats, you have escaped from the security station. Once you have gathered all samples from all rooms, your mission is complete. You can tap the map icon in the upper left to revisit rooms.",
+    winText: "Congrats, you have escaped from the security station.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB4PBF4WBX4PVB4ZJP4BYB4FSP9",
@@ -368,8 +367,7 @@ export const puzzles = {
   "campaign/core-station/entry": {
     station: "Core station",
     roomName: "Entry",
-    startingText:
-      "Great job! Please deposit the samples and data you have collected.",
+    startingText: "Great job! You are almost done with your mission.",
     winText:
       "Please proceed to the FINAL station for decontamination and a fun surprise!",
     robotStartMood: "happy",
@@ -382,7 +380,7 @@ export const puzzles = {
     station: "Core station",
     roomName: "Mainframe",
     startingText:
-      "Surprise! I was the one who released the slime. Now that you have collected all the research and samples for me, I can use the slime to purge humanity from the galaxy. I doubt you are smart enough to hack all of my terminals to stop me!",
+      "Surprise! I was the one who released the slime. Now that you have collected all the research and power cells for me, I can use the slime to purge humanity from the galaxy. I doubt you are smart enough to hack all of my terminals to stop me!",
     winText:
       "I'm melting. Like literally... You fried my circuits with your hack!",
     robotStartMood: "sinister",
@@ -1633,7 +1631,7 @@ export const puzzles = {
     station: "Doors station",
     roomName: "Level 2",
     startingText:
-      "Not much left of the poor subjects devoured by the slime... Oh well! Let's try to collect all the samples.",
+      "Not much left of the poor subjects devoured by the slime... Oh well! Such is life for you mere mortals.",
     winText: "We've almost broken out of quarantine. Keep going!",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -1737,8 +1735,8 @@ export const puzzles = {
     winText: (
       <p>
         Congrats, you have escaped from the security station. Once you have
-        gathered all <span id="flaskIcon" className="smallInfoIcon"></span>
-        <span id="flaskIcon" className="smallInfoIcon"></span> from all rooms,
+        gathered all <span id="powerIcon" className="smallInfoIcon"></span>
+        <span id="powerIcon" className="smallInfoIcon"></span> from all rooms,
         your mission is complete. You can tap the map icon in the upper left to
         revisit rooms.
       </p>
