@@ -5,7 +5,7 @@ export const firstPuzzleId = "campaign/stasis-pod/1";
 
 export const mapTypes = {
   campaign: "Campaign",
-  bonus: "Bonus Levels",
+  bonus: "Bonus",
 };
 
 export const features = {
@@ -14,7 +14,7 @@ export const features = {
   exit: "exit",
   start: "start",
   power: "power",
-  jet: "jet",
+  blaster: "blaster",
   portal: "portal",
   key: "key",
   door: "door",
@@ -35,7 +35,7 @@ export const featureToLetterLookup = {
   [features.exit]: "E",
   [features.start]: "S",
   [features.power]: "F",
-  [features.jet]: "J",
+  [features.blaster]: "J",
   [features.portal]: "P",
   [features.key]: "K",
   [features.door]: "D",
@@ -54,7 +54,7 @@ export const unlimitedFeatures = [
   features.outer,
   features.basic,
   features.power,
-  features.jet,
+  features.blaster,
   features.portal,
   features.key,
   features.door,

@@ -12,7 +12,7 @@ export function getValidNextIndexes({
   maxNumber,
   powerCount,
   hasKey = false,
-  hasJet = false,
+  hasBlaster = false,
   numberCount = 0,
   currentCivilians,
   allowStart = true,
@@ -27,12 +27,12 @@ export function getValidNextIndexes({
   //   - basic
   //   - power
   //   - key
-  //   - jet
+  //   - blaster
   //   - portal
   //   - door, if you have a key
   //   - exit/ship, if all numbers found + if all civilians on pods + all power cells collected
   //   - next number
-  //   - on the opposite side of a visited space, if you have a jet and the resulting space isn't a pod and the visited space isn't:
+  //   - on the opposite side of a visited space, if you have a blaster and the resulting space isn't a pod and the visited space isn't:
   //      - your previous space (and you have any key/terminals required to visit the space)
   //      - a portal space
   //      - the start space
@@ -119,7 +119,7 @@ export function getValidNextIndexes({
       feature === features.basic ||
       feature === features.power ||
       feature === features.key ||
-      feature === features.jet ||
+      feature === features.blaster ||
       feature === features.portal
     ) {
       validIndexes.push(adjacentIndex);
@@ -144,7 +144,7 @@ export function getValidNextIndexes({
     }
   }
 
-  if (hasJet) {
+  if (hasBlaster) {
     for (const adjacentIndex of adjacentIndexes) {
       if (
         !mainPath.includes(adjacentIndex) ||

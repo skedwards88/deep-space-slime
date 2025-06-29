@@ -11,7 +11,7 @@ describe("pushCivilians", () => {
     expect(result).toEqual(expect.arrayContaining([2]));
   });
 
-  test("push one civilian using a jet", () => {
+  test("push one civilian using a blaster", () => {
     const result = pushCivilians({
       pushedFrom: 0,
       pushedCivilian: 2,

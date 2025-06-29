@@ -65,9 +65,9 @@ function handleMovement({
         newMessage = (
           <p>
             <p>
-              You completed the campaign and unlocked bonus levels! Tap on the{" "}
+              You completed the campaign and unlocked bonus stations! Tap on the{" "}
               <span id="mapIcon" className="smallInfoIcon"></span> to open the
-              bonus levels.
+              bonus stations.
             </p>
             <p>
               Tap <strong>Share</strong> below to help spread the game! Follow
@@ -522,11 +522,11 @@ function Game({
     ></button>
   ));
 
-  const jets = Array.from({length: gameState.jetCount}, (_, index) => (
+  const blasters = Array.from({length: gameState.blasterCount}, (_, index) => (
     <button
       key={index}
-      className="feature jet"
-      onClick={() => setDisplay("jetExplanation")}
+      className="feature blaster"
+      onClick={() => setDisplay("blasterExplanation")}
     ></button>
   ));
 
@@ -654,7 +654,7 @@ function Game({
         <div id="acquiredFeatures">
           {powers}
           {keys}
-          {jets}
+          {blasters}
         </div>
       )}
 

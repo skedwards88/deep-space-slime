@@ -21,7 +21,7 @@ export function getAllValidPaths({
     {
       mainPath: [startIndex],
       powerCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
       keyCount: 0,
       numberCount: 0,
       civilianHistory: [startingCivilians],
@@ -39,7 +39,7 @@ export function getAllValidPaths({
       mainPath: currentPathState.mainPath,
       powerCount: currentPathState.powerCount,
       hasKey: currentPathState.keyCount > 0,
-      hasJet: currentPathState.jetCount > 0,
+      hasBlaster: currentPathState.blasterCount > 0,
       numberCount: currentPathState.numberCount,
       currentCivilians:
         currentPathState.civilianHistory[

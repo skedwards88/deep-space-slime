@@ -42,7 +42,7 @@ describe("civilianPushValidQ", () => {
   test("true for chain of civilians if last civilian would not be pushed onto a forbidden location", () => {
     let puzzle = [...allBasicPuzzle];
 
-    puzzle[5] = features.jet;
+    puzzle[5] = features.blaster;
 
     expect(
       civilianPushValidQ({
