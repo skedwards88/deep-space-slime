@@ -17,6 +17,7 @@ import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 import {getMaxFlaskCount} from "../logic/getMaxFlaskCount";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
+import sendAnalytics from "../common/sendAnalytics";
 
 function handleMovement({
   validNext,
@@ -39,6 +40,10 @@ function handleMovement({
       let newCompletedLevels = [...completedLevels];
       newCompletedLevels.push(gameState.puzzleID);
       setCompletedLevels(newCompletedLevels);
+      sendAnalytics("levelComplete", {
+        playerID: gameState.playerID,
+        level: gameState.puzzleID,
+      });
     }
 
     let newMessage;
