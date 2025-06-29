@@ -499,8 +499,8 @@ export const puzzles = {
   "campaign/rescue-station/7": {
     type: "Campaign",
     nextPuzzle: "campaign/rescue-station/8",
-    station: "Level 7",
-    roomName: "Rescue Doors",
+    station: "Rescue station",
+    roomName: "Level 7",
     startingText: "Placeholder text as we work on the story.",
     winText: "Placeholder text as we work on the story.",
     robotStartMood: "happy",
