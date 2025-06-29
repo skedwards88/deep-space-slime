@@ -27,6 +27,7 @@ describe("gameInit saved state usage", () => {
       puzzleID: "campaign/quarantine-station/1",
       isCustom: false,
       flaskCount: 5,
+      playerID: "test",
     };
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -159,6 +160,7 @@ describe("gameInit saved state usage", () => {
       mouseIsActive: false,
       puzzleID,
       civilianHistory: [[]],
+      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
@@ -215,6 +217,7 @@ describe("gameInit saved state usage", () => {
       mouseIsActive: false,
       puzzleID: "custom",
       civilianHistory: [[]],
+      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
