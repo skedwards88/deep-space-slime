@@ -24,6 +24,7 @@ function ControlBar({
         id="shareIcon"
         className="controlButton"
         buttonText=""
+        origin="control bar"
       ></Share>
 
       <button

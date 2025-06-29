@@ -14,6 +14,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
             url={url}
             className="textButton"
             buttonText="Share"
+            origin="heart"
           ></Share>
         }
         <hr></hr>

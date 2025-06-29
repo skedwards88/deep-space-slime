@@ -321,6 +321,7 @@ function PuzzleSolvedButtons({
       url="https://deepspaceslime.com"
       buttonText="Share"
       className="textButton"
+      origin="campaign won"
     ></Share>
   ) : (
     <></>
@@ -425,6 +426,7 @@ function CustomPuzzleSolvedButtons({
       )}
       className="textButton"
       buttonText="Share"
+      origin="custom won"
     ></Share>
   );
 
@@ -620,6 +622,7 @@ function Game({
             buttonText="Share"
             id="sharePrompt"
             className="textButton"
+            origin="hints"
           ></Share>
         </div>
       ) : (

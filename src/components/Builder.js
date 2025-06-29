@@ -168,6 +168,7 @@ export default function Builder({setDisplay}) {
               id="shareIcon"
               className="controlButton"
               buttonText=""
+              origin="builder"
             ></Share>
           ) : (
             <button
