@@ -271,9 +271,9 @@ button.feature {
   background-size: calc(100% - 5px);
 }
 
-#acquiredFeatures .jet,
-#jetIcon {
-  background-image: url("../images/icons/jet.svg");
+#acquiredFeatures .blaster,
+#blasterIcon {
+  background-image: url("../images/icons/blaster.svg");
 }
 
 #puzzle {
@@ -324,8 +324,8 @@ button.feature {
   background-image: url("../images/icons/door.svg");
 }
 
-.puzzleSquare.jet {
-  background-image: url("../images/icons/jet.svg");
+.puzzleSquare.blaster {
+  background-image: url("../images/icons/blaster.svg");
   background-size: calc(100% - 10px);
 }
 
@@ -484,11 +484,11 @@ button.feature {
   background-image: url("../images/icons/slime-half.svg");
 }
 
-.puzzleSquare.visited.bottom-top-jet::before,
-.puzzleSquare.visited.top-bottom-jet::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
-  background-image: url("../images/icons/slime-jet.svg");
+.puzzleSquare.visited.bottom-top-blaster::before,
+.puzzleSquare.visited.top-bottom-blaster::before,
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
+  background-image: url("../images/icons/slime-blaster.svg");
 }
 
 .puzzleSquare.visited.top-right::before,
@@ -497,8 +497,8 @@ button.feature {
 .puzzleSquare.visited.bottom-top::before,
 .puzzleSquare.visited.center-right::before,
 .puzzleSquare.visited.right-center::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
   transform: rotate(90deg);
 }
 

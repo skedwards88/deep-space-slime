@@ -47,7 +47,7 @@ export function convertStringToPuzzle(puzzleString) {
       [features.exit]: "E",
       [features.start]: "S",
       [features.power]: "F",
-      [features.jet]: "J",
+      [features.blaster]: "J",
       [features.portal]: "P",
       [features.key]: "K",
       [features.door]: "D",

@@ -9,8 +9,8 @@ import {features, numColumns, numRows} from "./constants";
 // If the last index was a key, remove the key from the key count.
 // If the last index was a door, add a key to the key count.
 // If the last index was a number, decrement the number count.
-// If the last index was a jet, remove the jet from the jet count.
-// If the last index was previously accessed with a jet, add a jet to the jet count.
+// If the last index was a blaster, remove the blaster from the blaster count.
+// If the last index was previously accessed with a blaster, add a blaster to the blaster count.
 export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
@@ -28,12 +28,12 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     newKeyCount++;
   }
 
-  let newJetCount = currentGameState.jetCount;
-  if (puzzle[lastIndexInPath] === features.jet) {
-    newJetCount--;
+  let newBlasterCount = currentGameState.blasterCount;
+  if (puzzle[lastIndexInPath] === features.blaster) {
+    newBlasterCount--;
   }
 
-  // Assume that moving with a jet if not moving to an adjacent index
+  // Assume that moving with a blaster if not moving to an adjacent index
   // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
@@ -53,7 +53,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     const isPortalTravel =
       puzzle[index] === features.portal && numberPortalsVisited % 2 !== 0;
     if (!isPortalTravel) {
-      newJetCount++;
+      newBlasterCount++;
     }
   }
 
@@ -74,7 +74,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     numColumns,
     numRows,
     hasKey: newKeyCount > 0,
-    hasJet: newJetCount > 0,
+    hasBlaster: newBlasterCount > 0,
     numberCount: newNumberCount,
     maxNumber: currentGameState.maxNumber,
     currentCivilians: newCivilianHistory[newCivilianHistory.length - 1],
@@ -89,6 +89,6 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
     powerCount: newPowerCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
-    jetCount: newJetCount,
+    blasterCount: newBlasterCount,
   };
 }

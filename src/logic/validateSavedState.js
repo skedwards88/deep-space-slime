@@ -93,7 +93,7 @@ export function validateSavedState(savedState) {
   if (
     !Number.isInteger(savedState.powerCount) ||
     !Number.isInteger(savedState.keyCount) ||
-    !Number.isInteger(savedState.jetCount) ||
+    !Number.isInteger(savedState.blasterCount) ||
     !Number.isInteger(savedState.numberCount) ||
     !Number.isInteger(savedState.maxNumber)
   ) {
