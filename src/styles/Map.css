@@ -7,7 +7,7 @@
   text-align: left;
   margin: 7px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
 #map button:disabled {
@@ -16,7 +16,6 @@
 
 #mapRooms {
   display: flex;
-  flex-direction: column;
   grid-template-columns: 1fr auto;
   align-items: center;
 }
@@ -50,4 +49,10 @@
 .mapStationButton > small,
 .mapTypeButton > small {
   font-weight: lighter;
+}
+
+.mapRoomButton:disabled,
+.mapStationButton:disabled,
+.mapTypeButton:disabled {
+  flex-direction: column;
 }

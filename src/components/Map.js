@@ -137,6 +137,11 @@ function StationLevelMapEntry({
     );
   }
 
+  const numCompletedRooms = roomDatas.filter((roomData) =>
+    completedLevels.includes(roomData.puzzleID),
+  ).length;
+  const totalNumRooms = Object.keys(roomDatas).length;
+
   return (
     <div className="mapStationBlock">
       <button
@@ -152,7 +157,9 @@ function StationLevelMapEntry({
         {!stationIsAvailable ? (
           <small>Complete the earlier stations to unlock this station</small>
         ) : (
-          <></>
+          <div>
+            {numCompletedRooms} / {totalNumRooms}
+          </div>
         )}
       </button>
       {roomElements}
