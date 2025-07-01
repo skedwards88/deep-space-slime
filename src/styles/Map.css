@@ -25,6 +25,7 @@
   top: 10px;
   background-color: #6f6f6f;
   opacity: 0.9;
+  z-index: 1;
 }
 
 .mapTypeButton {
