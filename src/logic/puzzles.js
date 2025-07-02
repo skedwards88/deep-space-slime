@@ -132,7 +132,7 @@ export const puzzles = {
         <span id="blasterIcon" className="smallInfoIcon"></span> in your
         inventory, you can jump straight across the slime trail to a slime-free
         space. Remember, the green glowing squares show you valid moves. When
-        you jump across the slime trail, the
+        you jump across the slime trail, the{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span> is
         automatically removed from your inventory. Give it a try!
       </p>
@@ -2018,15 +2018,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText:
       "You're almost at the end of your journey. One more room to go.",
-    winText: (
-      <p>
-        Congrats, you have escaped from the security station. Once you have
-        gathered all <span id="powerIcon" className="smallInfoIcon"></span>
-        <span id="powerIcon" className="smallInfoIcon"></span> from all rooms,
-        your mission is complete. You can tap the map icon in the upper left to
-        revisit rooms.
-      </p>
-    ),
+    winText: "Placeholder text as we work on the story.",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBDPP4B1Z2YBFBB2BB1BX2JBBBF3KBF4PPBS8",
