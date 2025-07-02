@@ -1,0 +1,151 @@
+#builder {
+  display: grid;
+  grid-template-areas:
+    "location location"
+    "locationError locationError"
+    "botFace botMessage"
+    "controls controls"
+    "puzzle puzzle"
+    "features features";
+  grid-template-rows:
+    auto
+    auto
+    auto
+    auto
+    auto
+    1fr;
+  grid-template-columns: auto 1fr;
+  height: 90vh;
+  height: 100svh;
+}
+
+#builder > #puzzle {
+  margin: 0;
+}
+
+#locationError {
+  grid-area: locationError;
+  color: red;
+  background-color: black;
+  height: calc(var(--default-font-size) * 0.5);
+  width: 100%;
+}
+
+.builderEntry {
+  background-color: black;
+}
+
+.builderEntry > #customName {
+  width: 15ch;
+  overflow: auto;
+  text-align: left;
+}
+
+#builderButtons {
+  grid-area: controls;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 0.5vmax solid white;
+  background-color: black;
+  width: 100%;
+}
+
+#builderFeatureButtons {
+  grid-area: features;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button.builderFeatureButton {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(var(--square-size) * 0.6);
+  height: calc(var(--square-size) * 0.6);
+  background-color: rgb(137 132 132);
+  padding: 0;
+}
+
+button.builderFeatureButton.active {
+  box-shadow:
+    0 0 10px 10px rgb(60 255 0 / 80%),
+    inset 0 0 2px 2px rgb(60 255 0 / 80%);
+}
+
+.builderFeatureButton.power {
+  background-image: url("../images/icons/power.svg");
+
+  /* background-size: calc(100% - 10px); */
+}
+
+.builderFeatureButton.key {
+  background-image: url("../images/icons/key.svg");
+  background-size: calc(100% - 5px);
+}
+
+.builderFeatureButton.start {
+  background-image: url("../images/icons/start.svg");
+  background-color: rgb(200 190 78);
+}
+
+.builderFeatureButton.outer {
+  background-color: transparent;
+}
+
+.builderFeatureButton.door {
+  background-image: url("../images/icons/door.svg");
+}
+
+.builderFeatureButton.blaster {
+  background-image: url("../images/icons/blaster.svg");
+  background-size: calc(100% - 10px);
+}
+
+.builderFeatureButton.portal {
+  background-color: rgb(140 59 211);
+  background-image: url("../images/icons/portal.svg");
+}
+
+.builderFeatureButton.number1 {
+  background-image: url("../images/icons/number1.svg");
+}
+
+.builderFeatureButton.number2 {
+  background-image: url("../images/icons/number2.svg");
+}
+
+.builderFeatureButton.number3 {
+  background-image: url("../images/icons/number3.svg");
+}
+
+.builderFeatureButton.number4 {
+  background-image: url("../images/icons/number4.svg");
+}
+
+.builderFeatureButton.number5 {
+  background-image: url("../images/icons/number5.svg");
+}
+
+.builderFeatureButton.pod {
+  background-image: url("../images/icons/pod.svg");
+  background-color: rgb(153 17 17);
+}
+
+.builderFeatureButton.civilian {
+  background-image: url("../images/icons/civilian.svg");
+}
+
+.builderFeatureButton.exit {
+  background-image: url("../images/icons/exit-opened.svg");
+  background-color: rgb(200 190 78);
+}
+
+#builder #puzzle {
+  border: 1px solid white;
+}
+
+#builder .puzzleSquare {
+  border: 1px solid white;
+}

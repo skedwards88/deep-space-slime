@@ -5,8 +5,7 @@ export default function FallbackInstall({setDisplay, appName}) {
     <div className="App info">
       <div className="infoText">
         <p>
-          {`${appName} is a progressive web app, which means that it can be
-          installed on your phone for easy access and offline play.`}
+          {`${appName} can be installed on your phone for easy access and offline play.`}
         </p>
         <p>
           {`For iOS: Open ${appName} in Safari and select 'add to home screen' (under the Safari 'share' menu).`}
@@ -19,7 +18,7 @@ export default function FallbackInstall({setDisplay, appName}) {
           install a progressive web app for your phone.
         </p>
       </div>
-      <button className="close" onClick={() => setDisplay("game")}>
+      <button className="textButton" onClick={() => setDisplay("game")}>
         Close
       </button>
     </div>

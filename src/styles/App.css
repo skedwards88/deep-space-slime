@@ -1,6 +1,9 @@
 /* General */
 html {
-  --square-size: min(6vmax, 1.5cm);
+  /* --square-size: min(6vmax, 1.5cm); */
+
+  /* --square-size: 1.5cm; */
+  --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
 
   background-image: url("../images/background.svg");
@@ -25,6 +28,7 @@ small {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 button {
@@ -32,14 +36,15 @@ button {
   text-decoration: none;
   text-align: center;
   appearance: none;
-  font-size: calc(var(--default-font-size) * 0.75);
+  font-size: calc(var(--default-font-size) * 0.7);
   font-family: sans-serif;
-  background-color: white;
+  background-color: black;
   border: 1px solid white;
   border-radius: 5px;
-  color: black;
+  color: white;
   margin: 10px;
   padding: 1px 6px;
+  width: fit-content;
 }
 
 button:disabled {
@@ -54,11 +59,18 @@ button:disabled {
   height: 90vh; /* fallback if svh isn't handled */
   height: 100svh;
   width: 100vw;
-  overflow: scroll;
+  overflow: auto;
 }
 
-.close {
+.textButton {
+  font-size: calc(var(--default-font-size) * 0.7);
+  font-weight: bold;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
   margin-bottom: 2vh;
+  padding: 1vh 2vh;
 }
 
 .info {
@@ -66,7 +78,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -89,18 +101,21 @@ button:disabled {
     "location location"
     "botFace botMessage"
     "acquiredFeatures acquiredFeatures"
-    "exit exit"
     "puzzle puzzle";
   grid-template-rows:
     auto
     auto
     1fr
     auto
-    auto
     auto;
   grid-template-columns: auto 1fr;
   height: 90vh;
   height: 100svh;
+}
+
+#pathfinderControls {
+  grid-area: controls;
+  justify-self: center;
 }
 
 #location {
@@ -110,27 +125,24 @@ button:disabled {
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
-}
-
-#exitButtons {
-  grid-area: exit;
-  min-height: var(--square-size);
-  background-color: rgb(0 0 0 / 50%);
-  z-index: 1;
+  color: white;
   width: 100%;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
 }
 
 #message {
   grid-area: botMessage;
   font-size: calc(var(--square-size) * 0.37);
   min-height: calc(var(--square-size) * 2);
-  overflow: scroll;
+  width: 99%;
+  text-align: left;
+  overflow: auto;
   white-space: pre-wrap;
   background-color: black;
-  border: 1vmax solid black;
+  border-right: 2vmin solid black;
+}
+
+#message > p {
+  display: inline;
 }
 
 #message::after {
@@ -153,10 +165,9 @@ button:disabled {
   grid-area: botFace;
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: calc(80%);
+  background-size: 80%;
   width: calc(var(--square-size) * 2);
-  border-right: 1vmax solid black;
-  border-left: 1vmax solid black;
+  min-height: calc(var(--square-size) * 2);
   background-color: black;
 }
 
@@ -168,6 +179,25 @@ button:disabled {
 #botFace.sinister,
 #botFace.glitchy-sinister {
   background-image: url("../images/icons/bot-sinister.svg");
+}
+
+/* Safari has a bug where the background-size isn't respected
+if you change the background-image during animation.
+Using a pseudo element and changing the opacity works instead.
+*/
+#botFace.idea {
+  position: relative;
+}
+
+#botFace.idea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/icons/bot-idea.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: blink 1s step-start 3;
 }
 
 #botFace.glitchy-sinister,
@@ -194,18 +224,28 @@ button:disabled {
   }
 }
 
-#acquiredFeatures {
+#acquiredFeatures,
+#exitButtons,
+#pathfinderButtons {
   display: flex;
   flex-direction: row;
   grid-area: acquiredFeatures;
   border-top: 0.5vmax solid white;
   padding-top: 1vmax;
+  height: var(--square-size);
 }
 
-#acquiredFeatures > div {
+#exitButtons,
+#pathfinderButtons {
+  justify-content: center;
+}
+
+#exitButtons > button,
+#pathfinderButtons > button,
+#exitButtons > #buttonLink {
+  margin: 0 10px;
   display: flex;
-  flex-direction: row;
-  height: 10vw;
+  align-items: center;
 }
 
 #acquiredFeatures .feature {
@@ -228,17 +268,24 @@ button:disabled {
   }
 }
 
-#acquiredFeatures .flask {
-  background-image: url("../images/icons/flask.svg");
+button.feature {
+  all: unset;
 }
 
-#acquiredFeatures .key {
+#acquiredFeatures .power,
+#powerIcon {
+  background-image: url("../images/icons/power.svg");
+}
+
+#acquiredFeatures .key,
+#keyIcon {
   background-image: url("../images/icons/key.svg");
   background-size: calc(100% - 5px);
 }
 
-#acquiredFeatures .jet {
-  background-image: url("../images/icons/jet.svg");
+#acquiredFeatures .blaster,
+#blasterIcon {
+  background-image: url("../images/icons/blaster.svg");
 }
 
 #puzzle {
@@ -257,14 +304,15 @@ button:disabled {
   border: 1px solid black;
   width: var(--square-size);
   height: var(--square-size);
-  background-color: rgb(137 132 132);
+  background-color: rgb(138 133 133);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   box-sizing: border-box;
 }
 
-.puzzleSquare.start {
+.puzzleSquare.start,
+#startIcon {
   background-image: url("../images/icons/start.svg");
   background-color: rgb(200 190 78);
 }
@@ -273,8 +321,8 @@ button:disabled {
   background-color: transparent;
 }
 
-.puzzleSquare.flask {
-  background-image: url("../images/icons/flask.svg");
+.puzzleSquare.power {
+  background-image: url("../images/icons/power.svg");
   background-size: calc(100% - 10px);
 }
 
@@ -283,41 +331,52 @@ button:disabled {
   background-size: calc(100% - 10px);
 }
 
-.puzzleSquare.door {
+.puzzleSquare.door,
+#doorIcon {
   background-image: url("../images/icons/door.svg");
 }
 
-.puzzleSquare.jet {
-  background-image: url("../images/icons/jet.svg");
+.puzzleSquare.blaster {
+  background-image: url("../images/icons/blaster.svg");
   background-size: calc(100% - 10px);
 }
 
-.puzzleSquare.portal {
-  background-color: rgb(205 152 238);
+.puzzleSquare.portal,
+#portalIcon {
+  background-color: rgb(140 59 211);
   background-image: url("../images/icons/portal.svg");
 }
 
-.puzzleSquare.number1 {
+.puzzleSquare.number1,
+#number1Icon {
   background-image: url("../images/icons/number1.svg");
+  background-color: rgb(137 132 132);
 }
 
-.puzzleSquare.number2 {
+.puzzleSquare.number2,
+#number2Icon {
   background-image: url("../images/icons/number2.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number3 {
   background-image: url("../images/icons/number3.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number4 {
   background-image: url("../images/icons/number4.svg");
+  background-color: rgb(137 132 132);
 }
 
 .puzzleSquare.number5 {
   background-image: url("../images/icons/number5.svg");
+  background-color: rgb(137 132 132);
 }
 
-.puzzleSquare.exit-opened {
+.puzzleSquare.exit-opened,
+.puzzleSquare.exit,
+#exitIcon {
   background-image: url("../images/icons/exit-opened.svg");
   background-color: rgb(200 190 78);
 }
@@ -332,6 +391,12 @@ button:disabled {
   background-color: rgb(67 67 67);
 }
 
+.puzzleSquare.pod,
+#podIcon {
+  background-image: url("../images/icons/pod.svg");
+  background-color: rgb(153 17 17);
+}
+
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
   background-size: calc(100% + 5px);
@@ -343,6 +408,51 @@ button:disabled {
     0 0 10px 5px rgb(60 255 0 / 80%),
     inset 0 0 10px 10px rgb(60 255 0 / 80%);
   transition: box-shadow 0.3s ease-in-out;
+}
+
+#civilianIcon {
+  background-image: url("../images/icons/civilian.svg");
+  background-color: rgb(137 132 132);
+}
+
+.puzzleSquare.civilian {
+  position: relative;
+}
+
+.puzzleSquare.civilian::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/icons/civilian.svg");
+  touch-action: none;
+  background-size: contain;
+}
+
+@keyframes boxShadowBlink {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px 5px rgb(103 218 240 / 80%),
+      inset 0 0 10px 10px rgb(103 218 240 / 80%);
+  }
+
+  50% {
+    box-shadow:
+      0 0 10px 5px rgb(103 218 240 / 40%),
+      inset 0 0 10px 10px rgb(103 218 240 / 50%);
+  }
+}
+
+.puzzleSquare.hint {
+  position: relative;
+  box-shadow:
+    0 0 10px 5px rgb(103 218 240 / 80%),
+    inset 0 0 10px 10px rgb(103 218 240 / 80%);
+  transition: box-shadow 0.3s ease-in-out;
+  animation: boxShadowBlink 1s step-start infinite;
 }
 
 .puzzleSquare.visited {
@@ -386,11 +496,11 @@ button:disabled {
   background-image: url("../images/icons/slime-half.svg");
 }
 
-.puzzleSquare.visited.bottom-top-jet::before,
-.puzzleSquare.visited.top-bottom-jet::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
-  background-image: url("../images/icons/slime-jet.svg");
+.puzzleSquare.visited.bottom-top-blaster::before,
+.puzzleSquare.visited.top-bottom-blaster::before,
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
+  background-image: url("../images/icons/slime-blaster.svg");
 }
 
 .puzzleSquare.visited.top-right::before,
@@ -399,8 +509,8 @@ button:disabled {
 .puzzleSquare.visited.bottom-top::before,
 .puzzleSquare.visited.center-right::before,
 .puzzleSquare.visited.right-center::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
   transform: rotate(90deg);
 }
 
@@ -418,11 +528,74 @@ button:disabled {
   transform: rotate(270deg);
 }
 
+.infoIcon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: var(--square-size);
+  height: var(--square-size);
+}
+
+.smallInfoIcon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(var(--square-size) * 0.37);
+  height: calc(var(--square-size) * 0.37);
+}
+
+.customMessage {
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: auto;
+  justify-items: center;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: calc(var(--default-font-size) * 0.75);
+}
+
+.customMessage > a {
+  white-space: pre-line;
+  text-wrap: wrap;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+}
+
+#custom-message-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#custom-message-buttons > button {
+  margin: 10px;
+}
+
+#sharePrompt {
+  align-self: center;
+}
+
+.blockElement {
+  display: block;
+}
+
 /* Large screen, landscape */
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
+  html {
+    --square-size: min(6vmin, 1.5cm);
+  }
+
   .App,
   #game {
     max-width: calc(var(--square-size) * 15);
+    height: auto;
+    overflow-x: hidden;
   }
 
   #game {
@@ -437,6 +610,12 @@ button:disabled {
 
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+  .App,
+  #game {
+    height: auto;
+    overflow-x: hidden;
+  }
+
   #game {
     grid-template-rows:
       auto

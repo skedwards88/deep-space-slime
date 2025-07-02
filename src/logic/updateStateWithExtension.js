@@ -1,40 +1,65 @@
-import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
+import {features, numColumns, numRows} from "./constants";
+import {pushCivilians} from "./pushCivilians";
 
 // To extend:
 // Add the index to the path.
-// If the index is a flask, acquire the flask.
+// If the index is a power cell, acquire the power.
 // If the index is a key, acquire the key.
 // If the index is a door, lose a key.
 // If the index is a number, increment the number count.
-// If the index is a jet, acquire the jet.
-// If the index was only accessible with a jet, lose a jet.
+// If the index is a blaster, acquire the blaster.
+// If the index was only accessible with a blaster, lose a blaster.
+// Push any civilians
 export function updateStateWithExtension({index, currentGameState, puzzle}) {
   const mainPath = currentGameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
 
   const newMainPath = [...currentGameState.mainPath, index];
 
+  const newCivilians = pushCivilians({
+    pushedFrom: lastIndexInPath,
+    pushedCivilian: index,
+    civilians:
+      currentGameState.civilianHistory[
+        currentGameState.civilianHistory.length - 1
+      ],
+  });
+
   let newKeyCount = currentGameState.keyCount;
-  if (puzzle[index] === "key") {
+  if (puzzle[index] === features.key) {
     newKeyCount++;
   }
-  if (puzzle[index] === "door") {
+  if (puzzle[index] === features.door) {
     newKeyCount--;
   }
 
-  let newJetCount = currentGameState.jetCount;
-  if (puzzle[index] === "jet") {
-    newJetCount++;
+  let newBlasterCount = currentGameState.blasterCount;
+  if (puzzle[index] === features.blaster) {
+    newBlasterCount++;
   }
-  // If not moving to a portal or an adjacent index, assume that moving with a jet
+  // Assume that moving with a blaster if not moving to an adjacent index
+  // unless coming from a portal and the number of portals visited is odd
   const adjacentIndexes = getAdjacentIndexes({
     index: lastIndexInPath,
-    numColumns: currentGameState.numColumns,
-    numRows: currentGameState.numRows,
+    numColumns,
+    numRows,
   });
-  if (puzzle[index] !== "portal" && !adjacentIndexes.includes(index)) {
-    newJetCount--;
+  if (!adjacentIndexes.includes(index)) {
+    let numberPortalsVisited = 0;
+    if (puzzle[index] === features.portal) {
+      newMainPath.forEach((index) => {
+        const feature = puzzle[index];
+        if (feature === features.portal) {
+          numberPortalsVisited++;
+        }
+      });
+    }
+    const isPortalTravel =
+      puzzle[index] === features.portal && numberPortalsVisited % 2 === 0;
+    if (!isPortalTravel) {
+      newBlasterCount--;
+    }
   }
 
   const parsedNumber = Number.parseInt(puzzle[index]);
@@ -43,27 +68,18 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
     ? parsedNumber
     : currentGameState.numberCount;
 
-  const newValidNextIndexes = getValidNextIndexes({
-    mainPath: newMainPath,
-    puzzle: puzzle,
-    numColumns: currentGameState.numColumns,
-    numRows: currentGameState.numRows,
-    hasKey: newKeyCount > 0,
-    hasJet: newJetCount > 0,
-    numberCount: newNumberCount,
-    maxNumber: currentGameState.maxNumber,
-  });
+  const newPowerCount =
+    puzzle[index] === features.power
+      ? currentGameState.powerCount + 1
+      : currentGameState.powerCount;
 
   return {
     ...currentGameState,
-    validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
-    flaskCount:
-      puzzle[index] === "flask"
-        ? currentGameState.flaskCount + 1
-        : currentGameState.flaskCount,
-    jetCount: newJetCount,
+    powerCount: newPowerCount,
+    blasterCount: newBlasterCount,
     keyCount: newKeyCount,
     numberCount: newNumberCount,
+    civilianHistory: [...currentGameState.civilianHistory, newCivilians],
   };
 }

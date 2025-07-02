@@ -3,42 +3,57 @@
   flex-direction: column;
 }
 
-#mapStationSelect {
-  text-align: center;
-  font-size: calc(var(--default-font-size) * 0.75);
-  font-family: sans-serif;
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: black;
-  margin: 10px;
-  padding: 1px 6px;
+#map button {
+  text-align: left;
+  margin: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#map button:disabled {
+  opacity: 0.6;
 }
 
 #mapRooms {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr auto;
   align-items: center;
 }
 
-.mapScore {
+.sticky {
+  position: sticky;
+  top: 10px;
+  background-color: #6f6f6f;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.mapTypeButton {
+  width: 90vw;
+}
+
+.mapStationBlock {
+  align-items: self-end;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.fullFlask,
-.emptyFlask {
-  width: var(--default-font-size);
-  height: var(--default-font-size);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+.mapStationButton {
+  width: 83vw;
 }
 
-.fullFlask {
-  background-image: url("../images/icons/flask.svg");
+.mapRoomButton {
+  width: 75vw;
 }
 
-.emptyFlask {
-  background-image: url("../images/icons/flask-empty.svg");
+.mapRoomButton > small,
+.mapStationButton > small,
+.mapTypeButton > small {
+  font-weight: lighter;
+}
+
+.mapRoomButton:disabled,
+.mapStationButton:disabled,
+.mapTypeButton:disabled {
+  flex-direction: column;
 }

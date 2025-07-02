@@ -16,6 +16,7 @@
   height: calc(var(--square-size) * 0.6);
   background-color: transparent;
   padding: 1px 6px;
+  margin: 5px 10px;
 }
 
 #mapIcon {
@@ -34,6 +35,31 @@
   background-image: url("../images/icons/heart.svg");
 }
 
-#refreshIcon {
-  background-image: url("../images/icons/refresh.svg");
+#eyeIcon {
+  background-image: url("../images/icons/eye.svg");
+}
+
+#builderIcon,
+#editIcon {
+  background-image: url("../images/icons/edit.svg");
+}
+
+#validateIcon {
+  background-image: url("../images/icons/check.svg");
+}
+
+#playIcon {
+  background-image: url("../images/icons/play.svg");
+}
+
+#copyIcon {
+  background-image: url("../images/icons/copy.svg");
+}
+
+#returnIcon {
+  background-image: url("../images/icons/return.svg");
+}
+
+#trashIcon {
+  background-image: url("../images/icons/trash.svg");
 }

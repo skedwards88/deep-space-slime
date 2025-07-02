@@ -25,6 +25,12 @@ if [ "$current_branch" = "$PROTECTED_BRANCH" ]; then
     echo "You must fix stylelint errors before you can push to $PROTECTED_BRANCH"
     exit 1
   fi
+
+  npm t
+  if [ $? -ne 0 ]; then
+    echo "All tests must pass before you can push to $PROTECTED_BRANCH"
+    exit 1
+  fi
 fi
 
 exit 0

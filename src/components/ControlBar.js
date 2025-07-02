@@ -1,47 +1,31 @@
 import React from "react";
-import {handleShare} from "../common/handleShare";
 import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
+import Share from "./Share";
 
 function ControlBar({
   setDisplay,
   showInstallButton,
   installPromptEvent,
   setInstallPromptEvent,
-  dispatchGameState,
-  puzzleID,
 }) {
   return (
     <div id="controls">
-      <button
-        id="refreshIcon"
-        className="controlButton"
-        onClick={() =>
-          dispatchGameState({action: "newGame", puzzleID: puzzleID})
-        }
-      ></button>
-
       <button
         id="mapIcon"
         className="controlButton"
         onClick={() => setDisplay("map")}
       ></button>
 
-      {navigator.canShare ? (
-        <button
-          id="shareIcon"
-          className="controlButton"
-          onClick={() =>
-            handleShare({
-              appName: "Deep Space Slime",
-              text: "Check out this puzzle maze game!",
-              url: "https://skedwards88.github.io/deep-space-slime",
-            })
-          }
-        ></button>
-      ) : (
-        <></>
-      )}
+      <Share
+        appName="Deep Space Slime"
+        text="Check out this puzzle maze game!"
+        url="https://deepspaceslime.com"
+        id="shareIcon"
+        className="controlButton"
+        buttonText=""
+        origin="control bar"
+      ></Share>
 
       <button
         id="installIcon"
@@ -57,6 +41,12 @@ function ControlBar({
         id="heartIcon"
         className="controlButton"
         onClick={() => setDisplay("heart")}
+      ></button>
+
+      <button
+        id="builderIcon"
+        className="controlButton"
+        onClick={() => setDisplay("builderOverview")}
       ></button>
 
       <small id="rulesVersion">version {packageJson.version}</small>

@@ -1,4 +1,5 @@
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
+import {features} from "./constants";
 
 export function getIndexBetween({indexA, indexB, numColumns}) {
   if (Math.abs(indexA - indexB) === 2) {
@@ -43,7 +44,7 @@ export function getSlimeDirectionForPortal({
   // For portal -> portal, need center-exitDirection
   // For non-portal -> portal, need enterDirection-center
   const previousFeature = puzzle[previousSquare];
-  if (previousFeature === "portal") {
+  if (previousFeature === features.portal) {
     const exitDirection = getDirection(currentSquare, nextSquare, numColumns);
     return `center-${exitDirection}`;
   } else {
@@ -77,12 +78,12 @@ export function getStandardSlimeDirection({
 
 export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
   let directions = [];
-  let jettedSquares = [];
+  let blastedSquares = [];
 
   for (let currentSquare = 0; currentSquare < puzzle.length; currentSquare++) {
     const currentFeature = puzzle[currentSquare];
 
-    if (currentFeature === "start") {
+    if (currentFeature === features.start) {
       const direction = getSlimeDirectionForStart(mainPath, numColumns);
       directions.push(direction);
       continue;
@@ -106,7 +107,7 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       continue;
     }
 
-    if (currentFeature === "portal") {
+    if (currentFeature === features.portal) {
       const direction = getSlimeDirectionForPortal({
         currentSquare,
         previousSquare,
@@ -118,21 +119,21 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       continue;
     }
 
-    // If not a portal (handled above) and not moving to an adjacent index, assume that moving with a jet
-    const isPostJet = !indexesAdjacentQ({
+    // If not a portal (handled above) and not moving to an adjacent index, assume that moving with a blaster
+    const isPostBlaster = !indexesAdjacentQ({
       indexA: currentSquare,
       indexB: previousSquare,
       numColumns,
       numRows,
     });
-    const isPreJet = !indexesAdjacentQ({
+    const isPreBlaster = !indexesAdjacentQ({
       indexA: currentSquare,
       indexB: nextSquare,
       numColumns,
       numRows,
     });
 
-    if (isPostJet || isPreJet) {
+    if (isPostBlaster || isPreBlaster) {
       const direction = getStandardSlimeDirection({
         currentSquare,
         previousSquare,
@@ -141,14 +142,14 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
       });
       directions.push(direction);
 
-      // Also later modify the direction of the square that was jetted over
-      if (isPreJet) {
-        const jettedSquare = getIndexBetween({
+      // Also later modify the direction of the square that was blasted over
+      if (isPreBlaster) {
+        const blastedSquare = getIndexBetween({
           indexA: currentSquare,
           indexB: nextSquare,
           numColumns,
         });
-        jettedSquares.push(jettedSquare);
+        blastedSquares.push(blastedSquare);
       }
       continue;
     }
@@ -162,8 +163,8 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
     directions.push(direction);
   }
 
-  for (const jettedSquare of jettedSquares) {
-    directions[jettedSquare] = directions[jettedSquare] + "-jet";
+  for (const blastedSquare of blastedSquares) {
+    directions[blastedSquare] = directions[blastedSquare] + "-blaster";
   }
 
   return directions;

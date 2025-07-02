@@ -2,19 +2,155 @@ import React from "react";
 import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
-import {handleShare} from "../common/handleShare";
+import {generateSeed} from "../logic/generateSeed";
+import {
+  convertPuzzleAndCiviliansToPuzzle,
+  convertPuzzleAndCiviliansToString,
+} from "../logic/convertPuzzleString";
+import {features, numColumns, numRows, mapTypes} from "../logic/constants";
+import Share from "./Share";
+import {useGameContext} from "./GameContextProvider";
+import {useBuilderContext} from "./BuilderContextProvider";
+import {useShareContext} from "./ShareContextProvider";
+import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
+import {getHint} from "../logic/getHint";
+import {arraysMatchQ} from "../common/arraysMatchQ";
+import {getMaxPowerCount} from "../logic/getMaxPowerCount";
+import {exitUnlockedQ} from "../logic/exitUnlockedQ";
+import sendAnalytics from "../common/sendAnalytics";
 
-function handlePointerDown({event, index, dispatchGameState}) {
+function handleMovement({
+  validNext,
+  index,
+  gameState,
+  setCurrentMessage,
+  setCurrentBotMood,
+  setHintWaitIsOver,
+  setHintIndex,
+  completedLevels,
+  setCompletedLevels,
+  dispatchGameState,
+}) {
+  if (validNext) {
+    const isMovingToExit =
+      gameState.puzzle[index] === features.exit ||
+      gameState.puzzle[index] === features.ship;
+
+    if (isMovingToExit) {
+      let newCompletedLevels = [...completedLevels];
+      newCompletedLevels.push(gameState.puzzleID);
+      setCompletedLevels(newCompletedLevels);
+      sendAnalytics("levelComplete", {
+        playerID: gameState.playerID,
+        level: gameState.puzzleID,
+      });
+    }
+
+    let newMessage;
+    if (isMovingToExit) {
+      const nextPuzzleID = puzzles[gameState.puzzleID]?.nextPuzzle;
+
+      const currentPuzzleIsCampaign =
+        puzzles[gameState.puzzleID]?.type === mapTypes.campaign;
+
+      const nextPuzzleIsCampaign =
+        nextPuzzleID in puzzles &&
+        currentPuzzleIsCampaign &&
+        puzzles[nextPuzzleID].type === mapTypes.campaign;
+
+      const isAtEndOfCampaign =
+        currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
+
+      if (isAtEndOfCampaign) {
+        newMessage = (
+          <p>
+            <p>
+              You completed the campaign and unlocked bonus stations! Tap on the{" "}
+              <span id="mapIcon" className="smallInfoIcon"></span> to open the
+              bonus stations.
+            </p>
+            <p>
+              Tap <strong>Share</strong> below to help spread the game! Follow
+              us to learn about new level releases.
+            </p>
+            <p>{gameState.winText}</p>
+          </p>
+        );
+      } else {
+        newMessage = gameState.winText;
+      }
+    } else {
+      newMessage = gameState.startingText;
+    }
+    setCurrentMessage(newMessage);
+
+    if (isMovingToExit) {
+      setCurrentBotMood(gameState.robotEndMood);
+    } else {
+      setCurrentBotMood(gameState.robotStartMood);
+    }
+
+    dispatchGameState({
+      action: "modifyPath",
+      index,
+    });
+  } else {
+    const currentIndex = gameState.mainPath[gameState.mainPath.length - 1];
+    const isCurrentlyAtExit =
+      gameState.puzzle[currentIndex] === features.exit ||
+      gameState.puzzle[currentIndex] === features.ship;
+
+    if (!isCurrentlyAtExit) {
+      const errorMessage = getReasonForMoveInvalidity({
+        index,
+        currentGameState: gameState,
+      });
+      setCurrentMessage(errorMessage);
+      setCurrentBotMood("sinister");
+    }
+  }
+
+  setHintWaitIsOver(false);
+  setHintIndex(undefined);
+}
+
+function handlePointerDown({
+  event,
+  index,
+  dispatchGameState,
+  confirmReset,
+  setDisplay,
+  validNext,
+  gameState,
+  setCurrentMessage,
+  setCurrentBotMood,
+  setHintWaitIsOver,
+  setHintIndex,
+  completedLevels,
+  setCompletedLevels,
+}) {
   // Release pointer capture so that pointer events can fire on other elements
   event.target.releasePointerCapture(event.pointerId);
 
   if (event.pointerType === "mouse") {
-    dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
-    dispatchGameState({
-      action: "modifyPath",
-      isMouse: true,
-      index,
-    });
+    if (confirmReset) {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
+      setDisplay("confirmReset");
+    } else {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: true});
+      handleMovement({
+        validNext,
+        index,
+        gameState,
+        setCurrentMessage,
+        setCurrentBotMood,
+        setHintWaitIsOver,
+        setHintIndex,
+        completedLevels,
+        setCompletedLevels,
+        dispatchGameState,
+      });
+    }
   }
 }
 
@@ -22,32 +158,76 @@ function handleMouseUp(dispatchGameState) {
   dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
 }
 
-function handlePointerEnter({event, index, dispatchGameState}) {
+function handlePointerEnter({
+  event,
+  index,
+  dispatchGameState,
+  confirmReset,
+  setDisplay,
+  mouseIsActive,
+  validNext,
+  gameState,
+  setCurrentMessage,
+  setCurrentBotMood,
+  setHintWaitIsOver,
+  setHintIndex,
+  completedLevels,
+  setCompletedLevels,
+}) {
   event.preventDefault();
-  dispatchGameState({
-    action: "modifyPath",
-    isMouse: event.pointerType === "mouse",
-    index,
-  });
+  // Return early if this was triggered by the mouse entering but the mouse is not depressed
+  if (event.pointerType === "mouse" && !mouseIsActive) {
+    return;
+  }
+
+  if (confirmReset) {
+    if (event.pointerType === "mouse") {
+      dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
+    }
+    setDisplay("confirmReset");
+  } else {
+    handleMovement({
+      validNext,
+      index,
+      gameState,
+      setCurrentMessage,
+      setCurrentBotMood,
+      setHintWaitIsOver,
+      setHintIndex,
+      completedLevels,
+      setCompletedLevels,
+      dispatchGameState,
+    });
+  }
 }
 
 function PuzzleSquare({
   feature,
   index,
-  visited,
-  validNext,
-  dispatchGameState,
   exitUnlocked,
   current,
+  visited,
   direction,
-  flaskCount,
-  puzzleID,
-  score,
-  setScore,
+  setDisplay,
+  setHintWaitIsOver,
+  setCurrentMessage,
+  setCurrentBotMood,
+  setHintIndex,
+  hintIndex,
+  hasCivilian,
 }) {
+  const {gameState, dispatchGameState, completedLevels, setCompletedLevels} =
+    useGameContext();
+
+  const {mouseIsActive, mainPath, validNextIndexes} = gameState;
+
+  const validNext = validNextIndexes.includes(index);
+
+  const isHint = index === hintIndex;
+
   let featureClass;
 
-  if (feature === "exit") {
+  if (feature === features.exit) {
     feature = exitUnlocked ? "exit-opened" : "exit-closed";
   }
 
@@ -62,49 +242,128 @@ function PuzzleSquare({
       key={index}
       className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
         visited ? "visited" : ""
-      } ${direction ? direction : ""} ${validNext ? "validNext" : ""}`}
-      onPointerDown={(event) =>
-        handlePointerDown({event, index, dispatchGameState})
-      }
+      } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
+        isHint ? "hint" : ""
+      } ${hasCivilian ? "civilian" : ""}`}
+      {...(feature !== features.outer && {
+        onPointerDown: (event) => {
+          handlePointerDown({
+            event,
+            index,
+            dispatchGameState,
+            confirmReset: feature === features.start && mainPath.length > 2,
+            setDisplay,
+            validNext,
+            gameState,
+            setCurrentMessage,
+            setCurrentBotMood,
+            setHintWaitIsOver,
+            setHintIndex,
+            completedLevels,
+            setCompletedLevels,
+          });
+        },
+      })}
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
-        feature !== "outer" && {
+        feature !== features.outer && {
           onPointerEnter: (event) => {
-            if (feature === "exit-opened") {
-              let newScore = [...score];
-              newScore[puzzleID] = flaskCount;
-              setScore(newScore);
-            }
-            handlePointerEnter({event, index, dispatchGameState});
+            handlePointerEnter({
+              event,
+              index,
+              dispatchGameState,
+              confirmReset: feature === features.start && mainPath.length > 2,
+              setDisplay,
+              mouseIsActive,
+              validNext,
+              gameState,
+              setCurrentMessage,
+              setCurrentBotMood,
+              setHintWaitIsOver,
+              setHintIndex,
+              completedLevels,
+              setCompletedLevels,
+            });
           },
         })}
     ></div>
   );
 }
 
-function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
-  const maxFlasks = puzzle.filter((feature) => feature === "flask").length;
+function PuzzleSolvedButtons({
+  puzzle,
+  powerCount,
+  puzzleID,
+  dispatchGameState,
+  setHintWaitIsOver,
+  setCurrentMessage,
+  setCurrentBotMood,
+}) {
+  const maxPowers = getMaxPowerCount(puzzle);
 
-  const nextPuzzleExists = Boolean(puzzles[puzzleID + 1]);
+  const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
-  const continueButton = nextPuzzleExists ? (
+  const nextPuzzleExists = nextPuzzleID in puzzles;
+
+  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+
+  const nextPuzzleIsCampaign =
+    nextPuzzleExists &&
+    currentPuzzleIsCampaign &&
+    puzzles[nextPuzzleID].type === mapTypes.campaign;
+
+  const isAtEndOfCampaign = currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
+
+  const shareButton = isAtEndOfCampaign ? (
+    <Share
+      appName="Deep Space Slime"
+      text={`I beat Deep Space Slime! Try it out:`}
+      url="https://deepspaceslime.com"
+      buttonText="Share"
+      className="textButton"
+      origin="campaign won"
+    ></Share>
+  ) : (
+    <></>
+  );
+
+  const nextLevelButton = nextPuzzleExists ? (
     <button
+      className="textButton"
       onClick={() => {
-        dispatchGameState({action: "newGame", puzzleID: puzzleID + 1});
+        setHintWaitIsOver(false);
+        setCurrentMessage(puzzles[nextPuzzleID].startingText);
+        setCurrentBotMood(puzzles[nextPuzzleID].robotStartMood);
+        dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
-      Next Level
+      {isAtEndOfCampaign ? "Bonus" : "Next Level"}
     </button>
   ) : (
     <></>
   );
 
-  const hintButton =
-    flaskCount < maxFlasks ? (
+  const followButton = isAtEndOfCampaign ? (
+    <a
+      className="textButton"
+      id="buttonLink"
+      href="https://www.patreon.com/skedwards88"
+    >
+      Follow
+    </a>
+  ) : (
+    <></>
+  );
+
+  const retryButton =
+    powerCount < maxPowers ? (
       <button
-        onClick={() =>
-          dispatchGameState({action: "newGame", puzzleID: puzzleID})
-        }
+        className="textButton"
+        onClick={() => {
+          setCurrentMessage(puzzles[puzzleID].startingText);
+          setCurrentBotMood(puzzles[puzzleID].robotStartMood);
+          dispatchGameState({action: "newGame", puzzleID});
+        }}
       >
         Retry Level
       </button>
@@ -112,84 +371,214 @@ function ExitButtons({puzzle, flaskCount, puzzleID, dispatchGameState}) {
       <></>
     );
 
-  const shareButton =
-    !nextPuzzleExists && navigator.canShare ? (
-      <button
-        onClick={() =>
-          handleShare({
-            appName: "Deep Space Slime",
-            text: "I just beat Deep Space Slime! Try it out:",
-            url: "https://skedwards88.github.io/deep-space-slime",
-          })
-        }
-      >
-        Share
-      </button>
-    ) : (
-      <></>
-    );
+  return (
+    <div id="exitButtons">
+      {nextLevelButton}
+      {shareButton}
+      {followButton}
+      {retryButton}
+    </div>
+  );
+}
+
+function CustomPuzzleSolvedButtons({
+  puzzle,
+  startingCivilians,
+  setDisplay,
+  roomName,
+  dispatchBuilderState,
+  customIndex,
+}) {
+  const returnToMapButton = (
+    <button className="textButton" onClick={() => setDisplay("map")}>
+      Return to map
+    </button>
+  );
+
+  const editButton = (
+    <button
+      className="textButton"
+      onClick={() => {
+        dispatchBuilderState({
+          action: "editCustom",
+          puzzleWithCivilians: convertPuzzleAndCiviliansToPuzzle(
+            puzzle,
+            startingCivilians,
+          ),
+          roomName,
+          customIndex: customIndex,
+        });
+        setDisplay("builder");
+      }}
+    >
+      Edit
+    </button>
+  );
+
+  const shareButton = (
+    <Share
+      appName="Deep Space Slime"
+      text="Check out this custom Deep Space Slime puzzle!"
+      url="https://deepspaceslime.com"
+      seed={generateSeed(
+        roomName,
+        convertPuzzleAndCiviliansToString(puzzle, startingCivilians),
+      )}
+      className="textButton"
+      buttonText="Share"
+      origin="custom won"
+    ></Share>
+  );
 
   return (
     <div id="exitButtons">
-      {continueButton}
       {shareButton}
-      {hintButton}
+      {editButton}
+      {returnToMapButton}
     </div>
   );
 }
 
 function Game({
-  dispatchGameState,
-  gameState,
-  setScore,
-  score,
   setDisplay,
   setInstallPromptEvent,
   showInstallButton,
   installPromptEvent,
 }) {
+  const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
+    useGameContext();
+
+  const {hintsRemaining, setHintsRemaining} = useShareContext();
+
+  const {savedCustomBuilds, dispatchBuilderState} = useBuilderContext();
+
+  const customIndex = gameState.isCustom
+    ? gameState.customIndex ?? savedCustomBuilds.length
+    : undefined;
+
   const mainPath = gameState.mainPath;
   const lastIndexInPath = mainPath[mainPath.length - 1];
-  const exitUnlocked = gameState.maxNumber === gameState.numberCount;
+  const currentCivilians =
+    gameState.civilianHistory[gameState.civilianHistory.length - 1];
+  const exitUnlocked = exitUnlockedQ({
+    numberCount: gameState.numberCount,
+    maxNumber: gameState.maxNumber,
+    currentCivilians,
+    puzzle: gameState.puzzle,
+    powerCount: gameState.powerCount,
+  });
+
+  const [currentMessage, setCurrentMessage] = React.useState(
+    gameState.startingText,
+  );
+
+  const [currentBotMood, setCurrentBotMood] = React.useState(
+    gameState.robotStartMood,
+  );
+
+  const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
+  const hintWaitTime = 10; // seconds
+
+  const [hintIndex, setHintIndex] = React.useState(undefined);
+
   const directions = getSlimeDirections({
     mainPath,
-    puzzle: puzzles[gameState.puzzleID].puzzle,
-    numColumns: gameState.numColumns,
-    numRows: gameState.numRows,
+    puzzle: gameState.puzzle,
+    numColumns: numColumns,
+    numRows: numRows,
   });
-  const squares = puzzles[gameState.puzzleID].puzzle.map((feature, index) => (
+  const squares = gameState.puzzle.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
       index={index}
       visited={mainPath.includes(index) && lastIndexInPath !== index}
-      validNext={gameState.validNextIndexes.includes(index)}
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
-      dispatchGameState={dispatchGameState}
       direction={directions[index]}
-      flaskCount={gameState.flaskCount}
-      puzzleID={gameState.puzzleID}
-      score={score}
-      setScore={setScore}
+      setDisplay={setDisplay}
+      setHintWaitIsOver={setHintWaitIsOver}
+      setCurrentMessage={setCurrentMessage}
+      setCurrentBotMood={setCurrentBotMood}
+      setHintIndex={setHintIndex}
+      hintIndex={hintIndex}
+      hasCivilian={currentCivilians.includes(index)}
     ></PuzzleSquare>
   ));
 
-  const flasks = Array.from({length: gameState.flaskCount}, (_, index) => (
-    <div key={index} className="feature flask"></div>
+  const powers = Array.from({length: gameState.powerCount}, (_, index) => (
+    <button
+      key={index}
+      className="feature power"
+      onClick={() => setDisplay("powerExplanation")}
+    ></button>
   ));
 
   const keys = Array.from({length: gameState.keyCount}, (_, index) => (
-    <div key={index} className="feature key"></div>
+    <button
+      key={index}
+      className="feature key"
+      onClick={() => setDisplay("keyExplanation")}
+    ></button>
   ));
 
-  const jets = Array.from({length: gameState.jetCount}, (_, index) => (
-    <div key={index} className="feature jet"></div>
+  const blasters = Array.from({length: gameState.blasterCount}, (_, index) => (
+    <button
+      key={index}
+      className="feature blaster"
+      onClick={() => setDisplay("blasterExplanation")}
+    ></button>
   ));
 
   const isAtExit =
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "exit" ||
-    puzzles[gameState.puzzleID].puzzle[lastIndexInPath] === "ship";
+    gameState.puzzle[lastIndexInPath] === features.exit ||
+    gameState.puzzle[lastIndexInPath] === features.ship;
+
+  const isAtStart = gameState.puzzle[lastIndexInPath] === features.start;
+
+  // Change setHintWaitIsOver to true if the main path is unchanged for some time
+  React.useEffect(() => {
+    let timeout;
+    if (
+      !calculatingGamePaths &&
+      gameState.robotStartMood !== "sinister" &&
+      !hintWaitIsOver &&
+      !isAtExit &&
+      !isAtStart &&
+      (navigator.canShare || hintsRemaining)
+    ) {
+      timeout = setTimeout(() => {
+        setHintWaitIsOver(true);
+        // <br> elements to get the spacing to work when starting text is <p>
+        setCurrentMessage(
+          <>
+            Tap me to get a hint!<br></br>
+            <br></br>
+            {gameState.startingText}
+          </>,
+        );
+        setCurrentBotMood("happy");
+      }, hintWaitTime * 1000);
+    }
+    return () => clearTimeout(timeout);
+  }, [
+    gameState.mainPath,
+    hintWaitIsOver,
+    isAtExit,
+    isAtStart,
+    hintsRemaining,
+    gameState.robotStartMood,
+    calculatingGamePaths,
+    gameState.startingText,
+  ]);
+
+  const isTimeToShowAHint =
+    gameState.robotStartMood !== "sinister" &&
+    hintWaitIsOver &&
+    !calculatingGamePaths &&
+    !isAtExit &&
+    !isAtStart &&
+    hintIndex === undefined;
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -198,40 +587,75 @@ function Game({
         setInstallPromptEvent={setInstallPromptEvent}
         showInstallButton={showInstallButton}
         installPromptEvent={installPromptEvent}
-        dispatchGameState={dispatchGameState}
-        puzzleID={gameState.puzzleID}
       ></ControlBar>
 
-      <div id="location">{`${puzzles[gameState.puzzleID].station}: ${
-        puzzles[gameState.puzzleID].room
-      }`}</div>
+      <div id="location">{`${gameState.station}: ${gameState.roomName}`}</div>
 
       <div
         id="botFace"
-        className={
-          isAtExit
-            ? puzzles[gameState.puzzleID].robotEndMood
-            : puzzles[gameState.puzzleID].robotStartMood
+        className={`${currentBotMood}${isTimeToShowAHint ? " idea" : ""}`}
+        onClick={
+          isTimeToShowAHint && hintsRemaining
+            ? () => {
+                const [newPath, hint] = getHint(mainPath, allGamePaths);
+                setHintIndex(hint);
+                if (!arraysMatchQ(newPath, mainPath)) {
+                  dispatchGameState({action: "overwritePath", newPath});
+                }
+                setCurrentMessage("I think you should go here.");
+                setCurrentBotMood("happy");
+                setHintsRemaining(hintsRemaining - 1);
+              }
+            : null
         }
       ></div>
 
-      <div id="message">{gameState.message}</div>
-
-      <div id="acquiredFeatures">
-        <div>{flasks}</div>
-        <div>{keys}</div>
-        <div>{jets}</div>
-      </div>
+      {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
+        <div id="message">
+          {
+            "Share with a new person to get 5 more hints!\n\n(We don't track who you share with, but we hope you help us spread the game like slime across the galaxy.)\n\n"
+          }
+          <Share
+            appName="Deep Space Slime"
+            text="Check out this maze puzzle!"
+            url="https://deepspaceslime.com"
+            buttonText="Share"
+            id="sharePrompt"
+            className="textButton"
+            origin="hints"
+          ></Share>
+        </div>
+      ) : (
+        <div id="message">{currentMessage}</div>
+      )}
 
       {isAtExit ? (
-        <ExitButtons
-          puzzle={puzzles[gameState.puzzleID].puzzle}
-          flaskCount={gameState.flaskCount}
-          puzzleID={gameState.puzzleID}
-          dispatchGameState={dispatchGameState}
-        ></ExitButtons>
+        gameState.isCustom ? (
+          <CustomPuzzleSolvedButtons
+            puzzle={gameState.puzzle}
+            startingCivilians={gameState.civilianHistory[0]}
+            setDisplay={setDisplay}
+            roomName={gameState.roomName}
+            dispatchBuilderState={dispatchBuilderState}
+            customIndex={customIndex}
+          ></CustomPuzzleSolvedButtons>
+        ) : (
+          <PuzzleSolvedButtons
+            puzzle={gameState.puzzle}
+            powerCount={gameState.powerCount}
+            puzzleID={gameState.puzzleID}
+            dispatchGameState={dispatchGameState}
+            setHintWaitIsOver={setHintWaitIsOver}
+            setCurrentMessage={setCurrentMessage}
+            setCurrentBotMood={setCurrentBotMood}
+          ></PuzzleSolvedButtons>
+        )
       ) : (
-        <div id="exitButtons"></div>
+        <div id="acquiredFeatures">
+          {powers}
+          {keys}
+          {blasters}
+        </div>
       )}
 
       <div id="puzzle">{squares}</div>
