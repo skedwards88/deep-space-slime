@@ -503,6 +503,103 @@ button.feature {
 .puzzleSquare.visited.left-right-blaster::before,
 .puzzleSquare.visited.right-left-blaster::before {
   background-image: url("../images/icons/slime-blaster.svg");
+  animation: blasterGlow 0.4s linear;
+}
+
+@keyframes blasterGlow {
+  0% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  20%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  10% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  25%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  20% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  30%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  30% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  35%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  40% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  40%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  50% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  45%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  60% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 50%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  70% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 60%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  80% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 70%
+      ),
+      url("../images/icons/slime-blaster.svg");
+  }
+
+  100% {
+    background-image: url("../images/icons/slime-blaster.svg");
+  }
 }
 
 .puzzleSquare.visited.top-right::before,
