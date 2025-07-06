@@ -412,6 +412,20 @@ button.feature {
   transition: box-shadow 0.3s ease-in-out;
 }
 
+.door.person {
+  animation: doorGlow 1.4s linear;
+}
+
+@keyframes doorGlow {
+  0% {
+    box-shadow: inset 0 0 60px 1px rgb(255 129 74);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
 #civilianIcon {
   background-image: url("../images/icons/civilian.svg");
   background-color: rgb(137 132 132);
