@@ -44,7 +44,27 @@ export function gameReducer(currentGameState, payload) {
         puzzle,
       });
 
-      return stateWithBacktrackedPath;
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: stateWithBacktrackedPath.mainPath,
+        puzzle,
+        numColumns,
+        numRows,
+        hasKey: stateWithBacktrackedPath.keyCount > 0,
+        hasBlaster: stateWithBacktrackedPath.blasterCount > 0,
+        numberCount: stateWithBacktrackedPath.numberCount,
+        maxNumber: currentGameState.maxNumber,
+        currentCivilians:
+          stateWithBacktrackedPath.civilianHistory[
+            stateWithBacktrackedPath.civilianHistory.length - 1
+          ],
+        powerCount: stateWithBacktrackedPath.powerCount,
+        allowStart: true,
+      });
+
+      return {
+        ...stateWithBacktrackedPath,
+        validNextIndexes: newValidNextIndexes,
+      };
     }
 
     // Otherwise, extend the path

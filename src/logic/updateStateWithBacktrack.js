@@ -1,4 +1,3 @@
-import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {features, numColumns, numRows} from "./constants";
 
@@ -68,22 +67,8 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
       ? currentGameState.powerCount - 1
       : currentGameState.powerCount;
 
-  const newValidNextIndexes = getValidNextIndexes({
-    mainPath: newMainPath,
-    puzzle: puzzle,
-    numColumns,
-    numRows,
-    hasKey: newKeyCount > 0,
-    hasBlaster: newBlasterCount > 0,
-    numberCount: newNumberCount,
-    maxNumber: currentGameState.maxNumber,
-    currentCivilians: newCivilianHistory[newCivilianHistory.length - 1],
-    powerCount: newPowerCount,
-  });
-
   return {
     ...currentGameState,
-    validNextIndexes: newValidNextIndexes,
     mainPath: newMainPath,
     civilianHistory: newCivilianHistory,
     powerCount: newPowerCount,
