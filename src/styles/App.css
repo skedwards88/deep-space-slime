@@ -512,11 +512,26 @@ button.feature {
   background-image: url("../images/icons/slime-half.svg");
 }
 
+/* Safari has a bug where the radial-gradient animation works but
+the svg background image isn't displayed until the animation ends,
+even when the svg is included as a second layer in the background-image property.
+Putting the svg and gradient animation on separate pseudo elements works.
+*/
+
 .puzzleSquare.visited.bottom-top-blaster::before,
 .puzzleSquare.visited.top-bottom-blaster::before,
 .puzzleSquare.visited.left-right-blaster::before,
 .puzzleSquare.visited.right-left-blaster::before {
   background-image: url("../images/icons/slime-blaster.svg");
+}
+
+.puzzleSquare.visited.bottom-top-blaster::after,
+.puzzleSquare.visited.top-bottom-blaster::after,
+.puzzleSquare.visited.left-right-blaster::after,
+.puzzleSquare.visited.right-left-blaster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   animation: blasterGlow 0.4s linear;
 }
 
@@ -527,8 +542,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  20%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   10% {
@@ -537,8 +551,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  25%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   20% {
@@ -547,8 +560,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  30%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   30% {
@@ -557,8 +569,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  35%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   40% {
@@ -567,8 +578,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  40%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   50% {
@@ -577,8 +587,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent  45%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   60% {
@@ -587,8 +596,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent 50%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   70% {
@@ -597,8 +605,7 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent 60%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   80% {
@@ -607,12 +614,16 @@ button.feature {
         circle at center,
         rgb(0 211 248) 0%,
         transparent 70%
-      ),
-      url("../images/icons/slime-blaster.svg");
+      );
   }
 
   100% {
-    background-image: url("../images/icons/slime-blaster.svg");
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 90%
+      );
   }
 }
 
