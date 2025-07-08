@@ -4,6 +4,7 @@ import GameMap from "./Map";
 import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
+import BuilderLocked from "./BuilderLocked";
 import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
 import BlasterExplanation from "./BlasterExplanation";
@@ -101,6 +102,11 @@ export default function App() {
     case "builderOverview":
       componentToRender = (
         <BuilderOverview setDisplay={setDisplay}></BuilderOverview>
+      );
+      break;
+    case "builderLocked":
+      componentToRender = (
+        <BuilderLocked setDisplay={setDisplay}></BuilderLocked>
       );
       break;
     case "customShare":
