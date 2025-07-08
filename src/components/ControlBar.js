@@ -50,7 +50,9 @@ function ControlBar({
 
       <button
         id="builderIcon"
-        className="controlButton"
+        className={`controlButton ${
+          campaignIsComplete ? "" : "pseudodisabled"
+        }`}
         onClick={() =>
           campaignIsComplete
             ? setDisplay("builderOverview")

@@ -47,7 +47,8 @@ button {
   width: fit-content;
 }
 
-button:disabled {
+button:disabled,
+.pseudodisabled {
   opacity: 0.5;
 }
 
