@@ -16,7 +16,6 @@
   height: calc(var(--square-size) * 0.6);
   background-color: transparent;
   padding: 1px 6px;
-  margin: 5px 10px;
 }
 
 #mapIcon {
@@ -62,4 +61,12 @@
 
 #trashIcon {
   background-image: url("../images/icons/trash.svg");
+}
+
+#muteIcon {
+  background-image: url("../images/icons/mute.svg");
+}
+
+#unmuteIcon {
+  background-image: url("../images/icons/unmute.svg");
 }

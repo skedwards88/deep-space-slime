@@ -2,6 +2,7 @@ import React from "react";
 import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
 import Share from "./Share";
+import Audio from "./Audio";
 import {useGameContext} from "./GameContextProvider";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 
@@ -16,6 +17,7 @@ function ControlBar({
 
   return (
     <div id="controls">
+      <Audio></Audio>
       <button
         id="mapIcon"
         className="controlButton"

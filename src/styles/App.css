@@ -83,7 +83,7 @@ button:disabled,
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
-  font-size: calc(var(--default-font-size) * 0.75);
+  font-size: calc(var(--default-font-size) * 0.7);
 }
 
 .infoText {
@@ -680,7 +680,7 @@ Putting the svg and gradient animation on separate pseudo elements works.
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
-  font-size: calc(var(--default-font-size) * 0.75);
+  font-size: calc(var(--default-font-size) * 0.7);
 }
 
 .customMessage > a {
