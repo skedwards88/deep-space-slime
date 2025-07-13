@@ -43,5 +43,3 @@ export default function Audio() {
     </div>
   );
 }
-
-// todo: add uppbeat credit to heart screen
