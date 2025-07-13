@@ -1,8 +1,5 @@
 /* General */
 html {
-  /* --square-size: min(6vmax, 1.5cm); */
-
-  /* --square-size: 1.5cm; */
   --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
 
