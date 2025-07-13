@@ -34,7 +34,7 @@ export default function Audio() {
       <audio ref={audioRef} src={musicFile} />
       <button
         className="controlButton"
-        id={isPlaying ? "playIcon" : "muteIcon"}
+        id={isPlaying ? "muteIcon" : "unmuteIcon"}
         onClick={() => {
           isPlaying ? audioRef.current.pause() : audioRef.current.play();
           setIsPlaying(!isPlaying);
