@@ -19,6 +19,10 @@ function BuilderEntry({
 }) {
   const {shareAndCapHints} = useShareContext();
 
+  const {
+    gameState: {playerID},
+  } = useGameContext();
+
   return (
     <div className="builderEntry">
       <div id="customName">{roomName}</div>
@@ -37,10 +41,10 @@ function BuilderEntry({
         id="editIcon"
         className="controlButton"
         onClick={() => {
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           dispatchBuilderState({
             action: "editCustom",
-            puzzle,
+            puzzleWithCivilians,
             roomName,
             customIndex: index,
           });
@@ -53,9 +57,9 @@ function BuilderEntry({
         className="controlButton"
         onClick={() => {
           // Check if valid
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians,
             numColumns,
             numRows,
           });
@@ -79,9 +83,9 @@ function BuilderEntry({
         className="controlButton"
         onClick={() => {
           // Check if valid
-          const puzzle = convertStringToPuzzle(encodedPuzzle);
+          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
           const {isValid} = validateCustomPuzzle({
-            puzzle: puzzle,
+            puzzleWithCivilians,
             numColumns,
             numRows,
           });
@@ -94,13 +98,15 @@ function BuilderEntry({
               shareAndCapHints({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
-                url: "https://skedwards88.github.io/deep-space-slime",
+                url: "https://deepspaceslime.com",
                 seed: generateSeed(roomName, encodedPuzzle),
+                playerID,
+                origin: "builder overview",
               });
             } else {
               dispatchBuilderState({
                 action: "editCustom",
-                puzzle,
+                puzzleWithCivilians,
                 roomName,
                 customIndex: index,
               });
@@ -156,6 +162,7 @@ export default function BuilderOverview({setDisplay}) {
         </div>
       </div>
       <button
+        className="textButton"
         disabled={savedCustomBuilds.length >= 400}
         onClick={() => {
           dispatchBuilderState({
@@ -168,7 +175,9 @@ export default function BuilderOverview({setDisplay}) {
         New custom puzzle
       </button>
 
-      <button onClick={() => setDisplay("game")}>Return to game</button>
+      <button className="textButton" onClick={() => setDisplay("game")}>
+        Return to game
+      </button>
 
       {entryElements}
     </div>

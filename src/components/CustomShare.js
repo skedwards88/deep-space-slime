@@ -6,15 +6,15 @@ import {useShareContext} from "./ShareContextProvider";
 
 export default function CustomShare({setDisplay}) {
   const {
-    builderState: {roomName, puzzle},
+    builderState: {roomName, puzzleWithCivilians},
   } = useBuilderContext();
 
   const {setHintsRemaining, maxHints} = useShareContext();
 
-  const encodedPuzzle = convertPuzzleToString(puzzle);
+  const encodedPuzzle = convertPuzzleToString(puzzleWithCivilians);
   const customSeed = generateSeed(roomName, encodedPuzzle);
 
-  const link = `https://skedwards88.github.io/deep-space-slime?id=${customSeed}`;
+  const link = `https://deepspaceslime.com?id=${customSeed}`;
 
   return (
     <div className="App customMessage">
@@ -22,6 +22,7 @@ export default function CustomShare({setDisplay}) {
       <a href={link}>{link}</a>
       <div id="custom-message-buttons">
         <button
+          className="textButton"
           onClick={() => {
             try {
               setHintsRemaining(maxHints);
@@ -34,6 +35,7 @@ export default function CustomShare({setDisplay}) {
           Copy
         </button>
         <button
+          className="textButton"
           onClick={() => {
             setDisplay("builder");
           }}

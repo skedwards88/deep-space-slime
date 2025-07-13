@@ -1,7 +1,7 @@
-import {getMaxFlaskCount} from "./getMaxFlaskCount";
+import {getMaxPowerCount} from "./getMaxPowerCount";
 import {features} from "./constants";
 
-const puzzleWithZeroFlasks = [
+const puzzleWithZeroPowers = [
   features.outer,
   features.outer,
   features.outer,
@@ -67,25 +67,25 @@ const puzzleWithZeroFlasks = [
   features.outer,
 ];
 
-const puzzleWithFiveFlasks = [
+const puzzleWithFivePowers = [
   features.outer,
   features.outer,
   features.outer,
   features.outer,
   features.outer,
   features.outer,
-  features.flask,
+  features.power,
   features.outer,
   features.outer,
   features.outer,
-  features.flask,
+  features.power,
   features.outer,
   features.outer,
   features.outer,
   features.outer,
   features.outer,
   features.outer,
-  features.flask,
+  features.power,
   features.outer,
   features.outer,
   features.outer,
@@ -95,7 +95,7 @@ const puzzleWithFiveFlasks = [
   features.basic,
   features.outer,
   features.outer,
-  features.flask,
+  features.power,
   features.outer,
   features.outer,
   features.outer,
@@ -106,7 +106,7 @@ const puzzleWithFiveFlasks = [
   features.outer,
   features.outer,
   features.outer,
-  features.flask,
+  features.power,
   features.outer,
   features.outer,
   features.outer,
@@ -133,14 +133,14 @@ const puzzleWithFiveFlasks = [
   features.outer,
 ];
 
-describe("getMaxFlaskCount", () => {
-  test("returns 0 if no flasks", () => {
-    expect(getMaxFlaskCount(puzzleWithZeroFlasks)).toBe(0);
+describe("getMaxPowerCount", () => {
+  test("returns 0 if no powers", () => {
+    expect(getMaxPowerCount(puzzleWithZeroPowers)).toBe(0);
   });
-  test("returns flask count", () => {
-    expect(getMaxFlaskCount(puzzleWithFiveFlasks)).toBe(5);
+  test("returns power count", () => {
+    expect(getMaxPowerCount(puzzleWithFivePowers)).toBe(5);
   });
   test("returns 0 if empty puzzle", () => {
-    expect(getMaxFlaskCount([])).toBe(0);
+    expect(getMaxPowerCount([])).toBe(0);
   });
 });

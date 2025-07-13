@@ -48,6 +48,7 @@ export function GameContextProvider({children}) {
 
     worker.postMessage({
       puzzle: gameState.puzzle,
+      startingCivilians: gameState.civilianHistory[0],
       numColumns,
       numRows,
       maxPathsToFind,
@@ -67,32 +68,39 @@ export function GameContextProvider({children}) {
     };
   }, [gameState.puzzle]);
 
-  const savedScore = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedScore"),
+  const savedCompletedLevels = JSON.parse(
+    localStorage.getItem("deepSpaceSlimeSavedCompletedLevels"),
   );
-  const [score, setScore] = useState(savedScore || {});
+
+  const [completedLevels, setCompletedLevels] = useState(
+    savedCompletedLevels || [],
+  );
+
   useEffect(() => {
-    // Before saving, purge any obsolete entries
-    let purgedScore = {...score};
-    const validKeys = Object.keys(puzzles);
-    for (const key in purgedScore) {
-      if (!validKeys.includes(key)) {
-        delete purgedScore[key];
+    // Before saving, purge any obsolete levels
+    let purgedCompletedLevels = [];
+
+    const validLevels = Object.keys(puzzles);
+
+    for (const level of completedLevels) {
+      if (validLevels.includes(level)) {
+        purgedCompletedLevels.push(level);
       }
     }
+
     window.localStorage.setItem(
-      "deepSpaceSlimeSavedScore",
-      JSON.stringify(purgedScore),
+      "deepSpaceSlimeSavedCompletedLevels",
+      JSON.stringify(purgedCompletedLevels),
     );
-  }, [score]);
+  }, [completedLevels]);
 
   return (
     <GameContext.Provider
       value={{
         gameState,
         dispatchGameState,
-        score,
-        setScore,
+        completedLevels,
+        setCompletedLevels,
         allGamePaths,
         calculatingGamePaths,
       }}

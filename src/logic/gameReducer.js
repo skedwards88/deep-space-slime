@@ -20,15 +20,18 @@ export function gameReducer(currentGameState, payload) {
         numColumns,
         numRows,
         maxNumber: currentGameState.maxNumber,
+        currentCivilians: currentGameState.civilianHistory[0],
+        powerCount: 0,
       });
       return {
         ...currentGameState,
         validNextIndexes: newValidNextIndexes,
         mainPath: [startIndex],
-        flaskCount: 0,
+        powerCount: 0,
         keyCount: 0,
         numberCount: 0,
-        jetCount: 0,
+        blasterCount: 0,
+        civilianHistory: [currentGameState.civilianHistory[0]],
       };
     }
 
@@ -41,7 +44,27 @@ export function gameReducer(currentGameState, payload) {
         puzzle,
       });
 
-      return stateWithBacktrackedPath;
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: stateWithBacktrackedPath.mainPath,
+        puzzle,
+        numColumns,
+        numRows,
+        hasKey: stateWithBacktrackedPath.keyCount > 0,
+        hasBlaster: stateWithBacktrackedPath.blasterCount > 0,
+        numberCount: stateWithBacktrackedPath.numberCount,
+        maxNumber: currentGameState.maxNumber,
+        currentCivilians:
+          stateWithBacktrackedPath.civilianHistory[
+            stateWithBacktrackedPath.civilianHistory.length - 1
+          ],
+        powerCount: stateWithBacktrackedPath.powerCount,
+        allowStart: true,
+      });
+
+      return {
+        ...stateWithBacktrackedPath,
+        validNextIndexes: newValidNextIndexes,
+      };
     }
 
     // Otherwise, extend the path
@@ -51,7 +74,25 @@ export function gameReducer(currentGameState, payload) {
       puzzle,
     });
 
-    return stateWithExtendedPath;
+    // Get the new valid indexes
+    const newValidNextIndexes = getValidNextIndexes({
+      mainPath: stateWithExtendedPath.mainPath,
+      puzzle: puzzle,
+      numColumns,
+      numRows,
+      hasKey: stateWithExtendedPath.keyCount > 0,
+      hasBlaster: stateWithExtendedPath.blasterCount > 0,
+      numberCount: stateWithExtendedPath.numberCount,
+      maxNumber: currentGameState.maxNumber,
+      currentCivilians:
+        stateWithExtendedPath.civilianHistory[
+          stateWithExtendedPath.civilianHistory.length - 1
+        ],
+      powerCount: stateWithExtendedPath.powerCount,
+      allowStart: true,
+    });
+
+    return {...stateWithExtendedPath, validNextIndexes: newValidNextIndexes};
   }
   if (payload.action === "resetPuzzle") {
     const puzzle = currentGameState.puzzle;
@@ -64,39 +105,45 @@ export function gameReducer(currentGameState, payload) {
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
+      currentCivilians: currentGameState.civilianHistory[0],
+      powerCount: 0,
     });
     return {
       ...currentGameState,
       validNextIndexes: newValidNextIndexes,
       mainPath: [startIndex],
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
       numberCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
+      civilianHistory: [currentGameState.civilianHistory[0]],
     };
   } else if (payload.action === "overwritePath") {
     const puzzle = currentGameState.puzzle;
     const newPath = payload.newPath;
 
     // Iteratively update the state with the new path so that the inventory matches
-    // (It would be more efficient to break the validNextPaths calculation into
+    // (todo It would be more efficient to break the validNextPaths calculation into
     // a separate function since we don't need that value until the very end.
-    const validNextIndexes = getValidNextIndexes({
+    const startingValidNextIndexes = getValidNextIndexes({
       mainPath: [newPath[0]],
+      currentCivilians: currentGameState.civilianHistory[0],
       puzzle: currentGameState.puzzle,
       numColumns,
       numRows,
       maxNumber: currentGameState.maxNumber,
+      powerCount: 0,
     });
 
     let updatedState = {
       ...currentGameState,
-      validNextIndexes,
+      validNextIndexes: startingValidNextIndexes,
       mainPath: [newPath[0]],
-      flaskCount: 0,
+      civilianHistory: currentGameState.civilianHistory.slice(0, 1),
+      powerCount: 0,
       keyCount: 0,
       numberCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
     };
 
     for (let index = 1; index < newPath.length; index++) {
@@ -105,12 +152,26 @@ export function gameReducer(currentGameState, payload) {
         currentGameState: {...updatedState},
         puzzle,
       });
+
+      const newValidNextIndexes = getValidNextIndexes({
+        mainPath: updatedState.mainPath,
+        puzzle: puzzle,
+        numColumns,
+        numRows,
+        hasKey: updatedState.keyCount > 0,
+        hasBlaster: updatedState.blasterCount > 0,
+        numberCount: updatedState.numberCount,
+        maxNumber: currentGameState.maxNumber,
+        currentCivilians:
+          updatedState.civilianHistory[updatedState.civilianHistory.length - 1],
+        powerCount: updatedState.powerCount,
+        allowStart: true,
+      });
+
+      updatedState = {...updatedState, validNextIndexes: newValidNextIndexes};
     }
 
-    return {
-      ...updatedState,
-      mainPath: newPath,
-    };
+    return updatedState;
   } else if (payload.action === "newGame") {
     const puzzleID = payload.puzzleID;
 

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin: 3vh 0;
 }
 
 #botCommunication {
@@ -14,4 +15,6 @@
   justify-content: space-around;
   align-items: center;
   width: 90vw;
+  font-size: calc(var(--default-font-size) * 0.7);
+  margin: 1vh 0;
 }

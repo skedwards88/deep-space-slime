@@ -1,5 +1,9 @@
+import React from "react";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {features, numColumns, numRows} from "./constants";
+import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
+import {civilianPushValidQ} from "./civilianPushValidQ";
+import {getMaxPowerCount} from "./getMaxPowerCount";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
   const mainPath = currentGameState.mainPath;
@@ -18,7 +22,14 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   // The space is an 'outer' space
   if (puzzle[index] === features.outer) {
     message =
-      "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay INSIDE the station.";
+      "Unlike a computer, your inferior human body does not let you survive in outer space. I suggest you stay inside the station.";
+    return message;
+  }
+
+  // The space is a 'pod' space
+  if (puzzle[index] === features.pod) {
+    message =
+      "I'm sure you would love to escape, but pods are for civilians only. Push every civilian onto a pod, and then make your way to the exit.";
     return message;
   }
 
@@ -26,14 +37,24 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   // (and you aren't backtracking, which is already considered when calculating the validity)
   const hasBeenVisited = mainPath.includes(index);
   if (hasBeenVisited) {
-    message =
-      "Don’t step on the SLIME! The only way to cross a SLIME space is to use a SPRAY BOTTLE to jump straight across the slime trail to a slime-free space.";
+    message = (
+      <p>
+        Don&apos;t step on the slime! The only way to cross the slime trail is
+        to use a <span id="blasterIcon" className="smallInfoIcon"></span> to
+        jump straight across the slime to a slime-free space.
+      </p>
+    );
     return message;
   }
 
   // The index is a door and you don't have a key
   if (puzzle[index] === features.door && currentGameState.keyCount <= 0) {
-    message = "You need a CARD KEY for that!";
+    message = (
+      <p>
+        You need a <span id="keyIcon" className="smallInfoIcon"></span> for
+        that!
+      </p>
+    );
     return message;
   }
 
@@ -43,7 +64,31 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     currentGameState.numberCount !== currentGameState.maxNumber
   ) {
     message =
-      "I’ll only open the exit once you have hacked all the terminals in numerical order. Get to work, Subject 56!";
+      "I'll only open the exit once you have hacked all the terminals in numerical order. Get to work, Subject 56!";
+    return message;
+  }
+
+  // The space is the exit and you have not rescued all civilians
+  const currentCivilians =
+    currentGameState.civilianHistory[
+      currentGameState.civilianHistory.length - 1
+    ];
+  if (
+    puzzle[index] === features.exit &&
+    !allCiviliansOnPodsQ(currentCivilians, puzzle)
+  ) {
+    message =
+      "I won't let you out until you save all of the civilians. Push each civilian onto an escape pod!";
+    return message;
+  }
+
+  // The space is the exit and you haven't gotten all power cells
+  if (
+    puzzle[index] === features.exit &&
+    currentGameState.powerCount !== getMaxPowerCount(puzzle)
+  ) {
+    message =
+      "I can't unlock the exit until you collect all of the power cells.";
     return message;
   }
 
@@ -100,6 +145,21 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
   if (!isAdjacent) {
     message =
       "That space is too far away, and you are confined to your physical body. Poor human…";
+    return message;
+  }
+
+  // The space includes a civilian who would be pushed to an invalid space
+  if (
+    currentCivilians.includes(index) &&
+    !civilianPushValidQ({
+      pushedCivilian: index,
+      pushedFrom: lastIndexInPath,
+      puzzle,
+      currentCivilians,
+      mainPath,
+    })
+  ) {
+    message = `Civilians can't be pushed onto slime, portals, doors, entrances/exits, or outer space.`;
     return message;
   }
 

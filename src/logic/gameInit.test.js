@@ -5,8 +5,11 @@ import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
-import {convertPuzzleToString} from "./convertPuzzleString";
-import {features, numColumns, numRows, firstPuzzle} from "./constants";
+import {
+  convertPuzzleToString,
+  convertStringToPuzzle,
+} from "./convertPuzzleString";
+import {features, numColumns, numRows, firstPuzzleId} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
 jest.mock("../common/sendAnalytics");
@@ -23,7 +26,8 @@ describe("gameInit saved state usage", () => {
     const savedState = {
       puzzleID: "campaign/quarantine-station/1",
       isCustom: false,
-      flaskCount: 5,
+      powerCount: 5,
+      playerID: "test",
     };
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -42,7 +46,6 @@ describe("gameInit saved state usage", () => {
       station: puzzles[savedState.puzzleID].station,
       roomName: puzzles[savedState.puzzleID].roomName,
       startingText: puzzles[savedState.puzzleID].startingText,
-      hintText: puzzles[savedState.puzzleID].hintText,
       winText: puzzles[savedState.puzzleID].winText,
       robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
       robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
@@ -115,16 +118,18 @@ describe("gameInit saved state usage", () => {
   test("uses default values when no arguments are provided", () => {
     const result = gameInit({});
 
-    expect(result).toHaveProperty("puzzleID", firstPuzzle);
+    expect(result).toHaveProperty("puzzleID", firstPuzzleId);
     expect(result).toHaveProperty("isCustom", false);
     expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: firstPuzzle,
+      puzzleID: firstPuzzleId,
     });
   });
 
   test("returns correct structure for new non-custom game", () => {
     const puzzleID = "campaign/quarantine-station/1";
-    const puzzle = puzzles[puzzleID].puzzle;
+    const puzzleStringWithCivilians =
+      puzzles[puzzleID].puzzleStringWithCivilians;
+    const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
@@ -141,20 +146,21 @@ describe("gameInit saved state usage", () => {
       station: puzzles[puzzleID].station,
       roomName: puzzles[puzzleID].roomName,
       startingText: puzzles[puzzleID].startingText,
-      hintText: puzzles[puzzleID].hintText,
       winText: puzzles[puzzleID].winText,
       robotStartMood: puzzles[puzzleID].robotStartMood,
       robotEndMood: puzzles[puzzleID].robotEndMood,
       puzzle,
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
       numberCount: 0,
       maxNumber,
       validNextIndexes,
       mainPath,
       mouseIsActive: false,
       puzzleID,
+      civilianHistory: [[]],
+      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
@@ -162,11 +168,15 @@ describe("gameInit saved state usage", () => {
       numColumns,
       numRows,
       maxNumber,
+      currentCivilians: result.civilianHistory[0],
+      powerCount: 0,
     });
   });
 
   test("returns correct structure for new custom game", () => {
-    const puzzle = puzzles["campaign/quarantine-station/1"].puzzle;
+    const puzzleStringWithCivilians =
+      puzzles["campaign/quarantine-station/1"].puzzleStringWithCivilians;
+    const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
     const mainPath = [startIndex];
@@ -192,21 +202,22 @@ describe("gameInit saved state usage", () => {
       station: "Custom Simulation",
       roomName: "Test custom room",
       startingText: "This is a custom puzzle built by a human subject.",
-      hintText: undefined,
       winText:
         "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.",
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzle,
-      flaskCount: 0,
+      powerCount: 0,
       keyCount: 0,
-      jetCount: 0,
+      blasterCount: 0,
       numberCount: 0,
       maxNumber,
       validNextIndexes,
       mainPath,
       mouseIsActive: false,
       puzzleID: "custom",
+      civilianHistory: [[]],
+      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       mainPath,
@@ -214,6 +225,8 @@ describe("gameInit saved state usage", () => {
       numColumns,
       numRows,
       maxNumber,
+      currentCivilians: result.civilianHistory[0],
+      powerCount: 0,
     });
   });
 });

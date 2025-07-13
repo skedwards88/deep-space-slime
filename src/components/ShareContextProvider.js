@@ -45,7 +45,7 @@ export function ShareContextProvider({children}) {
     setHintsRemaining(maxHints);
   }
 
-  function shareAndCapHints({appName, text, url, seed}) {
+  function shareAndCapHints({appName, text, url, seed, origin, playerID}) {
     const fullUrl = seed ? `${url}?id=${seed}` : url;
     console.log(fullUrl);
 
@@ -63,7 +63,7 @@ export function ShareContextProvider({children}) {
         console.log("Error sharing or share was canceled", error);
       });
 
-    sendAnalytics("share");
+    sendAnalytics("share", {origin, playerID});
   }
 
   return (

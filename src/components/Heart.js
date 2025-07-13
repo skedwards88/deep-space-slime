@@ -12,12 +12,14 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
             appName={appName}
             text={shareText}
             url={url}
+            className="textButton"
             buttonText="Share"
+            origin="heart"
           ></Share>
         }
         <hr></hr>
         <p>
-          Follow our{" "}
+          Join our{" "}
           <a href="https://www.patreon.com/skedwards88">
             <strong>FREE</strong> Patreon
           </a>{" "}
@@ -26,8 +28,11 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         <hr></hr>
         <p>
           Want more games? See all of our puzzle games{" "}
-          <a href="https://skedwards88.github.io/">here</a> .
+          <a href="https://skedwards88.github.io/">here</a>.
         </p>
+        <hr></hr>
+        <p>Thanks to our playtesters!</p>
+        <small>Armand R, Brian J, Jenni C, Joe C, Molly K, Rudy Y</small>
         <hr></hr>
         <p>
           Feedback?{" "}
@@ -39,9 +44,12 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
           on GitHub or email SECTgames@gmail.com.
         </p>
         <hr></hr>
-        <a href="./privacy.html">Privacy policy</a>
+        <a href="./privacy.html" className="blockElement">
+          Privacy policy
+        </a>
+        <small>tl;dr: We collect anonymous data about game play</small>
       </div>
-      <button className="close" onClick={() => setDisplay("game")}>
+      <button className="textButton" onClick={() => setDisplay("game")}>
         Close
       </button>
     </div>

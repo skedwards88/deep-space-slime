@@ -4,3 +4,5 @@ PWA_Builder
 .vscode/settings.json
 .env
 .env.test
+.DS_Store
+temp/

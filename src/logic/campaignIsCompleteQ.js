@@ -1,12 +1,12 @@
 import {puzzles} from "./puzzles";
-import {firstPuzzle, mapTypes} from "./constants";
+import {firstPuzzleId, mapTypes} from "./constants";
 
-export function campaignIsCompleteQ(score) {
+export function campaignIsCompleteQ(completedLevels) {
   let campaignIsComplete = false;
-  let currentPuzzle = firstPuzzle;
+  let currentPuzzle = firstPuzzleId;
 
   while (!campaignIsComplete) {
-    const currentPuzzleIsComplete = score[currentPuzzle] !== undefined;
+    const currentPuzzleIsComplete = completedLevels.includes(currentPuzzle);
 
     if (!currentPuzzleIsComplete) {
       break;

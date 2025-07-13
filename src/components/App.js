@@ -4,10 +4,11 @@ import GameMap from "./Map";
 import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
+import BuilderLocked from "./BuilderLocked";
 import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
-import JetExplanation from "./JetExplanation";
-import FlaskExplanation from "./FlaskExplanation";
+import BlasterExplanation from "./BlasterExplanation";
+import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
 import {
@@ -65,7 +66,7 @@ export default function App() {
           appName="Deep Space Slime"
           shareText="Check out this maze puzzle!"
           repoName="deep-space-slime"
-          url="https://skedwards88.github.io/deep-space-slime"
+          url="https://deepspaceslime.com"
         />
       );
       break;
@@ -77,14 +78,14 @@ export default function App() {
         ></FallbackInstall>
       );
       break;
-    case "jetExplanation":
+    case "blasterExplanation":
       componentToRender = (
-        <JetExplanation setDisplay={setDisplay}></JetExplanation>
+        <BlasterExplanation setDisplay={setDisplay}></BlasterExplanation>
       );
       break;
-    case "flaskExplanation":
+    case "powerExplanation":
       componentToRender = (
-        <FlaskExplanation setDisplay={setDisplay}></FlaskExplanation>
+        <PowerExplanation setDisplay={setDisplay}></PowerExplanation>
       );
       break;
     case "keyExplanation":
@@ -101,6 +102,11 @@ export default function App() {
     case "builderOverview":
       componentToRender = (
         <BuilderOverview setDisplay={setDisplay}></BuilderOverview>
+      );
+      break;
+    case "builderLocked":
+      componentToRender = (
+        <BuilderLocked setDisplay={setDisplay}></BuilderLocked>
       );
       break;
     case "customShare":

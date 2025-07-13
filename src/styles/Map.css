@@ -4,8 +4,10 @@
 }
 
 #map button {
-  background-color: black;
-  color: white;
+  text-align: left;
+  margin: 7px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #map button:disabled {
@@ -14,17 +16,19 @@
 
 #mapRooms {
   display: flex;
-  flex-direction: column;
   grid-template-columns: 1fr auto;
   align-items: center;
 }
 
+.sticky {
+  position: sticky;
+  top: 10px;
+  background-color: #6f6f6f;
+  opacity: 0.9;
+  z-index: 1;
+}
+
 .mapTypeButton {
-  border: 2px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: calc(var(--square-size) * 0.7);
   width: 90vw;
 }
 
@@ -35,42 +39,21 @@
 }
 
 .mapStationButton {
-  border: 2px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: calc(var(--square-size) * 0.7);
-  width: 85vw;
+  width: 83vw;
 }
 
 .mapRoomButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: calc(var(--square-size) * 0.7);
+  width: 75vw;
 }
 
-.mapScore {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  overflow: hidden;
+.mapRoomButton > small,
+.mapStationButton > small,
+.mapTypeButton > small {
+  font-weight: lighter;
 }
 
-.fullFlask,
-.emptyFlask {
-  width: calc(var(--square-size) / 2);
-  height: calc(var(--square-size) / 2);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.fullFlask {
-  background-image: url("../images/icons/flask.svg");
-}
-
-.emptyFlask {
-  background-image: url("../images/icons/flask-empty.svg");
+.mapRoomButton:disabled,
+.mapStationButton:disabled,
+.mapTypeButton:disabled {
+  flex-direction: column;
 }

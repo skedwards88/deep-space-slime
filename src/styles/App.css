@@ -1,6 +1,9 @@
 /* General */
 html {
-  --square-size: min(6vmax, 1.5cm);
+  /* --square-size: min(6vmax, 1.5cm); */
+
+  /* --square-size: 1.5cm; */
+  --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
 
   background-image: url("../images/background.svg");
@@ -25,6 +28,7 @@ small {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 button {
@@ -32,18 +36,19 @@ button {
   text-decoration: none;
   text-align: center;
   appearance: none;
-  font-size: calc(var(--default-font-size) * 0.75);
+  font-size: calc(var(--default-font-size) * 0.7);
   font-family: sans-serif;
-  background-color: white;
+  background-color: black;
   border: 1px solid white;
   border-radius: 5px;
-  color: black;
+  color: white;
   margin: 10px;
   padding: 1px 6px;
   width: fit-content;
 }
 
-button:disabled {
+button:disabled,
+.pseudodisabled {
   opacity: 0.5;
 }
 
@@ -55,10 +60,16 @@ button:disabled {
   height: 90vh; /* fallback if svh isn't handled */
   height: 100svh;
   width: 100vw;
-  overflow: scroll;
+  overflow: auto;
 }
 
-.close {
+.textButton {
+  font-size: calc(var(--default-font-size) * 0.7);
+  font-weight: bold;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
   margin-bottom: 2vh;
   padding: 1vh 2vh;
 }
@@ -68,7 +79,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -116,6 +127,7 @@ button:disabled {
   border-bottom: 1vmax solid black;
   background-color: black;
   color: white;
+  width: 100%;
 }
 
 #message {
@@ -124,7 +136,7 @@ button:disabled {
   min-height: calc(var(--square-size) * 2);
   width: 99%;
   text-align: left;
-  overflow: scroll;
+  overflow: auto;
   white-space: pre-wrap;
   background-color: black;
   border-right: 2vmin solid black;
@@ -154,7 +166,7 @@ button:disabled {
   grid-area: botFace;
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: calc(80%);
+  background-size: 80%;
   width: calc(var(--square-size) * 2);
   min-height: calc(var(--square-size) * 2);
   background-color: black;
@@ -170,8 +182,23 @@ button:disabled {
   background-image: url("../images/icons/bot-sinister.svg");
 }
 
+/* Safari has a bug where the background-size isn't respected
+if you change the background-image during animation.
+Using a pseudo element and changing the opacity works instead.
+*/
 #botFace.idea {
+  position: relative;
+}
+
+#botFace.idea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image: url("../images/icons/bot-idea.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: blink 1s step-start 3;
 }
 
 #botFace.glitchy-sinister,
@@ -215,8 +242,11 @@ button:disabled {
 }
 
 #exitButtons > button,
-#pathfinderButtons > button {
+#pathfinderButtons > button,
+#exitButtons > #buttonLink {
   margin: 0 10px;
+  display: flex;
+  align-items: center;
 }
 
 #acquiredFeatures .feature {
@@ -225,15 +255,29 @@ button:disabled {
   background-size: contain;
   width: calc(var(--square-size) * 0.8);
   height: calc(var(--square-size) * 0.8);
+  animation: acquisitionGlow 2s linear;
+  border-radius: 30%;
+}
+
+@keyframes acquisitionGlow {
+  0% {
+    box-shadow:
+      0 0 20px 10px rgb(255 255 255 / 70%),
+      inset 0 0 60px 1px rgb(255 255 255 / 70%);
+  }
+
+  100% {
+    box-shadow: none;
+  }
 }
 
 button.feature {
   all: unset;
 }
 
-#acquiredFeatures .flask,
-#flaskIcon {
-  background-image: url("../images/icons/flask.svg");
+#acquiredFeatures .power,
+#powerIcon {
+  background-image: url("../images/icons/power.svg");
 }
 
 #acquiredFeatures .key,
@@ -242,9 +286,9 @@ button.feature {
   background-size: calc(100% - 5px);
 }
 
-#acquiredFeatures .jet,
-#jetIcon {
-  background-image: url("../images/icons/jet.svg");
+#acquiredFeatures .blaster,
+#blasterIcon {
+  background-image: url("../images/icons/blaster.svg");
 }
 
 #puzzle {
@@ -263,7 +307,7 @@ button.feature {
   border: 1px solid black;
   width: var(--square-size);
   height: var(--square-size);
-  background-color: rgb(137 132 132);
+  background-color: rgb(138 133 133);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -280,8 +324,8 @@ button.feature {
   background-color: transparent;
 }
 
-.puzzleSquare.flask {
-  background-image: url("../images/icons/flask.svg");
+.puzzleSquare.power {
+  background-image: url("../images/icons/power.svg");
   background-size: calc(100% - 10px);
 }
 
@@ -295,14 +339,14 @@ button.feature {
   background-image: url("../images/icons/door.svg");
 }
 
-.puzzleSquare.jet {
-  background-image: url("../images/icons/jet.svg");
+.puzzleSquare.blaster {
+  background-image: url("../images/icons/blaster.svg");
   background-size: calc(100% - 10px);
 }
 
 .puzzleSquare.portal,
 #portalIcon {
-  background-color: rgb(205 152 238);
+  background-color: rgb(140 59 211);
   background-image: url("../images/icons/portal.svg");
 }
 
@@ -350,6 +394,12 @@ button.feature {
   background-color: rgb(67 67 67);
 }
 
+.puzzleSquare.pod,
+#podIcon {
+  background-image: url("../images/icons/pod.svg");
+  background-color: rgb(153 17 17);
+}
+
 .puzzleSquare.person {
   background-image: url("../images/icons/person.svg");
   background-size: calc(100% + 5px);
@@ -361,6 +411,41 @@ button.feature {
     0 0 10px 5px rgb(60 255 0 / 80%),
     inset 0 0 10px 10px rgb(60 255 0 / 80%);
   transition: box-shadow 0.3s ease-in-out;
+}
+
+.door.person {
+  animation: doorGlow 1.4s linear;
+}
+
+@keyframes doorGlow {
+  0% {
+    box-shadow: inset 0 0 60px 1px rgb(255 129 74);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+#civilianIcon {
+  background-image: url("../images/icons/civilian.svg");
+  background-color: rgb(137 132 132);
+}
+
+.puzzleSquare.civilian {
+  position: relative;
+}
+
+.puzzleSquare.civilian::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/icons/civilian.svg");
+  touch-action: none;
+  background-size: contain;
 }
 
 @keyframes boxShadowBlink {
@@ -428,11 +513,119 @@ button.feature {
   background-image: url("../images/icons/slime-half.svg");
 }
 
-.puzzleSquare.visited.bottom-top-jet::before,
-.puzzleSquare.visited.top-bottom-jet::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
-  background-image: url("../images/icons/slime-jet.svg");
+/* Safari has a bug where the radial-gradient animation works but
+the svg background image isn't displayed until the animation ends,
+even when the svg is included as a second layer in the background-image property.
+Putting the svg and gradient animation on separate pseudo elements works.
+*/
+
+.puzzleSquare.visited.bottom-top-blaster::before,
+.puzzleSquare.visited.top-bottom-blaster::before,
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
+  background-image: url("../images/icons/slime-blaster.svg");
+}
+
+.puzzleSquare.visited.bottom-top-blaster::after,
+.puzzleSquare.visited.top-bottom-blaster::after,
+.puzzleSquare.visited.left-right-blaster::after,
+.puzzleSquare.visited.right-left-blaster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: blasterGlow 0.4s linear;
+}
+
+@keyframes blasterGlow {
+  0% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  20%
+      );
+  }
+
+  10% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  25%
+      );
+  }
+
+  20% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  30%
+      );
+  }
+
+  30% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  35%
+      );
+  }
+
+  40% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  40%
+      );
+  }
+
+  50% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent  45%
+      );
+  }
+
+  60% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 50%
+      );
+  }
+
+  70% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 60%
+      );
+  }
+
+  80% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 70%
+      );
+  }
+
+  100% {
+    background-image:
+      radial-gradient(
+        circle at center,
+        rgb(0 211 248) 0%,
+        transparent 90%
+      );
+  }
 }
 
 .puzzleSquare.visited.top-right::before,
@@ -441,8 +634,8 @@ button.feature {
 .puzzleSquare.visited.bottom-top::before,
 .puzzleSquare.visited.center-right::before,
 .puzzleSquare.visited.right-center::before,
-.puzzleSquare.visited.left-right-jet::before,
-.puzzleSquare.visited.right-left-jet::before {
+.puzzleSquare.visited.left-right-blaster::before,
+.puzzleSquare.visited.right-left-blaster::before {
   transform: rotate(90deg);
 }
 
@@ -483,7 +676,7 @@ button.feature {
   display: flex;
   flex-direction: column;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   justify-items: center;
   justify-content: space-evenly;
   align-items: center;
@@ -513,11 +706,21 @@ button.feature {
   align-self: center;
 }
 
+.blockElement {
+  display: block;
+}
+
 /* Large screen, landscape */
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
+  html {
+    --square-size: min(6vmin, 1.5cm);
+  }
+
   .App,
   #game {
     max-width: calc(var(--square-size) * 15);
+    height: auto;
+    overflow-x: hidden;
   }
 
   #game {
@@ -532,6 +735,12 @@ button.feature {
 
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+  .App,
+  #game {
+    height: auto;
+    overflow-x: hidden;
+  }
+
   #game {
     grid-template-rows:
       auto

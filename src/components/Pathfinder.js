@@ -1,6 +1,11 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
-import {features, numColumns, numRows} from "../logic/constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  customStationName,
+} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
 
 function PuzzleSquare({feature, index, visited, current, direction}) {
@@ -24,7 +29,7 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
 
 function Pathfinder({setDisplay}) {
   const {
-    builderState: {puzzle, roomName},
+    builderState: {puzzleWithCivilians, roomName},
     maxPathsToFind,
     calculatingBuilderPaths,
     allBuilderPaths,
@@ -42,11 +47,11 @@ function Pathfinder({setDisplay}) {
   const lastIndexInPath = mainPath[mainPath.length - 1];
   const directions = getSlimeDirections({
     mainPath,
-    puzzle,
+    puzzle: puzzleWithCivilians,
     numColumns,
     numRows,
   });
-  const squares = puzzle.map((feature, index) => (
+  const squares = puzzleWithCivilians.map((feature, index) => (
     <PuzzleSquare
       key={index}
       feature={feature}
@@ -57,16 +62,20 @@ function Pathfinder({setDisplay}) {
     ></PuzzleSquare>
   ));
 
-  const hasPortals = puzzle.includes(features.portal);
+  const hasPortals = puzzleWithCivilians.includes(features.portal);
 
   return (
     <div className="App" id="deep-space-slime">
       <div id="game">
-        <button id="pathfinderControls" onClick={() => setDisplay("builder")}>
+        <button
+          className="textButton"
+          id="pathfinderControls"
+          onClick={() => setDisplay("builder")}
+        >
           Exit pathfinder
         </button>
 
-        <div id="location">{`Custom Simulation: ${roomName}`}</div>
+        <div id="location">{`${customStationName}: ${roomName}`}</div>
 
         <div id="botFace" className="happy"></div>
 
@@ -75,11 +84,11 @@ function Pathfinder({setDisplay}) {
         ) : (
           <div id="message">{`${
             numSolutions === 1
-              ? `There is ${numSolutions} solution that collects`
+              ? `There is ${numSolutions} solution.`
               : `There are ${
                   numSolutions >= maxPathsToFind ? "at least " : ""
-                }${numSolutions} solutions that collect`
-          } all flasks.${
+                }${numSolutions} solutions.`
+          }${
             hasPortals && numSolutions > 1
               ? " Solutions with portal direction reversed will look identical."
               : ""
@@ -88,12 +97,14 @@ function Pathfinder({setDisplay}) {
 
         <div id="pathfinderButtons">
           <button
+            className="textButton"
             disabled={currentSolution === 0 || numSolutions === 0}
             onClick={() => setCurrentSolution(currentSolution - 1)}
           >
             Previous
           </button>
           <button
+            className="textButton"
             disabled={
               currentSolution === numSolutions - 1 || numSolutions === 0
             }

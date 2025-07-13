@@ -3,18 +3,22 @@ import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {convertStringToPuzzle} from "./convertPuzzleString";
-import {features, numColumns, numRows, firstPuzzle} from "./constants";
+import {
+  convertStringToPuzzleAndCivilians,
+  convertPuzzleAndCiviliansToPuzzle,
+} from "./convertPuzzleString";
+import {
+  features,
+  numColumns,
+  numRows,
+  firstPuzzleId,
+  customStationName,
+  customWinText,
+  customStartingText,
+  customRobotMood,
+} from "./constants";
 
 function customInit({useSaved, customSeed, customIndex}) {
-  const customStationName = "Custom Simulation"; // todo could set elsewhere for import
-  const customWinText =
-    "You solved the custom puzzle! You can edit or share the custom puzzle, or return to the main game.";
-  const customStartingText =
-    "This is a custom puzzle built by a human subject.";
-  const customHintText = undefined;
-  const customRobotMood = "happy";
-
   // Return the saved state if we can
   let savedState = useSaved
     ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
@@ -24,11 +28,11 @@ function customInit({useSaved, customSeed, customIndex}) {
     return {
       ...savedState,
       mouseIsActive: false,
+      playerID: savedState?.playerID || crypto.randomUUID(),
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
       station: customStationName,
       startingText: customStartingText,
-      hintText: customHintText,
       winText: customWinText,
       robotStartMood: customRobotMood,
       robotEndMood: customRobotMood,
@@ -39,6 +43,7 @@ function customInit({useSaved, customSeed, customIndex}) {
   let customName;
   let customEncodedPuzzle;
   let puzzle;
+  let startingCivilians;
   try {
     if (!customSeed.startsWith("custom-")) {
       throw new Error("Custom seed did not start with 'custom-'");
@@ -46,11 +51,16 @@ function customInit({useSaved, customSeed, customIndex}) {
     customSeed = customSeed.substring("custom-".length);
     [customName, customEncodedPuzzle] = customSeed.split("_");
     customName = customName.replaceAll("+", " ");
-    puzzle = convertStringToPuzzle(customEncodedPuzzle);
+    [puzzle, startingCivilians] =
+      convertStringToPuzzleAndCivilians(customEncodedPuzzle);
+    const puzzleWithCivilians = convertPuzzleAndCiviliansToPuzzle(
+      puzzle,
+      startingCivilians,
+    );
 
     // Make sure that the puzzle passes all of the validation (in case someone edits/mangles the query string)
     const {isValid} = validateCustomPuzzle({
-      puzzle,
+      puzzleWithCivilians,
       numColumns,
       numRows,
     });
@@ -63,7 +73,7 @@ function customInit({useSaved, customSeed, customIndex}) {
     if (!useSaved) {
       savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
     }
-    let puzzleID = firstPuzzle;
+    let puzzleID = firstPuzzleId;
     if (savedState?.puzzleID && savedState.puzzleID in puzzles) {
       puzzleID = savedState.puzzleID;
     }
@@ -77,17 +87,18 @@ function customInit({useSaved, customSeed, customIndex}) {
     station: customStationName,
     roomName: customName,
     startingText: customStartingText,
-    hintText: customHintText,
     winText: customWinText,
     robotStartMood: customRobotMood,
     robotEndMood: customRobotMood,
     puzzle,
+    civilianHistory: [startingCivilians],
+    playerID: savedState?.playerID || crypto.randomUUID(),
   };
 }
 
 function nonCustomInit({useSaved, puzzleID}) {
   if (!(puzzleID in puzzles)) {
-    puzzleID = firstPuzzle;
+    puzzleID = firstPuzzleId;
   }
 
   let puzzleData = puzzles[puzzleID];
@@ -101,12 +112,12 @@ function nonCustomInit({useSaved, puzzleID}) {
     return {
       ...savedState,
       mouseIsActive: false,
+      playerID: savedState?.playerID || crypto.randomUUID(),
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
       station: puzzles[savedState.puzzleID].station,
       roomName: puzzles[savedState.puzzleID].roomName,
       startingText: puzzles[savedState.puzzleID].startingText,
-      hintText: puzzles[savedState.puzzleID].hintText,
       winText: puzzles[savedState.puzzleID].winText,
       robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
       robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
@@ -124,8 +135,9 @@ function nonCustomInit({useSaved, puzzleID}) {
     }
   }
 
-  const puzzle = puzzleData.puzzle;
-
+  const [puzzle, startingCivilians] = convertStringToPuzzleAndCivilians(
+    puzzleData.puzzleStringWithCivilians,
+  );
   return {
     isCustom: false,
     customIndex: undefined,
@@ -133,11 +145,12 @@ function nonCustomInit({useSaved, puzzleID}) {
     station: puzzleData.station,
     roomName: puzzleData.roomName,
     startingText: puzzleData.startingText,
-    hintText: puzzleData.hintText,
     winText: puzzleData.winText,
     robotStartMood: puzzleData.robotStartMood,
     robotEndMood: puzzleData.robotEndMood,
     puzzle,
+    civilianHistory: [startingCivilians],
+    playerID: savedState?.playerID || crypto.randomUUID(),
   };
 }
 
@@ -158,7 +171,7 @@ export function gameInit({
       : nonCustomInit({useSaved, puzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
-  if ("flaskCount" in baseState) {
+  if ("powerCount" in baseState) {
     return baseState;
   }
 
@@ -176,6 +189,8 @@ export function gameInit({
     numColumns,
     numRows,
     maxNumber,
+    currentCivilians: baseState.civilianHistory[0],
+    powerCount: 0,
   });
 
   sendAnalytics("new_game", {
@@ -184,9 +199,9 @@ export function gameInit({
 
   return {
     ...baseState,
-    flaskCount: 0,
+    powerCount: 0,
     keyCount: 0,
-    jetCount: 0,
+    blasterCount: 0,
     numberCount: 0,
     maxNumber,
     validNextIndexes,

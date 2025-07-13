@@ -8,7 +8,10 @@ import {
 import React from "react";
 import {builderReducer} from "../logic/builderReducer";
 import {numColumns, numRows} from "../logic/constants";
-import {convertPuzzleToString} from "../logic/convertPuzzleString";
+import {
+  convertPuzzleToString,
+  convertPuzzleToPuzzleAndCivilians,
+} from "../logic/convertPuzzleString";
 
 const BuilderContext = createContext();
 
@@ -44,8 +47,12 @@ export function BuilderContextProvider({children}) {
       new URL("./getAllValidPathsWorker.js", import.meta.url),
     );
 
+    const [puzzleWithoutCivilians, startingCivilians] =
+      convertPuzzleToPuzzleAndCivilians(builderState.puzzleWithCivilians);
+
     worker.postMessage({
-      puzzle: builderState.puzzle,
+      puzzle: puzzleWithoutCivilians,
+      startingCivilians,
       numColumns,
       numRows,
       maxPathsToFind,
@@ -63,7 +70,7 @@ export function BuilderContextProvider({children}) {
       console.log("terminating builder path calculation");
       worker.terminate();
     };
-  }, [builderState.puzzle, builderState.isValid]);
+  }, [builderState.puzzleWithCivilians, builderState.isValid]);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -80,14 +87,16 @@ export function BuilderContextProvider({children}) {
     if (indexToUpdate === undefined) {
       return;
     }
-    const encodedPuzzle = convertPuzzleToString(builderState.puzzle);
+    const encodedPuzzle = convertPuzzleToString(
+      builderState.puzzleWithCivilians,
+    );
     let newSavedBuilds = savedCustomBuilds.slice();
     newSavedBuilds.splice(indexToUpdate, 1, [
       builderState.roomName,
       encodedPuzzle,
     ]);
     setSavedCustomBuilds(newSavedBuilds);
-  }, [builderState.puzzle, builderState.roomName]);
+  }, [builderState.puzzleWithCivilians, builderState.roomName]);
 
   return (
     <BuilderContext.Provider

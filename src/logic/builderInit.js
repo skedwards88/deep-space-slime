@@ -1,25 +1,26 @@
 import {features, numColumns, numRows} from "./constants";
-import {limitedFeatures} from "./constants";
+import {limitedFeatures, defaultBuilderMessage} from "./constants";
 
-export function builderInit({puzzle, roomName = "Unnamed", customIndex}) {
+export function builderInit({
+  puzzleWithCivilians,
+  roomName = "Unnamed",
+  customIndex,
+}) {
   const startingPuzzle =
-    puzzle || Array.from({length: numColumns * numRows}, () => features.outer);
-
-  const defaultMessage =
-    "Tap one of the features below, then tap or drag your finger across the squares in the grid where you want to place the feature.";
+    puzzleWithCivilians ||
+    Array.from({length: numColumns * numRows}, () => features.outer);
 
   const remainingLimitedFeatures = limitedFeatures.filter(
     (feature) => !startingPuzzle.includes(feature),
   );
 
   return {
-    puzzle: startingPuzzle,
+    puzzleWithCivilians: startingPuzzle,
     roomName: roomName,
     customIndex,
     activeFeature: features.basic,
     remainingLimitedFeatures,
-    defaultMessage,
-    message: defaultMessage,
+    message: defaultBuilderMessage,
     isValid: false,
     mouseIsActive: false,
   };

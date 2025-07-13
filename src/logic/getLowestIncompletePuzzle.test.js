@@ -1,273 +1,59 @@
 import {getLowestIncompletePuzzle} from "./getLowestIncompletePuzzle";
+import {firstPuzzleId} from "./constants";
+import {puzzles} from "./puzzles";
 
-const scoreThatLacksFirstRoom = {
-  "campaign/stasis-pod/2": 5,
-  "campaign/quarantine-station/1": 5,
-  "campaign/quarantine-station/2": 5,
-  "campaign/quarantine-station/3": 5,
-};
+const allCampaignLevels = Object.keys(puzzles).filter(
+  (key) => puzzles[key].type === "Campaign",
+);
 
-const scoreThatLacksMiddleRoom = {
-  "campaign/stasis-pod/1": 5,
-  "campaign/stasis-pod/2": 5,
-  "campaign/quarantine-station/1": 5,
-  "campaign/quarantine-station/2": 5,
-  "campaign/quarantine-station/3": 5,
-  "campaign/quarantine-station/5": 5,
-};
-const incompleteCampaignScore = {
-  "campaign/stasis-pod/1": 5,
-  "campaign/stasis-pod/2": 5,
-  "campaign/quarantine-station/1": 5,
-  "campaign/quarantine-station/2": 5,
-  "campaign/quarantine-station/3": 5,
-  "campaign/quarantine-station/4": 5,
-  "campaign/quarantine-station/5": 5,
-  "campaign/quarantine-station/6": 5,
-  "campaign/biolab-station/1": 5,
-  "campaign/biolab-station/2": 5,
-  "campaign/biolab-station/3": 5,
-  "campaign/biolab-station/4": 5,
-  "campaign/biolab-station/5": 5,
-  "campaign/biolab-station/6": 5,
-};
-const incompleteBonusScore = {
-  "campaign/stasis-pod/1": 5,
-  "campaign/stasis-pod/2": 5,
-  "campaign/quarantine-station/1": 5,
-  "campaign/quarantine-station/2": 5,
-  "campaign/quarantine-station/3": 5,
-  "campaign/quarantine-station/4": 5,
-  "campaign/quarantine-station/5": 5,
-  "campaign/quarantine-station/6": 5,
-  "campaign/biolab-station/1": 5,
-  "campaign/biolab-station/2": 5,
-  "campaign/biolab-station/3": 5,
-  "campaign/biolab-station/4": 5,
-  "campaign/biolab-station/5": 5,
-  "campaign/biolab-station/6": 5,
-  "campaign/portal-station/1": 5,
-  "campaign/portal-station/2": 5,
-  "campaign/portal-station/3": 5,
-  "campaign/portal-station/4": 5,
-  "campaign/portal-station/5": 5,
-  "campaign/portal-station/6": 5,
-  "campaign/security-station/1": 5,
-  "campaign/security-station/2": 5,
-  "campaign/security-station/3": 5,
-  "campaign/security-station/4": 5,
-  "campaign/security-station/5": 5,
-  "campaign/security-station/6": 5,
-  "campaign/security-station/7": 5,
-  "campaign/core-station/entry": 5,
-  "campaign/core-station/mainframe": 5,
-  "campaign/core-station/escape-pod": 5,
-  "bonus/chest-station/1": 5,
-  "bonus/chest-station/2": 5,
-  "bonus/chest-station/3": 5,
-  "bonus/chest-station/4": 5,
-  "bonus/chest-station/5": 5,
-  "bonus/enterprize-station/1": 5,
-  "bonus/enterprize-station/2": 5,
-  "bonus/enterprize-station/3": 5,
-  "bonus/enterprize-station/4": 5,
-  "bonus/enterprize-station/5": 5,
-  "bonus/enterprize-station/6": 5,
-  "bonus/enterprize-station/7": 5,
-  "bonus/enterprize-station/8": 5,
-  "bonus/enterprize-station/9": 5,
-  "bonus/the-eye/1": 5,
-  "bonus/the-eye/2": 5,
-  "bonus/the-eye/3": 5,
-};
-const completeScore = {
-  "campaign/stasis-pod/1": 5,
-  "campaign/stasis-pod/2": 5,
-  "campaign/quarantine-station/1": 5,
-  "campaign/quarantine-station/2": 5,
-  "campaign/quarantine-station/3": 5,
-  "campaign/quarantine-station/4": 5,
-  "campaign/quarantine-station/5": 5,
-  "campaign/quarantine-station/6": 5,
-  "campaign/biolab-station/1": 5,
-  "campaign/biolab-station/2": 5,
-  "campaign/biolab-station/3": 5,
-  "campaign/biolab-station/4": 5,
-  "campaign/biolab-station/5": 5,
-  "campaign/biolab-station/6": 5,
-  "campaign/portal-station/1": 5,
-  "campaign/portal-station/2": 5,
-  "campaign/portal-station/3": 5,
-  "campaign/portal-station/4": 5,
-  "campaign/portal-station/5": 5,
-  "campaign/portal-station/6": 5,
-  "campaign/security-station/1": 5,
-  "campaign/security-station/2": 5,
-  "campaign/security-station/3": 5,
-  "campaign/security-station/4": 5,
-  "campaign/security-station/5": 5,
-  "campaign/security-station/6": 5,
-  "campaign/security-station/7": 5,
-  "campaign/core-station/entry": 5,
-  "campaign/core-station/mainframe": 5,
-  "campaign/core-station/escape-pod": 5,
-  "bonus/chest-station/1": 5,
-  "bonus/chest-station/2": 5,
-  "bonus/chest-station/3": 5,
-  "bonus/chest-station/4": 5,
-  "bonus/chest-station/5": 5,
-  "bonus/enterprize-station/1": 5,
-  "bonus/enterprize-station/2": 5,
-  "bonus/enterprize-station/3": 5,
-  "bonus/enterprize-station/4": 5,
-  "bonus/enterprize-station/5": 5,
-  "bonus/enterprize-station/6": 5,
-  "bonus/enterprize-station/7": 5,
-  "bonus/enterprize-station/8": 5,
-  "bonus/enterprize-station/9": 5,
-  "bonus/the-eye/1": 5,
-  "bonus/the-eye/2": 5,
-  "bonus/the-eye/3": 5,
-  "bonus/the-eye/4": 5,
-  "bonus/the-eye/5": 5,
-  "bonus/needle-station/1": 5,
-  "bonus/needle-station/2": 5,
-  "bonus/needle-station/3": 5,
-  "bonus/needle-station/4": 5,
-  "bonus/needle-station/5": 5,
-  "bonus/needle-station/6": 5,
-  "bonus/needle-station/7": 5,
-  "bonus/petroglyph-station/wolf": 5,
-  "bonus/petroglyph-station/bow": 5,
-  "bonus/petroglyph-station/horse": 5,
-  "bonus/petroglyph-station/stag": 5,
-  "bonus/petroglyph-station/chief": 5,
-  "bonus/petroglyph-station/shaman": 5,
-  "bonus/faces-station/anger": 5,
-  "bonus/faces-station/wisdom": 5,
-  "bonus/faces-station/yawn": 5,
-  "bonus/faces-station/embarrassment": 5,
-  "bonus/faces-station/robot": 5,
-  "bonus/faces-station/surprise": 5,
-  "bonus/faces-station/focus": 5,
-  "bonus/wonky-station/1": 5,
-  "bonus/wonky-station/2": 5,
-  "bonus/wonky-station/3": 5,
-  "bonus/wonky-station/4": 5,
-  "bonus/wonky-station/5": 5,
-  "bonus/wonky-station/6": 5,
-  "bonus/zigger-station/1": 5,
-  "bonus/zigger-station/2": 5,
-  "bonus/zigger-station/3": 5,
-  "bonus/zigger-station/4": 5,
-  "bonus/zigger-station/5": 5,
-  "bonus/zigger-station/6": 5,
-  "bonus/zigger-station/7": 5,
-  "bonus/cube-station/1": 5,
-  "bonus/cube-station/2": 5,
-  "bonus/cube-station/3": 5,
-  "bonus/cube-station/4": 5,
-  "bonus/cube-station/5": 5,
-  "bonus/cube-station/6": 5,
-  "bonus/cube-station/7": 5,
-  "bonus/plant-station/daisy": 5,
-  "bonus/plant-station/fern-frond": 5,
-  "bonus/plant-station/vine": 5,
-  "bonus/plant-station/willow": 5,
-  "bonus/plant-station/orchid": 5,
-  "bonus/plant-station/rose": 5,
-  "bonus/plant-station/fly-trap": 5,
-  "bonus/plant-station/cherry-blossom": 5,
-  "bonus/checkerboard-station/1": 5,
-  "bonus/checkerboard-station/2": 5,
-  "bonus/checkerboard-station/3": 5,
-  "bonus/checkerboard-station/4": 5,
-  "bonus/checkerboard-station/5": 5,
-  "bonus/checkerboard-station/6": 5,
-  "bonus/checkerboard-station/7": 5,
-  "bonus/checkerboard-station/8": 5,
-  "bonus/nautilus-station/1": 5,
-  "bonus/nautilus-station/2": 5,
-  "bonus/nautilus-station/3": 5,
-  "bonus/nautilus-station/4": 5,
-  "bonus/nautilus-station/5": 5,
-  "bonus/nautilus-station/6": 5,
-  "bonus/nautilus-station/7": 5,
-  "bonus/criss-cross-station/1": 5,
-  "bonus/criss-cross-station/2": 5,
-  "bonus/criss-cross-station/3": 5,
-  "bonus/criss-cross-station/4": 5,
-  "bonus/criss-cross-station/5": 5,
-  "bonus/criss-cross-station/6": 5,
-  "bonus/criss-cross-station/7": 5,
-  "bonus/criss-cross-station/8": 5,
-  "bonus/dial-up-station/1": 5,
-  "bonus/dial-up-station/2": 5,
-  "bonus/dial-up-station/3": 5,
-  "bonus/dial-up-station/4": 5,
-  "bonus/dial-up-station/5": 5,
-  "bonus/doors-station/1": 5,
-  "bonus/doors-station/2": 5,
-  "bonus/doors-station/3": 5,
-  "bonus/doors-station/4": 5,
-  "bonus/terminals-station/1": 5,
-  "bonus/terminals-station/2": 5,
-  "bonus/terminals-station/3": 5,
-  "bonus/terminals-station/4": 5,
-  "bonus/terminals-station/5": 5,
-  "bonus/terminals-station/6": 5,
-  "bonus/portal-mania-station/1": 5,
-  "bonus/portal-mania-station/2": 5,
-  "bonus/portal-mania-station/3": 5,
-  "bonus/portal-mania-station/4": 5,
-  "bonus/portal-mania-station/5": 5,
-  "bonus/portal-mania-station/6": 5,
-  "bonus/portal-mania-station/7": 5,
-  "bonus/portal-mania-station/8": 5,
-  "bonus/portal-mania-station/9": 5,
-  "bonus/portal-mania-station/10": 5,
-  "bonus/portal-mania-station/11": 5,
-  "bonus/portal-mania-station/12": 5,
-  "bonus/portal-mania-station/13": 5,
-  "bonus/portal-mania-station/14": 5,
-  "bonus/portal-mania-station/15": 5,
-  "bonus/portal-mania-station/16": 5,
-  "bonus/portal-mania-station/17": 5,
-  "bonus/portal-mania-station/18": 5,
-  "bonus/portal-mania-station/19": 5,
-  "bonus/portal-mania-station/20": 5,
-  "bonus/portal-mania-station/21": 5,
-  "bonus/portal-mania-station/22": 5,
-  "bonus/portal-mania-station/23": 5,
-  "bonus/portal-mania-station/24": 5,
-  "bonus/portal-mania-station/25": 5,
-  "bonus/portal-mania-station/26": 5,
-  "bonus/portal-mania-station/27": 5,
-  "bonus/portal-mania-station/28": 5,
-  "bonus/portal-mania-station/29": 5,
-  "bonus/portal-mania-station/30": 5,
-  "bonus/beta-station/orbital": 5,
-};
+const allBonusLevels = Object.keys(puzzles).filter(
+  (key) => puzzles[key].type === "Bonus",
+);
 
 describe("getLowestIncompleteLevel", () => {
-  test("returns undefined if all rooms have been solved", () => {
-    const result = getLowestIncompletePuzzle(completeScore);
+  test("returns undefined if all levels have been completed", () => {
+    const result = getLowestIncompletePuzzle([
+      ...allCampaignLevels,
+      ...allBonusLevels,
+    ]);
     expect(result).toBe(undefined);
   });
 
-  test("returns the first room without a score", () => {
-    const result = getLowestIncompletePuzzle(incompleteCampaignScore);
-    expect(result).toEqual("campaign/portal-station/1");
+  test("returns the first room that isn't in the completed levels", () => {
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const incompleteCampaign = [
+      ...allCampaignLevels.slice(0, allCampaignLevels.length - 4),
+    ];
+    const omitted1 = allCampaignLevels[allCampaignLevels.length - 4];
+    const result = getLowestIncompletePuzzle(incompleteCampaign);
+    expect(result).toEqual(omitted1);
 
-    const result2 = getLowestIncompletePuzzle(incompleteBonusScore);
-    expect(result2).toEqual("bonus/the-eye/4");
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const incompleteBonus = [
+      ...allCampaignLevels,
+      ...allBonusLevels.slice(0, allBonusLevels.length - 4),
+    ];
+    const omitted2 = allBonusLevels[allBonusLevels.length - 4];
+    const result2 = getLowestIncompletePuzzle(incompleteBonus);
+    expect(result2).toEqual(omitted2);
   });
 
-  test("if the score has gaps, returns the first gap room", () => {
-    const result = getLowestIncompletePuzzle(scoreThatLacksFirstRoom);
-    expect(result).toEqual("campaign/stasis-pod/1");
+  test("if the completed levels list has gaps, returns the first gap room", () => {
+    const completedLevelsThatLacksFirstRoom = allCampaignLevels.filter(
+      (level) => level !== firstPuzzleId,
+    );
+    const result = getLowestIncompletePuzzle(completedLevelsThatLacksFirstRoom);
+    expect(result).toEqual(firstPuzzleId);
 
-    const result2 = getLowestIncompletePuzzle(scoreThatLacksMiddleRoom);
-    expect(result2).toEqual("campaign/quarantine-station/4");
+    // Even though Object.keys isn't guaranteed to be in order, assumes that it is
+    const completedLevelsThatLacksMiddleCampaignRoom = [
+      ...allCampaignLevels.slice(0, 3),
+      ...allCampaignLevels.slice(4, allCampaignLevels.length),
+    ];
+    const omitted = allCampaignLevels[3];
+    const result2 = getLowestIncompletePuzzle(
+      completedLevelsThatLacksMiddleCampaignRoom,
+    );
+    expect(result2).toEqual(omitted);
   });
 });

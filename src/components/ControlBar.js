@@ -3,6 +3,8 @@ import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
 import Share from "./Share";
 import Audio from "./Audio";
+import {useGameContext} from "./GameContextProvider";
+import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 
 function ControlBar({
   setDisplay,
@@ -10,6 +12,9 @@ function ControlBar({
   installPromptEvent,
   setInstallPromptEvent,
 }) {
+  const {completedLevels} = useGameContext();
+  const campaignIsComplete = campaignIsCompleteQ(completedLevels);
+
   return (
     <div id="controls">
       <Audio></Audio>
@@ -22,10 +27,11 @@ function ControlBar({
       <Share
         appName="Deep Space Slime"
         text="Check out this puzzle maze game!"
-        url="https://skedwards88.github.io/deep-space-slime"
+        url="https://deepspaceslime.com"
         id="shareIcon"
         className="controlButton"
         buttonText=""
+        origin="control bar"
       ></Share>
 
       <button
@@ -46,8 +52,14 @@ function ControlBar({
 
       <button
         id="builderIcon"
-        className="controlButton"
-        onClick={() => setDisplay("builderOverview")}
+        className={`controlButton ${
+          campaignIsComplete ? "" : "pseudodisabled"
+        }`}
+        onClick={() =>
+          campaignIsComplete
+            ? setDisplay("builderOverview")
+            : setDisplay("builderLocked")
+        }
       ></button>
 
       <small id="rulesVersion">version {packageJson.version}</small>

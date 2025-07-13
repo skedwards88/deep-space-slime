@@ -1,6 +1,12 @@
 import {builderInit} from "./builderInit";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {limitedFeatures, features, numColumns, numRows} from "./constants";
+import {
+  limitedFeatures,
+  features,
+  numColumns,
+  numRows,
+  defaultBuilderMessage,
+} from "./constants";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -11,7 +17,7 @@ export function builderReducer(currentBuilderState, payload) {
       return currentBuilderState;
     }
 
-    let newPuzzle = [...currentBuilderState.puzzle];
+    let newPuzzle = [...currentBuilderState.puzzleWithCivilians];
     newPuzzle[payload.index] = currentBuilderState.activeFeature;
 
     // If a limited feature is being added, remove the feature from the options and change the active feature to basic
@@ -39,11 +45,11 @@ export function builderReducer(currentBuilderState, payload) {
 
     return {
       ...currentBuilderState,
-      puzzle: newPuzzle,
+      puzzleWithCivilians: newPuzzle,
       remainingLimitedFeatures: newRemainingLimitedFeatures,
       activeFeature: newActiveFeature,
       isValid: false,
-      message: currentBuilderState.defaultMessage,
+      message: defaultBuilderMessage,
     };
   } else if (payload.action === "setMouseIsActive") {
     if (currentBuilderState.mouseIsActive === payload.mouseIsActive) {
@@ -53,7 +59,7 @@ export function builderReducer(currentBuilderState, payload) {
     }
   } else if (payload.action === "validate") {
     const {isValid, message} = validateCustomPuzzle({
-      puzzle: currentBuilderState.puzzle,
+      puzzleWithCivilians: currentBuilderState.puzzleWithCivilians,
       numColumns,
       numRows,
     });
@@ -65,7 +71,7 @@ export function builderReducer(currentBuilderState, payload) {
     return builderInit({customIndex: payload.customIndex});
   } else if (payload.action === "editCustom") {
     return builderInit({
-      puzzle: payload.puzzle,
+      puzzleWithCivilians: payload.puzzleWithCivilians,
       roomName: payload.roomName,
       customIndex: payload.customIndex,
     });
