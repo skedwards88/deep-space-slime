@@ -6,3 +6,4 @@ PWA_Builder
 .env.test
 .DS_Store
 temp/
+src/music/original.mp3

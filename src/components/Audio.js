@@ -1,5 +1,5 @@
 import React from "react";
-import musicFile from "../images/music.mp3";
+import musicFile from "../music/compressed.mp3";
 
 export default function Audio() {
   const savedIsPlaying = JSON.parse(
