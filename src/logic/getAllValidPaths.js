@@ -19,7 +19,7 @@ export function getAllValidPaths({
   const visitedIndexes = new Set([startIndex]);
   const pathStateHistory = [
     {
-      mainPath: [startIndex],
+      path: [startIndex],
       powerCount: 0,
       blasterCount: 0,
       keyCount: 0,
@@ -36,7 +36,7 @@ export function getAllValidPaths({
     const currentPathState = pathStateHistory[pathStateHistory.length - 1];
 
     const validNextIndexes = getValidNextIndexes({
-      mainPath: currentPathState.mainPath,
+      path: currentPathState.path,
       powerCount: currentPathState.powerCount,
       hasKey: currentPathState.keyCount > 0,
       hasBlaster: currentPathState.blasterCount > 0,
@@ -69,7 +69,7 @@ export function getAllValidPaths({
         puzzle[nextIndex] === features.ship
       ) {
         // Clone and record the path if it is complete
-        completePaths.push([...currentPathState.mainPath, nextIndex]);
+        completePaths.push([...currentPathState.path, nextIndex]);
       } else {
         // Extend the path, do the search on that new path, then step back for earlier branches
         const extendedPathState = updateStateWithExtension({

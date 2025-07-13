@@ -79,13 +79,13 @@ export function validateSavedState(savedState) {
     }
   }
 
-  // mainPath must be array of ints
-  if (!Array.isArray(savedState.mainPath)) {
-    console.log("main path not array");
+  // path must be array of ints
+  if (!Array.isArray(savedState.path)) {
+    console.log("path not array");
     return false;
   }
-  if (savedState.mainPath.some((entry) => !Number.isInteger(entry))) {
-    console.log("mainpath not ints");
+  if (savedState.path.some((entry) => !Number.isInteger(entry))) {
+    console.log("path not ints");
     return false;
   }
 
@@ -123,7 +123,7 @@ export function validateSavedState(savedState) {
     }
   }
 
-  if (savedState.civilianHistory.length != savedState.mainPath.length) {
+  if (savedState.civilianHistory.length != savedState.path.length) {
     console.log("civilian history wrong length");
     return false;
   }
@@ -159,8 +159,8 @@ export function validateSavedState(savedState) {
       return false;
     }
 
-    const mainPathAtPoint = savedState.mainPath.slice(0, index + 1);
-    if (civilians.some((entry) => mainPathAtPoint.includes(entry))) {
+    const pathAtPoint = savedState.path.slice(0, index + 1);
+    if (civilians.some((entry) => pathAtPoint.includes(entry))) {
       console.log("civilian on slime");
       return false;
     }

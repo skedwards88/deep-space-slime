@@ -6,7 +6,7 @@ export function civilianPushValidQ({
   pushedFrom,
   currentCivilians,
   puzzle,
-  mainPath,
+  path,
 }) {
   const civilianEndIndex = getNextAdjacentIndex({
     index: pushedFrom,
@@ -21,7 +21,7 @@ export function civilianPushValidQ({
   }
 
   // if the civilian would be pushed onto slime (index in path), return false
-  if (mainPath.includes(civilianEndIndex)) {
+  if (path.includes(civilianEndIndex)) {
     return false;
   }
 
@@ -33,7 +33,7 @@ export function civilianPushValidQ({
       pushedFrom: pushedCivilian,
       currentCivilians,
       puzzle,
-      mainPath,
+      path,
     });
   }
 

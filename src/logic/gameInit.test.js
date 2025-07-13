@@ -131,7 +131,7 @@ describe("gameInit saved state usage", () => {
       puzzles[puzzleID].puzzleStringWithCivilians;
     const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const startIndex = puzzle.indexOf(features.start);
-    const mainPath = [startIndex];
+    const path = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
     const maxNumber = numbers.length ? Math.max(...numbers) : 0;
     const validNextIndexes = [1, 2, 3]; // Mocked value
@@ -156,14 +156,14 @@ describe("gameInit saved state usage", () => {
       numberCount: 0,
       maxNumber,
       validNextIndexes,
-      mainPath,
+      path,
       mouseIsActive: false,
       puzzleID,
       civilianHistory: [[]],
       playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
-      mainPath,
+      path,
       puzzle,
       numColumns,
       numRows,
@@ -179,7 +179,7 @@ describe("gameInit saved state usage", () => {
     const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
     const encodedPuzzle = convertPuzzleToString(puzzle);
     const startIndex = puzzle.indexOf(features.start);
-    const mainPath = [startIndex];
+    const path = [startIndex];
     const numbers = puzzle.map(Number).filter(Number.isInteger);
     const maxNumber = numbers.length ? Math.max(...numbers) : 0;
     const validNextIndexes = [1, 2, 3]; // Mocked value
@@ -213,14 +213,14 @@ describe("gameInit saved state usage", () => {
       numberCount: 0,
       maxNumber,
       validNextIndexes,
-      mainPath,
+      path,
       mouseIsActive: false,
       puzzleID: "custom",
       civilianHistory: [[]],
       playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
-      mainPath,
+      path,
       puzzle,
       numColumns,
       numRows,

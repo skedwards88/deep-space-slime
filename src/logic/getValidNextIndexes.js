@@ -5,7 +5,7 @@ import {civilianPushValidQ} from "./civilianPushValidQ";
 import {exitUnlockedQ} from "./exitUnlockedQ";
 
 export function getValidNextIndexes({
-  mainPath,
+  path,
   puzzle,
   numColumns,
   numRows,
@@ -39,8 +39,8 @@ export function getValidNextIndexes({
 
   let validIndexes = [];
 
-  const lastIndexInPath = mainPath[mainPath.length - 1];
-  const penultimateIndexInPath = mainPath[mainPath.length - 2];
+  const lastIndexInPath = path[path.length - 1];
+  const penultimateIndexInPath = path[path.length - 2];
 
   if (allowBacktracking && penultimateIndexInPath !== undefined) {
     validIndexes.push(penultimateIndexInPath);
@@ -61,7 +61,7 @@ export function getValidNextIndexes({
 
   let numberPortalsVisited = 0;
   if (puzzle[lastIndexInPath] === features.portal) {
-    mainPath.forEach((index) => {
+    path.forEach((index) => {
       const feature = puzzle[index];
       if (feature === features.portal) {
         numberPortalsVisited++;
@@ -73,7 +73,7 @@ export function getValidNextIndexes({
   // Record that, then return early
   if (numberPortalsVisited % 2 !== 0) {
     puzzle.forEach((feature, index) => {
-      if (feature === features.portal && !mainPath.includes(index)) {
+      if (feature === features.portal && !path.includes(index)) {
         validIndexes.push(index);
       }
     });
@@ -95,7 +95,7 @@ export function getValidNextIndexes({
     }
 
     // Don't add an adjacent index if you already accessed it
-    if (mainPath.includes(adjacentIndex)) {
+    if (path.includes(adjacentIndex)) {
       continue;
     }
 
@@ -107,7 +107,7 @@ export function getValidNextIndexes({
           pushedFrom: lastIndexInPath,
           currentCivilians,
           puzzle,
-          mainPath,
+          path,
         })
       : true;
 
@@ -147,7 +147,7 @@ export function getValidNextIndexes({
   if (hasBlaster) {
     for (const adjacentIndex of adjacentIndexes) {
       if (
-        !mainPath.includes(adjacentIndex) ||
+        !path.includes(adjacentIndex) ||
         adjacentIndex === penultimateIndexInPath ||
         puzzle[adjacentIndex] == features.portal ||
         puzzle[adjacentIndex] == features.start
@@ -182,7 +182,7 @@ export function getValidNextIndexes({
         nextAdjacentIndex === undefined ||
         nextAdjacentFeature === features.outer ||
         nextAdjacentFeature === features.pod ||
-        mainPath.includes(nextAdjacentIndex) ||
+        path.includes(nextAdjacentIndex) ||
         (nextAdjacentFeature === features.door && !hasKey) ||
         (Number.isInteger(Number.parseInt(nextAdjacentFeature)) &&
           Number.parseInt(nextAdjacentFeature) !== numberCount + 1)
@@ -198,7 +198,7 @@ export function getValidNextIndexes({
             pushedFrom: adjacentIndex,
             currentCivilians,
             puzzle,
-            mainPath,
+            path,
           })
         : true;
 

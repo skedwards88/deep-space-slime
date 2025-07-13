@@ -43,10 +43,10 @@ function Pathfinder({setDisplay}) {
 
   const [currentSolution, setCurrentSolution] = React.useState(0);
 
-  const mainPath = allBuilderPaths[currentSolution] || [];
-  const lastIndexInPath = mainPath[mainPath.length - 1];
+  const path = allBuilderPaths[currentSolution] || [];
+  const lastIndexInPath = path[path.length - 1];
   const directions = getSlimeDirections({
-    mainPath,
+    path,
     puzzle: puzzleWithCivilians,
     numColumns,
     numRows,
@@ -56,7 +56,7 @@ function Pathfinder({setDisplay}) {
       key={index}
       feature={feature}
       index={index}
-      visited={mainPath.includes(index) && lastIndexInPath !== index}
+      visited={path.includes(index) && lastIndexInPath !== index}
       current={lastIndexInPath === index}
       direction={directions[index]}
     ></PuzzleSquare>

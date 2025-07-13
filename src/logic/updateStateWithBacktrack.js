@@ -11,9 +11,9 @@ import {features, numColumns, numRows} from "./constants";
 // If the last index was a blaster, remove the blaster from the blaster count.
 // If the last index was previously accessed with a blaster, add a blaster to the blaster count.
 export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
-  const mainPath = currentGameState.mainPath;
-  const lastIndexInPath = mainPath[mainPath.length - 1];
-  const newMainPath = mainPath.slice(0, mainPath.length - 1);
+  const path = currentGameState.path;
+  const lastIndexInPath = path[path.length - 1];
+  const newPath = path.slice(0, path.length - 1);
   const newCivilianHistory = currentGameState.civilianHistory.slice(
     0,
     currentGameState.civilianHistory.length - 1,
@@ -42,7 +42,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
   if (!adjacentIndexes.includes(index)) {
     let numberPortalsVisited = 0;
     if (puzzle[index] === features.portal) {
-      newMainPath.forEach((index) => {
+      newPath.forEach((index) => {
         const feature = puzzle[index];
         if (feature === features.portal) {
           numberPortalsVisited++;
@@ -69,7 +69,7 @@ export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
 
   return {
     ...currentGameState,
-    mainPath: newMainPath,
+    path: newPath,
     civilianHistory: newCivilianHistory,
     powerCount: newPowerCount,
     keyCount: newKeyCount,

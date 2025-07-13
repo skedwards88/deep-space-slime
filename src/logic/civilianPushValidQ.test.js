@@ -18,7 +18,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
-        mainPath: [10],
+        path: [10],
       }),
     ).toBe(false);
   });
@@ -34,7 +34,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
-        mainPath: [2],
+        path: [2],
       }),
     ).toBe(true);
   });
@@ -50,7 +50,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [2, 3, 4],
         puzzle,
-        mainPath: [1],
+        path: [1],
       }),
     ).toBe(true);
   });
@@ -66,7 +66,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [2, 3, 4],
         puzzle,
-        mainPath: [1],
+        path: [1],
       }),
     ).toBe(false);
   });
@@ -80,7 +80,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 5,
         currentCivilians: [6],
         puzzle,
-        mainPath: [5],
+        path: [5],
       }),
     ).toBe(false);
   });
@@ -94,7 +94,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 8,
         currentCivilians: [7],
         puzzle,
-        mainPath: [8],
+        path: [8],
       }),
     ).toBe(false);
   });
@@ -108,7 +108,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 52,
         currentCivilians: [59],
         puzzle,
-        mainPath: [52],
+        path: [52],
       }),
     ).toBe(false);
   });
@@ -122,7 +122,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 10,
         currentCivilians: [3],
         puzzle,
-        mainPath: [10],
+        path: [10],
       }),
     ).toBe(false);
   });
@@ -136,7 +136,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 1,
         currentCivilians: [0],
         puzzle,
-        mainPath: [1],
+        path: [1],
       }),
     ).toBe(false);
   });
@@ -150,7 +150,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 61,
         currentCivilians: [62],
         puzzle,
-        mainPath: [61],
+        path: [61],
       }),
     ).toBe(false);
   });
@@ -164,7 +164,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
-        mainPath: [2, 4],
+        path: [2, 4],
       }),
     ).toBe(false);
   });
@@ -179,7 +179,7 @@ describe("civilianPushValidQ", () => {
         pushedFrom: 2,
         currentCivilians: [3],
         puzzle,
-        mainPath: [2],
+        path: [2],
       }),
     ).toBe(true);
   });

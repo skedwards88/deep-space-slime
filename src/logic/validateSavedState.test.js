@@ -66,7 +66,7 @@ describe("validateSavedState", () => {
     numberCount: 1,
     maxNumber: 1,
     validNextIndexes: [3, 4, 5],
-    mainPath: [0, 1, 2, 18],
+    path: [0, 1, 2, 18],
     mouseIsActive: false,
     civilianHistory: [[], [], [], []],
   };
@@ -82,7 +82,7 @@ describe("validateSavedState", () => {
     numberCount: 1,
     maxNumber: 1,
     validNextIndexes: [3, 4, 5],
-    mainPath: [0, 1, 2],
+    path: [0, 1, 2],
     mouseIsActive: false,
     civilianHistory: [[], [], []],
   };
@@ -94,7 +94,7 @@ describe("validateSavedState", () => {
       puzzles["mockedCivilians"].puzzleStringWithCivilians,
     ),
     civilianHistory: [[2], [1]],
-    mainPath: [0, 18],
+    path: [0, 18],
   };
 
   test("returns true for a valid non-custom saved state", () => {
@@ -216,19 +216,19 @@ describe("validateSavedState", () => {
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for invalid mainPath (non-array)", () => {
-    const state = {...validNonCustomState, mainPath: "1"};
+  test("returns false for invalid path (non-array)", () => {
+    const state = {...validNonCustomState, path: "1"};
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("main path not array");
+    expect(logSpy).toHaveBeenCalledWith("path not array");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for invalid mainPath (contains non-integers)", () => {
-    const state = {...validNonCustomState, mainPath: [0, "2", 2]};
+  test("returns false for invalid path (contains non-integers)", () => {
+    const state = {...validNonCustomState, path: [0, "2", 2]};
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("mainpath not ints");
+    expect(logSpy).toHaveBeenCalledWith("path not ints");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -304,7 +304,7 @@ describe("validateSavedState", () => {
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("returns false for civilianHistory length not matching mainPath length", () => {
+  test("returns false for civilianHistory length not matching path length", () => {
     const state = {...validNonCustomStateWithCivilians, civilianHistory: [[2]]};
     expect(validateSavedState(state)).toBe(false);
 

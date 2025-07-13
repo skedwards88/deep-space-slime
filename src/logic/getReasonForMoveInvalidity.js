@@ -6,8 +6,8 @@ import {civilianPushValidQ} from "./civilianPushValidQ";
 import {getMaxPowerCount} from "./getMaxPowerCount";
 
 export function getReasonForMoveInvalidity({index, currentGameState}) {
-  const mainPath = currentGameState.mainPath;
-  const lastIndexInPath = mainPath[mainPath.length - 1];
+  const path = currentGameState.path;
+  const lastIndexInPath = path[path.length - 1];
 
   const puzzle = currentGameState.puzzle;
 
@@ -35,7 +35,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   // The space has already been visited
   // (and you aren't backtracking, which is already considered when calculating the validity)
-  const hasBeenVisited = mainPath.includes(index);
+  const hasBeenVisited = path.includes(index);
   if (hasBeenVisited) {
     message = (
       <p>
@@ -103,7 +103,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
 
   let numberPortalsVisited = 0;
   if (puzzle[lastIndexInPath] === features.portal) {
-    mainPath.forEach((index) => {
+    path.forEach((index) => {
       const feature = puzzle[index];
       if (feature === features.portal) {
         numberPortalsVisited++;
@@ -156,7 +156,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
       pushedFrom: lastIndexInPath,
       puzzle,
       currentCivilians,
-      mainPath,
+      path,
     })
   ) {
     message = `Civilians can't be pushed onto slime, portals, doors, entrances/exits, or outer space.`;

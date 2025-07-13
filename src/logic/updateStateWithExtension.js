@@ -12,10 +12,10 @@ import {pushCivilians} from "./pushCivilians";
 // If the index was only accessible with a blaster, lose a blaster.
 // Push any civilians
 export function updateStateWithExtension({index, currentGameState, puzzle}) {
-  const mainPath = currentGameState.mainPath;
-  const lastIndexInPath = mainPath[mainPath.length - 1];
+  const path = currentGameState.path;
+  const lastIndexInPath = path[path.length - 1];
 
-  const newMainPath = [...currentGameState.mainPath, index];
+  const newPath = [...currentGameState.path, index];
 
   const newCivilians = pushCivilians({
     pushedFrom: lastIndexInPath,
@@ -48,7 +48,7 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
   if (!adjacentIndexes.includes(index)) {
     let numberPortalsVisited = 0;
     if (puzzle[index] === features.portal) {
-      newMainPath.forEach((index) => {
+      newPath.forEach((index) => {
         const feature = puzzle[index];
         if (feature === features.portal) {
           numberPortalsVisited++;
@@ -75,7 +75,7 @@ export function updateStateWithExtension({index, currentGameState, puzzle}) {
 
   return {
     ...currentGameState,
-    mainPath: newMainPath,
+    path: newPath,
     powerCount: newPowerCount,
     blasterCount: newBlasterCount,
     keyCount: newKeyCount,

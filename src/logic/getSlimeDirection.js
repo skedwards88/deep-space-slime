@@ -24,13 +24,13 @@ export function getDirection(square1, square2, numColumns) {
   }
 }
 
-export function getSlimeDirectionForStart(mainPath, numColumns) {
+export function getSlimeDirectionForStart(path, numColumns) {
   // If the player hasn't moved from start, no direction
-  if (mainPath.length <= 1) {
+  if (path.length <= 1) {
     return;
   }
 
-  const exitDirection = getDirection(mainPath[0], mainPath[1], numColumns);
+  const exitDirection = getDirection(path[0], path[1], numColumns);
   return `center-${exitDirection}`;
 }
 
@@ -76,7 +76,7 @@ export function getStandardSlimeDirection({
   return direction;
 }
 
-export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
+export function getSlimeDirections({path, puzzle, numColumns, numRows}) {
   let directions = [];
   let blastedSquares = [];
 
@@ -84,24 +84,24 @@ export function getSlimeDirections({mainPath, puzzle, numColumns, numRows}) {
     const currentFeature = puzzle[currentSquare];
 
     if (currentFeature === features.start) {
-      const direction = getSlimeDirectionForStart(mainPath, numColumns);
+      const direction = getSlimeDirectionForStart(path, numColumns);
       directions.push(direction);
       continue;
     }
 
-    const positionInPath = mainPath.findIndex((i) => i === currentSquare);
+    const positionInPath = path.findIndex((i) => i === currentSquare);
     if (positionInPath === -1) {
       directions.push(null);
       continue;
     }
 
-    const previousSquare = mainPath[positionInPath - 1];
+    const previousSquare = path[positionInPath - 1];
     if (previousSquare === undefined) {
       directions.push(null);
       continue;
     }
 
-    const nextSquare = mainPath[positionInPath + 1];
+    const nextSquare = path[positionInPath + 1];
     if (nextSquare === undefined) {
       directions.push(null);
       continue;

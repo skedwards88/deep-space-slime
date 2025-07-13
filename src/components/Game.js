@@ -95,7 +95,7 @@ function handleMovement({
       index,
     });
   } else {
-    const currentIndex = gameState.mainPath[gameState.mainPath.length - 1];
+    const currentIndex = gameState.path[gameState.path.length - 1];
     const isCurrentlyAtExit =
       gameState.puzzle[currentIndex] === features.exit ||
       gameState.puzzle[currentIndex] === features.ship;
@@ -219,7 +219,7 @@ function PuzzleSquare({
   const {gameState, dispatchGameState, completedLevels, setCompletedLevels} =
     useGameContext();
 
-  const {mouseIsActive, mainPath, validNextIndexes} = gameState;
+  const {mouseIsActive, path, validNextIndexes} = gameState;
 
   const validNext = validNextIndexes.includes(index);
 
@@ -251,7 +251,7 @@ function PuzzleSquare({
             event,
             index,
             dispatchGameState,
-            confirmReset: feature === features.start && mainPath.length > 2,
+            confirmReset: feature === features.start && path.length > 2,
             setDisplay,
             validNext,
             gameState,
@@ -272,7 +272,7 @@ function PuzzleSquare({
               event,
               index,
               dispatchGameState,
-              confirmReset: feature === features.start && mainPath.length > 2,
+              confirmReset: feature === features.start && path.length > 2,
               setDisplay,
               mouseIsActive,
               validNext,
@@ -456,8 +456,8 @@ function Game({
     ? gameState.customIndex ?? savedCustomBuilds.length
     : undefined;
 
-  const mainPath = gameState.mainPath;
-  const lastIndexInPath = mainPath[mainPath.length - 1];
+  const path = gameState.path;
+  const lastIndexInPath = path[path.length - 1];
   const currentCivilians =
     gameState.civilianHistory[gameState.civilianHistory.length - 1];
   const exitUnlocked = exitUnlockedQ({
@@ -482,7 +482,7 @@ function Game({
   const [hintIndex, setHintIndex] = React.useState(undefined);
 
   const directions = getSlimeDirections({
-    mainPath,
+    path,
     puzzle: gameState.puzzle,
     numColumns: numColumns,
     numRows: numRows,
@@ -492,7 +492,7 @@ function Game({
       key={index}
       feature={feature}
       index={index}
-      visited={mainPath.includes(index) && lastIndexInPath !== index}
+      visited={path.includes(index) && lastIndexInPath !== index}
       current={lastIndexInPath === index}
       exitUnlocked={exitUnlocked}
       direction={directions[index]}
@@ -536,7 +536,7 @@ function Game({
 
   const isAtStart = gameState.puzzle[lastIndexInPath] === features.start;
 
-  // Change setHintWaitIsOver to true if the main path is unchanged for some time
+  // Change setHintWaitIsOver to true if the path is unchanged for some time
   React.useEffect(() => {
     let timeout;
     if (
@@ -562,7 +562,7 @@ function Game({
     }
     return () => clearTimeout(timeout);
   }, [
-    gameState.mainPath,
+    gameState.path,
     hintWaitIsOver,
     isAtExit,
     isAtStart,
@@ -597,9 +597,9 @@ function Game({
         onClick={
           isTimeToShowAHint && hintsRemaining
             ? () => {
-                const [newPath, hint] = getHint(mainPath, allGamePaths);
+                const [newPath, hint] = getHint(path, allGamePaths);
                 setHintIndex(hint);
-                if (!arraysMatchQ(newPath, mainPath)) {
+                if (!arraysMatchQ(newPath, path)) {
                   dispatchGameState({action: "overwritePath", newPath});
                 }
                 setCurrentMessage("I think you should go here.");

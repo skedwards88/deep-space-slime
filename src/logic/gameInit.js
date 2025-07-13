@@ -178,13 +178,13 @@ export function gameInit({
   const puzzle = baseState.puzzle;
 
   const startIndex = puzzle.indexOf(features.start);
-  const mainPath = [startIndex];
+  const path = [startIndex];
 
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
   const validNextIndexes = getValidNextIndexes({
-    mainPath,
+    path,
     puzzle,
     numColumns,
     numRows,
@@ -205,7 +205,7 @@ export function gameInit({
     numberCount: 0,
     maxNumber,
     validNextIndexes,
-    mainPath,
+    path,
     mouseIsActive: false,
   };
 }

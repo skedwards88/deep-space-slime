@@ -8,14 +8,14 @@ export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
     const index = payload.index;
     const puzzle = currentGameState.puzzle;
-    const mainPath = currentGameState.mainPath;
-    const penultimateIndexInPath = mainPath[mainPath.length - 2];
+    const path = currentGameState.path;
+    const penultimateIndexInPath = path[path.length - 2];
 
     // If the index is the start index, reset the path
     const startIndex = puzzle.indexOf(features.start);
     if (startIndex === index) {
       const newValidNextIndexes = getValidNextIndexes({
-        mainPath: [startIndex],
+        path: [startIndex],
         puzzle,
         numColumns,
         numRows,
@@ -26,7 +26,7 @@ export function gameReducer(currentGameState, payload) {
       return {
         ...currentGameState,
         validNextIndexes: newValidNextIndexes,
-        mainPath: [startIndex],
+        path: [startIndex],
         powerCount: 0,
         keyCount: 0,
         numberCount: 0,
@@ -45,7 +45,7 @@ export function gameReducer(currentGameState, payload) {
       });
 
       const newValidNextIndexes = getValidNextIndexes({
-        mainPath: stateWithBacktrackedPath.mainPath,
+        path: stateWithBacktrackedPath.path,
         puzzle,
         numColumns,
         numRows,
@@ -76,7 +76,7 @@ export function gameReducer(currentGameState, payload) {
 
     // Get the new valid indexes
     const newValidNextIndexes = getValidNextIndexes({
-      mainPath: stateWithExtendedPath.mainPath,
+      path: stateWithExtendedPath.path,
       puzzle: puzzle,
       numColumns,
       numRows,
@@ -100,7 +100,7 @@ export function gameReducer(currentGameState, payload) {
     // If the index is the start index, reset the path
     const startIndex = puzzle.indexOf(features.start);
     const newValidNextIndexes = getValidNextIndexes({
-      mainPath: [startIndex],
+      path: [startIndex],
       puzzle,
       numColumns,
       numRows,
@@ -111,7 +111,7 @@ export function gameReducer(currentGameState, payload) {
     return {
       ...currentGameState,
       validNextIndexes: newValidNextIndexes,
-      mainPath: [startIndex],
+      path: [startIndex],
       powerCount: 0,
       keyCount: 0,
       numberCount: 0,
@@ -124,7 +124,7 @@ export function gameReducer(currentGameState, payload) {
 
     // Iteratively update the state with the new path so that the inventory matches
     const startingValidNextIndexes = getValidNextIndexes({
-      mainPath: [newPath[0]],
+      path: [newPath[0]],
       currentCivilians: currentGameState.civilianHistory[0],
       puzzle: currentGameState.puzzle,
       numColumns,
@@ -136,7 +136,7 @@ export function gameReducer(currentGameState, payload) {
     let updatedState = {
       ...currentGameState,
       validNextIndexes: startingValidNextIndexes,
-      mainPath: [newPath[0]],
+      path: [newPath[0]],
       civilianHistory: currentGameState.civilianHistory.slice(0, 1),
       powerCount: 0,
       keyCount: 0,
@@ -152,7 +152,7 @@ export function gameReducer(currentGameState, payload) {
       });
 
       const newValidNextIndexes = getValidNextIndexes({
-        mainPath: updatedState.mainPath,
+        path: updatedState.path,
         puzzle: puzzle,
         numColumns,
         numRows,
