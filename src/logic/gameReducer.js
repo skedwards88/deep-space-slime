@@ -123,8 +123,6 @@ export function gameReducer(currentGameState, payload) {
     const newPath = payload.newPath;
 
     // Iteratively update the state with the new path so that the inventory matches
-    // (todo It would be more efficient to break the validNextPaths calculation into
-    // a separate function since we don't need that value until the very end.
     const startingValidNextIndexes = getValidNextIndexes({
       mainPath: [newPath[0]],
       currentCivilians: currentGameState.civilianHistory[0],
