@@ -315,7 +315,7 @@ export const puzzles = {
         The humans in this station developed automated containment systems. To
         get through, you&apos;ll need to hack into the terminals in order,
         starting with terminal 1 (
-        <span id="portalIcon" className="smallInfoIcon"></span>).
+        <span id="number1Icon" className="smallInfoIcon"></span>).
       </p>
     ),
     winText:
