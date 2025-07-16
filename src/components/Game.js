@@ -627,7 +627,9 @@ function Game({
         </div>
       ) : (
         // Use the message as the key to force the text to scroll back to the top upon rerender
-        <div id="message" key={currentMessage}>{currentMessage}</div>
+        <div id="message" key={currentMessage}>
+          {currentMessage}
+        </div>
       )}
 
       {isAtExit ? (
