@@ -2,8 +2,6 @@
 html {
   --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
-
-  background-image: url("../images/background.svg");
 }
 
 body {
@@ -297,11 +295,11 @@ button.feature {
   column-gap: 0;
   justify-content: center;
   margin: calc(var(--square-size) * 0.5);
+  grid-gap: 2px;
 }
 
 .puzzleSquare {
   touch-action: none;
-  border: 1px solid black;
   width: var(--square-size);
   height: var(--square-size);
   background-color: rgb(138 133 133);
