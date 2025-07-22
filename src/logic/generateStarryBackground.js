@@ -32,30 +32,30 @@ function makeStar(index) {
   return `<circle r="${radius}" fill="white">
 
 <animate
-    attributeName="fill-opacity"
-    from="${startingOpacity}"
-    to="0" 
-    dur="${duration}s"
-    begin="-${delay}s"
-    repeatCount="indefinite"
+  attributeName="fill-opacity"
+  from="${startingOpacity}"
+  to="0"
+  dur="${duration}s"
+  begin="-${delay}s"
+  repeatCount="indefinite"
 />
 
 <animate
-    attributeName="cx"
-    from="${startingX}%"
-    to="50%"
-    dur="${duration}s"
-    begin="-${delay}s"
-    repeatCount="indefinite"
+  attributeName="cx"
+  from="${startingX}%"
+  to="50%"
+  dur="${duration}s"
+  begin="-${delay}s"
+  repeatCount="indefinite"
 />
 
 <animate 
-    attributeName="cy" 
-    from="${startingY}%" 
-    to="50%" 
-    dur="${duration}s" 
-    begin="-${delay}s" 
-    repeatCount="indefinite" 
+  attributeName="cy"
+  from="${startingY}%"
+  to="50%"
+  dur="${duration}s"
+  begin="-${delay}s"
+  repeatCount="indefinite"
 />
 
 </circle>`;
@@ -66,14 +66,14 @@ function generateStarryBackground() {
 
   const svg = `<!-- Generated via generateStarryBackground.js -->
 <svg
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="none"
-    style="
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="none"
+  style="
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;"
 >
 
 <rect width="100%" height="100%" fill="black" stroke-width="1"/>
