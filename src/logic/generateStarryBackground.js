@@ -36,7 +36,7 @@ function makeStar(index) {
     from="${startingOpacity}"
     to="0" 
     dur="${duration}s"
-    begin="${delay}s"
+    begin="-${delay}s"
     repeatCount="indefinite"
 />
 
@@ -45,7 +45,7 @@ function makeStar(index) {
     from="${startingX}%"
     to="50%"
     dur="${duration}s"
-    begin="${delay}s"
+    begin="-${delay}s"
     repeatCount="indefinite"
 />
 
@@ -54,7 +54,7 @@ function makeStar(index) {
     from="${startingY}%" 
     to="50%" 
     dur="${duration}s" 
-    begin="${delay}s" 
+    begin="-${delay}s" 
     repeatCount="indefinite" 
 />
 
