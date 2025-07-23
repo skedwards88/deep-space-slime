@@ -20,6 +20,7 @@ import CustomShare from "./CustomShare";
 import {GameContextProvider} from "./GameContextProvider";
 import {BuilderContextProvider} from "./BuilderContextProvider";
 import {ShareContextProvider} from "./ShareContextProvider";
+import musicFile from "../music/compressed.mp3";
 
 export default function App() {
   const [display, setDisplay] = React.useState("game");
@@ -52,6 +53,8 @@ export default function App() {
     window.addEventListener("appinstalled", listener);
     return () => window.removeEventListener("appinstalled", listener);
   }, []);
+
+  const audioRef = React.useRef(null);
 
   let componentToRender;
 
@@ -128,6 +131,7 @@ export default function App() {
             setInstallPromptEvent={setInstallPromptEvent}
             showInstallButton={showInstallButton}
             installPromptEvent={installPromptEvent}
+            audioRef={audioRef}
           ></Game>
         </div>
       );
@@ -136,7 +140,12 @@ export default function App() {
   return (
     <GameContextProvider>
       <BuilderContextProvider>
-        <ShareContextProvider>{componentToRender}</ShareContextProvider>
+        <ShareContextProvider>
+          <>
+            <audio ref={audioRef} src={musicFile} loop />
+            <div>{componentToRender}</div>
+          </>
+        </ShareContextProvider>
       </BuilderContextProvider>
     </GameContextProvider>
   );

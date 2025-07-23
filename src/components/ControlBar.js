@@ -11,13 +11,14 @@ function ControlBar({
   showInstallButton,
   installPromptEvent,
   setInstallPromptEvent,
+  audioRef,
 }) {
   const {completedLevels} = useGameContext();
   const campaignIsComplete = campaignIsCompleteQ(completedLevels);
 
   return (
     <div id="controls">
-      <Audio></Audio>
+      <Audio audioRef={audioRef}></Audio>
       <button
         id="mapIcon"
         className="controlButton"

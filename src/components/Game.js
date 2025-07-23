@@ -444,6 +444,7 @@ function Game({
   setInstallPromptEvent,
   showInstallButton,
   installPromptEvent,
+  audioRef,
 }) {
   const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
     useGameContext();
@@ -587,6 +588,7 @@ function Game({
         setInstallPromptEvent={setInstallPromptEvent}
         showInstallButton={showInstallButton}
         installPromptEvent={installPromptEvent}
+        audioRef={audioRef}
       ></ControlBar>
 
       <div id="location">{`${gameState.station}: ${gameState.roomName}`}</div>

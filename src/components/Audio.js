@@ -1,7 +1,6 @@
 import React from "react";
-import musicFile from "../music/compressed.mp3";
 
-export default function Audio() {
+export default function Audio({audioRef}) {
   const savedIsPlaying = JSON.parse(
     localStorage.getItem("deepSpaceSlimeSavedAudio"),
   );
@@ -15,8 +14,6 @@ export default function Audio() {
     );
   }, [isPlaying]);
 
-  const audioRef = React.useRef(null);
-
   React.useEffect(() => {
     if (isPlaying && audioRef.current) {
       audioRef.current.play().catch((error) => {
@@ -27,16 +24,17 @@ export default function Audio() {
         setIsPlaying(false);
       });
     }
-  }, [isPlaying]);
+  }, [isPlaying, audioRef]);
 
   return (
     <div>
-      <audio ref={audioRef} src={musicFile} loop />
       <button
         className="controlButton"
         id={isPlaying ? "muteIcon" : "unmuteIcon"}
         onClick={() => {
-          isPlaying ? audioRef.current.pause() : audioRef.current.play();
+          isPlaying && audioRef.current
+            ? audioRef.current.pause()
+            : audioRef.current.play();
           setIsPlaying(!isPlaying);
         }}
       ></button>
