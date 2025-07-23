@@ -27,11 +27,11 @@ export default function Audio() {
         setIsPlaying(false);
       });
     }
-  }, []);
+  }, [isPlaying]);
 
   return (
     <div>
-      <audio ref={audioRef} src={musicFile} />
+      <audio ref={audioRef} src={musicFile} loop />
       <button
         className="controlButton"
         id={isPlaying ? "muteIcon" : "unmuteIcon"}
