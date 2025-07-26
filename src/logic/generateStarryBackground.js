@@ -1,68 +1,31 @@
 const fs = require("fs");
 const path = require("path");
 
-const NUM_STARS = 100;
+const NUM_STARS = 200;
 const RADIUS_RANGE = [1, 2];
-const OPACITY_RANGE = [0.8, 1];
-const DURATION_RANGE = [30, 60];
-const DELAY_RANGE = [0, 30];
-const STARTING_RANGES = [
-  {x: [1, 10], y: [0, 100]},
-  {x: [90, 100], y: [0, 100]},
-  {x: [0, 100], y: [0, 10]},
-  {x: [0, 100], y: [90, 100]},
-];
+const DURATION_RANGE = [3, 8];
+const DELAY_RANGE = [0, 8];
+const POSITION_RANGE = [1, 99];
 
 function pickRandomBetween(number1, number2) {
   const min = Math.min(number1, number2);
   const max = Math.max(number1, number2);
 
-  return min + Math.random() * (max - min);
+  return (min + Math.random() * (max - min)).toFixed(2);
 }
 
-function makeStar(index) {
-  const startingRange = STARTING_RANGES[index % STARTING_RANGES.length];
-  const startingX = pickRandomBetween(...startingRange.x);
-  const startingY = pickRandomBetween(...startingRange.y);
+function makeStar() {
+  const startingX = pickRandomBetween(...POSITION_RANGE);
+  const startingY = pickRandomBetween(...POSITION_RANGE);
   const radius = pickRandomBetween(...RADIUS_RANGE);
-  const startingOpacity = pickRandomBetween(...OPACITY_RANGE);
   const duration = pickRandomBetween(...DURATION_RANGE);
   const delay = pickRandomBetween(...DELAY_RANGE);
 
-  return `<circle r="${radius}" fill="white">
-
-<animate
-  attributeName="fill-opacity"
-  from="${startingOpacity}"
-  to="0"
-  dur="${duration}s"
-  begin="-${delay}s"
-  repeatCount="indefinite"
-/>
-
-<animate
-  attributeName="cx"
-  from="${startingX}%"
-  to="50%"
-  dur="${duration}s"
-  begin="-${delay}s"
-  repeatCount="indefinite"
-/>
-
-<animate 
-  attributeName="cy"
-  from="${startingY}%"
-  to="50%"
-  dur="${duration}s"
-  begin="-${delay}s"
-  repeatCount="indefinite"
-/>
-
-</circle>`;
+  return `<use href="#star" r="${radius}" x="${startingX}%" y="${startingY}%" fill="white" style="animation-duration:${duration}s; animation-delay:-${delay}s;" class="twinkle"/>`;
 }
 
 function generateStarryBackground() {
-  const stars = Array.from({length: NUM_STARS}, (_, index) => makeStar(index));
+  const stars = Array.from({length: NUM_STARS}, () => makeStar());
 
   const svg = `<!-- Generated via generateStarryBackground.js -->
 <svg
@@ -75,6 +38,23 @@ function generateStarryBackground() {
     height: 100%;
     z-index: -1;"
 >
+
+<defs>
+  <circle id ="star" cx="1" cy="1" r="1" fill="white" />
+  <style>
+    @keyframes twinkle {
+      0%,
+      100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .twinkle {
+      animation-name: twinkle;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+  </style>
+</defs>
 
 <rect width="100%" height="100%" fill="black" stroke-width="1"/>
 
