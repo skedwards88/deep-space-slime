@@ -385,10 +385,10 @@ export const puzzles = {
     robotEndMood: "happy",
     puzzleStringWithCivilians: "21FBBEBBFB1BJB1BZBBXBBY2FBF4BSB9",
     type: "Campaign",
-    nextPuzzle: "campaign/campaign/security-station/5/antivirus",
+    nextPuzzle: "campaign/security/antivirus",
   },
-  "campaign/campaign/security-station/5/antivirus": {
-    station: "campaign/security-station/5",
+  "campaign/security/antivirus": {
+    station: "Security",
     roomName: "Antivirus",
     startingText:
       "No other subjects have gotten this far. You should be very proud, subject 56!",
