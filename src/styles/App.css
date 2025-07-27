@@ -119,7 +119,7 @@ button:disabled,
 #location {
   grid-area: location;
   text-align: center;
-  font-size: calc(var(--square-size) * 0.58);
+  font-size: calc(var(--square-size) * 0.55);
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
