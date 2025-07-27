@@ -117,7 +117,7 @@ button:disabled,
 #location {
   grid-area: location;
   text-align: center;
-  font-size: calc(var(--square-size) * 0.6);
+  font-size: calc(var(--square-size) * 0.58);
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
