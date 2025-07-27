@@ -549,11 +549,15 @@ function Game({
     ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
-        const hintMessage = gameState.robotStartMood === "sinister" ? "Argh. My programming compels me to help you. Tap me to get a hint." : "Tap me to get a hint!";
+        const hintMessage =
+          gameState.robotStartMood === "sinister"
+            ? "Argh. My programming compels me to help you. Tap me to get a hint."
+            : "Tap me to get a hint!";
         // <br> elements to get the spacing to work when starting text is <p>
         setCurrentMessage(
           <>
-            {hintMessage}<br></br>
+            {hintMessage}
+            <br></br>
             <br></br>
             {gameState.startingText}
           </>,
