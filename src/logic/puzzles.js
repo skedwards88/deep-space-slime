@@ -20,8 +20,8 @@ export const puzzles = {
       <p>
         Collect the <span id="powerIcon" className="smallInfoIcon"></span> to
         open the exit hatch. Here&apos;s some movement tips for your new&mdash;I
-        mean, newly awakened&mdash;body: Tap to move to any square that glows green,
-        or drag to move faster.
+        mean, newly awakened&mdash;body: Tap to move to any square that glows
+        green, or drag to move faster.
       </p>
     ),
     winText:
