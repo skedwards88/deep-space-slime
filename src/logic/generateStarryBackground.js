@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const NUM_STARS = 200;
-const RADIUS_RANGE = [1, 2];
 const DURATION_RANGE = [3, 8];
 const DELAY_RANGE = [0, 8];
 const POSITION_RANGE = [1, 99];
@@ -17,11 +16,10 @@ function pickRandomBetween(number1, number2) {
 function makeStar() {
   const startingX = pickRandomBetween(...POSITION_RANGE);
   const startingY = pickRandomBetween(...POSITION_RANGE);
-  const radius = pickRandomBetween(...RADIUS_RANGE);
   const duration = pickRandomBetween(...DURATION_RANGE);
   const delay = pickRandomBetween(...DELAY_RANGE);
 
-  return `<use href="#star" r="${radius}" x="${startingX}%" y="${startingY}%" fill="white" style="animation-duration:${duration}s; animation-delay:-${delay}s;" class="twinkle"/>`;
+  return `<use href="#star" x="${startingX}%" y="${startingY}%" fill="white" style="animation-duration:${duration}s; animation-delay:-${delay}s;" class="twinkle"/>`;
 }
 
 function generateStarryBackground() {
@@ -40,7 +38,7 @@ function generateStarryBackground() {
 >
 
 <defs>
-  <circle id ="star" cx="1" cy="1" r="1" fill="white" />
+  <circle id ="star" cx="1" cy="1" r="1.5" fill="white" />
   <style>
     @keyframes twinkle {
       0%,
