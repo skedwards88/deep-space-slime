@@ -19,8 +19,8 @@ export const puzzles = {
     startingText: (
       <p>
         Collect the <span id="powerIcon" className="smallInfoIcon"></span> to
-        open the exit hatch. Here&apos;s some movement tips for your new--I
-        mean, newly awakened--body: Tap to move to any square that glows green,
+        open the exit hatch. Here&apos;s some movement tips for your new&mdash;I
+        mean, newly awakened&mdash;body: Tap to move to any square that glows green,
         or drag to move faster.
       </p>
     ),
@@ -653,7 +653,7 @@ export const puzzles = {
     roomName: "Tactical",
     startingText: (
       <p>
-        Please chase--I mean escort--both{" "}
+        Please chase&mdash;I mean escort&mdash;both{" "}
         <span id="civilianIcon" className="smallInfoIcon"></span>s to the{" "}
         <span id="podIcon" className="smallInfoIcon"></span>.
       </p>
