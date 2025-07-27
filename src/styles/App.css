@@ -2,6 +2,7 @@
 html {
   --square-size: 6vmax;
   --default-font-size: min(4vh, 0.7cm);
+  background-color: black;
 }
 
 body {
