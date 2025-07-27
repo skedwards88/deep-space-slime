@@ -372,6 +372,10 @@ button.feature {
   background-color: rgb(137 132 132);
 }
 
+.nextNumber {
+  box-shadow: inset 0 0 5px 5px rgb(255 255 255 / 80%);
+}
+
 .puzzleSquare.exit-opened,
 .puzzleSquare.exit,
 #exitIcon {

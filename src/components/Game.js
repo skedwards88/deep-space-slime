@@ -216,6 +216,7 @@ function PuzzleSquare({
   hintIndex,
   hasCivilian,
   isInPortal,
+  nextNumber,
 }) {
   const {gameState, dispatchGameState, completedLevels, setCompletedLevels} =
     useGameContext();
@@ -234,6 +235,9 @@ function PuzzleSquare({
 
   if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
+    if (nextNumber === Number.parseInt(feature)) {
+      featureClass += " nextNumber";
+    }
   } else if (isInPortal && feature === features.portal) {
     featureClass = `portalSpin ${feature}`;
   } else {
@@ -509,6 +513,7 @@ function Game({
       hintIndex={hintIndex}
       hasCivilian={currentCivilians.includes(index)}
       isInPortal={isInPortal}
+      nextNumber={gameState.numberCount + 1}
     ></PuzzleSquare>
   ));
 
