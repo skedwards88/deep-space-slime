@@ -66,7 +66,7 @@ export const puzzles = {
     station: "Quarantine",
     roomName: "Holding Cell",
     startingText:
-      "If you get stuck, wait for me to give you a hint. After all, I am a very helpful robot and I have your bests interests at heart.",
+      "If you get stuck, wait for me to give you a hint. After all, I am a very helpful robot, and I have your bests interests at heart.",
     winText:
       "I would have been...disappointed...if you couldn't figure this one out.",
     robotStartMood: "happy",
