@@ -302,8 +302,6 @@ button.feature {
 
 .puzzleSquare {
   touch-action: none;
-  width: var(--square-size);
-  height: var(--square-size);
   background-color: rgb(138 133 133);
   background-position: center;
   background-repeat: no-repeat;
