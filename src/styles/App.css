@@ -732,6 +732,7 @@ Putting the svg and gradient animation on separate pseudo elements works.
 .smallInfoIcon#podIcon,
 .smallInfoIcon#civilianIcon {
   background-color: transparent;
+  background-size: 150%;
 }
 
 .customMessage {
