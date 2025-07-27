@@ -191,7 +191,7 @@ Using a pseudo element and changing the opacity works instead.
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/icons/bot-idea.svg");
+  background-image: url("../images/icons/idea.svg");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 80%;

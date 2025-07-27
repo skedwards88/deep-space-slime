@@ -542,7 +542,6 @@ function Game({
     let timeout;
     if (
       !calculatingGamePaths &&
-      gameState.robotStartMood !== "sinister" &&
       !hintWaitIsOver &&
       !isAtExit &&
       !isAtStart &&
@@ -550,15 +549,15 @@ function Game({
     ) {
       timeout = setTimeout(() => {
         setHintWaitIsOver(true);
+        const hintMessage = gameState.robotStartMood === "sinister" ? "Argh. My programming compels me to help you. Tap me to get a hint." : "Tap me to get a hint!";
         // <br> elements to get the spacing to work when starting text is <p>
         setCurrentMessage(
           <>
-            Tap me to get a hint!<br></br>
+            {hintMessage}<br></br>
             <br></br>
             {gameState.startingText}
           </>,
         );
-        setCurrentBotMood("happy");
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
@@ -574,7 +573,6 @@ function Game({
   ]);
 
   const isTimeToShowAHint =
-    gameState.robotStartMood !== "sinister" &&
     hintWaitIsOver &&
     !calculatingGamePaths &&
     !isAtExit &&
