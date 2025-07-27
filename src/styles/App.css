@@ -668,6 +668,11 @@ Putting the svg and gradient animation on separate pseudo elements works.
   height: calc(var(--square-size) * 0.37);
 }
 
+.smallInfoIcon#podIcon,
+.smallInfoIcon#civilianIcon {
+  background-color: transparent;
+}
+
 .customMessage {
   white-space: pre-line;
   display: flex;
