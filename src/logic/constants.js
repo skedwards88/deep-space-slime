@@ -1,7 +1,7 @@
 export const numColumns = 7;
 export const numRows = 9;
 
-export const firstPuzzleId = "campaign/stasis-pod/1";
+export const firstPuzzleId = "campaign/stasis_bay/stasis_pod";
 
 export const mapTypes = {
   campaign: "Campaign",

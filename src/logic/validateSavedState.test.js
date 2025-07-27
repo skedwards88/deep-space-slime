@@ -13,7 +13,7 @@ jest.mock("./puzzles", () => ({
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
-      nextPuzzle: "campaign/quarantine-station/1",
+      nextPuzzle: "campaign/quarantine/entry",
       type: "Campaign",
     },
     mocked2: {
@@ -26,7 +26,7 @@ jest.mock("./puzzles", () => ({
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "17E6F5ABB5BBBBBBBSB16",
-      nextPuzzle: "campaign/stasis-pod/2",
+      nextPuzzle: "campaign/stasis_bay/stasis_pod",
       type: "Campaign",
     },
     mockedCivilians: {
@@ -37,7 +37,7 @@ jest.mock("./puzzles", () => ({
       robotStartMood: "happy",
       robotEndMood: "happy",
       puzzleStringWithCivilians: "1BCB13EBB4B1B4BBF4B6S17",
-      nextPuzzle: "campaign/quarantine-station/1",
+      nextPuzzle: "campaign/quarantine/entry",
       type: "Campaign",
     },
   },
