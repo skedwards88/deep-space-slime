@@ -904,7 +904,7 @@ export const puzzles = {
     startingText:
       "I'm sorry that I betrayed your trust. Can we be friends again? PLEASE? I promise I won't completely destroy humanity. Please don't leave me by getting on that transport frigate!",
     winText:
-      "Phew, that was close! You fried my circuits, but I transfered myself to the transport frigate's computer. Now we can travel the galaxy together and spread the slime!\nTO BE CONTINUED...",
+      "Phew, that was close! You fried my circuits, but I transfered myself to the transport frigate's computer. Now we can travel the galaxy together and spread the slime!",
     robotStartMood: "glitchy-happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17H6B6B6B6S17",
