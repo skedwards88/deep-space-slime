@@ -66,7 +66,7 @@ export const puzzles = {
     station: "Quarantine",
     roomName: "Holding Cell",
     startingText:
-      "If you get stuck, wait for me to give you a hint. After all, I am a very helpful robot, and I have your bests interests at heart.",
+      "If you get stuck, wait for me to give you a hint. After all, I am a very smart robot, and I have your bests interests at heart.",
     winText:
       "I would have been...disappointed...if you couldn't figure this one out.",
     robotStartMood: "happy",
@@ -130,8 +130,8 @@ export const puzzles = {
       <p>
         The humans developed{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span> to kill the
-        slime, but it has a limited range. Use the{" "}
-        <span id="blasterIcon" className="smallInfoIcon"></span> to blast
+        slime, but it has a limited range. If you&apos;ve collected a{" "}
+        <span id="blasterIcon" className="smallInfoIcon"></span>, you can blast
         straight through a slime trail and jump to a slime-free space on the
         other side.
       </p>
@@ -216,7 +216,8 @@ export const puzzles = {
       <p>
         You&apos;ll need to use two{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span> to complete
-        this room. Each one can only be used once!
+        this room. Each <span id="blasterIcon" className="smallInfoIcon"></span>{" "}
+        can only be used once!
       </p>
     ),
     winText:
@@ -474,7 +475,7 @@ export const puzzles = {
     roomName: "Lookout",
     startingText: (
       <p>
-        Uh oh... the slime contaminated the engines. Self destruction is
+        Uh oh... the slime contaminated the engines. Self destruction is totally
         imminent! Push each{" "}
         <span id="civilianIcon" className="smallInfoIcon"></span> (crew) to a{" "}
         <span id="podIcon" className="smallInfoIcon"></span> (escape pod).
@@ -539,8 +540,11 @@ export const puzzles = {
     roomName: "Transporter",
     startingText: (
       <p>
-        Get the <span id="civilianIcon" className="smallInfoIcon"></span> into
-        position for your portal jump.
+        You can&apos;t push{" "}
+        <span id="civilianIcon" className="smallInfoIcon"></span> into a{" "}
+        <span id="portalIcon" className="smallInfoIcon"></span>, but you can
+        push <span id="civilianIcon" className="smallInfoIcon"></span> as you
+        exit a <span id="portalIcon" className="smallInfoIcon"></span>.
       </p>
     ),
     winText: (
@@ -636,7 +640,7 @@ export const puzzles = {
       <p>
         If the <span id="civilianIcon" className="smallInfoIcon"></span> scream
         when you push them toward the{" "}
-        <span id="podIcon" className="smallInfoIcon"></span>, but I&apos;m sure
+        <span id="podIcon" className="smallInfoIcon"></span>, I&apos;m sure
         it&apos;s just because they&apos;re so thrilled for you to be helping
         them...
       </p>
@@ -675,7 +679,7 @@ export const puzzles = {
       </p>
     ),
     winText:
-      "There's nowhere to hide from an all-seeing robot that has access to the ship's cameras!",
+      "There's nowhere to hide from an all-seeing robot. I have access to all the ship's cameras!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15BBPBA2PBBBB2BCBBB2BBJPB2BPBBB2SBBBE8",
@@ -763,7 +767,7 @@ export const puzzles = {
     station: "Monolog",
     roomName: "The Slime",
     startingText:
-      "Here's a secret. The trail of slime hasn't been chasing you. YOU are the slime. I infected you and then tricked you into spread slime across the ship.",
+      "Here's a secret. The trail of slime hasn't been chasing you. YOU are the slime! I infected you and then tricked you into spreading slime across the ship.",
     winText:
       "Continue into the bowels of the ship, and I'll tell you another secret...",
     robotStartMood: "sinister",
@@ -790,11 +794,11 @@ export const puzzles = {
     roomName: "Contamination",
     startingText: (
       <p>
-        You contaminated every{" "}
-        <span id="civilianIcon" className="smallInfoIcon"></span> you pushed
-        into an <span id="podIcon" className="smallInfoIcon"></span> with slime.
-        They are now my subjects and will spread the slime to their next
-        destination!
+        Every <span id="civilianIcon" className="smallInfoIcon"></span> you
+        pushed into an <span id="podIcon" className="smallInfoIcon"></span> is
+        contaminated with your slime. You&apos;ll need to push another{" "}
+        <span id="civilianIcon" className="smallInfoIcon"></span> to get through
+        this room and stop me, hehe!
       </p>
     ),
     winText: (
@@ -824,7 +828,7 @@ export const puzzles = {
       </p>
     ),
     winText:
-      "I have no more use for you. These next rooms should be impossible for you to break out of.",
+      "I have no more use for you now that you've fed the slime and contaminated the crew. These next rooms should be impossible for you to break out of!",
     robotStartMood: "sinister",
     robotEndMood: "sinister",
     puzzleStringWithCivilians: "17E6F6F6F6S17",
@@ -872,18 +876,17 @@ export const puzzles = {
   "campaign/mastery/hacker_mastery": {
     station: "Mastery",
     roomName: "Hacker Mastery",
-    startingText:
-      "There's no way you can figure out how to wiggle your way through this room!",
+    startingText: "There's no way you'll wiggle your way out of this room!",
     winText: "Impossible! You broke through all my puzzles?",
     robotStartMood: "sinister",
     robotEndMood: "sinister",
     puzzleStringWithCivilians: "9BWB3EBJB3BJBYB2JBVBJ2BZBJB3BJBS3BXB9",
     type: "Campaign",
-    nextPuzzle: "campaign/core_station/mainframe",
+    nextPuzzle: "campaign/core/ship_computer",
   },
-  "campaign/core_station/mainframe": {
-    station: "Core station",
-    roomName: "Mainframe",
+  "campaign/core/ship_computer": {
+    station: "Core",
+    roomName: "Ship Computer",
     startingText:
       "It's impressive that you've gotten this far. But I doubt you are smart enough to hack all of my terminals in this room!",
     winText:
@@ -893,15 +896,15 @@ export const puzzles = {
     puzzleStringWithCivilians:
       "2BEB3PDZDP4B3PJBDBKPXB1B1BKPKBDBWP3B4PJYKP3BSB2",
     type: "Campaign",
-    nextPuzzle: "campaign/core_station/escape_pod",
+    nextPuzzle: "campaign/core/docking_bay",
   },
-  "campaign/core_station/escape_pod": {
-    station: "Core station",
-    roomName: "Escape Pod",
+  "campaign/core/docking_bay": {
+    station: "Core",
+    roomName: "Docking Bay",
     startingText:
       "I'm sorry that I betrayed your trust. Can we be friends again? PLEASE? I promise I won't completely destroy humanity. Please don't leave me by getting on that transport frigate!",
     winText:
-      "Phew, that was close! You fried my circuits, but I was able to transfer myself to the transport frigate's computer. Now we can travel the galaxy together and spread the slime!\nTO BE CONTINUED...",
+      "Phew, that was close! You fried my circuits, but I transfered myself to the transport frigate's computer. Now we can travel the galaxy together and spread the slime!\nTO BE CONTINUED...",
     robotStartMood: "glitchy-happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17H6B6B6B6S17",
