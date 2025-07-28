@@ -228,7 +228,7 @@ Using a pseudo element and changing the opacity works instead.
   display: flex;
   flex-direction: row;
   grid-area: acquiredFeatures;
-  border-top: 0.5vmax solid white;
+  border-top: 3px solid white;
   padding-top: 1vmax;
   height: var(--square-size);
 }
