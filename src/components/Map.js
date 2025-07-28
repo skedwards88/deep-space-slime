@@ -3,7 +3,11 @@ import {puzzles} from "../logic/puzzles";
 import {useGameContext} from "./GameContextProvider";
 import {getLowestIncompletePuzzle} from "../logic/getLowestIncompletePuzzle";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
-import {firstPuzzleId, mapTypes} from "../logic/constants";
+import {
+  firstPuzzleId,
+  lastCampaignPuzzleId,
+  mapTypes,
+} from "../logic/constants";
 
 function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
   const {type, station, roomName, nextPuzzle} =
@@ -219,7 +223,11 @@ export default function GameMap({setDisplay}) {
   const [stationOnDisplay, setStationOnDisplay] =
     React.useState(currentStation);
 
-  const [typeOnDisplay, setTypeOnDisplay] = React.useState(currentStationType);
+  // If on the last puzzle in the campaign, collapse the map
+  // If current station is custom, then the map will also be fully collapsed since currentStationType is undefined
+  const [typeOnDisplay, setTypeOnDisplay] = React.useState(
+    gameState.puzzleID === lastCampaignPuzzleId ? null : currentStationType,
+  );
 
   const campaignIsComplete = campaignIsCompleteQ(completedLevels);
 

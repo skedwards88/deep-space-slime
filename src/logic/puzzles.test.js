@@ -10,6 +10,7 @@ import {
   numRows,
   firstPuzzleId,
   mapTypes,
+  lastCampaignPuzzleId,
 } from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
 
@@ -39,6 +40,12 @@ describe("puzzle validation", () => {
   test("first puzzle exists", () => {
     const allPuzzleIDs = Object.keys(puzzles);
     expect(allPuzzleIDs).toContain(firstPuzzleId);
+  });
+
+  test("last campaign puzzle ID type is campaign, and next puzzle type is bonus", () => {
+    expect(puzzles[lastCampaignPuzzleId].type).toBe(mapTypes.campaign);
+    const nextPuzzleID = puzzles[lastCampaignPuzzleId].nextPuzzle;
+    expect(puzzles[nextPuzzleID].type).toBe(mapTypes.bonus);
   });
 
   test("all puzzle strings can be converted to a puzzle and back again without error", () => {
