@@ -11,6 +11,7 @@ import BlasterExplanation from "./BlasterExplanation";
 import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
+import CampaignOver from "./CampaignOver";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -122,6 +123,17 @@ export default function App() {
       break;
     case "confirmReset":
       componentToRender = <ConfirmReset setDisplay={setDisplay}></ConfirmReset>;
+      break;
+    case "campaignOver":
+      componentToRender = (
+        <CampaignOver
+          setDisplay={setDisplay}
+          setInstallPromptEvent={setInstallPromptEvent}
+          showInstallButton={showInstallButton}
+          installPromptEvent={installPromptEvent}
+          audioRef={audioRef}
+        ></CampaignOver>
+      );
       break;
     default:
       componentToRender = (

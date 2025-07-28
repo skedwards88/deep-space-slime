@@ -18,6 +18,23 @@ import {arraysMatchQ} from "../common/arraysMatchQ";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 import sendAnalytics from "../common/sendAnalytics";
 
+function isAtEndOfCampaign(puzzleID) {
+  const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
+
+  const nextPuzzleExists = nextPuzzleID in puzzles;
+
+  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+
+  const nextPuzzleIsCampaign =
+    nextPuzzleExists &&
+    currentPuzzleIsCampaign &&
+    puzzles[nextPuzzleID].type === mapTypes.campaign;
+
+  const isAtEndOfCampaign = currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
+
+  return isAtEndOfCampaign;
+}
+
 function handleMovement({
   validNext,
   index,
@@ -29,6 +46,7 @@ function handleMovement({
   completedLevels,
   setCompletedLevels,
   dispatchGameState,
+  setDisplay,
 }) {
   if (validNext) {
     const isMovingToExit =
@@ -47,37 +65,7 @@ function handleMovement({
 
     let newMessage;
     if (isMovingToExit) {
-      const nextPuzzleID = puzzles[gameState.puzzleID]?.nextPuzzle;
-
-      const currentPuzzleIsCampaign =
-        puzzles[gameState.puzzleID]?.type === mapTypes.campaign;
-
-      const nextPuzzleIsCampaign =
-        nextPuzzleID in puzzles &&
-        currentPuzzleIsCampaign &&
-        puzzles[nextPuzzleID].type === mapTypes.campaign;
-
-      const isAtEndOfCampaign =
-        currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
-
-      if (isAtEndOfCampaign) {
-        newMessage = (
-          <p>
-            <p>
-              You completed the campaign and unlocked bonus stations! Tap on the{" "}
-              <span id="mapIcon" className="smallInfoIcon"></span> to open the
-              bonus stations.
-            </p>
-            <p>
-              Tap <strong>Share</strong> below to help spread the game! Follow
-              us to learn about new level releases.
-            </p>
-            <p>{gameState.winText}</p>
-          </p>
-        );
-      } else {
-        newMessage = gameState.winText;
-      }
+      newMessage = gameState.winText;
     } else {
       newMessage = gameState.startingText;
     }
@@ -93,6 +81,10 @@ function handleMovement({
       action: "modifyPath",
       index,
     });
+
+    if (isMovingToExit && isAtEndOfCampaign(gameState.puzzleID)) {
+      setDisplay("campaignOver");
+    }
   } else {
     const currentIndex = gameState.path[gameState.path.length - 1];
     const isCurrentlyAtExit =
@@ -148,6 +140,7 @@ function handlePointerDown({
         completedLevels,
         setCompletedLevels,
         dispatchGameState,
+        setDisplay,
       });
     }
   }
@@ -196,6 +189,7 @@ function handlePointerEnter({
       completedLevels,
       setCompletedLevels,
       dispatchGameState,
+      setDisplay,
     });
   }
 }
@@ -307,28 +301,6 @@ function PuzzleSolvedButtons({
 
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
-  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
-
-  const nextPuzzleIsCampaign =
-    nextPuzzleExists &&
-    currentPuzzleIsCampaign &&
-    puzzles[nextPuzzleID].type === mapTypes.campaign;
-
-  const isAtEndOfCampaign = currentPuzzleIsCampaign && !nextPuzzleIsCampaign;
-
-  const shareButton = isAtEndOfCampaign ? (
-    <Share
-      appName="Deep Space Slime"
-      text={`I beat Deep Space Slime! Try it out:`}
-      url="https://deepspaceslime.com"
-      buttonText="Share"
-      className="textButton"
-      origin="campaign won"
-    ></Share>
-  ) : (
-    <></>
-  );
-
   const nextLevelButton = nextPuzzleExists ? (
     <button
       className="textButton"
@@ -339,31 +311,16 @@ function PuzzleSolvedButtons({
         dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
       }}
     >
-      {isAtEndOfCampaign ? "Bonus" : "Next Level"}
+      {puzzles[puzzleID].type === mapTypes.campaign &&
+      puzzles[nextPuzzleID].type === mapTypes.bonus
+        ? "First Bonus Level"
+        : "Next Level"}
     </button>
   ) : (
     <></>
   );
 
-  const followButton = isAtEndOfCampaign ? (
-    <a
-      className="textButton"
-      id="buttonLink"
-      href="https://www.patreon.com/skedwards88"
-    >
-      Follow
-    </a>
-  ) : (
-    <></>
-  );
-
-  return (
-    <div id="exitButtons">
-      {nextLevelButton}
-      {shareButton}
-      {followButton}
-    </div>
-  );
+  return <div id="exitButtons">{nextLevelButton}</div>;
 }
 
 function CustomPuzzleSolvedButtons({
@@ -455,11 +412,17 @@ function Game({
   });
 
   const [currentMessage, setCurrentMessage] = React.useState(
-    gameState.startingText,
+    gameState.puzzle[lastIndexInPath] === features.exit ||
+      gameState.puzzle[lastIndexInPath] === features.ship
+      ? gameState.winText
+      : gameState.startingText,
   );
 
   const [currentBotMood, setCurrentBotMood] = React.useState(
-    gameState.robotStartMood,
+    gameState.puzzle[lastIndexInPath] === features.exit ||
+      gameState.puzzle[lastIndexInPath] === features.ship
+      ? gameState.robotEndMood
+      : gameState.robotStartMood,
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);

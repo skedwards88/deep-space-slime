@@ -67,8 +67,10 @@ button:disabled,
   border: 3px solid white;
   border-radius: 10px;
   color: white;
-  margin-bottom: 2vh;
   padding: 1vh 2vh;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px;
 }
 
 .info {
@@ -111,6 +113,40 @@ button:disabled,
   height: 100svh;
 }
 
+#campaignOver {
+  display: grid;
+  grid-template-areas:
+    "controls controls"
+    "botFace botMessage"
+    "campaignOverText campaignOverText";
+  grid-template-rows:
+    auto
+    auto
+    1fr;
+  grid-template-columns: auto 1fr;
+  height: 90vh;
+  height: 100svh;
+}
+
+#campaignOverText {
+  grid-area: campaignOverText;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(var(--default-font-size) * 0.7);
+  text-align: center;
+  overflow: auto;
+  white-space: pre-wrap;
+  background-color: black;
+  border-top: 3px solid white;
+  padding: 2vmax;
+}
+
+#campaignOverButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 #pathfinderControls {
   grid-area: controls;
   justify-self: center;
@@ -119,7 +155,6 @@ button:disabled,
 #location {
   grid-area: location;
   text-align: center;
-  font-size: calc(var(--square-size) * 0.55);
   border-top: 1vmax solid black;
   border-bottom: 1vmax solid black;
   background-color: black;
@@ -129,7 +164,7 @@ button:disabled,
 
 #message {
   grid-area: botMessage;
-  font-size: calc(var(--square-size) * 0.37);
+  font-size: calc(var(--default-font-size) * 0.7);
   min-height: calc(var(--square-size) * 2);
   width: 95%;
   text-align: left;
@@ -225,6 +260,13 @@ Using a pseudo element and changing the opacity works instead.
   90% {
     opacity: 0.3;
   }
+}
+
+#campaignOver > #message,
+#campaignOver > #botFace {
+  /* border instead of margin so stars don't show through */
+  border-top: 3vmin solid black;
+  border-bottom: 3vmin solid black;
 }
 
 #acquiredFeatures,
@@ -786,13 +828,15 @@ Putting the svg and gradient animation on separate pseudo elements works.
   }
 
   .App,
-  #game {
+  #game,
+  #campaignOver {
     max-width: calc(var(--square-size) * 15);
     height: auto;
     overflow-x: hidden;
   }
 
-  #game {
+  #game,
+  #campaignOver {
     grid-template-rows:
       auto
       auto
@@ -805,12 +849,14 @@ Putting the svg and gradient animation on separate pseudo elements works.
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
   .App,
-  #game {
+  #game,
+  #campaignOver {
     height: auto;
     overflow-x: hidden;
   }
 
-  #game {
+  #game,
+  #campaignOver {
     grid-template-rows:
       auto
       auto
