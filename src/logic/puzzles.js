@@ -758,7 +758,7 @@ export const puzzles = {
     winText:
       "Muahahah! Now that I have control of the ship, nothing can stop me.",
     robotStartMood: "happy",
-    robotEndMood: "sinister",
+    robotEndMood: "gloating",
     puzzleStringWithCivilians: "9BBB3BBABB2ZBEBW2YBBBX2BBCBB2PJJSP15",
     type: "Campaign",
     nextPuzzle: "campaign/monolog/the_slime",
@@ -770,8 +770,8 @@ export const puzzles = {
       "Here's a secret. The trail of slime hasn't been chasing you. YOU are the slime! I infected you and then tricked you into spreading slime across the ship.",
     winText:
       "Continue into the bowels of the ship, and I'll tell you another secret...",
-    robotStartMood: "sinister",
-    robotEndMood: "sinister",
+    robotStartMood: "gloating",
+    robotEndMood: "gloating",
     puzzleStringWithCivilians: "BBBBBBBB5BB5BB5BB5BB5BB5BB3EBBBBBS3",
     type: "Campaign",
     nextPuzzle: "campaign/monolog/the_subjects",
@@ -783,8 +783,8 @@ export const puzzles = {
       "You are the first of my test subjects to escape quarantine and infect the ship. Thanks for helping me break through the human's defenses!",
     winText:
       "Who thought something with a human origin could be so smart! The slime must enhance your intelligence...",
-    robotStartMood: "sinister",
-    robotEndMood: "sinister",
+    robotStartMood: "gloating",
+    robotEndMood: "gloating",
     puzzleStringWithCivilians: "8BBBBB2B3B2B3B2B3B2B3B2B2EB2BBS10",
     type: "Campaign",
     nextPuzzle: "campaign/monolog/contamination",
@@ -808,8 +808,8 @@ export const puzzles = {
         to spread slime across the galaxy!
       </p>
     ),
-    robotStartMood: "sinister",
-    robotEndMood: "sinister",
+    robotStartMood: "gloating",
+    robotEndMood: "gloating",
     puzzleStringWithCivilians: "16BCBA3B1B4B1B4B1E4BS17",
     type: "Campaign",
     nextPuzzle: "campaign/monolog/feeding_the_slime",
@@ -829,8 +829,8 @@ export const puzzles = {
     ),
     winText:
       "I have no more use for you now that you've fed the slime and contaminated the crew. These next rooms should be impossible for you to break out of!",
-    robotStartMood: "sinister",
-    robotEndMood: "sinister",
+    robotStartMood: "gloating",
+    robotEndMood: "gloating",
     puzzleStringWithCivilians: "17E6F6F6F6S17",
     type: "Campaign",
     nextPuzzle: "campaign/mastery/key_mastery",

@@ -530,6 +530,7 @@ function Game({
     let timeout;
     if (
       !calculatingGamePaths &&
+      gameState.robotStartMood !== "gloating" &&
       !hintWaitIsOver &&
       !isAtExit &&
       !isAtStart &&
@@ -565,6 +566,7 @@ function Game({
   ]);
 
   const isTimeToShowAHint =
+    gameState.robotStartMood !== "gloating" &&
     hintWaitIsOver &&
     !calculatingGamePaths &&
     !isAtExit &&
