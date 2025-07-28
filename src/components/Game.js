@@ -15,7 +15,6 @@ import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
-import {getMaxPowerCount} from "../logic/getMaxPowerCount";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 import sendAnalytics from "../common/sendAnalytics";
 
@@ -298,16 +297,12 @@ function PuzzleSquare({
 }
 
 function PuzzleSolvedButtons({
-  puzzle,
-  powerCount,
   puzzleID,
   dispatchGameState,
   setHintWaitIsOver,
   setCurrentMessage,
   setCurrentBotMood,
 }) {
-  const maxPowers = getMaxPowerCount(puzzle);
-
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
   const nextPuzzleExists = nextPuzzleID in puzzles;
@@ -362,28 +357,11 @@ function PuzzleSolvedButtons({
     <></>
   );
 
-  const retryButton =
-    powerCount < maxPowers ? (
-      <button
-        className="textButton"
-        onClick={() => {
-          setCurrentMessage(puzzles[puzzleID].startingText);
-          setCurrentBotMood(puzzles[puzzleID].robotStartMood);
-          dispatchGameState({action: "newGame", puzzleID});
-        }}
-      >
-        Retry Level
-      </button>
-    ) : (
-      <></>
-    );
-
   return (
     <div id="exitButtons">
       {nextLevelButton}
       {shareButton}
       {followButton}
-      {retryButton}
     </div>
   );
 }
@@ -658,8 +636,6 @@ function Game({
           ></CustomPuzzleSolvedButtons>
         ) : (
           <PuzzleSolvedButtons
-            puzzle={gameState.puzzle}
-            powerCount={gameState.powerCount}
             puzzleID={gameState.puzzleID}
             dispatchGameState={dispatchGameState}
             setHintWaitIsOver={setHintWaitIsOver}
