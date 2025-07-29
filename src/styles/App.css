@@ -827,16 +827,13 @@ Putting the svg and gradient animation on separate pseudo elements works.
     --square-size: min(6vmin, 1.5cm);
   }
 
-  .App,
-  #game,
-  #campaignOver {
+  .App {
     max-width: calc(var(--square-size) * 15);
     height: auto;
     overflow-x: hidden;
   }
 
-  #game,
-  #campaignOver {
+  #game {
     grid-template-rows:
       auto
       auto
@@ -848,15 +845,12 @@ Putting the svg and gradient animation on separate pseudo elements works.
 
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
-  .App,
-  #game,
-  #campaignOver {
+  .App {
     height: auto;
     overflow-x: hidden;
   }
 
-  #game,
-  #campaignOver {
+  #game {
     grid-template-rows:
       auto
       auto
