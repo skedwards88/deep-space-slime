@@ -168,10 +168,20 @@ button:disabled,
   min-height: calc(var(--square-size) * 2);
   width: 95%;
   text-align: left;
-  overflow: auto;
+  overflow: scroll;
   white-space: pre-wrap;
   background-color: black;
-  border-right: 2vmin solid black;
+  padding-right: 2vmin;
+}
+
+#message::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+}
+
+#message::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255);
+  border-radius: 4px;
 }
 
 #message > p {
