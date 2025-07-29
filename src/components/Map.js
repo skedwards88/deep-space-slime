@@ -134,11 +134,19 @@ function StationLevelMapEntry({
     // and all campaign stations are unlocked
     stationIsAvailable = true;
   } else {
+    // If this is the lowest unsolved level in the campaign,
+    // the corresponding station is available
     stationIsAvailable = roomDatas.some(
-      (roomData) =>
-        completedLevels.includes(roomData.puzzleID) ||
-        roomData.puzzleID === firstPuzzleId,
+      (roomData) => roomData.puzzleID === lowestUnsolvedCampaignRoom,
     );
+
+    // If any puzzle in the station has been completed, the station is available
+    if (!stationIsAvailable) {
+      stationIsAvailable = roomDatas.some(
+        (roomData) =>
+          completedLevels.includes(roomData.puzzleID)
+      );
+    }
   }
 
   const numCompletedRooms = roomDatas.filter((roomData) =>
