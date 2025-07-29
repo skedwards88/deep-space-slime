@@ -84,7 +84,7 @@ function TopLevelMapEntry({
         }
         disabled={bonusIsLocked}
       >
-        {topLevelKey}
+        {topLevelKey} Stations
         {bonusIsLocked ? (
           <small>Complete the campaign to unlock the bonus stations</small>
         ) : (
