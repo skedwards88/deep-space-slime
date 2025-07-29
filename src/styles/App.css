@@ -1,7 +1,7 @@
 /* General */
 html {
   --square-size: 6vmax;
-  --default-font-size: min(4vh, 0.7cm);
+  --default-font-size: min(3.5vh, 0.7cm);
 
   background-color: black;
 }
