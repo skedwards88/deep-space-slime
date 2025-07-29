@@ -142,9 +142,8 @@ function StationLevelMapEntry({
 
     // If any puzzle in the station has been completed, the station is available
     if (!stationIsAvailable) {
-      stationIsAvailable = roomDatas.some(
-        (roomData) =>
-          completedLevels.includes(roomData.puzzleID)
+      stationIsAvailable = roomDatas.some((roomData) =>
+        completedLevels.includes(roomData.puzzleID),
       );
     }
   }
