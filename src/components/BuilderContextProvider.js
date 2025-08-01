@@ -24,6 +24,9 @@ export function BuilderContextProvider({children}) {
     presavedCustomBuilds || [],
   );
 
+  const [customBuildIndexToDelete, setCustomBuildIndexToDelete] =
+    useState(null);
+
   // Don't bother initializing the builderState to anything useful yet.
   // We need the dispatcher to pass to other components, but we won't ever use this initial state.
   // This feels sloppy to me, but I haven't thought of a better solution yet.
@@ -108,6 +111,8 @@ export function BuilderContextProvider({children}) {
         allBuilderPaths,
         calculatingBuilderPaths,
         maxPathsToFind,
+        customBuildIndexToDelete,
+        setCustomBuildIndexToDelete,
       }}
     >
       {children}

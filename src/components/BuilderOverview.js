@@ -16,6 +16,7 @@ function BuilderEntry({
   setDisplay,
   setSavedCustomBuilds,
   savedCustomBuilds,
+  setCustomBuildIndexToDelete,
 }) {
   const {shareAndCapHints} = useShareContext();
 
@@ -120,9 +121,8 @@ function BuilderEntry({
         id="trashIcon"
         className="controlButton"
         onClick={() => {
-          let newSavedBuilds = savedCustomBuilds.slice();
-          newSavedBuilds.splice(index, 1);
-          setSavedCustomBuilds(newSavedBuilds);
+          setCustomBuildIndexToDelete(index);
+          setDisplay("confirmDelete");
         }}
       ></button>
     </div>
@@ -130,8 +130,12 @@ function BuilderEntry({
 }
 
 export default function BuilderOverview({setDisplay}) {
-  const {dispatchBuilderState, savedCustomBuilds, setSavedCustomBuilds} =
-    useBuilderContext();
+  const {
+    dispatchBuilderState,
+    savedCustomBuilds,
+    setSavedCustomBuilds,
+    setCustomBuildIndexToDelete,
+  } = useBuilderContext();
 
   const {dispatchGameState} = useGameContext();
 
@@ -147,6 +151,7 @@ export default function BuilderOverview({setDisplay}) {
         setDisplay={setDisplay}
         setSavedCustomBuilds={setSavedCustomBuilds}
         savedCustomBuilds={savedCustomBuilds}
+        setCustomBuildIndexToDelete={setCustomBuildIndexToDelete}
       ></BuilderEntry>
     ),
   );

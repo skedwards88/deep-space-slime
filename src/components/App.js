@@ -8,6 +8,7 @@ import BuilderLocked from "./BuilderLocked";
 import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
 import BlasterExplanation from "./BlasterExplanation";
+import ConfirmDelete from "./ConfirmDelete";
 import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
@@ -123,6 +124,11 @@ export default function App() {
       break;
     case "confirmReset":
       componentToRender = <ConfirmReset setDisplay={setDisplay}></ConfirmReset>;
+      break;
+    case "confirmDelete":
+      componentToRender = (
+        <ConfirmDelete setDisplay={setDisplay}></ConfirmDelete>
+      );
       break;
     case "campaignOver":
       componentToRender = (
