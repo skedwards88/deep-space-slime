@@ -20,7 +20,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         <hr></hr>
         <p>
           Join our{" "}
-          <a href="https://www.patreon.com/skedwards88">
+          <a href="https://www.patreon.com/TwistedTrailGames">
             <strong>FREE</strong> Patreon
           </a>{" "}
           to learn about new releases.

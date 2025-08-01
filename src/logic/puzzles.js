@@ -917,7 +917,7 @@ export const puzzles = {
     startingText:
       "By beating the main storyline, you've unlocked new thematic slime-infested stations like this one! Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PFFFP2FFEFF2FFSFF2PFFFP15",
@@ -929,7 +929,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PFWFP2FFEFF2YFSFZ2PFXFP15",
@@ -941,7 +941,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PWFXP2FFEFF2YFSFZ2PFFFP15",
@@ -953,7 +953,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PFFFP2FWEVF2YFSFX2PFZFP15",
@@ -965,7 +965,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Yo ho ho and a bottle of slime!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PFWFP2FVEXF2YFSFZ2PFFFP15",
@@ -977,7 +977,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BBEBB2FBBBF3BBB5B5SBF3FBBBF2BB1BB2FP1PF1",
@@ -989,7 +989,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BBEBB2FBBBF3PBP5B5SBF3FBBBF2BB1BB2FP1PF1",
@@ -1001,7 +1001,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BBEBB2YBBBX3PBP5B5SBF3ZBBBW2BB1BB2BP1PB1",
@@ -1013,7 +1013,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BBEBB2VBXBW3BBB5B5SBJ3ZBBBY2BB1BB2FP1PF1",
@@ -1025,7 +1025,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BBEBB2XBBBW3PBP5B5SBF3YBJBZ2BB1BB2BP1PB1",
@@ -1037,7 +1037,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BWB3BBEBB2XBBBY3PBP5B5SBJ3ZBBBF2BB1BB2BP1PB1",
@@ -1049,7 +1049,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BWB3BBEBB2ZBBBX3PBP5B5SBF3FBBBY2BB1BB2JP1PF1",
@@ -1061,7 +1061,7 @@ export const puzzles = {
     roomName: "Level 8",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2YBF3BBEBB2WBBBF3PBP5B5SBF3ZBBBX2BB1BB2JP1PJ1",
@@ -1073,7 +1073,7 @@ export const puzzles = {
     roomName: "Level 9",
     startingText: "This is not the final frontier. There are more stations.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2FBF3BDEDB2FBDBF3KBK5D5SBF3FBBBF2BK1KB2JJ1JJ1",
@@ -1085,7 +1085,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BFB2FBJBFBFBEB1BSBFBFBJBF2BFB16",
@@ -1097,7 +1097,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BFB2FBJBXBZBEB1BSBYBFBJBF2BFB16",
@@ -1109,7 +1109,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BZB2WBJBFBYBEB1BSBFBFBJBF2BXB16",
@@ -1121,7 +1121,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BZB2WBJBFBXBEB1BSBFBFBJBF2BYB16",
@@ -1133,7 +1133,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Eyes always watching!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BYB2FBJBFBFBEB1BSBZBFBJBF2BXB16",
@@ -1145,7 +1145,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4BBB3JBBBJ2BF1FB2B3B2B3B2BF1FB2JBBBJ3BSB2",
@@ -1157,7 +1157,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4FDF4PFK4BFP4KDB4PFK4BDP4FBF4BSB2",
@@ -1169,7 +1169,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4FDK4PBY4BFP4KBF4PZB4BFP4FDF4BSB2",
@@ -1181,7 +1181,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4BPB4YBX4BPB4BFB4BPB4WBZ4BPB4BSB2",
@@ -1193,7 +1193,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4FYF4PBB4XBP4BFB4PBF4BWP4FBZ4BSB2",
@@ -1205,7 +1205,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4FBK4PDZ4BBP4KXJ4PBB4YDP4FBB4BSB2",
@@ -1217,7 +1217,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "Even a camel could pass through this one!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "3E6F6P5PPP4VJB4BZB4XBY4WBB4PSP2",
@@ -1229,7 +1229,7 @@ export const puzzles = {
     roomName: "Wolf",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9P5WF4BBB5FBJZB2XBYBBP2B2B3S2E8",
@@ -1241,7 +1241,7 @@ export const puzzles = {
     roomName: "Bow",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15B1JFFE2XFPB2JFZF3FPFY3FB2B2S4B7",
@@ -1253,7 +1253,7 @@ export const puzzles = {
     roomName: "Horse",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "10P5EF3PFYJ5FFJ3ZFFFX2P2FFP4F6S2",
@@ -1265,7 +1265,7 @@ export const puzzles = {
     roomName: "Stag",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8P1P3PFYFP3XFW5E5VFZFJ2FFFFJP1FF2J2P3S1",
@@ -1277,7 +1277,7 @@ export const puzzles = {
     roomName: "Chief",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9PEP4FFF5D5JKJ2PFXJZFP2YSW4F1F3PF1FP1",
@@ -1289,7 +1289,7 @@ export const puzzles = {
     roomName: "Shaman",
     startingText: "Giving Picasso a run for his money!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1303,7 +1303,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16FFF3BBBBB2B1E1B2BBBBB2BZXYB3BBB5S3",
@@ -1316,7 +1316,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8FF1FF2BBEBB2BPDPB2BBXBB2ZBKBY3BSB16",
@@ -1329,7 +1329,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16JDJ3ZBBBY2BKBKB2BBSBB3BEB4XDW9",
@@ -1342,7 +1342,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8FFFFF2BXYZB2B1J1B2PBJBP2BBEBB3BSB16",
@@ -1354,7 +1354,7 @@ export const puzzles = {
     roomName: "Robot",
     startingText: "This level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "10E6F5PYP3B1B1B1PJBBBJP1ZFSFX3FFF9",
@@ -1367,7 +1367,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1381,7 +1381,7 @@ export const puzzles = {
     startingText:
       "The fifth level has the cutest face. The rest are pretty ugly...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1394,7 +1394,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16E1PZ2PDBBB3BKPY2PFJ5B6S11",
@@ -1406,7 +1406,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "10E5FBB4DBK4BBB4BDK4FBB5S10",
@@ -1418,7 +1418,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16E5FJF4FFJFF2FFJFF4F4SFF10",
@@ -1430,7 +1430,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17WBE2BFBJB2YBJBZ2BJBF3SBX17",
@@ -1442,7 +1442,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1455,7 +1455,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Embrace the chaos!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8EBF4BDBPBF1FBJJDK3KBK2FBJJDK1BDBPBF1SBF10",
@@ -1467,7 +1467,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4B1B3PBFBP3B1B3PBJBP3F1F3PBFBP3F1F3PJSJP1",
@@ -1479,7 +1479,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1492,7 +1492,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4B1F3PXJBP3F1B3PYJZP3B1F3PWJBP3B1B4BSB2",
@@ -1504,7 +1504,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "1PBEBP3F1X3PYJFP3B1B3PFJZP3B1B3PWJFP3B1B4BSB2",
@@ -1516,7 +1516,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BEB4B1V3PFJBP3Y1B3PBJZP3B1F3PXJBP3B1W3PBSBP1",
@@ -1528,7 +1528,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1541,7 +1541,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "Try zigging and zagging!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1555,7 +1555,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23PYP4EJF4BZS23",
@@ -1568,7 +1568,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "16BXFE3ZBBP3BPBY3JBSB22",
@@ -1581,7 +1581,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15BEBBW2XBBPB2BVFZB2JPBBF2BYBSB15",
@@ -1594,7 +1594,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15EBBBX2BJFZB2BFWJB2BYJFB2VBBBS15",
@@ -1607,7 +1607,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15EBPBF2BWBYB2PBJBP2BZBXF2FBPFS15",
@@ -1620,7 +1620,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "8PBBBBB1BEXFPB1BZBPFB1BFPBYB1BPFWSB1BBBBBP14",
@@ -1633,7 +1633,7 @@ export const puzzles = {
     startingText:
       "It's actually just a square, but you'll have to think outside the box to get through.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15PBBBBJ1ZEXFPB1BBBPFB1BFPBYB1BPFWSB1VBBBBP7",
@@ -1646,7 +1646,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "1BFDFB2KPEPK2BDKDB4B6BFF2FFBFF2FFB6B6S3",
@@ -1659,7 +1659,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9FFY3FFEFF2XFFFF3FFF4FFZ4F6F6S4",
@@ -1672,7 +1672,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1686,7 +1686,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1700,7 +1700,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2BJB2FBBPBBFBPFEFPBFBBPBBF2FBF5F6F6F6S3",
@@ -1713,7 +1713,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "2PWP3PXEVP2PZBYP3PFP5F5FFJ4JFF4FF6S3",
@@ -1726,7 +1726,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9PJP3PDZDP3XEW3KDYDK2PKJKP3PFP5F6S3",
@@ -1739,7 +1739,7 @@ export const puzzles = {
     startingText:
       "Plants are better than humans. They don't talk back when you experiment on them.",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1752,7 +1752,7 @@ export const puzzles = {
     roomName: "Level 1",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15EKFKF2DFKFK2FDFDF2DFDFD2FKFKS15",
@@ -1764,7 +1764,7 @@ export const puzzles = {
     roomName: "Level 2",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15FEFKF2DFKFD2FDFKF2DFDFD1SFKFKF2KFDFK8",
@@ -1776,7 +1776,7 @@ export const puzzles = {
     roomName: "Level 3",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23EBZB3BWBJ3YBFB3BXBS15",
@@ -1788,7 +1788,7 @@ export const puzzles = {
     roomName: "Level 4",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15FBFBF2BEBFB2FBXBF2BZBWB2FBYBS2BFBFB8",
@@ -1800,7 +1800,7 @@ export const puzzles = {
     roomName: "Level 5",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15FKFDF2DFDFK2EKFDS2KFDFK2FDFKF15",
@@ -1812,7 +1812,7 @@ export const puzzles = {
     roomName: "Level 6",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15FBFBF2BSBFB2FBXBF2BZBWB2VBYBE2BFBFB8",
@@ -1824,7 +1824,7 @@ export const puzzles = {
     roomName: "Level 7",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15KFKFD2FSFKF2JFXFK2FZFWF2DFYFE2FDFDF8",
@@ -1836,7 +1836,7 @@ export const puzzles = {
     roomName: "Level 8",
     startingText: "I love board games, especially with human playing pieces!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15KFKFD2FSFXF2JFYFZ2FPFPF2DFWFE15",
@@ -1849,7 +1849,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1863,7 +1863,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1877,7 +1877,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1891,7 +1891,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1905,7 +1905,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1919,7 +1919,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1933,7 +1933,7 @@ export const puzzles = {
     startingText:
       "You can kinda see the nautilus shell if you squint and don't think about it too much!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1947,7 +1947,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1961,7 +1961,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1975,7 +1975,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -1989,7 +1989,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2003,7 +2003,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2017,7 +2017,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2031,7 +2031,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2045,7 +2045,7 @@ export const puzzles = {
     startingText:
       "If you need inspiration, just think about that time I double crossed you!",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2059,7 +2059,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2073,7 +2073,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2087,7 +2087,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2101,7 +2101,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2115,7 +2115,7 @@ export const puzzles = {
     startingText:
       "Back in my day, we had these 'phones' with numbers on them...",
     winText:
-      "Nice job! Let us know what you thought of the game at www.patreon.com/c/skedwards88. We're still in beta, so all feedback is appreciated!",
+      "Nice job! Let us know what you thought of the game at www.patreon.com/TwistedTrailGames. We're still in beta, so all feedback is appreciated!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians:
@@ -2613,7 +2613,7 @@ export const puzzles = {
     startingText:
       "By beating the game, you've accessed the hidden Beta station where we playtest new content.",
     winText:
-      "Impressive. Let us know what you thought of this level, or the game in general, by commenting on https://patreon.com/skedwards88",
+      "Impressive. Let us know what you thought of this level, or the game in general, by commenting on https://patreon.com/TwistedTrailGames",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BEB3FBPBB1BD1F1KBPBFJFBPBB1F1BB1BBPBB3BSB9",

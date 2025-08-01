@@ -73,7 +73,7 @@ export default function CampaignOver({
             <a
               className="textButton"
               id="buttonLink"
-              href="https://www.patreon.com/skedwards88"
+              href="https://www.patreon.com/TwistedTrailGames"
             >
               Follow
             </a>
