@@ -296,29 +296,50 @@ function PuzzleSolvedButtons({
   setHintWaitIsOver,
   setCurrentMessage,
   setCurrentBotMood,
+  setDisplay,
 }) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
-  const nextPuzzleExists = nextPuzzleID in puzzles;
-
-  const nextLevelButton = nextPuzzleExists ? (
-    <button
-      className="textButton"
-      onClick={() => {
-        setHintWaitIsOver(false);
-        setCurrentMessage(puzzles[nextPuzzleID].startingText);
-        setCurrentBotMood(puzzles[nextPuzzleID].robotStartMood);
-        dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
-      }}
-    >
-      {puzzles[puzzleID].type === mapTypes.campaign &&
+  let nextLevelButton;
+  // If this was the last puzzle in a bonus station,
+  // or the last puzzle ever,
+  // return to map
+  if (
+    !nextPuzzleID ||
+    (puzzles[puzzleID].type === mapTypes.bonus &&
+      puzzles[nextPuzzleID]?.station !== puzzles[puzzleID]?.station)
+  ) {
+    nextLevelButton = (
+      <button
+        className="textButton"
+        onClick={() => {
+          setDisplay("map");
+        }}
+      >
+        Return to map
+      </button>
+    );
+  } else {
+    // Otherwise go to the next level
+    const buttonText =
+      puzzles[puzzleID].type === mapTypes.campaign &&
       puzzles[nextPuzzleID].type === mapTypes.bonus
         ? "First Bonus Level"
-        : "Next Level"}
-    </button>
-  ) : (
-    <></>
-  );
+        : "Next Level";
+    nextLevelButton = (
+      <button
+        className="textButton"
+        onClick={() => {
+          setHintWaitIsOver(false);
+          setCurrentMessage(puzzles[nextPuzzleID].startingText);
+          setCurrentBotMood(puzzles[nextPuzzleID].robotStartMood);
+          dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
+        }}
+      >
+        {buttonText}
+      </button>
+    );
+  }
 
   return <div id="exitButtons">{nextLevelButton}</div>;
 }
@@ -606,6 +627,7 @@ function Game({
             setHintWaitIsOver={setHintWaitIsOver}
             setCurrentMessage={setCurrentMessage}
             setCurrentBotMood={setCurrentBotMood}
+            setDisplay={setDisplay}
           ></PuzzleSolvedButtons>
         )
       ) : (
