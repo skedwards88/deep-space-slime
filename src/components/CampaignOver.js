@@ -10,9 +10,23 @@ export default function CampaignOver({
   installPromptEvent,
   audioRef,
 }) {
+  // There is a weird edge case where if the user taps (instead of drags on the)
+  // exit AND the exit overlaps with a button on this component, then the app
+  // registers a click event on this newly rendered button.
+  // This adds a 1 second delay to prevent this.
+  const [pointerIsActive, setPointerIsActive] = React.useState(false);
+  React.useEffect(() => {
+    const timeout = setTimeout(() => setPointerIsActive(true), 1000);
+    return () => clearTimeout(timeout);
+  });
+
   const {gameState, dispatchGameState} = useGameContext();
   return (
-    <div className="App" id="deep-space-slime">
+    <div
+      className="App"
+      id="deep-space-slime"
+      style={{pointerEvents: pointerIsActive ? "auto" : "none"}}
+    >
       <div id="campaignOver">
         <ControlBar
           setDisplay={setDisplay}
