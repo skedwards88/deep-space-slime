@@ -10,6 +10,7 @@
   "start_url": "https://deepspaceslime.com",
   "background_color": "#000000",
   "theme_color": "#000000",
+  "handle_links": "preferred",
   "shortcuts": [],
   "categories": ["games", "entertainment"],
   "icons": [
