@@ -6,6 +6,7 @@ import "./styles/Map.css";
 import "./styles/ControlBar.css";
 import "./styles/Builder.css";
 import "./styles/BuilderOverview.css";
+import "@skedwards88/shared-components/src/styles/Install.css";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
   const path = "/service-worker.js";

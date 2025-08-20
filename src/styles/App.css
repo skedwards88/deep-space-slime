@@ -60,7 +60,8 @@ button:disabled,
   overflow: auto;
 }
 
-.textButton {
+.textButton,
+.close {
   font-size: calc(var(--default-font-size) * 0.7);
   font-weight: bold;
   background-color: black;

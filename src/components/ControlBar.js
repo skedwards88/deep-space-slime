@@ -1,18 +1,12 @@
 import React from "react";
-import {handleInstall} from "../common/handleInstall";
 import packageJson from "../../package.json";
 import Share from "./Share";
 import Audio from "./Audio";
 import {useGameContext} from "./GameContextProvider";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
+import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
 
-function ControlBar({
-  setDisplay,
-  showInstallButton,
-  installPromptEvent,
-  setInstallPromptEvent,
-  audioRef,
-}) {
+function ControlBar({setDisplay, audioRef}) {
   const {completedLevels} = useGameContext();
   const campaignIsComplete = campaignIsCompleteQ(completedLevels);
 
@@ -34,16 +28,15 @@ function ControlBar({
         buttonText=""
         origin="control bar"
       ></Share>
-
-      <button
-        id="installIcon"
-        className="controlButton"
-        onClick={() =>
-          showInstallButton && installPromptEvent
-            ? handleInstall(installPromptEvent, setInstallPromptEvent)
-            : setDisplay("fallbackInstall")
-        }
-      ></button>
+      {!isRunningStandalone() ? (
+        <button
+          id="installIcon"
+          className="controlButton"
+          onClick={() => setDisplay("installOverview")}
+        ></button>
+      ) : (
+        <></>
+      )}
 
       <button
         id="heartIcon"

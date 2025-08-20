@@ -5,7 +5,6 @@ import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
 import BuilderLocked from "./BuilderLocked";
-import FallbackInstall from "./FallbackInstall";
 import InvalidShareMessage from "./InvalidShareMessage";
 import BlasterExplanation from "./BlasterExplanation";
 import ConfirmDelete from "./ConfirmDelete";
@@ -16,7 +15,9 @@ import CampaignOver from "./CampaignOver";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
-} from "../common/handleInstall";
+} from "@skedwards88/shared-components/src/logic/handleInstall";
+import InstallOverview from "@skedwards88/shared-components/src/components/InstallOverview";
+import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
 import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import {GameContextProvider} from "./GameContextProvider";
@@ -25,8 +26,9 @@ import {ShareContextProvider} from "./ShareContextProvider";
 import musicFile from "../music/compressed.mp3";
 
 export default function App() {
-  const [display, setDisplay] = React.useState("game");
-
+  // *****
+  // Install handling setup
+  // *****
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] = React.useState();
   const [showInstallButton, setShowInstallButton] = React.useState(true);
@@ -53,8 +55,14 @@ export default function App() {
       handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
 
     window.addEventListener("appinstalled", listener);
+
     return () => window.removeEventListener("appinstalled", listener);
   }, []);
+  // *****
+  // End install handling setup
+  // *****
+
+  const [display, setDisplay] = React.useState("game");
 
   const audioRef = React.useRef(null);
 
@@ -75,13 +83,18 @@ export default function App() {
         />
       );
       break;
-    case "fallbackInstall":
+    case "installOverview":
       componentToRender = (
-        <FallbackInstall
+        <InstallOverview
           setDisplay={setDisplay}
-          appName="Deep Space Slime"
-        ></FallbackInstall>
+          setInstallPromptEvent={setInstallPromptEvent}
+          showInstallButton={showInstallButton}
+          installPromptEvent={installPromptEvent}
+        ></InstallOverview>
       );
+      break;
+    case "pwaInstall":
+      componentToRender = <PWAInstall setDisplay={setDisplay}></PWAInstall>;
       break;
     case "blasterExplanation":
       componentToRender = (
@@ -134,9 +147,6 @@ export default function App() {
       componentToRender = (
         <CampaignOver
           setDisplay={setDisplay}
-          setInstallPromptEvent={setInstallPromptEvent}
-          showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent}
           audioRef={audioRef}
         ></CampaignOver>
       );
@@ -144,13 +154,7 @@ export default function App() {
     default:
       componentToRender = (
         <div className="App" id="deep-space-slime">
-          <Game
-            setDisplay={setDisplay}
-            setInstallPromptEvent={setInstallPromptEvent}
-            showInstallButton={showInstallButton}
-            installPromptEvent={installPromptEvent}
-            audioRef={audioRef}
-          ></Game>
+          <Game setDisplay={setDisplay} audioRef={audioRef}></Game>
         </div>
       );
   }
