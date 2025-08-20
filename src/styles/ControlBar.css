@@ -23,50 +23,50 @@
 }
 
 #shareIcon {
-  background-image: url("../images/icons/share.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/share.svg");
 }
 
 #installIcon {
-  background-image: url("../images/icons/install.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/install.svg");
 }
 
 #heartIcon {
-  background-image: url("../images/icons/heart.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/heart.svg");
 }
 
 #eyeIcon {
-  background-image: url("../images/icons/eye.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/eye.svg");
 }
 
 #builderIcon,
 #editIcon {
-  background-image: url("../images/icons/edit.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/pencil.svg");
 }
 
 #validateIcon {
-  background-image: url("../images/icons/check.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/checkmark.svg");
 }
 
 #playIcon {
-  background-image: url("../images/icons/play.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/play.svg");
 }
 
 #copyIcon {
-  background-image: url("../images/icons/copy.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/copy.svg");
 }
 
 #returnIcon {
-  background-image: url("../images/icons/return.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/return_arrow.svg");
 }
 
 #trashIcon {
-  background-image: url("../images/icons/trash.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/trash.svg");
 }
 
 #muteIcon {
-  background-image: url("../images/icons/mute.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/mute.svg");
 }
 
 #unmuteIcon {
-  background-image: url("../images/icons/unmute.svg");
+  background-image: url("@skedwards88/shared-components/src/images/icons/unmute.svg");
 }
