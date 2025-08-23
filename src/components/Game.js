@@ -16,7 +16,7 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "../common/arraysMatchQ";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
-import sendAnalytics from "../common/sendAnalytics";
+import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
 
 function isAtEndOfCampaign(puzzleID) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;

@@ -1,6 +1,6 @@
 import "jest-localstorage-mock";
 import {gameInit} from "./gameInit";
-import sendAnalytics from "../common/sendAnalytics";
+import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
@@ -12,7 +12,7 @@ import {
 import {features, numColumns, numRows, firstPuzzleId} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
-jest.mock("../common/sendAnalytics");
+jest.mock("@skedwards88/shared-components/src/logic/sendAnalytics");
 jest.mock("./getValidNextIndexes");
 jest.mock("./getAllValidPaths");
 
