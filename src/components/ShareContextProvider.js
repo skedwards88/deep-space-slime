@@ -1,7 +1,7 @@
 import {createContext, useContext, useState, useEffect} from "react";
 import React from "react";
-import {getSeedFromDate} from "../logic/getSeedFromDate";
-import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
+import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
+import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 
 const ShareContext = createContext();
 

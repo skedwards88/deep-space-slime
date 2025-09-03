@@ -14,9 +14,9 @@ import {useBuilderContext} from "./BuilderContextProvider";
 import {useShareContext} from "./ShareContextProvider";
 import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
-import {arraysMatchQ} from "../common/arraysMatchQ";
+import {arraysMatchQ} from "@skedwards88/word_logic";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
-import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
+import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 
 function isAtEndOfCampaign(puzzleID) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
@@ -402,13 +402,7 @@ function CustomPuzzleSolvedButtons({
   );
 }
 
-function Game({
-  setDisplay,
-  setInstallPromptEvent,
-  showInstallButton,
-  installPromptEvent,
-  audioRef,
-}) {
+function Game({setDisplay, audioRef}) {
   const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
     useGameContext();
 
@@ -559,13 +553,7 @@ function Game({
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
-      <ControlBar
-        setDisplay={setDisplay}
-        setInstallPromptEvent={setInstallPromptEvent}
-        showInstallButton={showInstallButton}
-        installPromptEvent={installPromptEvent}
-        audioRef={audioRef}
-      ></ControlBar>
+      <ControlBar setDisplay={setDisplay} audioRef={audioRef}></ControlBar>
 
       <div id="location">{`${gameState.station}: ${gameState.roomName}`}</div>
 

@@ -3,13 +3,7 @@ import Share from "./Share";
 import ControlBar from "./ControlBar";
 import {useGameContext} from "./GameContextProvider";
 
-export default function CampaignOver({
-  setDisplay,
-  setInstallPromptEvent,
-  showInstallButton,
-  installPromptEvent,
-  audioRef,
-}) {
+export default function CampaignOver({setDisplay, audioRef}) {
   // There is a weird edge case where if the user taps (instead of drags on the)
   // exit AND the exit overlaps with a button on this component, then the app
   // registers a click event on this newly rendered button.
@@ -28,13 +22,7 @@ export default function CampaignOver({
       style={{pointerEvents: pointerIsActive ? "auto" : "none"}}
     >
       <div id="campaignOver">
-        <ControlBar
-          setDisplay={setDisplay}
-          setInstallPromptEvent={setInstallPromptEvent}
-          showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent}
-          audioRef={audioRef}
-        ></ControlBar>
+        <ControlBar setDisplay={setDisplay} audioRef={audioRef}></ControlBar>
 
         <div id="botFace" className={gameState.robotEndMood}></div>
 

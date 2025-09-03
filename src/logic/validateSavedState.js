@@ -5,7 +5,7 @@ import {
   numRows,
   civilianForbiddenFeatures,
 } from "./constants";
-import {arraysMatchQ} from "../common/arraysMatchQ";
+import {arraysMatchQ} from "@skedwards88/word_logic";
 import {
   convertPuzzleAndCiviliansToPuzzle,
   convertStringToPuzzle,

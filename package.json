@@ -27,6 +27,7 @@
   "homepage": "https://github.com/skedwards88/deep-space-slime#readme",
   "dependencies": {
     "@skedwards88/shared-components": "latest",
+    "@skedwards88/word_logic": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

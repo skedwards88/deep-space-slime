@@ -1,6 +1,6 @@
 import "jest-localstorage-mock";
 import {gameInit} from "./gameInit";
-import sendAnalytics from "@skedwards88/shared-components/src/logic/sendAnalytics";
+import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
