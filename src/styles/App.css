@@ -1,7 +1,7 @@
 /* General */
 html {
   --square-size: 6vmax;
-  --default-font-size: min(3.5vh, 0.7cm);
+  --default-font-size: clamp(20px, 3.5vh, 27px);
 
   background-color: black;
 }
@@ -170,7 +170,7 @@ button:disabled,
   min-height: calc(var(--square-size) * 2);
   width: 95%;
   text-align: left;
-  overflow: scroll;
+  overflow: auto;
   white-space: pre-wrap;
   background-color: black;
   padding-right: 2vmin;
@@ -837,6 +837,7 @@ Putting the svg and gradient animation on separate pseudo elements works.
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
   html {
     --square-size: min(6vmin, 1.5cm);
+    --default-font-size: clamp(20px, 3.5vh, 40px);
   }
 
   .App {
@@ -857,6 +858,10 @@ Putting the svg and gradient animation on separate pseudo elements works.
 
 /* Large screen, portrait */
 @media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+  html {
+    --default-font-size: clamp(20px, 3.5vh, 40px);
+  }
+
   .App {
     height: auto;
     overflow-x: hidden;
