@@ -94,7 +94,7 @@ export default function App() {
       );
       break;
     case "pwaInstall":
-      componentToRender = <PWAInstall setDisplay={setDisplay}></PWAInstall>;
+      componentToRender = <PWAInstall setDisplay={setDisplay} pwaLink={"https://deepspaceslime.com"}></PWAInstall>;
       break;
     case "blasterExplanation":
       componentToRender = (
