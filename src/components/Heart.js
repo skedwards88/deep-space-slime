@@ -32,7 +32,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         </p>
         <hr></hr>
         <p>Thanks to our playtesters!</p>
-        <small>Armand R, Brian J, Jenni C, Joe C, Molly K, Rudy Y</small>
+        <small>Armand R, Brian J, James E, Jenni C, Joe C, Molly K, Rudy Y</small>
         <hr></hr>
         <p>Music from #Uppbeat (free for Creators!):</p>
         <p>https://uppbeat.io/t/avbe/choose-your-player</p>
