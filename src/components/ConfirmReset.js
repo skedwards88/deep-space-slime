@@ -7,7 +7,7 @@ export default function ConfirmReset({setDisplay}) {
   return (
     <div className="App info">
       <div className="infoText">
-        <p>{`Are you sure you want to reset the puzzle?`}</p>
+        <p>{`Are you sure you want to reset the room?`}</p>
       </div>
       <div>
         <button
