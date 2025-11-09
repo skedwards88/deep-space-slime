@@ -16,7 +16,6 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
-import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 
 function isAtEndOfCampaign(puzzleID) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
@@ -57,10 +56,6 @@ function handleMovement({
       let newCompletedLevels = [...completedLevels];
       newCompletedLevels.push(gameState.puzzleID);
       setCompletedLevels(newCompletedLevels);
-      sendAnalytics("levelComplete", {
-        playerID: gameState.playerID,
-        level: gameState.puzzleID,
-      });
     }
 
     let newMessage;

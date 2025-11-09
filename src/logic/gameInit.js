@@ -1,4 +1,3 @@
-import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {puzzles} from "./puzzles";
 import {validateSavedState} from "./validateSavedState";
@@ -28,7 +27,6 @@ function customInit({useSaved, customSeed, customIndex}) {
     return {
       ...savedState,
       mouseIsActive: false,
-      playerID: savedState?.playerID || crypto.randomUUID(),
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
       station: customStationName,
@@ -92,7 +90,6 @@ function customInit({useSaved, customSeed, customIndex}) {
     robotEndMood: customRobotMood,
     puzzle,
     civilianHistory: [startingCivilians],
-    playerID: savedState?.playerID || crypto.randomUUID(),
   };
 }
 
@@ -112,7 +109,6 @@ function nonCustomInit({useSaved, puzzleID}) {
     return {
       ...savedState,
       mouseIsActive: false,
-      playerID: savedState?.playerID || crypto.randomUUID(),
       // Overwrite these properties in case we changed them mid-play.
       // They don't affect the puzzle, so we don't need to reset the player's progress.
       station: puzzles[savedState.puzzleID].station,
@@ -150,7 +146,6 @@ function nonCustomInit({useSaved, puzzleID}) {
     robotEndMood: puzzleData.robotEndMood,
     puzzle,
     civilianHistory: [startingCivilians],
-    playerID: savedState?.playerID || crypto.randomUUID(),
   };
 }
 
@@ -191,10 +186,6 @@ export function gameInit({
     maxNumber,
     currentCivilians: baseState.civilianHistory[0],
     powerCount: 0,
-  });
-
-  sendAnalytics("new_game", {
-    puzzleID: baseState.puzzleID,
   });
 
   return {

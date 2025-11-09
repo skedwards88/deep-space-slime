@@ -24,6 +24,7 @@ import {GameContextProvider} from "./GameContextProvider";
 import {BuilderContextProvider} from "./BuilderContextProvider";
 import {ShareContextProvider} from "./ShareContextProvider";
 import musicFile from "../music/compressed.mp3";
+import {MetadataContextProvider} from "./MetadataContextProvider";
 
 export default function App() {
   // *****
@@ -165,15 +166,17 @@ export default function App() {
   }
 
   return (
-    <GameContextProvider>
-      <BuilderContextProvider>
-        <ShareContextProvider>
-          <>
-            <audio ref={audioRef} src={musicFile} loop />
-            <div>{componentToRender}</div>
-          </>
-        </ShareContextProvider>
-      </BuilderContextProvider>
-    </GameContextProvider>
+    <MetadataContextProvider>
+      <GameContextProvider>
+        <BuilderContextProvider>
+          <ShareContextProvider>
+            <>
+              <audio ref={audioRef} src={musicFile} loop />
+              <div>{componentToRender}</div>
+            </>
+          </ShareContextProvider>
+        </BuilderContextProvider>
+      </GameContextProvider>
+    </MetadataContextProvider>
   );
 }

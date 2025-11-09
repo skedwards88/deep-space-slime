@@ -20,10 +20,6 @@ function BuilderEntry({
 }) {
   const {shareAndCapHints} = useShareContext();
 
-  const {
-    gameState: {playerID},
-  } = useGameContext();
-
   return (
     <div className="builderEntry">
       <div id="customName">{roomName}</div>
@@ -101,7 +97,6 @@ function BuilderEntry({
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
                 url: "https://deepspaceslime.com",
                 seed: generateSeed(roomName, encodedPuzzle),
-                playerID,
                 origin: "builder overview",
               });
             } else {

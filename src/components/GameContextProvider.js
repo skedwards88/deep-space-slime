@@ -11,10 +11,14 @@ import {gameReducer} from "../logic/gameReducer";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 import {numColumns, numRows} from "../logic/constants";
 import {puzzles} from "../logic/puzzles";
+import {useMetadataContext} from "./MetadataContextProvider";
+import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 
 const GameContext = createContext();
 
 export function GameContextProvider({children}) {
+  const {userId, sessionId} = useMetadataContext();
+
   const customSeed = parseUrlQuery();
 
   const [gameState, dispatchGameState] = useReducer(
@@ -76,7 +80,28 @@ export function GameContextProvider({children}) {
     savedCompletedLevels || [],
   );
 
+  // Store the previous state so that we can infer which analytics events to send
+  const previousCompletedLevelsRef = React.useRef(completedLevels);
+
   useEffect(() => {
+    // Send analytics about any newly completed levels
+    const previousCompletedLevels = previousCompletedLevelsRef.current;
+
+    const diffLevels = completedLevels.filter(
+      (level) => !previousCompletedLevels.includes(level),
+    );
+
+    if (diffLevels.length) {
+      const analyticsToLog = diffLevels.map((level) => ({
+        eventName: "level_complete",
+        eventInfo: {level},
+      }));
+      sendAnalyticsCF({userId, sessionId, analyticsToLog});
+    }
+
+    previousCompletedLevelsRef.current = completedLevels;
+
+    // Save the progress locally
     // Before saving, purge any obsolete levels
     let purgedCompletedLevels = [];
 
@@ -92,7 +117,24 @@ export function GameContextProvider({children}) {
       "deepSpaceSlimeSavedCompletedLevels",
       JSON.stringify(purgedCompletedLevels),
     );
+    // Intentionally excluding sessionId, userId
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completedLevels]);
+
+  useEffect(() => {
+    sendAnalyticsCF({
+      userId,
+      sessionId,
+      analyticsToLog: [
+        {
+          eventName: "level_started",
+          eventInfo: {level: gameState.puzzleID},
+        },
+      ],
+    });
+    // Intentionally excluding sessionId, userId
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState.puzzleID]);
 
   return (
     <GameContext.Provider

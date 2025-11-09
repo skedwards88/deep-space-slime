@@ -1,6 +1,5 @@
 import "jest-localstorage-mock";
 import {gameInit} from "./gameInit";
-import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
@@ -12,7 +11,6 @@ import {
 import {features, numColumns, numRows, firstPuzzleId} from "./constants";
 
 jest.spyOn(require("./validateSavedState"), "validateSavedState");
-jest.mock("@skedwards88/shared-components/src/logic/sendAnalytics");
 jest.mock("./getValidNextIndexes");
 jest.mock("./getAllValidPaths");
 
@@ -27,7 +25,6 @@ describe("gameInit saved state usage", () => {
       puzzleID: "campaign/quarantine/entry",
       isCustom: false,
       powerCount: 5,
-      playerID: "test",
     };
     localStorage.setItem(
       "deepSpaceSlimeSavedState",
@@ -51,7 +48,6 @@ describe("gameInit saved state usage", () => {
       robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
     });
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).not.toHaveBeenCalled();
   });
 
   test("ignores saved state if useSaved is true but saved state is invalid", () => {
@@ -69,9 +65,6 @@ describe("gameInit saved state usage", () => {
 
     expect(result).not.toEqual(savedState);
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: "campaign/quarantine/entry",
-    });
   });
 
   test("uses the saved ID if useSaved is true and the saved puzzle is not custom but the saved state is invalid", () => {
@@ -91,9 +84,6 @@ describe("gameInit saved state usage", () => {
     expect(result).not.toEqual(savedState);
     expect(result.puzzleID).toBe(savedID);
     expect(validateSavedState).toHaveBeenCalledWith(savedState);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: "campaign/quarantine/entry",
-    });
   });
 
   test("ignores saved state if useSaved is false", () => {
@@ -110,9 +100,6 @@ describe("gameInit saved state usage", () => {
 
     expect(validateSavedState).not.toHaveBeenCalled();
     expect(result).toHaveProperty("puzzleID", "campaign/quarantine/entry");
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: "campaign/quarantine/entry",
-    });
   });
 
   test("uses default values when no arguments are provided", () => {
@@ -120,9 +107,6 @@ describe("gameInit saved state usage", () => {
 
     expect(result).toHaveProperty("puzzleID", firstPuzzleId);
     expect(result).toHaveProperty("isCustom", false);
-    expect(sendAnalytics).toHaveBeenCalledWith("new_game", {
-      puzzleID: firstPuzzleId,
-    });
   });
 
   test("returns correct structure for new non-custom game", () => {
@@ -160,7 +144,6 @@ describe("gameInit saved state usage", () => {
       mouseIsActive: false,
       puzzleID,
       civilianHistory: [[]],
-      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       path,
@@ -217,7 +200,6 @@ describe("gameInit saved state usage", () => {
       mouseIsActive: false,
       puzzleID: "custom",
       civilianHistory: [[]],
-      playerID: expect.any(String),
     });
     expect(getValidNextIndexes).toHaveBeenCalledWith({
       path,

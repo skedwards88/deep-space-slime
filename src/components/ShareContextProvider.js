@@ -1,11 +1,14 @@
 import {createContext, useContext, useState, useEffect} from "react";
 import React from "react";
 import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
-import {sendAnalytics} from "@skedwards88/shared-components/src/logic/sendAnalytics";
+import {useMetadataContext} from "./MetadataContextProvider";
+import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 
 const ShareContext = createContext();
 
 export function ShareContextProvider({children}) {
+  const {userId, sessionId} = useMetadataContext();
+
   const maxHints = 5;
 
   const savedHintsLastReset = JSON.parse(
@@ -33,11 +36,28 @@ export function ShareContextProvider({children}) {
     savedHintsRemaining ?? maxHints,
   );
 
+  // Store the previous state so that we can infer which analytics events to send
+  const previousHintsRemainingRef = React.useRef(hintsRemaining);
+
   useEffect(() => {
+    const previousHintsRemaining = previousHintsRemainingRef.current;
+
+    if (hintsRemaining < previousHintsRemaining) {
+      sendAnalyticsCF({
+        userId,
+        sessionId,
+        analyticsToLog: [{eventName: "hint"}],
+      });
+    }
+
+    previousHintsRemainingRef.current = hintsRemaining;
+
     window.localStorage.setItem(
       "deepSpaceSlimeSavedHintsRemaining",
       JSON.stringify(hintsRemaining),
     );
+    // Intentionally excluding sessionId, userId
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hintsRemaining]);
 
   if (hintsLastReset !== today) {
@@ -45,7 +65,7 @@ export function ShareContextProvider({children}) {
     setHintsRemaining(maxHints);
   }
 
-  function shareAndCapHints({appName, text, url, seed, origin, playerID}) {
+  function shareAndCapHints({appName, text, url, seed, origin}) {
     const fullUrl = seed ? `${url}?id=${seed}` : url;
     console.log(fullUrl);
 
@@ -57,13 +77,16 @@ export function ShareContextProvider({children}) {
       })
       .then(() => {
         setHintsRemaining(maxHints);
+        sendAnalyticsCF({
+          userId,
+          sessionId,
+          analyticsToLog: [{eventName: "share", eventInfo: {origin}}],
+        });
         console.log("Successful share");
       })
       .catch((error) => {
         console.log("Error sharing or share was canceled", error);
       });
-
-    sendAnalytics("share", {origin, playerID});
   }
 
   return (
