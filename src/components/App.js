@@ -20,13 +20,12 @@ import InstallOverview from "@skedwards88/shared-components/src/components/Insta
 import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
 import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
-import {GameContextProvider} from "./GameContextProvider";
-import {BuilderContextProvider} from "./BuilderContextProvider";
-import {ShareContextProvider} from "./ShareContextProvider";
 import musicFile from "../music/compressed.mp3";
-import {MetadataContextProvider} from "./MetadataContextProvider";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 
 export default function App() {
+  const {userId, sessionId} = useMetadataContext();
+
   // *****
   // Install handling setup
   // *****
@@ -91,6 +90,8 @@ export default function App() {
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
+          userId={userId}
+          sessionId={sessionId}
         ></InstallOverview>
       );
       break;
@@ -166,17 +167,9 @@ export default function App() {
   }
 
   return (
-    <MetadataContextProvider>
-      <GameContextProvider>
-        <BuilderContextProvider>
-          <ShareContextProvider>
-            <>
-              <audio ref={audioRef} src={musicFile} loop />
-              <div>{componentToRender}</div>
-            </>
-          </ShareContextProvider>
-        </BuilderContextProvider>
-      </GameContextProvider>
-    </MetadataContextProvider>
+    <>
+      <audio ref={audioRef} src={musicFile} loop />
+      <div>{componentToRender}</div>
+    </>
   );
 }

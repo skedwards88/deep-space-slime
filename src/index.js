@@ -7,6 +7,10 @@ import "./styles/ControlBar.css";
 import "./styles/Builder.css";
 import "./styles/BuilderOverview.css";
 import "@skedwards88/shared-components/src/styles/Install.css";
+import {MetadataContextProvider} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import {GameContextProvider} from "./components/GameContextProvider";
+import {BuilderContextProvider} from "./components/BuilderContextProvider";
+import {ShareContextProvider} from "./components/ShareContextProvider";
 
 if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
   const path = "/service-worker.js";
@@ -25,4 +29,14 @@ if (process.env.NODE_ENV !== "development" && "serviceWorker" in navigator) {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <MetadataContextProvider>
+    <GameContextProvider>
+      <BuilderContextProvider>
+        <ShareContextProvider>
+          <App />
+        </ShareContextProvider>
+      </BuilderContextProvider>
+    </GameContextProvider>
+  </MetadataContextProvider>,
+);

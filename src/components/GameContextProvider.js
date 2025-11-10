@@ -11,7 +11,7 @@ import {gameReducer} from "../logic/gameReducer";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 import {numColumns, numRows} from "../logic/constants";
 import {puzzles} from "../logic/puzzles";
-import {useMetadataContext} from "./MetadataContextProvider";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 
 const GameContext = createContext();

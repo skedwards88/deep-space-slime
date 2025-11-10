@@ -1,7 +1,7 @@
 import {createContext, useContext, useState, useEffect} from "react";
 import React from "react";
 import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
-import {useMetadataContext} from "./MetadataContextProvider";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 
 const ShareContext = createContext();
