@@ -1,5 +1,6 @@
 {
-  "name": "Deep Space Slime",
+  "name": "deep-space-slime",
+  "displayName": "Deep Space Slime",
   "version": "3.0.24",
   "description": "",
   "main": "index.js",
