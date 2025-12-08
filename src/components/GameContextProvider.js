@@ -39,7 +39,8 @@ export function GameContextProvider({children}) {
 
   const maxPathsToFind = 100;
   const [allGamePaths, setAllGamePaths] = React.useState([]);
-  const [calculatingGamePaths, setCalculatingGamePaths] = React.useState(true);
+  const [calculatingGamePaths, setCalculatingGamePaths] = React.useState(false);
+
   React.useEffect(() => {
     console.log("CALCULATING game paths");
 
@@ -68,6 +69,7 @@ export function GameContextProvider({children}) {
 
     return () => {
       console.log("terminating game path calculation");
+      setCalculatingGamePaths(false);
       worker.terminate();
     };
   }, [gameState.puzzle]);

@@ -5,7 +5,6 @@ import Heart from "./Heart";
 import Builder from "./Builder";
 import BuilderOverview from "./BuilderOverview";
 import BuilderLocked from "./BuilderLocked";
-import InvalidShareMessage from "./InvalidShareMessage";
 import BlasterExplanation from "./BlasterExplanation";
 import ConfirmDelete from "./ConfirmDelete";
 import PowerExplanation from "./PowerExplanation";
@@ -136,11 +135,6 @@ export default function App() {
       break;
     case "customShare":
       componentToRender = <CustomShare setDisplay={setDisplay}></CustomShare>;
-      break;
-    case "invalidShareMessage":
-      componentToRender = (
-        <InvalidShareMessage setDisplay={setDisplay}></InvalidShareMessage>
-      );
       break;
     case "confirmReset":
       componentToRender = <ConfirmReset setDisplay={setDisplay}></ConfirmReset>;

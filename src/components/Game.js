@@ -428,6 +428,37 @@ function Game({setDisplay, audioRef}) {
       : gameState.startingText,
   );
 
+  React.useEffect(() => {
+    if (!gameState.isCustom) return;
+
+    if (calculatingGamePaths) {
+      setCurrentMessage(
+        `I'm calculating solutions... \n\n${gameState.startingText}`,
+      );
+      setCurrentBotMood("happy");
+      return;
+    }
+
+    if (!calculatingGamePaths && allGamePaths.length === 0) {
+      setCurrentMessage(
+        `WARNING: I don't think there is a solution to this custom puzzle. \n\n${gameState.startingText}`,
+      );
+      setCurrentBotMood("sinister");
+      return;
+    }
+
+    if (!calculatingGamePaths) {
+      setCurrentMessage(gameState.startingText);
+      setCurrentBotMood("happy");
+      return;
+    }
+  }, [
+    calculatingGamePaths,
+    gameState.isCustom,
+    allGamePaths.length,
+    gameState.startingText,
+  ]);
+
   const [currentBotMood, setCurrentBotMood] = React.useState(
     gameState.puzzle[lastIndexInPath] === features.exit ||
       gameState.puzzle[lastIndexInPath] === features.ship
@@ -503,6 +534,7 @@ function Game({setDisplay, audioRef}) {
     let timeout;
     if (
       !calculatingGamePaths &&
+      allGamePaths.length > 0 &&
       gameState.robotStartMood !== "gloating" &&
       !hintWaitIsOver &&
       !isAtExit &&
@@ -529,6 +561,7 @@ function Game({setDisplay, audioRef}) {
     return () => clearTimeout(timeout);
   }, [
     gameState.path,
+    allGamePaths,
     hintWaitIsOver,
     isAtExit,
     isAtStart,
@@ -540,6 +573,7 @@ function Game({setDisplay, audioRef}) {
 
   const isTimeToShowAHint =
     gameState.robotStartMood !== "gloating" &&
+    allGamePaths.length > 0 &&
     hintWaitIsOver &&
     !calculatingGamePaths &&
     !isAtExit &&

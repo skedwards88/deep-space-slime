@@ -1,12 +1,6 @@
 import {builderInit} from "./builderInit";
 import {validateCustomPuzzle} from "./validateCustomPuzzle";
-import {
-  limitedFeatures,
-  features,
-  numColumns,
-  numRows,
-  defaultBuilderMessage,
-} from "./constants";
+import {limitedFeatures, features, defaultBuilderMessage} from "./constants";
 
 export function builderReducer(currentBuilderState, payload) {
   if (payload.action === "selectFeature") {
@@ -60,11 +54,16 @@ export function builderReducer(currentBuilderState, payload) {
   } else if (payload.action === "validate") {
     const {isValid, message} = validateCustomPuzzle({
       puzzleWithCivilians: currentBuilderState.puzzleWithCivilians,
-      numColumns,
-      numRows,
     });
 
     return {...currentBuilderState, isValid, message};
+  } else if (payload.action === "cancelValidation") {
+    // Changing isValid will trigger the useEffect hook in the context provider that runs the validation worker
+    return {
+      ...currentBuilderState,
+      isValid: false,
+      message: defaultBuilderMessage,
+    };
   } else if (payload.action === "editName") {
     return {...currentBuilderState, roomName: payload.roomName};
   } else if (payload.action === "newCustom") {

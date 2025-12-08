@@ -1,18 +1,16 @@
 import React from "react";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
-import {validateCustomPuzzle} from "../logic/validateCustomPuzzle";
 import {generateSeed} from "../logic/generateSeed";
-import {numColumns, numRows} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
-import {useGameContext} from "./GameContextProvider";
 import {useShareContext} from "./ShareContextProvider";
 
 function BuilderEntry({
   encodedPuzzle,
   roomName,
+  isValid,
+  hasSolutions,
   index,
   dispatchBuilderState,
-  dispatchGameState,
   setDisplay,
   setSavedCustomBuilds,
   savedCustomBuilds,
@@ -48,49 +46,13 @@ function BuilderEntry({
           setDisplay("builder");
         }}
       ></button>
-
-      <button
-        id="playIcon"
-        className="controlButton"
-        onClick={() => {
-          // Check if valid
-          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
-          const {isValid} = validateCustomPuzzle({
-            puzzleWithCivilians,
-            numColumns,
-            numRows,
-          });
-
-          // If not valid, the player can't play
-          if (!isValid) {
-            setDisplay("invalidShareMessage");
-          } else {
-            dispatchGameState({
-              action: "playtestCustom",
-              customSeed: generateSeed(roomName, encodedPuzzle),
-              customIndex: index,
-            });
-            setDisplay("game");
-          }
-        }}
-      ></button>
-
-      <button
-        id="shareIcon"
-        className="controlButton"
-        onClick={() => {
-          // Check if valid
-          const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
-          const {isValid} = validateCustomPuzzle({
-            puzzleWithCivilians,
-            numColumns,
-            numRows,
-          });
-          // If not valid, the player can't share
-          if (!isValid) {
-            setDisplay("invalidShareMessage");
-          } else {
-            // If valid, allow share (or if can't share, show link to copy)
+      {isValid && hasSolutions ? (
+        <button
+          id="shareIcon"
+          className="controlButton"
+          onClick={() => {
+            const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
+            // Share (or if can't share, show link to copy)
             if (navigator.canShare) {
               shareAndCapHints({
                 appName: "Deep Space Slime",
@@ -108,9 +70,25 @@ function BuilderEntry({
               });
               setDisplay("customShare");
             }
-          }
-        }}
-      ></button>
+          }}
+        ></button>
+      ) : (
+        <button
+          id="validateIcon"
+          className="controlButton"
+          onClick={() => {
+            const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
+            dispatchBuilderState({
+              action: "editCustom",
+              puzzleWithCivilians,
+              roomName,
+              customIndex: index,
+            });
+            dispatchBuilderState({action: "validate"});
+            setDisplay("builder");
+          }}
+        ></button>
+      )}
 
       <button
         id="trashIcon"
@@ -132,17 +110,16 @@ export default function BuilderOverview({setDisplay}) {
     setCustomBuildIndexToDelete,
   } = useBuilderContext();
 
-  const {dispatchGameState} = useGameContext();
-
   const entryElements = savedCustomBuilds.map(
-    ([roomName, encodedPuzzle], index) => (
+    ([roomName, encodedPuzzle, isValid, hasSolutions], index) => (
       <BuilderEntry
         encodedPuzzle={encodedPuzzle}
         roomName={roomName}
+        isValid={isValid}
+        hasSolutions={hasSolutions}
         index={index}
         key={index}
         dispatchBuilderState={dispatchBuilderState}
-        dispatchGameState={dispatchGameState}
         setDisplay={setDisplay}
         setSavedCustomBuilds={setSavedCustomBuilds}
         savedCustomBuilds={savedCustomBuilds}
