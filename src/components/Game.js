@@ -45,8 +45,8 @@ function handleMovement({
   validNext,
   index,
   gameState,
-  setCurrentMessage,
-  setCurrentBotMood,
+  setMessageOverride,
+  setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
   completedLevels,
@@ -65,18 +65,16 @@ function handleMovement({
       setCompletedLevels(newCompletedLevels);
     }
 
-    let newMessage;
     if (isMovingToExit) {
-      newMessage = gameState.winText;
+      setMessageOverride(gameState.winText);
     } else {
-      newMessage = gameState.startingText;
+      setMessageOverride("");
     }
-    setCurrentMessage(newMessage);
 
     if (isMovingToExit) {
-      setCurrentBotMood(gameState.robotEndMood);
+      setRobotMoodOverride(gameState.robotEndMood);
     } else {
-      setCurrentBotMood(gameState.robotStartMood);
+      setRobotMoodOverride("");
     }
 
     dispatchGameState({
@@ -102,8 +100,8 @@ function handleMovement({
         index,
         currentGameState: gameState,
       });
-      setCurrentMessage(errorMessage);
-      setCurrentBotMood("sinister");
+      setMessageOverride(errorMessage);
+      setRobotMoodOverride("sinister");
     }
   }
 
@@ -119,8 +117,8 @@ function handlePointerDown({
   setDisplay,
   validNext,
   gameState,
-  setCurrentMessage,
-  setCurrentBotMood,
+  setMessageOverride,
+  setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
   completedLevels,
@@ -139,8 +137,8 @@ function handlePointerDown({
         validNext,
         index,
         gameState,
-        setCurrentMessage,
-        setCurrentBotMood,
+        setMessageOverride,
+        setRobotMoodOverride,
         setHintWaitIsOver,
         setHintIndex,
         completedLevels,
@@ -165,8 +163,8 @@ function handlePointerEnter({
   mouseIsActive,
   validNext,
   gameState,
-  setCurrentMessage,
-  setCurrentBotMood,
+  setMessageOverride,
+  setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
   completedLevels,
@@ -188,8 +186,8 @@ function handlePointerEnter({
       validNext,
       index,
       gameState,
-      setCurrentMessage,
-      setCurrentBotMood,
+      setMessageOverride,
+      setRobotMoodOverride,
       setHintWaitIsOver,
       setHintIndex,
       completedLevels,
@@ -209,8 +207,8 @@ function PuzzleSquare({
   direction,
   setDisplay,
   setHintWaitIsOver,
-  setCurrentMessage,
-  setCurrentBotMood,
+  setMessageOverride,
+  setRobotMoodOverride,
   setHintIndex,
   hintIndex,
   hasCivilian,
@@ -261,8 +259,8 @@ function PuzzleSquare({
             setDisplay,
             validNext,
             gameState,
-            setCurrentMessage,
-            setCurrentBotMood,
+            setMessageOverride,
+            setRobotMoodOverride,
             setHintWaitIsOver,
             setHintIndex,
             completedLevels,
@@ -283,8 +281,8 @@ function PuzzleSquare({
               mouseIsActive,
               validNext,
               gameState,
-              setCurrentMessage,
-              setCurrentBotMood,
+              setMessageOverride,
+              setRobotMoodOverride,
               setHintWaitIsOver,
               setHintIndex,
               completedLevels,
@@ -300,8 +298,8 @@ function PuzzleSolvedButtons({
   puzzleID,
   dispatchGameState,
   setHintWaitIsOver,
-  setCurrentMessage,
-  setCurrentBotMood,
+  setMessageOverride,
+  setRobotMoodOverride,
   setDisplay,
 }) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
@@ -337,8 +335,8 @@ function PuzzleSolvedButtons({
         className="textButton"
         onClick={() => {
           setHintWaitIsOver(false);
-          setCurrentMessage(puzzles[nextPuzzleID].startingText);
-          setCurrentBotMood(puzzles[nextPuzzleID].robotStartMood);
+          setMessageOverride("");
+          setRobotMoodOverride("");
           dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
         }}
       >
@@ -436,11 +434,11 @@ function Game({setDisplay, audioRef}) {
     powerCount: gameState.powerCount,
   });
 
-  const [currentMessage, setCurrentMessage] = React.useState(
+  const [messageOverride, setMessageOverride] = React.useState(
     gameState.puzzle[lastIndexInPath] === features.exit ||
       gameState.puzzle[lastIndexInPath] === features.ship
       ? gameState.winText
-      : gameState.startingText,
+      : "",
   );
 
   React.useEffect(() => {
@@ -477,9 +475,6 @@ function Game({setDisplay, audioRef}) {
         robotStartMood: customRobotMood,
       });
     }
-
-    setCurrentMessage(gameState.startingText);
-    setCurrentBotMood(gameState.robotStartMood);
   }, [
     allGamePaths.length,
     dispatchGameState,
@@ -489,11 +484,11 @@ function Game({setDisplay, audioRef}) {
     gameState.robotStartMood,
   ]);
 
-  const [currentBotMood, setCurrentBotMood] = React.useState(
+  const [robotMoodOverride, setRobotMoodOverride] = React.useState(
     gameState.puzzle[lastIndexInPath] === features.exit ||
       gameState.puzzle[lastIndexInPath] === features.ship
       ? gameState.robotEndMood
-      : gameState.robotStartMood,
+      : "",
   );
 
   const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
@@ -519,8 +514,8 @@ function Game({setDisplay, audioRef}) {
       direction={directions[index]}
       setDisplay={setDisplay}
       setHintWaitIsOver={setHintWaitIsOver}
-      setCurrentMessage={setCurrentMessage}
-      setCurrentBotMood={setCurrentBotMood}
+      setMessageOverride={setMessageOverride}
+      setRobotMoodOverride={setRobotMoodOverride}
       setHintIndex={setHintIndex}
       hintIndex={hintIndex}
       hasCivilian={currentCivilians.includes(index)}
@@ -578,7 +573,7 @@ function Game({setDisplay, audioRef}) {
             ? "Argh. My programming compels me to help you. Tap me to get a hint."
             : "Tap me to get a hint!";
         // <br> elements to get the spacing to work when starting text is <p>
-        setCurrentMessage(
+        setMessageOverride(
           <>
             {hintMessage}
             <br></br>
@@ -586,6 +581,7 @@ function Game({setDisplay, audioRef}) {
             {gameState.startingText}
           </>,
         );
+        setRobotMoodOverride("");
       }, hintWaitTime * 1000);
     }
     return () => clearTimeout(timeout);
@@ -618,7 +614,9 @@ function Game({setDisplay, audioRef}) {
 
       <div
         id="botFace"
-        className={`${currentBotMood}${isTimeToShowAHint ? " idea" : ""}`}
+        className={`${robotMoodOverride || gameState.robotStartMood}${
+          isTimeToShowAHint ? " idea" : ""
+        }`}
         onClick={
           isTimeToShowAHint && hintsRemaining
             ? () => {
@@ -627,8 +625,8 @@ function Game({setDisplay, audioRef}) {
                 if (!arraysMatchQ(newPath, path)) {
                   dispatchGameState({action: "overwritePath", newPath});
                 }
-                setCurrentMessage("I think you should go here.");
-                setCurrentBotMood("happy");
+                setMessageOverride("I think you should go here.");
+                setRobotMoodOverride("happy");
                 setHintsRemaining(hintsRemaining - 1);
               }
             : null
@@ -652,8 +650,8 @@ function Game({setDisplay, audioRef}) {
         </div>
       ) : (
         // Use the message as the key to force the text to scroll back to the top upon rerender
-        <div id="message" key={currentMessage}>
-          {currentMessage}
+        <div id="message" key={messageOverride || gameState.startingText}>
+          {messageOverride || gameState.startingText}
         </div>
       )}
 
@@ -672,8 +670,8 @@ function Game({setDisplay, audioRef}) {
             puzzleID={gameState.puzzleID}
             dispatchGameState={dispatchGameState}
             setHintWaitIsOver={setHintWaitIsOver}
-            setCurrentMessage={setCurrentMessage}
-            setCurrentBotMood={setCurrentBotMood}
+            setMessageOverride={setMessageOverride}
+            setRobotMoodOverride={setRobotMoodOverride}
             setDisplay={setDisplay}
           ></PuzzleSolvedButtons>
         )
