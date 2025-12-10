@@ -39,12 +39,13 @@ export function GameContextProvider({children}) {
 
   const maxPathsToFind = 100;
   const [allGamePaths, setAllGamePaths] = React.useState([]);
-  const [calculatingGamePaths, setCalculatingGamePaths] = React.useState(false);
+  const [gamePathCalculationStatus, setGamePathCalculationStatus] =
+    React.useState("idle"); // idle | calculating | done
 
   React.useEffect(() => {
     console.log("CALCULATING game paths");
 
-    setCalculatingGamePaths(true);
+    setGamePathCalculationStatus("calculating");
 
     // Use a worker instead of async to make sure that this isn't blocking
     const worker = new Worker(
@@ -61,7 +62,7 @@ export function GameContextProvider({children}) {
 
     worker.onmessage = (event) => {
       setAllGamePaths(event.data);
-      setCalculatingGamePaths(false);
+      setGamePathCalculationStatus("done");
       console.log(
         `DONE CALCULATING game paths. Found ${event.data.length} paths.`,
       );
@@ -69,7 +70,7 @@ export function GameContextProvider({children}) {
 
     return () => {
       console.log("terminating game path calculation");
-      setCalculatingGamePaths(false);
+      setGamePathCalculationStatus("done");
       worker.terminate();
     };
   }, [gameState.puzzle]);
@@ -146,7 +147,7 @@ export function GameContextProvider({children}) {
         completedLevels,
         setCompletedLevels,
         allGamePaths,
-        calculatingGamePaths,
+        gamePathCalculationStatus,
       }}
     >
       {children}
