@@ -2,7 +2,13 @@ import {gameInit} from "./gameInit";
 import {updateStateWithBacktrack} from "./updateStateWithBacktrack";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {getValidNextIndexes} from "./getValidNextIndexes";
-import {features, numColumns, numRows} from "./constants";
+import {
+  customRobotMood,
+  customStartingText,
+  features,
+  numColumns,
+  numRows,
+} from "./constants";
 
 export function gameReducer(currentGameState, payload) {
   if (payload.action === "modifyPath") {
@@ -187,6 +193,12 @@ export function gameReducer(currentGameState, payload) {
     } else {
       return {...currentGameState, mouseIsActive: payload.mouseIsActive};
     }
+  } else if (payload.action === "updateStartingTextAndMood") {
+    return {
+      ...currentGameState,
+      startingText: payload.startingText || customStartingText,
+      robotStartMood: payload.robotStartMood || customRobotMood,
+    };
   } else {
     console.log(`unknown action: ${payload.action}`);
     return currentGameState;

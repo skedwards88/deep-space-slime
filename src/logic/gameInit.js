@@ -59,8 +59,6 @@ function customInit({useSaved, customSeed, customIndex}) {
     // Make sure that the puzzle passes all of the validation (in case someone edits/mangles the query string)
     const {isValid} = validateCustomPuzzle({
       puzzleWithCivilians,
-      numColumns,
-      numRows,
     });
     if (!isValid) {
       throw new Error("Custom puzzle is not valid.");

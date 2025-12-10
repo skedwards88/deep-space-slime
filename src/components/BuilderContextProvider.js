@@ -34,14 +34,14 @@ export function BuilderContextProvider({children}) {
 
   const maxPathsToFind = 100;
   const [allBuilderPaths, setAllBuilderPaths] = useState([]);
-  const [calculatingBuilderPaths, setCalculatingBuilderPaths] = useState(true);
+  const [calculatingBuilderPaths, setCalculatingBuilderPaths] = useState(false);
   useEffect(() => {
-    console.log("CALCULATING builder paths");
-
     if (!builderState.isValid) {
-      console.log("Builder is invalid. Won't calculate.");
+      console.log("Builder is invalid. Won't calculate builder paths.");
       return;
     }
+
+    console.log("CALCULATING builder paths");
 
     setCalculatingBuilderPaths(true);
 
@@ -71,6 +71,7 @@ export function BuilderContextProvider({children}) {
 
     return () => {
       console.log("terminating builder path calculation");
+      setCalculatingBuilderPaths(false);
       worker.terminate();
     };
   }, [builderState.puzzleWithCivilians, builderState.isValid]);
@@ -97,9 +98,16 @@ export function BuilderContextProvider({children}) {
     newSavedBuilds.splice(indexToUpdate, 1, [
       builderState.roomName,
       encodedPuzzle,
+      builderState.isValid,
+      allBuilderPaths.length > 0,
     ]);
     setSavedCustomBuilds(newSavedBuilds);
-  }, [builderState.puzzleWithCivilians, builderState.roomName]);
+  }, [
+    builderState.puzzleWithCivilians,
+    builderState.roomName,
+    builderState.isValid,
+    allBuilderPaths,
+  ]);
 
   return (
     <BuilderContext.Provider

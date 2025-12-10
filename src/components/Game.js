@@ -7,7 +7,14 @@ import {
   convertPuzzleAndCiviliansToPuzzle,
   convertPuzzleAndCiviliansToString,
 } from "../logic/convertPuzzleString";
-import {features, numColumns, numRows, mapTypes} from "../logic/constants";
+import {
+  features,
+  numColumns,
+  numRows,
+  mapTypes,
+  customStartingText,
+  customRobotMood,
+} from "../logic/constants";
 import Share from "./Share";
 import {useGameContext} from "./GameContextProvider";
 import {useBuilderContext} from "./BuilderContextProvider";
@@ -22,7 +29,7 @@ function isAtEndOfCampaign(puzzleID) {
 
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
-  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+  const currentPuzzleIsCampaign = puzzles[puzzleID]?.type === mapTypes.campaign;
 
   const nextPuzzleIsCampaign =
     nextPuzzleExists &&
@@ -77,7 +84,11 @@ function handleMovement({
       index,
     });
 
-    if (isMovingToExit && isAtEndOfCampaign(gameState.puzzleID)) {
+    if (
+      isMovingToExit &&
+      !gameState.isCustom &&
+      isAtEndOfCampaign(gameState.puzzleID)
+    ) {
       setDisplay("campaignOver");
     }
   } else {
@@ -398,8 +409,12 @@ function CustomPuzzleSolvedButtons({
 }
 
 function Game({setDisplay, audioRef}) {
-  const {gameState, dispatchGameState, allGamePaths, calculatingGamePaths} =
-    useGameContext();
+  const {
+    gameState,
+    dispatchGameState,
+    allGamePaths,
+    gamePathCalculationStatus,
+  } = useGameContext();
 
   const {hintsRemaining, setHintsRemaining} = useShareContext();
 
@@ -427,6 +442,52 @@ function Game({setDisplay, audioRef}) {
       ? gameState.winText
       : gameState.startingText,
   );
+
+  React.useEffect(() => {
+    if (!gameState.isCustom) return;
+
+    if (gamePathCalculationStatus === "idle") {
+      dispatchGameState({
+        action: "updateStartingTextAndMood",
+        startingText: customStartingText,
+        robotStartMood: customRobotMood,
+      });
+    } else if (gamePathCalculationStatus === "calculating") {
+      dispatchGameState({
+        action: "updateStartingTextAndMood",
+        startingText: `I'm calculating solutions... \n\n${customStartingText}`,
+        robotStartMood: customRobotMood,
+      });
+    } else if (
+      gamePathCalculationStatus === "done" &&
+      allGamePaths.length === 0
+    ) {
+      dispatchGameState({
+        action: "updateStartingTextAndMood",
+        startingText: `WARNING: I don't think there is a solution to this custom puzzle. \n\n${customStartingText}`,
+        robotStartMood: "sinister",
+      });
+    } else if (
+      gamePathCalculationStatus === "done" &&
+      allGamePaths.length > 0
+    ) {
+      dispatchGameState({
+        action: "updateStartingTextAndMood",
+        startingText: customStartingText,
+        robotStartMood: customRobotMood,
+      });
+    }
+
+    setCurrentMessage(gameState.startingText);
+    setCurrentBotMood(gameState.robotStartMood);
+  }, [
+    allGamePaths.length,
+    dispatchGameState,
+    gamePathCalculationStatus,
+    gameState.isCustom,
+    gameState.startingText,
+    gameState.robotStartMood,
+  ]);
 
   const [currentBotMood, setCurrentBotMood] = React.useState(
     gameState.puzzle[lastIndexInPath] === features.exit ||
@@ -502,7 +563,8 @@ function Game({setDisplay, audioRef}) {
   React.useEffect(() => {
     let timeout;
     if (
-      !calculatingGamePaths &&
+      gamePathCalculationStatus === "done" &&
+      allGamePaths.length > 0 &&
       gameState.robotStartMood !== "gloating" &&
       !hintWaitIsOver &&
       !isAtExit &&
@@ -529,19 +591,21 @@ function Game({setDisplay, audioRef}) {
     return () => clearTimeout(timeout);
   }, [
     gameState.path,
+    allGamePaths,
     hintWaitIsOver,
     isAtExit,
     isAtStart,
     hintsRemaining,
     gameState.robotStartMood,
-    calculatingGamePaths,
+    gamePathCalculationStatus,
     gameState.startingText,
   ]);
 
   const isTimeToShowAHint =
     gameState.robotStartMood !== "gloating" &&
+    allGamePaths.length > 0 &&
     hintWaitIsOver &&
-    !calculatingGamePaths &&
+    gamePathCalculationStatus === "done" &&
     !isAtExit &&
     !isAtStart &&
     hintIndex === undefined;

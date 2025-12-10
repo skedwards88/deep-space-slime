@@ -70,3 +70,7 @@
 #unmuteIcon {
   background-image: url("@skedwards88/shared-components/src/images/icons/unmute.svg");
 }
+
+#cancelIcon {
+  background-image: url("@skedwards88/shared-components/src/images/icons/x_over_circle.svg");
+}

@@ -1,13 +1,7 @@
 import {features} from "./constants";
-import {getAllValidPaths} from "./getAllValidPaths";
 import React from "react";
-import {convertPuzzleToPuzzleAndCivilians} from "./convertPuzzleString";
 
-export function validateCustomPuzzle({
-  puzzleWithCivilians,
-  numColumns,
-  numRows,
-}) {
+export function validateCustomPuzzle({puzzleWithCivilians}) {
   // The puzzle must have exactly one start
   const numberStarts = puzzleWithCivilians.filter(
     (feature) => feature === features.start,
@@ -146,31 +140,11 @@ export function validateCustomPuzzle({
     return {isValid: false, message: "Terminals must be sequential"};
   }
 
-  // Need at least one solution
-  const maxPathsToFind = 1;
-  const [puzzle, civilianIndexes] =
-    convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
-  const solutions = getAllValidPaths({
-    puzzle,
-    startingCivilians: civilianIndexes,
-    numColumns,
-    numRows,
-    maxPathsToFind,
-  });
-  const numSolutions = solutions.length;
-
-  if (numSolutions === 0) {
-    return {
-      isValid: false,
-      message: "Your puzzle must have at least 1 solution.",
-    };
-  }
-
   return {
     isValid: true,
     message: (
       <p>
-        {`There is at least 1 solution.`} Click the{" "}
+        {`Your puzzle is valid.`} Click the{" "}
         <span id="eyeIcon" className="smallInfoIcon"></span> to see all
         solutions.
       </p>

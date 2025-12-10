@@ -59,7 +59,12 @@ function BuilderSquare({feature, index, dispatchBuilderState}) {
 }
 
 export default function Builder({setDisplay}) {
-  const {builderState, dispatchBuilderState} = useBuilderContext();
+  const {
+    builderState,
+    dispatchBuilderState,
+    calculatingBuilderPaths,
+    allBuilderPaths,
+  } = useBuilderContext();
 
   const {dispatchGameState} = useGameContext();
 
@@ -126,36 +131,50 @@ export default function Builder({setDisplay}) {
       <small id="locationError">{nameError}</small>
       <div id="botFace" className="happy"></div>
 
-      <div id="message">{builderState.message}</div>
-
+      <div id="message">
+        {calculatingBuilderPaths ? (
+          <p>
+            {`I'm calculating the solutions...`} Click the{" "}
+            <span id="cancelIcon" className="smallInfoIcon"></span> to cancel.
+          </p>
+        ) : builderState.isValid && allBuilderPaths.length === 0 ? (
+          "I don't think your puzzle has a solution!"
+        ) : (
+          builderState.message
+        )}
+      </div>
       <div id="builderButtons">
-        <button
-          id="validateIcon"
-          className="controlButton"
-          onClick={() => dispatchBuilderState({action: "validate"})}
-        ></button>
-
-        {builderState.isValid ? (
+        {calculatingBuilderPaths ? (
           <button
-            id="playIcon"
+            id="cancelIcon"
             className="controlButton"
-            onClick={() => {
-              const encodedPuzzle = convertPuzzleToString(
-                builderState.puzzleWithCivilians,
-              );
-              dispatchGameState({
-                action: "playtestCustom",
-                customSeed: generateSeed(builderState.roomName, encodedPuzzle),
-                customIndex: builderState.customIndex,
-              });
-              setDisplay("game");
-            }}
+            onClick={() => dispatchBuilderState({action: "cancelValidation"})}
           ></button>
         ) : (
-          <></>
+          <button
+            id="validateIcon"
+            className="controlButton"
+            onClick={() => dispatchBuilderState({action: "validate"})}
+          ></button>
         )}
+        <button
+          id="playIcon"
+          className="controlButton"
+          disabled={!builderState.isValid || allBuilderPaths.length === 0}
+          onClick={() => {
+            const encodedPuzzle = convertPuzzleToString(
+              builderState.puzzleWithCivilians,
+            );
+            dispatchGameState({
+              action: "playtestCustom",
+              customSeed: generateSeed(builderState.roomName, encodedPuzzle),
+              customIndex: builderState.customIndex,
+            });
+            setDisplay("game");
+          }}
+        ></button>
 
-        {builderState.isValid ? (
+        {builderState.isValid && allBuilderPaths.length > 0 ? (
           navigator.canShare ? (
             <Share
               appName="Deep Space Slime"
@@ -180,18 +199,19 @@ export default function Builder({setDisplay}) {
             ></button>
           )
         ) : (
-          <></>
+          <button
+            id="shareIcon"
+            className="controlButton"
+            disabled={true}
+          ></button>
         )}
 
-        {builderState.isValid ? (
-          <button
-            id="eyeIcon"
-            className="controlButton"
-            onClick={() => setDisplay("builderPathfinder")}
-          ></button>
-        ) : (
-          <></>
-        )}
+        <button
+          id="eyeIcon"
+          disabled={!builderState.isValid}
+          className="controlButton"
+          onClick={() => setDisplay("builderPathfinder")}
+        ></button>
 
         <button
           id="returnIcon"
