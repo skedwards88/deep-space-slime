@@ -29,7 +29,7 @@ function isAtEndOfCampaign(puzzleID) {
 
   const nextPuzzleExists = nextPuzzleID in puzzles;
 
-  const currentPuzzleIsCampaign = puzzles[puzzleID].type === mapTypes.campaign;
+  const currentPuzzleIsCampaign = puzzles[puzzleID]?.type === mapTypes.campaign;
 
   const nextPuzzleIsCampaign =
     nextPuzzleExists &&
@@ -84,7 +84,11 @@ function handleMovement({
       index,
     });
 
-    if (isMovingToExit && isAtEndOfCampaign(gameState.puzzleID)) {
+    if (
+      isMovingToExit &&
+      !gameState.isCustom &&
+      isAtEndOfCampaign(gameState.puzzleID)
+    ) {
       setDisplay("campaignOver");
     }
   } else {
