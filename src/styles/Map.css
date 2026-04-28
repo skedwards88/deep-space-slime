@@ -1,3 +1,14 @@
+.sticky {
+  position: sticky;
+  top: 10px;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.sticky > button {
+  background-color: #6f6f6f;
+}
+
 #map {
   display: flex;
   flex-direction: column;
@@ -18,14 +29,6 @@
   display: flex;
   grid-template-columns: 1fr auto;
   align-items: center;
-}
-
-.sticky {
-  position: sticky;
-  top: 10px;
-  background-color: #6f6f6f;
-  opacity: 0.9;
-  z-index: 1;
 }
 
 .mapTypeButton {

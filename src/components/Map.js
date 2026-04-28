@@ -44,13 +44,9 @@ function TopLevelMapEntry({
   dispatchGameState,
   completedLevels,
   campaignIsComplete,
+  lowestUnsolvedCampaignRoom,
 }) {
   let stationElements = [];
-
-  let lowestUnsolvedCampaignRoom;
-  if (!campaignIsComplete && topLevelKey === mapTypes.campaign) {
-    lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(completedLevels);
-  }
 
   if (typeOnDisplay === topLevelKey) {
     for (const [stationLevelKey, stationLevelEntry] of topLevelEntry) {
@@ -241,6 +237,11 @@ export default function GameMap({setDisplay}) {
   // mapData is a map (keys = type names) of maps (keys = station names) of arrays of objects (containing room data)
   const mapData = assembleMap(firstPuzzleId);
 
+  let lowestUnsolvedCampaignRoom;
+  if (!campaignIsComplete) {
+    lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(completedLevels);
+  }
+
   let mapElements = [];
   for (const [topLevelKey, topLevelEntry] of mapData) {
     mapElements.push(
@@ -256,18 +257,37 @@ export default function GameMap({setDisplay}) {
         dispatchGameState={dispatchGameState}
         completedLevels={completedLevels}
         campaignIsComplete={campaignIsComplete}
+        lowestUnsolvedCampaignRoom={lowestUnsolvedCampaignRoom}
       ></TopLevelMapEntry>,
     );
   }
 
   return (
     <div id="map">
-      <button
-        onClick={() => setDisplay("game")}
-        className="mapTypeButton textButton sticky"
-      >
-        Return to current room
-      </button>
+      <div className="sticky">
+        <button
+          onClick={() => setDisplay("game")}
+          className="mapTypeButton textButton"
+        >
+          Return to current room
+        </button>
+        {!campaignIsComplete ? (
+          <button
+            onClick={() => {
+              dispatchGameState({
+                action: "newGame",
+                puzzleID: lowestUnsolvedCampaignRoom,
+              });
+              setDisplay("game");
+            }}
+            className="mapTypeButton textButton"
+          >
+            Go to furthest unlocked room
+          </button>
+        ) : (
+          <></>
+        )}
+      </div>
       {mapElements}
     </div>
   );
