@@ -563,26 +563,28 @@ function Game({setDisplay, audioRef}) {
       gameState.robotStartMood !== "gloating" &&
       !hintWaitIsOver &&
       !isAtExit &&
-      !isAtStart &&
       (navigator.canShare || hintsRemaining)
     ) {
-      timeout = setTimeout(() => {
-        setHintWaitIsOver(true);
-        const hintMessage =
-          gameState.robotStartMood === "sinister"
-            ? "Argh. My programming compels me to help you. Tap me to get a hint."
-            : "Tap me to get a hint!";
-        // <br> elements to get the spacing to work when starting text is <p>
-        setMessageOverride(
-          <>
-            {hintMessage}
-            <br></br>
-            <br></br>
-            {gameState.startingText}
-          </>,
-        );
-        setRobotMoodOverride("");
-      }, hintWaitTime * 1000);
+      timeout = setTimeout(
+        () => {
+          setHintWaitIsOver(true);
+          const hintMessage =
+            gameState.robotStartMood === "sinister"
+              ? "Argh. My programming compels me to help you. Tap me to get a hint."
+              : "Tap me to get a hint!";
+          // <br> elements to get the spacing to work when starting text is <p>
+          setMessageOverride(
+            <>
+              {hintMessage}
+              <br></br>
+              <br></br>
+              {gameState.startingText}
+            </>,
+          );
+          setRobotMoodOverride("");
+        },
+        isAtStart ? hintWaitTime * 1000 * 2 : hintWaitTime * 1000,
+      );
     }
     return () => clearTimeout(timeout);
   }, [
@@ -603,7 +605,6 @@ function Game({setDisplay, audioRef}) {
     hintWaitIsOver &&
     gamePathCalculationStatus === "done" &&
     !isAtExit &&
-    !isAtStart &&
     hintIndex === undefined;
 
   return (
