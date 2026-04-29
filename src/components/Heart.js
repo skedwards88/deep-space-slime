@@ -33,7 +33,8 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
         <hr></hr>
         <p>Thanks to our playtesters!</p>
         <small>
-          Armand R, Brian J, Clayton E, Eloise C, James E, Jenni C, Joe C, Molly K, Olivia C, Rudy Y
+          Armand R, Brian J, Clayton E, Eloise C, James E, Jenni C, Joe C, Molly
+          K, Olivia C, Rudy Y
         </small>
         <hr></hr>
         <p>Music from #Uppbeat (free for Creators!):</p>
