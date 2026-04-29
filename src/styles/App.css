@@ -247,7 +247,7 @@ Using a pseudo element and changing the opacity works instead.
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 80%;
-  animation: blink 1s step-start 3;
+  animation: blink 1s step-start 6;
 }
 
 #botFace.glitchy-sinister,
