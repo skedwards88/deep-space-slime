@@ -130,16 +130,32 @@ export const puzzles = {
       <p>
         The humans developed{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span> to kill the
-        slime, but it has a limited range. If you&apos;ve collected a{" "}
+        slime. If you&apos;ve collected a{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span>, you can blast
-        straight through a slime trail and jump to a slime-free space on the
-        other side.
+        straight across a slime trail to a slime-free space on the other side!
       </p>
     ),
     winText: "Take that, slime!",
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17JBF4B1B2EBBBB4B6S17",
+    type: "Campaign",
+    nextPuzzle: "campaign/bio_lab/training",
+  },
+  "campaign/bio_lab/training": {
+    station: "Bio Lab",
+    roomName: "Training",
+    startingText: (
+      <p>
+        Don&apos;t forget that collecting a{" "}
+        <span id="blasterIcon" className="smallInfoIcon"></span> lets you pass
+        through a slime trail to a clear space on the opposite side.
+      </p>
+    ),
+    winText: "Pew pew! You blasted through that slime!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzleStringWithCivilians: "10BF4SBJ5B6E31",
     type: "Campaign",
     nextPuzzle: "campaign/bio_lab/weapons_testing",
   },
