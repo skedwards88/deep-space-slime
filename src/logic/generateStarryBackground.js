@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const NUM_STARS = 200;
-const DURATION_RANGE = [3, 8];
+const DURATION_RANGE = [3, 5];
 const DELAY_RANGE = [0, 8];
 const POSITION_RANGE = [1, 99];
 
@@ -38,7 +38,7 @@ function generateStarryBackground() {
 >
 
 <defs>
-  <circle id ="star" cx="1" cy="1" r="1.5" fill="white" />
+  <circle id ="star" cx="1" cy="1" r="2.0" fill="white" />
   <style>
     @keyframes twinkle {
       0%,
