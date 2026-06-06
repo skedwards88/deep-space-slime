@@ -636,18 +636,19 @@ function Game({setDisplay, audioRef}) {
 
       {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
         <div id="message">
-          {
-            "Share with a new person to get 5 more hints!\n\n(We don't track who you share with, but we hope you help us spread the game like slime across the galaxy.)\n\n"
-          }
+          {"Share with a new person to get 5 more hints!\n"}
           <Share
             appName="Deep Space Slime"
-            text="Check out this maze puzzle!"
+            text={`Check out this maze puzzle game! I made it to the ${gameState.roomName} room in the ${gameState.station} station.`}
             url="https://deepspaceslime.com"
             buttonText="Share"
             id="sharePrompt"
             className="textButton"
             origin="hints"
           ></Share>
+          {
+            "\n(We don't track who you share with, but we hope you help us spread the game like slime across the galaxy.)"
+          }
         </div>
       ) : (
         // Use the message as the key to force the text to scroll back to the top upon rerender
