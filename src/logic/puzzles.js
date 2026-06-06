@@ -19,16 +19,18 @@ export const puzzles = {
     startingText: (
       <p>
         Collect the <span id="powerIcon" className="smallInfoIcon"></span> to
-        power the exit hatch. Here&apos;s some movement tips for your new&mdash;I
-        mean, newly awakened&mdash;body: Tap to move to any square that glows
-        green, or drag to move faster.
+        power the exit hatch. Here&apos;s some movement tips for your
+        new&mdash;I mean, newly awakened&mdash;body: Tap to move to any square
+        that glows green, or drag to move faster.
       </p>
     ),
-    winText:(
+    winText: (
       <p>
-      Good job grabbing that <span id="powerIcon" className="smallInfoIcon"></span>! It would be a shame if you were stuck in this room forever.
+        Good job grabbing that{" "}
+        <span id="powerIcon" className="smallInfoIcon"></span>! It would be a
+        shame if you were stuck in this room forever.
       </p>
-      ),
+    ),
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -52,9 +54,9 @@ export const puzzles = {
     roomName: "Entry",
     startingText: (
       <p>
-        Drat. The humans implemented security doors to contain the slime.
-        You need a <span id="keyIcon" className="smallInfoIcon"></span> to open
-        the <span id="doorIcon" className="smallInfoIcon"></span>. It&apos;s
+        Drat. The humans implemented security doors to contain the slime. You
+        need a <span id="keyIcon" className="smallInfoIcon"></span> to open the{" "}
+        <span id="doorIcon" className="smallInfoIcon"></span>. It&apos;s
         definitely not suspicious that I can&apos;t override the lock...
       </p>
     ),
@@ -175,7 +177,7 @@ export const puzzles = {
     type: "Campaign",
     nextPuzzle: "campaign/bio_lab/radiation_chamber",
   },
-    "campaign/bio_lab/radiation_chamber": {
+  "campaign/bio_lab/radiation_chamber": {
     station: "Bio Lab",
     roomName: "Radiation Chamber",
     startingText:
@@ -293,7 +295,7 @@ export const puzzles = {
     type: "Campaign",
     nextPuzzle: "campaign/physics_lab/entangler",
   },
-    "campaign/physics_lab/entangler": {
+  "campaign/physics_lab/entangler": {
     station: "Physics Lab",
     roomName: "Entangler",
     startingText: (
@@ -658,7 +660,9 @@ export const puzzles = {
     roomName: "Mess Hall",
     startingText: (
       <p>
-        If you line the <span id="civilianIcon" className="smallInfoIcon"></span> up, you can push one of them through a {" "}
+        If you line the{" "}
+        <span id="civilianIcon" className="smallInfoIcon"></span> up, you can
+        push one of them through a{" "}
         <span id="podIcon" className="smallInfoIcon"></span>!
       </p>
     ),
