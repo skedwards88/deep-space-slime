@@ -101,7 +101,7 @@ function handleMovement({
         currentGameState: gameState,
       });
       setMessageOverride(errorMessage);
-      setRobotMoodOverride("sinister");
+      setRobotMoodOverride("error-sinister");
     }
   }
 

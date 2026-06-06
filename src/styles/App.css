@@ -216,18 +216,15 @@ button:disabled,
   background-color: black;
 }
 
-#botFace.happy,
-#botFace.glitchy-happy {
+#botFace.happy {
   background-image: url("../images/icons/bot-smile.svg");
 }
 
-#botFace.gloating,
-#botFace.glitchy-gloating {
+#botFace.gloating {
   background-image: url("../images/icons/bot-gloating.svg");
 }
 
-#botFace.sinister,
-#botFace.glitchy-sinister {
+#botFace.sinister {
   background-image: url("../images/icons/bot-sinister.svg");
 }
 
@@ -235,23 +232,42 @@ button:disabled,
 if you change the background-image during animation.
 Using a pseudo element and changing the opacity works instead.
 */
-#botFace.idea {
+#botFace.idea,
+#botFace.error-sinister,
+#botFace.glitchy-sinister,
+#botFace.glitchy-happy {
   position: relative;
 }
 
-#botFace.idea::after {
+#botFace.idea::after,
+#botFace.error-sinister::after,
+#botFace.glitchy-sinister::after,
+#botFace.glitchy-happy::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/icons/idea.svg");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 80%;
+}
+
+#botFace.idea::after {
+  background-image: url("../images/icons/idea.svg");
   animation: blink 1s step-start 6;
 }
 
-#botFace.glitchy-sinister,
-#botFace.glitchy-happy {
+#botFace.error-sinister::after {
+  background-image: url("../images/icons/bot-sinister.svg");
+  animation: blink 1s step-start 3;
+}
+
+#botFace.glitchy-sinister::after {
+  background-image: url("../images/icons/bot-sinister.svg");
+  animation: flicker 0.3s infinite;
+}
+
+#botFace.glitchy-happy::after {
+  background-image: url("../images/icons/bot-smile.svg");
   animation: flicker 0.3s infinite;
 }
 
