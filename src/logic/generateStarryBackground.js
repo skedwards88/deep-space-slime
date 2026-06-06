@@ -1,4 +1,7 @@
-const {pickRandomItemFromArray} = require("@skedwards88/word_logic");
+const {
+  pickRandomItemFromArray,
+  pickRandomIntBetween,
+} = require("@skedwards88/word_logic");
 const fs = require("fs");
 const path = require("path");
 
@@ -9,28 +12,21 @@ const DELAY_RANGE = [0, 8];
 const POSITION_RANGE = [1, 99];
 const ANGLE_RANGE = [-360, 360];
 
-function pickRandomBetween(number1, number2) {
-  const min = Math.min(number1, number2);
-  const max = Math.max(number1, number2);
-
-  return (min + Math.random() * (max - min)).toFixed(2);
-}
-
 function makeStar() {
-  const startingX = pickRandomBetween(...POSITION_RANGE);
-  const startingY = pickRandomBetween(...POSITION_RANGE);
-  const duration = pickRandomBetween(...TWINKLE_DURATION_RANGE);
-  const delay = pickRandomBetween(...DELAY_RANGE);
+  const startingX = pickRandomIntBetween(...POSITION_RANGE);
+  const startingY = pickRandomIntBetween(...POSITION_RANGE);
+  const duration = pickRandomIntBetween(...TWINKLE_DURATION_RANGE);
+  const delay = pickRandomIntBetween(...DELAY_RANGE);
 
   return `<use href="#star" x="${startingX}%" y="${startingY}%" fill="white" style="animation-duration:${duration}s; animation-delay:-${delay}s;" class="twinkle"/>`;
 }
 
 function makeShootingStar() {
-  const startingX = pickRandomBetween(...POSITION_RANGE);
-  const startingY = pickRandomBetween(...POSITION_RANGE);
-  const duration = pickRandomBetween(...SHOOT_DURATION_RANGE);
-  const delay = pickRandomBetween(...DELAY_RANGE);
-  const angle = pickRandomBetween(...ANGLE_RANGE);
+  const startingX = pickRandomIntBetween(...POSITION_RANGE);
+  const startingY = pickRandomIntBetween(...POSITION_RANGE);
+  const duration = pickRandomIntBetween(...SHOOT_DURATION_RANGE);
+  const delay = pickRandomIntBetween(...DELAY_RANGE);
+  const angle = pickRandomIntBetween(...ANGLE_RANGE);
   const transformX = pickRandomItemFromArray([100, -100]);
 
   return `<use href="#shootingStar" x="${startingX}%" y="${startingY}%" fill="white" style="animation-duration:${duration}s; animation-delay:-${
