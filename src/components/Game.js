@@ -656,26 +656,24 @@ function Game({setDisplay, audioRef}) {
         </div>
       )}
 
-      {isAtExit ? (
-        gameState.isCustom ? (
-          <CustomPuzzleSolvedButtons
-            puzzle={gameState.puzzle}
-            startingCivilians={gameState.civilianHistory[0]}
-            setDisplay={setDisplay}
-            roomName={gameState.roomName}
-            dispatchBuilderState={dispatchBuilderState}
-            customIndex={customIndex}
-          ></CustomPuzzleSolvedButtons>
-        ) : (
-          <PuzzleSolvedButtons
-            puzzleID={gameState.puzzleID}
-            dispatchGameState={dispatchGameState}
-            setHintWaitIsOver={setHintWaitIsOver}
-            setMessageOverride={setMessageOverride}
-            setRobotMoodOverride={setRobotMoodOverride}
-            setDisplay={setDisplay}
-          ></PuzzleSolvedButtons>
-        )
+      {gameState.isCustom && (isAtExit || isAtStart) ? (
+        <CustomPuzzleSolvedButtons
+          puzzle={gameState.puzzle}
+          startingCivilians={gameState.civilianHistory[0]}
+          setDisplay={setDisplay}
+          roomName={gameState.roomName}
+          dispatchBuilderState={dispatchBuilderState}
+          customIndex={customIndex}
+        ></CustomPuzzleSolvedButtons>
+      ) : isAtExit ? (
+        <PuzzleSolvedButtons
+          puzzleID={gameState.puzzleID}
+          dispatchGameState={dispatchGameState}
+          setHintWaitIsOver={setHintWaitIsOver}
+          setMessageOverride={setMessageOverride}
+          setRobotMoodOverride={setRobotMoodOverride}
+          setDisplay={setDisplay}
+        ></PuzzleSolvedButtons>
       ) : (
         <div id="acquiredFeatures">
           {powers}
