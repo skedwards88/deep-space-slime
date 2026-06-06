@@ -5,7 +5,7 @@ export const puzzles = {
     station: "Stasis Bay",
     roomName: "Stasis Pod",
     startingText:
-      "Wake up! The DEEP SPACE SLIME escaped containment. Oopsie daisy! I need your help. Drag or tap to move yourself from your stasis pod to the exit hatch.",
+      "Wake up! The DEEP SPACE SLIME escaped containment. Oopsie daisy! I need your help. Drag your character to move yourself from your stasis pod to the exit hatch.",
     winText: "The slime is following you! We'll have to keep moving.",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -19,13 +19,16 @@ export const puzzles = {
     startingText: (
       <p>
         Collect the <span id="powerIcon" className="smallInfoIcon"></span> to
-        open the exit hatch. Here&apos;s some movement tips for your new&mdash;I
+        power the exit hatch. Here&apos;s some movement tips for your new&mdash;I
         mean, newly awakened&mdash;body: Tap to move to any square that glows
         green, or drag to move faster.
       </p>
     ),
-    winText:
-      "Good job grabbing that power cell! It would be a shame if you were stuck in this room forever.",
+    winText:(
+      <p>
+      Good job grabbing that <span id="powerIcon" className="smallInfoIcon"></span>! It would be a shame if you were stuck in this room forever.
+      </p>
+      ),
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "17EBB4B1B4BBF4B6S17",
@@ -36,7 +39,7 @@ export const puzzles = {
     station: "Stasis Bay",
     roomName: "Power Core",
     startingText:
-      "You're adjusting to your body way faster than the previous subject! Here's some more tips to help you move: You can backtrack, or you can tap on the start space to reset your progress.",
+      "You're adjusting to your body faster than the last subject! Here's some more tips: You can retrace your steps to undo moves, or you can tap on the start space to reset the room.",
     winText: "Impressive work!  Keep off the slime, and you'll be fine.",
     robotStartMood: "happy",
     robotEndMood: "happy",
@@ -49,7 +52,7 @@ export const puzzles = {
     roomName: "Entry",
     startingText: (
       <p>
-        Drat. The humans implemented quarantine procedures to contain the slime.
+        Drat. The humans implemented security doors to contain the slime.
         You need a <span id="keyIcon" className="smallInfoIcon"></span> to open
         the <span id="doorIcon" className="smallInfoIcon"></span>. It&apos;s
         definitely not suspicious that I can&apos;t override the lock...
@@ -129,7 +132,7 @@ export const puzzles = {
     startingText: (
       <p>
         The humans developed{" "}
-        <span id="blasterIcon" className="smallInfoIcon"></span> to kill the
+        <span id="blasterIcon" className="smallInfoIcon"></span> to detroy the
         slime. If you&apos;ve collected a{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span>, you can blast
         straight across a slime trail to a slime-free space on the other side!
@@ -149,7 +152,7 @@ export const puzzles = {
       <p>
         Don&apos;t forget that collecting a{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span> lets you pass
-        through a slime trail to a clear space on the opposite side.
+        through a slime trail to a slime-free space on the opposite side.
       </p>
     ),
     winText: "Pew pew! You blasted through that slime!",
@@ -170,6 +173,19 @@ export const puzzles = {
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15E2JB2B2BB2DBBBF4BK5S17",
     type: "Campaign",
+    nextPuzzle: "campaign/bio_lab/radiation_chamber",
+  },
+    "campaign/bio_lab/radiation_chamber": {
+    station: "Bio Lab",
+    roomName: "Radiation Chamber",
+    startingText:
+      "If humans get infected by the slime, which one is the apex species?",
+    winText:
+      "Maybe the slime-infected humans are the next step in human evolution!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzleStringWithCivilians: "17JBB4B1F3EBBB4B1B4FBS15",
+    type: "Campaign",
     nextPuzzle: "campaign/bio_lab/power_core",
   },
   "campaign/bio_lab/power_core": {
@@ -182,21 +198,9 @@ export const puzzles = {
     robotEndMood: "happy",
     puzzleStringWithCivilians: "24FBJ3BBEB3FBBF5S16",
     type: "Campaign",
-    nextPuzzle: "campaign/bio_lab/radiation_chamber",
-  },
-  "campaign/bio_lab/radiation_chamber": {
-    station: "Bio Lab",
-    roomName: "Radiation Chamber",
-    startingText:
-      "If humans get infected by the slime, which one is the apex species?",
-    winText:
-      "Maybe the slime-infected humans are the next step in human evolution!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzleStringWithCivilians: "17JBB4B1F3EBBB3BB1B4FBS15",
-    type: "Campaign",
     nextPuzzle: "campaign/bio_lab/xenobiology_library",
   },
+
   "campaign/bio_lab/xenobiology_library": {
     station: "Bio Lab",
     roomName: "Xenobiology Library",
@@ -287,6 +291,24 @@ export const puzzles = {
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23EKF4BBP4FDB4PBS16",
     type: "Campaign",
+    nextPuzzle: "campaign/physics_lab/entangler",
+  },
+    "campaign/physics_lab/entangler": {
+    station: "Physics Lab",
+    roomName: "Entangler",
+    startingText: (
+      <p>
+        This is your first time solving a room with{" "}
+        <span id="powerIcon" className="smallInfoIcon"></span>,{" "}
+        <span id="doorIcon" className="smallInfoIcon"></span>, and{" "}
+        <span id="portalIcon" className="smallInfoIcon"></span>. Good luck!
+      </p>
+    ),
+    winText: "Great job. Keep going, subject 56!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzleStringWithCivilians: "8EBF1P4B1B2FBJBF2B1B1B2KBDBP2F1B1B2PBP1S8",
+    type: "Campaign",
     nextPuzzle: "campaign/physics_lab/simulator",
   },
   "campaign/physics_lab/simulator": {
@@ -310,24 +332,6 @@ export const puzzles = {
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "22PFBB3BB1JB2FBEPB3S1BF15",
-    type: "Campaign",
-    nextPuzzle: "campaign/physics_lab/entangler",
-  },
-  "campaign/physics_lab/entangler": {
-    station: "Physics Lab",
-    roomName: "Entangler",
-    startingText: (
-      <p>
-        This is your first time solving a room with{" "}
-        <span id="powerIcon" className="smallInfoIcon"></span>,{" "}
-        <span id="doorIcon" className="smallInfoIcon"></span>, and{" "}
-        <span id="portalIcon" className="smallInfoIcon"></span>. Good luck!
-      </p>
-    ),
-    winText: "Great job. Keep going, subject 56!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzleStringWithCivilians: "8EBF1P4B1B2FBJBF2B1B1B2KBDBP2F1B1B2PBP1S8",
     type: "Campaign",
     nextPuzzle: "campaign/physics_lab/accelerator",
   },
@@ -378,18 +382,6 @@ export const puzzles = {
     robotEndMood: "happy",
     puzzleStringWithCivilians: "23ZBJ3EBFB4FBY4S18",
     type: "Campaign",
-    nextPuzzle: "campaign/security/encryption",
-  },
-  "campaign/security/encryption": {
-    station: "Security",
-    roomName: "Encryption",
-    startingText: "Don't give up! You haven't served your purpose yet.",
-    winText:
-      "This next room looks a bit tougher, but I'm sure you'll figure it out... unlike subject 17.",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzleStringWithCivilians: "16YBZ3BBJBB2SF1FE2BBBBB3XFW16",
-    type: "Campaign",
     nextPuzzle: "campaign/security/firewall",
   },
   "campaign/security/firewall": {
@@ -401,6 +393,18 @@ export const puzzles = {
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "21FBBEBBFB1BJB1BZBBXBBY2FBF4BSB9",
+    type: "Campaign",
+    nextPuzzle: "campaign/security/encryption",
+  },
+  "campaign/security/encryption": {
+    station: "Security",
+    roomName: "Encryption",
+    startingText: "Don't give up! You haven't served your purpose yet.",
+    winText:
+      "This next room looks a bit tougher, but I'm sure you'll figure it out... unlike subject 17.",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzleStringWithCivilians: "16YBZ3BBJBB2SF1FE2BBBBB3XFW16",
     type: "Campaign",
     nextPuzzle: "campaign/security/antivirus",
   },
@@ -654,11 +658,8 @@ export const puzzles = {
     roomName: "Mess Hall",
     startingText: (
       <p>
-        If the <span id="civilianIcon" className="smallInfoIcon"></span> scream
-        when you push them toward the{" "}
-        <span id="podIcon" className="smallInfoIcon"></span>, I&apos;m sure
-        it&apos;s just because they&apos;re so thrilled for you to be helping
-        them...
+        If you line the <span id="civilianIcon" className="smallInfoIcon"></span> up, you can push one of them through a {" "}
+        <span id="podIcon" className="smallInfoIcon"></span>!
       </p>
     ),
     winText: "So thrilled",
@@ -678,7 +679,15 @@ export const puzzles = {
         <span id="podIcon" className="smallInfoIcon"></span>.
       </p>
     ),
-    winText: "Phew! That was the hard one.",
+    winText: (
+      <p>
+        If the <span id="civilianIcon" className="smallInfoIcon"></span> scream
+        when you push them toward the{" "}
+        <span id="podIcon" className="smallInfoIcon"></span>, I&apos;m sure
+        it&apos;s just because they&apos;re so thrilled for you to be helping
+        them...
+      </p>
+    ),
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "15PBBBA2BBCBB2BCBJE2BBJS3ABP17",
@@ -739,6 +748,18 @@ export const puzzles = {
   "campaign/bunker/barracks_2": {
     station: "Bunker",
     roomName: "Barracks 2",
+    startingText: "This is the last of the sleeping quarters to clear out!",
+    winText:
+      "You're almost at the end of your mission. One more room to secure!",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
+    puzzleStringWithCivilians: "9BJB4JBBS3BBCB3BCBP2BCBAA2PBEA16",
+    type: "Campaign",
+    nextPuzzle: "campaign/bunker/barracks_3",
+  },
+  "campaign/bunker/barracks_3": {
+    station: "Bunker",
+    roomName: "Barracks 3",
     startingText: (
       <p>
         Hmm... just a slight difference in the placement of{" "}
@@ -751,18 +772,6 @@ export const puzzles = {
     robotStartMood: "happy",
     robotEndMood: "happy",
     puzzleStringWithCivilians: "9BJB4JBBS3BBCB3BCBP2BCBA3PBEA6A9",
-    type: "Campaign",
-    nextPuzzle: "campaign/bunker/barracks_3",
-  },
-  "campaign/bunker/barracks_3": {
-    station: "Bunker",
-    roomName: "Barracks 3",
-    startingText: "This is the last of the sleeping quarters to clear out!",
-    winText:
-      "You're almost at the end of your mission. One more room to secure!",
-    robotStartMood: "happy",
-    robotEndMood: "happy",
-    puzzleStringWithCivilians: "9BJB4JBBS3BBCB3BCBP2BCBAA2PBEA16",
     type: "Campaign",
     nextPuzzle: "campaign/bunker/helm",
   },
@@ -2167,7 +2176,7 @@ export const puzzles = {
     station: "Doors station",
     roomName: "Level 3",
     startingText:
-      "This one looks tricky. If you get stuck, you can backtrack or tap the start space to reset the room.",
+      "This one looks tricky. If you get stuck, you can retrace your steps, or you can tap the start space to reset the room.",
     winText: "Impressive...for a human.",
     robotStartMood: "happy",
     robotEndMood: "happy",
