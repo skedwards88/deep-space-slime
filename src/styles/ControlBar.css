@@ -5,6 +5,7 @@
   grid-area: controls;
   border-bottom: 3px solid white;
   background-color: black;
+  width: 100vw;
 }
 
 .controlButton {

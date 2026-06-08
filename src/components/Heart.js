@@ -1,5 +1,6 @@
 import React from "react";
 import Share from "./Share";
+import packageJson from "../../package.json";
 
 export default function Heart({setDisplay, appName, shareText, repoName, url}) {
   return (
@@ -58,6 +59,7 @@ export default function Heart({setDisplay, appName, shareText, repoName, url}) {
       <button className="textButton" onClick={() => setDisplay("game")}>
         Close
       </button>
+      <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
 }

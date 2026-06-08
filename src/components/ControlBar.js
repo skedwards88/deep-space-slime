@@ -1,5 +1,4 @@
 import React from "react";
-import packageJson from "../../package.json";
 import Share from "./Share";
 import Audio from "./Audio";
 import {useGameContext} from "./GameContextProvider";
@@ -55,8 +54,6 @@ function ControlBar({setDisplay, audioRef}) {
             : setDisplay("builderLocked")
         }
       ></button>
-
-      <small id="rulesVersion">version {packageJson.version}</small>
     </div>
   );
 }
