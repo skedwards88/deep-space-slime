@@ -164,6 +164,7 @@ export function gameInit({
       : nonCustomInit({useSaved, puzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
+  // (powerCount is only populated after this point for brand new games)
   if ("powerCount" in baseState) {
     return baseState;
   }
