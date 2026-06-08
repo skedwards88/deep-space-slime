@@ -23,6 +23,7 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
+import {stationIntros} from "../logic/stationIntros";
 
 function isAtEndOfCampaign(puzzleID) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
@@ -325,11 +326,21 @@ function PuzzleSolvedButtons({
     );
   } else {
     // Otherwise go to the next level
-    const buttonText =
+    const isEnteringNewCampaignStation =
       puzzles[puzzleID].type === mapTypes.campaign &&
-      puzzles[nextPuzzleID].type === mapTypes.bonus
-        ? "First Bonus Level"
-        : "Next Level";
+      puzzles[nextPuzzleID].type === mapTypes.campaign &&
+      puzzles[nextPuzzleID]?.station !== puzzles[puzzleID]?.station;
+
+    const isEnteringFirstBonusStation =
+      puzzles[puzzleID].type === mapTypes.campaign &&
+      puzzles[nextPuzzleID].type === mapTypes.bonus;
+
+    const buttonText = isEnteringNewCampaignStation
+      ? "Next Station"
+      : isEnteringFirstBonusStation
+      ? "First Bonus Level"
+      : "Next Level";
+
     nextLevelButton = (
       <button
         className="textButton"
@@ -338,6 +349,12 @@ function PuzzleSolvedButtons({
           setMessageOverride("");
           setRobotMoodOverride("");
           dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
+          if (
+            isEnteringNewCampaignStation &&
+            stationIntros[puzzles[nextPuzzleID]?.station]
+          ) {
+            setDisplay("stationIntro");
+          }
         }}
       >
         {buttonText}

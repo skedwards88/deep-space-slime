@@ -21,6 +21,7 @@ import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import musicFile from "../music/compressed.mp3";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import StationIntro from "./StationIntro";
 
 export default function App() {
   const {userId, sessionId} = useMetadataContext();
@@ -142,6 +143,14 @@ export default function App() {
     case "confirmDelete":
       componentToRender = (
         <ConfirmDelete setDisplay={setDisplay}></ConfirmDelete>
+      );
+      break;
+    case "stationIntro":
+      componentToRender = (
+        <StationIntro
+          setDisplay={setDisplay}
+          audioRef={audioRef}
+        ></StationIntro>
       );
       break;
     case "campaignOver":
