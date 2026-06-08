@@ -36,28 +36,11 @@ export function ShareContextProvider({children}) {
     savedHintsRemaining ?? maxHints,
   );
 
-  // Store the previous state so that we can infer which analytics events to send
-  const previousHintsRemainingRef = React.useRef(hintsRemaining);
-
   useEffect(() => {
-    const previousHintsRemaining = previousHintsRemainingRef.current;
-
-    if (hintsRemaining < previousHintsRemaining) {
-      sendAnalyticsCF({
-        userId,
-        sessionId,
-        analyticsToLog: [{eventName: "hint"}],
-      });
-    }
-
-    previousHintsRemainingRef.current = hintsRemaining;
-
     window.localStorage.setItem(
       "deepSpaceSlimeSavedHintsRemaining",
       JSON.stringify(hintsRemaining),
     );
-    // Intentionally excluding sessionId, userId
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hintsRemaining]);
 
   if (hintsLastReset !== today) {

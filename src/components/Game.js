@@ -23,6 +23,8 @@ import {getReasonForMoveInvalidity} from "../logic/getReasonForMoveInvalidity";
 import {getHint} from "../logic/getHint";
 import {arraysMatchQ} from "@skedwards88/word_logic";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
+import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
+import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 
 function isAtEndOfCampaign(puzzleID) {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
@@ -418,6 +420,8 @@ function Game({setDisplay, audioRef}) {
 
   const {savedCustomBuilds, dispatchBuilderState} = useBuilderContext();
 
+  const {userId, sessionId} = useMetadataContext();
+
   const customIndex = gameState.isCustom
     ? gameState.customIndex ?? savedCustomBuilds.length
     : undefined;
@@ -629,6 +633,13 @@ function Game({setDisplay, audioRef}) {
                 setMessageOverride("I think you should go here.");
                 setRobotMoodOverride("happy");
                 setHintsRemaining(hintsRemaining - 1);
+                sendAnalyticsCF({
+                  userId,
+                  sessionId,
+                  analyticsToLog: [
+                    {eventName: "hint", eventInfo: {level: gameState.puzzleID}},
+                  ],
+                });
               }
             : null
         }
