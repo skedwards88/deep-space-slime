@@ -60,7 +60,7 @@ export default function Heart({
           >
             Open an issue
           </a>{" "}
-          on GitHub or email SECTgames@gmail.com.
+          on GitHub or email TwistedTrailGames@gmail.com.
         </p>
         <hr></hr>
         <a href="./privacy.html" className="blockElement">
