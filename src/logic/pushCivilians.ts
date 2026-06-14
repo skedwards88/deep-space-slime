@@ -1,0 +1,70 @@
+import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
+import {numColumns, numRows} from "./constants";
+import {indexesAdjacentQ} from "./indexesAdjacentQ";
+import {getIndexBetween} from "./getIndexBetween";
+
+export function pushCivilians({
+  pushedFrom,
+  pushedCivilian,
+  civilians,
+}: {
+  pushedFrom: number;
+  pushedCivilian: number;
+  civilians: number[];
+}): number[] {
+  if (!civilians) {
+    return civilians;
+  }
+
+  if (!civilians.includes(pushedCivilian)) {
+    return civilians;
+  }
+
+  const newCivilians = [...civilians];
+
+  let pushingComplete = false;
+  while (!pushingComplete) {
+    // assume that the push uses a blaster if the indexes are not adjacent (ignoring the portal case since civilians can't be on portals)
+    const isBlasterPush = !indexesAdjacentQ({
+      indexA: pushedFrom,
+      indexB: pushedCivilian,
+      numColumns,
+      numRows,
+    });
+
+    if (isBlasterPush) {
+      const indexBetween = getIndexBetween({
+        indexA: pushedFrom,
+        indexB: pushedCivilian,
+        numColumns,
+        numRows,
+      });
+
+      pushedFrom = indexBetween;
+    }
+
+    const civilianEndIndex = getNextAdjacentIndex({
+      index: pushedFrom,
+      adjacentIndex: pushedCivilian,
+      numColumns,
+      numRows,
+    });
+
+    if (civilianEndIndex === undefined) {
+      return newCivilians;
+    }
+
+    const civilianPositionToUpdate = civilians.indexOf(pushedCivilian);
+    newCivilians[civilianPositionToUpdate] = civilianEndIndex;
+
+    const civilianDomino = civilians.includes(civilianEndIndex);
+    if (civilianDomino) {
+      pushedFrom = pushedCivilian;
+      pushedCivilian = civilianEndIndex;
+    } else {
+      pushingComplete = true;
+    }
+  }
+
+  return newCivilians;
+}

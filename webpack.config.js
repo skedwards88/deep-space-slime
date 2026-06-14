@@ -85,7 +85,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           include: [
             path.resolve(__dirname, "src"),
             path.dirname(
@@ -93,7 +93,13 @@ module.exports = (env, argv) => {
             ),
           ],
           loader: "babel-loader",
-          options: {presets: ["@babel/env"]},
+          options: {
+            presets: [
+              "@babel/env",
+              ["@babel/preset-react", {runtime: "automatic"}],
+              "@babel/preset-typescript",
+            ],
+          },
         },
         {
           test: /\.css$/i,
@@ -101,11 +107,11 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif|webp|mp3)$/i,
-          type: "asset/resource",
+          type: "asset",
         },
       ],
     },
-    resolve: {extensions: ["*", ".js", ".jsx"]},
+    resolve: {extensions: ["*", ".js", ".jsx", ".ts", ".tsx"]},
     output: {
       publicPath: "",
       filename: "bundle.[fullhash].js",
