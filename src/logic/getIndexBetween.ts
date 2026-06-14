@@ -1,6 +1,16 @@
 // Given two indexes in a flat array and the dimensions describing a 2D representation of the array,
 // return the index between the two indexes. If the indexes are not separated by exactly one index vertically or diagonally, error.
-export function getIndexBetween({indexA, indexB, numColumns, numRows}) {
+export function getIndexBetween({
+  indexA,
+  indexB,
+  numColumns,
+  numRows,
+}: {
+  indexA: number;
+  indexB: number;
+  numColumns: number;
+  numRows: number;
+}): number {
   // Error if either index is outside of the grid
   if (indexA >= numColumns * numRows) {
     throw new Error(

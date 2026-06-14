@@ -1,7 +1,11 @@
-import React from "react";
 import {useBuilderContext} from "./BuilderContextProvider";
+import type {DisplayState} from "../Types";
 
-export default function ConfirmDelete({setDisplay}) {
+export default function ConfirmDelete({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {
     savedCustomBuilds,
     setSavedCustomBuilds,
@@ -16,8 +20,8 @@ export default function ConfirmDelete({setDisplay}) {
         <button
           className="textButton"
           onClick={() => {
-            let newSavedBuilds = savedCustomBuilds.slice();
-            newSavedBuilds.splice(customBuildIndexToDelete, 1);
+            const newSavedBuilds = savedCustomBuilds.slice();
+            newSavedBuilds.splice(customBuildIndexToDelete!, 1);
             setSavedCustomBuilds(newSavedBuilds);
             setCustomBuildIndexToDelete(null);
             setDisplay("builderOverview");

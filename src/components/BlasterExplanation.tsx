@@ -1,6 +1,10 @@
-import React from "react";
+import type {DisplayState} from "../Types";
 
-export default function BlasterExplanation({setDisplay}) {
+export default function BlasterExplanation({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   return (
     <div className="App info">
       <div className="infoText">

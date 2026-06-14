@@ -1,5 +1,5 @@
-// Use the .js extension so can run src/logic/forColinConversion.js outside of bundle
-import {featureToLetterLookup, features} from "./constants.js";
+import {featureToLetterLookup, features} from "./constants";
+import type {FeatureValue, PuzzleArray} from "../Types";
 
 const letterToFeatureLookup = Object.fromEntries(
   Object.entries(featureToLetterLookup).map(([feature, letter]) => [
@@ -8,7 +8,7 @@ const letterToFeatureLookup = Object.fromEntries(
   ]),
 );
 
-export function convertPuzzleToString(puzzle) {
+export function convertPuzzleToString(puzzle: PuzzleArray): string {
   let accumulatedOuterSpaces = 0;
 
   let puzzleString = "";
@@ -38,13 +38,13 @@ export function convertPuzzleToString(puzzle) {
   return puzzleString;
 }
 
-export function convertStringToPuzzle(puzzleString) {
+export function convertStringToPuzzle(puzzleString: string): PuzzleArray {
   // Non-letter/numbers are omitted. Consecutive numbers are kept together.
-  const symbols = puzzleString
-    .match(/\d+|[A-Za-z]/g)
-    .map((item) => (/^\d+$/.test(item) ? Number(item) : item));
+  const symbols = (puzzleString.match(/\d+|[A-Za-z]/g) ?? []).map((item) =>
+    /^\d+$/.test(item) ? Number(item) : item,
+  );
 
-  let puzzle = [];
+  let puzzle: PuzzleArray = [];
 
   for (const symbol of symbols) {
     if (typeof symbol === "number") {
@@ -56,13 +56,16 @@ export function convertStringToPuzzle(puzzleString) {
       if (!feature) {
         throw new Error(`Letter ${symbol} not found in featureToLetterLookup`);
       }
-      puzzle.push(feature);
+      puzzle.push(feature as FeatureValue); // the alternative to type casting here seems to be a bunch of convoluted hoops that don't add much value beyond just getting rid of TS errors
     }
   }
   return puzzle;
 }
 
-export function convertPuzzleAndCiviliansToString(puzzle, civilians) {
+export function convertPuzzleAndCiviliansToString(
+  puzzle: PuzzleArray,
+  civilians: number[],
+): string {
   const puzzleWithCivilians = convertPuzzleAndCiviliansToPuzzle(
     puzzle,
     civilians,
@@ -71,15 +74,19 @@ export function convertPuzzleAndCiviliansToString(puzzle, civilians) {
   return convertPuzzleToString(puzzleWithCivilians);
 }
 
-export function convertStringToPuzzleAndCivilians(string) {
+export function convertStringToPuzzleAndCivilians(
+  string: string,
+): [PuzzleArray, number[]] {
   const puzzleWithCivilians = convertStringToPuzzle(string);
 
   return convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians);
 }
 
 // Convert civilian spaces to basic spaces, and return the converted puzzle and the civilian indexes
-export function convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians) {
-  const civilianIndexes = puzzleWithCivilians.reduce(
+export function convertPuzzleToPuzzleAndCivilians(
+  puzzleWithCivilians: PuzzleArray,
+): [PuzzleArray, number[]] {
+  const civilianIndexes = puzzleWithCivilians.reduce<number[]>(
     (currentCivilianIndexes, feature, currentIndex) =>
       feature === features.civilian
         ? [...currentCivilianIndexes, currentIndex]
@@ -93,7 +100,10 @@ export function convertPuzzleToPuzzleAndCivilians(puzzleWithCivilians) {
   return [puzzleWithCiviliansReplaced, civilianIndexes];
 }
 
-export function convertPuzzleAndCiviliansToPuzzle(puzzle, civilians) {
+export function convertPuzzleAndCiviliansToPuzzle(
+  puzzle: PuzzleArray,
+  civilians: number[],
+): PuzzleArray {
   return puzzle.map((feature, index) =>
     civilians.includes(index) ? features.civilian : feature,
   );

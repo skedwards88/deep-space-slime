@@ -1,8 +1,20 @@
-import React from "react";
 import Share from "./Share";
 import packageJson from "../../package.json";
+import type {DisplayState} from "../Types";
 
-export default function Heart({setDisplay, appName, shareText, repoName, url}) {
+export default function Heart({
+  setDisplay,
+  appName,
+  shareText,
+  repoName,
+  url,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  appName: string;
+  shareText: string;
+  repoName: string;
+  url: string;
+}): React.JSX.Element {
   return (
     <div className="App info">
       <h1>{appName}</h1>

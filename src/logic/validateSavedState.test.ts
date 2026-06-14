@@ -2,6 +2,7 @@ import {validateSavedState} from "./validateSavedState";
 import {puzzles} from "./puzzles";
 import {features} from "./constants";
 import {convertStringToPuzzle} from "./convertPuzzleString";
+import type {GameState, PuzzleId, PuzzleMetadata} from "../Types";
 
 jest.mock("./puzzles", () => ({
   puzzles: {
@@ -40,7 +41,7 @@ jest.mock("./puzzles", () => ({
       nextPuzzle: "campaign/quarantine/entry",
       type: "Campaign",
     },
-  },
+  } as Record<PuzzleId, PuzzleMetadata>,
 }));
 
 describe("validateSavedState", () => {
@@ -50,16 +51,22 @@ describe("validateSavedState", () => {
     jest.clearAllMocks();
   });
 
-  const puzzleID = "mockedNoCivilians";
+  const puzzleID = "mockedNoCivilians" as PuzzleId;
 
   const puzzleStringWithCivilians = puzzles[puzzleID].puzzleStringWithCivilians;
   const puzzle = convertStringToPuzzle(puzzleStringWithCivilians);
 
-  const validNonCustomState = {
+  const validNonCustomState: GameState = {
     isCustom: false,
     customIndex: undefined,
     puzzleID,
     puzzle,
+    station: "test",
+    roomName: "test",
+    startingText: "test",
+    winText: "test",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     powerCount: 1,
     keyCount: 1,
     blasterCount: 1,
@@ -71,11 +78,17 @@ describe("validateSavedState", () => {
     civilianHistory: [[], [], [], []],
   };
 
-  const validCustomState = {
+  const validCustomState: GameState = {
     isCustom: true,
     customIndex: 5,
     puzzleID: "custom",
     puzzle,
+    station: "test",
+    roomName: "test",
+    startingText: "test",
+    winText: "test",
+    robotStartMood: "happy",
+    robotEndMood: "happy",
     powerCount: 1,
     keyCount: 1,
     blasterCount: 1,
@@ -89,9 +102,9 @@ describe("validateSavedState", () => {
 
   const validNonCustomStateWithCivilians = {
     ...validNonCustomState,
-    puzzleID: "mockedCivilians",
+    puzzleID: "mockedCivilians" as PuzzleId,
     puzzle: convertStringToPuzzle(
-      puzzles["mockedCivilians"].puzzleStringWithCivilians,
+      puzzles["mockedCivilians" as PuzzleId].puzzleStringWithCivilians,
     ),
     civilianHistory: [[2], [1]],
     path: [0, 18],
@@ -113,6 +126,7 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for null saved state", () => {
+    // @ts-expect-error intentionally testing null input
     expect(validateSavedState(null)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("no saved state");
@@ -120,6 +134,7 @@ describe("validateSavedState", () => {
   });
 
   test("returns false for non-object saved state", () => {
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState("invalid")).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("no saved state");
@@ -128,6 +143,7 @@ describe("validateSavedState", () => {
 
   test("returns false for no puzzle", () => {
     const state = {...validNonCustomState, puzzle: undefined};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("no puzzle");
@@ -147,9 +163,10 @@ describe("validateSavedState", () => {
 
   test("returns false for unknown isCustom", () => {
     const state = {...validCustomState, isCustom: undefined};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("iscustom not bool");
+    expect(logSpy).toHaveBeenCalledWith("isCustom not bool");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -157,7 +174,7 @@ describe("validateSavedState", () => {
     const state = {...validCustomState, customIndex: undefined};
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("customindex not int");
+    expect(logSpy).toHaveBeenCalledWith("customIndex not defined");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -165,7 +182,7 @@ describe("validateSavedState", () => {
     const state = {...validCustomState, customIndex: -4};
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("custom index negative");
+    expect(logSpy).toHaveBeenCalledWith("customIndex negative");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -173,12 +190,13 @@ describe("validateSavedState", () => {
     const state = {...validNonCustomState, customIndex: 4};
     expect(validateSavedState(state)).toBe(false);
 
-    expect(logSpy).toHaveBeenCalledWith("customindex given but not expected");
+    expect(logSpy).toHaveBeenCalledWith("customIndex given but not expected");
     expect(logSpy).toHaveBeenCalledTimes(1);
   });
 
   test("returns false for invalid puzzleID", () => {
     const state = {...validNonCustomState, puzzleID: "does/not/exist"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("puzzleID mismatch");
@@ -187,6 +205,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid puzzleID (for custom)", () => {
     const state = {...validCustomState, puzzleID: "not-custom"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("puzzleID not custom");
@@ -197,7 +216,7 @@ describe("validateSavedState", () => {
     const state = {
       ...validNonCustomState,
       puzzle: convertStringToPuzzle(
-        puzzles["mocked2"].puzzleStringWithCivilians,
+        puzzles["mocked2" as PuzzleId].puzzleStringWithCivilians,
       ),
     };
     expect(validateSavedState(state)).toBe(false);
@@ -208,6 +227,7 @@ describe("validateSavedState", () => {
 
   test("returns false for puzzle with invalid feature (custom)", () => {
     const newPuzzle = [...validCustomState.puzzle];
+    // @ts-expect-error intentionally testing invalid input
     newPuzzle[1] = "desk";
     const state = {...validCustomState, puzzle: newPuzzle};
     expect(validateSavedState(state)).toBe(false);
@@ -218,6 +238,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid path (non-array)", () => {
     const state = {...validNonCustomState, path: "1"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("path not array");
@@ -226,6 +247,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid path (contains non-integers)", () => {
     const state = {...validNonCustomState, path: [0, "2", 2]};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("path not ints");
@@ -234,6 +256,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid acquired powers (non-integers)", () => {
     const state = {...validNonCustomState, powerCount: "3"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
@@ -242,6 +265,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid acquired keys (non-integers)", () => {
     const state = {...validNonCustomState, keyCount: "3"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
@@ -250,6 +274,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid acquired blasters (non-integers)", () => {
     const state = {...validNonCustomState, blasterCount: "3"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
@@ -258,6 +283,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid acquired terminals (non-integers)", () => {
     const state = {...validNonCustomState, numberCount: "3"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
@@ -266,6 +292,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid maxNumber (non-integers)", () => {
     const state = {...validNonCustomState, maxNumber: "3"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("acquired features not ints");
@@ -274,6 +301,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid validNextIndexes (non-array)", () => {
     const state = {...validNonCustomState, validNextIndexes: "4"};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("validnext not array");
@@ -282,6 +310,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid validNextIndexes (contains non-integers)", () => {
     const state = {...validNonCustomState, validNextIndexes: [3, "4", 5]};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("validnext not ints");
@@ -290,6 +319,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid civilianHistory (non-array)", () => {
     const state = {...validNonCustomStateWithCivilians, civilianHistory: 20};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("civilianHistory not array");
@@ -298,6 +328,7 @@ describe("validateSavedState", () => {
 
   test("returns false for invalid civilians in civilianHistory (non-array)", () => {
     const state = {...validNonCustomStateWithCivilians, civilianHistory: [20]};
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("civilianHistory entry not array");
@@ -356,6 +387,7 @@ describe("validateSavedState", () => {
       ...validNonCustomStateWithCivilians,
       civilianHistory: [[2], ["18"]],
     };
+    // @ts-expect-error intentionally testing invalid input
     expect(validateSavedState(state)).toBe(false);
 
     expect(logSpy).toHaveBeenCalledWith("civilian is not an int");

@@ -8,39 +8,56 @@ import {
 import React from "react";
 import {gameInit} from "../logic/gameInit";
 import {gameReducer} from "../logic/gameReducer";
+import type {GamePayload} from "../logic/gameReducer";
 import {parseUrlQuery} from "../logic/parseUrlQuery";
 import {numColumns, numRows} from "../logic/constants";
 import {puzzles} from "../logic/puzzles";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
+import type {GameState, PuzzleId} from "../Types";
+import {getFromStorage, saveToStorage} from "../logic/safeStorage";
 
-const GameContext = createContext();
+type GamePathCalculationStatusType = "idle" | "calculating" | "done";
 
-export function GameContextProvider({children}) {
+type GameContextType = {
+  gameState: GameState;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  completedLevels: PuzzleId[];
+  setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
+  allGamePaths: number[][];
+  gamePathCalculationStatus: GamePathCalculationStatusType;
+};
+
+const GameContext = createContext<GameContextType | undefined>(undefined);
+
+export function GameContextProvider({
+  children,
+}: {
+  children: React.JSX.Element;
+}): React.JSX.Element {
   const {userId, sessionId} = useMetadataContext();
 
   const customSeed = parseUrlQuery();
 
+  // as const is required to keep typescript from widening true/false to boolean
+  const initParameters = customSeed
+    ? {customSeed, isCustom: true as const, useSaved: false as const}
+    : {isCustom: false as const};
+
   const [gameState, dispatchGameState] = useReducer(
     gameReducer,
-    {
-      customSeed,
-      isCustom: Boolean(customSeed),
-      useSaved: customSeed ? false : undefined,
-    },
+    initParameters,
     gameInit,
   );
+
   React.useEffect(() => {
-    window.localStorage.setItem(
-      "deepSpaceSlimeSavedState",
-      JSON.stringify(gameState),
-    );
+    saveToStorage("deepSpaceSlimeSavedState", gameState);
   }, [gameState]);
 
   const maxPathsToFind = 100;
-  const [allGamePaths, setAllGamePaths] = React.useState([]);
+  const [allGamePaths, setAllGamePaths] = React.useState<number[][]>([]);
   const [gamePathCalculationStatus, setGamePathCalculationStatus] =
-    React.useState("idle"); // idle | calculating | done
+    React.useState<GamePathCalculationStatusType>("idle");
 
   React.useEffect(() => {
     console.log("CALCULATING game paths");
@@ -49,7 +66,7 @@ export function GameContextProvider({children}) {
 
     // Use a worker instead of async to make sure that this isn't blocking
     const worker = new Worker(
-      new URL("./getAllValidPathsWorker.js", import.meta.url),
+      new URL("./getAllValidPathsWorker", import.meta.url),
     );
 
     worker.postMessage({
@@ -60,7 +77,7 @@ export function GameContextProvider({children}) {
       maxPathsToFind,
     });
 
-    worker.onmessage = (event) => {
+    worker.onmessage = (event): void => {
       setAllGamePaths(event.data);
       setGamePathCalculationStatus("done");
       console.log(
@@ -68,18 +85,18 @@ export function GameContextProvider({children}) {
       );
     };
 
-    return () => {
+    return (): void => {
       console.log("terminating game path calculation");
       setGamePathCalculationStatus("done");
       worker.terminate();
     };
   }, [gameState.puzzle]);
 
-  const savedCompletedLevels = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedCompletedLevels"),
+  const savedCompletedLevels = getFromStorage<PuzzleId[]>(
+    "deepSpaceSlimeSavedCompletedLevels",
   );
 
-  const [completedLevels, setCompletedLevels] = useState(
+  const [completedLevels, setCompletedLevels] = useState<PuzzleId[]>(
     savedCompletedLevels || [],
   );
 
@@ -106,7 +123,7 @@ export function GameContextProvider({children}) {
 
     // Save the progress locally
     // Before saving, purge any obsolete levels
-    let purgedCompletedLevels = [];
+    const purgedCompletedLevels = [];
 
     const validLevels = Object.keys(puzzles);
 
@@ -116,10 +133,7 @@ export function GameContextProvider({children}) {
       }
     }
 
-    window.localStorage.setItem(
-      "deepSpaceSlimeSavedCompletedLevels",
-      JSON.stringify(purgedCompletedLevels),
-    );
+    saveToStorage("deepSpaceSlimeSavedCompletedLevels", purgedCompletedLevels);
     // Intentionally excluding sessionId, userId
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completedLevels]);
@@ -155,7 +169,7 @@ export function GameContextProvider({children}) {
   );
 }
 
-export function useGameContext() {
+export function useGameContext(): GameContextType {
   const context = useContext(GameContext);
   if (context === undefined) {
     throw new Error("useGameContext must be used within a GameContextProvider");

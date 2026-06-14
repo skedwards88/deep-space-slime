@@ -5,7 +5,12 @@ export function getNextAdjacentIndex({
   adjacentIndex,
   numColumns,
   numRows,
-}) {
+}: {
+  index: number;
+  adjacentIndex: number;
+  numColumns: number;
+  numRows: number;
+}): number | undefined {
   // Error if either index is outside of the grid
   if (index >= numColumns * numRows) {
     throw new Error(

@@ -1,6 +1,10 @@
-import React from "react";
+import type {DisplayState} from "../Types";
 
-export default function KeyExplanation({setDisplay}) {
+export default function KeyExplanation({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   return (
     <div className="App info">
       <div className="infoText">

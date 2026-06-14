@@ -1,5 +1,6 @@
 import {numColumns, numRows, civilianForbiddenFeatures} from "./constants";
 import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
+import type {FeatureValue, PuzzleArray} from "../Types";
 
 export function civilianPushValidQ({
   pushedCivilian,
@@ -7,7 +8,13 @@ export function civilianPushValidQ({
   currentCivilians,
   puzzle,
   path,
-}) {
+}: {
+  pushedCivilian: number;
+  pushedFrom: number;
+  currentCivilians: number[];
+  puzzle: PuzzleArray;
+  path: number[];
+}): boolean {
   const civilianEndIndex = getNextAdjacentIndex({
     index: pushedFrom,
     adjacentIndex: pushedCivilian,
@@ -39,5 +46,7 @@ export function civilianPushValidQ({
 
   const civilianEndFeature = puzzle[civilianEndIndex];
 
-  return !civilianForbiddenFeatures.includes(civilianEndFeature);
+  return !(civilianForbiddenFeatures as readonly FeatureValue[]).includes(
+    civilianEndFeature,
+  );
 }

@@ -3,14 +3,15 @@ import {gameInit} from "./gameInit";
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {getAllValidPaths} from "./getAllValidPaths";
 import {puzzles} from "./puzzles";
-import {validateSavedState} from "./validateSavedState";
+import * as validateSavedStateModule from "./validateSavedState";
 import {
   convertPuzzleToString,
   convertStringToPuzzle,
 } from "./convertPuzzleString";
 import {features, numColumns, numRows, firstPuzzleId} from "./constants";
+import type {PuzzleId} from "../Types";
 
-jest.spyOn(require("./validateSavedState"), "validateSavedState");
+const validateSpy = jest.spyOn(validateSavedStateModule, "validateSavedState");
 jest.mock("./getValidNextIndexes");
 jest.mock("./getAllValidPaths");
 
@@ -22,7 +23,7 @@ describe("gameInit saved state usage", () => {
 
   test("returns saved state (except sets mouseIsActive to false and overwrites some fields) if useSaved is true and saved state is valid", () => {
     const savedState = {
-      puzzleID: "campaign/quarantine/entry",
+      puzzleID: "campaign/quarantine/entry" as PuzzleId,
       isCustom: false,
       powerCount: 5,
     };
@@ -30,7 +31,7 @@ describe("gameInit saved state usage", () => {
       "deepSpaceSlimeSavedState",
       JSON.stringify(savedState),
     );
-    validateSavedState.mockReturnValue(true);
+    validateSpy.mockReturnValue(true);
 
     const result = gameInit({
       useSaved: true,
@@ -47,7 +48,7 @@ describe("gameInit saved state usage", () => {
       robotStartMood: puzzles[savedState.puzzleID].robotStartMood,
       robotEndMood: puzzles[savedState.puzzleID].robotEndMood,
     });
-    expect(validateSavedState).toHaveBeenCalledWith(savedState);
+    expect(validateSpy).toHaveBeenCalledWith(savedState);
   });
 
   test("ignores saved state if useSaved is true but saved state is invalid", () => {
@@ -56,7 +57,7 @@ describe("gameInit saved state usage", () => {
       "deepSpaceSlimeSavedState",
       JSON.stringify(savedState),
     );
-    validateSavedState.mockReturnValue(false);
+    validateSpy.mockReturnValue(false);
 
     const result = gameInit({
       useSaved: true,
@@ -64,7 +65,7 @@ describe("gameInit saved state usage", () => {
     });
 
     expect(result).not.toEqual(savedState);
-    expect(validateSavedState).toHaveBeenCalledWith(savedState);
+    expect(validateSpy).toHaveBeenCalledWith(savedState);
   });
 
   test("uses the saved ID if useSaved is true and the saved puzzle is not custom but the saved state is invalid", () => {
@@ -74,7 +75,7 @@ describe("gameInit saved state usage", () => {
       "deepSpaceSlimeSavedState",
       JSON.stringify(savedState),
     );
-    validateSavedState.mockReturnValue(false);
+    validateSpy.mockReturnValue(false);
 
     const result = gameInit({
       useSaved: true,
@@ -83,7 +84,7 @@ describe("gameInit saved state usage", () => {
 
     expect(result).not.toEqual(savedState);
     expect(result.puzzleID).toBe(savedID);
-    expect(validateSavedState).toHaveBeenCalledWith(savedState);
+    expect(validateSpy).toHaveBeenCalledWith(savedState);
   });
 
   test("ignores saved state if useSaved is false", () => {
@@ -98,7 +99,7 @@ describe("gameInit saved state usage", () => {
       puzzleID: "campaign/quarantine/entry",
     });
 
-    expect(validateSavedState).not.toHaveBeenCalled();
+    expect(validateSpy).not.toHaveBeenCalled();
     expect(result).toHaveProperty("puzzleID", "campaign/quarantine/entry");
   });
 
@@ -120,7 +121,7 @@ describe("gameInit saved state usage", () => {
     const maxNumber = numbers.length ? Math.max(...numbers) : 0;
     const validNextIndexes = [1, 2, 3]; // Mocked value
 
-    getValidNextIndexes.mockReturnValue(validNextIndexes);
+    (getValidNextIndexes as jest.Mock).mockReturnValue(validNextIndexes);
 
     const result = gameInit({useSaved: false, puzzleID});
 
@@ -169,8 +170,8 @@ describe("gameInit saved state usage", () => {
 
     const customIndex = 4;
 
-    getValidNextIndexes.mockReturnValue(validNextIndexes);
-    getAllValidPaths.mockReturnValue([1, 2]);
+    (getValidNextIndexes as jest.Mock).mockReturnValue(validNextIndexes);
+    (getAllValidPaths as jest.Mock).mockReturnValue([1, 2]);
 
     const result = gameInit({
       useSaved: false,

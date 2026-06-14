@@ -1,7 +1,11 @@
-import React from "react";
+import type {DisplayState} from "../Types";
 import {useGameContext} from "./GameContextProvider";
 
-export default function ConfirmReset({setDisplay}) {
+export default function ConfirmReset({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {dispatchGameState} = useGameContext();
 
   return (

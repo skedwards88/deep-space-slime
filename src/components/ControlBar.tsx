@@ -1,11 +1,17 @@
-import React from "react";
 import Share from "./Share";
 import Audio from "./Audio";
 import {useGameContext} from "./GameContextProvider";
 import {campaignIsCompleteQ} from "../logic/campaignIsCompleteQ";
 import {isRunningStandalone} from "@skedwards88/shared-components/src/logic/isRunningStandalone";
+import type {DisplayState} from "../Types";
 
-function ControlBar({setDisplay, audioRef}) {
+function ControlBar({
+  setDisplay,
+  audioRef,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+}): React.JSX.Element {
   const {completedLevels} = useGameContext();
   const campaignIsComplete = campaignIsCompleteQ(completedLevels);
 

@@ -21,21 +21,23 @@ import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import musicFile from "../music/compressed.mp3";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import type {DisplayState} from "../Types";
 
-export default function App() {
+export default function App(): React.JSX.Element {
   const {userId, sessionId} = useMetadataContext();
 
   // *****
   // Install handling setup
   // *****
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
-  const [installPromptEvent, setInstallPromptEvent] = React.useState();
-  const [showInstallButton, setShowInstallButton] = React.useState(true);
+  const [installPromptEvent, setInstallPromptEvent] = React.useState<Event>();
+  const [showInstallButton, setShowInstallButton] =
+    React.useState<boolean>(true);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
-    const listener = (event) =>
+    const listener = (event: Event): void =>
       handleBeforeInstallPrompt(
         event,
         setInstallPromptEvent,
@@ -44,26 +46,27 @@ export default function App() {
 
     window.addEventListener("beforeinstallprompt", listener);
 
-    return () => window.removeEventListener("beforeinstallprompt", listener);
+    return (): void =>
+      window.removeEventListener("beforeinstallprompt", listener);
   }, []);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
-    const listener = () =>
+    const listener = (): void =>
       handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
 
     window.addEventListener("appinstalled", listener);
 
-    return () => window.removeEventListener("appinstalled", listener);
+    return (): void => window.removeEventListener("appinstalled", listener);
   }, []);
   // *****
   // End install handling setup
   // *****
 
-  const [display, setDisplay] = React.useState("game");
+  const [display, setDisplay] = React.useState<DisplayState>("game");
 
-  const audioRef = React.useRef(null);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
   let componentToRender;
 

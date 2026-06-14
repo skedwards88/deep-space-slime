@@ -1,5 +1,6 @@
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {features, numColumns, numRows} from "./constants";
+import type {GameState, PuzzleArray} from "../Types";
 
 // To backtrack:
 // Remove the last index in the path.
@@ -10,7 +11,15 @@ import {features, numColumns, numRows} from "./constants";
 // If the last index was a number, decrement the number count.
 // If the last index was a blaster, remove the blaster from the blaster count.
 // If the last index was previously accessed with a blaster, add a blaster to the blaster count.
-export function updateStateWithBacktrack({index, currentGameState, puzzle}) {
+export function updateStateWithBacktrack({
+  index,
+  currentGameState,
+  puzzle,
+}: {
+  index: number;
+  currentGameState: GameState;
+  puzzle: PuzzleArray;
+}): GameState {
   const path = currentGameState.path;
   const lastIndexInPath = path[path.length - 1];
   const newPath = path.slice(0, path.length - 1);

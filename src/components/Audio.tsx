@@ -1,11 +1,33 @@
 import React from "react";
+import {getFromStorage} from "../logic/safeStorage";
 
-export default function Audio({audioRef}) {
-  const savedIsPlaying = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedAudio"),
+function handlePlayPause(
+  isPlaying: boolean,
+  audioRef: React.RefObject<HTMLAudioElement | null>,
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>,
+): void {
+  if (!audioRef.current) {
+    return;
+  }
+  if (isPlaying) {
+    audioRef.current.pause();
+  } else {
+    audioRef.current.play();
+  }
+
+  setIsPlaying(!isPlaying);
+}
+
+export default function Audio({
+  audioRef,
+}: {
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+}): React.JSX.Element {
+  const savedIsPlaying = getFromStorage<boolean>("deepSpaceSlimeSavedAudio");
+
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(
+    savedIsPlaying || false,
   );
-
-  const [isPlaying, setIsPlaying] = React.useState(savedIsPlaying || false);
 
   React.useEffect(() => {
     window.localStorage.setItem(
@@ -31,12 +53,7 @@ export default function Audio({audioRef}) {
       <button
         className="controlButton"
         id={isPlaying ? "muteIcon" : "unmuteIcon"}
-        onClick={() => {
-          isPlaying && audioRef.current
-            ? audioRef.current.pause()
-            : audioRef.current.play();
-          setIsPlaying(!isPlaying);
-        }}
+        onClick={() => handlePlayPause(isPlaying, audioRef, setIsPlaying)}
       ></button>
     </div>
   );

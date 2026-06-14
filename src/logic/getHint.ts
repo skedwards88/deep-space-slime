@@ -1,5 +1,5 @@
 // Calculate how long the paths match before diverging
-function scorePathMatch(path, comparisonPath) {
+function scorePathMatch(path: number[], comparisonPath: number[]): number {
   let score = 0;
   for (let index = 0; index < path.length; index++) {
     if (path[index] === comparisonPath[index]) {
@@ -13,7 +13,10 @@ function scorePathMatch(path, comparisonPath) {
 
 // Backtrack path if needed
 // Then propose next spot
-export function getHint(currentPath, possiblePaths) {
+export function getHint(
+  currentPath: number[],
+  possiblePaths: number[][],
+): [number[], number] {
   // For each possible path, calculate how many indexes
   // match the current path before the paths diverge
   const scores = possiblePaths.map((comparisonPath) =>

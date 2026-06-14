@@ -7,34 +7,62 @@ import {
 } from "react";
 import React from "react";
 import {builderReducer} from "../logic/builderReducer";
+import type {BuilderPayload} from "../logic/builderReducer";
 import {numColumns, numRows} from "../logic/constants";
 import {
   convertPuzzleToString,
   convertPuzzleToPuzzleAndCivilians,
 } from "../logic/convertPuzzleString";
+import type {BuilderState} from "../Types";
+import {getFromStorage, saveToStorage} from "../logic/safeStorage";
 
-const BuilderContext = createContext();
+export type SavedCustomBuildType = [string, string, boolean, boolean];
 
-export function BuilderContextProvider({children}) {
-  const presavedCustomBuilds = JSON.parse(
-    localStorage.getItem("deepSpaceSlimeSavedCustomBuilds"),
+type BuilderContextType = {
+  builderState: BuilderState;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+  savedCustomBuilds: SavedCustomBuildType[];
+  setSavedCustomBuilds: React.Dispatch<
+    React.SetStateAction<SavedCustomBuildType[]>
+  >;
+  allBuilderPaths: number[][];
+  calculatingBuilderPaths: boolean;
+  maxPathsToFind: number;
+  customBuildIndexToDelete: number | null;
+  setCustomBuildIndexToDelete: React.Dispatch<
+    React.SetStateAction<number | null>
+  >;
+};
+
+const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
+
+export function BuilderContextProvider({
+  children,
+}: {
+  children: React.JSX.Element;
+}): React.JSX.Element {
+  const presavedCustomBuilds = getFromStorage<SavedCustomBuildType[]>(
+    "deepSpaceSlimeSavedCustomBuilds",
   );
 
-  const [savedCustomBuilds, setSavedCustomBuilds] = useState(
-    presavedCustomBuilds || [],
-  );
+  const [savedCustomBuilds, setSavedCustomBuilds] = useState<
+    SavedCustomBuildType[]
+  >(presavedCustomBuilds || []);
 
-  const [customBuildIndexToDelete, setCustomBuildIndexToDelete] =
-    useState(null);
+  const [customBuildIndexToDelete, setCustomBuildIndexToDelete] = useState<
+    number | null
+  >(null);
 
   // Don't bother initializing the builderState to anything useful yet.
   // We need the dispatcher to pass to other components, but we won't ever use this initial state.
   // This feels sloppy to me, but I haven't thought of a better solution yet.
+  // @ts-expect-error see preceding comment
   const [builderState, dispatchBuilderState] = useReducer(builderReducer, {});
 
   const maxPathsToFind = 100;
-  const [allBuilderPaths, setAllBuilderPaths] = useState([]);
-  const [calculatingBuilderPaths, setCalculatingBuilderPaths] = useState(false);
+  const [allBuilderPaths, setAllBuilderPaths] = useState<number[][]>([]);
+  const [calculatingBuilderPaths, setCalculatingBuilderPaths] =
+    useState<boolean>(false);
   useEffect(() => {
     if (!builderState.isValid) {
       console.log("Builder is invalid. Won't calculate builder paths.");
@@ -47,7 +75,7 @@ export function BuilderContextProvider({children}) {
 
     // Use a worker instead of async to make sure that this isn't blocking
     const worker = new Worker(
-      new URL("./getAllValidPathsWorker.js", import.meta.url),
+      new URL("./getAllValidPathsWorker", import.meta.url),
     );
 
     const [puzzleWithoutCivilians, startingCivilians] =
@@ -61,7 +89,7 @@ export function BuilderContextProvider({children}) {
       maxPathsToFind,
     });
 
-    worker.onmessage = (event) => {
+    worker.onmessage = (event): void => {
       setAllBuilderPaths(event.data);
       setCalculatingBuilderPaths(false);
       console.log(
@@ -69,7 +97,7 @@ export function BuilderContextProvider({children}) {
       );
     };
 
-    return () => {
+    return (): void => {
       console.log("terminating builder path calculation");
       setCalculatingBuilderPaths(false);
       worker.terminate();
@@ -77,10 +105,7 @@ export function BuilderContextProvider({children}) {
   }, [builderState.puzzleWithCivilians, builderState.isValid]);
 
   useEffect(() => {
-    window.localStorage.setItem(
-      "deepSpaceSlimeSavedCustomBuilds",
-      JSON.stringify(savedCustomBuilds),
-    );
+    saveToStorage("deepSpaceSlimeSavedCustomBuilds", savedCustomBuilds);
   }, [savedCustomBuilds]);
 
   React.useEffect(() => {
@@ -94,7 +119,7 @@ export function BuilderContextProvider({children}) {
     const encodedPuzzle = convertPuzzleToString(
       builderState.puzzleWithCivilians,
     );
-    let newSavedBuilds = savedCustomBuilds.slice();
+    const newSavedBuilds = savedCustomBuilds.slice();
     newSavedBuilds.splice(indexToUpdate, 1, [
       builderState.roomName,
       encodedPuzzle,
@@ -128,7 +153,7 @@ export function BuilderContextProvider({children}) {
   );
 }
 
-export function useBuilderContext() {
+export function useBuilderContext(): BuilderContextType {
   const context = useContext(BuilderContext);
   if (context === undefined) {
     throw new Error(

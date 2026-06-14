@@ -1,4 +1,4 @@
-export function parseUrlQuery() {
+export function parseUrlQuery(): string | null {
   const searchParams = new URLSearchParams(document.location.search);
   const query = searchParams.get("id");
 

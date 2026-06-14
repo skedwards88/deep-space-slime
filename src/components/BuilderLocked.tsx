@@ -1,23 +1,27 @@
-import React from "react";
 import {useGameContext} from "./GameContextProvider";
 import {puzzles} from "../logic/puzzles";
 import {firstPuzzleId, mapTypes} from "../logic/constants";
+import type {DisplayState} from "../Types";
 
-function getNumberOfCampaignLevels() {
+function getNumberOfCampaignLevels(): number {
   let reachedEndOfCampaign = false;
   let currentPuzzle = firstPuzzleId;
   let totalPuzzleCount = 0;
 
   while (!reachedEndOfCampaign) {
     totalPuzzleCount++;
-    currentPuzzle = puzzles[currentPuzzle].nextPuzzle;
+    currentPuzzle = puzzles[currentPuzzle].nextPuzzle!; // nextPuzzle is only undefined for the very last bonus puzzle
     reachedEndOfCampaign = puzzles[currentPuzzle].type !== mapTypes.campaign;
   }
 
   return totalPuzzleCount;
 }
 
-export default function BuilderLocked({setDisplay}) {
+export default function BuilderLocked({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {completedLevels} = useGameContext();
 
   const completedPuzzleCount = completedLevels.length;

@@ -1,6 +1,6 @@
 import {getAllValidPaths} from "../logic/getAllValidPaths";
 
-self.onmessage = async (event) => {
+self.onmessage = async (event): Promise<void> => {
   const {puzzle, startingCivilians, numColumns, numRows, maxPathsToFind} =
     event.data;
   const paths = getAllValidPaths({

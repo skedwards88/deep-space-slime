@@ -1,7 +1,9 @@
+import type {PuzzleId} from "../Types";
+
 export const numColumns = 7;
 export const numRows = 9;
 
-export const firstPuzzleId = "campaign/stasis_bay/stasis_pod";
+export const firstPuzzleId: PuzzleId = "campaign/stasis_bay/stasis_pod";
 export const lastCampaignPuzzleId = "campaign/core/docking_bay";
 
 export const mapTypes = {
@@ -28,7 +30,7 @@ export const features = {
   pod: "pod",
   // even though civilians aren't a feature in the game, we consider them a feature in the builder and stored puzzles
   civilian: "civilian",
-};
+} as const;
 
 export const featureToLetterLookup = {
   [features.outer]: "O",
@@ -47,7 +49,6 @@ export const featureToLetterLookup = {
   [features.terminal4]: "W",
   [features.terminal5]: "V",
   [features.ship]: "H",
-  [features.pod]: "A",
   [features.civilian]: "C",
 };
 

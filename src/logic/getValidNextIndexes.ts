@@ -3,6 +3,7 @@ import {getNextAdjacentIndex} from "./getNextAdjacentIndex";
 import {features} from "./constants";
 import {civilianPushValidQ} from "./civilianPushValidQ";
 import {exitUnlockedQ} from "./exitUnlockedQ";
+import type {PuzzleArray} from "../Types";
 
 export function getValidNextIndexes({
   path,
@@ -17,7 +18,20 @@ export function getValidNextIndexes({
   currentCivilians,
   allowStart = true,
   allowBacktracking = true,
-}) {
+}: {
+  path: number[];
+  puzzle: PuzzleArray;
+  numColumns: number;
+  numRows: number;
+  maxNumber: number;
+  powerCount: number;
+  hasKey?: boolean;
+  hasBlaster?: boolean;
+  numberCount?: number;
+  currentCivilians: number[];
+  allowStart?: boolean;
+  allowBacktracking?: boolean;
+}): number[] {
   // Valid indexes are:
   // - The previous index (unless allowBacktracking is false)
   // - The start index (unless you are on the start) (unless allowStart is false)
@@ -37,7 +51,7 @@ export function getValidNextIndexes({
   //      - a portal space
   //      - the start space
 
-  let validIndexes = [];
+  const validIndexes = [];
 
   const lastIndexInPath = path[path.length - 1];
   const penultimateIndexInPath = path[path.length - 2];
@@ -161,6 +175,10 @@ export function getValidNextIndexes({
         numRows,
       });
 
+      if (nextAdjacentIndex === undefined) {
+        continue;
+      }
+
       const nextAdjacentFeature = puzzle[nextAdjacentIndex];
 
       // Can't jump to locked exit
@@ -179,7 +197,6 @@ export function getValidNextIndexes({
       }
 
       if (
-        nextAdjacentIndex === undefined ||
         nextAdjacentFeature === features.outer ||
         nextAdjacentFeature === features.pod ||
         path.includes(nextAdjacentIndex) ||

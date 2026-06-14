@@ -13,6 +13,7 @@ import {
   lastCampaignPuzzleId,
 } from "./constants";
 import {getAllValidPaths} from "./getAllValidPaths";
+import type {PuzzleId} from "../Types";
 
 describe("puzzle validation", () => {
   let anyTestFailed = false;
@@ -26,7 +27,7 @@ describe("puzzle validation", () => {
   });
 
   test("every puzzle is pointed to exactly once, except for the first puzzle", () => {
-    const allPuzzleIDs = Object.keys(puzzles);
+    const allPuzzleIDs = Object.keys(puzzles) as PuzzleId[];
     const pointedPuzzleIDs = allPuzzleIDs.map((id) => puzzles[id].nextPuzzle);
 
     expect([...pointedPuzzleIDs, firstPuzzleId]).toEqual(
@@ -44,7 +45,7 @@ describe("puzzle validation", () => {
 
   test("last campaign puzzle ID type is campaign, and next puzzle type is bonus", () => {
     expect(puzzles[lastCampaignPuzzleId].type).toBe(mapTypes.campaign);
-    const nextPuzzleID = puzzles[lastCampaignPuzzleId].nextPuzzle;
+    const nextPuzzleID = puzzles[lastCampaignPuzzleId].nextPuzzle as PuzzleId;
     expect(puzzles[nextPuzzleID].type).toBe(mapTypes.bonus);
   });
 

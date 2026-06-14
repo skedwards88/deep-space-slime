@@ -1,8 +1,7 @@
-// Use the .js extension so can run outside of bundle
 import {
   convertPuzzleToString,
   convertStringToPuzzle,
-} from "./convertPuzzleString.js";
+} from "./convertPuzzleString";
 
 function getPuzzleForColin({
   url,
@@ -76,7 +75,7 @@ export function getPuzzlesForColin({
 
 // Notes for Colin:
 // 1. Fill in the text below and put the URLs in inputURLs as a comma separated list of strings
-// 2. In the terminal, run: node src/logic/forColinConversion.js
+// 2. In the terminal, run: npx tsx src/logic/forColinConversion.js
 // 3. Copy the printed output (minus the open and closing square brackets)
 //    i. Give the puzzle a unique ID (e.g. "bonus/plant-station/fern-frond")
 //    ii. Paste the puzzle in the puzzles file as "unique-id": copied output

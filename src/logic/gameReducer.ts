@@ -9,8 +9,26 @@ import {
   numColumns,
   numRows,
 } from "./constants";
+import type {GameState, PuzzleId, RobotMood} from "../Types";
+import type {ReactNode} from "react";
 
-export function gameReducer(currentGameState, payload) {
+export type GamePayload =
+  | {action: "modifyPath"; index: number}
+  | {action: "resetPuzzle"}
+  | {action: "overwritePath"; newPath: number[]}
+  | {action: "newGame"; puzzleID: PuzzleId}
+  | {action: "playtestCustom"; customSeed: string; customIndex: number}
+  | {action: "setMouseIsActive"; mouseIsActive: boolean}
+  | {
+      action: "updateStartingTextAndMood";
+      startingText: ReactNode;
+      robotStartMood: RobotMood;
+    };
+
+export function gameReducer(
+  currentGameState: GameState,
+  payload: GamePayload,
+): GameState {
   if (payload.action === "modifyPath") {
     const index = payload.index;
     const puzzle = currentGameState.puzzle;
@@ -200,7 +218,9 @@ export function gameReducer(currentGameState, payload) {
       robotStartMood: payload.robotStartMood || customRobotMood,
     };
   } else {
-    console.log(`unknown action: ${payload.action}`);
+    console.log(
+      `unknown action: ${(payload as unknown as {action: string}).action}`,
+    );
     return currentGameState;
   }
 }

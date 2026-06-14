@@ -76,12 +76,14 @@ describe("getIndexBetween", () => {
 
   test("throws an error if indexA is undefined", () => {
     expect(() =>
+      // @ts-expect-error: testing runtime behavior with invalid input
       getIndexBetween({indexA: undefined, indexB: 2, numColumns, numRows}),
     ).toThrow("Input indexes must be defined.");
   });
 
   test("throws an error if indexB is undefined", () => {
     expect(() =>
+      // @ts-expect-error: testing runtime behavior with invalid input
       getIndexBetween({indexA: 1, indexB: undefined, numColumns, numRows}),
     ).toThrow("Input indexes must be defined.");
   });

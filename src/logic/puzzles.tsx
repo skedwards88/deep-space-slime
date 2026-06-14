@@ -1,6 +1,6 @@
-import React from "react";
+import type {PuzzleId, PuzzleMetadata} from "../Types";
 
-export const puzzles = {
+export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
   "campaign/stasis_bay/stasis_pod": {
     station: "Stasis Bay",
     roomName: "Stasis Pod",

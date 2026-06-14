@@ -5,10 +5,22 @@ import {unlimitedFeatures} from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
 import {useGameContext} from "./GameContextProvider";
 import Share from "./Share";
+import type {BuilderPayload} from "../logic/builderReducer";
+import type {DisplayState, FeatureValue} from "../Types";
 
-function handlePointerDown({event, index, feature, dispatchBuilderState}) {
+function handlePointerDown({
+  event,
+  index,
+  feature,
+  dispatchBuilderState,
+}: {
+  event: React.PointerEvent;
+  index: number;
+  feature: FeatureValue;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+}): void {
   // Release pointer capture so that pointer events can fire on other elements
-  event.target.releasePointerCapture(event.pointerId);
+  event.currentTarget.releasePointerCapture(event.pointerId);
 
   if (event.pointerType === "mouse") {
     dispatchBuilderState({action: "setMouseIsActive", mouseIsActive: true});
@@ -21,11 +33,23 @@ function handlePointerDown({event, index, feature, dispatchBuilderState}) {
   }
 }
 
-function handleMouseUp(dispatchBuilderState) {
+function handleMouseUp(
+  dispatchBuilderState: React.Dispatch<BuilderPayload>,
+): void {
   dispatchBuilderState({action: "setMouseIsActive", mouseIsActive: false});
 }
 
-function handlePointerEnter({event, index, feature, dispatchBuilderState}) {
+function handlePointerEnter({
+  event,
+  index,
+  feature,
+  dispatchBuilderState,
+}: {
+  event: React.PointerEvent;
+  index: number;
+  feature: FeatureValue;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+}): void {
   event.preventDefault();
   dispatchBuilderState({
     action: "modifyPuzzle",
@@ -35,7 +59,15 @@ function handlePointerEnter({event, index, feature, dispatchBuilderState}) {
   });
 }
 
-function BuilderSquare({feature, index, dispatchBuilderState}) {
+function BuilderSquare({
+  feature,
+  index,
+  dispatchBuilderState,
+}: {
+  feature: FeatureValue;
+  index: number;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+}): React.JSX.Element {
   let featureClass;
   if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
@@ -58,7 +90,11 @@ function BuilderSquare({feature, index, dispatchBuilderState}) {
   );
 }
 
-export default function Builder({setDisplay}) {
+export default function Builder({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {
     builderState,
     dispatchBuilderState,
@@ -101,7 +137,7 @@ export default function Builder({setDisplay}) {
     ></BuilderSquare>
   ));
 
-  const [nameError, setNameError] = React.useState("");
+  const [nameError, setNameError] = React.useState<string>("");
 
   return (
     <div
@@ -175,7 +211,7 @@ export default function Builder({setDisplay}) {
         ></button>
 
         {builderState.isValid && allBuilderPaths.length > 0 ? (
-          navigator.canShare ? (
+          "canShare" in navigator ? (
             <Share
               appName="Deep Space Slime"
               text="I created this custom Deep Space Slime puzzle. Give it a try!"

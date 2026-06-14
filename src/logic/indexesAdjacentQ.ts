@@ -1,6 +1,20 @@
 // Given two indexes in a flat array and the dimensions describing a 2D representation of the array,
 // return a boolean indicating whether the indexes are adjacent (top/down/left/right) in the 2D grid
-export function indexesAdjacentQ({indexA, indexB, numColumns, numRows}) {
+export function indexesAdjacentQ({
+  indexA,
+  indexB,
+  numColumns,
+  numRows,
+}: {
+  indexA?: number | undefined;
+  indexB?: number | undefined;
+  numColumns: number;
+  numRows: number;
+}): boolean {
+  if (indexA === undefined || indexB === undefined) {
+    return false;
+  }
+
   // Error if either index is outside of the grid
   if (indexA >= numColumns * numRows) {
     throw new Error(
@@ -11,10 +25,6 @@ export function indexesAdjacentQ({indexA, indexB, numColumns, numRows}) {
     throw new Error(
       `Input index ${indexB} exceeds the array size ${numColumns * numRows}`,
     );
-  }
-
-  if (indexA === undefined || indexB === undefined) {
-    return false;
   }
 
   const columnA = indexA % numColumns;

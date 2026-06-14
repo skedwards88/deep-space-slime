@@ -1,12 +1,13 @@
 import {getLowestIncompletePuzzle} from "./getLowestIncompletePuzzle";
 import {firstPuzzleId} from "./constants";
 import {puzzles} from "./puzzles";
+import type {PuzzleId} from "../Types";
 
-const allCampaignLevels = Object.keys(puzzles).filter(
+const allCampaignLevels = (Object.keys(puzzles) as PuzzleId[]).filter(
   (key) => puzzles[key].type === "Campaign",
 );
 
-const allBonusLevels = Object.keys(puzzles).filter(
+const allBonusLevels = (Object.keys(puzzles) as PuzzleId[]).filter(
   (key) => puzzles[key].type === "Bonus",
 );
 

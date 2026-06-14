@@ -1,14 +1,15 @@
 import {civilianPushValidQ} from "./civilianPushValidQ";
 import {features, numColumns, numRows} from "./constants";
+import type {PuzzleArray} from "../Types";
 
-const allBasicPuzzle = Array.from(
+const allBasicPuzzle: PuzzleArray = Array.from(
   {length: numColumns * numRows},
   () => features.basic,
 );
 
 describe("civilianPushValidQ", () => {
   test("false if civilian would be pushed onto a forbidden location", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     puzzle[4] = features.door;
 
@@ -24,7 +25,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("true if civilian would not be pushed onto a forbidden location", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     puzzle[4] = features.power;
 
@@ -40,7 +41,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("true for chain of civilians if last civilian would not be pushed onto a forbidden location", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     puzzle[5] = features.blaster;
 
@@ -56,7 +57,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false for chain of civilians if last civilian would be pushed onto a forbidden location", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     puzzle[5] = features.outer;
 
@@ -72,7 +73,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed onto next row", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -86,7 +87,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed onto previous row", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -100,7 +101,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed onto next column", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -114,7 +115,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed onto previous column", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -128,7 +129,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed off start of grid", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -142,7 +143,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed off end of grid", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -156,7 +157,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("false if civilian would be pushed onto slime", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
 
     expect(
       civilianPushValidQ({
@@ -170,7 +171,7 @@ describe("civilianPushValidQ", () => {
   });
 
   test("does not consider civilians that were not replaced in the original puzzle", () => {
-    let puzzle = [...allBasicPuzzle];
+    const puzzle = [...allBasicPuzzle];
     puzzle[4] = features.civilian;
 
     expect(

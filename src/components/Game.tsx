@@ -1,7 +1,9 @@
 import React from "react";
+import type {ReactNode} from "react";
 import ControlBar from "./ControlBar";
 import {puzzles} from "../logic/puzzles";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
+import type {AllDirections} from "../logic/getSlimeDirection";
 import {generateSeed} from "../logic/generateSeed";
 import {
   convertPuzzleAndCiviliansToPuzzle,
@@ -25,11 +27,21 @@ import {arraysMatchQ} from "@skedwards88/word_logic";
 import {exitUnlockedQ} from "../logic/exitUnlockedQ";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import type {
+  DisplayState,
+  FeatureValue,
+  GameState,
+  PuzzleArray,
+  PuzzleId,
+  RobotMood,
+} from "../Types";
+import type {GamePayload} from "../logic/gameReducer";
+import type {BuilderPayload} from "../logic/builderReducer";
 
-function isAtEndOfCampaign(puzzleID) {
+function isAtEndOfCampaign(puzzleID: PuzzleId): boolean {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
-  const nextPuzzleExists = nextPuzzleID in puzzles;
+  const nextPuzzleExists = nextPuzzleID && nextPuzzleID in puzzles;
 
   const currentPuzzleIsCampaign = puzzles[puzzleID]?.type === mapTypes.campaign;
 
@@ -55,14 +67,26 @@ function handleMovement({
   setCompletedLevels,
   dispatchGameState,
   setDisplay,
-}) {
+}: {
+  validNext: boolean;
+  index: number;
+  gameState: GameState;
+  setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
+  setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
+  setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+  setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  completedLevels: PuzzleId[];
+  setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): void {
   if (validNext) {
     const isMovingToExit =
       gameState.puzzle[index] === features.exit ||
       gameState.puzzle[index] === features.ship;
 
-    if (isMovingToExit) {
-      let newCompletedLevels = [...completedLevels];
+    if (isMovingToExit && gameState.puzzleID != "custom") {
+      const newCompletedLevels = [...completedLevels];
       newCompletedLevels.push(gameState.puzzleID);
       setCompletedLevels(newCompletedLevels);
     }
@@ -70,13 +94,13 @@ function handleMovement({
     if (isMovingToExit) {
       setMessageOverride(gameState.winText);
     } else {
-      setMessageOverride("");
+      setMessageOverride(null);
     }
 
     if (isMovingToExit) {
       setRobotMoodOverride(gameState.robotEndMood);
     } else {
-      setRobotMoodOverride("");
+      setRobotMoodOverride(null);
     }
 
     dispatchGameState({
@@ -87,6 +111,7 @@ function handleMovement({
     if (
       isMovingToExit &&
       !gameState.isCustom &&
+      gameState.puzzleID != "custom" && // this is redundant with the isCustom check but it feels safer than type casting
       isAtEndOfCampaign(gameState.puzzleID)
     ) {
       setDisplay("campaignOver");
@@ -108,7 +133,7 @@ function handleMovement({
   }
 
   setHintWaitIsOver(false);
-  setHintIndex(undefined);
+  setHintIndex(null);
 }
 
 function handlePointerDown({
@@ -125,9 +150,23 @@ function handlePointerDown({
   setHintIndex,
   completedLevels,
   setCompletedLevels,
-}) {
+}: {
+  event: React.PointerEvent;
+  index: number;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  confirmReset: boolean;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  validNext: boolean;
+  gameState: GameState;
+  setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
+  setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
+  setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+  setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  completedLevels: PuzzleId[];
+  setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
+}): void {
   // Release pointer capture so that pointer events can fire on other elements
-  event.target.releasePointerCapture(event.pointerId);
+  event.currentTarget.releasePointerCapture(event.pointerId);
 
   if (event.pointerType === "mouse") {
     if (confirmReset) {
@@ -152,7 +191,7 @@ function handlePointerDown({
   }
 }
 
-function handleMouseUp(dispatchGameState) {
+function handleMouseUp(dispatchGameState: React.Dispatch<GamePayload>): void {
   dispatchGameState({action: "setMouseIsActive", mouseIsActive: false});
 }
 
@@ -171,7 +210,22 @@ function handlePointerEnter({
   setHintIndex,
   completedLevels,
   setCompletedLevels,
-}) {
+}: {
+  event: React.PointerEvent;
+  index: number;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  confirmReset: boolean;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  mouseIsActive: boolean;
+  validNext: boolean;
+  gameState: GameState;
+  setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
+  setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
+  setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+  setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  completedLevels: PuzzleId[];
+  setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
+}): void {
   event.preventDefault();
   // Return early if this was triggered by the mouse entering but the mouse is not depressed
   if (event.pointerType === "mouse" && !mouseIsActive) {
@@ -216,7 +270,23 @@ function PuzzleSquare({
   hasCivilian,
   isInPortal,
   nextNumber,
-}) {
+}: {
+  feature: FeatureValue;
+  index: number;
+  exitUnlocked: boolean;
+  current: boolean;
+  visited: boolean;
+  direction: AllDirections;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+  setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
+  setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
+  setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  hintIndex: number | null;
+  hasCivilian: boolean;
+  isInPortal: boolean;
+  nextNumber: number;
+}): React.JSX.Element {
   const {gameState, dispatchGameState, completedLevels, setCompletedLevels} =
     useGameContext();
 
@@ -226,13 +296,11 @@ function PuzzleSquare({
 
   const isHint = index === hintIndex;
 
-  let featureClass;
+  let featureClass: string;
 
   if (feature === features.exit) {
-    feature = exitUnlocked ? "exit-opened" : "exit-closed";
-  }
-
-  if (Number.isInteger(Number.parseInt(feature))) {
+    featureClass = exitUnlocked ? "exit-opened" : "exit-closed";
+  } else if (Number.isInteger(Number.parseInt(feature))) {
     featureClass = `numbered number${feature}`;
     if (nextNumber === Number.parseInt(feature)) {
       featureClass += " nextNumber";
@@ -252,7 +320,7 @@ function PuzzleSquare({
         isHint ? "hint" : ""
       } ${hasCivilian ? "civilian" : ""}`}
       {...(feature !== features.outer && {
-        onPointerDown: (event) => {
+        onPointerDown: (event): void => {
           handlePointerDown({
             event,
             index,
@@ -273,7 +341,7 @@ function PuzzleSquare({
       onMouseUp={() => handleMouseUp(dispatchGameState)}
       {...(!current &&
         feature !== features.outer && {
-          onPointerEnter: (event) => {
+          onPointerEnter: (event): void => {
             handlePointerEnter({
               event,
               index,
@@ -303,7 +371,14 @@ function PuzzleSolvedButtons({
   setMessageOverride,
   setRobotMoodOverride,
   setDisplay,
-}) {
+}: {
+  puzzleID: PuzzleId;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+  setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
+  setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const nextPuzzleID = puzzles[puzzleID]?.nextPuzzle;
 
   let nextLevelButton;
@@ -337,8 +412,8 @@ function PuzzleSolvedButtons({
         className="textButton"
         onClick={() => {
           setHintWaitIsOver(false);
-          setMessageOverride("");
-          setRobotMoodOverride("");
+          setMessageOverride(null);
+          setRobotMoodOverride(null);
           dispatchGameState({action: "newGame", puzzleID: nextPuzzleID});
         }}
       >
@@ -357,7 +432,14 @@ function CustomPuzzleSolvedButtons({
   roomName,
   dispatchBuilderState,
   customIndex,
-}) {
+}: {
+  puzzle: PuzzleArray;
+  startingCivilians: number[];
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  roomName: string;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+  customIndex: number;
+}): React.JSX.Element {
   const returnToMapButton = (
     <button className="textButton" onClick={() => setDisplay("map")}>
       Return to map
@@ -408,7 +490,13 @@ function CustomPuzzleSolvedButtons({
   );
 }
 
-function Game({setDisplay, audioRef}) {
+function Game({
+  setDisplay,
+  audioRef,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+}): React.JSX.Element {
   const {
     gameState,
     dispatchGameState,
@@ -422,10 +510,6 @@ function Game({setDisplay, audioRef}) {
 
   const {userId, sessionId} = useMetadataContext();
 
-  const customIndex = gameState.isCustom
-    ? gameState.customIndex ?? savedCustomBuilds.length
-    : undefined;
-
   const path = gameState.path;
   const lastIndexInPath = path[path.length - 1];
   const currentCivilians =
@@ -438,11 +522,11 @@ function Game({setDisplay, audioRef}) {
     powerCount: gameState.powerCount,
   });
 
-  const [messageOverride, setMessageOverride] = React.useState(
+  const [messageOverride, setMessageOverride] = React.useState<ReactNode>(
     gameState.puzzle[lastIndexInPath] === features.exit ||
       gameState.puzzle[lastIndexInPath] === features.ship
       ? gameState.winText
-      : "",
+      : null,
   );
 
   React.useEffect(() => {
@@ -488,17 +572,18 @@ function Game({setDisplay, audioRef}) {
     gameState.robotStartMood,
   ]);
 
-  const [robotMoodOverride, setRobotMoodOverride] = React.useState(
-    gameState.puzzle[lastIndexInPath] === features.exit ||
-      gameState.puzzle[lastIndexInPath] === features.ship
-      ? gameState.robotEndMood
-      : "",
-  );
+  const [robotMoodOverride, setRobotMoodOverride] =
+    React.useState<RobotMood | null>(
+      gameState.puzzle[lastIndexInPath] === features.exit ||
+        gameState.puzzle[lastIndexInPath] === features.ship
+        ? gameState.robotEndMood
+        : null,
+    );
 
-  const [hintWaitIsOver, setHintWaitIsOver] = React.useState(false);
+  const [hintWaitIsOver, setHintWaitIsOver] = React.useState<boolean>(false);
   const hintWaitTime = 6; // seconds
 
-  const [hintIndex, setHintIndex] = React.useState(undefined);
+  const [hintIndex, setHintIndex] = React.useState<number | null>(null);
 
   const directions = getSlimeDirections({
     path,
@@ -560,14 +645,14 @@ function Game({setDisplay, audioRef}) {
 
   // Change setHintWaitIsOver to true if the path is unchanged for some time
   React.useEffect(() => {
-    let timeout;
+    let timeout: number;
     if (
       gamePathCalculationStatus === "done" &&
       allGamePaths.length > 0 &&
       gameState.robotStartMood !== "gloating" &&
       !hintWaitIsOver &&
       !isAtExit &&
-      (navigator.canShare || hintsRemaining)
+      ("canShare" in navigator || hintsRemaining)
     ) {
       timeout = setTimeout(
         () => {
@@ -585,12 +670,12 @@ function Game({setDisplay, audioRef}) {
               {gameState.startingText}
             </>,
           );
-          setRobotMoodOverride("");
+          setRobotMoodOverride(null);
         },
         isAtStart ? hintWaitTime * 1000 * 2 : hintWaitTime * 1000,
       );
     }
-    return () => clearTimeout(timeout);
+    return (): void => clearTimeout(timeout);
   }, [
     gameState.path,
     allGamePaths,
@@ -609,7 +694,7 @@ function Game({setDisplay, audioRef}) {
     hintWaitIsOver &&
     gamePathCalculationStatus === "done" &&
     !isAtExit &&
-    hintIndex === undefined;
+    hintIndex === null;
 
   return (
     <div id="game" onMouseUp={() => handleMouseUp(dispatchGameState)}>
@@ -624,7 +709,7 @@ function Game({setDisplay, audioRef}) {
         }`}
         onClick={
           isTimeToShowAHint && hintsRemaining
-            ? () => {
+            ? (): void => {
                 const [newPath, hint] = getHint(path, allGamePaths);
                 setHintIndex(hint);
                 if (!arraysMatchQ(newPath, path)) {
@@ -641,11 +726,11 @@ function Game({setDisplay, audioRef}) {
                   ],
                 });
               }
-            : null
+            : undefined
         }
       ></div>
 
-      {isTimeToShowAHint && !hintsRemaining && navigator.canShare ? (
+      {isTimeToShowAHint && !hintsRemaining && "canShare" in navigator ? (
         <div id="message">
           {"Share with a new person to get 5 more hints!\n"}
           <Share
@@ -663,7 +748,13 @@ function Game({setDisplay, audioRef}) {
         </div>
       ) : (
         // Use the message as the key to force the text to scroll back to the top upon rerender
-        <div id="message" key={messageOverride || gameState.startingText}>
+        <div
+          id="message"
+          key={
+            (messageOverride && JSON.stringify(messageOverride)) ||
+            JSON.stringify(gameState.startingText)
+          }
+        >
           {messageOverride || gameState.startingText}
         </div>
       )}
@@ -675,9 +766,9 @@ function Game({setDisplay, audioRef}) {
           setDisplay={setDisplay}
           roomName={gameState.roomName}
           dispatchBuilderState={dispatchBuilderState}
-          customIndex={customIndex}
+          customIndex={gameState.customIndex ?? savedCustomBuilds.length}
         ></CustomPuzzleSolvedButtons>
-      ) : isAtExit ? (
+      ) : isAtExit && gameState.puzzleID != "custom" ? ( // this is redundant with the isCustom check but it feels safer than type casting
         <PuzzleSolvedButtons
           puzzleID={gameState.puzzleID}
           dispatchGameState={dispatchGameState}

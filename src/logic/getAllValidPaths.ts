@@ -1,6 +1,7 @@
 import {getValidNextIndexes} from "./getValidNextIndexes";
 import {updateStateWithExtension} from "./updateStateWithExtension";
 import {features} from "./constants";
+import type {PuzzleArray} from "../Types";
 
 export function getAllValidPaths({
   puzzle,
@@ -8,14 +9,20 @@ export function getAllValidPaths({
   numColumns,
   numRows,
   maxPathsToFind = 2000, // Setting this too high (e.g. >1000000) will hit a memory limit
-}) {
+}: {
+  puzzle: PuzzleArray;
+  startingCivilians: number[];
+  numColumns: number;
+  numRows: number;
+  maxPathsToFind?: number;
+}): number[][] {
   const startIndex = puzzle.indexOf(features.start);
 
   const numbers = puzzle.map(Number).filter(Number.isInteger);
   const maxNumber = numbers.length ? Math.max(...numbers) : 0;
 
   // These will be mutated during the search
-  const completePaths = [];
+  const completePaths: number[][] = [];
   const visitedIndexes = new Set([startIndex]);
   const pathStateHistory = [
     {
@@ -28,7 +35,7 @@ export function getAllValidPaths({
     },
   ];
 
-  function searchPath() {
+  function searchPath(): void {
     if (completePaths.length >= maxPathsToFind) {
       return;
     }
@@ -76,7 +83,6 @@ export function getAllValidPaths({
           index: nextIndex,
           currentGameState: currentPathState,
           puzzle,
-          allowStart: false,
         });
 
         visitedIndexes.add(nextIndex);

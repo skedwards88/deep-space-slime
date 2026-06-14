@@ -11,8 +11,9 @@ import {
   convertStringToPuzzle,
   convertStringToPuzzleAndCivilians,
 } from "./convertPuzzleString";
+import type {FeatureValue, GameState} from "../Types";
 
-export function validateSavedState(savedState) {
+export function validateSavedState(savedState: GameState): boolean {
   // saved state must exist
   if (typeof savedState !== "object" || savedState === null) {
     console.log("no saved state");
@@ -33,23 +34,27 @@ export function validateSavedState(savedState) {
 
   // isCustom must be a Boolean
   if (typeof savedState.isCustom !== "boolean") {
-    console.log("iscustom not bool");
+    console.log("isCustom not bool");
     return false;
   }
 
   // If custom, customIndex must be an int. Otherwise, must be undefined.
   if (savedState.isCustom) {
+    if (!savedState.customIndex) {
+      console.log("customIndex not defined");
+      return false;
+    }
     if (!Number.isInteger(savedState.customIndex)) {
-      console.log("customindex not int");
+      console.log("customIndex not int");
       return false;
     }
     if (savedState.customIndex < 0) {
-      console.log("custom index negative");
+      console.log("customIndex negative");
       return false;
     }
   } else {
     if (savedState.customIndex !== undefined) {
-      console.log("customindex given but not expected");
+      console.log("customIndex given but not expected");
       return false;
     }
   }
@@ -152,7 +157,9 @@ export function validateSavedState(savedState) {
 
     if (
       civilians.some((entry) =>
-        civilianForbiddenFeatures.includes(savedState.puzzle[entry]),
+        (civilianForbiddenFeatures as readonly FeatureValue[]).includes(
+          savedState.puzzle[entry],
+        ),
       )
     ) {
       console.log("civilian on forbidden feature");
@@ -166,7 +173,7 @@ export function validateSavedState(savedState) {
     }
   }
 
-  if (!savedState.isCustom) {
+  if (!savedState.isCustom && savedState.puzzleID != "custom") {
     const [, expectedStartingCivilians] = convertStringToPuzzleAndCivilians(
       puzzles[savedState.puzzleID].puzzleStringWithCivilians,
     );
@@ -181,7 +188,7 @@ export function validateSavedState(savedState) {
   }
 
   // if not custom, puzzle must match expected puzzle
-  if (!savedState.isCustom) {
+  if (!savedState.isCustom && savedState.puzzleID != "custom") {
     const expectedPuzzle = convertStringToPuzzle(
       puzzles[savedState.puzzleID].puzzleStringWithCivilians,
     );

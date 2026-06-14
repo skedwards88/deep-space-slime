@@ -8,10 +8,14 @@ import {
   lastCampaignPuzzleId,
   mapTypes,
 } from "../logic/constants";
+import type {DisplayState, PuzzleId, PuzzleType} from "../Types";
+import type {GamePayload} from "../logic/gameReducer";
 
-function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
-  const {type, station, roomName, nextPuzzle} =
-    puzzles[puzzleStringWithCivilians];
+function assembleMap(
+  puzzleId: PuzzleId,
+  mapData = new Map(),
+): Map<PuzzleType, Map<string, {roomName: string; puzzleID: PuzzleId}[]>> {
+  const {type, station, roomName, nextPuzzle} = puzzles[puzzleId];
 
   if (!mapData.get(type)) {
     mapData.set(type, new Map());
@@ -21,10 +25,7 @@ function assembleMap(puzzleStringWithCivilians, mapData = new Map()) {
     mapData.get(type).set(station, []);
   }
 
-  mapData
-    .get(type)
-    .get(station)
-    .push({roomName, puzzleID: puzzleStringWithCivilians});
+  mapData.get(type).get(station).push({roomName, puzzleID: puzzleId});
 
   if (nextPuzzle) {
     assembleMap(nextPuzzle, mapData);
@@ -45,8 +46,26 @@ function TopLevelMapEntry({
   completedLevels,
   campaignIsComplete,
   lowestUnsolvedCampaignRoom,
-}) {
-  let stationElements = [];
+}: {
+  topLevelKey: PuzzleType;
+  topLevelEntry: Map<
+    string,
+    {
+      roomName: string;
+      puzzleID: PuzzleId;
+    }[]
+  >;
+  stationOnDisplay: string | null;
+  setStationOnDisplay: React.Dispatch<React.SetStateAction<string | null>>;
+  typeOnDisplay: PuzzleType | null;
+  setTypeOnDisplay: React.Dispatch<React.SetStateAction<PuzzleType | null>>;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  completedLevels: PuzzleId[];
+  campaignIsComplete: boolean;
+  lowestUnsolvedCampaignRoom: PuzzleId | undefined;
+}): React.JSX.Element {
+  const stationElements: React.JSX.Element[] = [];
 
   if (typeOnDisplay === topLevelKey) {
     for (const [stationLevelKey, stationLevelEntry] of topLevelEntry) {
@@ -75,7 +94,7 @@ function TopLevelMapEntry({
         className="mapTypeButton textButton"
         onClick={() =>
           typeOnDisplay === topLevelKey
-            ? setTypeOnDisplay(undefined)
+            ? setTypeOnDisplay(null)
             : setTypeOnDisplay(topLevelKey)
         }
         disabled={bonusIsLocked}
@@ -102,8 +121,21 @@ function StationLevelMapEntry({
   completedLevels,
   campaignIsComplete,
   lowestUnsolvedCampaignRoom,
-}) {
-  let roomElements = [];
+}: {
+  stationName: string;
+  roomDatas: {
+    roomName: string;
+    puzzleID: PuzzleId;
+  }[];
+  stationOnDisplay: string | null;
+  setStationOnDisplay: React.Dispatch<React.SetStateAction<string | null>>;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  completedLevels: PuzzleId[];
+  campaignIsComplete: boolean;
+  lowestUnsolvedCampaignRoom: PuzzleId | undefined;
+}): React.JSX.Element {
+  let roomElements: React.JSX.Element[] = [];
   if (stationOnDisplay === stationName) {
     const lowestUnsolvedIndex = roomDatas.findIndex(
       (roomData) => !completedLevels.includes(roomData.puzzleID),
@@ -156,7 +188,7 @@ function StationLevelMapEntry({
         disabled={!stationIsAvailable}
         onClick={() =>
           stationOnDisplay === stationName
-            ? setStationOnDisplay(undefined)
+            ? setStationOnDisplay(null)
             : setStationOnDisplay(stationName)
         }
       >
@@ -183,7 +215,17 @@ function RoomLevelMapEntry({
   campaignIsComplete,
   lowestUnsolvedCampaignRoom,
   isLowestUnsolvedOrLower,
-}) {
+}: {
+  roomName: string;
+  puzzleID: PuzzleId;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  dispatchGameState: React.Dispatch<GamePayload>;
+  completedLevels: PuzzleId[];
+  campaignIsComplete: boolean;
+
+  lowestUnsolvedCampaignRoom: PuzzleId | undefined;
+  isLowestUnsolvedOrLower: boolean;
+}): React.JSX.Element {
   // The room is available if:
   // - you previously solved it (i.e. it is in the completedLevels list)
   // - the campaign is not complete AND this is the lowest unsolved level in the campaign
@@ -216,19 +258,25 @@ function RoomLevelMapEntry({
   );
 }
 
-export default function GameMap({setDisplay}) {
+export default function GameMap({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {gameState, dispatchGameState, completedLevels} = useGameContext();
 
   // If current station is custom, then the map will be fully collapsed
   const currentStation = gameState.station;
-  const currentStationType = puzzles[gameState.puzzleID]?.type;
+  const currentStationType =
+    gameState.puzzleID === "custom" ? null : puzzles[gameState.puzzleID]?.type;
 
-  const [stationOnDisplay, setStationOnDisplay] =
-    React.useState(currentStation);
+  const [stationOnDisplay, setStationOnDisplay] = React.useState<string | null>(
+    currentStation,
+  );
 
   // If on the last puzzle in the campaign, collapse the map
   // If current station is custom, then the map will also be fully collapsed since currentStationType is undefined
-  const [typeOnDisplay, setTypeOnDisplay] = React.useState(
+  const [typeOnDisplay, setTypeOnDisplay] = React.useState<PuzzleType | null>(
     gameState.puzzleID === lastCampaignPuzzleId ? null : currentStationType,
   );
 
@@ -237,12 +285,11 @@ export default function GameMap({setDisplay}) {
   // mapData is a map (keys = type names) of maps (keys = station names) of arrays of objects (containing room data)
   const mapData = assembleMap(firstPuzzleId);
 
-  let lowestUnsolvedCampaignRoom;
-  if (!campaignIsComplete) {
-    lowestUnsolvedCampaignRoom = getLowestIncompletePuzzle(completedLevels);
-  }
+  const lowestUnsolvedCampaignRoom = !campaignIsComplete
+    ? getLowestIncompletePuzzle(completedLevels)
+    : undefined;
 
-  let mapElements = [];
+  const mapElements: React.JSX.Element[] = [];
   for (const [topLevelKey, topLevelEntry] of mapData) {
     mapElements.push(
       <TopLevelMapEntry
@@ -271,7 +318,7 @@ export default function GameMap({setDisplay}) {
         >
           Return to current room
         </button>
-        {!campaignIsComplete ? (
+        {lowestUnsolvedCampaignRoom ? (
           <button
             onClick={() => {
               dispatchGameState({

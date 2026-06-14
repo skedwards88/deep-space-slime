@@ -1,6 +1,16 @@
 import {getAdjacentIndexes} from "./getAdjacentIndexes";
 import {features, numColumns, numRows} from "./constants";
 import {pushCivilians} from "./pushCivilians";
+import type {GameState, PuzzleArray} from "../Types";
+
+type PathState = {
+  civilianHistory: number[][];
+  powerCount: number;
+  keyCount: number;
+  blasterCount: number;
+  numberCount: number;
+  path: number[];
+};
 
 // To extend:
 // Add the index to the path.
@@ -11,7 +21,35 @@ import {pushCivilians} from "./pushCivilians";
 // If the index is a blaster, acquire the blaster.
 // If the index was only accessible with a blaster, lose a blaster.
 // Push any civilians
-export function updateStateWithExtension({index, currentGameState, puzzle}) {
+export function updateStateWithExtension({
+  index,
+  currentGameState,
+  puzzle,
+}: {
+  index: number;
+  currentGameState: GameState;
+  puzzle: PuzzleArray;
+}): GameState;
+
+export function updateStateWithExtension({
+  index,
+  currentGameState,
+  puzzle,
+}: {
+  index: number;
+  currentGameState: PathState;
+  puzzle: PuzzleArray;
+}): PathState;
+
+export function updateStateWithExtension({
+  index,
+  currentGameState,
+  puzzle,
+}: {
+  index: number;
+  currentGameState: GameState | PathState;
+  puzzle: PuzzleArray;
+}): GameState | PathState {
   const path = currentGameState.path;
   const lastIndexInPath = path[path.length - 1];
 

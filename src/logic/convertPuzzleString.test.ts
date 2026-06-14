@@ -99,6 +99,7 @@ describe("convertPuzzleToString", () => {
 
   test("throws an error for an unknown feature", () => {
     const puzzle = [features.basic, "unknown"];
+    // @ts-expect-error intentionally testing invalid input
     expect(() => convertPuzzleToString(puzzle)).toThrow(
       'Feature "unknown" not found in featureToLetterLookup',
     );
@@ -242,13 +243,14 @@ describe("convertPuzzleAndCiviliansToString", () => {
       features.terminal4,
       features.ship,
     ];
-    const civilians = [];
+    const civilians: number[] = [];
     const result = convertPuzzleAndCiviliansToString(puzzle, civilians);
     expect(result).toBe("1BESFJPKDZYXWH");
   });
 
   test("throws an error for an unknown feature", () => {
     const puzzle = [features.basic, "unknown"];
+    // @ts-expect-error intentionally testing invalid input
     expect(() => convertPuzzleAndCiviliansToString(puzzle, [])).toThrow(
       'Feature "unknown" not found in featureToLetterLookup',
     );
@@ -405,7 +407,7 @@ describe("convertPuzzleAndCiviliansToPuzzle", () => {
       features.terminal4,
       features.ship,
     ];
-    const civilians = [];
+    const civilians: number[] = [];
     const outputPuzzle = convertPuzzleAndCiviliansToPuzzle(puzzle, civilians);
     expect(outputPuzzle).toEqual(puzzle);
   });

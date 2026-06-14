@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 test("featureToLetterLookup should have one entry for each feature in features", () => {
-  const featureKeys = Object.keys(features);
+  const featureKeys = Object.keys(features) as (keyof typeof features)[];
   featureKeys.forEach((feature) => {
     expect(featureToLetterLookup).toHaveProperty(features[feature]);
   });

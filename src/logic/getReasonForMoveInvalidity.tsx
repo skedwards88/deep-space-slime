@@ -1,11 +1,18 @@
-import React from "react";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {features, numColumns, numRows} from "./constants";
 import {allCiviliansOnPodsQ} from "./allCiviliansOnPodsQ";
 import {civilianPushValidQ} from "./civilianPushValidQ";
 import {getMaxPowerCount} from "./getMaxPowerCount";
+import type {GameState} from "../Types";
+import type {ReactNode} from "react";
 
-export function getReasonForMoveInvalidity({index, currentGameState}) {
+export function getReasonForMoveInvalidity({
+  index,
+  currentGameState,
+}: {
+  index: number;
+  currentGameState: GameState;
+}): ReactNode {
   const path = currentGameState.path;
   const lastIndexInPath = path[path.length - 1];
 
@@ -17,7 +24,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     return;
   }
 
-  let message = "";
+  let message: ReactNode = "";
 
   // The space is an 'outer' space
   if (puzzle[index] === features.outer) {
@@ -75,7 +82,7 @@ export function getReasonForMoveInvalidity({index, currentGameState}) {
     ];
   if (
     puzzle[index] === features.exit &&
-    !allCiviliansOnPodsQ(currentCivilians, puzzle)
+    !allCiviliansOnPodsQ(puzzle, currentCivilians)
   ) {
     message =
       "I won't let you out until you save all of the civilians. Push each civilian onto an escape pod!";

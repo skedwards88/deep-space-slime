@@ -1,4 +1,3 @@
-import React from "react";
 import {useShareContext} from "./ShareContextProvider";
 
 export default function Share({
@@ -10,10 +9,19 @@ export default function Share({
   className,
   buttonText,
   origin = "unknown share",
-}) {
+}: {
+  appName: string;
+  text: string;
+  url: string;
+  seed?: string;
+  id?: string;
+  className: string;
+  buttonText: string;
+  origin?: string;
+}): React.JSX.Element {
   const {shareAndCapHints} = useShareContext();
 
-  if (navigator.canShare) {
+  if ("canShare" in navigator) {
     return (
       <button
         id={id}

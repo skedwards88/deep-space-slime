@@ -42,6 +42,7 @@ describe("pushCivilians", () => {
   });
 
   test("undefined civilians just return undefined", () => {
+    // @ts-expect-error intentionally testing invalid input
     const result = pushCivilians({
       pushedFrom: 0,
       pushedCivilian: 1,

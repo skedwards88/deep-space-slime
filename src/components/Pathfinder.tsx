@@ -1,5 +1,6 @@
 import React from "react";
 import {getSlimeDirections} from "../logic/getSlimeDirection";
+import type {AllDirections} from "../logic/getSlimeDirection";
 import {
   features,
   numColumns,
@@ -7,8 +8,21 @@ import {
   customStationName,
 } from "../logic/constants";
 import {useBuilderContext} from "./BuilderContextProvider";
+import type {DisplayState, FeatureValue} from "../Types";
 
-function PuzzleSquare({feature, index, visited, current, direction}) {
+function PuzzleSquare({
+  feature,
+  index,
+  visited,
+  current,
+  direction,
+}: {
+  feature: FeatureValue;
+  index: number;
+  visited: boolean;
+  current: boolean;
+  direction: AllDirections;
+}): React.JSX.Element {
   let featureClass;
 
   if (Number.isInteger(Number.parseInt(feature))) {
@@ -27,7 +41,11 @@ function PuzzleSquare({feature, index, visited, current, direction}) {
   );
 }
 
-function Pathfinder({setDisplay}) {
+function Pathfinder({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {
     builderState: {puzzleWithCivilians, roomName},
     maxPathsToFind,
@@ -41,7 +59,7 @@ function Pathfinder({setDisplay}) {
   //Pathfinder will be updated once the calculation is complete.
   const numSolutions = allBuilderPaths.length;
 
-  const [currentSolution, setCurrentSolution] = React.useState(0);
+  const [currentSolution, setCurrentSolution] = React.useState<number>(0);
 
   const path = allBuilderPaths[currentSolution] || [];
   const lastIndexInPath = path[path.length - 1];

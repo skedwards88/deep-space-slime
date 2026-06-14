@@ -1,6 +1,14 @@
 // Given an index in a flat array and the dimensions describing a 2D representation of the array,
 // return the indexes that are adjacent to the input index (top/down/left/right, no diagonals).
-export function getAdjacentIndexes({index, numColumns, numRows}) {
+export function getAdjacentIndexes({
+  index,
+  numColumns,
+  numRows,
+}: {
+  index: number;
+  numColumns: number;
+  numRows: number;
+}): number[] {
   // Error if the index is outside of the grid
   if (index >= numColumns * numRows) {
     throw new Error(
@@ -17,7 +25,7 @@ export function getAdjacentIndexes({index, numColumns, numRows}) {
     [0, -1],
   ];
 
-  let adjacentIndexes = [];
+  const adjacentIndexes = [];
 
   for (const [rowDiff, columnDiff] of rowColDiffs) {
     const adjacentRow = row + rowDiff;

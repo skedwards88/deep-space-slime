@@ -3,7 +3,15 @@ import {numColumns, numRows} from "./constants";
 import {indexesAdjacentQ} from "./indexesAdjacentQ";
 import {getIndexBetween} from "./getIndexBetween";
 
-export function pushCivilians({pushedFrom, pushedCivilian, civilians}) {
+export function pushCivilians({
+  pushedFrom,
+  pushedCivilian,
+  civilians,
+}: {
+  pushedFrom: number;
+  pushedCivilian: number;
+  civilians: number[];
+}): number[] {
   if (!civilians) {
     return civilians;
   }
@@ -12,9 +20,10 @@ export function pushCivilians({pushedFrom, pushedCivilian, civilians}) {
     return civilians;
   }
 
-  let newCivilians = [...civilians];
+  const newCivilians = [...civilians];
 
-  while (pushedCivilian !== undefined) {
+  let pushingComplete = false;
+  while (!pushingComplete) {
     // assume that the push uses a blaster if the indexes are not adjacent (ignoring the portal case since civilians can't be on portals)
     const isBlasterPush = !indexesAdjacentQ({
       indexA: pushedFrom,
@@ -53,7 +62,7 @@ export function pushCivilians({pushedFrom, pushedCivilian, civilians}) {
       pushedFrom = pushedCivilian;
       pushedCivilian = civilianEndIndex;
     } else {
-      pushedCivilian = undefined;
+      pushingComplete = true;
     }
   }
 

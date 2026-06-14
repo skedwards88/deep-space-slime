@@ -1,7 +1,9 @@
-import React from "react";
+import type {BuilderPayload} from "../logic/builderReducer";
 import {convertStringToPuzzle} from "../logic/convertPuzzleString";
 import {generateSeed} from "../logic/generateSeed";
+import type {DisplayState} from "../Types";
 import {useBuilderContext} from "./BuilderContextProvider";
+import type {SavedCustomBuildType} from "./BuilderContextProvider";
 import {useShareContext} from "./ShareContextProvider";
 
 function BuilderEntry({
@@ -15,7 +17,22 @@ function BuilderEntry({
   setSavedCustomBuilds,
   savedCustomBuilds,
   setCustomBuildIndexToDelete,
-}) {
+}: {
+  encodedPuzzle: string;
+  roomName: string;
+  isValid: boolean;
+  hasSolutions: boolean;
+  index: number;
+  dispatchBuilderState: React.Dispatch<BuilderPayload>;
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  setSavedCustomBuilds: React.Dispatch<
+    React.SetStateAction<SavedCustomBuildType[]>
+  >;
+  savedCustomBuilds: SavedCustomBuildType[];
+  setCustomBuildIndexToDelete: React.Dispatch<
+    React.SetStateAction<number | null>
+  >;
+}): React.JSX.Element {
   const {shareAndCapHints} = useShareContext();
 
   return (
@@ -26,7 +43,7 @@ function BuilderEntry({
         className="controlButton"
         disabled={savedCustomBuilds.length >= 400}
         onClick={() => {
-          let newSavedBuilds = savedCustomBuilds.slice();
+          const newSavedBuilds = savedCustomBuilds.slice();
           newSavedBuilds.splice(index, 0, savedCustomBuilds[index]);
           setSavedCustomBuilds(newSavedBuilds);
         }}
@@ -53,7 +70,7 @@ function BuilderEntry({
           onClick={() => {
             const puzzleWithCivilians = convertStringToPuzzle(encodedPuzzle);
             // Share (or if can't share, show link to copy)
-            if (navigator.canShare) {
+            if ("canShare" in navigator) {
               shareAndCapHints({
                 appName: "Deep Space Slime",
                 text: "I created this custom Deep Space Slime puzzle. Give it a try!",
@@ -102,7 +119,11 @@ function BuilderEntry({
   );
 }
 
-export default function BuilderOverview({setDisplay}) {
+export default function BuilderOverview({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {
     dispatchBuilderState,
     savedCustomBuilds,

@@ -1,7 +1,12 @@
 import {features} from "./constants";
-import React from "react";
+import type {ReactNode} from "react";
+import type {PuzzleArray} from "../Types";
 
-export function validateCustomPuzzle({puzzleWithCivilians}) {
+export function validateCustomPuzzle({
+  puzzleWithCivilians,
+}: {
+  puzzleWithCivilians: PuzzleArray;
+}): {isValid: boolean; message: ReactNode} {
   // The puzzle must have exactly one start
   const numberStarts = puzzleWithCivilians.filter(
     (feature) => feature === features.start,

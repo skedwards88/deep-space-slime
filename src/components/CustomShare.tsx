@@ -1,10 +1,14 @@
-import React from "react";
 import {convertPuzzleToString} from "../logic/convertPuzzleString";
 import {generateSeed} from "../logic/generateSeed";
+import type {DisplayState} from "../Types";
 import {useBuilderContext} from "./BuilderContextProvider";
 import {useShareContext} from "./ShareContextProvider";
 
-export default function CustomShare({setDisplay}) {
+export default function CustomShare({
+  setDisplay,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+}): React.JSX.Element {
   const {
     builderState: {roomName, puzzleWithCivilians},
   } = useBuilderContext();

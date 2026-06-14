@@ -16,11 +16,21 @@ import {
   customStartingText,
   customRobotMood,
 } from "./constants";
+import type {GameState, PreInitGameState, PuzzleId} from "../Types";
+import {getFromStorage} from "./safeStorage";
 
-function customInit({useSaved, customSeed, customIndex}) {
+function customInit({
+  useSaved,
+  customSeed,
+  customIndex,
+}: {
+  useSaved: boolean;
+  customSeed: string;
+  customIndex?: number | undefined;
+}): PreInitGameState | GameState {
   // Return the saved state if we can
   let savedState = useSaved
-    ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
+    ? getFromStorage<GameState>("deepSpaceSlimeSavedState")
     : undefined;
 
   if (savedState && validateSavedState(savedState)) {
@@ -67,10 +77,15 @@ function customInit({useSaved, customSeed, customIndex}) {
     console.error("Error generating custom puzzle from query: " + error);
     // If couldn't generate a puzzle, use the non-custom init instead
     if (!useSaved) {
-      savedState = JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"));
+      savedState = getFromStorage<GameState>("deepSpaceSlimeSavedState");
     }
-    let puzzleID = firstPuzzleId;
-    if (savedState?.puzzleID && savedState.puzzleID in puzzles) {
+    // The != "custom" check is redundant with the puzzleID in puzzles check but is required due to TS limitations
+    let puzzleID: PuzzleId = firstPuzzleId;
+    if (
+      savedState?.puzzleID &&
+      savedState.puzzleID != "custom" &&
+      savedState.puzzleID in puzzles
+    ) {
       puzzleID = savedState.puzzleID;
     }
     return nonCustomInit({useSaved, puzzleID});
@@ -91,8 +106,14 @@ function customInit({useSaved, customSeed, customIndex}) {
   };
 }
 
-function nonCustomInit({useSaved, puzzleID}) {
-  if (!(puzzleID in puzzles)) {
+function nonCustomInit({
+  useSaved,
+  puzzleID,
+}: {
+  useSaved: boolean;
+  puzzleID?: PuzzleId | undefined;
+}): PreInitGameState | GameState {
+  if (!puzzleID || !(puzzleID in puzzles)) {
     puzzleID = firstPuzzleId;
   }
 
@@ -100,10 +121,14 @@ function nonCustomInit({useSaved, puzzleID}) {
 
   // Return the saved state if we can
   const savedState = useSaved
-    ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))
+    ? getFromStorage<GameState>("deepSpaceSlimeSavedState")
     : undefined;
 
-  if (savedState && validateSavedState(savedState)) {
+  if (
+    savedState &&
+    validateSavedState(savedState) &&
+    savedState.puzzleID != "custom"
+  ) {
     return {
       ...savedState,
       mouseIsActive: false,
@@ -120,12 +145,18 @@ function nonCustomInit({useSaved, puzzleID}) {
 
   // If the saved state wasn't valid but we were instructed to use the saved state,
   // use the puzzleID from the saved state if possible
-  if (useSaved && savedState?.puzzleID && savedState?.puzzleID in puzzles) {
+  // The != "custom" check is redundant with the puzzleID in puzzles check but is required due to TS limitations
+  if (
+    useSaved &&
+    savedState?.puzzleID &&
+    savedState?.puzzleID != "custom" &&
+    savedState?.puzzleID in puzzles
+  ) {
     try {
       puzzleData = puzzles[savedState.puzzleID];
       puzzleID = savedState.puzzleID;
     } catch (error) {
-      error;
+      console.log(error);
     }
   }
 
@@ -134,7 +165,6 @@ function nonCustomInit({useSaved, puzzleID}) {
   );
   return {
     isCustom: false,
-    customIndex: undefined,
     puzzleID,
     station: puzzleData.station,
     roomName: puzzleData.roomName,
@@ -153,20 +183,52 @@ export function gameInit({
   isCustom = false,
   customSeed,
   customIndex,
-}) {
+}: // If isCustom is false/unspecified and useSaved is false, optionally need puzzleID
+| {
+      isCustom?: false;
+      useSaved: false;
+      puzzleID?: PuzzleId;
+      customSeed?: string | null;
+      customIndex?: number;
+    }
+  // If isCustom is true, need customSeed and optionally customIndex
+  | {
+      isCustom: true;
+      customSeed: string;
+      customIndex?: number;
+      useSaved?: boolean;
+      puzzleID?: PuzzleId;
+    }
+  // If isCustom is false/unspecified and useSaved is true/unspecified:
+  // - If saved puzzle is not custom, optionally need puzzleID
+  // - If saved puzzle is custom, need customSeed and optionally customIndex
+  | {
+      isCustom?: false;
+      useSaved?: true;
+      puzzleID?: PuzzleId;
+      customSeed?: string | null;
+      customIndex?: number;
+    }
+  | {
+      isCustom?: false;
+      useSaved?: true;
+      customSeed: string;
+      customIndex?: number;
+      puzzleID?: PuzzleId;
+    }): GameState {
   const savedCustom = useSaved
-    ? JSON.parse(localStorage.getItem("deepSpaceSlimeSavedState"))?.isCustom
+    ? getFromStorage<GameState>("deepSpaceSlimeSavedState")?.isCustom
     : false;
 
   const baseState =
-    isCustom || savedCustom
+    (isCustom || savedCustom) && customSeed
       ? customInit({useSaved, customSeed, customIndex})
       : nonCustomInit({useSaved, puzzleID});
 
   // Use this as a proxy to see if using the saved state and can return here
   // (powerCount is only populated after this point for brand new games)
   if ("powerCount" in baseState) {
-    return baseState;
+    return baseState as GameState;
   }
 
   const puzzle = baseState.puzzle;
