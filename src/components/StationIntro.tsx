@@ -1,9 +1,15 @@
-import React from "react";
 import ControlBar from "./ControlBar";
 import {useGameContext} from "./GameContextProvider";
 import {stationIntros} from "../logic/stationIntros";
+import type {DisplayState} from "../Types";
 
-function StationIntro({setDisplay, audioRef}) {
+function StationIntro({
+  setDisplay,
+  audioRef,
+}: {
+  setDisplay: React.Dispatch<React.SetStateAction<DisplayState>>;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+}): React.JSX.Element {
   const {gameState} = useGameContext();
 
   const {introText, art} = stationIntros[gameState.station];

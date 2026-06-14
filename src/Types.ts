@@ -84,4 +84,5 @@ export type DisplayState =
   | "keyExplanation"
   | "map"
   | "powerExplanation"
-  | "pwaInstall";
+  | "pwaInstall"
+  | "stationIntro";
