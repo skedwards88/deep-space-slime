@@ -63,6 +63,7 @@ function handleMovement({
   setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
+  setErrorIndex,
   completedLevels,
   setCompletedLevels,
   dispatchGameState,
@@ -75,6 +76,7 @@ function handleMovement({
   setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
   setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
   setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setErrorIndex: React.Dispatch<React.SetStateAction<number | null>>;
   completedLevels: PuzzleId[];
   setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
   dispatchGameState: React.Dispatch<GamePayload>;
@@ -108,6 +110,8 @@ function handleMovement({
       index,
     });
 
+    setErrorIndex(null);
+
     if (
       isMovingToExit &&
       !gameState.isCustom &&
@@ -129,6 +133,7 @@ function handleMovement({
       });
       setMessageOverride(errorMessage);
       setRobotMoodOverride("error-sinister");
+      setErrorIndex(index);
     }
   }
 
@@ -148,6 +153,7 @@ function handlePointerDown({
   setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
+  setErrorIndex,
   completedLevels,
   setCompletedLevels,
 }: {
@@ -162,6 +168,7 @@ function handlePointerDown({
   setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
   setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
   setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setErrorIndex: React.Dispatch<React.SetStateAction<number | null>>;
   completedLevels: PuzzleId[];
   setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
 }): void {
@@ -182,6 +189,7 @@ function handlePointerDown({
         setRobotMoodOverride,
         setHintWaitIsOver,
         setHintIndex,
+        setErrorIndex,
         completedLevels,
         setCompletedLevels,
         dispatchGameState,
@@ -208,6 +216,7 @@ function handlePointerEnter({
   setRobotMoodOverride,
   setHintWaitIsOver,
   setHintIndex,
+  setErrorIndex,
   completedLevels,
   setCompletedLevels,
 }: {
@@ -223,6 +232,7 @@ function handlePointerEnter({
   setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
   setHintWaitIsOver: React.Dispatch<React.SetStateAction<boolean>>;
   setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setErrorIndex: React.Dispatch<React.SetStateAction<number | null>>;
   completedLevels: PuzzleId[];
   setCompletedLevels: React.Dispatch<React.SetStateAction<PuzzleId[]>>;
 }): void {
@@ -246,6 +256,7 @@ function handlePointerEnter({
       setRobotMoodOverride,
       setHintWaitIsOver,
       setHintIndex,
+      setErrorIndex,
       completedLevels,
       setCompletedLevels,
       dispatchGameState,
@@ -266,7 +277,9 @@ function PuzzleSquare({
   setMessageOverride,
   setRobotMoodOverride,
   setHintIndex,
+  setErrorIndex,
   hintIndex,
+  errorIndex,
   hasCivilian,
   isInPortal,
   nextNumber,
@@ -282,7 +295,9 @@ function PuzzleSquare({
   setMessageOverride: React.Dispatch<React.SetStateAction<ReactNode>>;
   setRobotMoodOverride: React.Dispatch<React.SetStateAction<RobotMood | null>>;
   setHintIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setErrorIndex: React.Dispatch<React.SetStateAction<number | null>>;
   hintIndex: number | null;
+  errorIndex: number | null;
   hasCivilian: boolean;
   isInPortal: boolean;
   nextNumber: number;
@@ -293,8 +308,6 @@ function PuzzleSquare({
   const {mouseIsActive, path, validNextIndexes} = gameState;
 
   const validNext = validNextIndexes.includes(index);
-
-  const isHint = index === hintIndex;
 
   let featureClass: string;
 
@@ -317,8 +330,8 @@ function PuzzleSquare({
       className={`puzzleSquare ${featureClass} ${current ? "person" : ""} ${
         visited ? "visited" : ""
       } ${direction ? direction : ""} ${validNext ? "validNext" : ""} ${
-        isHint ? "hint" : ""
-      } ${hasCivilian ? "civilian" : ""}`}
+        index === hintIndex ? "hint" : ""
+      }${index === errorIndex ? "error" : ""} ${hasCivilian ? "civilian" : ""}`}
       {...(feature !== features.outer && {
         onPointerDown: (event): void => {
           handlePointerDown({
@@ -333,6 +346,7 @@ function PuzzleSquare({
             setRobotMoodOverride,
             setHintWaitIsOver,
             setHintIndex,
+            setErrorIndex,
             completedLevels,
             setCompletedLevels,
           });
@@ -355,6 +369,7 @@ function PuzzleSquare({
               setRobotMoodOverride,
               setHintWaitIsOver,
               setHintIndex,
+              setErrorIndex,
               completedLevels,
               setCompletedLevels,
             });
@@ -584,6 +599,7 @@ function Game({
   const hintWaitTime = 6; // seconds
 
   const [hintIndex, setHintIndex] = React.useState<number | null>(null);
+  const [errorIndex, setErrorIndex] = React.useState<number | null>(null);
 
   const directions = getSlimeDirections({
     path,
@@ -606,7 +622,9 @@ function Game({
       setMessageOverride={setMessageOverride}
       setRobotMoodOverride={setRobotMoodOverride}
       setHintIndex={setHintIndex}
+      setErrorIndex={setErrorIndex}
       hintIndex={hintIndex}
+      errorIndex={errorIndex}
       hasCivilian={currentCivilians.includes(index)}
       isInPortal={isInPortal}
       nextNumber={gameState.numberCount + 1}
@@ -712,6 +730,7 @@ function Game({
             ? (): void => {
                 const [newPath, hint] = getHint(path, allGamePaths);
                 setHintIndex(hint);
+                setErrorIndex(null);
                 if (!arraysMatchQ(newPath, path)) {
                   dispatchGameState({action: "overwritePath", newPath});
                 }

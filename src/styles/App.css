@@ -605,6 +605,13 @@ button.feature {
   animation: boxShadowBlink 1s step-start infinite;
 }
 
+.puzzleSquare.error {
+  position: relative;
+  box-shadow:
+    0 0 10px 5px rgb(233 31 31 / 80%),
+    inset 0 0 10px 10px rgb(233 31 31 / 80%);
+}
+
 .puzzleSquare.visited {
   position: relative;
 }
