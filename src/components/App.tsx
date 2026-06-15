@@ -102,6 +102,8 @@ export default function App(): React.JSX.Element {
         <PWAInstall
           setDisplay={setDisplay}
           pwaLink={"https://deepspaceslime.com"}
+          userId={userId}
+          sessionId={sessionId}
         ></PWAInstall>
       );
       break;
