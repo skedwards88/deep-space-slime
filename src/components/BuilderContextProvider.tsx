@@ -14,7 +14,10 @@ import {
   convertPuzzleToPuzzleAndCivilians,
 } from "../logic/convertPuzzleString";
 import type {BuilderState} from "../Types";
-import {getFromStorage, saveToStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
+import {
+  getFromStorage,
+  saveToStorage,
+} from "@skedwards88/shared-components/src/logic/safeStorage";
 
 export type SavedCustomBuildType = [string, string, boolean, boolean];
 
