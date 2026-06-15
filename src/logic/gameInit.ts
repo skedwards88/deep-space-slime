@@ -17,7 +17,7 @@ import {
   customRobotMood,
 } from "./constants";
 import type {GameState, PreInitGameState, PuzzleId} from "../Types";
-import {getFromStorage} from "./safeStorage";
+import {getFromStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
 
 function customInit({
   useSaved,

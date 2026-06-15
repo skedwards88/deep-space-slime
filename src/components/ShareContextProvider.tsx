@@ -2,7 +2,7 @@ import {createContext, useContext, useState, useEffect} from "react";
 import {getSeedFromDate} from "@skedwards88/shared-components/src/logic/getSeedFromDate";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
-import {getFromStorage} from "../logic/safeStorage";
+import {getFromStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
 
 type ShareContextType = {
   hintsRemaining: number;

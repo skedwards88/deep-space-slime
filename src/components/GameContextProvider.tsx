@@ -15,7 +15,7 @@ import {puzzles} from "../logic/puzzles";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
 import {sendAnalyticsCF} from "@skedwards88/shared-components/src/logic/sendAnalyticsCF";
 import type {GameState, PuzzleId} from "../Types";
-import {getFromStorage, saveToStorage} from "../logic/safeStorage";
+import {getFromStorage, saveToStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
 
 type GamePathCalculationStatusType = "idle" | "calculating" | "done";
 
