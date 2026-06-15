@@ -4,7 +4,7 @@
     "target": "es6",
     "module": "esnext",
     "lib": ["es2021", "dom"],
-    "types": ["jest"],
+    "types": ["jest", "node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
