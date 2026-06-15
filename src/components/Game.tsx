@@ -663,7 +663,7 @@ function Game({
 
   // Change setHintWaitIsOver to true if the path is unchanged for some time
   React.useEffect(() => {
-    let timeout: number;
+    let timeout: NodeJS.Timeout;
     if (
       gamePathCalculationStatus === "done" &&
       allGamePaths.length > 0 &&
