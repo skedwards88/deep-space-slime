@@ -11,6 +11,7 @@ import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
 import CampaignOver from "./CampaignOver";
+import type {BeforeInstallPromptEvent} from "@skedwards88/shared-components/src/logic/handleInstall";
 import {
   handleAppInstalled,
   handleBeforeInstallPrompt,
@@ -31,7 +32,8 @@ export default function App(): React.JSX.Element {
   // Install handling setup
   // *****
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
-  const [installPromptEvent, setInstallPromptEvent] = React.useState<Event>();
+  const [installPromptEvent, setInstallPromptEvent] =
+    React.useState<Event | null>(null);
   const [showInstallButton, setShowInstallButton] =
     React.useState<boolean>(true);
 
@@ -92,7 +94,7 @@ export default function App(): React.JSX.Element {
           setDisplay={setDisplay}
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent}
+          installPromptEvent={installPromptEvent as BeforeInstallPromptEvent}
           userId={userId}
           sessionId={sessionId}
         ></InstallOverview>
@@ -103,6 +105,8 @@ export default function App(): React.JSX.Element {
         <PWAInstall
           setDisplay={setDisplay}
           pwaLink={"https://deepspaceslime.com"}
+          userId={userId}
+          sessionId={sessionId}
         ></PWAInstall>
       );
       break;

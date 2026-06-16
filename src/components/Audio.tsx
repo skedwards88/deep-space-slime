@@ -1,5 +1,5 @@
 import React from "react";
-import {getFromStorage} from "../logic/safeStorage";
+import {getFromStorage} from "@skedwards88/shared-components/src/logic/safeStorage";
 
 function handlePlayPause(
   isPlaying: boolean,

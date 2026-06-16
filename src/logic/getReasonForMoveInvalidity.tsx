@@ -171,5 +171,5 @@ export function getReasonForMoveInvalidity({
   }
 
   console.error("undetermined invalidity");
-  return "That move is invalid, but I'm not sure why. Can you please send a screenshot and indicate what space you clicked on to SECTgames@gmail.com ?";
+  return "That move is invalid, but I'm not sure why. Can you please send a screenshot and indicate what space you clicked on to TwistedTrailGames@gmail.com ?";
 }
