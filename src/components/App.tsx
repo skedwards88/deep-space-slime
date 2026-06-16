@@ -22,6 +22,7 @@ import Pathfinder from "./Pathfinder";
 import CustomShare from "./CustomShare";
 import musicFile from "../music/compressed.mp3";
 import {useMetadataContext} from "@skedwards88/shared-components/src/components/MetadataContextProvider";
+import StationIntro from "./StationIntro";
 import type {DisplayState} from "../Types";
 
 export default function App(): React.JSX.Element {
@@ -149,6 +150,14 @@ export default function App(): React.JSX.Element {
     case "confirmDelete":
       componentToRender = (
         <ConfirmDelete setDisplay={setDisplay}></ConfirmDelete>
+      );
+      break;
+    case "stationIntro":
+      componentToRender = (
+        <StationIntro
+          setDisplay={setDisplay}
+          audioRef={audioRef}
+        ></StationIntro>
       );
       break;
     case "campaignOver":

@@ -856,6 +856,30 @@ Putting the svg and gradient animation on separate pseudo elements works.
   display: block;
 }
 
+.stationArt {
+  object-fit: cover;
+  object-position: center;
+  height: calc(var(--square-size) * 9 + 8 * 2px);
+  margin: calc(var(--square-size) * 0.5);
+  place-self: center;
+  grid-area: puzzle;
+  transform: scale(2);
+  transform-origin: top left;
+  animation: pan 3s ease-in-out forwards;
+}
+
+@keyframes pan {
+  from {
+    transform: scale(2);
+    transform-origin: top left;
+  }
+
+  to {
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
 /* Large screen, landscape */
 @media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
   html {
