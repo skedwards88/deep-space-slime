@@ -1,13 +1,69 @@
-<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-  <g>
-   <title>Layer 1</title>
-   <ellipse stroke="#ffffff" stroke-width="30" ry="69" rx="87" id="svg_1" cy="449" cx="238" fill="#fff"/>
-   <ellipse stroke="#ffffff" stroke-width="30" ry="69" rx="87" id="svg_2" cy="397" cx="507" fill="#fff"/>
-   <line stroke="#ffffff" id="svg_3" y2="98.00001" x2="273" y1="432" x1="323" stroke-width="30" fill="none"/>
-   <line stroke="#ffffff" id="svg_5" y2="41.00001" x2="540" y1="375" x1="590" stroke-width="30" fill="none"/>
-   <line stroke="#ffffff" id="svg_6" y2="46" x2="556" y1="95" x1="257" stroke-width="30" fill="none"/>
-   <line transform="rotate(45 411.836 289)" stroke="#ffffff" id="svg_14" y2="289" x2="736.21569" y1="289" x1="87.45584" stroke-width="60" fill="none"/>
-   <line transform="rotate(-45 411.836 289)" stroke="#ffffff" id="svg_15" y2="289" x2="736.21569" y1="289" x1="87.45584" stroke-width="60" fill="none"/>
+<svg
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="mute.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.76058651"
+     inkscape:cx="334.61019"
+     inkscape:cy="375.36821"
+     inkscape:window-width="1712"
+     inkscape:window-height="970"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 56.390856,167.03869 c 0,-118.44759 0,-118.44759 0,-118.44759 L 161.26617,16.812479 V 150.94303"
+       id="path5" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 11.827495,51.303091 C 189.23992,125.051 189.23992,125.051 189.23992,125.051"
+       id="path7" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 10.602593,132.53752 C 189.05862,42.439835 189.05862,42.439835 189.05862,42.439835"
+       id="path8" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:19.9999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path6-5"
+       cx="141.2562"
+       cy="150.52139"
+       rx="17.12392"
+       ry="15.818838" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:19.9999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path6-5-0"
+       cx="36.544041"
+       cy="167.81834"
+       rx="17.12392"
+       ry="15.818838" />
   </g>
- </svg>
+</svg>
