@@ -1,7 +1,7 @@
 {
   "name": "deep-space-slime",
   "displayName": "Deep Space Slime",
-  "version": "3.0.45",
+  "version": "3.0.46",
   "description": "",
   "main": "index.js",
   "scripts": {
