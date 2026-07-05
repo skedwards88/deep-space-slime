@@ -23,11 +23,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.54136005"
-     inkscape:cx="145.00516"
-     inkscape:cy="92.359974"
+     inkscape:zoom="0.61699691"
+     inkscape:cx="428.68934"
+     inkscape:cy="509.72703"
      inkscape:window-width="1712"
-     inkscape:window-height="1073"
+     inkscape:window-height="980"
      inkscape:window-x="0"
      inkscape:window-y="34"
      inkscape:window-maximized="0"
@@ -44,14 +44,14 @@
        id="rect8-5"
        width="124.03023"
        height="87.391319"
-       x="37.791882"
-       y="50.525291" />
+       x="38.776951"
+       y="55.614189" />
     <rect
-       style="fill:#000000;stroke:#000000;stroke-width:12;stroke-linecap:round;stroke-linejoin:round"
+       style="fill:#000000;stroke:#000000;stroke-width:12;stroke-linecap:butt;stroke-linejoin:miter"
        id="rect1"
-       width="151.66109"
+       width="127.30444"
        height="3.0117095"
-       x="23.663431"
-       y="71.42054" />
+       x="37.104008"
+       y="76.509438" />
   </g>
 </svg>
