@@ -33,14 +33,14 @@ export default function App(): React.JSX.Element {
   // *****
   // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
   const [installPromptEvent, setInstallPromptEvent] =
-    React.useState<Event | null>(null);
+    React.useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallButton, setShowInstallButton] =
     React.useState<boolean>(true);
 
   React.useEffect(() => {
     // Need to store the function in a variable so that
     // the add and remove actions can reference the same function
-    const listener = (event: Event): void =>
+    const listener = (event: BeforeInstallPromptEvent): void =>
       handleBeforeInstallPrompt(
         event,
         setInstallPromptEvent,
@@ -94,7 +94,7 @@ export default function App(): React.JSX.Element {
           setDisplay={setDisplay}
           setInstallPromptEvent={setInstallPromptEvent}
           showInstallButton={showInstallButton}
-          installPromptEvent={installPromptEvent as BeforeInstallPromptEvent}
+          installPromptEvent={installPromptEvent}
           userId={userId}
           sessionId={sessionId}
         ></InstallOverview>
