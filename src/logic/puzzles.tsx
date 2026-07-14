@@ -54,10 +54,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        Drat. The humans implemented security doors to contain the slime. You
-        need a <span id="keyIcon" className="smallInfoIcon"></span> to open the{" "}
-        <span id="doorIcon" className="smallInfoIcon"></span>. It&apos;s
-        definitely not suspicious that I can&apos;t override the lock...
+        You need a <span id="keyIcon" className="smallInfoIcon"></span> to open
+        the <span id="doorIcon" className="smallInfoIcon"></span>.
       </p>
     ),
     winText: "Look at us. Breaking and entering.",
@@ -133,9 +131,7 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        The humans developed{" "}
-        <span id="blasterIcon" className="smallInfoIcon"></span> to detroy the
-        slime. If you&apos;ve collected a{" "}
+        If you&apos;ve collected a{" "}
         <span id="blasterIcon" className="smallInfoIcon"></span>, you can blast
         straight across a slime trail to a slime-free space on the other side!
       </p>
@@ -255,12 +251,9 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        The humans built dimensional portals{" "}
-        <span id="portalIcon" className="smallInfoIcon"></span> to escape the
-        slime. You can jump from one{" "}
-        <span id="portalIcon" className="smallInfoIcon"></span> to another. It
-        turns out the slime can also travel through portals, so it wasn&apos;t a
-        great escape strategy.
+        You can jump from one{" "}
+        <span id="portalIcon" className="smallInfoIcon"></span> to another. Give
+        it a try!
       </p>
     ),
     winText:
@@ -361,10 +354,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        The humans build this security system to stop evil bots. Unfortunately,
-        it also stops good bots like me. You need to hack the terminals in
-        order, starting with{" "}
-        <span id="number1Icon" className="smallInfoIcon"></span>.
+        You need to hack the terminals by moving through them in order, starting
+        with <span id="number1Icon" className="smallInfoIcon"></span>.
       </p>
     ),
     winText: "Having a human companion comes in handy.",
@@ -497,10 +488,9 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Lookout",
     startingText: (
       <p>
-        Uh oh... the slime contaminated the engines. Self destruction is totally
-        imminent! Push each{" "}
-        <span id="civilianIcon" className="smallInfoIcon"></span> (crew) to a{" "}
-        <span id="podIcon" className="smallInfoIcon"></span> (escape pod).
+        Push each <span id="civilianIcon" className="smallInfoIcon"></span>{" "}
+        (crew) to a <span id="podIcon" className="smallInfoIcon"></span> (escape
+        pod).
       </p>
     ),
     winText: (
@@ -795,8 +785,7 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
   "campaign/monolog/the_slime": {
     station: "Monolog",
     roomName: "The Slime",
-    startingText:
-      "Here's a secret. The trail of slime hasn't been chasing you. YOU are the slime! I infected you and then tricked you into spreading slime across the ship.",
+    startingText: "I've always wanted to do a villian monolog!",
     winText:
       "Continue into the bowels of the ship, and I'll tell you another secret...",
     robotStartMood: "gloating",

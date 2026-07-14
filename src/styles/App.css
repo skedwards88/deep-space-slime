@@ -363,7 +363,8 @@ button.feature {
   background-image: url("../images/icons/blaster.svg");
 }
 
-#puzzle {
+#puzzle,
+.stationArtWrapper {
   grid-area: puzzle;
   touch-action: none;
   display: grid;
@@ -854,6 +855,55 @@ Putting the svg and gradient animation on separate pseudo elements works.
 
 .blockElement {
   display: block;
+}
+
+.stationArtWrapper {
+  /* In addition to the #puzzle styling: */
+  overflow: hidden;
+  place-self: center;
+  align-items: center;
+}
+
+.stationArt {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: pan 6s ease-in-out forwards;
+}
+
+.stationArt.Quarantine {
+  --transform-origin: bottom right;
+}
+
+.stationArt.BioLab,
+.stationArt.Bunker,
+.stationArt.Core,
+.stationArt.Security {
+  --transform-origin: bottom left;
+}
+
+.stationArt.PhysicsLab,
+.stationArt.Monolog {
+  --transform-origin: bottom center;
+}
+
+.stationArt.Mastery {
+  --transform-origin: center;
+}
+
+@keyframes pan {
+  from {
+    transform: scale(2);
+    transform-origin: var(--transform-origin);
+  }
+
+  to {
+    transform: scale(1);
+    transform-origin: center;
+  }
 }
 
 /* Large screen, landscape */
