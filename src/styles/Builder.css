@@ -86,7 +86,7 @@ button.builderFeatureButton.active {
 }
 
 .builderFeatureButton.start {
-  background-image: url("../images/icons/start.svg");
+  background-image: url("../images/icons/person.svg");
   background-color: rgb(200 190 78);
 }
 

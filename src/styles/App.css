@@ -385,9 +385,13 @@ button.feature {
   box-sizing: border-box;
 }
 
-.puzzleSquare.start,
-#startIcon {
-  background-image: url("../images/icons/start.svg");
+.puzzleSquare.start {
+  background-color: rgb(200 190 78);
+}
+
+#startIcon,
+#builder .puzzleSquare.start {
+  background-image: url("../images/icons/person.svg");
   background-color: rgb(200 190 78);
 }
 
