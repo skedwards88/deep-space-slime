@@ -38,8 +38,12 @@ function StationIntro({
             Enter Station
           </button>
         </div>
-
-        <img className="stationArt" src={art} />
+        <div className="stationArtWrapper">
+          <img
+            className={`stationArt ${gameState.station.replace(/\s/g, "")}`}
+            src={art}
+          />
+        </div>
       </div>
     </div>
   );
