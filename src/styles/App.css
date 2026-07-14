@@ -487,8 +487,8 @@ button.feature {
 .puzzleSquare.validNext {
   position: relative;
   box-shadow:
-    0 0 10px 5px rgb(60 255 0 / 80%),
-    inset 0 0 10px 10px rgb(60 255 0 / 80%);
+    0 0 10px 4px rgb(60 255 0 / 70%),
+    inset 0 0 10px 5px rgb(60 255 0 / 70%);
   transition: box-shadow 0.3s ease-in-out;
 }
 
