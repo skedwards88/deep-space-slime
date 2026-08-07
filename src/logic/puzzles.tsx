@@ -54,9 +54,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        You
-        need a <span id="keyIcon" className="smallInfoIcon"></span> to open the{" "}
-        <span id="doorIcon" className="smallInfoIcon"></span>.
+        You need a <span id="keyIcon" className="smallInfoIcon"></span> to open
+        the <span id="doorIcon" className="smallInfoIcon"></span>.
       </p>
     ),
     winText: "Look at us. Breaking and entering.",
@@ -253,7 +252,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     startingText: (
       <p>
         You can jump from one{" "}
-        <span id="portalIcon" className="smallInfoIcon"></span> to another. Give it a try!
+        <span id="portalIcon" className="smallInfoIcon"></span> to another. Give
+        it a try!
       </p>
     ),
     winText:
@@ -295,7 +295,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
       <p>
         This is your first time solving a room with{" "}
         <span id="powerIcon" className="smallInfoIcon"></span>,{" "}
-        <span id="doorIcon" className="smallInfoIcon"></span>, and{" "}
+        <span id="doorIcon" className="smallInfoIcon"></span>,{" "}
+        <span id="blasterIcon" className="smallInfoIcon"></span>, and{" "}
         <span id="portalIcon" className="smallInfoIcon"></span>. Good luck!
       </p>
     ),
@@ -354,9 +355,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Entry",
     startingText: (
       <p>
-        You need to hack the terminals by moving through them in
-        order, starting with{" "}
-        <span id="number1Icon" className="smallInfoIcon"></span>.
+        You need to hack the terminals by moving through them in order, starting
+        with <span id="number1Icon" className="smallInfoIcon"></span>.
       </p>
     ),
     winText: "Having a human companion comes in handy.",
@@ -489,9 +489,9 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
     roomName: "Lookout",
     startingText: (
       <p>
-        Push each{" "}
-        <span id="civilianIcon" className="smallInfoIcon"></span> (crew) to a{" "}
-        <span id="podIcon" className="smallInfoIcon"></span> (escape pod).
+        Push each <span id="civilianIcon" className="smallInfoIcon"></span>{" "}
+        (crew) to a <span id="podIcon" className="smallInfoIcon"></span> (escape
+        pod).
       </p>
     ),
     winText: (
@@ -786,8 +786,7 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
   "campaign/monolog/the_slime": {
     station: "Monolog",
     roomName: "The Slime",
-    startingText:
-      "I've always wanted to do a villian monolog!",
+    startingText: "I've always wanted to do a villian monolog!",
     winText:
       "Continue into the bowels of the ship, and I'll tell you another secret...",
     robotStartMood: "gloating",
