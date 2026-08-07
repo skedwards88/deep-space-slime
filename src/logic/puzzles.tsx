@@ -295,7 +295,8 @@ export const puzzles: Record<PuzzleId, PuzzleMetadata> = {
       <p>
         This is your first time solving a room with{" "}
         <span id="powerIcon" className="smallInfoIcon"></span>,{" "}
-        <span id="doorIcon" className="smallInfoIcon"></span>, and{" "}
+        <span id="doorIcon" className="smallInfoIcon"></span>,{" "}
+        <span id="blasterIcon" className="smallInfoIcon"></span>, and{" "}
         <span id="portalIcon" className="smallInfoIcon"></span>. Good luck!
       </p>
     ),
