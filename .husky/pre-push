@@ -14,7 +14,7 @@ if [ "$current_branch" = "$PROTECTED_BRANCH" ]; then
     exit 1
   fi
 
-  npx eslint --ignore-path .gitignore .
+  npx eslint --ignore-pattern .gitignore .
   if [ $? -ne 0 ]; then
     echo "You must fix eslint errors before you can push to $PROTECTED_BRANCH"
     exit 1
