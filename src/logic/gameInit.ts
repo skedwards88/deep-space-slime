@@ -74,7 +74,9 @@ function customInit({
       throw new Error("Custom puzzle is not valid.");
     }
   } catch (error) {
-    console.error("Error generating custom puzzle from query: " + error);
+    console.error(
+      "Error generating custom puzzle from query: " + String(error),
+    );
     // If couldn't generate a puzzle, use the non-custom init instead
     if (!useSaved) {
       savedState = getFromStorage<GameState>("deepSpaceSlimeSavedState");
@@ -183,8 +185,9 @@ export function gameInit({
   isCustom = false,
   customSeed,
   customIndex,
-}: // If isCustom is false/unspecified and useSaved is false, optionally need puzzleID
-| {
+}:
+  // If isCustom is false/unspecified and useSaved is false, optionally need puzzleID
+  | {
       isCustom?: false;
       useSaved: false;
       puzzleID?: PuzzleId;

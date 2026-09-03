@@ -430,8 +430,8 @@ function PuzzleSolvedButtons({
     const buttonText = isEnteringNewCampaignStation
       ? "Next Station"
       : isEnteringFirstBonusStation
-      ? "First Bonus Level"
-      : "Next Level";
+        ? "First Bonus Level"
+        : "Next Level";
 
     nextLevelButton = (
       <button

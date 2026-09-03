@@ -30,7 +30,9 @@ export default function CustomShare({
           onClick={() => {
             try {
               setHintsRemaining(maxHints);
-              navigator.clipboard.writeText(link);
+              navigator.clipboard.writeText(link).catch((error) => {
+                console.log("Error copying", error);
+              });
             } catch (error) {
               console.log("Error copying", error);
             }

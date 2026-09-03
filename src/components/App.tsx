@@ -11,11 +11,7 @@ import PowerExplanation from "./PowerExplanation";
 import KeyExplanation from "./KeyExplanation";
 import ConfirmReset from "./ConfirmReset";
 import CampaignOver from "./CampaignOver";
-import type {BeforeInstallPromptEvent} from "@skedwards88/shared-components/src/logic/handleInstall";
-import {
-  handleAppInstalled,
-  handleBeforeInstallPrompt,
-} from "@skedwards88/shared-components/src/logic/handleInstall";
+import {useInstallPrompt} from "@skedwards88/shared-components/src/logic/handleInstall";
 import InstallOverview from "@skedwards88/shared-components/src/components/InstallOverview";
 import PWAInstall from "@skedwards88/shared-components/src/components/PWAInstall";
 import Pathfinder from "./Pathfinder";
@@ -28,44 +24,9 @@ import type {DisplayState} from "../Types";
 export default function App(): React.JSX.Element {
   const {userId, sessionId} = useMetadataContext();
 
-  // *****
-  // Install handling setup
-  // *****
-  // Set up states that will be used by the handleAppInstalled and handleBeforeInstallPrompt listeners
-  const [installPromptEvent, setInstallPromptEvent] =
-    React.useState<BeforeInstallPromptEvent | null>(null);
-  const [showInstallButton, setShowInstallButton] =
-    React.useState<boolean>(true);
-
-  React.useEffect(() => {
-    // Need to store the function in a variable so that
-    // the add and remove actions can reference the same function
-    const listener = (event: BeforeInstallPromptEvent): void =>
-      handleBeforeInstallPrompt(
-        event,
-        setInstallPromptEvent,
-        setShowInstallButton,
-      );
-
-    window.addEventListener("beforeinstallprompt", listener);
-
-    return (): void =>
-      window.removeEventListener("beforeinstallprompt", listener);
-  }, []);
-
-  React.useEffect(() => {
-    // Need to store the function in a variable so that
-    // the add and remove actions can reference the same function
-    const listener = (): void =>
-      handleAppInstalled(setInstallPromptEvent, setShowInstallButton);
-
-    window.addEventListener("appinstalled", listener);
-
-    return (): void => window.removeEventListener("appinstalled", listener);
-  }, []);
-  // *****
-  // End install handling setup
-  // *****
+  // This must live at the top level component, not in InstallOverview where it is used, since the InstallOverview is not rendered initially and therefore misses its chance to attach the listeners
+  const {installPromptEvent, showInstallButton, handleInstall} =
+    useInstallPrompt({userId, sessionId});
 
   const [display, setDisplay] = React.useState<DisplayState>("game");
 
@@ -92,9 +53,9 @@ export default function App(): React.JSX.Element {
       componentToRender = (
         <InstallOverview
           setDisplay={setDisplay}
-          setInstallPromptEvent={setInstallPromptEvent}
-          showInstallButton={showInstallButton}
           installPromptEvent={installPromptEvent}
+          showInstallButton={showInstallButton}
+          handleInstall={handleInstall}
           userId={userId}
           sessionId={sessionId}
         ></InstallOverview>

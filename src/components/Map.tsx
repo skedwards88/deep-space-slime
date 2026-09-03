@@ -13,19 +13,26 @@ import type {GamePayload} from "../logic/gameReducer";
 
 function assembleMap(
   puzzleId: PuzzleId,
-  mapData = new Map(),
+  mapData: Map<
+    PuzzleType,
+    Map<string, {roomName: string; puzzleID: PuzzleId}[]>
+  > = new Map(),
 ): Map<PuzzleType, Map<string, {roomName: string; puzzleID: PuzzleId}[]>> {
   const {type, station, roomName, nextPuzzle} = puzzles[puzzleId];
 
-  if (!mapData.get(type)) {
-    mapData.set(type, new Map());
+  let typeMap = mapData.get(type);
+  if (!typeMap) {
+    typeMap = new Map();
+    mapData.set(type, typeMap);
   }
 
-  if (!mapData.get(type).get(station)) {
-    mapData.get(type).set(station, []);
+  let stationList = typeMap.get(station);
+  if (!stationList) {
+    stationList = [];
+    typeMap.set(station, stationList);
   }
 
-  mapData.get(type).get(station).push({roomName, puzzleID: puzzleId});
+  stationList.push({roomName, puzzleID: puzzleId});
 
   if (nextPuzzle) {
     assembleMap(nextPuzzle, mapData);

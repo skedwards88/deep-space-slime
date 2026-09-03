@@ -218,6 +218,7 @@ describe("puzzle validation", () => {
       if (solutions.length === 0) {
         throw new Error(`${station} ${roomName} has no solutions`);
       }
+      expect(solutions.length).not.toBe(0);
     }
   });
 });

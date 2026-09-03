@@ -13,7 +13,7 @@ function getPuzzleForColin({
   robotEndMood = "happy",
   robotStartMood = "happy",
 }) {
-  const [_, query] = url.split("?id=");
+  const [, query] = url.split("?id=");
 
   let [customName, customEncodedPuzzle] = query
     .substring("custom-".length)

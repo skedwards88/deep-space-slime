@@ -1,6 +1,15 @@
 import {getAllValidPaths} from "../logic/getAllValidPaths";
+import type {PuzzleArray} from "../Types";
 
-self.onmessage = async (event): Promise<void> => {
+type WorkerRequest = {
+  puzzle: PuzzleArray;
+  startingCivilians: number[];
+  numColumns: number;
+  numRows: number;
+  maxPathsToFind: number;
+};
+
+self.onmessage = (event: MessageEvent<WorkerRequest>): void => {
   const {puzzle, startingCivilians, numColumns, numRows, maxPathsToFind} =
     event.data;
   const paths = getAllValidPaths({

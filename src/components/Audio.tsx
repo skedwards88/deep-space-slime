@@ -12,7 +12,10 @@ function handlePlayPause(
   if (isPlaying) {
     audioRef.current.pause();
   } else {
-    audioRef.current.play();
+    audioRef.current.play().catch((error: unknown) => {
+      console.error("Failed to play audio:", error);
+      setIsPlaying(false);
+    });
   }
 
   setIsPlaying(!isPlaying);

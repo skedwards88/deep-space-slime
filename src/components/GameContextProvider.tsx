@@ -19,6 +19,7 @@ import {
   getFromStorage,
   saveToStorage,
 } from "@skedwards88/shared-components/src/logic/safeStorage";
+import type {getAllValidPaths} from "../logic/getAllValidPaths";
 
 type GamePathCalculationStatusType = "idle" | "calculating" | "done";
 
@@ -62,7 +63,7 @@ export function GameContextProvider({
   const [gamePathCalculationStatus, setGamePathCalculationStatus] =
     React.useState<GamePathCalculationStatusType>("idle");
 
-  React.useEffect(() => {
+  const onCalculatePaths = React.useEffectEvent(() => {
     console.log("CALCULATING game paths");
 
     setGamePathCalculationStatus("calculating");
@@ -80,13 +81,22 @@ export function GameContextProvider({
       maxPathsToFind,
     });
 
-    worker.onmessage = (event): void => {
+    worker.onmessage = (
+      event: MessageEvent<ReturnType<typeof getAllValidPaths>>,
+    ): void => {
       setAllGamePaths(event.data);
       setGamePathCalculationStatus("done");
       console.log(
         `DONE CALCULATING game paths. Found ${event.data.length} paths.`,
       );
     };
+
+    return worker;
+  });
+
+  React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentionally tracking that the worker is starting
+    const worker = onCalculatePaths();
 
     return (): void => {
       console.log("terminating game path calculation");

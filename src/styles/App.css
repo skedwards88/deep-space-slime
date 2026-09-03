@@ -370,10 +370,9 @@ button.feature {
   display: grid;
   grid-template-columns: repeat(7, var(--square-size));
   grid-template-rows: repeat(9, var(--square-size));
-  column-gap: 0;
   justify-content: center;
   margin: calc(var(--square-size) * 0.5);
-  grid-gap: 2px;
+  gap: 2px;
 }
 
 .puzzleSquare {
@@ -911,7 +910,7 @@ Putting the svg and gradient animation on separate pseudo elements works.
 }
 
 /* Large screen, landscape */
-@media (orientation: landscape) and (min-height: 600px) and (min-width: 936px) {
+@media (orientation: landscape) and (height >= 600px) and (width >= 936px) {
   html {
     --square-size: min(6vmin, 1.5cm);
     --default-font-size: clamp(20px, 3.5vh, 40px);
@@ -934,7 +933,7 @@ Putting the svg and gradient animation on separate pseudo elements works.
 }
 
 /* Large screen, portrait */
-@media (orientation: portrait) and (min-height: 600px) and (min-width: 600px) {
+@media (orientation: portrait) and (height >= 600px) and (width >= 600px) {
   html {
     --default-font-size: clamp(20px, 3.5vh, 40px);
   }

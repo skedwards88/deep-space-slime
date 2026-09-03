@@ -4,6 +4,7 @@ import {
   useReducer,
   useState,
   useEffect,
+  useCallback,
 } from "react";
 import React from "react";
 import {builderReducer} from "../logic/builderReducer";
@@ -18,6 +19,7 @@ import {
   getFromStorage,
   saveToStorage,
 } from "@skedwards88/shared-components/src/logic/safeStorage";
+import type {getAllValidPaths} from "../logic/getAllValidPaths";
 
 export type SavedCustomBuildType = [string, string, boolean, boolean];
 
@@ -56,11 +58,14 @@ export function BuilderContextProvider({
     number | null
   >(null);
 
-  // Don't bother initializing the builderState to anything useful yet.
-  // We need the dispatcher to pass to other components, but we won't ever use this initial state.
-  // This feels sloppy to me, but I haven't thought of a better solution yet.
-  // @ts-expect-error see preceding comment
-  const [builderState, dispatchBuilderState] = useReducer(builderReducer, {});
+  const [builderState, underlyingDispatchBuilderState] = useReducer(
+    builderReducer,
+    // Don't bother initializing the builderState to anything useful yet.
+    // We need the dispatcher to pass to other components, but we won't ever use this initial state.
+    // This feels sloppy to me, but I haven't thought of a better solution yet.
+    // @ts-expect-error see preceding comment
+    {},
+  );
 
   const maxPathsToFind = 100;
   const [allBuilderPaths, setAllBuilderPaths] = useState<number[][]>([]);
@@ -74,6 +79,7 @@ export function BuilderContextProvider({
 
     console.log("CALCULATING builder paths");
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentionally tracking that the worker is starting
     setCalculatingBuilderPaths(true);
 
     // Use a worker instead of async to make sure that this isn't blocking
@@ -92,7 +98,9 @@ export function BuilderContextProvider({
       maxPathsToFind,
     });
 
-    worker.onmessage = (event): void => {
+    worker.onmessage = (
+      event: MessageEvent<ReturnType<typeof getAllValidPaths>>,
+    ): void => {
       setAllBuilderPaths(event.data);
       setCalculatingBuilderPaths(false);
       console.log(
@@ -111,31 +119,39 @@ export function BuilderContextProvider({
     saveToStorage("deepSpaceSlimeSavedCustomBuilds", savedCustomBuilds);
   }, [savedCustomBuilds]);
 
-  React.useEffect(() => {
-    const indexToUpdate = builderState.customIndex;
-    // The builderState gets initialized in this parent so that I can pass the dispatcher to various children, but the initialized state isn't actually used.
-    // To prevent the blank initialized state from appearing in the list of saved puzzles, ignore updates where indexToUpdate is not defined.
-    // This feels sloppy to me, but I haven't thought of a better solution yet.
-    if (indexToUpdate === undefined) {
-      return;
-    }
-    const encodedPuzzle = convertPuzzleToString(
-      builderState.puzzleWithCivilians,
-    );
-    const newSavedBuilds = savedCustomBuilds.slice();
-    newSavedBuilds.splice(indexToUpdate, 1, [
-      builderState.roomName,
-      encodedPuzzle,
-      builderState.isValid,
-      allBuilderPaths.length > 0,
-    ]);
-    setSavedCustomBuilds(newSavedBuilds);
-  }, [
-    builderState.puzzleWithCivilians,
-    builderState.roomName,
-    builderState.isValid,
-    allBuilderPaths,
-  ]);
+  const dispatchBuilderState = useCallback(
+    (payload: BuilderPayload) => {
+      // Call the reducer to get what the updated state will be
+      const updatedState = builderReducer(builderState, payload);
+
+      // Actually trigger the reducer
+      underlyingDispatchBuilderState(payload);
+
+      // Update the saved builds based on the new state
+      // (Doing like this instead of in a separate useEffect hook since calling setState in a useEffect hook is disallowed)
+      // The builderState gets initialized in this parent so that I can pass the dispatcher to various children, but the initialized state isn't actually used.
+      // To prevent the blank initialized state from appearing in the list of saved puzzles, ignore updates where indexToUpdate is not defined.
+      // This feels sloppy to me, but I haven't thought of a better solution yet.
+      if (updatedState.customIndex != null) {
+        const encodedPuzzle = convertPuzzleToString(
+          updatedState.puzzleWithCivilians,
+        );
+
+        setSavedCustomBuilds((oldSavedBuilds) => {
+          const newSavedBuilds = oldSavedBuilds.slice();
+
+          newSavedBuilds.splice(updatedState.customIndex, 1, [
+            updatedState.roomName,
+            encodedPuzzle,
+            updatedState.isValid,
+            allBuilderPaths.length > 0,
+          ]);
+          return newSavedBuilds;
+        });
+      }
+    },
+    [builderState, allBuilderPaths],
+  );
 
   return (
     <BuilderContext.Provider

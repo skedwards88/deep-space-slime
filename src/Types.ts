@@ -13,8 +13,7 @@ export type RobotMood =
 export type PuzzleType = "Campaign" | "Bonus";
 
 export type PuzzleId =
-  | `campaign/${string}/${string}`
-  | `bonus/${string}/${string}`;
+  `campaign/${string}/${string}` | `bonus/${string}/${string}`;
 
 export type PuzzleMetadata = {
   station: string;
@@ -75,7 +74,6 @@ export type DisplayState =
   | "builderPathfinder"
   | "campaignOver"
   | "confirmDelete"
-  | "confirmReset"
   | "confirmReset"
   | "customShare"
   | "game"
